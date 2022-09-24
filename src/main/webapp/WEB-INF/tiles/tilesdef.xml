@@ -4,29 +4,26 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 	
-	<!-- layout2 -->
+	<!-- layout -->
 	<definition name="layout" template="/WEB-INF/layout/layout.jsp">
 		<put-attribute name="header" value="/WEB-INF/layout/header.jsp"/>
-		<put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>		
+		<put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"/>
 	</definition>
 	
-	<!-- layout2 macro -->
+	<!-- layout macro -->
 	<definition name="/bit/*/*" extends="layout">
 		<put-attribute name="main" value="/WEB-INF/{1}/{2}.jsp"/>
 	</definition>
 	
 	<!-- layoutMain -->
-<!-- 	<definition name="layoutMain" template="/WEB-INF/mainPage/layoutMain.jsp">
-		<put-attribute name="brand" value="/WEB-INF/mainPage/brand.jsp"/>
-		<put-attribute name="gift" value="/WEB-INF/mainPage/gift.jsp"/>
-		<put-attribute name="price" value="/WEB-INF/mainPage/price.jsp"/>		
-		<put-attribute name="theme" value="/WEB-INF/mainPage/theme.jsp"/>
-	</definition> -->
-	
+<!-- 	<definition name="layout" template="/WEB-INF/mainpage/mainLayout.jsp">
+		<put-attribute name="header" value="/WEB-INF/layout/header.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"/>
+	</definition>
+	 -->
 	<!-- layoutMain macro -->
-<!-- 	<definition name="/bit/*/*" extends="layoutMain">
-		<put-attribute name="layoutMain" value="/WEB-INF/{1}/{2}.jsp"/>
+<!-- 	<definition name="/bit/*/main" extends="mainLayout">
+		<put-attribute name="mainLayout" value="/WEB-INF/{1}/{2}.jsp"/>
 	</definition> -->
-	
 </tiles-definitions>

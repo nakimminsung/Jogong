@@ -12,8 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Edu+VIC+WA+NT+Beginner:wght@600&family=Gamja+Flower&family=Single+Day&family=Jua&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
     
     <!-- bootstrap 5 -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 	
 	<!-- bootstrap 5 icon -->
 	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
@@ -21,12 +20,8 @@
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     
-<style type="text/css">
-</style>
 </head>
 <body>
-main
-	<c:set var="root" value="<%=request.getContextPath() %>"/>
-	<a href="${root}/product/detail">상세페이지</a>
+	<b>detail</b>
 </body>
 </html>
