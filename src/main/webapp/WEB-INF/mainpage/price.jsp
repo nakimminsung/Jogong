@@ -21,6 +21,8 @@
     
 </head>
 <body>
-price
+	<div style="width:100%; height:150px; border:1px solid gray;" align="center">
+		<h2>가격필터 영역</h2>
+	</div>
 </body>
 </html>
