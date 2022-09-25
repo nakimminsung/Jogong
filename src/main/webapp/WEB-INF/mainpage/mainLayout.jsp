@@ -53,11 +53,11 @@
 			<div id="gift">
 				<tiles:insertAttribute name="gift"/>
 			</div>	
-			<div id="theme">
-				<tiles:insertAttribute name="theme"/>
-			</div>
 			<div id="brand">
 				<tiles:insertAttribute name="brand"/>
+			</div>
+			<div id="theme">
+				<tiles:insertAttribute name="theme"/>
 			</div>
 			<div id="price">
 				<tiles:insertAttribute name="price"/>
