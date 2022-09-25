@@ -21,6 +21,7 @@
     
 </head>
 <body>
+	<c:set var="root" value="<%=request.getContextPath() %>"/>
 	<div>
 		<img src="../image/d.png">
 		<img src="../image/d1.jpg" style="margin-left:25px;">
