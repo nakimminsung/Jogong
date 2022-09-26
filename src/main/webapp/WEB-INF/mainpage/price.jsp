@@ -20,9 +20,13 @@
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     
 </head>
+<style>
+	
+</style>
 <body>
 	<div style="width:100%; height:150px; border:1px solid gray;" align="center">
-		<h2>가격필터 영역</h2>
+		<h2>가격대별 인기상품이에요</h2>
+		<button></button>
 	</div>
 </body>
 </html>
