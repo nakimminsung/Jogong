@@ -9,7 +9,7 @@
       <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
       <property name="url" value="jdbc:mysql://175.193.80.187:49172/jogong?serverTimezone=Asia/Seoul"></property>
       <property name="username" value="root"></property> 
-      <property name="password" value="3whghkdlxld"></property> 
+      <property name="password" value="3whghkdlxld!"></property> 
    </bean>
    
    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
