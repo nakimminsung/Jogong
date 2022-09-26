@@ -6,5 +6,5 @@ import lombok.Data;
 public class AnonymousDataDto {
 	private int num;
 	private String name;
-	private String imgUrl;
+	private String imageUrl;
 }

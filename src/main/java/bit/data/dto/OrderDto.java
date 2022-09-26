@@ -12,6 +12,6 @@ public class OrderDto {
 	private int deleveryCharge;
 	private String deleveryAdress;
 	private String orderStatus;
-	private String paidPoint;
+	private int paidPoint;
 	private int userNum;
 }

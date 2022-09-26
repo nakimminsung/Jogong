@@ -1,5 +1,7 @@
 package bit.data.dto;
 
+import java.sql.Timestamp;
+
 import lombok.Data;
 
 @Data
@@ -15,5 +17,6 @@ public class SellerDto {
 	private String address;
 	private String bank;
 	private String accountNumber;
+	private Timestamp createdAt;
 	
 }

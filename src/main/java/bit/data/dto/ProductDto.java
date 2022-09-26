@@ -12,14 +12,14 @@ public class ProductDto {
 	private boolean deleveryOption;
 	private String country;
 	private String description;
-	private String thumbnailImage;
+	private String thumbnailImageUrl;
 	private String brand;
 	private String brandLogoUrl;
 	private String brandEventImage;
 	private int age;
 	private boolean messageCard;
 	private boolean engrave;
-	private int readcount;
+	private int readCount;
 	private Timestamp createdAt;
-	private int sellernum;
+	private int sellerNum;
 }
