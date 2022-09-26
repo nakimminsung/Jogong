@@ -33,7 +33,6 @@
 		height: 100px;
 	}
 	.content{
-	  background-color:lightpink;
 	  width:100%;
 	}
 	footer{
