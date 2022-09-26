@@ -11,7 +11,7 @@ public class ReviewDto {
 	private String content;
 	private int rating;
 	private Timestamp createdAt;
-	private int publicOption;
+	private boolean publicOption;
 	private int userNum;
 	private int productNum;
 	private int reviewImageNum;
