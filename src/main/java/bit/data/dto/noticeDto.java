@@ -1,7 +1,9 @@
 package bit.data.dto;
 
-import com.google.protobuf.Timestamp;
+import java.sql.Timestamp;
+import lombok.Data;
 
+@Data
 public class noticeDto {
 	private int num;
 	private String title;
