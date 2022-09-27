@@ -106,7 +106,7 @@
 		color: #ff3c78;
 		text-decoration: none;
 	}
-	button.btn {
+	button.btn-header{
 		background-color: #ff3c78;
 		color: #fff;
 		font-weight:400;		
@@ -139,7 +139,7 @@
 				<a class="login" href="${root}">로그인</a>
 			</div>
 			<div>
-				<button type="button" class="btn">회원가입</button>
+				<button type="button" class="btn btn-header">회원가입</button>
 			</div>
 		</div>
 	</div>	

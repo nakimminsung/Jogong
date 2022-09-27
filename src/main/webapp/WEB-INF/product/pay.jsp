@@ -19,10 +19,19 @@
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     
+<style type="text/css">
+	body * {
+		font-family: "Jua";
+	}
+</style>
 </head>
 <body>
-	<div style="width:100%; height:150px; border:1px solid gray;" align="center">
-		<h2>가격필터 영역</h2>
+	<div style="margin:50px;">
+		<h1> kakaoPay api 이용하기 </h1>
+ 
+<form method="post" action="/kakaoPay">
+    <button>카카오페이로 결제하기</button>
+</form>
 	</div>
 </body>
 </html>
