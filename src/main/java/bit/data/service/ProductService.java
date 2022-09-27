@@ -15,8 +15,8 @@ public class ProductService implements ProductServiceInter {
 	ProductDaoInter productDao;
 	
 	@Override
-	public List<WishlistDto> getFriendWishlist(int userNum) {
-		return productDao.getFriendWishlist(userNum);
+	public List<WishlistDto> getWishlist(int userNum) {
+		return productDao.getWishlist(userNum);
 	}
 
 }

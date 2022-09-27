@@ -17,8 +17,8 @@ public class ProductDao implements ProductDaoInter {
 	String ns = "bit.data.dao.ProductDao.";
 	
 	@Override
-	public List<WishlistDto> getFriendWishlist(int userNum) {
-		return session.selectList(ns+"getFriendWishlist",userNum);
+	public List<WishlistDto> getWishlist(int userNum) {
+		return session.selectList(ns+"getWishlist",userNum);
 	}
 
 }

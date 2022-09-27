@@ -55,7 +55,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background: rgba(150, 150, 150, 0.25);
+        background: rgba(50, 50, 50, 0.25);
         box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
         backdrop-filter: blur(1.5px);
         -webkit-backdrop-filter: blur(1.5px);
