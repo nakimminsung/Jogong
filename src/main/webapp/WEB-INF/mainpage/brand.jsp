@@ -19,41 +19,67 @@
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     
+    <!-- slick -->
+	<!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/> -->
+	<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script> -->
+    
+    
     <style>
+    	body * {
+    		font-size: 15px; 	
+    	}
     	div {
     		border: 1px solid gray;
     	}
+    	div.event-wrapper {
+    		width: 100%;
+    		display: flex;
+    		justify-content: center;
+    	}
     	div.event-object {
+    		width: 250px;
+    		height: 350px;
+    		padding:  0 10px;
+    		margin: 30px 0;
+    		
+    	}
+    	div.event-object>img {
+    		width: 100%;
+    		height: 90%;
+    	}
+    	button.slick-arrow {
     		width:100px;
-    		height:130px;
+    		height:100px;
+    		background-color: yellow;
+    		border-radius: 100%;
     	}
     </style>
 </head>
 <body>
 	<c:set var="root" value="<%=request.getContextPath() %>"/>
-	<div>
+	<div class="event-wrapper">
 		<div class="event-object">
-			<img src="${root}/image/default.png" style="width:100px;">
+			<img src="${root}/image/default.png">
 			<b>이벤트1</b>
 		</div>
-		<div>
-			<img src="${root}/image/default.png" style="width:100px;">
+		<div class="event-object">
+			<img src="${root}/image/default.png">
 			<b>이벤트1</b>
 		</div>
-		<div>
-			<img src="${root}/image/default.png" style="width:100px;">
+		<div class="event-object">
+			<img src="${root}/image/default.png">
 			<b>이벤트1</b>
 		</div>
-		<div>
-			<img src="${root}/image/default.png" style="width:100px;">
+		<div class="event-object">
+			<img src="${root}/image/default.png">
 			<b>이벤트1</b>
 		</div>
-		<div>
-			<img src="${root}/image/default.png" style="width:100px;">
+		<div class="event-object">
+			<img src="${root}/image/default.png">
 			<b>이벤트1</b>
 		</div>
-		<div>
-			<img src="${root}/image/default.png" style="width:100px;">
+		<div class="event-object">
+			<img src="${root}/image/default.png">
 			<b>이벤트1</b>
 		</div>
 	</div>

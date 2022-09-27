@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="bit.data.dao.UserDao">
-	<select id="getFriendlist" parameterType="int" resultType="userDto">
-		select friendNum from userFriend where userNum=${userNum};
+    <select id="getUserData" parameterType="id" resultType="userDto">
+		select * from member where UserNum=#{UserNum}
 	</select>
-</mapper>
+</mapper>  

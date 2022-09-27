@@ -135,6 +135,34 @@
     	border:solid gray 0px;
     }
 </style>
+<script>
+	$(function(){
+		$(".gift-friend-img").click(function(){
+			list();
+		});
+	});
+	
+	function list() {
+		var userNum = 2;
+			
+		var s="";
+			
+		$.ajax({
+			type: "get",
+			url: "friend/list",
+			dataType: "json",
+			data: {"userNum":userNum},
+			success:function(res){
+				$.each(res, function(i,elt) {
+					
+					s += "<div>"+elt.friendNum+"</div>";
+					
+				});
+				$("div.gift-modal-friend-list").html(s);
+			}
+		});
+	}
+</script>
 </head>
 <body>
 	<c:set var="root" value="<%=request.getContextPath() %>"/>
@@ -175,26 +203,13 @@
             	<div style="margin-top: 10px;">
             		친구목록 64
             	</div>
-            	<div>
+            	<div class="gift-modal-friend-list">
             		<div class="gift-modal-select">
             			<input type="checkbox" class="form-check-input">
 		            	<img src="${root }/image/default.png" class="gift-friend-img"> 병찬
             		</div>
-            		<div class="gift-modal-select">
-            			<input type="checkbox" class="form-check-input">
-		            	<img src="${root }/image/default.png" class="gift-friend-img"> 선혜
-            		</div>
-            		<div class="gift-modal-select">
-            			<input type="checkbox" class="form-check-input">
-		            	<img src="${root }/image/default.png" class="gift-friend-img"> 민성
-            		</div>
-            		<div class="gift-modal-select">
-            			<input type="checkbox" class="form-check-input">
-		            	<img src="${root }/image/default.png" class="gift-friend-img"> 종환
-            		</div>
-            		<div class="gift-modal-select">
-            			<input type="checkbox" class="form-check-input">
-		            	<img src="${root }/image/default.png" class="gift-friend-img"> 성민
+            		<div>
+            			11
             		</div>
             	</div>
             </div>
