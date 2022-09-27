@@ -19,12 +19,43 @@
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     
+    <style>
+    	div {
+    		border: 1px solid gray;
+    	}
+    	div.event-object {
+    		width:100px;
+    		height:130px;
+    	}
+    </style>
 </head>
 <body>
-	<div style="width:100%; height:150px; border:1px solid gray;" align="center">
-		<h2>이벤트 등 영역</h2>
-		<c:set var="root" value="<%=request.getContextPath() %>"/>
-		<a href="${root}/product/detail">상세페이지 링크</a>
+	<c:set var="root" value="<%=request.getContextPath() %>"/>
+	<div>
+		<div class="event-object">
+			<img src="${root}/image/default.png" style="width:100px;">
+			<b>이벤트1</b>
+		</div>
+		<div>
+			<img src="${root}/image/default.png" style="width:100px;">
+			<b>이벤트1</b>
+		</div>
+		<div>
+			<img src="${root}/image/default.png" style="width:100px;">
+			<b>이벤트1</b>
+		</div>
+		<div>
+			<img src="${root}/image/default.png" style="width:100px;">
+			<b>이벤트1</b>
+		</div>
+		<div>
+			<img src="${root}/image/default.png" style="width:100px;">
+			<b>이벤트1</b>
+		</div>
+		<div>
+			<img src="${root}/image/default.png" style="width:100px;">
+			<b>이벤트1</b>
+		</div>
 	</div>
 </body>
 </html>
