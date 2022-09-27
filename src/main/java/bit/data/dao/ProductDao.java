@@ -16,6 +16,11 @@ public class ProductDao implements ProductDaoInter {
 	String ns = "bit.data.dao.ProductDao.";
 	
 	@Override
+	public List<WishlistDto> getWishlist(int userNum) {
+		return session.selectList(ns+"getWishlist",userNum);
+	}
+
+	@Override
 	public List<ProductDto> getProduct(int price) {
 		
 		return session.selectList(ns+"selectProductByPrice", price);

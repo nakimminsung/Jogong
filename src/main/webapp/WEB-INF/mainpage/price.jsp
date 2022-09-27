@@ -21,6 +21,7 @@
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     
 </head>
+<<<<<<< HEAD
 <style>
 	.productPrice{ 
 		width:80%;	
@@ -88,6 +89,5 @@
 		    </div>
 		  </div>
 		</div>
-	</div>
 </body>
 </html>
