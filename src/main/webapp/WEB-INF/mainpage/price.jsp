@@ -12,6 +12,7 @@
     
     <!-- bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	
 	<!-- bootstrap 5 icon -->
 	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
@@ -21,12 +22,72 @@
     
 </head>
 <style>
+	.productPrice{ 
+		width:80%;	
+		
+	}
 	
+	.card-img-top {
+ 		 height: 15rem;
+	}
+	
+	.priceRange{
+		margin-top:30px;
+		margin-bottom: 30px;
+		cursor: pointer;
+	}
 </style>
+<script type="text/javascript">
+	$(function(){
+		$("span.pr").click(function(){
+			var price = $(this).attr("price");
+			console.log(price);
+		});
+		
+	});
+
+</script>
 <body>
-	<div style="width:100%; height:150px; border:1px solid gray;" align="center">
-		<h2>가격대별 인기상품이에요</h2>
-		<button></button>
+	<c:set var="root" value="<%=request.getContextPath() %>"/>
+	<div align="center">
+		<h2>가격대별 인기상품</h2>
+		<div class="priceRange">
+			<span class="pr" price=50000><img src="${root }/image/dollar.png" width="30">5만원이하</span>&nbsp;&nbsp;&nbsp;&nbsp;
+			<span class="pr" price=100000><img src="${root }/image/dollar.png" width="30">10만원이하</span>&nbsp;&nbsp;&nbsp;&nbsp;
+			<span class="pr" price=200000><img src="${root }/image/dollar.png" width="30">20만원이하</span>&nbsp;&nbsp;&nbsp;&nbsp;
+			<%-- <span class="pr"><img src="${root }/image/dollar.png" width="30">20만원이상</span>&nbsp;&nbsp;&nbsp;&nbsp; --%>
+		</div>
+		
+		<div class="card-deck productPrice">
+		  <div class="card">
+		    <img class="card-img-top" src="${root }/image/search.svg" alt="Card image cap">
+		    <div class="card-body">
+		      <h5 class="card-title">스타벅스</h5>
+		      <p class="card-text">아메리카노</p>
+		    </div>
+		  </div>
+		   <div class="card">
+		    <img class="card-img-top" src="${root }/image/search.svg" alt="Card image cap">
+		    <div class="card-body">
+		      <h5 class="card-title">스타벅스</h5>
+		      <p class="card-text">아메리카노</p>
+		    </div>
+		  </div>
+		 <div class="card">
+		    <img class="card-img-top" src="${root }/image/search.svg" alt="Card image cap">
+		    <div class="card-body">
+		      <h5 class="card-title">스타벅스</h5>
+		      <p class="card-text">아메리카노</p>
+		    </div>
+		  </div>
+		  <div class="card">
+		    <img class="card-img-top" src="${root }/image/search.svg" alt="Card image cap">
+		    <div class="card-body">
+		      <h5 class="card-title">스타벅스</h5>
+		      <p class="card-text">아메리카노</p>
+		    </div>
+		  </div>
+		</div>
 	</div>
 </body>
 </html>
