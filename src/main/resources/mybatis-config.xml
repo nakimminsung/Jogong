@@ -7,5 +7,27 @@
 		<typeAlias type="bit.data.dto.OrderDto" alias="orderDto"/>
 		<typeAlias type="bit.data.dto.OrderDetailDto" alias="orderDetailDto"/>
 		<typeAlias type="bit.data.dto.PaymentDto" alias="paymentDto"/>
+		<!-- 2022-09-27 dto alias 추가 -->
+		<typeAlias type="bit.data.dto.AnonymousDataDto" alias="anonymousDataDto"/>
+		<typeAlias type="bit.data.dto.CartListDto" alias="cartListDto"/>
+		<typeAlias type="bit.data.dto.CategoryDto" alias="categoryDto"/>
+		<typeAlias type="bit.data.dto.FaqCategoryDto" alias="faqCategoryDto"/>
+		<typeAlias type="bit.data.dto.FaqDto" alias="faqDto"/>
+		<typeAlias type="bit.data.dto.FriendDto" alias="friendDto"/>
+		<typeAlias type="bit.data.dto.LikeDto" alias="likeDto"/>
+		<typeAlias type="bit.data.dto.NoticeDto" alias="noticeDto"/>
+		<typeAlias type="bit.data.dto.OptionDto" alias="optionDto"/>
+		<typeAlias type="bit.data.dto.ProductImageDto" alias="productImageDto"/>
+		<typeAlias type="bit.data.dto.QnaCategoryDto" alias="qnaCategoryDto"/>
+		<typeAlias type="bit.data.dto.QnaDto" alias="qnaDto"/>
+		<typeAlias type="bit.data.dto.ReviewDto" alias="reviewDto"/>
+		<typeAlias type="bit.data.dto.ReviewImageDto" alias="reviewImageDto"/>
+		<typeAlias type="bit.data.dto.SellerDto" alias="sellerDto"/>
+		<typeAlias type="bit.data.dto.TagDto" alias="tagDto"/>
+		<typeAlias type="bit.data.dto.ThemeDto" alias="themeDto"/>
+		<typeAlias type="bit.data.dto.ThemeProductDto" alias="themeProductDto"/>
+		<typeAlias type="bit.data.dto.UserDto" alias="userDto"/>
+		<typeAlias type="bit.data.dto.UserFriendDto" alias="userFriendDto"/>
+		<typeAlias type="bit.data.dto.WishlistDto" alias="wishlistDto"/>		
 	</typeAliases>
 </configuration>
