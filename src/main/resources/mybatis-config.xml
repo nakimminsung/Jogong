@@ -27,7 +27,6 @@
 		<typeAlias type="bit.data.dto.ThemeProductDto" alias="themeProductDto"/>
 		<typeAlias type="bit.data.dto.UserDto" alias="userDto"/>
 		<typeAlias type="bit.data.dto.UserFriendDto" alias="userFriendDto"/>
-		<typeAlias type="bit.data.dto.WishlistDto" alias="wishlistDto"/>
-		
+		<typeAlias type="bit.data.dto.WishlistDto" alias="wishlistDto"/>		
 	</typeAliases>
 </configuration>
