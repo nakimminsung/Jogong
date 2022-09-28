@@ -10,5 +10,13 @@
    <select id="selQnaCategory" resultType="String">
       select name from qnaCategory
    </select>
+   <!--faq카테고리별 select -->
+	<select id="getFaqByNum" parameterType="int" resultType="faqDto">
+		select * from faq where faqCategoryNum=#{faqCategoryNum}
+	</select>
+	<!-- Faq카테고리 select -->
+   <select id="selFaqCategory" parameterType="int" resultType="faqCategoryDto">
+      select * from faqCategory where num=#{num}
+   </select>
 	
 </mapper>

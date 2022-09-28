@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import bit.data.dto.FaqCategoryDto;
 import bit.data.dto.FaqDto;
 
 
@@ -27,5 +28,17 @@ public class CscenterDao implements CscenterDaoInter {
 	      
 	      return session.selectList(ns+"selQnaCategory");
 	   }
+	@Override
+	public List<FaqDto> getFaqByNum(int num) {
+		// TODO Auto-generated method stub
+		return session.selectList(ns+"getFaqByNum",num);
+	}
+	@Override
+	public List<FaqCategoryDto> selFaqCategory(int num) {
+		// TODO Auto-generated method stub
+		return session.selectList(ns+"selFaqCategory",num);
+	}
+	
+	
 	
 }
