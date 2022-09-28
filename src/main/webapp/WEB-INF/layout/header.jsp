@@ -133,7 +133,7 @@
 		</div>
 		<div class="right">
 			<div>
-				<a href="${root}">고객센터</a>
+				<a href="${root}/cscenter/faq">고객센터</a>
 			</div>
 			<div>
 				<a class="login" href="${root}">로그인</a>
