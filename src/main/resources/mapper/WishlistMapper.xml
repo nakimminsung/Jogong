@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="bit.data.dao.WishlistrDao">
 
+<mapper namespace="bit.data.dao.WishlistrDao">
 	<select id="selectAllWishlist" parameterType="int" resultType="wishlistDto">
 		select * from wishList where userNum=${userNum} and publicOption=1;
 	</select>
-	
 </mapper>  
