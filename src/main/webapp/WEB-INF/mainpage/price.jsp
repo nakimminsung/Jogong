@@ -1,6 +1,7 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,11 +22,15 @@
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     
 </head>
-<<<<<<< HEAD
 <style>
 	.productPrice{ 
 		width:80%;	
-		
+		margin-bottom: 30px;
+	}
+	
+	.card-body:hover{
+		background-color: #f6f7f7;
+		cursor: pointer;
 	}
 	
 	.card-img-top {
@@ -37,57 +42,69 @@
 		margin-bottom: 30px;
 		cursor: pointer;
 	}
+	
+	.pr img{
+		border-radius: 70%;
+	}
+	
+	.pr{
+		margin-left: 30px;
+	}
+	
+	.pr img:hover{
+		box-shadow: 5px 5px 5px;
+	}
 </style>
 <script type="text/javascript">
 	$(function(){
+		
+		$("document").ready(function(){
+			getProductList(50000);
+		});	
+		
 		$("span.pr").click(function(){
 			var price = $(this).attr("price");
-			console.log(price);
+			getProductList(price);
 		});
-		
 	});
-
+	
+	function getProductList(price){
+		var s = "";
+		$.ajax({
+			type:"get",
+			url:"product/list",
+			data:{"price":price},
+			dataType:"json", 
+			success:function(res){
+				console.log(res);
+				$.each(res,function(i,e){
+					s+="<div class='card' onclick=\"location.href='${root}'\">"
+						s+="<img class='card-img-top' src='"+ e.thumbnailImageUrl+"' alt='Card image cap'>";
+						s+="<div class='card-body'>";
+							s+="<h5 class='card-title'>"+e.brand+"</h5>";
+							s+="<p class='card-text'>"+e.name+"</p>";
+							s+="<p class='card-text'><b>&#8361;"+e.price+"</b></p>";
+						s+="</div>";
+					s+="</div>";
+				});
+				$("div.productPrice").html(s);
+			}
+		});
+	}
 </script>
 <body>
 	<c:set var="root" value="<%=request.getContextPath() %>"/>
 	<div align="center">
 		<h2>가격대별 인기상품</h2>
 		<div class="priceRange">
-			<span class="pr" price=50000><img src="${root }/image/dollar.png" width="30">5만원이하</span>&nbsp;&nbsp;&nbsp;&nbsp;
-			<span class="pr" price=100000><img src="${root }/image/dollar.png" width="30">10만원이하</span>&nbsp;&nbsp;&nbsp;&nbsp;
-			<span class="pr" price=200000><img src="${root }/image/dollar.png" width="30">20만원이하</span>&nbsp;&nbsp;&nbsp;&nbsp;
-			<%-- <span class="pr"><img src="${root }/image/dollar.png" width="30">20만원이상</span>&nbsp;&nbsp;&nbsp;&nbsp; --%>
+			<span class="pr" price=1><img src="${root }/image/price5.jpeg" width="45">&nbsp;~5만원</span>
+			<span class="pr" price=2><img src="${root }/image/price10.png" width="45">&nbsp;~10만원</span>
+			<span class="pr" price=3><img src="${root }/image/price20.png" width="45">&nbsp;~20만원</span>
+			<span class="pr" price=4><img src="${root }/image/price30.png" width="45">&nbsp;20만원~</span>
 		</div>
 		
 		<div class="card-deck productPrice">
-		  <div class="card">
-		    <img class="card-img-top" src="${root }/image/search.svg" alt="Card image cap">
-		    <div class="card-body">
-		      <h5 class="card-title">스타벅스</h5>
-		      <p class="card-text">아메리카노</p>
-		    </div>
-		  </div>
-		   <div class="card">
-		    <img class="card-img-top" src="${root }/image/search.svg" alt="Card image cap">
-		    <div class="card-body">
-		      <h5 class="card-title">스타벅스</h5>
-		      <p class="card-text">아메리카노</p>
-		    </div>
-		  </div>
-		 <div class="card">
-		    <img class="card-img-top" src="${root }/image/search.svg" alt="Card image cap">
-		    <div class="card-body">
-		      <h5 class="card-title">스타벅스</h5>
-		      <p class="card-text">아메리카노</p>
-		    </div>
-		  </div>
-		  <div class="card">
-		    <img class="card-img-top" src="${root }/image/search.svg" alt="Card image cap">
-		    <div class="card-body">
-		      <h5 class="card-title">스타벅스</h5>
-		      <p class="card-text">아메리카노</p>
-		    </div>
-		  </div>
 		</div>
+	</div>
 </body>
 </html>

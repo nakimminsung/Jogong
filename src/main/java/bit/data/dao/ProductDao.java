@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import bit.data.dto.ProductDto;
+import bit.data.dto.WishlistDto;
 
 @Repository
 public class ProductDao implements ProductDaoInter {
