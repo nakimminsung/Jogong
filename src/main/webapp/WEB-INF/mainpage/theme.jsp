@@ -43,8 +43,9 @@
 		border-radius: 20%;
 	}
 	
-	.tp>p:hover{
-		color: #A7D2CB;
+	.tp>img:hover{
+		background-color: #A7D2CB;
+		border-radius: 20%;
 	}
 	
 	.themeProduct{
@@ -68,6 +69,11 @@
 	.loadProduct:hover{
 		border-style: solid;
 		background-color: #A7D2CB;
+	}
+	
+	.cardTheme{
+		margin-left: 30px;
+		margin-top:30px;
 	}
 </style>
 </head>
@@ -111,7 +117,7 @@
 					
 					$("div.productTheme").html(s);
 					
-					$("div.cardTheme").slice(0, 5).hide(); // 초기갯수
+					$("div.cardTheme").slice(0, 5).hide(); 
 				}
 			});
 		}
@@ -134,7 +140,7 @@
 				<p>결혼/집들이</p>
 			</div>
 			<div class="tp" themeNum=4 style="display:flex; align-items:center; justify-content: center; flex-direction:column;">
-				<img src="${root }/image/birthday-cake.png" width="30">
+				<img src="${root }/image/fan.png" width="30">
 				<p>응원/시험</p>
 			</div>
 			<div class="tp" themeNum=5 style="display:flex; align-items:center; justify-content: center; flex-direction:column;">
