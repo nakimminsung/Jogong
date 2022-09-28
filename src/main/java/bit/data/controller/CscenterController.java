@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import bit.data.dto.FaqCategoryDto;
 import bit.data.dto.FaqDto;
+import bit.data.dto.NoticeDto;
 import bit.data.service.CscenterServiceInter;
 
 @Controller
@@ -33,7 +34,6 @@ public class CscenterController {
 			List<FaqCategoryDto> list2=csService.selFaqCategory(Integer.parseInt(num));
 			model.addAttribute("list",list1);
 			model.addAttribute("list1",list2);
-			
 	
 		return "/bit/cscenter/faqform";
 	}
@@ -47,5 +47,16 @@ public class CscenterController {
 	      
 	      return "/bit/cscenter/qnaform";
 	   }
+	@GetMapping("/faq/search")
+	public String faqsearch(Model model,HttpServletRequest request) {
+			String searchword= request.getParameter("searchword");
+			List<FaqDto> list3=csService.getSearchFaq(searchword);
+			int totalcount=csService.getTcFaq(searchword);
+			model.addAttribute("list3",list3);
+			model.addAttribute("totalcount", totalcount);
+			model.addAttribute("searchword", searchword);
+
+		return "/bit/cscenter/faqsearch";
+	}
 	
 }

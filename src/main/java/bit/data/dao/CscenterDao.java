@@ -2,6 +2,7 @@ package bit.data.dao;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import bit.data.dto.FaqCategoryDto;
 import bit.data.dto.FaqDto;
+import bit.data.dto.NoticeDto;
 
 
 @Repository
@@ -38,7 +40,21 @@ public class CscenterDao implements CscenterDaoInter {
 		// TODO Auto-generated method stub
 		return session.selectList(ns+"selFaqCategory",num);
 	}
-	
+	@Override
+	public List<FaqDto> getSearchFaq(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return session.selectList(ns+"getSearchFaq",map);
+	}
+	@Override
+	public int getTcFaq(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return session.selectOne(ns+"getTcFaq", map);
+	}
+	@Override
+	public List<NoticeDto> getAllNotice() {
+		// TODO Auto-generated method stub
+		return session.selectList(ns+"getAllNotice");
+	}
 	
 	
 }

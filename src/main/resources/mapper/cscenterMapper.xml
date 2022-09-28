@@ -18,5 +18,15 @@
    <select id="selFaqCategory" parameterType="int" resultType="faqCategoryDto">
       select * from faqCategory where num=#{num}
    </select>
+   
+   <select id="getSearchFaq" parameterType="Map" resultType="faqDto">
+		select * from faq where content like concat('%',#{searchword},'%')		
+	</select>
+	<select id="getTcFaq" parameterType="Map" resultType="int">
+		select count(*) from faq where content like concat('%',#{searchword},'%')		
+	</select>
+	<select id="getAllNotice" resultType="noticeDto">
+		select * from notice order by createdAt desc
+	</select>
 	
 </mapper>

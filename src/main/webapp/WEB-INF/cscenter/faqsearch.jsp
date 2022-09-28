@@ -76,47 +76,57 @@
 	.qna{
 		margin-left: 400px;
 	}
+	.resultFaq{
+		font-size: 18px;;
+		padding-top: 100px;
+		padding-bottom: 100px;
+		text-align: center;
+		margin-left: -25%;
 	
+	}
 </style>
 
 <script type="text/javascript">
 
-	function test(num) {
+	function test(a) {
 		//alert(a);
-		$("#answer"+num).toggle("fast");
+		$("#answer"+a).toggle("fast");
 	}
+	
+	
 </script>
 </head>
 <body>
 <div style="background-color: white;">
-<form action="faq/search">
+<form action="search">
  	<div class="qnasearch">
  		<h5 style="color: gray;">카카오톡 선물하기 서비스를 이용하시는데 도움이 필요하신가요?</h5>
  		<div class="help"> 
  			<input type="text" name="searchword" class="search" placeholder="도움말을 검색해보세요" value="${param.searchword }">
- 			<button type="submit" style="border: none;"><i class='fas fa-search sh' style='font-size:24px'></i></button>
+ 			<button type="submit"><i class='fas fa-search sh' style='font-size:24px'></i></button>
  		</div>
  	</div>
 </form>
 <br>
 	<div class="category">
 	
-		<span><a href="../cscenter/faq?num=1">&emsp;자주하는 질문&emsp;</a></span>
-		<span><a href="../cscenter/faq?num=2">&emsp;이용방법&emsp;</a></span>
-		<span><a href="../cscenter/faq?num=3">&emsp;서비스안내&emsp;</a></span>
-		<span><a href="../cscenter/faq?num=4">&emsp;결제&emsp;</a></span>
-		<span><a href="../cscenter/faq?num=5">&emsp;배송상태&emsp;</a></span>
-		<span><a href="../cscenter/faq?num=6">&emsp;교환권&emsp;</a></span>
-		<span><a href="../cscenter/faq?num=7">&emsp;기타&emsp;</a></span>
+		<span><a href="../faq?num=1">&emsp;자주하는 질문&emsp;</a></span>
+		<span><a href="../faq?num=2">&emsp;이용방법&emsp;</a></span>
+		<span><a href="../faq?num=3">&emsp;서비스안내&emsp;</a></span>
+		<span><a href="../faq?num=4">&emsp;결제&emsp;</a></span>
+		<span><a href="../faq?num=5">&emsp;배송상태&emsp;</a></span>
+		<span><a href="../faq?num=6">&emsp;교환권&emsp;</a></span>
+		<span><a href="../faq?num=7">&emsp;기타&emsp;</a></span>
 	</div>
 	<br><br><br>
-	<c:forEach var="fc" items="${list1}">
-		<h3 style="margin-left: 200px;">${fc.content}</h3>
-	</c:forEach>
-	
+			<h3 style="margin-left: 200px;">도움말 검색결과 ${totalcount }</h3>
+		
 	<table class="table" style="margin-left: 150px; width: 1000px;">
+		<c:if test="${totalcount==0 }">
+				<div class="resultFaq">'${searchword }'의 <br> 검색결과가 없습니다.</div>
+		</c:if>
 			
-		<c:forEach var="dto" items="${list}">	
+		<c:forEach var="dto" items="${list3}">	
 			<tr>
 				<td> 
 					<div onclick="test('${dto.num }')" style="cursor: pointer;">
@@ -132,7 +142,7 @@
 	<tr>
 		<td style="border: none;text-align: center;">
 			<br>
-			<button type="button" class="btnqna btn btn-outline-info" onclick="location.href='../cscenter/qnaform'">1:1문의하기</button>	
+			<button type="button" class="btnqna btn btn-outline-info" onclick="location.href='../qnaform'">1:1문의하기</button>	
 		</td>
 	</tr>	
 	</table>
