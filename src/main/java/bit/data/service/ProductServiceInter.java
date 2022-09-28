@@ -8,4 +8,5 @@ import bit.data.dto.ProductDto;
 public interface ProductServiceInter {
 	public List<WishlistDto> getWishlist(int userNum);
 	public List<ProductDto> getProduct(int price);
+	public List<ProductDto> getProductTheme(int themeNum);
 }
