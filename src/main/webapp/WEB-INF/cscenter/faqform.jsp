@@ -109,7 +109,6 @@
 		<span><a href="../cscenter/faq?num=7">&emsp;기타&emsp;</a></span>
 	</div>
 	<br><br><br>
-	<h3 style="margin-left: 200px; display: none;">자주하는 질문</h3>
 	<c:forEach var="fc" items="${list1}">
 		<h3 style="margin-left: 200px;">${fc.content}</h3>
 	</c:forEach>

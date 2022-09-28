@@ -27,15 +27,13 @@ public class CscenterController {
 	public String faq(Model model,HttpServletRequest request) {
 			String num= request.getParameter("num");
 			if(num==null) {
-				List<FaqDto> list=csService.getFaq();
-				model.addAttribute("list",list);
-			}else {
-				System.out.println(num);
-				List<FaqDto> list1=csService.getFaqByNum(Integer.parseInt(num));
-				List<FaqCategoryDto> list2=csService.selFaqCategory(Integer.parseInt(num));
-				model.addAttribute("list",list1);
-				model.addAttribute("list1",list2);
+				num = "1";
 			}
+			List<FaqDto> list1=csService.getFaqByNum(Integer.parseInt(num));
+			List<FaqCategoryDto> list2=csService.selFaqCategory(Integer.parseInt(num));
+			model.addAttribute("list",list1);
+			model.addAttribute("list1",list2);
+			
 	
 		return "/bit/cscenter/faqform";
 	}
