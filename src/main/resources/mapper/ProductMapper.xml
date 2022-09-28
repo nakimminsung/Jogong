@@ -4,6 +4,22 @@
 
 <mapper namespace="bit.data.dao.ProductDao">
 	<select id="getWishlist" parameterType="int" resultType="productDto">
-		select * from wishList where userNum=#{userNum};
+		select * from wishList where userNum=#{userNum}
+	</select>
+	<select id="selectProductByPrice" parameterType="int" resultType="productDto">
+		select * from product 
+		<if test="price==1">
+		 	 where price &lt;= 50000 
+		</if>
+		<if test="price==2">
+		 	 where price &gt; 50000  and price &lt;=100000
+		</if>
+		<if test="price==3">
+		 	 where price &gt; 100000 and price &lt;=200000 
+		</if>
+		<if test="price==4">
+		 	 where price &gt; 200000
+		</if>
+		order by readCount limit 4			
 	</select>
 </mapper>
