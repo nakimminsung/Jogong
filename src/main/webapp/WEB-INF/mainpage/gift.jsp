@@ -106,15 +106,20 @@
     div.gift-modal-button>div{
     	width:30px;
     }
-    div.gift-modal-select {
+    div.gift-modal-select-flex {
+    	display: flex;
+    	align-items: center;
+    }
+    div.gift-modal-select-object {
     	display: flex;
     	align-items: center;
     }
     div.gift-modal-select>input{
-		margin-right: 10px;
+		margin-right: 5px;
     }
     div.gift-modal-select>img{
-		margin-right: 10px;
+    	margin-left:0;
+		margin-right: 5px;
     }
     div.gift-modal-search {
     	margin-top: 20px;
@@ -131,8 +136,20 @@
     	left: 325px;
     	cursor: pointer;
     }
+    div.gift-friend-list{
+    	display:flex;
+    	flex-direction: row;
+    	flex-wrap: wrap;
+    }
+    div.friend-result{
+    	overflow: auto;
+    	height: 240px; 	
+    }
     div{
     	border:solid gray 0px;
+    }
+    ul {
+    	padding-left:0;
     }
 </style>
 <script>
@@ -140,6 +157,12 @@
 		$(".gift-friend-img").click(function(){
 			list();
 		});
+		
+/* 		$(document).on("click",".gift-modal-select-flex",function(){
+			$(this).find("i").attr("class","fa fa-check-circle");
+		},function() {
+			$(this).find("i").attr("class","fa fa-circle");			
+		}); */
 	});
 	
 	function list() {
@@ -149,16 +172,28 @@
 			
 		$.ajax({
 			type: "get",
-			url: "friend/list",
+			url: "user/friendData",
 			dataType: "json",
 			data: {"userNum":userNum},
 			success:function(res){
+				
+				s += "<ul style='padding-left:0;'>";
+				
 				$.each(res, function(i,elt) {
 					
-					s += "<div>"+elt.friendNum+"</div>";
+					s += "<li style='list-style:none; float:left;'>";
+					s += "<div style='margin-right:50px;'>";
+					s += "<input type='checkbox' style='margin-right:10px;'>";
+					s += "<label>";
+					s += "<img src='"+elt.profileImage+"' width='100' class='gift-friend-img' style='margin-right:5px;' >";
+					s += elt.nickname;
+					s += "</label>";
+					s += "</div>";
+					s += "</li>";
 					
 				});
-				$("div.gift-modal-friend-list").html(s);
+				s += "</ul>";
+				$("div.friend-result").html(s);
 			}
 		});
 	}
@@ -178,6 +213,7 @@
 	</div>
     <div id="gift-modal" class="gift-modal-overlay">
         <div class="gift-modal-window">
+        	<form>
         	<div class="gift-modal-top">
 	            <div class="gift-title">
 	            	<div>
@@ -196,21 +232,16 @@
         	</div>
             <div class="gift-modal-top">
             	<div>나</div>
-            	<div class="gift-modal-select">
-            		<input type="checkbox" class="form-check-input">
-		            <img src="${root }/image/default.png" class="gift-friend-img"> 명국
+            	<div class="gift-modal-friend-list">
+	            	<div class="gift-modal-select">
+	            		<input type="checkbox">
+			            <img src="${root }/image/default.png" class="gift-friend-img"> 명국
+	            	</div>
             	</div>
             	<div style="margin-top: 10px;">
             		친구목록 64
             	</div>
-            	<div class="gift-modal-friend-list">
-            		<div class="gift-modal-select">
-            			<input type="checkbox" class="form-check-input">
-		            	<img src="${root }/image/default.png" class="gift-friend-img"> 병찬
-            		</div>
-            		<div>
-            			11
-            		</div>
+            	<div class="friend-result">
             	</div>
             </div>
             <div class="gift-modal-button">
@@ -218,6 +249,7 @@
 				<div></div>
 				<button type="button" class="btn btn-warning">확인</button>
             </div>
+            </form>
         </div>
     </div>
     <script>

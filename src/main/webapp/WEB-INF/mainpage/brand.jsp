@@ -29,7 +29,7 @@
     		font-size: 15px; 	
     	}
     	div {
-    		border: 1px solid gray;
+    		border: 0px solid gray;
     	}
     	div.event-wrapper {
     		width: 100%;
