@@ -24,7 +24,7 @@
 </head>
 <style>
 	.productPrice{ 
-		width:80%;	
+		width:90%;	
 		margin-bottom: 30px;
 	}
 	
