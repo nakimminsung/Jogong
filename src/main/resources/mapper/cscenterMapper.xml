@@ -15,8 +15,8 @@
 		select * from faq where faqCategoryNum=#{faqCategoryNum}
 	</select>
 	<!-- Faq카테고리 select -->
-   <select id="selFaqCategory" parameterType="int" resultType="faqCategoryDto">
-      select * from faqCategory where num=#{num}
+   <select id="selFaqCategory" parameterType="int" resultType="String">
+      select content from faqCategory where num=#{num}
    </select>
    
    <select id="getSearchFaq" parameterType="Map" resultType="faqDto">

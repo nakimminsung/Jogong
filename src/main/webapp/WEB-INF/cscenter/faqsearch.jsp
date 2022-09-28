@@ -103,7 +103,7 @@
  		<h5 style="color: gray;">카카오톡 선물하기 서비스를 이용하시는데 도움이 필요하신가요?</h5>
  		<div class="help"> 
  			<input type="text" name="searchword" class="search" placeholder="도움말을 검색해보세요" value="${param.searchword }">
- 			<button type="submit"><i class='fas fa-search sh' style='font-size:24px'></i></button>
+ 			<button type="submit" style="border: none;"><i class='fas fa-search sh' style='font-size:24px'></i></button>
  		</div>
  	</div>
 </form>

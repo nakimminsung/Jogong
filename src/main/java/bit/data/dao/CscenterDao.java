@@ -36,9 +36,9 @@ public class CscenterDao implements CscenterDaoInter {
 		return session.selectList(ns+"getFaqByNum",num);
 	}
 	@Override
-	public List<FaqCategoryDto> selFaqCategory(int num) {
+	public String selFaqCategory(int num) {
 		// TODO Auto-generated method stub
-		return session.selectList(ns+"selFaqCategory",num);
+		return session.selectOne(ns+"selFaqCategory",num);
 	}
 	@Override
 	public List<FaqDto> getSearchFaq(Map<String, Object> map) {

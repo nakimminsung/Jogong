@@ -77,6 +77,15 @@
 		margin-left: 400px;
 	}
 	
+	/* 롤링 */
+	.none{display:none}
+#ticker{float:left;width: 1000px;}
+.navi{float:right;}
+.block {border:2px solid #d81f25; padding:0 5px; height:20px; overflow:hidden; background:#fff; width:1000px; font-family:Gulim; font-size:12px;}
+.block ul,
+.block li {margin:0; padding:0; list-style:none;}
+.block li a {display:block; height:20px; line-height:20px; color:#555; text-decoration:none;}
+	
 </style>
 
 <script type="text/javascript">
@@ -85,6 +94,23 @@
 		//alert(a);
 		$("#answer"+num).toggle("fast");
 	}
+	
+	jQuery(function($)
+				{
+				    var ticker = function()
+				    {
+				        timer = setTimeout(function(){
+				            $('#ticker li:first').animate( {marginTop: '-20px'}, 400, function()
+				            {
+				                $(this).detach().appendTo('ul#ticker').removeAttr('style');
+				            });
+				            ticker();
+				        }, 2000);         
+				      };
+				  // 4 끝
+				    ticker();
+				    
+				});
 </script>
 </head>
 <body>
@@ -110,31 +136,42 @@
 		<span><a href="../cscenter/faq?num=7">&emsp;기타&emsp;</a></span>
 	</div>
 	<br><br><br>
-	<c:forEach var="fc" items="${list1}">
-		<h3 style="margin-left: 200px;">${fc.content}</h3>
-	</c:forEach>
+		<h3 style="margin-left: 200px;">${category}</h3>
+			
 	
 	<table class="table" style="margin-left: 150px; width: 1000px;">
-			
-		<c:forEach var="dto" items="${list}">	
+		<c:if test="${num==1}">
+		<tr>
+			<td style="border-bottom: none;">
+			<div class="block">
+   				<ul id="ticker">
+ 					 <c:forEach var="nt" items="${notice}">
+       					<li><a href="#"><strong>[공지사항]</strong>&emsp;&emsp;${nt.title}<span style="font-size: 10px; float: right; ">${nt.createdAt }</span></a></li>
+       				</c:forEach>
+   				</ul>	
+			</div>
+			</td>
+			</tr>
+		</c:if>	
+		<c:forEach var="dto" items="${list}">
 			<tr>
 				<td> 
 					<div onclick="test('${dto.num }')" style="cursor: pointer;">
-					 <b style="color: red; font-size: 20px;">Q</b>&nbsp;&nbsp;<span>${dto.title }</span><br>
+					 <b style="color: red; font-size: 20px;">Q</b>&emsp;<span>${dto.title }</span><br>
 					</div> 
 					<br>
 					 <div id="answer${dto.num }" style="display: none;">
-					 	<pre style="font-size: 15px;"><b style="color: red; font-size: 20px;">A</b>&nbsp;&nbsp;${dto.content }</pre><br>
+					 	<pre style="font-size: 15px;"><b style="color: red; font-size: 20px;">A</b>&emsp;${dto.content }</pre><br>
 					 </div>	
 				</td>
 			</tr>
 	</c:forEach>
-	<tr>
-		<td style="border: none;text-align: center;">
-			<br>
-			<button type="button" class="btnqna btn btn-outline-info" onclick="location.href='../cscenter/qnaform'">1:1문의하기</button>	
-		</td>
-	</tr>	
+		<tr>
+			<td style="border: none;text-align: center;">
+				<br>
+				<button type="button" class="btnqna btn btn-outline-info" onclick="location.href='../cscenter/qnaform'">1:1문의하기</button>	
+			</td>
+		</tr>	
 	</table>
 </div>	
 </body>

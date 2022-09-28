@@ -28,12 +28,18 @@ public class CscenterController {
 	public String faq(Model model,HttpServletRequest request) {
 			String num= request.getParameter("num");
 			if(num==null) {
-				num = "1";
+				num = "1";				
+			}
+			
+			if (num.equals("1")) {
+				List<NoticeDto> notice=csService.getAllNotice();
+				model.addAttribute("notice",notice);
 			}
 			List<FaqDto> list1=csService.getFaqByNum(Integer.parseInt(num));
-			List<FaqCategoryDto> list2=csService.selFaqCategory(Integer.parseInt(num));
+			String category=csService.selFaqCategory(Integer.parseInt(num));
 			model.addAttribute("list",list1);
-			model.addAttribute("list1",list2);
+			model.addAttribute("category",category);
+			model.addAttribute("num",num);
 	
 		return "/bit/cscenter/faqform";
 	}

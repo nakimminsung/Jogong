@@ -35,7 +35,7 @@ public class CscenterService implements CscenterServiceInter {
 		return cscenterDao.getFaqByNum(num);
 	}
 	@Override
-	public List<FaqCategoryDto> selFaqCategory(int num) {
+	public String selFaqCategory(int num) {
 		// TODO Auto-generated method stub
 		return cscenterDao.selFaqCategory(num);
 	}

@@ -12,7 +12,7 @@ public interface CscenterServiceInter {
 	public List<FaqDto> getFaq();
 	public List<String> selQnaCategory();
 	public List<FaqDto> getFaqByNum(int num);
-	public List<FaqCategoryDto> selFaqCategory(int num);
+	public String selFaqCategory(int num);
 	public List<FaqDto> getSearchFaq(String searchword);
 	public int getTcFaq(String searchword);
 	public List<NoticeDto> getAllNotice();

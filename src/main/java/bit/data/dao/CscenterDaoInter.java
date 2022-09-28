@@ -12,7 +12,7 @@ public interface CscenterDaoInter {
 	public List<FaqDto> getFaq();
 	public List<String> selQnaCategory();
 	public List<FaqDto> getFaqByNum(int num);
-	public List<FaqCategoryDto> selFaqCategory(int num);
+	public String selFaqCategory(int num);
 	public List<FaqDto> getSearchFaq(Map<String, Object> map);
 	public int getTcFaq(Map<String, String> map);
 	public List<NoticeDto> getAllNotice();
