@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import bit.data.dao.CscenterDaoInter;
+import bit.data.dto.FaqCategoryDto;
 import bit.data.dto.FaqDto;
 
 @Service
@@ -25,6 +26,16 @@ public class CscenterService implements CscenterServiceInter {
 	      
 	      return cscenterDao.selQnaCategory();
 	   }
+	@Override
+	public List<FaqDto> getFaqByNum(int num) {
+		// TODO Auto-generated method stub
+		return cscenterDao.getFaqByNum(num);
+	}
+	@Override
+	public List<FaqCategoryDto> selFaqCategory(int num) {
+		// TODO Auto-generated method stub
+		return cscenterDao.selFaqCategory(num);
+	}
+	 
 
-	
 }

@@ -77,25 +77,14 @@
 		margin-left: 400px;
 	}
 </style>
+
 <script type="text/javascript">
-$(function () {
-	$(document).on("click","#1",function(){
-			$("#answer1").toggle("fast");
-	})
-	$(document).on("click","#4",function(){
-			$("#answer4").toggle("fast");
-	})
-	$(document).on("click","#5",function(){
-			$("#answer5").toggle("fast");
-	})
-	$(document).on("click","#11",function(){
-			$("#answer11").toggle("fast");
-	})
-	$(document).on("click","#12",function(){
-			$("#answer12").toggle("fast");
-	})
+
+	function test(a) {
+		//alert(a);
+		$("#answer"+a).toggle("fast");
+	}
 	
-});
 	
 </script>
 </head>
@@ -110,22 +99,26 @@ $(function () {
  	</div>
 <br>
 	<div class="category">
-		<span>&emsp;자주하는 질문&emsp;</span>
-		<span class="d2"><a>&emsp;이용방법&emsp;</a></span>
-		<span class="d3"><a>&emsp;서비스안내&emsp;</a></span>
-		<span class="d4"><a>&emsp;결제&emsp;</a></span>
-		<span class="d5"><a>&emsp;배송상태&emsp;</a></span>
-		<span class="d6"><a>&emsp;교환권&emsp;</a></span>
-		<span class="d7"><a>&emsp;기타&emsp;</a></span>
+	
+		<span><a href="../cscenter/faq?num=1">&emsp;자주하는 질문&emsp;</a></span>
+		<span><a href="../cscenter/faq?num=2">&emsp;이용방법&emsp;</a></span>
+		<span><a href="../cscenter/faq?num=3">&emsp;서비스안내&emsp;</a></span>
+		<span><a href="../cscenter/faq?num=4">&emsp;결제&emsp;</a></span>
+		<span><a href="../cscenter/faq?num=5">&emsp;배송상태&emsp;</a></span>
+		<span><a href="../cscenter/faq?num=6">&emsp;교환권&emsp;</a></span>
+		<span><a href="../cscenter/faq?num=7">&emsp;기타&emsp;</a></span>
 	</div>
 	<br><br><br>
-	<h3 style="margin-left: 200px;">자주하는 질문</h3>
+	<c:forEach var="fc" items="${list1}">
+		<h3 style="margin-left: 200px;">${fc.content}</h3>
+	</c:forEach>
+	
 	<table class="table" style="margin-left: 150px; width: 1000px;">
 			
 		<c:forEach var="dto" items="${list}">	
 			<tr>
 				<td> 
-					<div id="${dto.num }" style="cursor: pointer;">
+					<div onclick="test('${dto.num }')" style="cursor: pointer;">
 					 <b style="color: red; font-size: 20px;">Q</b>&nbsp;&nbsp;<span>${dto.title }</span><br>
 					</div> 
 					<br>
