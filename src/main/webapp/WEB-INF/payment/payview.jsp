@@ -22,15 +22,15 @@
 <body>
 	<div>
 		<h2>IAMPORT 결제</h2>
-		<li>
+<!-- 		<li>
 			<button id="iamportPayment" type="button">카카오페이 결제</button>
 		</li>
 		<li>
 			<button id="iamportPayment2" type="button">휴대폰 결제</button>
-		</li>
+		</li> 
 		<li>
 			<button id="iamportPayment3" type="button">KG이니시스</button>
-		</li>
+		</li> -->
 		<li>
 			<button id="iamportPayment4" type="button">토스</button>
 		</li>
@@ -38,7 +38,7 @@
 	
 <script type="text/javascript">
 $(document).ready(function(){ 
-	$("#iamportPayment").click(function(){ 
+/* 	 $("#iamportPayment").click(function(){ 
     	payment(); //버튼 클릭하면 호출 
     }); 
 	$("#iamportPayment2").click(function(){ 
@@ -46,18 +46,18 @@ $(document).ready(function(){
     }); 
 	$("#iamportPayment3").click(function(){ 
 		kg();
-    }); 
+    }); */
 	$("#iamportPayment4").click(function(){ 
 		toss();
     }); 
 })
-//버튼 클릭하면 실행
+/* //버튼 클릭하면 실행
 function payment(data) {
     IMP.init('imp20164668');//아임포트 관리자 콘솔에서 확인한 '가맹점 식별코드' 입력
     IMP.request_pay({// param
         pg: "kakaopay.TC0ONETIME", //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
         pay_method: "card", //지불 방법
-        merchant_uid: "order_no_0013", //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+        merchant_uid: "0003", //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
         name: "음식", //결제창에 노출될 상품명
         amount: 100, //금액
         buyer_email : "testiamport@naver.com", 
@@ -66,11 +66,28 @@ function payment(data) {
     }, function (rsp) { // callback
         if (rsp.success) {
             alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid);
-            
-        } else {
-            alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
-        }
-    });
+            jQuery.ajax({
+                url: "test.action",
+                method: "POST",
+  			dataType:"json",
+                data: {
+                    "imp_uid": rsp.imp_uid,
+                    "merchant_uid": rsp.merchant_uid,
+                    "name" : rsp.name,
+                    "amount" : rsp.amount,
+                    "buyer_name" : rsp.buyer_name,
+                    "pg" : rsp.pg,
+                    "pay_method" : rsp.pay_method
+                	}
+                });
+         } else {
+             alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
+             var msg = "결제에 실패했습니다"
+             msg = "에러내용:" + rsp.error_msg;
+             
+             alert(msg);
+         }
+     });
 }
 
 function danal(data) {
@@ -78,7 +95,7 @@ function danal(data) {
 	IMP.request_pay({
 		pg : 'nice',
 	    pay_method : 'phone',
-	    merchant_uid: "order_no_0013", //상점에서 생성한 고유 주문번호
+	    merchant_uid: "0003", //상점에서 생성한 고유 주문번호
 	    name : '주문명:결제테스트',
 	    amount : 1000,
 	    buyer_email : 'iamport@siot.do',
@@ -89,18 +106,37 @@ function danal(data) {
 	}, function (rsp) { // callback
         if (rsp.success) {
             alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid);
-        } else {
-            alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
-        }
-    });
+            jQuery.ajax({
+                url: "test.action",
+                method: "POST",
+  			dataType:"json",
+                data: {
+                    "imp_uid": rsp.imp_uid,
+                    "merchant_uid": rsp.merchant_uid,
+                    "name" : rsp.name,
+                    "amount" : rsp.amount,
+                    "buyer_name" : rsp.buyer_name,
+                    "pg" : rsp.pg,
+                    "pay_method" : rsp.pay_method
+                	}
+                });
+         } else {
+             alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
+             var msg = "결제에 실패했습니다"
+             msg = "에러내용:" + rsp.error_msg;
+             
+             alert(msg);
+         }
+     });
 }
+
 
 function kg(data) {
 	IMP.init('imp20164668');//아임포트 관리자 콘솔에서 확인한 '가맹점 식별코드' 입력
 	IMP.request_pay({
 		pg : 'html5_inicis',
 	    pay_method : 'card',
-	    merchant_uid: "order_no_0013", //상점에서 생성한 고유 주문번호
+	    merchant_uid: "0003", //상점에서 생성한 고유 주문번호
 	    name : '주문명:결제테스트',
 	    amount : 100,
 	    buyer_email : 'iamport@siot.do',
@@ -110,29 +146,38 @@ function kg(data) {
 	    buyer_postcode : '123-456'
 	}, function (rsp) { // callback
         if (rsp.success) {
-            alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid);
+            alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "/ name : "+rsp.name);
             
             jQuery.ajax({
-            url: "/PaymentContlloer",
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            data: {
-                "imp_uid": rsp.imp_uid,
-                "merchant_uid": rsp.merchant_uid
-            	}
-            });
-        } else {
-            alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
-        }
-    });
+                url: "test.action",
+                method: "POST",
+  			dataType:"json",
+                data: {
+                    "imp_uid": rsp.imp_uid,
+                    "merchant_uid": rsp.merchant_uid,
+                    "name" : rsp.name,
+                    "amount" : rsp.amount,
+                    "buyer_name" : rsp.buyer_name,
+                    "pg" : rsp.pg,
+                    "pay_method" : rsp.pay_method
+                	}
+                });
+         } else {
+             alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
+             var msg = "결제에 실패했습니다"
+             msg = "에러내용:" + rsp.error_msg;
+             
+             alert(msg);
+         }
+     });
 }
-
+ */
 function toss(data) {
 	IMP.init('imp20164668');//아임포트 관리자 콘솔에서 확인한 '가맹점 식별코드' 입력
 	IMP.request_pay({
 		pg : 'tosspay',
 	    pay_method : 'card',
-	    merchant_uid: "order_no_0013", //상점에서 생성한 고유 주문번호
+	    merchant_uid: "0006", //상점에서 생성한 고유 주문번호
 	    name : '주문명:결제테스트',
 	    amount : 100,
 	    buyer_email : 'iamport@siot.do',
@@ -141,24 +186,30 @@ function toss(data) {
 	    buyer_addr : '서울특별시 강남구 삼성동',
 	    buyer_postcode : '123-456'
 }, function (rsp) { // callback
-       if (rsp.success) {
-           alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid
-        		   );
+      if (rsp.success) {
+    	  
+          alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "/ amount : "+rsp.amount);
+          
           jQuery.ajax({
-               url: "/PaymentContlloer", 
-               method: "POST",
-               headers: { "Content-Type": "application/json" },
-               data: {
-                   imp_uid: rsp.imp_uid,
-                   merchant_uid: rsp.merchant_uid
-               	}
-               });
+              url: "test.action",
+              method: "POST",
+			dataType:"json",
+              data: {
+                  "imp_uid": rsp.imp_uid,
+                  "merchant_uid": rsp.merchant_uid,
+                  "name" : rsp.name,
+                  "amount" : rsp.amount,
+                  "buyer_name" : rsp.buyer_name,
+                  "pg" : rsp.pg,
+                  "pay_method" : rsp.pay_method
+              	}
+              });
        } else {
            alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
            var msg = "결제에 실패했습니다"
            msg = "에러내용:" + rsp.error_msg;
            
-           alert("msg");
+           alert(msg);
        }
    });
 }
