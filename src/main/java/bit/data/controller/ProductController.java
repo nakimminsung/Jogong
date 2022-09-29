@@ -36,10 +36,17 @@ public class ProductController {
 		return productService.getProduct(price);
 	}
 	
-	@GetMapping("/wishlist/friend")
+	@GetMapping("/product/themeList")
 	@ResponseBody
-	public List<ProductDto> getFriendWishlist(int userNum)		
+	public List<ProductDto> themeList(int themeNum)		
 	{
-		return productService.getFriendWishlist(userNum);
+		return productService.getProductTheme(themeNum);
+	}
+	
+	@GetMapping("/product/tagList")
+	@ResponseBody
+	public List<ProductDto> tagList(int themeNum)		
+	{
+		return productService.getTag(themeNum);
 	}
 }
