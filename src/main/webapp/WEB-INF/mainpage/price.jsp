@@ -24,17 +24,17 @@
 </head>
 <style>
 	.productPrice{ 
-		width:80%;	
+		width:90%;	
 		margin-bottom: 30px;
 	}
 	
-	.card-body:hover{
+	.cardPrice>div.card-body:hover{
 		background-color: #f6f7f7;
 		cursor: pointer;
 	}
 	
-	.card-img-top {
- 		 height: 15rem;
+	.cardPrice>img.card-img-top{
+		height: 15rem;
 	}
 	
 	.priceRange{
@@ -52,7 +52,8 @@
 	}
 	
 	.pr img:hover{
-		box-shadow: 5px 5px 5px;
+		/* box-shadow: 5px 5px 5px; */
+		border:2px solid #f6f7f7;
 	}
 </style>
 <script type="text/javascript">
@@ -78,12 +79,12 @@
 			success:function(res){
 				console.log(res);
 				$.each(res,function(i,e){
-					s+="<div class='card' onclick=\"location.href='${root}'\">"
+					s+="<div class='card cardPrice' onclick=\"location.href='${root}'\">"
 						s+="<img class='card-img-top' src='"+ e.thumbnailImageUrl+"' alt='Card image cap'>";
 						s+="<div class='card-body'>";
 							s+="<h5 class='card-title'>"+e.brand+"</h5>";
-							s+="<p class='card-text'>"+e.name+"</p>";
-							s+="<p class='card-text'><b>&#8361;"+e.price+"</b></p>";
+							s+="<p class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 350px;'>"+e.name+"</p>";
+							s+="<p class='card-text'><b>&#8361;"+e.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+"</b></p>";
 						s+="</div>";
 					s+="</div>";
 				});

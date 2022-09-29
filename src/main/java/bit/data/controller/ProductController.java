@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -34,5 +35,19 @@ public class ProductController {
 	public List<ProductDto> list(int price)		
 	{
 		return productService.getProduct(price);
+	}
+	
+	@GetMapping("/product/themeList")
+	@ResponseBody
+	public List<ProductDto> themeList(int themeNum)		
+	{
+		return productService.getProductTheme(themeNum);
+	}
+	
+	@GetMapping("/product/tagList")
+	@ResponseBody
+	public List<ProductDto> tagList(int themeNum)		
+	{
+		return productService.getTag(themeNum);
 	}
 }

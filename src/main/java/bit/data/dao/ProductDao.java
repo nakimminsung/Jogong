@@ -15,7 +15,7 @@ public class ProductDao implements ProductDaoInter {
 	@Autowired
 	SqlSession session;
 	String ns = "bit.data.dao.ProductDao.";
-	
+
 	@Override
 	public List<WishlistDto> getWishlist(int userNum) {
 		return session.selectList(ns+"getWishlist",userNum);
@@ -25,5 +25,17 @@ public class ProductDao implements ProductDaoInter {
 	public List<ProductDto> getProduct(int price) {
 		
 		return session.selectList(ns+"selectProductByPrice", price);
+	}
+	
+	@Override
+	public List<ProductDto> getProductTheme(int themeNum) {
+	
+		return session.selectList(ns+"selectProductByTheme", themeNum);
+	}
+
+	@Override
+	public List<ProductDto> getTag(int themeNum) {
+
+		return session.selectList(ns+"selectTagByTheme", themeNum);
 	}
 }
