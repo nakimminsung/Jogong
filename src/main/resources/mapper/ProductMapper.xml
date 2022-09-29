@@ -30,4 +30,9 @@
 		select * from product where num in (select productNum from themeProduct where themeNum=#{themeNum});
 	</select>
 	
+	<!-- 태그 -->
+	<select id="selectTagByTheme" parameterType="int" resultType="themeDto">
+		select * from theme where num=#{themeNum} 
+	</select>
+	
 </mapper>

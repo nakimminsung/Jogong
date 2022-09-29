@@ -32,4 +32,10 @@ public class ProductDao implements ProductDaoInter {
 	
 		return session.selectList(ns+"selectProductByTheme", themeNum);
 	}
+
+	@Override
+	public List<ProductDto> getTag(int themeNum) {
+
+		return session.selectList(ns+"selectTagByTheme", themeNum);
+	}
 }

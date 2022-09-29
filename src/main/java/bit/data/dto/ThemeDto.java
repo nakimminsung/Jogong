@@ -7,5 +7,6 @@ public class ThemeDto {
 
 	private int num;
 	private String name;
-	
+	private String tag;
+	private String themeImage;
 }

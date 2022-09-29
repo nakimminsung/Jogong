@@ -43,4 +43,11 @@ public class ProductController {
 	{
 		return productService.getProductTheme(themeNum);
 	}
+	
+	@GetMapping("/product/tagList")
+	@ResponseBody
+	public List<ProductDto> tagList(int themeNum)		
+	{
+		return productService.getTag(themeNum);
+	}
 }
