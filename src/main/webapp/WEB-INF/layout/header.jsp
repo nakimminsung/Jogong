@@ -27,6 +27,7 @@
 	}
 	body * {
 		font-size: 15px;
+	
 	}
 	div.header-wrapper {
 		display: flex;
