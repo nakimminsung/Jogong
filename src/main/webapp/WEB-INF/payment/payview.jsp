@@ -22,9 +22,10 @@
 <body>
 	<div>
 		<h2>IAMPORT 결제</h2>
-<!-- 		<li>
+ 		<li>
 			<button id="iamportPayment" type="button">카카오페이 결제</button>
 		</li>
+<!--
 		<li>
 			<button id="iamportPayment2" type="button">휴대폰 결제</button>
 		</li> 
@@ -38,9 +39,10 @@
 	
 <script type="text/javascript">
 $(document).ready(function(){ 
-/* 	 $("#iamportPayment").click(function(){ 
+ 	 $("#iamportPayment").click(function(){ 
     	payment(); //버튼 클릭하면 호출 
     }); 
+ 	 /*
 	$("#iamportPayment2").click(function(){ 
 		danal();
     }); 
@@ -51,13 +53,13 @@ $(document).ready(function(){
 		toss();
     }); 
 })
-/* //버튼 클릭하면 실행
+ //버튼 클릭하면 실행
 function payment(data) {
     IMP.init('imp20164668');//아임포트 관리자 콘솔에서 확인한 '가맹점 식별코드' 입력
     IMP.request_pay({// param
         pg: "kakaopay.TC0ONETIME", //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
         pay_method: "card", //지불 방법
-        merchant_uid: "0003", //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+        merchant_uid: "0010", //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
         name: "음식", //결제창에 노출될 상품명
         amount: 100, //금액
         buyer_email : "testiamport@naver.com", 
@@ -74,9 +76,9 @@ function payment(data) {
                     "imp_uid": rsp.imp_uid,
                     "merchant_uid": rsp.merchant_uid,
                     "name" : rsp.name,
-                    "amount" : rsp.amount,
+                    "amount" : rsp.paid_amount,
                     "buyer_name" : rsp.buyer_name,
-                    "pg" : rsp.pg,
+                    "pg" : rsp.pg_provider,
                     "pay_method" : rsp.pay_method
                 	}
                 });
@@ -89,7 +91,7 @@ function payment(data) {
          }
      });
 }
-
+/*
 function danal(data) {
 	IMP.init('imp20164668');//아임포트 관리자 콘솔에서 확인한 '가맹점 식별코드' 입력
 	IMP.request_pay({
@@ -114,9 +116,9 @@ function danal(data) {
                     "imp_uid": rsp.imp_uid,
                     "merchant_uid": rsp.merchant_uid,
                     "name" : rsp.name,
-                    "amount" : rsp.amount,
+                    "amount" : rsp.paid_amount,
                     "buyer_name" : rsp.buyer_name,
-                    "pg" : rsp.pg,
+                    "pg" : rsp.pg_provider,
                     "pay_method" : rsp.pay_method
                 	}
                 });
@@ -156,9 +158,9 @@ function kg(data) {
                     "imp_uid": rsp.imp_uid,
                     "merchant_uid": rsp.merchant_uid,
                     "name" : rsp.name,
-                    "amount" : rsp.amount,
+                    "amount" : rsp.paid_amount,
                     "buyer_name" : rsp.buyer_name,
-                    "pg" : rsp.pg,
+                    "pg" : rsp.pg_provider,
                     "pay_method" : rsp.pay_method
                 	}
                 });
@@ -177,7 +179,7 @@ function toss(data) {
 	IMP.request_pay({
 		pg : 'tosspay',
 	    pay_method : 'card',
-	    merchant_uid: "0006", //상점에서 생성한 고유 주문번호
+	    merchant_uid: "0010", //상점에서 생성한 고유 주문번호
 	    name : '주문명:결제테스트',
 	    amount : 100,
 	    buyer_email : 'iamport@siot.do',
@@ -198,9 +200,9 @@ function toss(data) {
                   "imp_uid": rsp.imp_uid,
                   "merchant_uid": rsp.merchant_uid,
                   "name" : rsp.name,
-                  "amount" : rsp.amount,
+                  "amount" : rsp.paid_amount,
                   "buyer_name" : rsp.buyer_name,
-                  "pg" : rsp.pg,
+                  "pg" : rsp.pg_provider,
                   "pay_method" : rsp.pay_method
               	}
               });
