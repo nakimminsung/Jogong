@@ -2,21 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bit.data.dao.CscenterDao">
-	<!-- 자주하는 질문 -->
+	<!-- 고객센터 main-->
 	<select id="getFaq" resultType="faqDto">
 		select * from faq where faqCategoryNum=1
 	</select>
-	<!-- 1:1문의 내 QNA카테고리 select -->
-   <select id="selQnaCategory" resultType="String">
-      select name from qnaCategory
-   </select>
    <!--faq카테고리별 select -->
 	<select id="getFaqByNum" parameterType="int" resultType="faqDto">
 		select * from faq where faqCategoryNum=#{faqCategoryNum}
 	</select>
 	<!-- Faq카테고리 select -->
-   <select id="selFaqCategory" parameterType="int" resultType="faqCategoryDto">
-      select * from faqCategory where num=#{num}
+   <select id="selFaqCategory" parameterType="int" resultType="String">
+      select content from faqCategory where num=#{num}
    </select>
+   <!-- Faq 검색 -->
+   <select id="getSearchFaq" parameterType="Map" resultType="faqDto">
+		select * from faq where content like concat('%',#{searchword},'%')		
+	</select>
+	 <!-- Faq 검색 개수 -->
+	<select id="getTcFaq" parameterType="Map" resultType="int">
+		select count(*) from faq where content like concat('%',#{searchword},'%')		
+	</select>
+	 <!-- 공지사항 -->
+	<select id="getAllNotice" resultType="noticeDto">
+		select * from notice order by createdAt desc
+	</select>
 	
+	   <!-- 1:1문의 내 QNA카테고리 select -->
+   <select id="selQnaCategory" resultType="qnaCategoryDto">
+      select * from qnaCategory
+   </select>
+   <!-- 1:!1문의 QNA Insert -->
+   <insert id="insertQna" parameterType="qnaDto">
+      insert into qna values (null,#{title},#{content},#{imageUrl},now(),#{email},#{userNum},#{orderNum},#{qnaCategoryNum})
+   </insert>
+   
 </mapper>
