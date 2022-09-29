@@ -21,42 +21,26 @@
 	*{
 		font-family: 'Jua';
 	}
-	.qnasearch{ 
+	.faqSearch{ 
 		width: 100%;
-		height:250px;
+		height:200px;
 		background-color: #ffd700;
+		padding-left: 35%;
+		padding-top: 3%;
 	}
+	
 	.help{
-		width: 45%;
-		height: 50px;
-		background-color: white;
-		text-align: center;
-		position: absolute;
-		left: 25%;
-		top: 23%;
-	
+		width: 500px;
+		height: 55px;
+		border: none;
+		font-size: 25px;
+		border-radius: 5px;
 	}
-	.search{
-		width: 70%;
-		margin-top: 10px;
-		border: 0px;
-	}
-	h5{
-		position: absolute;
-		left: 30%;
-		top: 18%;
-	}
-	.sh{
-		position: absolute;
-		left: 90%;
-		top: 18%;
-		cursor: pointer;
-	}
-	
+
 	.category{
 		top:300px;
 		font-size:30px;
-		background-color:white;
+		
 		width:100%;
 		border-bottom:1px solid lightgray;
 		display:flex;
@@ -64,6 +48,13 @@
 		height:80px;
 		line-height:80px;
 		text-align:center;
+	}
+	
+	.resultFaq{
+		font-size: 20px;
+		margin-left: 41%;
+		padding-top: 100px;
+		padding-bottom: 100px;
 	}
 	
 	.mcss a{
@@ -76,34 +67,27 @@
 	.qna{
 		margin-left: 400px;
 	}
-	.resultFaq{
-		font-size: 18px;;
-		padding-top: 100px;
-		padding-bottom: 100px;
-		text-align: center;
-		margin-left: -25%;
 	
-	}
+	
 </style>
 
 <script type="text/javascript">
 
-	function test(a) {
+	function test(num) {
 		//alert(a);
-		$("#answer"+a).toggle("fast");
+		$("#answer"+num).toggle("fast");
 	}
-	
 	
 </script>
 </head>
 <body>
 <div style="background-color: white;">
 <form action="search">
- 	<div class="qnasearch">
+ 	<div class="faqSearch">
  		<h5 style="color: gray;">카카오톡 선물하기 서비스를 이용하시는데 도움이 필요하신가요?</h5>
  		<div class="help"> 
- 			<input type="text" name="searchword" class="search" placeholder="도움말을 검색해보세요" value="${param.searchword }">
- 			<button type="submit" style="border: none;"><i class='fas fa-search sh' style='font-size:24px'></i></button>
+ 			<input type="text" name="searchword" class="helpSearch" style="width: 450px;"  placeholder="도움말을 검색해보세요" value="${param.searchword }">
+ 			<button type="submit" style="border: none; background-color: #ffd700"><i class='fas fa-search sh' style='font-size:24px'></i></button>
  		</div>
  	</div>
 </form>
@@ -118,14 +102,14 @@
 		<span><a href="../faq?num=6">&emsp;교환권&emsp;</a></span>
 		<span><a href="../faq?num=7">&emsp;기타&emsp;</a></span>
 	</div>
-	<br><br><br>
-			<h3 style="margin-left: 200px;">도움말 검색결과 ${totalcount }</h3>
-		
-	<table class="table" style="margin-left: 150px; width: 1000px;">
+	<br><br>
+		<h3 style="margin-left: 21%;">도움말 검색결과 ${totalcount }</h3>
+		<hr style="width: 50%;margin-left: 21%;">
+	
+	<table class="table" style="margin-left: 23%; width: 800px;">
 		<c:if test="${totalcount==0 }">
-				<div class="resultFaq">'${searchword }'의 <br> 검색결과가 없습니다.</div>
+				<div class="resultFaq">'${searchword }'의 검색결과가 없습니다.</div>
 		</c:if>
-			
 		<c:forEach var="dto" items="${list3}">	
 			<tr>
 				<td> 
@@ -138,13 +122,13 @@
 					 </div>	
 				</td>
 			</tr>
-	</c:forEach>
+		</c:forEach>
 	<tr>
 		<td style="border: none;text-align: center;">
 			<br>
 			<button type="button" class="btnqna btn btn-outline-info" onclick="location.href='../qnaform'">1:1문의하기</button>	
 		</td>
-	</tr>	
+	</tr>
 	</table>
 </div>	
 </body>

@@ -49,9 +49,7 @@
 		line-height:80px;
 		text-align:center;
 	}
-	.sh{
 	
-	}
 	
 	.mcss a{
 		text-decoration:none;
@@ -66,9 +64,11 @@
 	
 	/* 롤링 */
 	.none{display:none}
-#ticker{float:left;width: 800px;}
-.navi{float:right;}
-.rollingNc {
+	#ticker{float:left;width: 800px;}
+	.navi{
+		float:right;
+	}
+	.rollingNc {
 	padding:10px; 
 	height:32px; 
 	overflow:hidden; 
@@ -79,9 +79,9 @@
 	margin-left: 21%;
 	margin-bottom: 35px;
 	}
-.rollingNc ul,.rollingNc li 
-{margin:0; padding:0; list-style:none;}
-.rollingNc li a {display:block; height:32px; line-height:20px; color:black; text-decoration:none;}
+	.rollingNc ul,.rollingNc li 
+	{margin:0; padding:0; list-style:none;}
+	.rollingNc li a {display:block; height:32px; line-height:20px; color:black; text-decoration:none;}
 	
 </style>
 
