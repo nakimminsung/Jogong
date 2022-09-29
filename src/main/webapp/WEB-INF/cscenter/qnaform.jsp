@@ -21,10 +21,18 @@
       
    }
    
+   .htitle{
+   	  /* margin-top: 4%; */
+	  background-color: #ffd700;
+  	  height: 200px;
+  	  padding-left: 25%;
+  	  padding-top: 80px;
+   }
+   
    div.ibox {
-      margin-top: 5%;
+      margin-top: 1%;
       margin-left: 25%;
-       background-color: white;
+	  background-color: white;
       width: 1000px;
       
    }
@@ -37,7 +45,8 @@
    button.sub {
       width: 200px;
       height: 50px;
-      
+      background-color: #ffd700;
+      font-size: 20px;
    }
    
    i.star {
@@ -83,10 +92,11 @@
 </script>
 <body>
 <div style="background-color: white;">
+
+<h2 class="htitle">1:1 문의하기</h2>
+
    <div class="ibox">
    
-      <h2>1:1 문의하기</h2><br>
-      
       <!-- form action -->
       <form action="qnainsert" method="post" enctype="multipart/form-data">
       
@@ -94,7 +104,7 @@
       <%-- <input type="hidden" name="userNum" value="${sessionScope.loginid}"> --%>
       <input type="hidden" name="userNum" value="1">
       
-         <table class="table form" style="border-top: 1px solid black;" >
+         <table class="table form" style="border-top: 1px solid gray;" >
             <tr>
                <th style="width: 150px;">문의유형 <i class='fas fa-star-of-life star'></i></th>
                <td>
