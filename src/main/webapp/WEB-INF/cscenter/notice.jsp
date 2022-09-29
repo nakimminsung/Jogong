@@ -47,7 +47,7 @@
 </head>
 <body>
 <div style="background-color: white;">
-<h3 class="alert alert-secondary">공지사항</h3>
+<h3 class="alert alert-secondary" style="width: 100%">공지사항</h3>
 
 	<table class="table">
 		
@@ -69,10 +69,10 @@
 		<tr>
 			<td style="border: none;text-align: center;">
 				<br>
-				<button type="button" class="btnqna btn btn-outline-info" onclick="location.href='../cscenter/faq'">고객센터</button>	
+				<button type="button" class="btnqna btn btn-outline-info" onclick="location.href='../cscenter/faq'">뒤로가기</button>	
 			</td>
 		</tr>	
 	</table>
-</div>	
+</div>
 </body>
 </html>

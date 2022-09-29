@@ -21,42 +21,26 @@
 	*{
 		font-family: 'Jua';
 	}
-	.qnasearch{ 
+	.faqSearch{ 
 		width: 100%;
-		height:250px;
+		height:200px;
 		background-color: #ffd700;
+		padding-left: 35%;
+		padding-top: 3%;
 	}
+	
 	.help{
-		width: 45%;
-		height: 50px;
-		background-color: white;
-		text-align: center;
-		position: absolute;
-		left: 25%;
-		top: 23%;
-	
+		width: 500px;
+		height: 55px;
+		border: none;
+		font-size: 25px;
+		border-radius: 5px;
 	}
-	.search{
-		width: 70%;
-		margin-top: 10px;
-		border: 0px;
-	}
-	h5{
-		position: absolute;
-		left: 30%;
-		top: 18%;
-	}
-	.sh{
-		position: absolute;
-		left: 90%;
-		top: 18%;
-		cursor: pointer;
-	}
-	
+
 	.category{
 		top:300px;
 		font-size:30px;
-		background-color:white;
+		
 		width:100%;
 		border-bottom:1px solid lightgray;
 		display:flex;
@@ -64,6 +48,9 @@
 		height:80px;
 		line-height:80px;
 		text-align:center;
+	}
+	.sh{
+	
 	}
 	
 	.mcss a{
@@ -79,12 +66,22 @@
 	
 	/* 롤링 */
 	.none{display:none}
-#ticker{float:left;width: 1000px;}
+#ticker{float:left;width: 800px;}
 .navi{float:right;}
-.block {border:2px solid #d81f25; padding:0 5px; height:20px; overflow:hidden; background:#fff; width:1000px; font-family:Gulim; font-size:12px;}
-.block ul,.block li 
+.rollingNc {
+	padding:10px; 
+	height:32px; 
+	overflow:hidden; 
+	background:#fff; 
+	width:800px; 
+	font-family:Gulim; 
+	font-size:12px;border-radius: 5px;
+	margin-left: 21%;
+	margin-bottom: 35px;
+	}
+.rollingNc ul,.rollingNc li 
 {margin:0; padding:0; list-style:none;}
-.block li a {display:block; height:20px; line-height:20px; color:#555; text-decoration:none;}
+.rollingNc li a {display:block; height:32px; line-height:20px; color:black; text-decoration:none;}
 	
 </style>
 
@@ -116,11 +113,11 @@
 <body>
 <div style="background-color: white;">
 <form action="faq/search">
- 	<div class="qnasearch">
+ 	<div class="faqSearch">
  		<h5 style="color: gray;">카카오톡 선물하기 서비스를 이용하시는데 도움이 필요하신가요?</h5>
  		<div class="help"> 
- 			<input type="text" name="searchword" class="search" placeholder="도움말을 검색해보세요" value="${param.searchword }">
- 			<button type="submit" style="border: none;"><i class='fas fa-search sh' style='font-size:24px'></i></button>
+ 			<input type="text" name="searchword" class="helpSearch" style="width: 450px;"  placeholder="도움말을 검색해보세요" value="${param.searchword }">
+ 			<button type="submit" style="border: none; background-color: #ffd700"><i class='fas fa-search sh' style='font-size:24px'></i></button>
  		</div>
  	</div>
 </form>
@@ -135,33 +132,31 @@
 		<span><a href="../cscenter/faq?num=6">&emsp;교환권&emsp;</a></span>
 		<span><a href="../cscenter/faq?num=7">&emsp;기타&emsp;</a></span>
 	</div>
-	<br><br><br>
-		<h3 style="margin-left: 200px;">${category}</h3>
-			
+	<br><br>
+	<c:if test="${num==1}">
+		<div class="rollingNc" style="background-color: #f5f5f5;">
+   			<ul id="ticker">
+ 				 <c:forEach var="nt" items="${notice}">
+       				<li><a href="../cscenter/notice"><strong style="color:#86A5FF;font-size: 27px;">공지사항</strong>&emsp;&emsp;
+       				<span style="font-size: 20px;">${nt.title}</span>
+       				<span style="font-size: 15px; float: right; margin-right: 30px; "><fmt:formatDate value="${nt.createdAt}" pattern="yyyy-MM-dd"/></span></a></li>
+       			</c:forEach>
+   			</ul>	
+		</div>	
+	</c:if>	
+		<h3 style="margin-left: 21%;">${category}</h3>
+		<hr style="width: 50%;margin-left: 21%;">
 	
-	<table class="table" style="margin-left: 150px; width: 1000px;">
-		<c:if test="${num==1}">
-		<tr>
-			<td style="border-bottom: none;">
-			<div class="block">
-   				<ul id="ticker">
- 					 <c:forEach var="nt" items="${notice}">
-       					<li><a href="../cscenter/notice"><strong>[공지사항]</strong>&emsp;&emsp;${nt.title}<span style="font-size: 10px; float: right; ">${nt.createdAt }</span></a></li>
-       				</c:forEach>
-   				</ul>	
-			</div>
-			</td>
-			</tr>
-		</c:if>	
+	<table class="table" style="margin-left: 23%; width: 800px;">
 		<c:forEach var="dto" items="${list}">
 			<tr>
 				<td> 
 					<div onclick="test('${dto.num }')" style="cursor: pointer;">
-					 <b style="color: red; font-size: 20px;">Q</b>&emsp;<span>${dto.title }</span><br>
+					 <b style="color: red; font-size: 20px;">Q.</b>&emsp;<span>${dto.title }</span><br>
 					</div> 
 					<br>
 					 <div id="answer${dto.num }" style="display: none;">
-					 	<pre style="font-size: 15px;"><b style="color: red; font-size: 20px;">A</b>&emsp;${dto.content }</pre><br>
+					 	<pre style="font-size: 15px;"><b style="color: red; font-size: 20px;">A.</b>&emsp;${dto.content }</pre><br>
 					 </div>	
 				</td>
 			</tr>
