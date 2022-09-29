@@ -33,7 +33,7 @@
 	}
 	
 	.tp{
-		margin-left: 30px;
+		margin-left: 50px;
 		margin-bottom: 30px;
 		cursor: pointer;
 	}
@@ -207,7 +207,5 @@
 				
 				<button class="loadProduct">더보기&nbsp;<i class='fas fa-angle-down'></i></button>
 			</div> 
-	
-	
 </body>
 </html>
