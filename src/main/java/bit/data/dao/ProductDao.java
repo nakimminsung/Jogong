@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import bit.data.dto.ProductDto;
-import bit.data.dto.WishlistDto;
 
 @Repository
 public class ProductDao implements ProductDaoInter {
@@ -17,8 +16,8 @@ public class ProductDao implements ProductDaoInter {
 	String ns = "bit.data.dao.ProductDao.";
 
 	@Override
-	public List<WishlistDto> getWishlist(int userNum) {
-		return session.selectList(ns+"getWishlist",userNum);
+	public List<ProductDto> getFriendWishlist(int userNum) {
+		return session.selectList(ns+"getFriendWishlist",userNum);
 	}
 
 	@Override

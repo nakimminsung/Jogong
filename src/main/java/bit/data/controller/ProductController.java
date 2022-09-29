@@ -1,16 +1,15 @@
 package bit.data.controller;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import bit.data.dto.ProductDto;
 import bit.data.service.ProductServiceInter;
+
 
 @Controller
 public class ProductController {
@@ -26,7 +25,7 @@ public class ProductController {
 	
 	@GetMapping("/")
 	public String home() {
-		
+			
 		return "/bit/main/main"; //WEB-INF/layout/main.jsp 가 메인페이지로
 	}
 	
@@ -50,4 +49,11 @@ public class ProductController {
 	{
 		return productService.getTag(themeNum);
 	}
+	@GetMapping("/wishlist/friend")
+	@ResponseBody
+	public List<ProductDto> getFriendWishlist(int userNum)		
+	{
+		return productService.getFriendWishlist(userNum);
+	}
+
 }
