@@ -23,4 +23,15 @@ public class ProductService implements ProductServiceInter {
 	public List<WishlistDto> getWishlist(int userNum) {
 		return daoInter.getWishlist(userNum);
 	}
+	
+	@Override
+	public List<ProductDto> getProductTheme(int themeNum) {
+		return daoInter.getProductTheme(themeNum);
+	}
+
+	@Override
+	public List<ProductDto> getTag(int themeNum) {
+	
+		return daoInter.getTag(themeNum);
+	}
 }

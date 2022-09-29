@@ -6,6 +6,8 @@
 	<select id="getWishlist" parameterType="int" resultType="productDto">
 		select * from wishList where userNum=#{userNum}
 	</select>
+	
+	<!-- 가격별 인기상품 -->
 	<select id="selectProductByPrice" parameterType="int" resultType="productDto">
 		select * from product 
 		<if test="price==1">
@@ -22,4 +24,15 @@
 		</if>
 		order by readCount limit 4			
 	</select>
+	
+	<!-- 테마별 -->
+	<select id="selectProductByTheme" parameterType="int" resultType="productDto">
+		select * from product where num in (select productNum from themeProduct where themeNum=#{themeNum});
+	</select>
+	
+	<!-- 태그 -->
+	<select id="selectTagByTheme" parameterType="int" resultType="themeDto">
+		select * from theme where num=#{themeNum} 
+	</select>
+	
 </mapper>
