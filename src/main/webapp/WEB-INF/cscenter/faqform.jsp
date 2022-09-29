@@ -82,8 +82,8 @@
 #ticker{float:left;width: 1000px;}
 .navi{float:right;}
 .block {border:2px solid #d81f25; padding:0 5px; height:20px; overflow:hidden; background:#fff; width:1000px; font-family:Gulim; font-size:12px;}
-.block ul,
-.block li {margin:0; padding:0; list-style:none;}
+.block ul,.block li 
+{margin:0; padding:0; list-style:none;}
 .block li a {display:block; height:20px; line-height:20px; color:#555; text-decoration:none;}
 	
 </style>
@@ -146,7 +146,7 @@
 			<div class="block">
    				<ul id="ticker">
  					 <c:forEach var="nt" items="${notice}">
-       					<li><a href="#"><strong>[공지사항]</strong>&emsp;&emsp;${nt.title}<span style="font-size: 10px; float: right; ">${nt.createdAt }</span></a></li>
+       					<li><a href="../cscenter/notice"><strong>[공지사항]</strong>&emsp;&emsp;${nt.title}<span style="font-size: 10px; float: right; ">${nt.createdAt }</span></a></li>
        				</c:forEach>
    				</ul>	
 			</div>

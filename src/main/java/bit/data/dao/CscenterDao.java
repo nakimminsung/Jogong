@@ -11,6 +11,8 @@ import org.springframework.stereotype.Repository;
 import bit.data.dto.FaqCategoryDto;
 import bit.data.dto.FaqDto;
 import bit.data.dto.NoticeDto;
+import bit.data.dto.QnaCategoryDto;
+import bit.data.dto.QnaDto;
 
 
 @Repository
@@ -19,17 +21,13 @@ public class CscenterDao implements CscenterDaoInter {
 	@Autowired
 	SqlSession session;
 	String ns="bit.data.dao.CscenterDao.";
+	
 	@Override
 	public List<FaqDto> getFaq() {
 		// TODO Auto-generated method stub
 		return session.selectList(ns+"getFaq");
 	}   
-	   //seleQnaCategory
-	@Override
-	   public List<String> selQnaCategory() {
-	      
-	      return session.selectList(ns+"selQnaCategory");
-	   }
+	
 	@Override
 	public List<FaqDto> getFaqByNum(int num) {
 		// TODO Auto-generated method stub
@@ -56,5 +54,17 @@ public class CscenterDao implements CscenterDaoInter {
 		return session.selectList(ns+"getAllNotice");
 	}
 	
-	
+  //seleQnaCategory
+   @Override
+   public List<QnaCategoryDto> selQnaCategory() {
+
+         return session.selectList(ns+"selQnaCategory");
+      }
+   
+   //insertQna
+   @Override
+   public void insertQna(QnaDto dto) {
+
+      session.insert(ns+"insertQna",dto);
+   }
 }

@@ -11,6 +11,8 @@ import bit.data.dao.CscenterDaoInter;
 import bit.data.dto.FaqCategoryDto;
 import bit.data.dto.FaqDto;
 import bit.data.dto.NoticeDto;
+import bit.data.dto.QnaCategoryDto;
+import bit.data.dto.QnaDto;
 
 @Service
 public class CscenterService implements CscenterServiceInter {
@@ -23,12 +25,6 @@ public class CscenterService implements CscenterServiceInter {
 		// TODO Auto-generated method stub
 		return cscenterDao.getFaq();
 	}
-	 @Override
-	   public List<String> selQnaCategory() {
-	      // TODO Auto-generated method stub
-	      
-	      return cscenterDao.selQnaCategory();
-	   }
 	@Override
 	public List<FaqDto> getFaqByNum(int num) {
 		// TODO Auto-generated method stub
@@ -59,5 +55,17 @@ public class CscenterService implements CscenterServiceInter {
 		return cscenterDao.getAllNotice();
 	}
 	 
+	  @Override
+	    public List<QnaCategoryDto> selQnaCategory() {
+	       // TODO Auto-generated method stub
+	       
+	       return cscenterDao.selQnaCategory();
+	      }
+	    
+	    @Override
+	    public void insertQna(QnaDto dto) {
+
+	       cscenterDao.insertQna(dto);
+	      }
 
 }
