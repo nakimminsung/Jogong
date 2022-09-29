@@ -35,4 +35,11 @@ public class ProductController {
 	{
 		return productService.getProduct(price);
 	}
+	
+	@GetMapping("/wishlist/friend")
+	@ResponseBody
+	public List<ProductDto> getFriendWishlist(int userNum)		
+	{
+		return productService.getFriendWishlist(userNum);
+	}
 }

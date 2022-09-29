@@ -18,7 +18,7 @@
     
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-    
+    <c:set var="root" value="<%=request.getContextPath() %>"/>
 <style type="text/css">
 	body * {
 		font-size: 15px;
@@ -27,12 +27,18 @@
 		background-color: #f0f0f0;
 	}
 	div.gift-wrapper{
+		padding: 50px 0;
 		display:flex;
-		justify-content: space-between;
-		align-items:center;
 		margin: 0 auto;
 		max-width: 880px;
 		min-height: 250px;
+		flex-direction: column;
+		justify-content: center;
+		
+	}
+	div.gift-top{
+		display:flex;
+		justify-content: space-between;
 	}
 	img#gift-friend {
 		width:130px;
@@ -138,13 +144,20 @@
     }
     div.gift-friend-list{
  		height: 300px;
+ 		margin-top: 20px;
     }
     div.friend-result{
     	overflow: auto;
     	height: 230px; 	
     }
-    ul {
-    	padding-left: 0;
+    div.friend-select-list {
+    	height: 80px;
+    	display: flex;
+    	align-items: center;
+    }
+    div.gift-left{
+   		display: flex;
+   		align-items: center;
     }
 </style>
 <script>
@@ -153,28 +166,30 @@
 			list();
 		});
 		
+		var fl = 0;
+		
 		$(document).on("click",".chkBox",function(){
 			
-			var fl = $(".chkBox:checked").length;
-			var fs = "";
-			
 			var ba = new Array();
-
+			var fs = "";	
+			fl = $(".chkBox:checked").length;
+		
 		    $(".chkBox:checked").each(function() {
 		    	var map = new Map();
 		    	map.set("b",$(this).siblings().find("b").text()); 
 		    	map.set("img",$(this).siblings().find("img").attr("src")); 
+		    	map.set("num",$(this).siblings().find("b").attr("num")); 		    	 		    	 	    	 		    	 
 		    	ba.push(map);
 		    });			
 			
 			if(fl != 0){
-				$(".friend-length").text(fl+"명");
+				$(".friend-length").text(fl);
 				
-				fs += "<ul style='padding-left:0;'>";
+				fs += "<ul class='wish' style='padding-left:0;'>";
 				
 				$.each(ba, function(i,elt) {
-					fs += "<li style='list-style:none; float:left;'>";
-					fs += "<img src='"+elt.get("img")+"' width='50' style='block'>";
+					fs += "<li style='list-style:none; float:left;' class='wish' num='"+elt.get("num")+"' name='"+elt.get("b")+"'>";
+					fs += "<img src='"+elt.get("img")+"' width='50' style='margin-top:10px;' class='gift-friend-img wish'>";
 					fs += "<div style='text-align:center;'>"+elt.get("b")+"</div>";
 					fs += "</li>";
 				});
@@ -189,21 +204,56 @@
             	$("div.friend-select-list").html(fs);
 			}
 		});
-	});
-	
-
-	function test(){
-	    var chkArray = new Array();
-
-	    $(".chkBox:checked").each(function() { 
-	    	var tmpVal = $(this).siblings().find("b").text(); 
-	    	chkArray.push(tmpVal);
-	    });
-
-	    console.log(chkArray);	// (2) ["A", "B"]
-	  }
 		
-			//fs += "<img src='"+$(".chkBox:checked").siblings().find("img").attr("src")+"' class='gift-friend-img'>";
+		$(document).on("click","button.getWishlist",function(){
+			if(fl == 0){
+				location.href="${root}";
+			} else if (fl == 1) {
+				
+				var wishNum = $("li.wish").attr("num");
+				var wishName = $("li.wish").attr("name");
+				var wishImg = $("img.wish").attr("src");
+				var wl = "";
+				
+				$.ajax({
+					type: "get",
+					url: "wishlist/friend",
+					dataType: "json",
+					data: {"userNum":wishNum},
+					success:function(res){
+						
+						modal.style.display = "none"
+						
+						$("body").attr("class","");
+						$("h2.friendNum").text(wishName+"님을 위한");
+						$("h2.friendText").text("선물하기");
+						$("#gift-friend").attr("src",wishImg);
+						
+						wl += "<h4 style='margin-bottom:20px; margin-top:50px;'>"+wishName+"님의 위시리스트</h4>";
+						
+						wl += "<ul style='padding-left:0;'>";
+						
+						$.each(res, function(i,elt) {
+							
+							wl += "<li style='list-style:none; float:left; margin-right:20px;'>";
+							wl += "<div>";
+							wl += "<label>";
+							wl += "<img src='"+elt.thumbnailImageUrl+"' style='width:150px; height:150px; display:block;'>";
+							wl += "<b style='display:block;'>"+elt.brand+"</b>";
+							wl += "<b style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 150px;'>"+elt.name+"</b>";
+							wl += "<b style='display:block;'>"+elt.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+"</b>";
+							wl += "</label>";
+							wl += "</div>";
+							wl += "</li>";
+						});
+						wl += "</ul>";
+						$("div.gift-bottom").html(wl);
+					}
+				});
+			}
+		});
+	});
+		
 	function list() {
 		var userNum = 2;
 			
@@ -224,12 +274,11 @@
 					s += "<div style='margin-right:50px;'>";
 					s += "<input type='checkbox' style='margin-right:10px;' class='chkBox'>";
 					s += "<label>";
-					s += "<img src='"+elt.profileImage+"' width='100' class='gift-friend-img' style='margin-right:5px;' >";
-					s += "<b>"+elt.nickname+"</b>";
+					s += "<img src='"+elt.profileImage+"' width='100' class='gift-friend-img' style='margin-right:5px;'>";
+					s += "<b num='"+elt.num+"'>"+elt.nickname+"</b>";
 					s += "</label>";
 					s += "</div>";
 					s += "</li>";
-					
 				});
 				s += "</ul>";
 				$("div.friend-result").html(s);
@@ -249,17 +298,23 @@
 </script>
 </head>
 <body>
-	<c:set var="root" value="<%=request.getContextPath() %>"/>
 	<div class="gift-background">
 		<div class="gift-wrapper">
-			<div class="gift-left">
-				<h2>누구를 위한 선물인가요?</h2>
+			<div class="gift-top">
+				<div class="gift-left">
+					<div>
+						<h2 class="friendNum"></h2>
+						<h2 class="friendText">누구를 위한 선물인가요?</h2>
+					</div>
+				</div>
+				<div class="gift-right">
+					<img id="gift-friend" class="gift-friend-img" src="${root }/image/default.png">
+				</div>
 			</div>
-			<div class="gift-right">
-				<img id="gift-friend" class="gift-friend-img" src="${root }/image/default.png">
-			</div>
+			<div class="gift-bottom"></div>
 		</div>
 	</div>
+	<!-- modal -->
     <div id="gift-modal" class="gift-modal-overlay">
         <div class="gift-modal-window">
         	<form>
@@ -268,12 +323,12 @@
 	            	<div>
 		                <h5>
 		                	친구 선택
-		                	<span style="font-size: 20px; margin-bottom: 5px;" class="friend-length"></span>
+		                	<span style="font-size: 20px; margin-bottom: 5px; color:#ff6b00;" class="friend-length"></span>
 		                </h5>
 	            	</div>
 	            	<div class="gift-close-area">X</div>
 	            </div>
-	            <div class="friend-select-list" style="margin-top: 10px;">
+	            <div class="friend-select-list">
 	            	<img src="${root }/image/default.png" class="gift-friend-img">
 	            	선물할 친구를 선택하세요.
 	            </div>
@@ -300,7 +355,7 @@
             <div class="gift-modal-button">
 				<button type="button" class="btn btn-secondary btn-calcel" onclick="location.href='${root}'">취소</button>
 				<div></div>
-				<button type="button" class="btn btn-warning">확인</button>
+				<button type="button" class="btn btn-warning getWishlist">확인</button>
             </div>
             </form>
         </div>

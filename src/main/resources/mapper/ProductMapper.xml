@@ -3,8 +3,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="bit.data.dao.ProductDao">
-	<select id="getWishlist" parameterType="int" resultType="productDto">
-		select * from wishList where userNum=#{userNum}
+	<select id="getFriendWishlist" parameterType="int" resultType="productDto">
+		select * from product where num in (select productNum from wishlist where userNum=${userNum} and publicOption=1)
 	</select>
 	<select id="selectProductByPrice" parameterType="int" resultType="productDto">
 		select * from product 
