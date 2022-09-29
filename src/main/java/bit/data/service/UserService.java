@@ -20,4 +20,9 @@ public class UserService implements UserServiceInter {
 		return userDaoInter.getUserFriendData(userNum);
 	}
 
+	@Override
+	public int getUserFriendCount(int userNum) {
+		return userDaoInter.getUserFriendCount(userNum);
+	}
+
 }

@@ -6,4 +6,7 @@
 	<select id="getUserFriendData" parameterType="int" resultType="userDto">
 		select * from user where num in (select friendNum from userFriend where userNum=${userNum})
 	</select>
+	<select id="getUserFriendCount" parameterType="int" resultType="int">
+		select count(*) from user where num in (select friendNum from userFriend where userNum=${userNum})
+	</select>
 </mapper>

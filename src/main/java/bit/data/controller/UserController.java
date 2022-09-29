@@ -21,4 +21,9 @@ public class UserController {
 	public List<UserDto> getUserFriendData(int userNum) {
 		return userServiceInter.getUserFriendData(userNum);
 	}
+	@GetMapping("/user/friendCount")
+	@ResponseBody
+	public int getUserFriendCount(int userNum) {
+		return userServiceInter.getUserFriendCount(userNum);
+	}
 }

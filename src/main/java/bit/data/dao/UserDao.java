@@ -20,4 +20,10 @@ public class UserDao implements UserDaoInter {
 	public List<UserDto> getUserFriendData(int userNum) {
 		return session.selectList(ns+"getUserFriendData", userNum);
 	}
+
+	@Override
+	public int getUserFriendCount(int userNum) {
+		return session.selectOne(ns+"getUserFriendCount", userNum);
+	}
+	
 }

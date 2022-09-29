@@ -122,7 +122,7 @@
 		margin-right: 5px;
     }
     div.gift-modal-search {
-    	margin-top: 20px;
+    	margin-top: 0px;
     	margin-bottom: -10px;
     }
     div.gift-modal-search input{
@@ -137,19 +137,14 @@
     	cursor: pointer;
     }
     div.gift-friend-list{
-    	display:flex;
-    	flex-direction: row;
-    	flex-wrap: wrap;
+ 		height: 300px;
     }
     div.friend-result{
     	overflow: auto;
-    	height: 240px; 	
-    }
-    div{
-    	border:solid gray 0px;
+    	height: 230px; 	
     }
     ul {
-    	padding-left:0;
+    	padding-left: 0;
     }
 </style>
 <script>
@@ -158,13 +153,57 @@
 			list();
 		});
 		
-/* 		$(document).on("click",".gift-modal-select-flex",function(){
-			$(this).find("i").attr("class","fa fa-check-circle");
-		},function() {
-			$(this).find("i").attr("class","fa fa-circle");			
-		}); */
+		$(document).on("click",".chkBox",function(){
+			
+			var fl = $(".chkBox:checked").length;
+			var fs = "";
+			
+			var ba = new Array();
+
+		    $(".chkBox:checked").each(function() {
+		    	var map = new Map();
+		    	map.set("b",$(this).siblings().find("b").text()); 
+		    	map.set("img",$(this).siblings().find("img").attr("src")); 
+		    	ba.push(map);
+		    });			
+			
+			if(fl != 0){
+				$(".friend-length").text(fl+"명");
+				
+				fs += "<ul style='padding-left:0;'>";
+				
+				$.each(ba, function(i,elt) {
+					fs += "<li style='list-style:none; float:left;'>";
+					fs += "<img src='"+elt.get("img")+"' width='50' style='block'>";
+					fs += "<div style='text-align:center;'>"+elt.get("b")+"</div>";
+					fs += "</li>";
+				});
+				fs += "</ul>";				
+				$("div.friend-select-list").html(fs);
+            	
+			}else{
+				$(".friend-length").text("");
+				
+				fs += "<img src='${root }/image/default.png' class='gift-friend-img'>";
+            	fs += "선물할 친구를 선택하세요.";
+            	$("div.friend-select-list").html(fs);
+			}
+		});
 	});
 	
+
+	function test(){
+	    var chkArray = new Array();
+
+	    $(".chkBox:checked").each(function() { 
+	    	var tmpVal = $(this).siblings().find("b").text(); 
+	    	chkArray.push(tmpVal);
+	    });
+
+	    console.log(chkArray);	// (2) ["A", "B"]
+	  }
+		
+			//fs += "<img src='"+$(".chkBox:checked").siblings().find("img").attr("src")+"' class='gift-friend-img'>";
 	function list() {
 		var userNum = 2;
 			
@@ -183,10 +222,10 @@
 					
 					s += "<li style='list-style:none; float:left;'>";
 					s += "<div style='margin-right:50px;'>";
-					s += "<input type='checkbox' style='margin-right:10px;'>";
+					s += "<input type='checkbox' style='margin-right:10px;' class='chkBox'>";
 					s += "<label>";
 					s += "<img src='"+elt.profileImage+"' width='100' class='gift-friend-img' style='margin-right:5px;' >";
-					s += elt.nickname;
+					s += "<b>"+elt.nickname+"</b>";
 					s += "</label>";
 					s += "</div>";
 					s += "</li>";
@@ -194,6 +233,16 @@
 				});
 				s += "</ul>";
 				$("div.friend-result").html(s);
+			}
+		});
+		$.ajax({
+			type: "get",
+			url: "user/friendCount",
+			dataType: "json",
+			data: {"userNum":userNum},
+			success:function(res){
+				
+				$("span.friend-count").text(res);
 			}
 		});
 	}
@@ -217,16 +266,19 @@
         	<div class="gift-modal-top">
 	            <div class="gift-title">
 	            	<div>
-		                <h5>친구 선택 0</h5>
+		                <h5>
+		                	친구 선택
+		                	<span style="font-size: 20px; margin-bottom: 5px;" class="friend-length"></span>
+		                </h5>
 	            	</div>
 	            	<div class="gift-close-area">X</div>
 	            </div>
-	            <div style="margin-top: 10px;">
+	            <div class="friend-select-list" style="margin-top: 10px;">
 	            	<img src="${root }/image/default.png" class="gift-friend-img">
 	            	선물할 친구를 선택하세요.
 	            </div>
 	            <div class="gift-modal-search">
-	            	<input class="form-control" type="search" placeholder="이름, 닉네임 검색">
+	            	<input type="search" placeholder="이름, 닉네임 검색">
 	            	<img src="${root}/image/search.svg">
 	            </div>
         	</div>
@@ -234,12 +286,13 @@
             	<div>나</div>
             	<div class="gift-modal-friend-list">
 	            	<div class="gift-modal-select">
-	            		<input type="checkbox">
+	            		<input type="checkbox" class="chkBox">
 			            <img src="${root }/image/default.png" class="gift-friend-img"> 명국
 	            	</div>
             	</div>
-            	<div style="margin-top: 10px;">
-            		친구목록 64
+            	<div style="margin: 10px 0;">
+            		친구목록
+            		<span style="font-size: 15px; margin-bottom: 5px;" class="friend-count"></span>
             	</div>
             	<div class="friend-result">
             	</div>
