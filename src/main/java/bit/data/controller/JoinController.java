@@ -11,10 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class JoinController {
 
 	@GetMapping("/joinMain")
-	public String qnaform(Model model) {
-	         
-
-	         
+	public String joinMain() {
+  
 	      return "/bit/join/joinMain";
+	   }
+	
+	@GetMapping("/sellerJoin")
+	public String sellerJoin(Model model) {
+  
+	      return "/bit/join/sellerJoin";
 	   }
 }
