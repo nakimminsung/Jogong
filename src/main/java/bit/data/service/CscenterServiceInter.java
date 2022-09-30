@@ -17,6 +17,7 @@ public interface CscenterServiceInter {
 	public List<FaqDto> getSearchFaq(String searchword);
 	public int getTcFaq(String searchword);
 	public List<NoticeDto> getAllNotice();
+	public List<FaqCategoryDto> getFaqCategory();
 	
 	//QNA
 	public List<QnaCategoryDto> selQnaCategory();
