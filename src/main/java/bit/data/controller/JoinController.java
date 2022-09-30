@@ -21,4 +21,10 @@ public class JoinController {
   
 	      return "/bit/join/sellerJoin";
 	   }
+	
+	@GetMapping("/userJoin")
+	public String userJoin(Model model) {
+  
+	      return "/bit/join/userJoin";
+	   }
 }
