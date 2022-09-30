@@ -14,10 +14,7 @@
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <style type="text/css">
-	*{
-		 font-family: 'Jua';
-		 
-	}
+	
 	.ncontent{
 	background-color: #f5f5f5; 
 	padding-left: 40px; 
@@ -69,7 +66,7 @@
 		<tr>
 			<td style="border: none;text-align: center;">
 				<br>
-				<button type="button" class="btnqna btn btn-outline-info" onclick="location.href='../cscenter/faq'">뒤로가기</button>	
+				<button type="button" class="btnqna btn btn-outline-secondary" onclick="location.href='../cscenter/faq'">뒤로가기</button>	
 			</td>
 		</tr>	
 	</table>

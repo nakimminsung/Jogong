@@ -17,6 +17,178 @@
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 </head>
 <body>
+<div class="paymain">
+        <div class="new-order">
+            <div class="subcontents">
+                <h1>선물 발송·결제</h1>
+                <h2>선물 꾸미기</h2>
+                <div class="justify-cont col-type01">
+                    <!-- 테마와 배너 선택 -->
+                    <div class="theme_all">
+
+                        <div class="theme">
+
+                            <!-- 테마 선택-->
+                            <div class="head-tab">
+                                <h3>테마</h3>
+                                <ul class="tab-type01 _tab">
+                                    <li><a href="#1-1" class="on">감사</a></li>
+                                    <li><a href="#1-2" class="on">축하</a></li>
+                                    <li><a href="#1-3" class="on">응원</a></li>
+                                    <li><a href="#1-4" class="on">시즈널</a></li>
+                                    <li><a href="#1-5" class="on">결혼</a></li>
+                                    <li><a href="#1-6" class="on">조문</a></li>
+                                </ul>
+                            </div>
+                            <!-- 테마 선택 끝-->
+                            
+                            <hr class="line">
+
+                            <!-- 배너-->
+                            <div class="row-type01">
+
+                                <!-- 배너영역 id t1~ -->
+                                <div class="tabArea" id="t1-1" style="display: block;">
+                                <div class="justify-cont col-type02">
+
+                                    <!-- 배너 선택 -->
+                                        <div class="banner_choice">
+                                            <h4>배너</h4>
+                                            <div class="scrollBox">
+                                                <div class="deco-list">
+                                                    <ul class="banner-div">
+                                                        <li><img src="/jogong/resources/giftimage/banner/1.jpg" alt="배너이미지">
+                                                        <a href="#" onclick="" id="template_banner" class="btnSel" ><span class="a11y-hidden">배너 선택</span></a></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/2.jpg"><a><span class="a11y-hidden">배너 선택</span></a></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/3.jpg"><a><span class="a11y-hidden">배너 선택</span></a></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/4.jpg"><a><span class="a11y-hidden">배너 선택</span></a></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/5.jpg"><a><span class="a11y-hidden">배너 선택</span></a></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/6.jpg"><a><span class="a11y-hidden">배너 선택</span></a></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/7.jpg"><a><span class="a11y-hidden">배너 선택</span></a></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/8.jpg"><a><span class="a11y-hidden">배너 선택</span></a></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/9.jpg"><a><span class="a11y-hidden">배너 선택</span></a></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/10.jpg"><a><span class="a11y-hidden">배너 선택</span></a></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/11.jpg"><a><span class="a11y-hidden">배너 선택</span></a></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/12.jpg"><a><span class="a11y-hidden">배너 선택</span></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <!-- 배너 선택 종료--> 
+
+                                    <!-- 카드 선택-->
+                                        <div class="card_choice">
+                                            <h4>카드</h4>
+                                            <div class="scrollBox">
+                                                <div class="deco-list">
+                                                    <ul class="card-div">
+                                                        <li>
+                                                            <img src="/jogong/resources/giftimage/card/a1.jpg" alt="카드 이미지">
+                                                            <a href="#" onclick="" id="template_img" class="btnSel">...</a>
+                                                        </li>
+                                                        <li>
+                                                            <img src="/jogong/resources/giftimage/card/a2.jpg" alt="카드 이미지">
+                                                            <a href="#" onclick="" id="template_img" class="btnSel">...</a>
+                                                        </li>
+                                                        <li>
+                                                            <img src="/jogong/resources/giftimage/card/a3.jpg" alt="카드 이미지">
+                                                            <a href="#" onclick="" id="template_img" class="btnSel">...</a>
+                                                        </li>
+                                                        <li>
+                                                            <img src="/jogong/resources/giftimage/card/a4.jpg" alt="카드 이미지">
+                                                            <a href="#" onclick="" id="template_img" class="btnSel">...</a>
+                                                        </li>
+                                                        <li>
+                                                            <img src="/jogong/resources/giftimage/card/a5.jpg" alt="카드 이미지">
+                                                            <a href="#" onclick="" id="template_img" class="btnSel">...</a>
+                                                        </li>
+                                                        <li>
+                                                            <img src="/jogong/resources/giftimage/card/a6.jpg" alt="카드 이미지">
+                                                            <a href="#" onclick="" id="template_img" class="btnSel">...</a>
+                                                        </li>
+                                                        <li>
+                                                            <img src="/jogong/resources/giftimage/card/a7.jpg" alt="카드 이미지">
+                                                            <a href="#" onclick="" id="template_img" class="btnSel">...</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <!-- 카드 선택 종료 -->
+
+                                </div>
+                                </div>
+
+                                <!-- 배너영역 id t1~ 끝-->
+                            </div>
+                            <!--배너-->
+                            
+                        </div>
+
+                        <!-- 메세지 영역-->
+                        <div class="head-tab">
+                        <h3>메세지</h3>
+                        <ul class="tab-tabtype01 _tab02" id="msg_cate">
+                            <li>
+                                <a href="#none" id="m-19" class>기본</a>
+                            </li>
+                            <li>
+                                <a href="#none" id="m-19" class>결혼</a>
+                            </li>
+                            <li>
+                                <a href="#none" id="m-20" class>조문</a>
+                            </li>
+                            <li>
+                                <a href="#none" id="m-21" class>감사</a>
+                            </li>
+                            <li>
+                                <a href="#none" id="m-22" class>축하</a>
+                            </li>
+                            <li>
+                                <a href="#none" id="m-23" class>당첨</a>
+                            </li>
+                        </ul>
+                        </div>
+                        <div class="msg-area">
+                            <textarea id="mms_send_msg" name=""></textarea>
+                        </div> 
+                        <!-- 메세지 영역 끝--> 
+                        
+                    </div>
+                    <!-- 테마와 배너 선택 끝 -->
+
+                    <!-- 샘플이미지-->
+                    <div class="sample">
+                        <div class="inner">
+                            <div class="imgBox">
+                                <span class="topImg">
+                                    <img id="previewBanner" src="" alt="꾸미기배너">
+                                </span>
+                                <div class="pin">
+                                    <div class="col-half">
+                                        <div class="giftImg">
+                                            <img src="" alt="">
+                                        </div>
+                                        <div class="cardImg">
+                                            <img id="previewTemplate" src="" alt="꾸미기 템플릿">
+                                        </div>
+                                    </div>
+                                    <div class="bacord">
+                                        <img src="/jogong/resources/image/decobanner04.gif" alt="바코드">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--텍스트 박스-->
+                            <p id="msg_sample">상품이 도착했습니다</p>
+
+                        </div>
+                    </div>
+                    <!-- 샘플이미지 끝-->
+                </div>
+            </div>
+        </div>
+    </div>
 <div class="outer">
         <div id="inner1">
             <h3>선물 상품 정보</h3>
@@ -217,23 +389,7 @@
             <div class="btn-type02" id="paying">결제</div>
         </div>
     </div>
-    
-	<!-- <div>
-		<h2>IAMPORT 결제</h2>
- 		<li>
-			<button id="iamportPayment" type="button">카카오페이 결제</button>
-		</li>
-
-		<li>
-			<button id="iamportPayment2" type="button">휴대폰 결제</button>
-		</li> 
-		<li>
-			<button id="iamportPayment3" type="button">KG이니시스</button>
-		</li>
-		<li>
-			<button id="iamportPayment4" type="button">토스</button>
-		</li>
-	</div> -->
+<hr>
 	
 <script type="text/javascript">
 /*$(document).ready(function(){ 
@@ -241,14 +397,28 @@
     	payment(); //버튼 클릭하면 호출 
     }); 
  	 
+=======
+	</div>
+
+	<script type="text/javascript">
+$(document).ready(function(){ 
+ 	 $("#iamportPayment").click(function(){ 
+    	payment(); //버튼 클릭하면 호출 
+    }); 
+>>>>>>> 0ec93a028332c017ace3eb56df7c4f9cf45ed7d6
 	$("#iamportPayment2").click(function(){ 
 		danal();
     }); 
  	 
 	$("").click(function(){ 
 		kg();
+<<<<<<< HEAD
     }); 
 	$("").click(function(){ 
+=======
+    });
+	$("#iamportPayment4").click(function(){ 
+>>>>>>> 0ec93a028332c017ace3eb56df7c4f9cf45ed7d6
 		toss();
     }); 
 })*/
@@ -259,7 +429,7 @@ function payment(data) {
     IMP.request_pay({// param
         pg: "kakaopay.TC0ONETIME", //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
         pay_method: "card", //지불 방법
-        merchant_uid: "1111", //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+        merchant_uid: "0034", //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
         name: "음식", //결제창에 노출될 상품명
         amount: 100, //금액
         buyer_email : "testiamport@naver.com", 
@@ -267,21 +437,22 @@ function payment(data) {
         buyer_tel : "01012341234"
     }, function (rsp) { // callback
         if (rsp.success) {
-            alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid);
-            jQuery.ajax({
-                url: "test.action",
-                method: "POST",
-  			dataType:"json",
-                data: {
-                    "imp_uid": rsp.imp_uid,
-                    "merchant_uid": rsp.merchant_uid,
-                    "name" : rsp.name,
-                    "amount" : rsp.paid_amount,
-                    "buyer_name" : rsp.buyer_name,
-                    "pg" : rsp.pg_provider,
-                    "pay_method" : rsp.pay_method
-                	}
-                });
+        	   alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료");
+               
+               jQuery.ajax({
+                   url: "test.action",
+                   method: "POST",
+     			dataType:"json",
+                   data: {
+                       "imp_uid": rsp.imp_uid,
+                       "merchant_uid": rsp.merchant_uid,
+                       "name" : rsp.name,
+                       "amount" : rsp.paid_amount,
+                       "buyer_name" : rsp.buyer_name,
+                       "pg" : rsp.pg_provider,
+                       "pay_method" : rsp.pay_method
+                   	}
+                   });
          } else {
              alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
              var msg = "결제에 실패했습니다"
@@ -291,13 +462,13 @@ function payment(data) {
          }
      });
 }
-/*
+
 function danal(data) {
 	IMP.init('imp20164668');//아임포트 관리자 콘솔에서 확인한 '가맹점 식별코드' 입력
 	IMP.request_pay({
 		pg : 'nice',
 	    pay_method : 'phone',
-	    merchant_uid: "0003", //상점에서 생성한 고유 주문번호
+	    merchant_uid: "0034", //상점에서 생성한 고유 주문번호
 	    name : '주문명:결제테스트',
 	    amount : 1000,
 	    buyer_email : 'iamport@siot.do',
@@ -307,21 +478,22 @@ function danal(data) {
 	    buyer_postcode : '123-456'
 	}, function (rsp) { // callback
         if (rsp.success) {
-            alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid);
-            jQuery.ajax({
-                url: "test.action",
-                method: "POST",
-  			dataType:"json",
-                data: {
-                    "imp_uid": rsp.imp_uid,
-                    "merchant_uid": rsp.merchant_uid,
-                    "name" : rsp.name,
-                    "amount" : rsp.paid_amount,
-                    "buyer_name" : rsp.buyer_name,
-                    "pg" : rsp.pg_provider,
-                    "pay_method" : rsp.pay_method
-                	}
-                });
+        	 alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료");
+               
+               jQuery.ajax({
+                   url: "test.action",
+                   method: "POST",
+     			dataType:"json",
+                   data: {
+                       "imp_uid": rsp.imp_uid,
+                       "merchant_uid": rsp.merchant_uid,
+                       "name" : rsp.name,
+                       "amount" : rsp.paid_amount,
+                       "buyer_name" : rsp.buyer_name,
+                       "pg" : rsp.pg_provider,
+                       "pay_method" : rsp.pay_method
+                   	}
+                   });
          } else {
              alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
              var msg = "결제에 실패했습니다"
@@ -338,7 +510,7 @@ function kg(data) {
 	IMP.request_pay({
 		pg : 'html5_inicis',
 	    pay_method : 'card',
-	    merchant_uid: "0003", //상점에서 생성한 고유 주문번호
+	    merchant_uid: "0034", //상점에서 생성한 고유 주문번호
 	    name : '주문명:결제테스트',
 	    amount : 100,
 	    buyer_email : 'iamport@siot.do',
@@ -348,22 +520,22 @@ function kg(data) {
 	    buyer_postcode : '123-456'
 	}, function (rsp) { // callback
         if (rsp.success) {
-            alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "/ name : "+rsp.name);
-            
-            jQuery.ajax({
-                url: "test.action",
-                method: "POST",
-  			dataType:"json",
-                data: {
-                    "imp_uid": rsp.imp_uid,
-                    "merchant_uid": rsp.merchant_uid,
-                    "name" : rsp.name,
-                    "amount" : rsp.paid_amount,
-                    "buyer_name" : rsp.buyer_name,
-                    "pg" : rsp.pg_provider,
-                    "pay_method" : rsp.pay_method
-                	}
-                });
+        	 alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료");
+               
+               jQuery.ajax({
+                   url: "test.action",
+                   method: "POST",
+     			dataType:"json",
+                   data: {
+                       "imp_uid": rsp.imp_uid,
+                       "merchant_uid": rsp.merchant_uid,
+                       "name" : rsp.name,
+                       "amount" : rsp.paid_amount,
+                       "buyer_name" : rsp.buyer_name,
+                       "pg" : rsp.pg_provider,
+                       "pay_method" : rsp.pay_method
+                   	}
+                   });
          } else {
              alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
              var msg = "결제에 실패했습니다"
@@ -379,7 +551,7 @@ function toss(data) {
 	IMP.request_pay({
 		pg : 'tosspay',
 	    pay_method : 'card',
-	    merchant_uid: "1111", //상점에서 생성한 고유 주문번호
+	    merchant_uid: "0034", //상점에서 생성한 고유 주문번호
 	    name : '주문명:결제테스트',
 	    amount : 100,
 	    buyer_email : 'iamport@siot.do',
@@ -390,7 +562,7 @@ function toss(data) {
 }, function (rsp) { // callback
       if (rsp.success) {
     	  
-          alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "/ amount : "+rsp.amount);
+    	  alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료");
           
           jQuery.ajax({
               url: "test.action",
@@ -407,7 +579,7 @@ function toss(data) {
               	}
               });
        } else {
-           alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
+    	   alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
            var msg = "결제에 실패했습니다"
            msg = "에러내용:" + rsp.error_msg;
            

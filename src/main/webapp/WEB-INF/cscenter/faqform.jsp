@@ -18,23 +18,23 @@
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     
 <style type="text/css">
-	*{
-		font-family: 'Jua';
-	}
+	
 	.faqSearch{ 
 		width: 100%;
 		height:200px;
 		background-color: #ffd700;
 		padding-left: 35%;
 		padding-top: 3%;
+		margin-top: 10px;
 	}
 	
 	.help{
 		width: 500px;
 		height: 55px;
 		border: none;
-		font-size: 25px;
-		border-radius: 5px;
+		font-size: 23px;
+		margin-top: 20px;
+	
 	}
 
 	.category{
@@ -69,13 +69,15 @@
 		float:right;
 	}
 	.rollingNc {
-	padding:10px; 
-	height:32px; 
+	padding-top:10px; 
+	padding-bottom:10px; 
+	height:40px; 
 	overflow:hidden; 
 	background:#fff; 
 	width:800px; 
 	font-family:Gulim; 
-	font-size:12px;border-radius: 5px;
+	font-size:10px;
+	border-radius: 5px;
 	margin-left: 21%;
 	margin-bottom: 35px;
 	}
@@ -86,6 +88,12 @@
 </style>
 
 <script type="text/javascript">
+	$(function (num) {
+		$("#faqQu"+num).click(function () {
+			alert("num");
+		})
+	})
+
 
 	function test(num) {
 		//alert(a);
@@ -97,7 +105,7 @@
 				    var ticker = function()
 				    {
 				        timer = setTimeout(function(){
-				            $('#ticker li:first').animate( {marginTop: '-20px'}, 400, function()
+				            $('#ticker li:first').animate( {marginTop: '-20px'}, 300, function()
 				            {
 				                $(this).detach().appendTo('ul#ticker').removeAttr('style');
 				            });
@@ -115,8 +123,8 @@
 <form action="faq/search">
  	<div class="faqSearch">
  		<h5 style="color: gray;">카카오톡 선물하기 서비스를 이용하시는데 도움이 필요하신가요?</h5>
- 		<div class="help"> 
- 			<input type="text" name="searchword" class="helpSearch" style="width: 450px;"  placeholder="도움말을 검색해보세요" value="${param.searchword }">
+ 		<div class="help" style="margin-left: 5%;"> 
+ 			<input type="text" name="searchword" class="helpSearch" style="width: 450px; border-radius: 5px; border: none;" placeholder="도움말을 검색해보세요" value="${param.searchword }">
  			<button type="submit" style="border: none; background-color: #ffd700"><i class='fas fa-search sh' style='font-size:24px'></i></button>
  		</div>
  	</div>
@@ -124,13 +132,13 @@
 <br>
 	<div class="category">
 	
-		<span><a href="../cscenter/faq?num=1">&emsp;자주하는 질문&emsp;</a></span>
-		<span><a href="../cscenter/faq?num=2">&emsp;이용방법&emsp;</a></span>
-		<span><a href="../cscenter/faq?num=3">&emsp;서비스안내&emsp;</a></span>
-		<span><a href="../cscenter/faq?num=4">&emsp;결제&emsp;</a></span>
-		<span><a href="../cscenter/faq?num=5">&emsp;배송상태&emsp;</a></span>
-		<span><a href="../cscenter/faq?num=6">&emsp;교환권&emsp;</a></span>
-		<span><a href="../cscenter/faq?num=7">&emsp;기타&emsp;</a></span>
+		<span id="faqQu1" style="border-bottom: 3px solid black"><a href="../cscenter/faq?num=1">&emsp;자주하는 질문&emsp;</a></span>
+		<span id="faqQu2"><a href="../cscenter/faq?num=2">&emsp;이용방법&emsp;</a></span>
+		<span id="faqQu3"><a href="../cscenter/faq?num=3">&emsp;서비스안내&emsp;</a></span>
+		<span id="faqQu4"><a href="../cscenter/faq?num=4">&emsp;결제&emsp;</a></span>
+		<span id="faqQu5"><a href="../cscenter/faq?num=5">&emsp;배송상태&emsp;</a></span>
+		<span id="faqQu6"><a href="../cscenter/faq?num=6">&emsp;교환권&emsp;</a></span>
+		<span id="faqQu7"><a href="../cscenter/faq?num=7">&emsp;기타&emsp;</a></span>
 	</div>
 	<br><br>
 	<c:if test="${num==1}">
@@ -164,10 +172,8 @@
 		<tr>
 			<td style="border: none;text-align: center;">
 				<br>
-				<button type="button" class="btnqna btn btn-outline-info" onclick="location.href='../cscenter/qnaform'">1:1문의하기</button>	
+				<button type="button" class="btnqna btn btn-outline-secondary" onclick="location.href='../cscenter/qnaform'">1:1문의하기</button>	
 			</td>
 		</tr>	
 	</table>
 </div>	
-</body>
-</html>
