@@ -997,6 +997,19 @@ table.t-foot>tfoot>tr>td {
 .pay_box.clicked {
     border-color: red;
 }
+
+
+/* 민성 css */
+
+    .deco-list li img{
+		width: 100%;
+		box-sizing: border-box;
+	}
+	
+	.sample img {
+    width: 100%;
+	}
+	
     div.paymain{
         letter-spacing: -0.5px;
         line-height: 1.6;
@@ -1314,8 +1327,8 @@ table.t-foot>tfoot>tr>td {
 	    width: 100%;
 	    color: #222;
      }
-     div.banner_choice>.scrollBox>.deco-list>ul.banner-div{
-	    letter-spacing: -0.5px;
+     div.banner_choice>.scrollBox>.deco-list>ul{
+	 	letter-spacing: -0.5px;
 	    line-height: 1.6;
 	    word-wrap: break-word;
 	    word-break: break-all;
@@ -1331,51 +1344,61 @@ table.t-foot>tfoot>tr>td {
 	    grid-template-columns: repeat(3, 1fr);
 	    gap: 12px;
 	    padding: 12px;
-        }
-        div.banner_choice>.scrollBox>.deco-list>ul.banner-div>li{
+     }
+     div.banner_choice>.scrollBox>.deco-list>ul>li{
             letter-spacing: -0.5px;
-            word-wrap: break-word;
-            word-break: break-all;
-            font-family: "Spoqa Han Sans Neo", "Apple SD Gothic Neo", "Malgun Gothic", "sans-serif";
-            list-style: none;
-            padding: 0;
-            border: 0;
-            outline: 0;
-            font-size: 100%;
-            background: transparent;
-            line-height: 100%;
-            color: #222;
-            float: left;
-            position: relative;
-            box-sizing: border-box;
-            width: 100%;
-            margin: 0;
-        }
-        div.banner_choice>.scrollBox>.deco-list>ul.banner-div>img{
-            letter-spacing: -0.5px;
-            word-wrap: break-word;
-            word-break: break-all;
-            font-family: "Spoqa Han Sans Neo", "Apple SD Gothic Neo", "Malgun Gothic", "sans-serif";
-            list-style: none;
-            line-height: 100%;
-            margin: 0;
-            padding: 0;
-            outline: 0;
-            font-size: 100%;
-            background: transparent;
-            vertical-align: middle;
-            color: #222;
-            width: 100%;
-            box-sizing: border-box;
-            border: none;
-        }
+		    word-wrap: break-word;
+		    word-break: break-all;
+		    font-family: "Spoqa Han Sans Neo", "Apple SD Gothic Neo", "Malgun Gothic", "sans-serif";
+		    list-style: none;
+		    padding: 0;
+		    border: 0;
+		    outline: 0;
+		    font-size: 100%;
+		    background: transparent;
+		    line-height: 100%;
+		    color: #222;
+		    float: left;
+		    position: relative;
+		    box-sizing: border-box;
+		    width: 100%;
+		    margin: 0;
+     }
+     div.banner_choice>.scrollBox>.deco-list>ul>img{
+         	letter-spacing: -0.5px;
+		    word-wrap: break-word;
+		    word-break: break-all;
+		    font-family: "Spoqa Han Sans Neo", "Apple SD Gothic Neo", "Malgun Gothic", "sans-serif";
+		    list-style: none;
+		    line-height: 100%;
+		    margin: 0;
+		    padding: 0;
+		    outline: 0;
+		    font-size: 100%;
+		    background: transparent;
+		    vertical-align: middle;
+		    color: #222;
+		    width: 100%;
+		    box-sizing: border-box;
+		    border: none;
+     }
         .deco-list .btnSel {
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            letter-spacing: -0.5px;
+		    word-wrap: break-word;
+		    word-break: break-all;
+		    font-family: "Spoqa Han Sans Neo", "Apple SD Gothic Neo", "Malgun Gothic", "sans-serif";
+		    list-style: none;
+		    font-size: 100%;
+		    line-height: 100%;
+		    text-decoration: none;
+		    cursor: pointer;
+		    color: #222;
+		    display: block;
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    right: 0;
+		    bottom: 0;
         }
         .a11y-hidden {
             overflow: hidden;
@@ -1799,4 +1822,3 @@ table.t-foot>tfoot>tr>td {
         white-space: pre-wrap;
         font-size: 12px;
        }
-
