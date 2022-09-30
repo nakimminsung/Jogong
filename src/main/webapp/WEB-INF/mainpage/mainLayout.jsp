@@ -25,12 +25,13 @@
 	  min-height: 100%;
 	  padding-top: 100px;
 	}
-	#header{
+	div#header{
 		background-color: #fff;
 		position: fixed;
 		top: 0;
 		width: 100%;
 		height: 100px;
+		z-index: 100;
 	}
 	.content{
 	  width:100%;

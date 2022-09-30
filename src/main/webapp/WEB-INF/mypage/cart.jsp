@@ -12,23 +12,20 @@
     
     <!-- bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 	
 	<!-- bootstrap 5 icon -->
 	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-
+    
 </head>
+<style>
+</style>
 <body>
 	<div>
-		<h2>footer</h2>
-		<div>
-			<button type="button" class="btn btn-info" onclick="location.href='mypage'">마이페이지</button>
-		</div>
-		<div>
-			<button type="button" class="btn btn-info" onclick="location.href='${root}/payview'">결제폼 이동</button>
-		</div>
-    </div>
+		cart
+	</div>	
 </body>
 </html>

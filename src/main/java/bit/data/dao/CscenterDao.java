@@ -17,6 +17,7 @@ public class CscenterDao implements CscenterDaoInter {
 	@Autowired
 	SqlSession session;
 	String ns="bit.data.dao.CscenterDao.";
+	
 	@Override
 	public List<FaqDto> getFaq() {
 		// TODO Auto-generated method stub
