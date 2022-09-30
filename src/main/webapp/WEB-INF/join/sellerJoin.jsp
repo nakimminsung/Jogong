@@ -135,9 +135,13 @@ $(document).ready(function(){
 								사업자 등록번호
 							</th>
 							<td style="padding-left: 10px;">
-								<input type="text" name="sellerNum1" style="width: 14%"> -
+								<input type="text" name="businessNumber" id="businessNumber" style="width: 20%;" 
+								placeholder="숫자만 입력">
+								<!--  
+								-
 								<input type="text" name="sellerNum2" style="width: 14%"> -
 								<input type="text" name="sellerNum3" style="width: 14%"> &nbsp;
+								 -->
 								<button type="button" class="btn btn-dark btn-sm">사업자 번호 인증</button>
 							</td>
 						</tr>
@@ -160,5 +164,49 @@ $(document).ready(function(){
 	
 	</div>
 </body>
+
+<script>
+	
+	// 사업자등록증 하이픈 자동 입력 (3-2-5)
+	$('#businessNumber').keydown(function (e) {
+	    var key = e.charCode || e.keyCode || 0;
+	    $text = $(this); 
+	    
+	    if (key !== 8 && key !== 9) {
+	        if ($text.val().length === 3) {
+	            $text.val($text.val() + '-');
+	        }
+	        if ($text.val().length === 6) {
+	            $text.val($text.val() + '-');
+	        }
+	    }
+
+		return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
+		// Key 8번 백스페이스, Key 9번 탭, Key 46번 Delete 부터 0 ~ 9까지, Key 96 ~ 105까지 넘버패트
+		// 한마디로 JQuery 0 ~~~ 9 숫자 백스페이스, 탭, Delete 키 넘버패드외에는 입력못함
+		});
+	
+	
+	//사업자등록증 유효성 검사
+	function fn_ValidationCheck(value) {
+	    var valueMap = value.replace(/-/gi, '').split('').map(function (item) {
+	        return parseInt(item, 10);
+	    });
+	 
+	    if (valueMap.length === 10) {
+	        var multiply = new Array(1, 3, 7, 1, 3, 7, 1, 3, 5);
+	        var checkSum = 0;
+	 
+	        for (var i = 0; i < multiply.length; ++i) {
+	            checkSum += multiply[i] * valueMap[i];
+	        }
+	 
+	        checkSum += parseInt((multiply[8] * valueMap[8]) / 10, 10);
+	        return Math.floor(valueMap[9]) === ((10 - (checkSum % 10)) % 10);
+	    }
+	 
+	    return false;
+	}
+</script>
 
 </html>
