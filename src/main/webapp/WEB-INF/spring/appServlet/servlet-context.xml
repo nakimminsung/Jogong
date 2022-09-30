@@ -16,6 +16,8 @@
 	<resources mapping="/resources/**" location="/resources/" />
 	<resources mapping="/image/**" location="/resources/image/" />
 	<resources mapping="/upload/**" location="/resources/upload/" />
+	<resources mapping="/giftimage/banner/**" location="/resources/giftimage/banner/" />
+	<resources mapping="/giftimage/card/**" location="/resources/giftimage/card/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 <!-- 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
