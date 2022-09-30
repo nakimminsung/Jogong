@@ -122,7 +122,7 @@ public class CscenterController {
 	      
 	      
 	      
-	      return "redirect:faq";
+	      return "redirect:faq";	//forward (jsp로 가서 location.href)
 	   }
 	   
 	
