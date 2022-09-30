@@ -192,7 +192,7 @@
                                 <div class="pin">
                                     <div class="col-half">
                                         <div class="giftImg">
-                                            <img src="/jogong/resources/image/21.jpeg" alt="카드 이미지">
+                                            <img src="image/21.jpeg" alt="카드 이미지">
                                         </div>
                                         <div class="cardImg">
                                             <img id="previewTemplate" src="/jogong/resources/giftimage/card/a1.jpg" alt="꾸미기 템플릿">
@@ -284,26 +284,19 @@
                             <div data-v-8215c5a4="" class="main_title"><strong data-v-8215c5a4="">일반 결제</strong> <span
                                     data-v-8215c5a4="" class="sub_title">일시불・할부</span></div>
                         </h4>
-                        <div data-v-35b707e2="" data-v-8215c5a4="" class="pay_method" id="card" value="html5_inicis">
-                            <div data-v-35b707e2="" class="pay_item" id="normalpay">
+                        <div data-v-35b707e2="" data-v-8215c5a4="" class="pay_method" id="card">
+                            <div data-v-35b707e2="" class="pay_item" id="normalpay" value="html5_inicis">
                                 <div data-v-35b707e2="" class="pay_box">
                                     <div data-v-35b707e2="" class="pay_title">
                                         <p data-v-35b707e2="" class="main_title">신용/체크카드</p>
                                     </div>
                                 </div>
                             </div>
-                            <div data-v-35b707e2="" class="pay_item" id="quickpay" value="html5_inicis">
+                            <div data-v-35b707e2="" class="pay_item" id="quickpay" value="danal">
                                 <div data-v-35b707e2="" class="pay_box">
                                     <div data-v-35b707e2="" class="pay_title">
-                                        <p data-v-35b707e2="" class="main_title">계좌이체</p>
+                                        <p data-v-35b707e2="" class="main_title">핸드폰결제</p>
                                     </div>
-                                </div>
-                            </div>
-                            <div data-v-35b707e2="" class="pay_item" id="naverpay" value="html5_inicis">
-                                <div data-v-35b707e2="" class="pay_box">
-                                    <div data-v-35b707e2="" class="pay_title">
-                                        <p data-v-35b707e2="" class="main_title">네이버페이</p>
-                                    </div><img data-v-35b707e2="" src="image/naverpay.jpg" alt="네이버페이" class="pay_img">
                                 </div>
                             </div>
                             <div data-v-35b707e2="" class="pay_item" id="kakaopay" value="kakaopay">
@@ -318,13 +311,6 @@
                                     <div data-v-35b707e2="" class="pay_title">
                                         <p data-v-35b707e2="" class="main_title">토스</p>
                                     </div><img data-v-35b707e2="" src="image/tosspay.jpg" alt="토스" class="pay_img">
-                                </div>
-                            </div>
-                            <div data-v-35b707e2="" class="pay_item" id="paycopay" value="html5_inicis">
-                                <div data-v-35b707e2="" class="pay_box">
-                                    <div data-v-35b707e2="" class="pay_title">
-                                        <p data-v-35b707e2="" class="main_title">페이코</p>
-                                    </div><img data-v-35b707e2="" src="image/paycopay.jpg" alt="페이코" class="pay_img">
                                 </div>
                             </div>
                         </div>
@@ -454,7 +440,7 @@ function payment(data) {
     IMP.request_pay({// param
         pg: "kakaopay.TC0ONETIME", //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
         pay_method: "card", //지불 방법
-        merchant_uid: "0034", //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+        merchant_uid: "0099", //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
         name: "음식", //결제창에 노출될 상품명
         amount: 100, //금액
         buyer_email : "testiamport@naver.com", 
@@ -493,7 +479,7 @@ function danal(data) {
 	IMP.request_pay({
 		pg : 'nice',
 	    pay_method : 'phone',
-	    merchant_uid: "0034", //상점에서 생성한 고유 주문번호
+	    merchant_uid: "0099", //상점에서 생성한 고유 주문번호
 	    name : '주문명:결제테스트',
 	    amount : 1000,
 	    buyer_email : 'iamport@siot.do',
@@ -529,13 +515,13 @@ function danal(data) {
      });
 }
 
-*/
+
 function kg(data) {
 	IMP.init('imp20164668');//아임포트 관리자 콘솔에서 확인한 '가맹점 식별코드' 입력
 	IMP.request_pay({
 		pg : 'html5_inicis',
 	    pay_method : 'card',
-	    merchant_uid: "0034", //상점에서 생성한 고유 주문번호
+	    merchant_uid: "0099", //상점에서 생성한 고유 주문번호
 	    name : '주문명:결제테스트',
 	    amount : 100,
 	    buyer_email : 'iamport@siot.do',
@@ -576,7 +562,7 @@ function toss(data) {
 	IMP.request_pay({
 		pg : 'tosspay',
 	    pay_method : 'card',
-	    merchant_uid: "0034", //상점에서 생성한 고유 주문번호
+	    merchant_uid: "0099", //상점에서 생성한 고유 주문번호
 	    name : '주문명:결제테스트',
 	    amount : 100,
 	    buyer_email : 'iamport@siot.do',
@@ -654,6 +640,8 @@ payed.onclick = function () {
     	toss();            	
     }else if(val=='html5_inicis'){
     	kg();
+    }else if(val=='danal'){
+   		danal(); 	
     }
 } 
 /* var payed = document.getElementById("paying");
@@ -663,7 +651,7 @@ payed.onclick = function () {
     const val = selected.getAttribute('value');
     console.log(val);
 }
- */
- </script>
+*/
+</script>
 </body>
 </html>
