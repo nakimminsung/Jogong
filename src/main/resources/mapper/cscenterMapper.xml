@@ -14,6 +14,10 @@
    <select id="selFaqCategory" parameterType="int" resultType="String">
       select content from faqCategory where num=#{num}
    </select>
+   <!-- Faq카테고리 -->
+   <select id="getFaqCategory" resultType="faqCategoryDto">
+      select * from faqCategory order by num asc;
+   </select>
    <!-- Faq 검색 -->
    <select id="getSearchFaq" parameterType="Map" resultType="faqDto">
 		select * from faq where content like concat('%',#{searchword},'%')		
