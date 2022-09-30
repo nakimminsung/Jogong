@@ -21,11 +21,58 @@
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     
 </head>
+<script>
+	$(function(){
+		cartlist();
+	});
+	function cartlist() {
+		var userNum = 1;
+			
+		var s="";
+			
+		$.ajax({
+			type: "get",
+			url: "cart/list",
+			dataType: "json",
+			data: {"userNum":userNum},
+			success:function(res){
+				
+				$.each(res, function(i,elt) {
+					
+					s += "<div>"+elt.productNum+"</div>";
+					
+				});
+				$("div.cart-result").html(s);
+			}
+		});
+		/* $.ajax({
+			type: "get",
+			url: "user/friendCount",
+			dataType: "json",
+			data: {"userNum":userNum},
+			success:function(res){
+				
+				$("span.friend-count").text(res);
+			}
+		}); */
+	}
+</script>
 <style>
+	div.cart-wrapper{
+		max-width: 100%;
+	}
+	div.cart-result{
+		max-width: 700px;
+		margin: 0 auto;
+		margin-top: 50px;
+	}
+	div{
+		border: 1px solid gray !important;
+	}
 </style>
 <body>
-	<div>
-		cart
+	<div class="cart-wrapper">
+		<div class="cart-result">11</div>
 	</div>	
 </body>
 </html>

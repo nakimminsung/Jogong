@@ -4,6 +4,6 @@
 
 <mapper namespace="bit.data.dao.CartDao">
 	<select id="getCartList" parameterType="int" resultType="cartListDto">
-		select * from cartList where userNum={userNum}
+		select * from cartList where userNum=#{userNum}
 	</select>
 </mapper>

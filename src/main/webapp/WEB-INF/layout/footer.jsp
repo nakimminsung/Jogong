@@ -21,6 +21,7 @@
 
 </head>
 <body>
+	<c:set var="root" value="<%=request.getContextPath() %>"/>
 	<div>
 		<h2>footer</h2>
 		<div>
