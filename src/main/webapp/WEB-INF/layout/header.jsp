@@ -137,7 +137,8 @@
 				<a class="login" href="${root}">로그인</a>
 			</div>
 			<div>
-				<button type="button" class="btn btn-header">회원가입</button>
+				<button type="button" class="btn btn-header"
+				onclick="location.href='${root}/join/joinMain'">회원가입</button>
 			</div>
 		</div>
 	</div>	

@@ -44,4 +44,26 @@
 		<put-attribute name="main" value="/WEB-INF/{1}/{2}.jsp"/>
 	</definition>
 	
+	<!-- notice -->
+	<definition name="notice" template="/WEB-INF/notice/noticelayout.jsp">
+		<put-attribute name="content" value="/WEB-INF/notice/content.jsp"/>
+	</definition>
+	
+	<!-- notice macro -->
+	<definition name="/bit/cscenter/notice" extends="notice">
+		<put-attribute name="content" value="/WEB-INF/cscenter/notice.jsp"/>
+	</definition>
+	
+	
+	<!-- join layout -->
+	<definition name="joinLayout_test" template="/WEB-INF/join/joinLayout.jsp">
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"/>
+	</definition>
+	
+	<!-- join layout macro -->
+	<definition name="/bit/join/*" extends="joinLayout_test">
+		<put-attribute name="footer" value="/WEB-INF/join/{1}.jsp"/>
+		
+	</definition>
+	
 </tiles-definitions>
