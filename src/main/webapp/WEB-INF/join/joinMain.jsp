@@ -26,7 +26,7 @@
 	
 	div.joinPersonal{
 		width: 500px;
-		height: 300px;
+		height: 260px;
 	}
 	
 	h2.joinTitle{
@@ -39,8 +39,9 @@
 		
 		border: 0px;
 		border-radius: 8px;
-		
+		/* 
 		color: white;
+		 */
 		font-weight: bold;
 		
 		background-color: #ef3e43;
@@ -84,24 +85,33 @@
 	<div class="joinPersonal">
 		<h2 class="joinTitle">조공 회원가입</h2>
 		<p style="margin-top: 20px;">지금 회원가입 하신 후 조공에서 다양한 서비스를 경험해보세요</p>
-		<button class="btnJoin">개인 회원가입</button>
-	
+		<button class="btnJoin btn btn-danger">개인 회원가입</button>
+		
 		<div class="snsJoin">
 			<button class="btnNaver" style="background-color: #19ce60; color: white;">N 네이버로 가입</button>&nbsp;&nbsp;&nbsp;
-			<button class="btnKakao" style="background-color: #fde102;">K 카카오로 가입</button>
+			<button class="btnKakao" style="background-color: #fde102;"><i class='fas fa-comment'></i> 카카오로 가입</button>
 		</div>
 		
 		<p style="margin-top: 10px; color: gray; font-size: 14px;">SNS계정 회원가입(만 14세 이상 가능)</p>
 	
 	</div>	<!-- 개인/SNS 회원가입 div 종료 -->
 	
-	<button class="btnSeller btn btn-outline-secondary">판매자 회원가입</button>
+	<hr><br>
+	
+	<button class="btnSeller btn btn-outline-secondary" onclick="f_link();">판매자 회원가입</button>
 	<p style="margin-top: 10px; color: gray; font-size: 14px;">판매 목적의 개인/법인 사업자 가입 가능</p>
 	
 	
 	</div>	<!-- 전체 div -->
 	
-	
 </div>
 </body>
+
+<script>
+
+	function f_link(){
+	    location.href = "../join/sellerJoin";
+	}
+
+</script>
 </html>
