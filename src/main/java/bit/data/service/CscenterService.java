@@ -54,8 +54,13 @@ public class CscenterService implements CscenterServiceInter {
 		// TODO Auto-generated method stub
 		return cscenterDao.getAllNotice();
 	}
-	 
-	  @Override
+	
+	@Override
+	public List<FaqCategoryDto> getFaqCategory() {
+		// TODO Auto-generated method stub
+		return cscenterDao.getFaqCategory();
+	}
+	@Override
 	    public List<QnaCategoryDto> selQnaCategory() {
 	       // TODO Auto-generated method stub
 	       
