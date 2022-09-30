@@ -12,26 +12,32 @@ import bit.data.dto.ProductDto;
 public class ProductService implements ProductServiceInter {
 	
 	@Autowired
-	ProductDaoInter daoInter;
+	ProductDaoInter productDaoInter;
+	
 	
 	@Override
 	public List<ProductDto> getProduct(int price) {
-		return daoInter.getProduct(price);
+		return productDaoInter.getProduct(price);
 	}
 
 	@Override
 	public List<ProductDto> getFriendWishlist(int userNum) {
-		return daoInter.getFriendWishlist(userNum);
+		return productDaoInter.getFriendWishlist(userNum);
 	}
 	
 	@Override
 	public List<ProductDto> getProductTheme(int themeNum) {
-		return daoInter.getProductTheme(themeNum);
+		return productDaoInter.getProductTheme(themeNum);
 	}
 
 	@Override
-	public List<ProductDto> getTag(int themeNum) {
-	
-		return daoInter.getTag(themeNum);
-	}
+	public ProductDto getProductDetail(int num) {
+		
+		return productDaoInter.getProductDetail(num);
+	}	
+//	@Override
+//	public List<ProductDto> getTag(int themeNum) {
+//	
+//		return daoInter.getTag(themeNum);
+//	}
 }

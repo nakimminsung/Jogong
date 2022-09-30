@@ -36,10 +36,10 @@
 		height: 100px;
 		z-index: 10;
 	}
-	#content{
+	/* #content{
 	  background-color:lightpink;
 	  width:100%;
-	}
+	} */
 	footer{
 	  background-color:lightblue;
 	  width: 100%;

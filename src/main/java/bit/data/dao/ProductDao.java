@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import bit.data.dto.ProductDto;
+import bit.data.dto.ReviewDto;
 
 @Repository
 public class ProductDao implements ProductDaoInter {
@@ -33,8 +34,15 @@ public class ProductDao implements ProductDaoInter {
 	}
 
 	@Override
-	public List<ProductDto> getTag(int themeNum) {
-
-		return session.selectList(ns+"selectTagByTheme", themeNum);
+	public ProductDto getProductDetail(int num) {
+		
+		return session.selectOne(ns+"selectProductDetail",num);
 	}
+
+//	@Override
+//	public List<ProductDto> getTag(int themeNum) {
+//
+//		return session.selectList(ns+"selectTagByTheme", themeNum);
+//	}
+	
 }
