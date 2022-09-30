@@ -192,7 +192,7 @@
                                 <div class="pin">
                                     <div class="col-half">
                                         <div class="giftImg">
-                                            <img src="/jogong/resources/image/21.jpeg" alt="카드 이미지">
+                                            <img src="image/21.jpeg" alt="카드 이미지">
                                         </div>
                                         <div class="cardImg">
                                             <img id="previewTemplate" src="/jogong/resources/giftimage/card/a1.jpg" alt="꾸미기 템플릿">
@@ -284,15 +284,15 @@
                             <div data-v-8215c5a4="" class="main_title"><strong data-v-8215c5a4="">일반 결제</strong> <span
                                     data-v-8215c5a4="" class="sub_title">일시불・할부</span></div>
                         </h4>
-                        <div data-v-35b707e2="" data-v-8215c5a4="" class="pay_method" id="card" value="html5_inicis">
-                            <div data-v-35b707e2="" class="pay_item" id="normalpay">
+                        <div data-v-35b707e2="" data-v-8215c5a4="" class="pay_method" id="card">
+                            <div data-v-35b707e2="" class="pay_item" id="normalpay" value="html5_inicis">
                                 <div data-v-35b707e2="" class="pay_box">
                                     <div data-v-35b707e2="" class="pay_title">
                                         <p data-v-35b707e2="" class="main_title">신용/체크카드</p>
                                     </div>
                                 </div>
                             </div>
-                            <div data-v-35b707e2="" class="pay_item" id="quickpay" value="html5_inicis">
+                            <div data-v-35b707e2="" class="pay_item" id="quickpay" value="danal">
                                 <div data-v-35b707e2="" class="pay_box">
                                     <div data-v-35b707e2="" class="pay_title">
                                         <p data-v-35b707e2="" class="main_title">핸드폰결제</p>
@@ -640,6 +640,8 @@ payed.onclick = function () {
     	toss();            	
     }else if(val=='html5_inicis'){
     	kg();
+    }else if(val=='danal'){
+   		danal(); 	
     }
 } 
 /* var payed = document.getElementById("paying");
