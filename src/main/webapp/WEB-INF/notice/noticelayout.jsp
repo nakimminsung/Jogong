@@ -13,11 +13,7 @@
         href="https://fonts.googleapis.com/css2?family=Anton&family=Edu+VIC+WA+NT+Beginner:wght@600&family=Gamja+Flower&family=Single+Day&family=Jua&family=Nanum+Pen+Script&display=swap"
         rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-<style type="text/css">
-	*{
-		 font-family: 'Jua';
-	}
-</style>
+
 </head>
 <body>
 	<div id="content">

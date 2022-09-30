@@ -37,7 +37,7 @@
 		z-index: 10;
 	}
 	#content{
-	  background-color:lightpink;
+/* 	  background-color:lightpink; */
 	  width:100%;
 	}
 	footer{

@@ -17,6 +17,7 @@ public interface CscenterDaoInter {
 	public List<FaqDto> getSearchFaq(Map<String, Object> map);
 	public int getTcFaq(Map<String, String> map);
 	public List<NoticeDto> getAllNotice();
+	public List<FaqCategoryDto> getFaqCategory();
 	
 	//QNA
 	public List<QnaCategoryDto> selQnaCategory();
