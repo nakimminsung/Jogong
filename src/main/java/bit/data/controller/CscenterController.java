@@ -42,8 +42,10 @@ public class CscenterController {
 				model.addAttribute("notice",notice);
 			}
 			List<FaqDto> list1=csService.getFaqByNum(Integer.parseInt(num));
+			List<FaqCategoryDto> faqCa=csService.getFaqCategory();
 			String category=csService.selFaqCategory(Integer.parseInt(num));
 			model.addAttribute("list",list1);
+			model.addAttribute("faqCa", faqCa);
 			model.addAttribute("category",category);
 			model.addAttribute("num",num);
 	

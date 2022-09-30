@@ -177,7 +177,7 @@ function toss(data) {
 	IMP.request_pay({
 		pg : 'tosspay',
 	    pay_method : 'card',
-	    merchant_uid: "0006", //상점에서 생성한 고유 주문번호
+	    merchant_uid: "0012", //상점에서 생성한 고유 주문번호
 	    name : '주문명:결제테스트',
 	    amount : 100,
 	    buyer_email : 'iamport@siot.do',

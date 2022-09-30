@@ -54,7 +54,13 @@ public class CscenterDao implements CscenterDaoInter {
 		return session.selectList(ns+"getAllNotice");
 	}
 	
-  //seleQnaCategory
+	@Override
+	public List<FaqCategoryDto> getFaqCategory() {
+		// TODO Auto-generated method stub
+		return session.selectList(ns+"getFaqCategory");
+	}
+
+//seleQnaCategory
    @Override
    public List<QnaCategoryDto> selQnaCategory() {
 
