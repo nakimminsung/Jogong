@@ -11,6 +11,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"><!-- bootstrap 5 -->
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script><!-- bootstrap 5 icon -->
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script><!-- jquery -->
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 <style>
 	*{
@@ -63,6 +64,22 @@
       
    }
    
+   .insertform{
+	margin-top: 80px;
+	padding-left: 10%;
+	padding-right: 10%;
+   }
+   
+   .test th{
+   	
+   	height: 70px;
+   	vertical-align: middle;
+   }
+   .test td{
+   
+   	vertical-align: middle;
+   }
+   
 </style>
 </head>
 <script>
@@ -84,6 +101,8 @@ $(document).ready(function(){
 	});
 	
 	$(function () {
+		
+		//약관 동의(모두 동의)
 		$("#totalAgree").on('click', function(){
 			var checked = $(this).is(':checked');
 			//alert(checked);	
@@ -95,6 +114,7 @@ $(document).ready(function(){
 		    }
 			
 		});
+		
 		$(".agree").on('click', function(){
 			var checked1 = $("#agree1").is(':checked');
 			var checked2 = $("#agree2").is(':checked');
@@ -114,7 +134,7 @@ $(document).ready(function(){
 			//alert(checked);
 			if(checked){
 				$(".agreeform").hide();
-				$(".insertForm").show();
+				$(".insertform").show();
 				$(".agrees").css("background-color","white");
 				$(".agrees").css("font-weight","normal");
 				$(".insert").css("background-color","#dcdcdc");
@@ -123,9 +143,103 @@ $(document).ready(function(){
 			}else{
 				alert("필수 약관을 동의해주시기 바랍니다");
 			}
+			$(".password").keyup(function () {
+				alert("")
+			})
 			
-		})
+		});
+			$(".password1").keydown(function () {
+				var pw=$(this).val();
+			// 정규 표현식
+				var regExp = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
+
+			// 정규 표현식을 통과하지 못하면
+			if(pw.match(regExp) == null){
+				// 처리할 문장
+				$("#userpw").html("형식에 맞게 입력하세요");
+			}else{
+				$("#userpw").html("");
+			}
+		});	
+			$(".password2").keyup(function () {
+				var check=$(this).val();
+				var pw=$(".password1").val();
+				
+			if(check.match(pw) == null){
+				// 처리할 문장
+				$("#userpw2").html("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
+				
+			}else{
+				$("#userpw2").html("일치");
+				$("#userpw2").css("color","green");
+			}
+		});	
+		
 	});
+	//주소 api
+	function sample4_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var roadAddr = data.roadAddress; // 도로명 주소 변수
+                var extraRoadAddr = ''; // 참고 항목 변수
+
+                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraRoadAddr += data.bname;
+                }
+                // 건물명이 있고, 공동주택일 경우 추가한다.
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if(extraRoadAddr !== ''){
+                    extraRoadAddr = ' (' + extraRoadAddr + ')';
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('sample4_postcode').value = data.zonecode;
+                document.getElementById("sample4_roadAddress").value = roadAddr;
+                document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+         
+                document.getElementById("sample4_engAddress").value = data.addressEnglish;
+                       
+                // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+                if(roadAddr !== ''){
+                    document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+                } else {
+                    document.getElementById("sample4_extraAddress").value = '';
+                }
+
+                var guideTextBox = document.getElementById("guide");
+                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+                if(data.autoRoadAddress) {
+                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+                    guideTextBox.style.display = 'block';
+
+                } else if(data.autoJibunAddress) {
+                    var expJibunAddr = data.autoJibunAddress;
+                    guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+                    guideTextBox.style.display = 'block';
+                } else {
+                    guideTextBox.innerHTML = '';
+                    guideTextBox.style.display = 'none';
+                }
+            }
+        }).open();
+    }
+	
+	//휴대폰 하이픈 정규식
+const autoHyphen2 = (target) => {
+ target.value = target.value
+   .replace(/[^0-9]/g, '')
+  .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
+}
 </script>
 <body>
 	<div style="background-color: white;">
@@ -164,79 +278,98 @@ $(document).ready(function(){
 				<label><input type="checkbox" id="totalAgree"> 전체 동의합니다</label><br><br>
 				<button class="btnNext btn btn-outline-secondary">다음</button>
 			</div>
-			</div>	
+	</div>	
+		<!-- 정보 입력 테이블-->
+		<div class="insertform" style="display: none;">
+			<form action="insert" method="post" enctype="multipart/form-data">
+				<h5>개인 회원가입</h5><br>
+				<table class="table test" style="width: 100%">
+						<tr style="border-top: 2px solid gray;">
+								<th style="width: 20%; text-align: center;" >아이디</th>
+								<td>
+									<div class="input-group" style="width: 400px;">
+										<input type="email" name="email" placeholder="이메일 형식으로 입력해주세요" required="required" class="form-control">
+										<button type="button" class="btn btn-dark btn-sm">중복체크</button>
+									</div>
+								</td>
+						</tr>
+							
+						<tr>
+							<th style="width: 20%;text-align: center;">비밀번호</th>
+							<td>
+								<div style="width: 300px;">
+									<input type="password" name="password" class="form-control password1" placeholder="영문,숫자,특수문자(최소 8자리)" required="required">
+									<div class="doubleCheck" id="userpw"></div>
+								</div>
+							</td>	
+						</tr>
+						<tr>
+							<th style="width: 20%;text-align: center;">비밀번호 확인</th>
+							<td>
+								<div style="width: 300px;">
+									<input type="password" class="form-control password2" placeholder="영문,숫자,특수문자(최소 8자리)" required="required">
+									<div class="doubleCheck" id="userpw2"></div>
+								</div>	
+							</td>	
+						</tr>
+						<tr>
+							<th style="width: 20%;text-align: center;">이름</th>
+							<td>
+								<div style="width: 300px;">
+									<input type="text" name="nickname" class="form-control" required="required">
+								</div>
+							</td>		
+						</tr>
+						<tr>
+							<th style="width: 20%;text-align: center;">생년월일</th>
+							<td>
+								<div style="width: 300px;">
+									<input type="date" name="date" class="form-control" placeholder="(-)없이 HP번호만 입력" required="required">
+								</div>							
+							</td>	
+						</tr>
+						<tr>
+							<th style="width: 20%;text-align: center;">성별</th>
+							<td>
+								<input type="radio" name="gender" value="1">남 <input type="radio" name="gender" value="2">여<br/>
+
+							</td>		
+						</tr>
+						<tr>
+							<th style="width: 20%;text-align: center;">휴대폰번호</th>
+							<td>
+								<div style="width: 300px;">
+									<input type="text" oninput="autoHyphen2(this)" name="phone" maxlength="13" placeholder="전화번호를 입력하세요" required="required" class="form-control">
+								</div>
+							</td>	
+						</tr>
+						<tr>
+							<th style="width: 20%;text-align: center;">주소</th>
+							<td>
+								<div class="input-group" style="width: 300px;">
+									<input type="text" id="sample4_postcode" name="addressNum" placeholder="우편번호" class="form-control" style="width: 40%; margin-bottom: 5px;">
+									<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="btn btn-dark btn-sm">
+								</div>
+								<div style="width: 500px;">
+									<input type="text" id="sample4_roadAddress" name="addressMain" placeholder="도로명주소" size="60" class="form-control" style="margin-bottom: 5px;">
+									<input type="hidden" id="sample4_jibunAddress" placeholder="지번주소"  size="60" class="form-control">
+									<span id="guide" style="color:#999;display:none"></span>
+									<input type="text" id="sample4_detailAddress" name="address" placeholder="상세주소"  size="60" class="form-control">
+									<input type="hidden" id="sample4_extraAddress" placeholder="참고항목"  size="60" class="form-control">
+									<input type="hidden" id="sample4_engAddress" placeholder="영문주소"  size="60" class="form-control">
+								</div>
+							</td>	
+						</tr>
+						<tr>
+							<td colspan="2" align="center" style="border-bottom: none;"><br>
+								<button type="submit" class="btn btn-outline-secondary" style="width: 180px;">회원가입</button>
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
 			
-			<div class="insertForm" style="display: none;">
-				<form action="insert" method="post" enctype="multipart/form-data" onsubmit="return check()">
-					<table style="width: 600px">
-						<caption align="top"><h4 class="alert alert-danger"><b>회원가입</b></h4></caption>
-							<tr>
-								<td style="width:250px" rowspan="4" align="center">
-									<div class="input-group">
-										<input type="file" id="myphoto" name="myphoto" style="display: none;">
-										<button type="button" id="btnphoto" class="btn btn-secondary">사진선택</button>
-										<br>
-										<img id="showimg">
-									</div>
-								</td>
-								<td>
-									<div class="input-group mb-3">
-										<input type="text" placeholder="아이디입력" id="loginid2" name="loginid"
-										class="form-control" style="width: 120px;" required="required">
-										<button type="button" class="btn btn-danger btn-sm" id="btnidcheck">중복체크</button>
-										&nbsp;
-										<div class="idsuccess" style="width:60px;">check</div>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td style="border-bottom: 3px solid black;">
-									<div class="input-group">
-										<input type="password"  style="width:120px;" class="form-control"
-										name="pass" id="pass" placeholder="숫자4자리" maxlength="4" pattern="[0-9]{4,}"
-										required="required">
-										
-										<input type="password"  style="width:120px; border: none;" class="form-control" 
-										 id="pass2" placeholder="숫자4자리" maxlength="4" pattern="[0-9]{4,}"
-										  required="required">
-										 &nbsp;
-										<div class="passsuccess" style="width:60px;">check</div>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<input type="text" name="name" class="form-control" style="width: 150px;"
-									placeholder="이름을 입력하세요" required="required">
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<input type="email" name="email" class="form-control" 
-									placeholder="이메일을 입력하세요" required="required">
-								</td>
-							</tr>
-							<tr>
-								<td colspan="2">
-									<div class="input-group">
-										<input type="text" name="hp" placeholder="(-)없이 HP번호만 입력"  class="form-control"
-										style="width: 200px;" required="required">
-										
-										<input type="text" name="address" placeholder="주소입력"  class="form-control"
-										style="width: 300px;" required="required">
-									</div>
-								</td>		
-							</tr>
-							<tr>
-								<td colspan="2" align="center">
-									<button type="submit" class="btn btn-info" style="width: 180px;">회원가입</button>
-								</td>
-							</tr>
-						</table>
-					</form>
-				</div>
-				
-		</div> <!-- 전체 div : sellerJoinTerm 종료 -->
+	</div> <!-- 전체 div : sellerJoinTerm 종료 -->
 	
 	</div>
 </body>
