@@ -113,7 +113,13 @@ $(document).ready(function(){
 			var checked = $("#totalAgree").is(':checked');
 			//alert(checked);
 			if(checked){
-				location.href='../join/sellerJoin';
+				$(".agreeform").hide();
+				$(".insertForm").show();
+				$(".agrees").css("background-color","white");
+				$(".agrees").css("font-weight","normal");
+				$(".insert").css("background-color","#dcdcdc");
+				$(".insert").css("font-weight","bold");
+				$("html").scrollTop(0);
 			}else{
 				alert("필수 약관을 동의해주시기 바랍니다");
 			}
@@ -129,12 +135,13 @@ $(document).ready(function(){
 			<div class="stepBox">
 				<h2>개인 회원가입</h2>
 				<ul>
-					<li style="background-color: #dcdcdc; font-weight: bold;">1.약관 동의</li>
-					<li>2.정보 입력</li>
-					<li>3.가입 완료</li>
+					<li style="background-color: #dcdcdc; font-weight: bold;" class="agrees">1.약관 동의</li>
+					<li class="insert">2.정보 입력</li>
+					<li class="gaip">3.가입 완료</li>
 				</ul>	
 			</div>
-	
+			
+		<div class="agreeform">	
 			<div class="sellerTerm" >
 				<h5>서비스 이용약관</h5>
 				<hr>
@@ -157,6 +164,77 @@ $(document).ready(function(){
 				<label><input type="checkbox" id="totalAgree"> 전체 동의합니다</label><br><br>
 				<button class="btnNext btn btn-outline-secondary">다음</button>
 			</div>
+			</div>	
+			
+			<div class="insertForm" style="display: none;">
+				<form action="insert" method="post" enctype="multipart/form-data" onsubmit="return check()">
+					<table style="width: 600px">
+						<caption align="top"><h4 class="alert alert-danger"><b>회원가입</b></h4></caption>
+							<tr>
+								<td style="width:250px" rowspan="4" align="center">
+									<div class="input-group">
+										<input type="file" id="myphoto" name="myphoto" style="display: none;">
+										<button type="button" id="btnphoto" class="btn btn-secondary">사진선택</button>
+										<br>
+										<img id="showimg">
+									</div>
+								</td>
+								<td>
+									<div class="input-group mb-3">
+										<input type="text" placeholder="아이디입력" id="loginid2" name="loginid"
+										class="form-control" style="width: 120px;" required="required">
+										<button type="button" class="btn btn-danger btn-sm" id="btnidcheck">중복체크</button>
+										&nbsp;
+										<div class="idsuccess" style="width:60px;">check</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td style="border-bottom: 3px solid black;">
+									<div class="input-group">
+										<input type="password"  style="width:120px;" class="form-control"
+										name="pass" id="pass" placeholder="숫자4자리" maxlength="4" pattern="[0-9]{4,}"
+										required="required">
+										
+										<input type="password"  style="width:120px; border: none;" class="form-control" 
+										 id="pass2" placeholder="숫자4자리" maxlength="4" pattern="[0-9]{4,}"
+										  required="required">
+										 &nbsp;
+										<div class="passsuccess" style="width:60px;">check</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input type="text" name="name" class="form-control" style="width: 150px;"
+									placeholder="이름을 입력하세요" required="required">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input type="email" name="email" class="form-control" 
+									placeholder="이메일을 입력하세요" required="required">
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<div class="input-group">
+										<input type="text" name="hp" placeholder="(-)없이 HP번호만 입력"  class="form-control"
+										style="width: 200px;" required="required">
+										
+										<input type="text" name="address" placeholder="주소입력"  class="form-control"
+										style="width: 300px;" required="required">
+									</div>
+								</td>		
+							</tr>
+							<tr>
+								<td colspan="2" align="center">
+									<button type="submit" class="btn btn-info" style="width: 180px;">회원가입</button>
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
 				
 		</div> <!-- 전체 div : sellerJoinTerm 종료 -->
 	

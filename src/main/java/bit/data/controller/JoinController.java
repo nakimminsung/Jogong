@@ -17,14 +17,14 @@ public class JoinController {
 	   }
 	
 	@GetMapping("/sellerJoin")
-	public String sellerJoin(Model model) {
+	public String sellerJoin() {
   
 	      return "/bit/join/sellerJoin";
 	   }
 	
-	@GetMapping("/userJoin")
-	public String userJoin(Model model) {
+	@GetMapping("/userAgree")
+	public String userJoin() {
   
-	      return "/bit/join/userJoin";
+	      return "/bit/join/userAgree";
 	   }
 }
