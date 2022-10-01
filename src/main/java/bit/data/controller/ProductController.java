@@ -71,8 +71,11 @@ public class ProductController {
 		int reviewCount = reviewService.getRatingNum(num);
 		
 		mview.addObject("dto",dto);
+		
 		mview.addObject("reviewAvg", reviewAvg);
 		mview.addObject("reviewCount", reviewCount);
+		
+
 		mview.setViewName("/bit/product/detail");
 		
 		return mview;

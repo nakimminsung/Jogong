@@ -28,9 +28,7 @@
     	body * {
     		font-size: 15px; 	
     	}
-    	div {
-    		border: 0px solid gray;
-    	}
+    	
     	div.event-wrapper {
     		width: 100%;
     		display: flex;

@@ -22,9 +22,7 @@
     
 </head>
 <style>
-	div{
-		border: 0px solid gray;
-	}
+	
 	body * {
 		font-size: 15px;
 	

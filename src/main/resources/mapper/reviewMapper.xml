@@ -5,10 +5,10 @@
 	
 	<!-- 리뷰 별점 -->
 	<select id="reviewRating" parameterType="int" resultType="int">
-		select round(avg(rating),0) from review where productNum=#{num}
+		select ifnull(round(avg(rating),0),0) from review where productNum=#{num}
 	</select>
 	
 	<select id="reviewRatingNum" parameterType="int" resultType="int">
-		select count(*) from review where productNum=#{num}
+		select ifnull(count(*),0) from review where productNum=#{num}
 	</select>
 </mapper>
