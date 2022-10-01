@@ -9,12 +9,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import bit.data.dto.CartListDto;
 import bit.data.service.CartServiceInter;
+import bit.data.service.ProductServiceInter;
 
 @Controller
 public class CartController {
 
 	@Autowired
 	CartServiceInter cartServiceInter;
+	
+	@Autowired
+	ProductServiceInter productServiceInter;
 	
 	@GetMapping("/cart/list")
 	@ResponseBody

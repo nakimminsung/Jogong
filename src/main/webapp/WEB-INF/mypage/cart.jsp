@@ -37,9 +37,52 @@
 			data: {"userNum":userNum},
 			success:function(res){
 				
-				$.each(res, function(i,elt) {
+	 			$.each(res, function(i,elt) {
 					
-					s += "<div>"+elt.productNum+"</div>";
+					s += "<div class='cart-object'>";
+					s += "<div class='cart-check'>";
+					s += "<input type='checkbox' productNum='"+elt.productNum+"'>";
+					s += "<a style='color:#a0a0a0;'>X</a>";
+					s += "</div>";
+					s += "<div class='cart-object-top'>";
+					s += "<div class='cart-object-top-left'>";
+					s += "<img src='"+elt.thumbnailImageUrl+"' class='cart-image'>";
+					s += "<div>";
+					s += "<b class='cart-brand'>"+elt.brand+"</b>";
+					s += "<b class='cart-name'>"+elt.name+"</b>";
+					s += "<b class='cart-option'>옵션</b>";
+					s += "</div>";
+					s += "</div>";
+					s += "<div class='cart-object-top-right'>";
+					s += "<div class='cart-change-button'>";
+					s += "옵션/수량 변경";
+					s += "</div>";
+					s += "<div class='cart-wish-button'>";
+					s += "위시로 이동";
+					s += "</div>";
+					s += "</div>";
+					s += "</div>";
+					s += "<div class='cart-object-bottom'>";
+					s += "<div class='cart-object-bottom-left'>";
+					s += "<div class='cart-price-list'>";
+					s += "<b>상품금액</b>";
+					s += "<b>선택수량</b>";
+					s += "</div>";
+					s += "<div class='cart-price-list'>";
+					s += "<b>"+elt.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+"원</b>";
+					s += "<b>x "+elt.qty+"</b>";
+					s += "</div>";
+					s += "</div>";
+					s += "<div class='cart-object-bottom-right'>";
+					s += "<div class='cart-total-left'>";
+					s += "<b>결제금액</b>";
+					s += "</div>";
+					s += "<div class='cart-total-right'>";
+					s += "<b>10000원</b>";
+					s += "</div>";
+					s += "</div>";
+					s += "</div>";
+					s += "</div>";
 					
 				});
 				$("div.cart-result").html(s);
@@ -58,6 +101,9 @@
 	}
 </script>
 <style>
+	body * {
+		font-size: 13px;
+	}
 	div.cart-wrapper{
 		max-width: 100%;
 	}
@@ -66,13 +112,116 @@
 		margin: 0 auto;
 		margin-top: 50px;
 	}
-	div{
-		border: 1px solid gray !important;
+	div.cart-object{
+		width: 100%;
+		margin-bottom: 20px;
 	}
+	div.cart-object>div{
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+	}
+	div.cart-object-top{
+		margin-bottom: 10px;
+	}
+	div.cart-object-top-left{
+		width: 70%;
+		display: flex;
+		flex-direction: row;
+	}
+	div.cart-object-top-left>div{
+		width: 100%;
+		display: flex;
+		flex-direction:column;
+		justify-content: center;
+	}
+	div.cart-object-top-left>div>b{
+		font-weight: normal;
+		display: block;
+	}
+	img.cart-image {
+		margin-right: 10px;
+	}
+	div.cart-object-top-right{
+		display:flex;
+		width: 30%;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: flex-end;
+	}
+	div.cart-object-top-right>div{
+		width: 150px;
+		height: 40px;
+		text-align: center;
+		line-height: 40px;
+		cursor: pointer;
+		border: 1px solid lightgray;
+	}
+	div.cart-object-top-right>div:active{
+		box-shadow: 1px 1px 1px lightgray;
+	}
+	div.cart-object-bottom>div{
+		width: 49%;
+	}
+	div.cart-object-bottom-left {
+		background-color: #fafafa;
+		display: flex;
+		justify-content: space-between;
+		padding: 10px 20px;
+	}
+	div.cart-object-bottom-left>div{
+		display: flex;
+		flex-direction: column;
+	}
+	div.cart-object-bottom-left>div>b{
+		font-weight: normal;
+	}
+	div.cart-price-list{
+		align-items: flex-end;
+	}
+	div.cart-object-bottom-right {
+		background-color: #fafafa;
+		display: flex;
+		justify-content: space-between;
+		padding: 10px 20px;
+	}
+	div.cart-object-bottom-right>div{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+	div.cart-object-bottom-right>div>b{
+		font-weight: normal;
+	}
+	div.cart-total-price {
+		align-items: flex-end;
+	}
+	div.cart-check {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-right:10px;
+	}
+	div.cart-check>input {
+		width: 20px;
+		height: 20px;
+		margin: 10px 0;
+	}
+	div.cart-check>a {
+		font-size: 20px;
+		cursor: pointer;
+	}
+	.cart-image{
+		width:  86px;
+		height:  86px;
+		display: inline;
+	}
+	
 </style>
 <body>
 	<div class="cart-wrapper">
-		<div class="cart-result">11</div>
+		<div class="cart-result">
+		</div>
 	</div>	
 </body>
 </html>

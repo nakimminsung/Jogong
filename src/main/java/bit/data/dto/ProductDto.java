@@ -9,7 +9,7 @@ public class ProductDto {
 	private int num;
 	private String name;
 	private int price;
-	private boolean deleveryOption;
+	private boolean deliveryOption;
 	private String country;
 	private String description;
 	private String thumbnailImageUrl;

@@ -55,7 +55,6 @@
 	}
 	div#myContent{
 		width:70%;
-		background-color: lightyellow;	
 		float: right;
 		height: 1000px;
 	}
