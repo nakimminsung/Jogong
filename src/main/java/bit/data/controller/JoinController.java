@@ -13,7 +13,7 @@ import bit.data.dto.UserDto;
 import bit.data.service.JoinServiceInter;
 
 
-@Controller
+@Controller 
 @RequestMapping("/join")
 public class JoinController {
 	
