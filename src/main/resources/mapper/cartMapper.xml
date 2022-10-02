@@ -4,8 +4,11 @@
 
 <mapper namespace="bit.data.dao.CartDao">
 	<select id="getCartList" parameterType="int" resultType="cartListDto">
-		select p.num productNum, p.name, p.price, p.thumbnailImageUrl, p.brand, p.deliveryOption, c.qty, c.messageCard, c.engrave
+		select p.num productNum, p.name, p.price, p.thumbnailImageUrl, p.brand, p.deliveryOption, c.num, c.qty, c.messageCard, c.engrave
 		from cartList c left outer join product p on c.productNum = p.num
 		where userNum=#{userNum}
 	</select>
+	<delete id="deleteCart" parameterType="int">
+		delete from cartList where num=#{cartNum};
+	</delete>
 </mapper>

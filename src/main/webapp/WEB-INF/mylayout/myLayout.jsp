@@ -56,13 +56,11 @@
 	div#myContent{
 		width:70%;
 		float: right;
-		height: 1000px;
 	}
 	footer{
 	  background-color:lightblue;
 	  width: 100%;
 	  height: 150px;
-	  position: relative;
 	}
 </style>
 <body>

@@ -19,93 +19,13 @@
     
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-    
-</head>
-<script>
-	$(function(){
-		cartlist();
-	});
-	function cartlist() {
-		var userNum = 1;
-			
-		var s="";
-			
-		$.ajax({
-			type: "get",
-			url: "cart/list",
-			dataType: "json",
-			data: {"userNum":userNum},
-			success:function(res){
-				
-	 			$.each(res, function(i,elt) {
-					
-					s += "<div class='cart-object'>";
-					s += "<div class='cart-check'>";
-					s += "<input type='checkbox' productNum='"+elt.productNum+"'>";
-					s += "<a style='color:#a0a0a0;'>X</a>";
-					s += "</div>";
-					s += "<div class='cart-object-top'>";
-					s += "<div class='cart-object-top-left'>";
-					s += "<img src='"+elt.thumbnailImageUrl+"' class='cart-image'>";
-					s += "<div>";
-					s += "<b class='cart-brand'>"+elt.brand+"</b>";
-					s += "<b class='cart-name'>"+elt.name+"</b>";
-					s += "<b class='cart-option'>옵션</b>";
-					s += "</div>";
-					s += "</div>";
-					s += "<div class='cart-object-top-right'>";
-					s += "<div class='cart-change-button'>";
-					s += "옵션/수량 변경";
-					s += "</div>";
-					s += "<div class='cart-wish-button'>";
-					s += "위시로 이동";
-					s += "</div>";
-					s += "</div>";
-					s += "</div>";
-					s += "<div class='cart-object-bottom'>";
-					s += "<div class='cart-object-bottom-left'>";
-					s += "<div class='cart-price-list'>";
-					s += "<b>상품금액</b>";
-					s += "<b>선택수량</b>";
-					s += "</div>";
-					s += "<div class='cart-price-list'>";
-					s += "<b>"+elt.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+"원</b>";
-					s += "<b>x "+elt.qty+"</b>";
-					s += "</div>";
-					s += "</div>";
-					s += "<div class='cart-object-bottom-right'>";
-					s += "<div class='cart-total-left'>";
-					s += "<b>결제금액</b>";
-					s += "</div>";
-					s += "<div class='cart-total-right'>";
-					s += "<b>10000원</b>";
-					s += "</div>";
-					s += "</div>";
-					s += "</div>";
-					s += "</div>";
-					
-				});
-				$("div.cart-result").html(s);
-			}
-		});
-		/* $.ajax({
-			type: "get",
-			url: "user/friendCount",
-			dataType: "json",
-			data: {"userNum":userNum},
-			success:function(res){
-				
-				$("span.friend-count").text(res);
-			}
-		}); */
-	}
-</script>
 <style>
 	body * {
 		font-size: 13px;
 	}
 	div.cart-wrapper{
 		max-width: 100%;
+		position:relative;
 	}
 	div.cart-result{
 		max-width: 700px;
@@ -208,16 +128,119 @@
 		margin: 10px 0;
 	}
 	div.cart-check>a {
-		font-size: 20px;
 		cursor: pointer;
+	}
+	i.fa-times {
+		font-size: 20px;
+		color:lightgray;
 	}
 	.cart-image{
 		width:  86px;
 		height:  86px;
 		display: inline;
 	}
-	
 </style>
+<script>
+	$(function(){
+		
+		// cart페이지 접속시 카트 select 로드
+		cartlist();
+		
+		// 단건 상품 삭제
+		$(document).on("click",".cart-check-delete",function(){
+			confirm("상품을 삭제하시겠습니까?");
+			var cartNum = $(this).attr("cartNum");
+			
+			$.ajax({
+				type: "get",
+				url: "cart/delete",
+				dataType: "text",
+				data: {"cartNum":cartNum},
+				success:function(res){
+					
+					location.reload();
+				}
+			});		
+		});
+	});
+	function cartlist() {
+		var userNum = 1;
+			
+		var s="";
+			
+		$.ajax({
+			type: "get",
+			url: "cart/list",
+			dataType: "json",
+			data: {"userNum":userNum},
+			success:function(res){
+				
+	 			$.each(res, function(i,elt) {
+					
+					s += "<div class='cart-object'>";
+					s += "<div class='cart-check'>";
+					s += "<input type='checkbox' cartNum='"+elt.num+"'>";
+					s += "<a class='cart-check-delete' cartNum='"+elt.num+"'>";
+					s += "<i class='fas fa-times'></i>";
+					s += "</a>";
+					s += "</div>";
+					s += "<div class='cart-object-top'>";
+					s += "<div class='cart-object-top-left'>";
+					s += "<img src='"+elt.thumbnailImageUrl+"' class='cart-image'>";
+					s += "<div>";
+					s += "<b class='cart-brand'>"+elt.brand+"</b>";
+					s += "<b class='cart-name'>"+elt.name+"</b>";
+					s += "<b class='cart-option'>옵션</b>";
+					s += "</div>";
+					s += "</div>";
+					s += "<div class='cart-object-top-right'>";
+					s += "<div class='cart-change-button'>";
+					s += "옵션/수량 변경";
+					s += "</div>";
+					s += "<div class='cart-wish-button'>";
+					s += "위시로 이동";
+					s += "</div>";
+					s += "</div>";
+					s += "</div>";
+					s += "<div class='cart-object-bottom'>";
+					s += "<div class='cart-object-bottom-left'>";
+					s += "<div class='cart-price-list'>";
+					s += "<b>상품금액</b>";
+					s += "<b>선택수량</b>";
+					s += "</div>";
+					s += "<div class='cart-price-list'>";
+					s += "<b>"+elt.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+"원</b>";
+					s += "<b>x "+elt.qty+"</b>";
+					s += "</div>";
+					s += "</div>";
+					s += "<div class='cart-object-bottom-right'>";
+					s += "<div class='cart-total-left'>";
+					s += "<b>결제금액</b>";
+					s += "</div>";
+					s += "<div class='cart-total-right'>";
+					s += "<b>10000원</b>";
+					s += "</div>";
+					s += "</div>";
+					s += "</div>";
+					s += "</div>";
+					
+				});
+				$("div.cart-result").html(s);
+			}
+		});
+		/* $.ajax({
+			type: "get",
+			url: "user/friendCount",
+			dataType: "json",
+			data: {"userNum":userNum},
+			success:function(res){
+				
+				$("span.friend-count").text(res);
+			}
+		}); */
+	}
+</script>
+</head>
 <body>
 	<div class="cart-wrapper">
 		<div class="cart-result">

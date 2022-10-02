@@ -25,4 +25,8 @@ public class CartController {
 	public List<CartListDto> getCartList(int userNum) {
 		return cartServiceInter.getCartList(userNum);
 	}
+	@GetMapping("/cart/delete")
+	public void deleteCart(int cartNum) {
+		cartServiceInter.deleteCart(cartNum);
+	}
 }

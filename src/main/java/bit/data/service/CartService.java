@@ -19,4 +19,8 @@ public class CartService implements CartServiceInter {
 		return cartDaoInter.getCartList(userNum) ;
 	}
 
+	@Override
+	public void deleteCart(int cartNum) {
+		cartDaoInter.deleteCart(cartNum);
+	}
 }

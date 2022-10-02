@@ -20,4 +20,9 @@ public class CartDao implements CartDaoInter {
 		return session.selectList(ns+"getCartList", userNum);
 	}
 
+	@Override
+	public void deleteCart(int cartNum) {
+		session.selectOne(ns+"deleteCart", cartNum);
+	}
+	
 }

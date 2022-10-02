@@ -22,6 +22,9 @@
     
 </head>
 <style>
+	div.my-menu-wrapper {
+		padding-top: 50px;
+	}
 	div.my-profile{
 		width: 100%;
 		height: 200px;
