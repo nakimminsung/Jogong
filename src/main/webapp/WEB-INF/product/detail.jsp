@@ -145,27 +145,32 @@ $(function(){
 	var plus = document.querySelector(".detailPlus");
 	var minus = document.querySelector(".detailMinus");
 	var result = document.querySelector("#detailResult");
-	var i =1;
+	var count =1;
 	
 	plus.addEventListener("click", ()=>{
-		i++;
-		result.textContent = i;
-		var totalcostNum = i * _price;
+		count++;
+		result.textContent = count;
+		var totalcostNum = count * _price;
 		/* console.log(totalcostNum); */
 		var totalcost = totalcostNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 		$('.totalcost').text(totalcost+"원");
+	
+		$('input[name=qty]').attr('value', result.textContent);
 	});
 
 	minus.addEventListener("click",()=>{
-		if(i>1){
-			i--;
-			result.textContent = i;
-			var totalcostNum = i * _price;
+		if(count>1){
+			count--;
+			result.textContent = count;
+			var totalcostNum = count * _price;
 			var totalcost = totalcostNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 			$('.totalcost').text(totalcost+"원");
 		
+			$('input[name=qty]').attr('value', result.textContent);
+		
 		}else{
 			totalcost.textContent = 0 +"원";
+			$('input[name=qty]').attr('value', result.textContent);
 		}
 	});
 	
@@ -180,9 +185,8 @@ $(function(){
 			$(this).find("i").attr("class","far fa-heart").css("color","#f5f5f5");
 		}
 	});
-	
+
 });
-	
 
 </script>
 </head>
@@ -190,64 +194,73 @@ $(function(){
 	<c:set var="root" value="<%=request.getContextPath() %>"/>
 	<input type="hidden" class="proPrice" value=${dto.price }>
  	<input type="hidden" class="delivery" value=${dto.deliveryOption }>
-	<div class="detailContainer">
-		<div class="detailItem">
-			<img src="${dto.thumbnailImageUrl }" width="400">
-		</div>
-		<div class="detailItem detailContent">
-			<h3>${dto.name }</h3>
-			<div class="review">
-				<div class="rating" data-rate=${reviewAvg }>
-					<i class="fas fa-star"></i>
-					<i class="fas fa-star"></i>
-					<i class="fas fa-star"></i>
-					<i class="fas fa-star"></i>
-					<i class="fas fa-star"></i> 
-					&nbsp;(${reviewCount } 건의 선물후기)
-				</div>
-				
+ 	
+	 <form action="../orderDetail/insert" method="post" enctype="multipart/form-data">
+	 	<!-- order detail -->
+	 	<input type="hidden" name="qty" value="1">
+	 	<input type="hidden" name="messageCard" value="">
+	 	<input type="hidden" name="engrave" value="">
+	 	<input type="hidden" name="friendNum" value="1">
+	 	<input type="hidden" name="userNum" value="2">
+	 	<input type="hidden" name="productNum" value="${dto.num }">
+	 	
+		<div class="detailContainer">
+			<div class="detailItem">
+				<img src="${dto.thumbnailImageUrl }" width="400">
 			</div>
-			<br><br>
-			<h3 class="_price"></h3>
-			<hr>
-			<i class="fa-solid fa-truck"></i><p class='_delivery'></p>
-			<p><i class="fa-solid fa-box"></i>&nbsp;도서산간 배송불가</p>
-			<p><i class="fa-solid fa-magnifying-glass"></i>&nbsp;원산지 ${dto.country }</p>
-		</div>
-		
-		<div class="detailItem detailRight">
-			<p><b>${dto.name }</b></p>
-			<div class="detailNum">
-				<span>수량</span>
-				<span class="detailCount">
-					<a href="#" class="detailMinus"><i class="fa-solid fa-minus"></i>&nbsp;&nbsp;</a>
-					<span id="detailResult">1</span>
-					<a href="#" class="detailPlus">&nbsp;&nbsp;<i class="fa-solid fa-plus"></i></a>
-				</span>
-			</div>
-			<br>
-			<h6 style="display: inline;">총금액</h6><h4 class="totalcost" style="display: inline;">${dto.price }원</h4>
-			
-			<button class="detailCart"><i class="fa-solid fa-gift"></i>&nbsp;&nbsp;선물상자 담기</button>
-			
-			<div class="detailInsert">
-				<button type="button" class="btn_g">
-					<span class="likes">	
-						<i class='far fa-heart' style="font-size: 20px; margin-left: 5px; margin-top: 3px;"></i>&nbsp;
-					</span>
-				</button>
-				<button type="button" class="detailSelfGift"><b>나에게 선물하기</b></button>
-				<button type="button" class="detailGift">
-			
-					<b>선물하기</b>
-				</button>
+			<div class="detailItem detailContent">
+				<h3>${dto.name }</h3>
+				<div class="review">
+					<div class="rating" data-rate=${reviewAvg }>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i> 
+						&nbsp;(${reviewCount } 건의 선물후기)
+					</div>
 					
+				</div>
+				<br><br>
+				<h3 class="_price"></h3>
+				<hr>
+				<i class="fa-solid fa-truck"></i><p class='_delivery'></p>
+				<p><i class="fa-solid fa-box"></i>&nbsp;도서산간 배송불가</p>
+				<p><i class="fa-solid fa-magnifying-glass"></i>&nbsp;원산지 ${dto.country }</p>
+			</div>
+			
+			<div class="detailItem detailRight">
+				<p><b>${dto.name }</b></p>
+				<div class="detailNum">
+					<span>수량</span>
+					<span class="detailCount">
+						<a href="#" class="detailMinus"><i class="fa-solid fa-minus"></i>&nbsp;&nbsp;</a>
+						<span id="detailResult">1</span>
+						<a href="#" class="detailPlus">&nbsp;&nbsp;<i class="fa-solid fa-plus"></i></a>
+					</span>
+				</div>
+				<br>
+				<h6 style="display: inline;">총금액</h6><h4 class="totalcost" style="display: inline;">${dto.price }원</h4>
+				
+				<button class="detailCart"><i class="fa-solid fa-gift"></i>&nbsp;&nbsp;선물상자 담기</button>
+				
+				<div class="detailInsert">
+					<button type="button" class="btn_g">
+						<span class="likes">	
+							<i class='far fa-heart' style="font-size: 20px; margin-left: 5px; margin-top: 3px;"></i>&nbsp;
+						</span>
+					</button>
+					<button type="button" class="detailSelfGift"><b>나에게 선물하기</b></button>
+					<button type="submit" class="detailGift">
+						<b>선물하기</b>
+					</button>	
+				</div>
+			</div>
+			
+			<div class="detailItem detailDescription">
+				<img src="${dto.description }" style="width:100%;">
 			</div>
 		</div>
-		
-		<div class="detailItem detailDescription">
-			<img src="${dto.description }" style="width:100%;">
-		</div>
-	</div>
+	</form>
 </body>
 </html>

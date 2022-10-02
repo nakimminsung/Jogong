@@ -34,7 +34,7 @@
 	}
 	
 	.cardPrice>img.card-img-top{
-		height: 15rem;
+		height: 17rem;
 	}
 	
 	.priceRange{

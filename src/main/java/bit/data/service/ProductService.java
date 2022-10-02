@@ -14,7 +14,6 @@ public class ProductService implements ProductServiceInter {
 	@Autowired
 	ProductDaoInter productDaoInter;
 	
-	
 	@Override
 	public List<ProductDto> getProduct(int price) {
 		return productDaoInter.getProduct(price);
@@ -27,7 +26,7 @@ public class ProductService implements ProductServiceInter {
 	
 	@Override
 	public List<ProductDto> getCart(int userNum) {
-		return daoInter.getCart(userNum);
+		return productDaoInter.getCart(userNum);
 	}
 
 	@Override
