@@ -1,7 +1,6 @@
 package bit.data.service;
 
 import java.util.List;
-import java.util.Map;
 
 import bit.data.dto.FaqCategoryDto;
 import bit.data.dto.FaqDto;

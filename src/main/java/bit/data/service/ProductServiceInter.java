@@ -7,6 +7,7 @@ import bit.data.dto.ReviewDto;
 
 public interface ProductServiceInter {
 	public List<ProductDto> getFriendWishlist(int userNum);
+	public List<ProductDto> getCart(int userNum);
 	public List<ProductDto> getProduct(int price);
 	public List<ProductDto> getProductTheme(int themeNum);
 //	public List<ProductDto> getTag(int themeNum);

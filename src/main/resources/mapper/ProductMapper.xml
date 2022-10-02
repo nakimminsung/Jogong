@@ -7,6 +7,10 @@
 		select * from product where num in (select productNum from wishlist where userNum=${userNum} and publicOption=1)
 	</select>
 	
+	<select id="getCart" parameterType="int" resultType="productDto">
+		select num,name,price,thumbnailImageUrl,brand from product where num in (select productNum from cartList where userNum=#{userNum})
+	</select>
+	
 	<!-- 가격별 인기상품 -->
 	<select id="selectProductByPrice" parameterType="int" resultType="productDto">
 		select * from product 

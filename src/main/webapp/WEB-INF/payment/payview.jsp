@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <title>payment</title>
 	<!-- font -->
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Edu+VIC+WA+NT+Beginner:wght@600&family=Gamja+Flower&family=Single+Day&family=Jua&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
@@ -16,6 +17,42 @@
 	<!-- iamport.payment.js -->
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 </head>
+<script type="text/javascript">
+	$(function() {
+		$(document).on("click",".message",function() {
+	 		var message = $(this).attr("value");
+	 		$("#mms_send_msg").val(message);
+	 		
+	 	 	$("#msg_sample").text(message);
+		});
+	/* 	$(".message").click(function() {
+	 		var message = $(this).attr("value");
+	 		$("#mms_send_msg").text(message);
+	 	 	$("#msg_sample").text(message);
+		}); */
+		
+		$(".bannerImg").click(function () {
+			var banner = $(this).attr("src");
+			
+			$("img#previewBanner").attr("src",banner);
+		});
+		
+		$(".cardImg").click(function () {
+			var card = $(this).attr("src");
+			
+			$("img#previewTemplate").attr("src",card);
+		});
+		
+	 	$(document).ready(function(){
+            $("#mms_send_msg").on('keyup keypress',function(){
+				
+            	$("#msg_sample").text($(this).val());
+            });
+        });
+	 	
+	 
+	});
+</script>
 <body>
 <div class="paymain">
         <div class="new-order">
@@ -29,7 +66,7 @@
                         <div class="theme">
 
                             <!-- 테마 선택-->
-                            <div class="head-tab">
+                        <!--     <div class="head-tab">
                                 <h3>테마</h3>
                                 <ul class="tab-type01 _tab">
                                     <li><a href="#1-1" class="on">감사</a></li>
@@ -39,10 +76,10 @@
                                     <li><a href="#1-5" class="on">결혼</a></li>
                                     <li><a href="#1-6" class="on">조문</a></li>
                                 </ul>
-                            </div>
+                            </div> -->
                             <!-- 테마 선택 끝-->
                             
-                            <hr class="line">
+                           <!--  <hr class="line"> -->
 
                             <!-- 배너-->
                             <div class="row-type01">
@@ -57,19 +94,21 @@
                                             <div class="scrollBox">
                                                 <div class="deco-list">
                                                     <ul class="banner-div">
-                                                        <li><img src="/jogong/resources/giftimage/banner/1.jpg" alt="배너이미지">
-                                                        <a href="#" onclick="" id="template_banner" class="btnSel" ><span class="a11y-hidden">배너 선택</span></a></li>
-                                                        <li><img src="/jogong/resources/giftimage/banner/2.jpg"><a><span class="a11y-hidden">배너 선택</span></a></li>
-                                                        <li><img src="/jogong/resources/giftimage/banner/3.jpg"><a><span class="a11y-hidden">배너 선택</span></a></li>
-                                                        <li><img src="/jogong/resources/giftimage/banner/4.jpg"><a><span class="a11y-hidden">배너 선택</span></a></li>
-                                                        <li><img src="/jogong/resources/giftimage/banner/5.jpg"><a><span class="a11y-hidden">배너 선택</span></a></li>
-                                                        <li><img src="/jogong/resources/giftimage/banner/6.jpg"><a><span class="a11y-hidden">배너 선택</span></a></li>
-                                                        <li><img src="/jogong/resources/giftimage/banner/7.jpg"><a><span class="a11y-hidden">배너 선택</span></a></li>
-                                                        <li><img src="/jogong/resources/giftimage/banner/8.jpg"><a><span class="a11y-hidden">배너 선택</span></a></li>
-                                                        <li><img src="/jogong/resources/giftimage/banner/9.jpg"><a><span class="a11y-hidden">배너 선택</span></a></li>
-                                                        <li><img src="/jogong/resources/giftimage/banner/10.jpg"><a><span class="a11y-hidden">배너 선택</span></a></li>
-                                                        <li><img src="/jogong/resources/giftimage/banner/11.jpg"><a><span class="a11y-hidden">배너 선택</span></a></li>
-                                                        <li><img src="/jogong/resources/giftimage/banner/12.jpg"><a><span class="a11y-hidden">배너 선택</span></a></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/1.jpg" alt="배너이미지" class="bannerImg">
+                                                        <li><img src="/jogong/resources/giftimage/banner/2.jpg" alt="배너이미지" class="bannerImg">
+                                                        <li><img src="/jogong/resources/giftimage/banner/3.jpg" alt="배너이미지" class="bannerImg">
+                                                        <li><img src="/jogong/resources/giftimage/banner/4.jpg" alt="배너이미지" class="bannerImg">
+                                                        <li><img src="/jogong/resources/giftimage/banner/5.jpg" alt="배너이미지" class="bannerImg">
+                                                        <li><img src="/jogong/resources/giftimage/banner/6.jpg" alt="배너이미지" class="bannerImg">
+                                                        <li><img src="/jogong/resources/giftimage/banner/7.jpg" alt="배너이미지" class="bannerImg">
+                                                        <li><img src="/jogong/resources/giftimage/banner/8.jpg" alt="배너이미지" class="bannerImg">
+                                                        <li><img src="/jogong/resources/giftimage/banner/9.jpg" alt="배너이미지" class="bannerImg">
+                                                        <li><img src="/jogong/resources/giftimage/banner/10.jpg" alt="배너이미지" class="bannerImg">
+                                                        <li><img src="/jogong/resources/giftimage/banner/11.jpg" alt="배너이미지" class="bannerImg">
+                                                        <li><img src="/jogong/resources/giftimage/banner/12.jpg" alt="배너이미지" class="bannerImg">
+                                                        <li><img src="/jogong/resources/giftimage/banner/13.jpg" alt="배너이미지" class="bannerImg">
+                                                        <li><img src="/jogong/resources/giftimage/banner/14.jpg" alt="배너이미지" class="bannerImg">
+                                                        <li><img src="/jogong/resources/giftimage/banner/15.jpg" alt="배너이미지" class="bannerImg">
                                                     </ul>
                                                 </div>
                                             </div>
@@ -82,34 +121,20 @@
                                             <div class="scrollBox">
                                                 <div class="deco-list">
                                                     <ul class="card-div">
-                                                        <li>
-                                                            <img src="/jogong/resources/giftimage/card/a1.jpg" alt="카드 이미지">
-                                                            <a href="#" onclick="" id="template_img" class="btnSel">...</a>
-                                                        </li>
-                                                        <li>
-                                                            <img src="/jogong/resources/giftimage/card/a2.jpg" alt="카드 이미지">
-                                                            <a href="#" onclick="" id="template_img" class="btnSel">...</a>
-                                                        </li>
-                                                        <li>
-                                                            <img src="/jogong/resources/giftimage/card/a3.jpg" alt="카드 이미지">
-                                                            <a href="#" onclick="" id="template_img" class="btnSel">...</a>
-                                                        </li>
-                                                        <li>
-                                                            <img src="/jogong/resources/giftimage/card/a4.jpg" alt="카드 이미지">
-                                                            <a href="#" onclick="" id="template_img" class="btnSel">...</a>
-                                                        </li>
-                                                        <li>
-                                                            <img src="/jogong/resources/giftimage/card/a5.jpg" alt="카드 이미지">
-                                                            <a href="#" onclick="" id="template_img" class="btnSel">...</a>
-                                                        </li>
-                                                        <li>
-                                                            <img src="/jogong/resources/giftimage/card/a6.jpg" alt="카드 이미지">
-                                                            <a href="#" onclick="" id="template_img" class="btnSel">...</a>
-                                                        </li>
-                                                        <li>
-                                                            <img src="/jogong/resources/giftimage/card/a7.jpg" alt="카드 이미지">
-                                                            <a href="#" onclick="" id="template_img" class="btnSel">...</a>
-                                                        </li>
+                                                        <li><img src="/jogong/resources/giftimage/card/a1.jpg" alt="카드 이미지" class="cardImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/card/a2.jpg" alt="카드 이미지" class="cardImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/card/a3.jpg" alt="카드 이미지" class="cardImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/card/a4.jpg" alt="카드 이미지" class="cardImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/card/a5.jpg" alt="카드 이미지" class="cardImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/card/a6.jpg" alt="카드 이미지" class="cardImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/card/a7.jpg" alt="카드 이미지" class="cardImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/card/a8.jpg" alt="카드 이미지" class="cardImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/card/a9.jpg" alt="카드 이미지" class="cardImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/card/a10.jpg" alt="카드 이미지" class="cardImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/card/a11.jpg" alt="카드 이미지" class="cardImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/card/a12.jpg" alt="카드 이미지" class="cardImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/card/a13.jpg" alt="카드 이미지" class="cardImg"></li>
+                                                      
                                                     </ul>
                                                 </div>
                                             </div>
@@ -130,27 +155,27 @@
                         <h3>메세지</h3>
                         <ul class="tab-tabtype01 _tab02" id="msg_cate">
                             <li>
-                                <a href="#none" id="m-19" class>기본</a>
+                                <a href="#none" id="m-18" class="message" value="선물이 도착했어요~">기본</a>
                             </li>
                             <li>
-                                <a href="#none" id="m-19" class>결혼</a>
+                                <a href="#none" id="m-19" class="message" value="결혼 축하해~ 이제 지옥길만 남았구나">결혼</a>
                             </li>
                             <li>
-                                <a href="#none" id="m-20" class>조문</a>
+                                <a href="#none" id="m-20" class="message" value="생일축하드립니다! 행복하세요">생일</a>
                             </li>
                             <li>
-                                <a href="#none" id="m-21" class>감사</a>
+                                <a href="#none" id="m-21" class="message" value="명국짱에게 무한한 감사를!!">감사</a>
                             </li>
                             <li>
-                                <a href="#none" id="m-22" class>축하</a>
+                                <a href="#none" id="m-22" class="message"value="찾아와주셔서 감사합니다 좋은 하루 되세요">조문</a>
                             </li>
                             <li>
-                                <a href="#none" id="m-23" class>당첨</a>
+                                <a href="#none" id="m-23" class="message" value="무야호~ 당첨되었구먼~~">당첨</a>
                             </li>
                         </ul>
                         </div>
                         <div class="msg-area">
-                            <textarea id="mms_send_msg" name=""></textarea>
+                            <input type="text" id="mms_send_msg">
                         </div> 
                         <!-- 메세지 영역 끝--> 
                         
@@ -162,15 +187,15 @@
                         <div class="inner">
                             <div class="imgBox">
                                 <span class="topImg">
-                                    <img id="previewBanner" src="" alt="꾸미기배너">
+                                    <img id="previewBanner" src="/jogong/resources/giftimage/banner/1.jpg" alt="꾸미기배너">
                                 </span>
                                 <div class="pin">
                                     <div class="col-half">
                                         <div class="giftImg">
-                                            <img src="" alt="">
+                                            <img src="image/21.jpeg" alt="카드 이미지">
                                         </div>
                                         <div class="cardImg">
-                                            <img id="previewTemplate" src="" alt="꾸미기 템플릿">
+                                            <img id="previewTemplate" src="/jogong/resources/giftimage/card/a1.jpg" alt="꾸미기 템플릿">
                                         </div>
                                     </div>
                                     <div class="bacord">
@@ -180,7 +205,7 @@
                             </div>
 
                             <!--텍스트 박스-->
-                            <p id="msg_sample">상품이 도착했습니다</p>
+                            <p id="msg_sample"></p>
 
                         </div>
                     </div>
@@ -259,26 +284,19 @@
                             <div data-v-8215c5a4="" class="main_title"><strong data-v-8215c5a4="">일반 결제</strong> <span
                                     data-v-8215c5a4="" class="sub_title">일시불・할부</span></div>
                         </h4>
-                        <div data-v-35b707e2="" data-v-8215c5a4="" class="pay_method" id="card" value="html5_inicis">
-                            <div data-v-35b707e2="" class="pay_item" id="normalpay">
+                        <div data-v-35b707e2="" data-v-8215c5a4="" class="pay_method" id="card">
+                            <div data-v-35b707e2="" class="pay_item" id="normalpay" value="html5_inicis">
                                 <div data-v-35b707e2="" class="pay_box">
                                     <div data-v-35b707e2="" class="pay_title">
                                         <p data-v-35b707e2="" class="main_title">신용/체크카드</p>
                                     </div>
                                 </div>
                             </div>
-                            <div data-v-35b707e2="" class="pay_item" id="quickpay" value="html5_inicis">
+                            <div data-v-35b707e2="" class="pay_item" id="quickpay" value="danal">
                                 <div data-v-35b707e2="" class="pay_box">
                                     <div data-v-35b707e2="" class="pay_title">
-                                        <p data-v-35b707e2="" class="main_title">계좌이체</p>
+                                        <p data-v-35b707e2="" class="main_title">핸드폰결제</p>
                                     </div>
-                                </div>
-                            </div>
-                            <div data-v-35b707e2="" class="pay_item" id="naverpay" value="html5_inicis">
-                                <div data-v-35b707e2="" class="pay_box">
-                                    <div data-v-35b707e2="" class="pay_title">
-                                        <p data-v-35b707e2="" class="main_title">네이버페이</p>
-                                    </div><img data-v-35b707e2="" src="image/naverpay.jpg" alt="네이버페이" class="pay_img">
                                 </div>
                             </div>
                             <div data-v-35b707e2="" class="pay_item" id="kakaopay" value="kakaopay">
@@ -293,13 +311,6 @@
                                     <div data-v-35b707e2="" class="pay_title">
                                         <p data-v-35b707e2="" class="main_title">토스</p>
                                     </div><img data-v-35b707e2="" src="image/tosspay.jpg" alt="토스" class="pay_img">
-                                </div>
-                            </div>
-                            <div data-v-35b707e2="" class="pay_item" id="paycopay" value="html5_inicis">
-                                <div data-v-35b707e2="" class="pay_box">
-                                    <div data-v-35b707e2="" class="pay_title">
-                                        <p data-v-35b707e2="" class="main_title">페이코</p>
-                                    </div><img data-v-35b707e2="" src="image/paycopay.jpg" alt="페이코" class="pay_img">
                                 </div>
                             </div>
                         </div>
@@ -429,7 +440,7 @@ function payment(data) {
     IMP.request_pay({// param
         pg: "kakaopay.TC0ONETIME", //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
         pay_method: "card", //지불 방법
-        merchant_uid: "0034", //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+        merchant_uid: "0099", //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
         name: "음식", //결제창에 노출될 상품명
         amount: 100, //금액
         buyer_email : "testiamport@naver.com", 
@@ -468,7 +479,7 @@ function danal(data) {
 	IMP.request_pay({
 		pg : 'nice',
 	    pay_method : 'phone',
-	    merchant_uid: "0034", //상점에서 생성한 고유 주문번호
+	    merchant_uid: "0099", //상점에서 생성한 고유 주문번호
 	    name : '주문명:결제테스트',
 	    amount : 1000,
 	    buyer_email : 'iamport@siot.do',
@@ -504,13 +515,13 @@ function danal(data) {
      });
 }
 
-*/
+
 function kg(data) {
 	IMP.init('imp20164668');//아임포트 관리자 콘솔에서 확인한 '가맹점 식별코드' 입력
 	IMP.request_pay({
 		pg : 'html5_inicis',
 	    pay_method : 'card',
-	    merchant_uid: "0034", //상점에서 생성한 고유 주문번호
+	    merchant_uid: "0099", //상점에서 생성한 고유 주문번호
 	    name : '주문명:결제테스트',
 	    amount : 100,
 	    buyer_email : 'iamport@siot.do',
@@ -551,7 +562,7 @@ function toss(data) {
 	IMP.request_pay({
 		pg : 'tosspay',
 	    pay_method : 'card',
-	    merchant_uid: "0034", //상점에서 생성한 고유 주문번호
+	    merchant_uid: "0099", //상점에서 생성한 고유 주문번호
 	    name : '주문명:결제테스트',
 	    amount : 100,
 	    buyer_email : 'iamport@siot.do',
@@ -629,6 +640,8 @@ payed.onclick = function () {
     	toss();            	
     }else if(val=='html5_inicis'){
     	kg();
+    }else if(val=='danal'){
+   		danal(); 	
     }
 } 
 /* var payed = document.getElementById("paying");
@@ -638,7 +651,7 @@ payed.onclick = function () {
     const val = selected.getAttribute('value');
     console.log(val);
 }
- */
- </script>
+*/
+</script>
 </body>
 </html>

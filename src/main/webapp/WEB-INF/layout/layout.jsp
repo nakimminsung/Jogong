@@ -37,18 +37,20 @@ uri="http://tiles.apache.org/tags-tiles" %>
       min-height: 100%;
       padding-top: 100px;
     }
-    header {
+
+    #content {
+      width: 100%;
+    }
+
+    header#header {
       background-color: #fff;
       position: fixed;
       top: 0;
       width: 100%;
       height: 100px;
-      z-index: 10;
+      z-index: 999;
     }
-    /* #content{
-	  background-color:lightpink;
-	  width:100%;
-	} */
+
     footer {
       background-color: lightblue;
       width: 100%;
