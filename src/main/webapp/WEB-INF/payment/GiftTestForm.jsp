@@ -36,7 +36,7 @@
 				<tr>
 					<th width="120" style="background-color: lightgray;">받는사람</th>
 					<td>
-						<input type="text" name="buyer_name" class="form-control" required="required" style="width: 150px;">
+						<input type="text" name="to_member_id" class="form-control" required="required" style="width: 150px;">
 					</td>
 				</tr>
 				

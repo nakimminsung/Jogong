@@ -450,18 +450,18 @@ function payment(data) {
     IMP.request_pay({// param
         pg: "kakaopay.TC0ONETIME", //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
         pay_method: "card", //지불 방법
-        merchant_uid: "0126", //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
-        name : ${sangpum}, //결제창에 노출될 상품명
+        merchant_uid: "0270", //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+        name : '${sangpum}', //결제창에 노출될 상품명
         amount: ${totalprice},
         buyer_name : "김민성",
-        to_member_id : ${buyer_name}
+        buyer_addr : '${to_member_id}'
        	/* count : ${count} */
        /* 	messagecard : ${"#msg_card option:selected"}.attr("src"),      
        	banner : ${"#msg_banner option:selected"}.attr("src")), 
         message : ${"#msg_cate"}.text*/
     }, function (rsp) { // callback
         if (rsp.success) {
-        	   alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료");
+        	   alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료"+rsp.buyer_addr);
                
                jQuery.ajax({
                    url: "test.action",
@@ -475,7 +475,7 @@ function payment(data) {
                        "buyer_name" : rsp.buyer_name,
                        "pg" : rsp.pg_provider,
                        "pay_method" : rsp.pay_method,
-                       "to_member_id" : rsp.to_member_id
+                       "buyer_addr" : rsp.buyer_addr
                		   /* "count" : rsp.count */
                		 /*   "messagecard" : rsp.messagecard,
             		   "banner" : rsp.banner, 

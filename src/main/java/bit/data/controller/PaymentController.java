@@ -51,7 +51,7 @@ public class PaymentController {
 	                 @RequestParam(value = "buyer_name",required=false) String buyer_name,
 	                 @RequestParam(value = "pg",required=false) String pg,
 	                 @RequestParam(value = "pay_method",required=false) String pay_method,
-	                 @RequestParam(value = "to_member_id", required=false) String to_member_id ,  
+	                 @RequestParam(value = "buyer_addr", required=false) String to_member_id ,  
 	                 @RequestParam(value = "messagecard", required=false) String messagecard ,  
 	                 @RequestParam(value = "banner", required=false) String banner ,  
 	                 @RequestParam(value = "message", required=false) String message ,  
@@ -86,7 +86,7 @@ public class PaymentController {
 		ModelAndView mview = new ModelAndView();
 		mview.addObject("sangpum",map.get("sangpum"));
 		mview.addObject("price",map.get("price"));
-		mview.addObject("buyer_name",map.get("buyer_name"));
+		mview.addObject("to_member_id",map.get("to_member_id"));
 		mview.addObject("count",map.get("count"));
 		
 		mview.addObject("totalprice",totalprice);
