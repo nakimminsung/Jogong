@@ -61,7 +61,7 @@
             <div class="subcontents">
                 <h1>선물 발송·결제</h1>
                 <h2>선물 꾸미기</h2>
-                <p style="visibility:hidden" id="to_buyer_name">${buyer_name}</p>
+                <p style="visibility:hidden" id="to_member_id">${to_member_id}</p>
                 <div class="justify-cont col-type01">
                     <!-- 테마와 배너 선택 -->
                     <div class="theme_all">
@@ -450,18 +450,18 @@ function payment(data) {
     IMP.request_pay({// param
         pg: "kakaopay.TC0ONETIME", //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
         pay_method: "card", //지불 방법
-        merchant_uid: "0126", //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
-        name : ${sangpum}, //결제창에 노출될 상품명
+        merchant_uid: "0152", //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+        name : '${sangpum}', //결제창에 노출될 상품명
         amount: ${totalprice},
         buyer_name : "김민성",
-        to_member_id : ${buyer_name}
+        to_member_id : '${to_member_id}'
        	/* count : ${count} */
        /* 	messagecard : ${"#msg_card option:selected"}.attr("src"),      
        	banner : ${"#msg_banner option:selected"}.attr("src")), 
         message : ${"#msg_cate"}.text*/
     }, function (rsp) { // callback
         if (rsp.success) {
-        	   alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료");
+        	   alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료 " +rsp.to_member_id);
                
                jQuery.ajax({
                    url: "test.action",

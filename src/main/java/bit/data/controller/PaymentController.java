@@ -70,6 +70,8 @@ public class PaymentController {
 		ordertestDto.setBanner(banner);
 		ordertestDto.setMessage(message);
 		
+		System.out.println(to_member_id);
+		
 		ordersevice.insertOrder(ordertestDto);
 		
 	}
@@ -86,7 +88,7 @@ public class PaymentController {
 		ModelAndView mview = new ModelAndView();
 		mview.addObject("sangpum",map.get("sangpum"));
 		mview.addObject("price",map.get("price"));
-		mview.addObject("buyer_name",map.get("buyer_name"));
+		mview.addObject("to_member_id",map.get("to_member_id"));
 		mview.addObject("count",map.get("count"));
 		
 		mview.addObject("totalprice",totalprice);
