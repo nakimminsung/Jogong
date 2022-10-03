@@ -133,11 +133,12 @@
 			</div>
 		</div>
 		<div class="right">
+			<c:if test="${sessionScope.loginok==null}">
 			<div>
 				<a href="${root}/cscenter/faq">고객센터</a>
 			</div>
 			<div>
-				<a class="login" href="${root}">로그인</a>
+				<a class="login" href="${root}/loginmain">로그인</a>
 			</div>
 			<div>
 				<button type="button" class="btn btn-header"
@@ -146,6 +147,19 @@
 			<div>
 				<button type="button" class="btn btn-info" onclick="location.href='${root}/payview'">결제폼 이동</button>
 			</div>
+			</c:if>
+			<c:if test="${sessionScope.loginok!=null}">
+			<b>${sessionScope.loginname}님</b>
+			<div>
+				<a class="login" href="${root}/logout">로그아웃</a>
+			</div>
+			<div>
+				<a href="${root}/cscenter/faq">고객센터</a>
+			</div>
+			<div>
+				<button type="button" class="btn btn-info" onclick="location.href='${root}/payview'">결제폼 이동</button>
+			</div>
+			</c:if>
 		</div>
 	</div>	
 </body>

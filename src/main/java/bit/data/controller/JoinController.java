@@ -78,7 +78,7 @@ public class JoinController {
 	public Map<String, Integer> getIdSearch(String email){
 		Map<String, Integer> map =new HashMap<String, Integer>();
 		int userCount=joinService.getUserIdSearch(email);//
-		System.out.println(userCount);
+		//System.out.println(userCount);
 		map.put("userCount", userCount);
 		return map;
 	}
