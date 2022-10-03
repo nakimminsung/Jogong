@@ -19,6 +19,11 @@ public class ProductDao implements ProductDaoInter {
 	public List<ProductDto> getFriendWishlist(int userNum) {
 		return session.selectList(ns+"getFriendWishlist",userNum);
 	}
+	
+	@Override
+	public List<ProductDto> getCart(int userNum) {
+		return session.selectList(ns+"getCart",userNum);
+	}
 
 	@Override
 	public List<ProductDto> getProduct(int price) {
