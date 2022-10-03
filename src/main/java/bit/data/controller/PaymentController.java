@@ -51,7 +51,7 @@ public class PaymentController {
 	                 @RequestParam(value = "buyer_name",required=false) String buyer_name,
 	                 @RequestParam(value = "pg",required=false) String pg,
 	                 @RequestParam(value = "pay_method",required=false) String pay_method,
-	                 @RequestParam(value = "buyer_addr", required=false) String to_member_id ,  
+	                 @RequestParam(value = "custom_data", required=false) String to_member_id ,  
 	                 @RequestParam(value = "messagecard", required=false) String messagecard ,  
 	                 @RequestParam(value = "banner", required=false) String banner ,  
 	                 @RequestParam(value = "message", required=false) String message ,  
@@ -65,7 +65,7 @@ public class PaymentController {
 		ordertestDto.setPg(pg);
 		ordertestDto.setPay_method(pay_method);
 		ordertestDto.setTo_member_id(to_member_id);
-		//ordertestDto.setCount(count);
+//		ordertestDto.setCount(count);
 		ordertestDto.setMessagecard(messagecard);
 		ordertestDto.setBanner(banner);
 		ordertestDto.setMessage(message);
