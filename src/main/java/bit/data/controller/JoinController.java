@@ -77,7 +77,8 @@ public class JoinController {
 	@ResponseBody
 	public Map<String, Integer> getIdSearch(String email){
 		Map<String, Integer> map =new HashMap<String, Integer>();
-		int userCount=joinService.getUserIdSearch(email);//아이디가 있을 경우 1
+		int userCount=joinService.getUserIdSearch(email);//
+		System.out.println(userCount);
 		map.put("userCount", userCount);
 		return map;
 	}

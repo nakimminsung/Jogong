@@ -187,12 +187,12 @@ $(document).ready(function(){
 					url:"idcheck",
 					data:{"email":$(".putId").val()},
 					success:function(res){
-						if(res.userCount==0){
-							$("#idCheckResult").css("color","#FFAF00");
-							$("#idCheckResult").text("사용 가능한 아이디 입니다.");
-						}else{
+						if(res.userCount!=0){
 							$("#idCheckResult").text("이미 가입된 이메일이 있습니다");
 							$("#idCheckResult").css("color","red");
+						}else{
+							$("#idCheckResult").css("color","#FFAF00");
+							$("#idCheckResult").text("사용 가능한 아이디 입니다.");
 						}
 					}
 				});
