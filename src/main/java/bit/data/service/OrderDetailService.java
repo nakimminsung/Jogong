@@ -16,4 +16,9 @@ public class OrderDetailService implements OrderDetailServiceInter {
 		
 		orderDetailDaoInter.insertOrderDetail(dto);	
 	}
+
+	@Override
+	public void insertSelfGift(OrderDetailDto dto) {
+		orderDetailDaoInter.insertSelfGift(dto);	
+	}
 }

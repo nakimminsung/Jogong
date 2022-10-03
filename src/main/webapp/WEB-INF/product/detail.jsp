@@ -12,6 +12,11 @@
     
     <!-- bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- bootstrap js -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	
 	<!-- bootstrap 5 icon -->
 	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
@@ -118,6 +123,10 @@
     	color: #f5f5f5;
   		border-radius: 5px;
 	}
+	
+	.modal_detail{ 
+		
+	}
 </style>
 <script type="text/javascript">
 $(function(){
@@ -185,7 +194,26 @@ $(function(){
 			$(this).find("i").attr("class","far fa-heart").css("color","#f5f5f5");
 		}
 	});
-
+	
+/* 	$(".detailSelfGift").click(function(){
+		$('input[name=friendNum]').attr('value', "");
+	}) */
+	
+	// 선물상자 담기 
+	$("#btn_detailCart").click(function(){
+		var data = $("#insertDetail").serialize();
+		var s ="";
+		$.ajax({
+			type:"post",
+			url:"../cart/insert",
+			dataType:"text", 
+			data:data,
+			success:function(res){
+			
+			},
+		});
+	});
+	
 });
 
 </script>
@@ -195,8 +223,8 @@ $(function(){
 	<input type="hidden" class="proPrice" value=${dto.price }>
  	<input type="hidden" class="delivery" value=${dto.deliveryOption }>
  	
-	 <form action="../orderDetail/insert" method="post" enctype="multipart/form-data">
-	 	<!-- order detail -->
+	 <form id="insertDetail" method="post" enctype="multipart/form-data">
+	 	<!-- order detail (선물하기, 나에게 선물하기, 선물상자 담기)-->
 	 	<input type="hidden" name="qty" value="1">
 	 	<input type="hidden" name="messageCard" value="">
 	 	<input type="hidden" name="engrave" value="">
@@ -204,10 +232,14 @@ $(function(){
 	 	<input type="hidden" name="userNum" value="2">
 	 	<input type="hidden" name="productNum" value="${dto.num }">
 	 	
+	 	<!-- wishlist -->
+	 	<input type="hidden" name="publicOption" value="0">
+	 	
 		<div class="detailContainer">
 			<div class="detailItem">
 				<img src="${dto.thumbnailImageUrl }" width="400">
 			</div>
+			
 			<div class="detailItem detailContent">
 				<h3>${dto.name }</h3>
 				<div class="review">
@@ -242,24 +274,42 @@ $(function(){
 				<br>
 				<h6 style="display: inline;">총금액</h6><h4 class="totalcost" style="display: inline;">${dto.price }원</h4>
 				
-				<button class="detailCart"><i class="fa-solid fa-gift"></i>&nbsp;&nbsp;선물상자 담기</button>
-				
+				<button type="button" class="detailCart" id="btn_detailCart" data-toggle="modal" data-target="#detailCartModal">
+					<i class="fa-solid fa-gift"></i>&nbsp;&nbsp;선물상자 담기
+				</button> 
+			
 				<div class="detailInsert">
-					<button type="button" class="btn_g">
+					<button type="submit" class="btn_g" formaction="../wishlist/insert">
 						<span class="likes">	
 							<i class='far fa-heart' style="font-size: 20px; margin-left: 5px; margin-top: 3px;"></i>&nbsp;
 						</span>
 					</button>
-					<button type="button" class="detailSelfGift"><b>나에게 선물하기</b></button>
-					<button type="submit" class="detailGift">
+					<button type="submit" class="detailSelfGift" formaction="../orderDetail/insertSelfGift"><b>나에게 선물하기</b></button>
+					<button type="submit" class="detailGift" formaction="../orderDetail/insert">
 						<b>선물하기</b>
 					</button>	
 				</div>
 			</div>
 			
 			<div class="detailItem detailDescription">
+							
 				<img src="${dto.description }" style="width:100%;">
 			</div>
+			
+			<!-- 선물상자 담기 Modal -->
+			<div class="modal fade" id="detailCartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      	<div class="modal-body">
+				        	<img src="${dto.thumbnailImageUrl }" width="100" style="float: left;"><h4><b>선물상자에 상품을 담았어요</b></h4>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="detailCart" data-dismiss="modal">Close</button>
+				      </div>
+				    </div>
+				</div>
+			</div>	
+			
 		</div>
 	</form>
 </body>

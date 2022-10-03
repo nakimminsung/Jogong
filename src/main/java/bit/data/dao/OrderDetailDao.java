@@ -18,4 +18,9 @@ public class OrderDetailDao implements OrderDetailDaoInter{
 		
 		session.insert(ns+"insertOrderDetail", dto);
 	}
+
+	@Override
+	public void insertSelfGift(OrderDetailDto dto) {
+		session.insert(ns+"insertSelfGift", dto);
+	}
 }

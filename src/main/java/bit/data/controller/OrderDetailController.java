@@ -18,9 +18,18 @@ public class OrderDetailController {
 	public String insert(OrderDetailDto dto)
 	{
 		orderDetailService.insertOrderDetail(dto);
-		int num = dto.getProductNum();
+		//int num = dto.getProductNum();
 		
 		//return "redirect:detail?num="+num;
+		return "redirect:../payview";	
+	}
+	
+	// 나에게 선물하기
+	@PostMapping("/insertSelfGift")
+	public String insertSelfGift(OrderDetailDto dto)
+	{
+		orderDetailService.insertSelfGift(dto);
+	
 		return "redirect:../payview";	
 	}
 }
