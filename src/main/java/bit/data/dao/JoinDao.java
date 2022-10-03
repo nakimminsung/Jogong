@@ -19,4 +19,10 @@ public class JoinDao implements JoinDaoInter {
 		session.insert(ns+"insertUser", dto);
 	}
 
+	@Override
+	public int getUserIdSearch(String email) {
+		// TODO Auto-generated method stub
+		return session.selectOne(ns+"getUserIdSearch", email);
+	}
+	
 }

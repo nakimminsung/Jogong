@@ -16,7 +16,12 @@ public class JoinService implements JoinServiceInter {
 	public void insertUser(UserDto dto) {
 		// TODO Auto-generated method stub
 		joinDao.insertUser(dto);
-		
 	}
 
+	@Override
+	public int getUserIdSearch(String email) {
+		// TODO Auto-generated method stub
+		return joinDao.getUserIdSearch(email);
+	}
+	
 }

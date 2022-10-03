@@ -6,4 +6,8 @@
 	<insert id="insertUser" parameterType="userDto">
 		insert into user values (null,#{email},#{password},#{nickname},#{profileImage},#{phone},#{address},#{gender},#{point},#{year},#{date},#{loginType},now(),#{isAdmin})		
 	</insert>
+	<!-- 개인회원가입 중복체크 -->
+	<select id="getUserIdSearch" parameterType="String" resultType="int">
+		select count(*) from user where email=#{email}
+	</select>
 </mapper>	

@@ -1,5 +1,8 @@
 package bit.data.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import bit.data.dto.UserDto;
 import bit.data.service.JoinServiceInter;
@@ -37,6 +41,11 @@ public class JoinController {
   
 	      return "/bit/join/userAgree";
 	   }
+	@GetMapping("/userSuccess")
+	public String userJoins() {
+  
+	      return "/bit/join/userSuccess";
+	   }
 	
 	@PostMapping("/insert")
 	public String insert(HttpServletRequest request, UserDto dto) {
@@ -60,6 +69,17 @@ public class JoinController {
 		
 		joinService.insertUser(dto);
 		
-		return "/bit/join/sellerJoin"; //  /member/list 매핑주소 호출-컨트롤러메서드 호출
+		return "/bit/join/userSuccess";
 	}
+	
+	//아이디 중복체크
+	@GetMapping("/idcheck")
+	@ResponseBody
+	public Map<String, Integer> getIdSearch(String email){
+		Map<String, Integer> map =new HashMap<String, Integer>();
+		int userCount=joinService.getUserIdSearch(email);//아이디가 있을 경우 1
+		map.put("userCount", userCount);
+		return map;
+	}
+	
 }

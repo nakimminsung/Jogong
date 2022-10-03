@@ -18,7 +18,7 @@
 		/* font-family: 'Jua'; */
 	}
 
-	div.sellerJoinTerm{
+	div.userJoinTerm{
 		width: 100%;
 		height: 1100px;
 		/* padding-top: 50px;
@@ -51,7 +51,7 @@
 		margin-top: 10px;
 	}
 	
-	.sellerTerm{
+	.agreeTerm{
 		margin-top: 50px;
 	}
 	
@@ -64,19 +64,19 @@
       
    }
    
-   .insertform{
-	margin-top: 80px;
-	padding-left: 10%;
-	padding-right: 10%;
+   .insertForm{
+	margin-top: 60px;
    }
    
    .test th{
    	
    	height: 70px;
    	vertical-align: middle;
+   	width: 20%;
+   	text-align: center;
+   	background-color: gray;
    }
    .test td{
-   
    	vertical-align: middle;
    }
    
@@ -133,8 +133,8 @@ $(document).ready(function(){
 			var checked = $("#totalAgree").is(':checked');
 			//alert(checked);
 			if(checked){
-				$(".agreeform").hide();
-				$(".insertform").show();
+				$(".agreeForm").hide();
+				$(".insertForm").show();
 				$(".agrees").css("background-color","white");
 				$(".agrees").css("font-weight","normal");
 				$(".insert").css("background-color","#dcdcdc");
@@ -167,15 +167,45 @@ $(document).ready(function(){
 				
 			if(check.match(pw) == null){
 				// 처리할 문장
-				$("#userpw2").html("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
+				$("#userpw2").html("비밀번호가 일치하지 않습니다.");
+				$("#userpw2").css("color","#FFAF00");
 				
 			}else{
-				$("#userpw2").html("일치");
-				$("#userpw2").css("color","green");
+				$("#userpw2").html("");
 			}
 		});	
 		
+			$(".idcheck").click(function() {
+				if($(".putId").val()==""){
+					$("#idCheckResult").text("다시 입력해주시기 바랍니다");
+					$("#idCheckResult").css("color","red");
+					return;
+				}
+				$.ajax({
+					type:"get",
+					dataType:"json",
+					url:"idcheck",
+					data:{"email":$(".putId").val()},
+					success:function(res){
+						if(res.userCount==0){
+							$("#idCheckResult").css("color","#FFAF00");
+							$("#idCheckResult").text("사용 가능한 아이디 입니다.");
+						}else{
+							$("#idCheckResult").text("이미 가입된 이메일이 있습니다");
+							$("#idCheckResult").css("color","red");
+						}
+					}
+				});
+			});
 	});
+	//onsubmit : submit 전에 호출
+	function check(){
+		if($("#idCheckResult").text()!="사용 가능한 아이디 입니다."){
+			alert("아이디 중복체크를 해주세요");
+			return false;
+		}
+		
+	}
 	//주소 api
 	function sample4_execDaumPostcode() {
         new daum.Postcode({
@@ -244,7 +274,7 @@ const autoHyphen2 = (target) => {
 <body>
 	<div style="background-color: white;">
 
-		<div class="sellerJoinTerm"> <!-- div 전체 -->
+		<div class="userJoinTerm"> <!-- div 전체 -->
 			
 			<div class="stepBox">
 				<h2>개인 회원가입</h2>
@@ -255,8 +285,8 @@ const autoHyphen2 = (target) => {
 				</ul>	
 			</div>
 			
-		<div class="agreeform">	
-			<div class="sellerTerm" >
+		<div class="agreeForm">	
+			<div class="agreeTerm" >
 				<h5>서비스 이용약관</h5>
 				<hr>
 				<div class="getTerm" style="width: 100%; height: 300px; border: 1px solid gray; overflow:scroll;">
@@ -265,7 +295,7 @@ const autoHyphen2 = (target) => {
 				<label style="float: right;"><input type="checkbox" class="agree" id="agree1"><b>[필수]</b> 조공서비스 약관 동의</label>
 			</div>
 			
-			<div class="sellerTerm" >
+			<div class="agreeTerm" >
 				<h5>개인정보 보호 약관</h5>
 				<hr>
 				<div class="getTerm" style="width: 100%; height: 300px; border: 1px solid gray; overflow:scroll;">
@@ -280,96 +310,105 @@ const autoHyphen2 = (target) => {
 			</div>
 	</div>	
 		<!-- 정보 입력 테이블-->
-		<div class="insertform" style="display: none;">
-			<form action="insert" method="post" enctype="multipart/form-data">
-				<h5>개인 회원가입</h5><br>
+		<div class="insertForm" style="display: none;">
+			<form action="insert" method="post" enctype="multipart/form-data" onsubmit="return check()">
+				<h5 style="font-weight: bold;">개인 회원가입</h5>
 				<table class="table test" style="width: 100%">
-						<tr style="border-top: 2px solid gray;">
-								<th style="width: 20%; text-align: center;" >아이디</th>
-								<td>
-									<div class="input-group" style="width: 400px;">
-										<input type="email" name="email" placeholder="이메일 형식으로 입력해주세요" required="required" class="form-control">
-										<button type="button" class="btn btn-dark btn-sm">중복체크</button>
-									</div>
-								</td>
-						</tr>
-							
-						<tr>
-							<th style="width: 20%;text-align: center;">비밀번호</th>
+					<tr style="border-top: 2px solid gray;">
+						<td colspan="2">
+							<div style="padding-top: 15px; padding-bottom: 15px;">
+								<span style="color: red;">*</span> 표시 항목은 필수 입력 사항입니다.<br>
+								정확한 정보를 입력해주시기 바랍니다.부정확한 정보 입력 시 회원탈퇴 및 이용정지 될 수 있습니다.
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>아이디</th>
 							<td>
-								<div style="width: 300px;">
-									<input type="password" name="password" class="form-control password1" placeholder="영문,숫자,특수문자(최소 8자리)" required="required">
-									<div class="doubleCheck" id="userpw"></div>
+								<div class="input-group" style="width: 400px;">
+									<input type="email" name="email" placeholder="이메일 형식으로 입력해주세요" required="required" class="form-control putId">
+									<button type="button" class="btn btn-dark btn-sm idcheck">중복체크</button>
 								</div>
-							</td>	
-						</tr>
-						<tr>
-							<th style="width: 20%;text-align: center;">비밀번호 확인</th>
-							<td>
-								<div style="width: 300px;">
-									<input type="password" class="form-control password2" placeholder="영문,숫자,특수문자(최소 8자리)" required="required">
-									<div class="doubleCheck" id="userpw2"></div>
-								</div>	
-							</td>	
-						</tr>
-						<tr>
-							<th style="width: 20%;text-align: center;">이름</th>
-							<td>
-								<div style="width: 300px;">
-									<input type="text" name="nickname" class="form-control" required="required">
-								</div>
-							</td>		
-						</tr>
-						<tr>
-							<th style="width: 20%;text-align: center;">생년월일</th>
-							<td>
-								<div style="width: 300px;">
-									<input type="date" name="date" class="form-control" placeholder="(-)없이 HP번호만 입력" required="required">
-								</div>							
-							</td>	
-						</tr>
-						<tr>
-							<th style="width: 20%;text-align: center;">성별</th>
-							<td>
-								<input type="radio" name="gender" value="1">남 <input type="radio" name="gender" value="2">여<br/>
-
-							</td>		
-						</tr>
-						<tr>
-							<th style="width: 20%;text-align: center;">휴대폰번호</th>
-							<td>
-								<div style="width: 300px;">
-									<input type="text" oninput="autoHyphen2(this)" name="phone" maxlength="13" placeholder="전화번호를 입력하세요" required="required" class="form-control">
-								</div>
-							</td>	
-						</tr>
-						<tr>
-							<th style="width: 20%;text-align: center;">주소</th>
-							<td>
-								<div class="input-group" style="width: 300px;">
-									<input type="text" id="sample4_postcode" name="addressNum" placeholder="우편번호" class="form-control" style="width: 40%; margin-bottom: 5px;">
-									<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="btn btn-dark btn-sm">
-								</div>
-								<div style="width: 500px;">
-									<input type="text" id="sample4_roadAddress" name="addressMain" placeholder="도로명주소" size="60" class="form-control" style="margin-bottom: 5px;">
-									<input type="hidden" id="sample4_jibunAddress" placeholder="지번주소"  size="60" class="form-control">
-									<span id="guide" style="color:#999;display:none"></span>
-									<input type="text" id="sample4_detailAddress" name="address" placeholder="상세주소"  size="60" class="form-control">
-									<input type="hidden" id="sample4_extraAddress" placeholder="참고항목"  size="60" class="form-control">
-									<input type="hidden" id="sample4_engAddress" placeholder="영문주소"  size="60" class="form-control">
-								</div>
-							</td>	
-						</tr>
-						<tr>
-							<td colspan="2" align="center" style="border-bottom: none;"><br>
-								<button type="submit" class="btn btn-outline-secondary" style="width: 180px;">회원가입</button>
+								<div id="idCheckResult"></div>
 							</td>
-						</tr>
-					</table>
-				</form>
-			</div>
+					</tr>
+						
+					<tr>
+						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>비밀번호</th>
+						<td>
+							<div style="width: 300px;">
+								<input type="password" name="password" class="form-control password1" placeholder="영문,숫자,특수문자(최소 8자리)" required="required">
+								<div class="doubleCheck" id="userpw"></div>
+							</div>
+						</td>	
+					</tr>
+					<tr>
+						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>비밀번호 확인</th>
+						<td>
+							<div style="width: 300px;">
+								<input type="password" class="form-control password2" placeholder="영문,숫자,특수문자(최소 8자리)" required="required">
+								<div class="doubleCheck" id="userpw2"></div>
+							</div>	
+						</td>	
+					</tr>
+					<tr>
+						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>이름</th>
+						<td>
+							<div style="width: 300px;">
+								<input type="text" name="nickname" class="form-control" required="required">
+							</div>
+						</td>		
+					</tr>
+					<tr>
+						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>생년월일</th>
+						<td>
+							<div style="width: 300px;">
+								<input type="date" name="date" class="form-control" placeholder="(-)없이 HP번호만 입력" required="required">
+							</div>							
+						</td>	
+					</tr>
+					<tr>
+						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>성별</th>
+						<td>
+							<input type="radio" name="gender" value="1">남 <input type="radio" name="gender" value="2" required="required">여<br/>
+
+						</td>		
+					</tr>
+					<tr>
+						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>휴대폰번호</th>
+						<td>
+							<div style="width: 300px;">
+								<input type="text" oninput="autoHyphen2(this)" name="phone" maxlength="13" placeholder="전화번호를 입력하세요" required="required" class="form-control">
+							</div>
+						</td>	
+					</tr>
+					<tr>
+						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>주소</th>
+						<td>
+							<div class="input-group" style="width: 300px;">
+								<input type="text" id="sample4_postcode" name="addressNum" placeholder="우편번호" class="form-control" style="width: 40%; margin-bottom: 5px;" required="required">
+								<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="btn btn-dark btn-sm">
+							</div>
+							<div style="width: 500px;">
+								<input type="text" id="sample4_roadAddress" name="addressMain" placeholder="도로명주소" size="60" class="form-control" style="margin-bottom: 5px;">
+								<input type="hidden" id="sample4_jibunAddress" placeholder="지번주소"  size="60" class="form-control">
+								<span id="guide" style="color:#999;display:none"></span>
+								<input type="text" id="sample4_detailAddress" name="address" placeholder="상세주소"  size="60" class="form-control">
+								<input type="hidden" id="sample4_extraAddress" placeholder="참고항목"  size="60" class="form-control">
+								<input type="hidden" id="sample4_engAddress" placeholder="영문주소"  size="60" class="form-control">
+							</div>
+						</td>	
+					</tr>
+					<tr>
+						<td colspan="2" align="center" style="border-bottom: none;"><br>
+							<button class="btnNext btn btn-outline-secondary">확인</button>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
 			
-	</div> <!-- 전체 div : sellerJoinTerm 종료 -->
+	</div> <!-- 전체 div : userJoinTerm 종료 -->
 	
 	</div>
 </body>
