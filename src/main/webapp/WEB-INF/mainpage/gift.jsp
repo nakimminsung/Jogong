@@ -68,6 +68,7 @@
         border-radius: 10px;
         border: 1px solid rgba(255, 255, 255, 0.18);
         display: none;
+        z-index: 999;
     }
     #gift-modal .gift-modal-window {
         background: #fff;
@@ -87,6 +88,7 @@
         color: gray;
         font-weight: 400px;
         font-size: 20px;
+        z-index: 999;
     }
     .modal-fix {
 	  position: fixed;

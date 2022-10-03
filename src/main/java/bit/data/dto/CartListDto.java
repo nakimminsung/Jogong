@@ -10,4 +10,11 @@ public class CartListDto {
 	private String engrave;
 	private int userNum;
 	private int productNum;
+	
+	// product
+	private String name;
+	private int price;
+	private boolean deleveryOption;
+	private String thumbnailImageUrl;
+	private String brand;
 }

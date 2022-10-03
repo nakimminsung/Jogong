@@ -22,9 +22,6 @@
     
 </head>
 <style>
-	div{
-		border: 0px solid gray;
-	}
 	body * {
 		font-size: 15px;
 	
@@ -143,9 +140,11 @@
 				<button type="button" class="btn btn-header"
 				onclick="location.href='${root}/join/joinMain'">회원가입</button>
 			</div>
+
 			<div>
 				<button type="button" class="btn btn-info" onclick="location.href='${root}/GiftTestForm'">결제폼 이동</button>
 			</div>
+
 		</div>
 	</div>	
 </body>

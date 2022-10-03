@@ -23,13 +23,9 @@
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     
-    
     <style>
     	body * {
     		font-size: 15px; 	
-    	}
-    	div {
-    		border: 0px solid gray;
     	}
     	div.event-wrapper {
     		width: 100%;
@@ -47,11 +43,17 @@
     		width: 100%;
     		height: 90%;
     	}
-    	button.slick-arrow {
-    		width:100px;
-    		height:100px;
-    		background-color: yellow;
+    	button.slick-arrow{
+    		width: 50px;
+    		height: 50px;
     		border-radius: 100%;
+    		position: relative;
+    		top:100px;	
+    	}
+    	button.slick-prev{
+    	}
+    	button.slick-next{
+    	
     	}
     </style>
 </head>
@@ -83,5 +85,12 @@
 			<b>NEW 헤라 "위시로켓" 런칭 특별 이벤트</b>
 		</div>
 	</div>
+	<script type="text/javascript">
+		$('.event-wrapper').slick({
+			lazyLoad: 'ondemand',
+		  	slidesToShow: 5,
+		  	slidesToScroll: 1
+		});
+	</script>
 </body>
 </html>
