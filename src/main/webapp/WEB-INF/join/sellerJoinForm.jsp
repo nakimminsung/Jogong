@@ -120,8 +120,7 @@
 				<tr>
 					<th><b>*</b> 아이디</th>
 					<td>
-						<input type="email" placeholder="이메일 형식으로 입력" 
-						style="width: 50%;" required name="">
+						<input type="email" placeholder="이메일 형식으로 입력" style="width: 50%;" required name="email">
 						<button type="button" class="btn btn-dark btn-sm">중복 확인</button>
 					</td>
 				</tr>
@@ -129,8 +128,7 @@
 				<tr>
 					<th><b>*</b> 비밀번호</th>
 					<td>
-						<input type="text" placeholder="영문, 숫자, 특수문자 8~12자"
-						style="width: 50%;" required name="">
+						<input type="password" placeholder="영문, 숫자, 특수문자 8~12자" style="width: 50%;" required name="password">
 						
 					</td>
 				</tr>
@@ -138,8 +136,7 @@
 				<tr>
 					<th><b>*</b> 비밀번호 확인</th>
 					<td>
-						<input type="text" placeholder="영문, 숫자, 특수문자 8~12자"
-						style="width: 50%;" required>
+						<input type="text" placeholder="영문, 숫자, 특수문자 8~12자" style="width: 50%;" required>
 						
 					</td>
 				</tr>
@@ -147,7 +144,7 @@
 				<tr>
 					<th><b>*</b> 담당자 연락처</th>
 					<td>
-						<input type="tel" style="width: 50%;" required name="">
+						<input type="tel" style="width: 50%;" required name="phone">
 						
 					</td>
 				</tr>
@@ -187,13 +184,8 @@
 						<b>*</b> 사업자 등록번호
 					</th>
 					<td style="padding-left: 10px;">
-						<input type="text" name="businessNumber" id="businessNumber" style="width: 50%; " 
-						placeholder="숫자만 입력" required name="">
-						<!--  
-						-
-						<input type="text" name="sellerNum2" style="width: 14%"> -
-						<input type="text" name="sellerNum3" style="width: 14%"> &nbsp;
-						 -->
+						<input type="text" id="businessNumber" style="width: 50%;" placeholder="숫자만 입력" required name="businessNumber">
+
 						<button type="button" class="btn btn-dark btn-sm" style="width: 105px;">사업자 인증</button>
 					</td>
 				</tr>
@@ -201,12 +193,16 @@
 				<tr>
 					<th><b>*</b> 사업장 주소</th>
 					<td>
-						<input type="text" id="sample4_postcode" placeholder="우편번호" style="width: 50%; margin-bottom: 5px;">
+						<input type="text" id="sample4_postcode" placeholder="우편번호" style="width: 50%; margin-bottom: 5px;" required>
 						<input type="button" onclick="sample4_execDaumPostcode()" class="btn btn-dark btn-sm" value="우편번호 찾기" style=" margin-bottom: 5px;"><br>
-						<input type="text" id="sample4_roadAddress" placeholder="도로명주소" size="60" style="width: 50%; margin-bottom: 5px;"><br>
+						<input type="text" id="sample4_roadAddress" placeholder="도로명주소" size="60" 
+						style="width: 50%; margin-bottom: 5px;" required name="address1"><br>
+						
 						<input type="hidden" id="sample4_jibunAddress" placeholder="지번주소"  size="60">
-						<span id="guide" style="color:#999;display:none"></span>
-						<input type="text" id="sample4_detailAddress" placeholder="상세주소"  size="60" style="width: 50%;"><br>
+						<span id="guide" style="color:#999; display:none"></span>
+						<input type="text" id="sample4_detailAddress" placeholder="상세주소"  size="60" 
+						style="width: 50%;"required name="address2"><br>
+						
 						<input type="hidden" id="sample4_extraAddress" placeholder="참고항목"  size="60">
 						<input type="hidden" id="sample4_engAddress" placeholder="영문주소"  size="60" >
 					</td>
@@ -224,8 +220,8 @@
 				<tr>
 					<th><b>*</b> 정산 계좌은행</th>
 					<td>
-						<select name="account_bank_id">
-	                        <option value="" disabled selected style="display: none;">은행명을 선택하세요</option>
+						<select name="account_bank_id" required>
+	                        <option value="" disabled selected style="display: none;">은행을 선택하세요</option>
 	                        <option value="국민">국민은행</option>
 	                        <option value="기업">기업은행</option>
 							<option value="하나">하나은행</option>
