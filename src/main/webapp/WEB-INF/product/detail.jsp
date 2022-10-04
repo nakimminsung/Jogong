@@ -20,6 +20,8 @@
 	
 	<!-- bootstrap 5 icon -->
 	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+	
+	<!-- bootstrap css -->
     
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
@@ -27,6 +29,9 @@
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/f7b2a5e0aa.js" crossorigin="anonymous"></script>
 
+	<!-- alert -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <style>
 	.detailContainer{	
 		display:grid; 
@@ -124,9 +129,6 @@
   		border-radius: 5px;
 	}
 	
-	.modal_detail{ 
-		
-	}
 </style>
 <script type="text/javascript">
 $(function(){
@@ -195,10 +197,6 @@ $(function(){
 		}
 	});
 	
-/* 	$(".detailSelfGift").click(function(){
-		$('input[name=friendNum]').attr('value', "");
-	}) */
-	
 	// 선물상자 담기 
 	$("#btn_detailCart").click(function(){
 		var data = $("#insertDetail").serialize();
@@ -214,8 +212,21 @@ $(function(){
 		});
 	});
 	
+	$(".detailWishlist").click(function(){
+		var data = $("#insertDetail").serialize();
+	/* 	alert(data); */
+		 var s ="";
+		$.ajax({
+			type:"post",
+			url:"../wishlist/insert",
+			dataType:"text", 
+			data:data,
+			success:function(res){
+				alert("위시리스트에 상품이 담겼어요");
+			},
+		}); 
+	});
 });
-
 </script>
 </head>
 <body>
@@ -233,7 +244,7 @@ $(function(){
 	 	<input type="hidden" name="productNum" value="${dto.num }">
 	 	
 	 	<!-- wishlist -->
-	 	<input type="hidden" name="publicOption" value="0">
+	 	<!-- <input type="hidden" name="publicOption" value="0"> -->
 	 	
 		<div class="detailContainer">
 			<div class="detailItem">
@@ -279,21 +290,37 @@ $(function(){
 				</button> 
 			
 				<div class="detailInsert">
-					<button type="submit" class="btn_g" formaction="../wishlist/insert">
+					<!-- 위시리스트 -->
+					<button type="button" class="btn_g" id="btn_detailWish" data-toggle="modal" data-target="#wishlistModal">
 						<span class="likes">	
 							<i class='far fa-heart' style="font-size: 20px; margin-left: 5px; margin-top: 3px;"></i>&nbsp;
 						</span>
 					</button>
+					
 					<button type="submit" class="detailSelfGift" formaction="../orderDetail/insertSelfGift"><b>나에게 선물하기</b></button>
-					<button type="submit" class="detailGift" formaction="../orderDetail/insert">
+					<!-- <button type="submit" class="detailGift" formaction="../orderDetail/insert"> -->
+					<button type="button" class="detailGift" id="btn_orderDetail" data-toggle="modal" data-target="#orderDetailModal">
 						<b>선물하기</b>
 					</button>	
 				</div>
 			</div>
 			
-			<div class="detailItem detailDescription">
-							
+			<div class="detailItem detailDescription">		
 				<img src="${dto.description }" style="width:100%;">
+			</div>
+			
+			<!-- 선물하기 modal -->
+			<div class="modal fade" id="orderDetailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-body">
+				        	...
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="detailCart" data-dismiss="modal">Close</button>
+				      </div>
+				    </div>
+				</div>
 			</div>
 			
 			<!-- 선물상자 담기 Modal -->
@@ -310,6 +337,41 @@ $(function(){
 				</div>
 			</div>	
 			
+			<!-- wishlist Modal -->
+			<div class="modal fade" id="wishlistModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLabel">위시의 공개범위를 선택해주세요</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        <label><input type="radio" style="width:18px; height:18px; border:1px;" name="publicOption" value="0" checked="checked">
+			        	<h5 style="display: inline-block;">친구공개</h5>
+			        </label>
+			        <br>
+      				<label><input type="radio" style="width:18px; height:18px; border:1px;" name="publicOption" value="1">
+			        	<h5 style="display: inline-block;">비공개</h5>
+			        </label>
+			      </div>
+			      <div class="modal-footer">
+			     	<!--  formaction="../wishlist/insert" -->
+			        <button type="button" class="detailWishlist" data-dismiss="modal">담기</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			
+			<!-- 선물하기 modal -->
+			<!-- Button trigger modal -->
+			 <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+			  Launch demo modal
+			</button> -->
+			
+			
+    
 		</div>
 	</form>
 </body>
