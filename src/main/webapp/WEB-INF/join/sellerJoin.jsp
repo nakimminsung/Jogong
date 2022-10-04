@@ -166,7 +166,8 @@ $(document).ready(function(){
 			
 			
 			<!-- 다음 버튼 -->
-			<div style="text-align: center; margin-top: 40px; font-weight: bold; height: 50px;">
+			<div style="text-align: center; font-weight: bold; height: 50px;">
+				<label><input type="checkbox" class="form-check-input"> 전체 동의</label><br>
 				<button type="button" class="btnNext btn btn-outline-secondary" onclick="f_link();">다음</button>
 			</div>
 				

@@ -22,6 +22,10 @@
 <body>
 	<div style="margin:50px 50px;">
 	
+	가입이 완료되었습니다
+	
+	<button type="button">가입 페이지로 이동</button>
+	
 	</div>
 </body>
 </html>

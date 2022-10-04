@@ -98,7 +98,7 @@
 		<!-- table 전체 -->
 		<div style="margin-top: 50px;">
 			
-			<form action="sellerInsert" method="post">
+			<form action="sellerJoinComplete" method="post" enctype="multipart/form-data" id="nextForm">
 			<table style="width: 100%;" class="table insertForm">
 				
 				<tr style="border-bottom: 1px solid black;">
@@ -136,7 +136,7 @@
 				<tr>
 					<th><b>*</b> 비밀번호 확인</th>
 					<td>
-						<input type="text" placeholder="영문, 숫자, 특수문자 8~12자" style="width: 50%;" required>
+						<input type="password" placeholder="영문, 숫자, 특수문자 8~12자" style="width: 50%;" required>
 						
 					</td>
 				</tr>
@@ -144,7 +144,7 @@
 				<tr>
 					<th><b>*</b> 담당자 연락처</th>
 					<td>
-						<input type="tel" style="width: 50%;" required name="phone">
+						<input type="text" style="width: 50%;" placeholder="010-1234-5678" required name="phone">
 						
 					</td>
 				</tr>
@@ -220,7 +220,7 @@
 				<tr>
 					<th><b>*</b> 정산 계좌은행</th>
 					<td>
-						<select name="account_bank_id" required>
+						<select name="bank" required>
 	                        <option value="" disabled selected style="display: none;">은행을 선택하세요</option>
 	                        <option value="국민">국민은행</option>
 	                        <option value="기업">기업은행</option>
@@ -242,17 +242,19 @@
 				<tr>
 					<th><b>*</b> 정산 계좌번호</th>
 					<td>
-						<input type="text" style="width: 50%;">
+						<input type="text" style="width: 50%;" required name="accountNumber">
 						
 					</td>
 				</tr>
 				
 			</table>
+			
+			</form>
 		</div> <!-- form table 묶은 div 종료 -->
 		
 		<!-- 다음 버튼 -->
 		<div style="text-align: center; margin-top: 40px; font-weight: bold; height: 50px;">
-			<button type="button" form="sellerInsert" class="btnNext btn btn-outline-secondary" onclick="f_link();">다음</button>
+			<button type="submit" form="nextForm" class="btnNext btn btn-outline-secondary">다음</button>
 		</div>
 		
 	</div> <!-- div.all -->
