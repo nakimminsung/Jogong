@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -88,13 +89,8 @@
 </style>
 
 <script type="text/javascript">
-	$(function (num) {
-		$("#faqQu"+num).click(function () {
-			alert("num");
-		})
-	})
-
-
+	
+	
 	function test(num) {
 		//alert(a);
 		$("#answer"+num).toggle("fast");
@@ -130,15 +126,17 @@
  	</div>
 </form>
 <br>
-	<div class="category">
 	
-		<span id="faqQu1" style="border-bottom: 3px solid black"><a href="../cscenter/faq?num=1">&emsp;자주하는 질문&emsp;</a></span>
-		<span id="faqQu2"><a href="../cscenter/faq?num=2">&emsp;이용방법&emsp;</a></span>
-		<span id="faqQu3"><a href="../cscenter/faq?num=3">&emsp;서비스안내&emsp;</a></span>
-		<span id="faqQu4"><a href="../cscenter/faq?num=4">&emsp;결제&emsp;</a></span>
-		<span id="faqQu5"><a href="../cscenter/faq?num=5">&emsp;배송상태&emsp;</a></span>
-		<span id="faqQu6"><a href="../cscenter/faq?num=6">&emsp;교환권&emsp;</a></span>
-		<span id="faqQu7"><a href="../cscenter/faq?num=7">&emsp;기타&emsp;</a></span>
+	<div class="category">
+		<c:forEach var="faqca" items="${faqCa }">
+			 <c:set var="s1" value="${faqca.num }"></c:set>
+			<c:if test="${num==s1}">
+			<span id="faq${faqca.num}" style="border-bottom: 3px solid black; width: 9%;"><a href="../cscenter/faq?num=${faqca.num}">&emsp;${faqca.content}&emsp;</a></span>
+			</c:if>	
+			<c:if test="${num!=s1}">
+			<span id="faq${faqca.num}" style="width: 9%;"><a href="../cscenter/faq?num=${faqca.num}">&emsp;${faqca.content}&emsp;</a></span>
+			</c:if>	
+		</c:forEach>
 	</div>
 	<br><br>
 	<c:if test="${num==1}">
@@ -177,3 +175,5 @@
 		</tr>	
 	</table>
 </div>	
+</body>
+</html>

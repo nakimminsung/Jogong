@@ -351,6 +351,21 @@ $(function(){
 		}); 
 	});
 	
+	$("#btn_orderDetailInsert").click(function(){
+		var data = $("#insertDetail").serialize();
+		alert(data);
+		$.ajax({
+			type:"post",
+			url:"../orderDetail/insert",
+			dataType:"text", 
+			data:data,
+			success:function(res){
+				alert("order detail");
+			},
+		});
+	});
+	
+	
 	$("#btn_orderDetail").click(function(){
 		var userNum = 2;
 		var s="";
@@ -368,7 +383,7 @@ $(function(){
 					
 					s += "<li style='list-style:none; float:left;'>";
 					s += "<div style='margin-right:50px;'>";
-					s += "<input type='checkbox' style='margin-right:10px;' class='chkBox'>";
+					s += "<input type='checkbox' style='margin-right:10px;' name='friendNum' value='"+elt.num+"'>";
 					s += "<label>";
 					s += "<img src='"+elt.profileImage+"' width='100' class='gift-friend-img' style='margin-right:5px;'>";
 					s += "<b num='"+elt.num+"'>"+elt.nickname+"</b>";
@@ -464,24 +479,10 @@ $(function(){
 				<img src="${dto.description }" style="width:100%;">
 			</div>
 			
-		 	<!-- 선물하기 modal -->
-			<!--<div class="modal fade" id="orderDetailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog" role="document">
-				    <div class="modal-content">
-				      <div class="detail-modal-body">
-				        	
-				      </div>
-				      <div class="modal-footer">
-				        <button type="button" class="detailCart" data-dismiss="modal">Close</button>
-				      </div>
-				    </div>
-				</div>
-			</div> -->
-			
-			<!-- wishmodal -->
+			<!-- 선물하기 modal -->
 		    <div id="orderDetailModal" class="gift-modal-overlay">
 		        <div class="gift-modal-window">
-		        	<form>
+		        	<!-- <form> -->
 		        	<div class="gift-modal-top">
 			            <div class="gift-title">
 			            	<div>
@@ -505,7 +506,7 @@ $(function(){
 		            	<div>나</div>
 		            	<div class="gift-modal-friend-list">
 			            	<div class="gift-modal-select">
-			            		<input type="checkbox" class="chkBox">
+			            		<input type="checkbox">
 					            <img src="${root }/image/default.png" class="gift-friend-img"> 명국
 			            	</div>
 		            	</div>
@@ -513,17 +514,18 @@ $(function(){
 		            		친구목록
 		            		<span style="font-size: 15px; margin-bottom: 5px;" class="friend-count"></span>
 		            	</div>
-		            	<div class="detail-modal-body">
+		            	<div class="detail-modal-body"><!-- modal 내용 들어감 -->
 		            	</div>
 		            </div>
 		            <div class="gift-modal-button">
 						<button type="button" class="btn btn-secondary btn-calcel" onclick="location.href='${root}'">취소</button>
 						<div></div>
-						<button type="button" class="btn btn-warning getWishlist">확인</button>
+						<button type="button" class="btn btn-warning getWishlist" id="btn_orderDetailInsert">확인</button>
 		            </div>
-		            </form>
+		         <!--    </form> -->
 		        </div>
 		    </div>
+		    
 			<!-- 선물상자 담기 Modal -->
 			<div class="modal fade" id="detailCartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog" role="document">
@@ -565,18 +567,10 @@ $(function(){
 			    </div>
 			  </div>
 			</div>
-			
-			<!-- 선물하기 modal -->
-			<!-- Button trigger modal -->
-			 <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-			  Launch demo modal
-			</button> -->
-			
-			
-    
 		</div>
 	</form>
-	   <script>
+	
+	<script>
         const modal = document.getElementById("orderDetailModal")
         const btnModal = document.getElementById("btn_orderDetail")
 		
