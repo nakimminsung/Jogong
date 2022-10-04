@@ -2,6 +2,8 @@ package bit.data.controller;
 
 
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,18 +13,26 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.JsonObject;
+
 import bit.data.dto.OrderTestDto;
 import bit.data.service.OrderServiceInter;
+import retrofit2.http.GET;
 
 @Controller
 public class PaymentController {
@@ -52,11 +62,11 @@ public class PaymentController {
 //	                 @RequestParam(value = "buyer_name",required=false) String buyer_name,
 //	                 @RequestParam(value = "pg",required=false) String pg,
 //	                 @RequestParam(value = "pay_method",required=false) String pay_method,
-//	                 @RequestParam(value = "custom_data", required=false) Object custom_data ,  
 //	                 @RequestParam(value = "messagecard", required=false) String messagecard ,  
 //	                 @RequestParam(value = "banner", required=false) String banner ,  
-//	                 @RequestParam(value = "message", required=false) String message ,  
+//	                 @RequestParam(value = "message", required=false) String message ,
 //	                 HttpServletRequest request){
+//		
 //		
 //		OrderTestDto ordertestDto = new OrderTestDto();
 //		
@@ -67,7 +77,7 @@ public class PaymentController {
 //		ordertestDto.setBuyer_name(buyer_name);
 //		ordertestDto.setPg(pg);
 //		ordertestDto.setPay_method(pay_method);
-////		ordertestDto.setTo_member_id(to_member_id);
+////		ordertestDto.setTo_member_id(member_id);
 ////		ordertestDto.setCount(count);
 //		ordertestDto.setMessagecard(messagecard);
 //		ordertestDto.setBanner(banner);
@@ -75,6 +85,25 @@ public class PaymentController {
 //		ordersevice.insertOrder(ordertestDto);
 //	}
 	
+
+	@RequestMapping(value = "/test.action", method = { RequestMethod.POST })
+	@ResponseBody
+	public Map<String, String> test(String custom_data){
+		JSONParser jparser=new JSONParser();
+		
+		try {
+			Object obj = jparser.parse(custom_data);
+			JsonObject jobj = (JsonObject)obj;
+			System.out.println("member_id"+jobj.get("member_id"));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("member_id", custom_data);
+		
+		return map;
+	}
 	
 	
 	@PostMapping("/payview")

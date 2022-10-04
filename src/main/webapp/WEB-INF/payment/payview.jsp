@@ -413,38 +413,6 @@
 <hr>
 	
 <script type="text/javascript">
-/*$(document).ready(function(){ 
- 	 $("").click(function(){ 
-    	payment(); //버튼 클릭하면 호출 
-    }); 
- 	 
-=======
-	</div>
-
-	<script type="text/javascript">
-$(document).ready(function(){ 
- 	 $("#iamportPayment").click(function(){ 
-    	payment(); //버튼 클릭하면 호출 
-    }); 
->>>>>>> 0ec93a028332c017ace3eb56df7c4f9cf45ed7d6
-	$("#iamportPayment2").click(function(){ 
-		danal();
-    }); 
- 	 
-	$("").click(function(){ 
-		kg();
-<<<<<<< HEAD
-    }); 
-	$("").click(function(){ 
-=======
-    });
-	$("#iamportPayment4").click(function(){ 
->>>>>>> 0ec93a028332c017ace3eb56df7c4f9cf45ed7d6
-		toss();
-    }); 
-})*/
-
-//var customdata = JSON.parse('{"member_id":"${to_member_id}","count":"${count}"}');
 var customdata = JSON.parse('{"member_id":"${to_member_id}"}');
  //버튼 클릭하면 실행
 function payment(data) {
@@ -453,21 +421,15 @@ function payment(data) {
     IMP.request_pay({// param
         pg: "kakaopay.TC0ONETIME", //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
         pay_method: "card", //지불 방법
-        merchant_uid: "4569", //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+        merchant_uid: "2231111", //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
         name : '${sangpum}', //결제창에 노출될 상품명
         amount: ${totalprice},
         buyer_name : "김민성",
-//        custom_data : customdata,
-        custom_data : customdata.member_id,
-/*          to_member_id : customdata.member_id,
-         count:customdata.count*/
-         /* count : ${count} */
-       /* 	messagecard : ${"#msg_card option:selected"}.attr("src"),      
-       	banner : ${"#msg_banner option:selected"}.attr("src")), 
-        message : ${"#msg_cate"}.text*/
+       custom_data : customdata,
     }, function (rsp) { // callback
         if (rsp.success) {
-        	   alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료"+rsp.buyer_addr+rsp.custom_data.count+rsp.custom_data.member_id);
+        	   alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : "
+        			   +rsp.merchant_uid+ "결제완료"+ rsp.member_id);
                
                jQuery.ajax({
                    url: "test.action",
@@ -482,11 +444,6 @@ function payment(data) {
                        "pg" : rsp.pg_provider,
                        "pay_method" : rsp.pay_method,
                        "custom_data" : rsp.custom_data,
- /*                       "to_member_id" : rsp.to_member_id,
-                       "count": rsp.count*/              		   /* "count" : rsp.count */
-               		 /*   "messagecard" : rsp.messagecard,
-            		   "banner" : rsp.banner, */
-            		   //"message" : rsp.message
                    	}
                    });
          } else {
