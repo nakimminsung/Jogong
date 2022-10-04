@@ -32,7 +32,7 @@
 		margin-bottom: 10px;
 	}
 	
-	button.btnLoginUser{
+	button.loginok{
 		width: 100%;
 		height: 50px;
 		
@@ -116,12 +116,10 @@ $(document).ready(function(){
 				</div>
 				
 				<!-- user 로그인 정보 -->
-				<form action="">
-					<input type="email" class="form-control textBox" required placeholder="아이디(이메일 형식)" id="userEmail">
-					<input type="password" class="form-control textBox" required placeholder="비밀번호" id="userPassword">
-					<label style="float: left;"><input type="checkbox" class="form-check-input"> 아이디 저장</label>
-					<button type="submit" class="btnLoginUser btn btn-danger">로그인</button>
-				</form>
+				<input type="email" class="form-control textBox" required placeholder="아이디(이메일 형식)" id="loginid" name="id">
+				<input type="password" class="form-control textBox" required placeholder="비밀번호" id="loginpass">
+				<label style="float: left;"><input type="checkbox" class="form-check-input"> 아이디 저장</label>
+				<button type="button" class="loginok btn btn-danger" id="loginok">로그인</button>
 			
 				<hr>
 				
@@ -145,12 +143,12 @@ $(document).ready(function(){
 					<button type="button" class="btnChange2 btn-sm btn-dark" style="float: right; margin-bottom: 5px;">일반회원 전환</button>
 				</div>
 			
-				<!-- <form action="sellerLogin" method="post" enctype="multipart/form-data"> -->
-					<input type="email" class="form-control textBox" required placeholder="아이디(이메일 형식)" id="sellerEmail">
-					<input type="password" class="form-control textBox" required placeholder="비밀번호" id="sellerPassword">
-					<label style="float: left;"><input type="checkbox" class="form-check-input"> 아이디 저장</label>
-					<button type="submit" class="btnLoginSeller btn btn-danger">로그인</button>
-				<!-- </form> -->
+				
+				<input type="email" class="form-control textBox" required placeholder="아이디(이메일 형식)" id="sellerEmail">
+				<input type="password" class="form-control textBox" required placeholder="비밀번호" id="sellerPassword">
+				<label style="float: left;"><input type="checkbox" class="form-check-input"> 아이디 저장</label>
+				<button type="button" class="btnLoginSeller btn btn-danger">로그인</button>
+				
 			</div>
 			 
 			
@@ -168,30 +166,25 @@ $(document).ready(function(){
 
 <script>
 	//user 로그인 버튼
-	$(".btnLoginUser").click(function () {
-		
-		//아이디와 비밀번호 읽어오기
-		var userEmail=$("#userEmail").val();
-		var userPassword=$("#userPassword").val();
-		var root='${root}';
-		console.log("root : "+root);
-		
+	$("#loginok").click(function(){
+		var id=$("#loginid").val();
+		var pass=$("#loginpass").val();
+
 		$.ajax({
 			type:"post",
-			url:root+"/login/userLogin",
+			url:"userLogin",
 			dataType:"json",
-			data:{"email":userEmail,"password":userPassword},
+			data:{"id":id,"pass":pass},
 			success:function(res){
-				if(res.result=='fail'){
-					alert("ID 혹은 비밀번호가 맞지 않습니다");
+				if(res.result=="fail"){
+					alert("아이디나 비밀번호가 틀렸습니다");
 				}else{
-					location.href='${root}';
+					location.href="http://localhost:9000/jogong/";
 				}
-				
-			}
-			
-		});	//ajax 종료
-	});	//로그인 버튼 이벤트 종료
+						
+			},
+		});//ajax 종료
+	});//로그인 버튼 이벤트 종료
 	
 	
 	//seller 로그인 버튼
@@ -205,7 +198,7 @@ $(document).ready(function(){
 		
 		$.ajax({
 			type:"post",
-			url:root+"/login/sellerLogin",
+			url:root+"/sellerLogin",
 			dataType:"json",
 			data:{"email":email,"password":password},
 			success:function(res){

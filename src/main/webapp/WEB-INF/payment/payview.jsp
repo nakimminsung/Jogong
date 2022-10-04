@@ -6,14 +6,16 @@
 <meta charset="UTF-8">
 
 <title>payment</title>
+	<!-- jQuery -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	
 	<!-- font -->
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Edu+VIC+WA+NT+Beginner:wght@600&family=Gamja+Flower&family=Single+Day&family=Jua&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
     
     <!-- bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/payment.css">
-	<!-- jQuery -->
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	
 	<!-- iamport.payment.js -->
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 </head>
@@ -29,7 +31,7 @@
 	 		var message = $(this).attr("value");
 	 		$("#mms_send_msg").text(message);
 	 	 	$("#msg_sample").text(message);
-		}); */
+		}); */ 
 		
 		$(".bannerImg").click(function () {
 			var banner = $(this).attr("src");
@@ -59,6 +61,7 @@
             <div class="subcontents">
                 <h1>선물 발송·결제</h1>
                 <h2>선물 꾸미기</h2>
+                <p style="visibility:hidden" id="to_buyer_name">${buyer_name}</p>
                 <div class="justify-cont col-type01">
                     <!-- 테마와 배너 선택 -->
                     <div class="theme_all">
@@ -93,7 +96,7 @@
                                             <h4>배너</h4>
                                             <div class="scrollBox">
                                                 <div class="deco-list">
-                                                    <ul class="banner-div">
+                                                    <ul class="banner-div" id="msg_banner">
                                                         <li><img src="/jogong/resources/giftimage/banner/1.jpg" alt="배너이미지" class="bannerImg">
                                                         <li><img src="/jogong/resources/giftimage/banner/2.jpg" alt="배너이미지" class="bannerImg">
                                                         <li><img src="/jogong/resources/giftimage/banner/3.jpg" alt="배너이미지" class="bannerImg">
@@ -120,20 +123,20 @@
                                             <h4>카드</h4>
                                             <div class="scrollBox">
                                                 <div class="deco-list">
-                                                    <ul class="card-div">
-                                                        <li><img src="/jogong/resources/giftimage/card/a1.jpg" alt="카드 이미지" class="cardImg"></li>
-                                                        <li><img src="/jogong/resources/giftimage/card/a2.jpg" alt="카드 이미지" class="cardImg"></li>
-                                                        <li><img src="/jogong/resources/giftimage/card/a3.jpg" alt="카드 이미지" class="cardImg"></li>
-                                                        <li><img src="/jogong/resources/giftimage/card/a4.jpg" alt="카드 이미지" class="cardImg"></li>
-                                                        <li><img src="/jogong/resources/giftimage/card/a5.jpg" alt="카드 이미지" class="cardImg"></li>
-                                                        <li><img src="/jogong/resources/giftimage/card/a6.jpg" alt="카드 이미지" class="cardImg"></li>
-                                                        <li><img src="/jogong/resources/giftimage/card/a7.jpg" alt="카드 이미지" class="cardImg"></li>
-                                                        <li><img src="/jogong/resources/giftimage/card/a8.jpg" alt="카드 이미지" class="cardImg"></li>
-                                                        <li><img src="/jogong/resources/giftimage/card/a9.jpg" alt="카드 이미지" class="cardImg"></li>
-                                                        <li><img src="/jogong/resources/giftimage/card/a10.jpg" alt="카드 이미지" class="cardImg"></li>
-                                                        <li><img src="/jogong/resources/giftimage/card/a11.jpg" alt="카드 이미지" class="cardImg"></li>
-                                                        <li><img src="/jogong/resources/giftimage/card/a12.jpg" alt="카드 이미지" class="cardImg"></li>
-                                                        <li><img src="/jogong/resources/giftimage/card/a13.jpg" alt="카드 이미지" class="cardImg"></li>
+                                                    <ul class="card-div" id="msg_card">
+                                                        <li><img src="/jogong/resources/giftimage/card/a1.jpg" alt="카드 이미지" class="cardImg" value="1"></li>
+                                                        <li><img src="/jogong/resources/giftimage/card/a2.jpg" alt="카드 이미지" class="cardImg" value="2"></li>
+                                                        <li><img src="/jogong/resources/giftimage/card/a3.jpg" alt="카드 이미지" class="cardImg" value="3"></li>
+                                                        <li><img src="/jogong/resources/giftimage/card/a4.jpg" alt="카드 이미지" class="cardImg" value="4"></li>
+                                                        <li><img src="/jogong/resources/giftimage/card/a5.jpg" alt="카드 이미지" class="cardImg" value="5"></li>
+                                                        <li><img src="/jogong/resources/giftimage/card/a6.jpg" alt="카드 이미지" class="cardImg" value="6"></li>
+                                                        <li><img src="/jogong/resources/giftimage/card/a7.jpg" alt="카드 이미지" class="cardImg" value="7"></li>
+                                                        <li><img src="/jogong/resources/giftimage/card/a8.jpg" alt="카드 이미지" class="cardImg" value="8"></li>
+                                                        <li><img src="/jogong/resources/giftimage/card/a9.jpg" alt="카드 이미지" class="cardImg" value="9"></li>
+                                                        <li><img src="/jogong/resources/giftimage/card/a10.jpg" alt="카드 이미지" class="cardImg" value="10"></li>
+                                                        <li><img src="/jogong/resources/giftimage/card/a11.jpg" alt="카드 이미지" class="cardImg" value="11"></li>
+                                                        <li><img src="/jogong/resources/giftimage/card/a12.jpg" alt="카드 이미지" class="cardImg" value="12"></li>
+                                                        <li><img src="/jogong/resources/giftimage/card/a13.jpg" alt="카드 이미지" class="cardImg" value="13"></li>
                                                       
                                                     </ul>
                                                 </div>
@@ -223,8 +226,8 @@
                 </div>
                 <div class="gift-info-desc">
                     <span>투썸플레이스</span>
-                    <p><strong>스트로베리 초콜릿 생크림</strong></p>
-                    <p class="price">총 선물 수 <strong><span class="phoneCnt">0</span> 개</strong></p>
+                    <p><strong id="sangpum">${sangpum}</strong></p>
+                    <p class="count" id="count">총 선물 수 <strong><span class="phoneCnt">${count}</span> 개</strong></p>
                 </div>
                 <div class="tag">
 
@@ -370,7 +373,7 @@
                     <tbody>
                         <tr>
                             <th>상품 금액</th>
-                            <td><strong id="total_sale_price">36,000</strong> 원</td>
+                            <td><strong id="total_sale_price">${price}</strong> 원</td>
                         </tr>
                         <tr>
                             <th>할인 금액</th>
@@ -392,7 +395,14 @@
                     <tfoot>
                         <tr>
                             <th>결제 금액</th>
-                            <td><strong id="final_price">36,000</strong> 원</td>
+                            <td><strong id="final_price">
+                          <%--   <%
+                            	int price = Integer.parseInt(request.getParameter("price"));
+                            	int count = Integer.parseInt(request.getParameter("count"));
+                            	
+                            	int totalcount = price * count;
+                            %> --%>
+                            </strong>${totalprice} 원</td>
                         </tr>
                     </tfoot>
                 </table>
@@ -434,21 +444,22 @@ $(document).ready(function(){
     }); 
 })*/
 
- //버튼 클릭하면 실행
+var customdata = JSON.parse('{"member_id":"${to_member_id}","count":"${count}"}');
+const rand = Math.random();
+//버튼 클릭하면 실행
 function payment(data) {
     IMP.init('imp20164668');//아임포트 관리자 콘솔에서 확인한 '가맹점 식별코드' 입력
     IMP.request_pay({// param
         pg: "kakaopay.TC0ONETIME", //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
         pay_method: "card", //지불 방법
-        merchant_uid: "0099", //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
-        name: "음식", //결제창에 노출될 상품명
-        amount: 100, //금액
-        buyer_email : "testiamport@naver.com", 
-        buyer_name : "홍길동",
-        buyer_tel : "01012341234"
+        merchant_uid: rand, //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+        name : '${sangpum}', //결제창에 노출될 상품명
+        amount: ${totalprice},
+        buyer_name : "김민성",
+        custom_data : customdata,
     }, function (rsp) { // callback
         if (rsp.success) {
-        	   alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료");
+        	   alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료"+"count:"+rsp.custom_data.count+"받는사람:"+rsp.custom_data.member_id);
                
                jQuery.ajax({
                    url: "test.action",
@@ -461,8 +472,10 @@ function payment(data) {
                        "amount" : rsp.paid_amount,
                        "buyer_name" : rsp.buyer_name,
                        "pg" : rsp.pg_provider,
-                       "pay_method" : rsp.pay_method
-                   	}
+                       "pay_method" : rsp.pay_method,
+                       "custom_data" : rsp.custom_data,
+/*             		   "banner" : rsp.banner, 
+            		   "message" : rsp.message*/                   	}
                    });
          } else {
              alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");

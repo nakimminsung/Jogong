@@ -9,15 +9,17 @@ public class UserDto {
 	private int num;
 	private String email;
 	private String password;
+	private String salt;
 	private String nickname;
 	private String profileImage;
 	private String phone;
 	private String address;
-	private boolean gender;
+	private int gender;
 	private int point;
-	private int year;
-	private int date;
+	private String year;
+	private String date;
 	private String loginType;
 	private Timestamp createdAt;
 	private boolean isAdmin;
+	
 }
