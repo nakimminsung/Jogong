@@ -59,7 +59,7 @@
 		display: flex;
 		justify-content: flex-end;
 		align-items: center;
-		min-width:230px;
+		min-width:250px;
 	}
 	form.search{
 	    display: flex;
@@ -96,9 +96,9 @@
 	}
 	a.login {
 		color: #ff3c78;
-		font-size:20px;
-		font-weight:400;
-		margin-left:10px;
+		font-size:18px;
+		font-weight:bold;
+		margin-left:15px;
 	}
 	a.login:hover {
 		color: #ff3c78;
@@ -107,7 +107,13 @@
 	button.btn-header{
 		background-color: #ff3c78;
 		color: #fff;
-		font-weight:400;		
+		font-weight:400;	
+	}
+	.profile{
+	border-radius:100px;
+	width:30px;
+	height:30px;
+	margin:10px 10px;
 	}
 </style>
 <body>
@@ -134,22 +140,22 @@
 
 			<!-- 로그아웃 상태일때 -->
 			<c:if test="${sessionScope.loginok==null}"> <!-- 세션영역(세션에서 찾을때 무조건써줘야함) -->
-				<a class="login" href="${root}/loginForm">로그인</a>
+				<a href="${root}/cscenter/faq"><b style="font-size: 16px;">고객센터</b></a>
+				<a class="login" href="${root}/loginForm" style="margin-right: 10px;">로그인</a>
+			
 				<div>
 					<button type="button" class="btn btn-header"
 					onclick="location.href='${root}/join/joinMain'">회원가입</button>
-					
-					<a href="${root}/cscenter/faq">고객센터</a>
 				</div>
+				
 			</c:if>
 			
 			<!-- 로그인 상태일때 -->
 			<c:if test="${sessionScope.loginok!=null}"> <!-- 세션영역(세션에서 찾을때 무조건써줘야함) -->
-				<b>${sessionScope.loginname}님</b>
+				<a href="${root}/cscenter/faq"><b style="font-size: 16px;">고객센터</b></a>
+				<img src="${root}/resources/image/${sessionScope.loginphoto}" class="profile"><b style="max-width:500px;">${sessionScope.loginname}님</b>
 				&nbsp;&nbsp;
 				<a class="login" href="${root}/logout">로그아웃</a>
-				
-				<a href="${root}/cscenter/faq">고객센터</a>
 			</c:if>
 			
 		</div>	<!-- div.right 종료 -->

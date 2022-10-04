@@ -98,6 +98,7 @@ $(document).ready(function(){
 		$(".userLoginBox").show();
 	});
 	
+	
 });
 </script>
 <body>
@@ -118,9 +119,8 @@ $(document).ready(function(){
 				<!-- user 로그인 정보 -->
 				<input type="email" class="form-control textBox" required placeholder="아이디(이메일 형식)" id="loginid" name="id">
 				<input type="password" class="form-control textBox" required placeholder="비밀번호" id="loginpass">
-				<label style="float: left;"><input type="checkbox" class="form-check-input"> 아이디 저장</label>
-				<button type="button" class="loginok btn btn-danger" id="loginok">로그인</button>
-			
+				<label style="float: left;"><input type="checkbox" class="form-check-input" id="loginok" > 아이디 저장</label>		
+				<button type="button" class="loginok btn btn-danger">로그인</button>
 				<hr>
 				
 				<!-- 소셜회원 로그인 박스 -->
@@ -166,7 +166,7 @@ $(document).ready(function(){
 
 <script>
 	//user 로그인 버튼
-	$("#loginok").click(function(){
+	$(".loginok").click(function(){
 		var id=$("#loginid").val();
 		var pass=$("#loginpass").val();
 

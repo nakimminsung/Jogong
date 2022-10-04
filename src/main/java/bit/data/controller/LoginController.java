@@ -61,6 +61,7 @@ public class LoginController {
 			session.setAttribute("loginok", "yes");
 			session.setAttribute("loginid", email);
 			session.setAttribute("loginname", sellerDto.getCompanyName());
+			
 		}
 		map.put("result", result==1?"success":"fail");
 		
@@ -99,7 +100,7 @@ public class LoginController {
 		{
 			//유지 시간 설정
 			session.setMaxInactiveInterval(60*60*4);//4시간
-			//로그인한 아이디에 대한 정보를 얻어서 세션에 저장
+			//로그인한 아이디에 대한 정보를 얻어서 세션에 저장s
 			UserDto udto=userService.getDataById(id);
 			session.setAttribute("loginok", "yes");
 			session.setAttribute("loginid", id);
