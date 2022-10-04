@@ -19,9 +19,9 @@ public class OrderDetailController {
 	{
 		orderDetailService.insertOrderDetail(dto);
 		//int num = dto.getProductNum();
-		
+		//System.out.println("성공 2");
 		//return "redirect:detail?num="+num;
-		return "redirect:../payview";	
+		return "redirect:/";	
 	}
 	
 	// 나에게 선물하기

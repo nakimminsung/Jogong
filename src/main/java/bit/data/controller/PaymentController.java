@@ -28,10 +28,10 @@ public class PaymentController {
    @Autowired
    SqlSession sqlsession;
    
-//   @GetMapping("/payview")
-//   public String payview() {
-//      return "/bit/payment/payview";
-//   }
+   @GetMapping("/payview")
+   public String payview() {
+      return "/bit/payment/payview";
+   }
    
    @GetMapping("/GiftTestForm")
    public String GiftTestForm() {

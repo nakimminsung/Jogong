@@ -7,6 +7,6 @@
 	</insert>
 	<!-- 나에게 선물하기 --> 
 	<insert id="insertSelfGift" parameterType="orderDetailDto">
-		insert into orderDetail values (null,#{qty},#{messageCard},#{engrave},null,#{userNum},#{productNum})
+		insert into orderDetail (num, qty, messageCard, engrave, friendNum, userNum, productNum) values (null,#{qty},#{messageCard},#{engrave},#{userNum},#{userNum},#{productNum})
 	</insert>
 </mapper>

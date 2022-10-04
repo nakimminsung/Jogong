@@ -282,6 +282,9 @@ $(function(){
 	var result = document.querySelector("#detailResult");
 	var count =1;
 	
+	const modal = document.getElementById("orderDetailModal")
+    const btnModal = document.getElementById("btn_orderDetail")
+	
 	plus.addEventListener("click", ()=>{
 		count++;
 		result.textContent = count;
@@ -353,14 +356,17 @@ $(function(){
 	
 	$("#btn_orderDetailInsert").click(function(){
 		var data = $("#insertDetail").serialize();
-		alert(data);
+		/* alert(data); */
 		$.ajax({
 			type:"post",
 			url:"../orderDetail/insert",
 			dataType:"text", 
 			data:data,
 			success:function(res){
-				alert("order detail");
+				/* alert("선물하기"); */
+				modal.style.display = "none"
+				window.location.href="../payview";
+				
 			},
 		});
 	});
@@ -396,6 +402,41 @@ $(function(){
 			}
 		});
 	});
+
+	
+    btnModal.addEventListener("click", e => {
+	    modal.style.display = "flex"
+	})
+	
+	const closeBtn = modal.querySelector(".gift-close-area")
+	
+	closeBtn.addEventListener("click", e => {
+	    modal.style.display = "none"
+        $("body").attr("class","");
+	})
+	
+	modal.addEventListener("click", e => {
+	    const evTarget = e.target
+		    if(evTarget.classList.contains("gift-modal-overlay")) {
+		        modal.style.display = "none"
+        		$("body").attr("class","");
+		    }
+	})
+	
+	window.addEventListener("keyup", e => {
+		if(modal.style.display === "flex" && e.key === "Escape") {
+    		modal.style.display = "none"
+    		$("body").attr("class","");
+			}
+	})
+	
+	$("#btn_orderDetail").click(function(){
+		$("body").attr("class","modal-fix");
+	});
+    
+    $(".btn-calcel").click(function(){
+    	modal.style.display = "none"
+    })
 });
 </script>
 </head>
@@ -518,7 +559,7 @@ $(function(){
 		            	</div>
 		            </div>
 		            <div class="gift-modal-button">
-						<button type="button" class="btn btn-secondary btn-calcel" onclick="location.href='${root}'">취소</button>
+						<button type="button" class="btn btn-secondary btn-calcel">취소</button>
 						<div></div>
 						<button type="button" class="btn btn-warning getWishlist" id="btn_orderDetailInsert">확인</button>
 		            </div>
@@ -569,40 +610,5 @@ $(function(){
 			</div>
 		</div>
 	</form>
-	
-	<script>
-        const modal = document.getElementById("orderDetailModal")
-        const btnModal = document.getElementById("btn_orderDetail")
-		
-        btnModal.addEventListener("click", e => {
-		    modal.style.display = "flex"
-		})
-		
-		const closeBtn = modal.querySelector(".gift-close-area")
-		
-		closeBtn.addEventListener("click", e => {
-		    modal.style.display = "none"
-	        $("body").attr("class","");
-		})
-		
-		modal.addEventListener("click", e => {
-		    const evTarget = e.target
-			    if(evTarget.classList.contains("gift-modal-overlay")) {
-			        modal.style.display = "none"
-	        		$("body").attr("class","");
-			    }
-		})
-		
-		window.addEventListener("keyup", e => {
-    		if(modal.style.display === "flex" && e.key === "Escape") {
-        		modal.style.display = "none"
-        		$("body").attr("class","");
-   			}
-		})
-		
-		$("#btn_orderDetail").click(function(){
-			$("body").attr("class","modal-fix");
-		});
-    </script>
 </body>
 </html>
