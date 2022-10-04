@@ -128,34 +128,32 @@
 					<input disabled="disabled" type="text" placeholder="선물, 브랜드 검색" autocomplete="off" aria-required="true" aria-invalid="false" style="cursor: pointer; border:0px;">
 				</form>
 			</div>
-		</div>
-		<div class="right">
-			<c:if test="${sessionScope.loginok==null}">
-			<div>
-				<a href="${root}/cscenter/faq">고객센터</a>
-			</div>
-			<div>
-				<a class="login" href="${root}/loginmain">로그인</a>
-			</div>
-			<div>
-				<button type="button" class="btn btn-header"
-				onclick="location.href='${root}/join/joinMain'">회원가입</button>
-			</div>
+		</div> <!-- div.left 종료 -->
 		
+		<div class="right">
 
+			<!-- 로그아웃 상태일때 -->
+			<c:if test="${sessionScope.loginok==null}"> <!-- 세션영역(세션에서 찾을때 무조건써줘야함) -->
+				<a class="login" href="${root}/loginForm">로그인</a>
+				<div>
+					<button type="button" class="btn btn-header"
+					onclick="location.href='${root}/join/joinMain'">회원가입</button>
+					
+					<a href="${root}/cscenter/faq">고객센터</a>
+				</div>
 			</c:if>
-			<c:if test="${sessionScope.loginok!=null}">
-			<b>${sessionScope.loginname}님</b>
-			<div>
-				<a class="login" href="${root}/logout">로그아웃</a>
-			</div>
-			<div>
-				<a href="${root}/cscenter/faq">고객센터</a>
-			</div>
 			
+			<!-- 로그인 상태일때 -->
+			<c:if test="${sessionScope.loginok!=null}"> <!-- 세션영역(세션에서 찾을때 무조건써줘야함) -->
+				<b>${sessionScope.loginname}님</b>
+				&nbsp;&nbsp;
+				<a class="login" href="${root}/logout">로그아웃</a>
+				
+				<a href="${root}/cscenter/faq">고객센터</a>
 			</c:if>
+			
+		</div>	<!-- div.right 종료 -->
 
-		</div>
-	</div>	
+	</div> <!--  div.header-wrapper 종료 -->	
 </body>
 </html>

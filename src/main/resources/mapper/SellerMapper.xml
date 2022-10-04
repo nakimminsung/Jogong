@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bit.data.dao.SellerDao">
+
+	<!-- seller DB insert -->
+	<insert id="insertSeller" parameterType="sellerDto">
+		insert into seller values (null,#{email},#{password},#{companyName},#{businessNumber},#{logoImage},#{phone},#{address},#{bank},#{accountNumber},now())
+	</insert>
+	
+	<!-- seller 로그인 상태 체크 -->
+	<select id="loginIdPassCheck" parameterType="Map" resultType="int">
+	<!-- dto로 만들기 애매한애들은 Map 또는 Hashmap -->
+		select count(*) from seller where email=#{email} and password=#{password}
+	</select>	
+	
+	<!-- id로 seller 데이터 가져오기 -->
+	<select id="getDataSeller" parameterType="String" resultType="sellerDto">
+		select * from seller where email=#{email}
+	</select>
+
+</mapper>

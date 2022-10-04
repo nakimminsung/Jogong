@@ -88,8 +88,8 @@
 		<button class="btnJoin btn btn-danger" onclick="location.href = '../join/userAgree'" >개인 회원가입</button>
 		
 		<div class="snsJoin">
-			<button class="btnNaver" style="background-color: #19ce60; color: white;">N 네이버로 가입</button>&nbsp;&nbsp;&nbsp;
-			<button class="btnKakao" style="background-color: #fde102;"><i class='fas fa-comment'></i> 카카오로 가입</button>
+			<button class="btnKakao" style="background-color: #fde102;"><i class='fas fa-comment'></i> 카카오로 가입</button>&nbsp;&nbsp;&nbsp;
+			<button class="btnNaver" style="background-color: #19ce60; color: white;">N 네이버로 가입</button>
 		</div>
 		
 		<p style="margin-top: 10px; color: gray; font-size: 14px;">SNS계정 회원가입(만 14세 이상 가능)</p>
