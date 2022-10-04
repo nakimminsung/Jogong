@@ -19,10 +19,10 @@
 	
 	div.all{
 		width: 100%;
-		height: 600px;
+		height: 500px;
 		/* padding-top: 50px;
 		padding-left: 200px; */
-		margin-top: 30px;
+		margin-top: 100px;
 		padding-left: 35%;
 		padding-right: 35%;
 		text-align: center;
@@ -32,20 +32,7 @@
 		margin-bottom: 10px;
 	}
 	
-	button.btnLogin{
-		width: 100%;
-		height: 50px;
-		
-		border-radius: 8px;
-		/* 
-		color: white;
-		 */
-		font-weight: bold;
-		margin-top: 30px;
-		background-color: #ef3e43;
-	}
-	
-	button.btnSellerLogin{
+	button.btnLoginUser{
 		width: 100%;
 		height: 50px;
 		
@@ -55,6 +42,20 @@
 		 */
 		font-weight: bold;
 		margin-top: 20px;
+		background-color: #ef3e43;
+	}
+	
+	button.btnLoginSeller{
+		width: 100%;
+		height: 50px;
+		
+		border-radius: 8px;
+		/* 
+		color: white;
+		 */
+		font-weight: bold;
+		margin-top: 20px;
+		background-color: #ef3e43;
 	}
 	
 	div.snsLoginBox{
@@ -109,8 +110,10 @@ $(document).ready(function(){
 			<div class="userLoginBox">
 				
 				<!-- 판매자 로그인 전환 버튼 -->
-				<h3 style="float: left;">로그인</h3>
-				<button type="button" class="btnChange1 btn-sm btn-dark" style="float: right; margin-bottom: 5px;">판매회원 전환</button>
+				<div class="top">
+					<h3 style="float: left;">로그인</h3>
+					<button type="button" class="btnChange1 btn-sm btn-dark" style="float: right; margin-bottom: 5px;">판매회원 전환</button>
+				</div>
 				
 				<!-- user 로그인 정보 -->
 				<form action="">
@@ -137,8 +140,10 @@ $(document).ready(function(){
 			<div class="sellerLoginBox">
 			
 				<!-- user 로그인 전환 버튼 -->
-				<h3 style="float: left;">판매 회원 로그인</h3>
-				<button type="button" class="btnChange2 btn-sm btn-dark" style="float: right; margin-bottom: 5px;">일반회원 전환</button>
+				<div class="top">
+					<h3 style="float: left;">판매 회원 로그인</h3>
+					<button type="button" class="btnChange2 btn-sm btn-dark" style="float: right; margin-bottom: 5px;">일반회원 전환</button>
+				</div>
 			
 				<!-- <form action="sellerLogin" method="post" enctype="multipart/form-data"> -->
 					<input type="email" class="form-control textBox" required placeholder="아이디(이메일 형식)" id="sellerEmail">
@@ -169,13 +174,13 @@ $(document).ready(function(){
 		var userEmail=$("#userEmail").val();
 		var userPassword=$("#userPassword").val();
 		var root='${root}';
-		console.log("root"+root);
+		console.log("root : "+root);
 		
 		$.ajax({
 			type:"post",
 			url:root+"/login/userLogin",
 			dataType:"json",
-			data:{"userEmail":userEmail,"userPassword":userPassword},
+			data:{"email":userEmail,"password":userPassword},
 			success:function(res){
 				if(res.result=='fail'){
 					alert("ID 혹은 비밀번호가 맞지 않습니다");
@@ -193,16 +198,16 @@ $(document).ready(function(){
 	$(".btnLoginSeller").click(function () {
 		
 		//아이디와 비밀번호 읽어오기
-		var sellerEmail=$("#sellerEmail").val();
-		var sellerPassword=$("#sellerPassword").val();
+		var email=$("#sellerEmail").val();
+		var password=$("#sellerPassword").val();
 		var root='${root}';
-		console.log("root"+root);
+		console.log("root : "+root);
 		
 		$.ajax({
 			type:"post",
 			url:root+"/login/sellerLogin",
 			dataType:"json",
-			data:{"sellerEmail":sellerEmail,"sellerPassword":sellerPassword},
+			data:{"email":email,"password":password},
 			success:function(res){
 				if(res.result=='fail'){
 					alert("ID 혹은 비밀번호가 맞지 않습니다");

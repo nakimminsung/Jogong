@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,8 +21,12 @@ import bit.data.service.UserServiceInter;
 public class LoginController {
 
 	//초기 세팅
+	@Autowired
 	UserServiceInter userService;
+	
+	@Autowired
 	SellerServiceInter sellerService;
+	
 	
 	
 	//최초 로그인 페이지
@@ -35,11 +40,11 @@ public class LoginController {
 	//seller 회원 로그인
 	@PostMapping("/sellerLogin")
 	@ResponseBody
-	public Map<String, String> loginprocess(String sellerEmail,String sellerPassword,HttpSession session)
+	public Map<String, String> loginprocess(String email,String password,HttpSession session)
 	{
 		Map<String, String> map=new HashMap<String, String>();
 		
-		int result=sellerService.loginIdPassCheck(sellerEmail, sellerPassword);
+		int result=sellerService.loginIdPassCheck(email, password);
 		
 		if(result==1)	//id와 pass가 모두 맞는경우 (로그인상태)
 		{
@@ -47,11 +52,11 @@ public class LoginController {
 			session.setMaxInactiveInterval(60*60*6);	//1분-> 1시간 -> 6시간
 			
 			//로그인한 아이디에 대한 정보를 얻어서 세션에 저장
-			SellerDto sellerDto=sellerService.getDataSeller(sellerEmail);
+			SellerDto sellerDto=sellerService.getDataSeller(email);
+			
 			session.setAttribute("loginok", "yes");
-			session.setAttribute("loginid", sellerEmail);
+			session.setAttribute("loginid", email);
 			session.setAttribute("loginname", sellerDto.getCompanyName());
-//			session.setAttribute("loginphoto", sellerDto.getPhoto());
 		}
 		map.put("result", result==1?"success":"fail");
 		
@@ -60,11 +65,12 @@ public class LoginController {
 	 
 	
 	@GetMapping("/logout")
-	@ResponseBody
-	public void logout(HttpSession session)
+	public String logout(HttpSession session)
 	{
 		//로그아웃 시 제거되어야 할 세션
 		session.removeAttribute("loginok");	//이걸로 비교할거라서 얘만 지우면되지만, id까지 지우기로함
 		session.removeAttribute("loginid");
+		
+		return "/bit/main/main";
 	}
 }

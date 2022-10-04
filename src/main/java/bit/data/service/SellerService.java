@@ -30,8 +30,8 @@ public class SellerService implements SellerServiceInter {
 		// TODO Auto-generated method stub
 		
 		Map<String, String> map=new HashMap<String, String>();
-		map.put("loginid", email);	//반드시 mapper 와 일치시킬것
-		map.put("loginpass", password);
+		map.put("email", email);	//반드시 mapper 와 일치시킬것
+		map.put("password", password);
 		
 		return SellerDao.loginIdPassCheck(map);
 	}
