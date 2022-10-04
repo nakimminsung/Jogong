@@ -79,6 +79,92 @@
 	
 </style>
 </head>
+
+<script>
+	$(function () {
+		
+		//password1 에 입력했을때
+		$(".password1").keydown(function () {
+			var pw=$(this).val();
+			
+			// 정규 표현식
+			var regExp = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
+
+			if(pw.match(regExp) == null){
+				
+				// 정규 표현식을 통과하지 못하면
+				$("#sellerPass1").html("형식에 맞게 입력하세요");
+				
+			}else{
+				
+				// 정규 표현식을 통과하면
+				$("#sellerPass1").html("");
+			}
+		});	
+		
+		//password2 에 입력했을때
+		$(".password2").keyup(function () {
+
+			var check=$(this).val();
+			var pw=$(".password1").val();
+				
+			if(check.match(pw) == null){
+				// 처리할 문장
+				$("#sellerPass2").html("비밀번호가 일치하지 않습니다.");
+				$("#sellerPass2").css("color","#FFAF00");
+				
+			}else{
+				$("#sellerPass2").html("");
+			}
+		});			
+		
+		//onsubmit : submit 하기 직전에 호출되는 메서드
+		//해당 메서드 조건을 통과해야 submit 할 수 있음
+		function check(){
+			
+			//사용 가능한 아이디 입니다. 가 없으면 alert 띄우기
+			if($("#idCheckResult").text()!="사용 가능한 아이디 입니다."){
+				
+				alert("아이디 중복체크를 해주세요");
+				
+				return false;
+			}
+			
+		} // check() 메서드 종료
+		
+		
+		// id 중복 체크 버튼 클릭 이벤트
+		$(".idcheck").click(function() {
+			
+			//이메일 입력란이 공란일 때
+			if($(".putId").val()==""){
+				$("#idCheckResult").text("다시 입력해주시기 바랍니다");
+				$("#idCheckResult").css("color","red");
+				
+				return;
+			}
+			
+			$.ajax({
+				type:"get",
+				dataType:"json",
+				url:"idcheck",	//joinController -> ... -> userMapper
+				data:{"email":$(".putId").val()},
+				success:function(res){
+					if(res.userCount!=0){
+						$("#idCheckResult").text("이미 가입된 이메일이 있습니다");
+						$("#idCheckResult").css("color","red");
+					}else{
+						$("#idCheckResult").css("color","#FFAF00");
+						$("#idCheckResult").text("사용 가능한 아이디 입니다.");
+					}
+				}
+			}); //ajax 종료
+		}); //중복 체크 이벤트 종료
+		
+		
+	});// $function 종료
+
+</script>
 <body>
 <!-- <div style="background-color: #f5f5f5;"> -->
 <div style="background-color: white;">
@@ -98,7 +184,7 @@
 		<!-- table 전체 -->
 		<div style="margin-top: 50px;">
 			
-			<form action="sellerJoinComplete" method="post" enctype="multipart/form-data" id="nextForm">
+			<form action="sellerJoinComplete" method="post" enctype="multipart/form-data" id="nextForm" onsubmit="return check()">
 			<table style="width: 100%;" class="table insertForm">
 				
 				<tr style="border-bottom: 1px solid black;">
@@ -120,15 +206,18 @@
 				<tr>
 					<th><b>*</b> 아이디</th>
 					<td>
-						<input type="email" placeholder="이메일 형식으로 입력" style="width: 50%;" required name="email">
-						<button type="button" class="btn btn-dark btn-sm">중복 확인</button>
+						<input type="email" placeholder="이메일 형식으로 입력" style="width: 50%;" required name="email" class="putId">
+						<button type="button" class="btn btn-dark btn-sm idcheck">중복 확인</button>
+						<div id="idCheckResult"></div>
 					</td>
 				</tr>
 
 				<tr>
 					<th><b>*</b> 비밀번호</th>
 					<td>
-						<input type="password" placeholder="영문, 숫자, 특수문자 8~12자" style="width: 50%;" required name="password">
+						<input type="password" placeholder="영문, 숫자, 특수문자 8~12자" style="width: 50%;" required
+						 name="password" class="password1">
+						 <div id="sellerPass1"></div>
 						
 					</td>
 				</tr>
@@ -136,8 +225,9 @@
 				<tr>
 					<th><b>*</b> 비밀번호 확인</th>
 					<td>
-						<input type="password" placeholder="영문, 숫자, 특수문자 8~12자" style="width: 50%;" required>
-						
+						<input type="password" placeholder="영문, 숫자, 특수문자 8~12자" style="width: 50%;" required
+						 class="password2">
+						<div id="sellerPass2"></div>
 					</td>
 				</tr>
 

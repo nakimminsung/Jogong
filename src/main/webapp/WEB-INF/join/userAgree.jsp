@@ -159,12 +159,11 @@ $(document).ready(function(){
 			}else{
 				alert("필수 약관을 동의해주시기 바랍니다");
 			}
-			$(".password").keyup(function () {
-				alert("")
-			})
 			
 		});
-			$(".password1").keydown(function () {
+		
+		
+		$(".password1").keydown(function () {
 				var pw=$(this).val();
 			// 정규 표현식
 				var regExp = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
@@ -177,9 +176,10 @@ $(document).ready(function(){
 				$("#userpw").html("");
 			}
 		});	
-			$(".password2").keyup(function () {
-				var check=$(this).val();
-				var pw=$(".password1").val();
+		
+		$(".password2").keyup(function () {
+			var check=$(this).val();
+			var pw=$(".password1").val();
 				
 			if(check.match(pw) == null){
 				// 처리할 문장
@@ -354,7 +354,7 @@ const autoHyphen2 = (target) => {
 						<td>
 							<div style="width: 300px;">
 								<input type="password" name="password" class="form-control password1" placeholder="영문,숫자,특수문자(최소 8자리)" required="required">
-								<div class="doubleCheck" id="userpw"></div>
+								<div id="userpw"></div>
 							</div>
 						</td>	
 					</tr>
@@ -363,7 +363,7 @@ const autoHyphen2 = (target) => {
 						<td>
 							<div style="width: 300px;">
 								<input type="password" class="form-control password2" placeholder="영문,숫자,특수문자(최소 8자리)" required="required">
-								<div class="doubleCheck" id="userpw2"></div>
+								<div id="userpw2"></div>
 							</div>	
 						</td>	
 					</tr>

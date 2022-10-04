@@ -78,15 +78,15 @@ public class JoinController {
 		dto.setLogoImage("user_default.png");
 
 		//중간 확인 (콘솔)
-		System.out.println(dto.getEmail());
-		System.out.println(dto.getPassword());
-		System.out.println(dto.getCompanyName());
-		System.out.println(dto.getBusinessNumber());
-		System.out.println(dto.getLogoImage());	//null
-		System.out.println(dto.getPhone());
-		System.out.println(dto.getAddress());
-		System.out.println(dto.getBank());
-		System.out.println(dto.getAccountNumber());
+//		System.out.println(dto.getEmail());
+//		System.out.println(dto.getPassword());
+//		System.out.println(dto.getCompanyName());
+//		System.out.println(dto.getBusinessNumber());
+//		System.out.println(dto.getLogoImage());	//null
+//		System.out.println(dto.getPhone());
+//		System.out.println(dto.getAddress());
+//		System.out.println(dto.getBank());
+//		System.out.println(dto.getAccountNumber());
 		
 		//ServiceInter 의 insertSeller 호출 (dto 전달)
 		sellerService.insertSeller(dto);
