@@ -1822,3 +1822,68 @@ table.t-foot>tfoot>tr>td {
         white-space: pre-wrap;
         font-size: 12px;
        }
+       
+       label {
+		  font-size: 20px;
+		  line-height: 2rem;
+		  padding: 0.2em 0.4em;
+		}
+		
+		span {
+		  vertical-align: middle;
+		}
+		
+		[type="radio"] {
+		  vertical-align: middle;
+		}
+		
+		[type="radio"] {
+		  vertical-align: middle;
+		  appearance: none;
+		}
+		
+		[type="radio"] {
+		  vertical-align: middle;
+		  appearance: none;
+		  border: max(2px, 0.1em) solid gray;
+		  border-radius: 50%;
+		  width: 1.25em;
+		  height: 1.25em;
+		}
+		
+		[type="radio"]:checked {
+		  border: 0.4em solid tomato;
+		}
+		
+		[type="radio"]:focus-visible {
+		  outline-offset: max(2px, 0.1em);
+		  outline: max(2px, 0.1em) dotted tomato;
+		}
+		
+		[type="radio"]:hover {
+		  box-shadow: 0 0 0 max(4px, 0.2em) lightgray;
+		  cursor: pointer;
+		}
+		
+		[type="radio"] {
+		  vertical-align: middle;
+		  appearance: none;
+		  border: max(2px, 0.1em) solid gray;
+		  border-radius: 50%;
+		  width: 1.25em;
+		  height: 1.25em;
+		  transition: border 0.3s ease-in-out;
+		}
+		
+		.bannerImg{
+			border: 1px solid;
+			width: 100px;
+			height: 50px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		
+		.clicked {
+        color: gold;
+     	}
