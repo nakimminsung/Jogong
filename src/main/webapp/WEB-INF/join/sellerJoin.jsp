@@ -97,13 +97,58 @@ $(document).ready(function(){
 			async: false,
 			success:function(res){
 				
-				$("div.getTerm").html(res);
+				$("div.getTerm1").html(res);
 				
 			}
 			
 		});
 	 
+	
+	$.ajax({
+		type:"get",
+		url:"/jogong/resources/terms/sellerTerm2.jsp",
+		dataType:"html",
+		async: false,
+		success:function(res){
+			
+			$("div.getTerm2").html(res);
+			
+		}
+		
 	});
+
+	$.ajax({
+		type:"get",
+		url:"/jogong/resources/terms/sellerTerm3.jsp",
+		dataType:"html",
+		async: false,
+		success:function(res){
+			
+			$("div.getTerm3").html(res);
+			
+		}
+		
+	});
+
+
+
+	$.ajax({
+		type:"get",
+		url:"/jogong/resources/terms/sellerTerm4.jsp",
+		dataType:"html",
+		async: false,
+		success:function(res){
+			
+			$("div.getTerm4").html(res);
+			
+		}
+		
+	});
+
+});
+	
+	
+	
 </script>
 
 <body>
@@ -127,16 +172,16 @@ $(document).ready(function(){
 			<div class="input-group term1">
 				<!-- 이용약관 div 1 -->
 				<div class="sellerTerm" style="width: 49%; height: 300px;">
-					<label style="float: right;"><input type="checkbox"> 조공 이용약관</label>
-					<div class="getTerm" style="width: 100%; height: 240px; border: 1px solid gray; overflow:scroll;">
+					<label style="float: right;"><input type="checkbox" class="form-check-input"> 조공 이용약관</label>
+					<div class="getTerm1" style="width: 100%; height: 240px; border: 1px solid gray; overflow:scroll;">
 						
 					</div>
 				</div>
 				
 				<!-- 이용약관 div 2 -->
 				<div class="sellerTerm" style="width: 49%; height: 300px;">
-					<label style="float: right;"><input type="checkbox"> 조공 개인정보 수집</label>
-					<div class="getTerm" style="width: 100%; height: 240px; border: 1px solid gray; overflow:scroll;">
+					<label style="float: right;"><input type="checkbox" class="form-check-input"> 조공 개인정보 수집</label>
+					<div class="getTerm2" style="width: 100%; height: 240px; border: 1px solid gray; overflow:scroll;">
 						
 					</div>
 				</div>
@@ -147,8 +192,8 @@ $(document).ready(function(){
 			
 				<!-- 이용약관 div 3 -->
 				<div class="sellerTerm" style="width: 49%; height: 300px;">
-					<label style="float: right;"><input type="checkbox"> 오픈마켓 판매자 약관</label>
-					<div class="getTerm" style="width: 100%; height: 240px; border: 1px solid gray; overflow:scroll;">
+					<label style="float: right;"><input type="checkbox" class="form-check-input"> 오픈마켓 판매자 약관</label>
+					<div class="getTerm3" style="width: 100%; height: 240px; border: 1px solid gray; overflow:scroll;">
 						
 					</div>
 					
@@ -156,18 +201,18 @@ $(document).ready(function(){
 				
 				<!-- 이용약관 div 4 -->
 				<div class="sellerTerm" style="width: 49%; height: 300px;">
-					<label style="float: right;"><input type="checkbox"> 판매자 개인정보 수집 및 이용안내</label>
-					<div class="getTerm" style="width: 100%; height: 240px; border: 1px solid gray; overflow:scroll;">
+					<label style="float: right;"><input type="checkbox" class="form-check-input"> 판매자 개인정보 수집 및 이용안내</label>
+					<div class="getTerm4" style="width: 100%; height: 240px; border: 1px solid gray; overflow:scroll;">
 						
 					</div>
 				</div>
 			</div>
 
 			
-			
 			<!-- 다음 버튼 -->
+			<br>
 			<div style="text-align: center; font-weight: bold; height: 50px;">
-				<label><input type="checkbox" class="form-check-input"> 전체 동의</label><br>
+				<label><input type="checkbox" class="form-check-input"> 전체 약관에 동의합니다.</label><br><br>
 				<button type="button" class="btnNext btn btn-outline-secondary" onclick="f_link();">다음</button>
 			</div>
 				
