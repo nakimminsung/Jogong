@@ -23,12 +23,6 @@
     
 </head>
 <style type="text/css">
-	#wrapper{
-	  width:100%;
-	  height: auto;
-	  min-height: 100%;
-	  padding-top: 100px;
-	}
 	header{
 		background-color: #fff;
 		position: fixed;
@@ -42,7 +36,8 @@
 	  margin: 0 auto;
 	  height: auto;
 	  min-height: 100%;
-	  padding-bottom: 150px;
+	  padding-bottom: 130px;
+	  position: relative;
 	}
 	div.content{
 		width:100%;
@@ -52,19 +47,18 @@
 	}
 	div#menu{
 		width:30%;
-		background-color: lightgreen;
 		float: left;
-		height: 600px;
 	}
 	div#myContent{
 		width:70%;
 		float: right;
 	}
 	footer{
-	  background-color:lightblue;
+	  background-color:lightgray;
 	  width: 100%;
-	  height: 150px;
+	  height: 130px;
 	  position: relative;
+	  bottom:0;
 	}
 
 </style>

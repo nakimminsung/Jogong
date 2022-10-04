@@ -25,7 +25,7 @@
 	<div>
 		<h2>footer</h2>
 		<div>
-			<button type="button" class="btn btn-info" onclick="location.href='mypage'">마이페이지</button>
+			<button type="button" class="btn btn-info" onclick="location.href='${root}/mypage/cart'">마이페이지</button>
 		</div>
 		<div>
 			<button type="button" class="btn btn-info" onclick="location.href='${root}/payview'">결제폼 이동</button>

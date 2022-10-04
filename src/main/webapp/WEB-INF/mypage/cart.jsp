@@ -19,6 +19,7 @@
     
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    
 <style>
 	body * {
 		font-size: 13px;
@@ -27,10 +28,11 @@
 		max-width: 100%;
 		position:relative;
 		padding-top: 50px;
+		width: 100%
 	}
 	div.cart-result{
-		max-width: 700px;
-		margin: 0 auto;
+		max-width: 800px;
+		margin: 0 0 0 auto;
 		margin-top: 20px;
 	}
 	div.cart-object{
@@ -141,14 +143,17 @@
 		display: inline;
 	}
 	div.cart-total {
-		max-width: 700px;
-		margin: 0 auto;
+		max-width: 800px;
+		margin: 0 0 0 auto;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		height: 50px;
-		border-bottom: 2px solid lightgray;
+		height: 70px;
+		border-bottom: 2px solid #f0f0f0;
 		padding-bottom: 20px;
+		position: sticky;
+		top:100px;
+		background-color: white;
 	
 	}
 	div.cart-total-right {
@@ -336,7 +341,7 @@
 			});
 		});
  		
-		// 수량변경
+		// 수량변경 함수
         $('.cart-modal-middle :button').on({'click' : function(e){
                 e.preventDefault();
                 var $count = $(this).parent('.cart-modal-middle').find('#cart-qty');
@@ -385,7 +390,8 @@
                 }
             });
         });
-
+		
+        // 옵션, 위시이동 모달
 	    const optionModal = document.getElementById("cart-option-modal")
 	    const wishModal = document.getElementById("cart-wish-modal")
 	    
@@ -419,6 +425,7 @@
 		});
 	});
 	
+	// cart list 호출 함수
 	function cartlist() {
 		let userNum = 1;
 			
@@ -503,6 +510,7 @@
 					총 결제금액 <b>0</b>원
 				</div>
 				<div class="cart-total-right-button">
+					<button type="button" class="btn btn-dark">나에게 선물하기</button>
 					<button type="button" class="btn btn-warning">선물하기</button>
 				</div>
 			</div>
