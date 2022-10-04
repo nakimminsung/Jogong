@@ -26,11 +26,12 @@
 	div.cart-wrapper{
 		max-width: 100%;
 		position:relative;
+		padding-top: 50px;
 	}
 	div.cart-result{
 		max-width: 700px;
 		margin: 0 auto;
-		margin-top: 50px;
+		margin-top: 20px;
 	}
 	div.cart-object{
 		width: 100%;
@@ -139,12 +140,141 @@
 		height:  86px;
 		display: inline;
 	}
+	div.cart-total {
+		max-width: 700px;
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		height: 50px;
+		border-bottom: 2px solid lightgray;
+		padding-bottom: 20px;
+	
+	}
+	div.cart-total-right {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	div.cart-total-right-price{
+		margin-right: 10px;
+	}
+	div.cart-total-left>input {
+		width: 20px;
+		height: 20px;
+		margin: 10px 0;
+	}
+	#cart-option-modal.cart-modal-overlay {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: rgba(50, 50, 50, 0.25);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(1.5px);
+        -webkit-backdrop-filter: blur(1.5px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        display: none;
+        z-index: 999;
+    }
+    #cart-option-modal .cart-modal-window {
+        background: #fff;
+        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+        backdrop-filter: blur( 13.5px );
+        -webkit-backdrop-filter: blur( 13.5px );
+        border-radius: 10px;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+        width: 400px;
+        height: 200px;
+        position: relative;
+        top: 0px;
+        padding: 20px;
+    }
+	#cart-wish-modal.cart-modal-overlay {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: rgba(50, 50, 50, 0.25);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(1.5px);
+        -webkit-backdrop-filter: blur(1.5px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        display: none;
+        z-index: 999;
+    }
+    #cart-wish-modal .cart-modal-window {
+        background: #fff;
+        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+        backdrop-filter: blur( 13.5px );
+        -webkit-backdrop-filter: blur( 13.5px );
+        border-radius: 10px;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+        width: 400px;
+        height: 300px;
+        position: relative;
+        top: 0px;
+        padding: 20px;
+    }
+    #cart-wish-modal .cart-modal-window {
+    	color: gray;
+    }
+    .modal-fix {
+	  position: fixed;
+	  width :100%;
+	  height: 100%;
+	  overflow: scroll;
+	}
+	div.cart-modal-window {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	div.cart-modal-top{
+		margin-bottom: 20px;
+	}
+	div.cart-modal-middle{
+		margin-bottom: 20px;
+	}
+	div.cart-modal-bottom {
+		display: flex;
+		flex-direction: row;
+	}
+	div.cart-wish-option{
+		display: flex;
+		flex-direction: column;
+	}
+	div.cart-wish-option>div {
+		display: flex;
+		flex-direction: row;
+	}
+	div.cart-wish-option>div>div{
+		display: flex;
+		flex-direction: column;
+		margin-right: 10px;
+	}
 </style>
 <script>
 	$(function(){
 		
 		// cart페이지 접속시 카트 select 로드
 		cartlist();
+		
+    	var publicOption = "";
+    	let userNum = 1;
+    	let productNum = "";
 		
 		// 단건 상품 삭제
 		$(document).on("click",".cart-check-delete",function(){
@@ -160,26 +290,104 @@
 					
 					location.reload();
 				}
-			});		
+			});
+		});
+        
+		// 장바구니에서 위시리스트 추가
+        $(document).on("click",".cart-wish-insert",function(){
+        	
+        	publicOption = $(".cart-wish-option").find(":input:radio[name=publicOption]:checked").val();
+        	
+        	var wishData = JSON.stringify({"publicOption":publicOption, "userNum":userNum, "productNum":productNum});
+        	
+        	alert(wishData)
+          	$.ajax({
+				type: "post",
+				url: "../wishlist/insert",
+				dataType: "text",
+				data: wishData,
+				success:function(res){
+					
+					alert("성공");
+				}
+			});
+        });
+		
+        $(document).ready(function(){
+            //전체 체크박스 클릭
+            $("#cart-all-check").click(function() {
+                if ($("#cart-all-check").prop("checked")) {
+                    $(".cart-check-one").prop("checked", true);
+                } else {
+                    $(".cart-check-one").prop("checked", false);
+                }
+            });
+            //전체 체크박스 선택중 체크박스 하나를 풀었을때 "전체" 체크해제
+            $(document).on("click",".cart-check-one",function(){
+            	
+	        	var check = $(".cart-check-one").length;
+	        	
+                if ($("input[name='check']:checked").length==check) {
+                    $("#cart-all-check").prop("checked", true);
+                } else {
+                    $("#cart-all-check").prop("checked", false);
+                }
+            });
+        });
+
+	    const optionModal = document.getElementById("cart-option-modal")
+	    const wishModal = document.getElementById("cart-wish-modal")
+	    
+		$(document).on("click",".cart-option-button",function(){
+			optionModal.style.display = "flex"
+		});
+	    
+		$(document).on("click",".cart-wish-button",function(){
+			wishModal.style.display = "flex"
+			productNum = $(this).attr("productNum");
+			
+		});
+		
+		$(document).on("click",".btn-cancel",function(){
+		    optionModal.style.display = "none"
+	        $("body").attr("class","");
+		});
+		
+		$(document).on("click",".btn-cancel",function(){
+		    wishModal.style.display = "none"
+	        $("body").attr("class","");
+		});
+		
+		$(".cart-option-button").click(function(){
+			$("body").attr("class","modal-fix");
+		});
+		
+		$(".cart-wish-button").click(function(){
+			$("body").attr("class","modal-fix");
 		});
 	});
+	
 	function cartlist() {
-		var userNum = 1;
+		let userNum = 1;
 			
 		var s="";
+		
+		var totalPrice = 0;
 			
 		$.ajax({
 			type: "get",
-			url: "cart/list",
+			url: "../cart/list",
 			dataType: "json",
 			data: {"userNum":userNum},
 			success:function(res){
 				
 	 			$.each(res, function(i,elt) {
+	 				
+	 				totalPrice += (elt.price)*(elt.qty);
 					
 					s += "<div class='cart-object'>";
 					s += "<div class='cart-check'>";
-					s += "<input type='checkbox' cartNum='"+elt.num+"'>";
+					s += "<input type='checkbox' class='cart-check-one' name='check' cartNum='"+elt.num+"'>";
 					s += "<a class='cart-check-delete' cartNum='"+elt.num+"'>";
 					s += "<i class='fas fa-times'></i>";
 					s += "</a>";
@@ -194,10 +402,10 @@
 					s += "</div>";
 					s += "</div>";
 					s += "<div class='cart-object-top-right'>";
-					s += "<div class='cart-change-button'>";
+					s += "<div class='cart-option-button'>";
 					s += "옵션/수량 변경";
 					s += "</div>";
-					s += "<div class='cart-wish-button'>";
+					s += "<div class='cart-wish-button' productNum='"+elt.productNum+"'>";
 					s += "위시로 이동";
 					s += "</div>";
 					s += "</div>";
@@ -218,33 +426,90 @@
 					s += "<b>결제금액</b>";
 					s += "</div>";
 					s += "<div class='cart-total-right'>";
-					s += "<b>10000원</b>";
+					s += "<b>"+((elt.price)*(elt.qty)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+"원</b>";
 					s += "</div>";
 					s += "</div>";
 					s += "</div>";
 					s += "</div>";
 					
 				});
+				$("div.cart-total-right-price").find("b").text(totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 				$("div.cart-result").html(s);
 			}
 		});
-		/* $.ajax({
-			type: "get",
-			url: "user/friendCount",
-			dataType: "json",
-			data: {"userNum":userNum},
-			success:function(res){
-				
-				$("span.friend-count").text(res);
-			}
-		}); */
 	}
 </script>
 </head>
 <body>
 	<div class="cart-wrapper">
+		<div class="cart-total">
+			<div class="cart-total-left">
+				<input type="checkbox" id="cart-all-check">
+			</div>
+			<div class="cart-total-right">
+				<div class="cart-total-right-price">
+					총 결제금액 <b>0</b>원
+				</div>
+				<div class="cart-total-right-button">
+					<button type="button" class="btn btn-warning">선물하기</button>
+				</div>
+			</div>
+		</div>
 		<div class="cart-result">
 		</div>
-	</div>	
+	</div>
+	<!-- option modal -->
+    <div id="cart-option-modal" class="cart-modal-overlay">
+        <div class="cart-modal-window">
+        	<div class="cart-modal-top">
+	       		수량 변경
+        	</div>
+        	<div class="cart-modal-middle">
+	       		11
+        	</div>
+            <div class="cart-modal-bottom">
+				<button type="button" class="btn btn-secondary btn-cancel">취소</button>
+				<div></div>
+				<button type="button" class="btn btn-warning">확인</button>
+            </div>
+        </div>
+    </div>
+	<!-- wish modal -->
+    <div id="cart-wish-modal" class="cart-modal-overlay">
+        <div class="cart-modal-window">
+        	<div class="cart-modal-top">
+	       		<h4>위시의 공개범위를 선택해주세요</h4>
+        	</div>
+        	<div class="cart-modal-middle">
+        		<form>
+		       		<div class="cart-wish-option">
+		       			<div>
+		       				<div>
+				       			<input type="radio" name="publicOption" value=1 style="display: inline;" checked="checked">
+		       				</div>
+			       			<div>
+				       			<b style="display: block;">친구공개! 내 취향은 이거야</b>
+				       			<b>내 선물을 고민하는 친구를 위해 힌트 주기</b>
+			       			</div>
+		       			</div>
+		       			<div>
+		       				<div>
+				       			<input type="radio" name="publicOption" value=0>
+		       				</div>
+			       			<div>
+				       			<b style="display: block;">비밀! 나만 볼 수 있어요</b>
+				       			<b>나만 알고 싶은 상품, 몰래 찜해두기</b>
+			       			</div>
+		       			</div>
+		       		</div>
+        		</form>
+        	</div>
+            <div class="cart-modal-bottom">
+				<button type="button" class="btn btn-secondary btn-cancel">취소</button>
+				<div></div>
+				<button type="button" class="btn btn-warning cart-wish-insert">담기</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

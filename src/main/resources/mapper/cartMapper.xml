@@ -9,6 +9,6 @@
 		where userNum=#{userNum}
 	</select>
 	<delete id="deleteCart" parameterType="int">
-		delete from cartList where num=#{cartNum};
+		delete from cartList where num=#{cartNum}
 	</delete>
 </mapper>

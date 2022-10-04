@@ -40,6 +40,9 @@
 	div#wrapper{
 	  max-width: 1180px;
 	  margin: 0 auto;
+	  height: auto;
+	  min-height: 100%;
+	  padding-bottom: 150px;
 	}
 	div.content{
 		width:100%;
@@ -61,7 +64,9 @@
 	  background-color:lightblue;
 	  width: 100%;
 	  height: 150px;
+	  position: relative;
 	}
+
 </style>
 <body>
 	<header id="header">
@@ -73,7 +78,7 @@
 				<tiles:insertAttribute name="menu"/>
 			</div>	
 			<div id="myContent">
-				<tiles:insertAttribute name="myContent"/>
+				<tiles:insertAttribute name="myContent" ignore="true"/>
 			</div>
 		</div>
 	</div>

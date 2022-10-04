@@ -20,6 +20,15 @@ public class CartController {
 	@Autowired
 	ProductServiceInter productServiceInter;
 	
+	@GetMapping("/mypage")
+	public String mypage() {
+		return "/mypage/mypage/cart";
+	}
+	@GetMapping("/mypage/cart")
+	public String cartList() {
+		return "/mypage/mypage/cart";
+	}
+	
 	@GetMapping("/cart/list")
 	@ResponseBody
 	public List<CartListDto> getCartList(int userNum) {

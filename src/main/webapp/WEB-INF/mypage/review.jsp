@@ -22,48 +22,10 @@
     
 </head>
 <style>
-	div.my-menu-wrapper {
-		padding-top: 50px;
-	}
-	div.my-profile{
-		width: 100%;
-		height: 200px;
-		background-color: gray;
-	}
-	div.my-menu {
-		padding:20px 30px;
-	}
-	div.my-menu>div{
-		display: flex;
-		flex-direction: column;
-	}
-	div.my-menu-top{
-		margin-bottom: 30px;	
-	}
-	div.my-menu>div>a{
-		display: block;
-		margin: 5px;
-	}
 </style>
 <body>
-	<c:set var="root" value="<%=request.getContextPath() %>"/>
-	<div class="my-menu-wrapper">
-		<div class="my-profile">
-		</div>
-		<div class="my-menu">
-			<div class="my-menu-top">
-				<h3>쇼핑정보</h3>
-				<a href="${root}/mypage/cart">선물함</a>
-				<a href="${root}/mypage/wishlist">위시리스트</a>
-				<a href="${root}/mypage/orderlist">주문내역</a>
-				<a href="${root}/mypage/review">선물후기</a>
-			</div>
-			<div class="my-menu-bottom">
-				<h3>내 정보</h3>
-				<a>프로필 정보</a>
-				<a>주소록</a>
-			</div>
-		</div>
+	<div>
+		review
 	</div>	
 </body>
 </html>

@@ -355,7 +355,7 @@
             	</div>
             </div>
             <div class="gift-modal-button">
-				<button type="button" class="btn btn-secondary btn-calcel" onclick="location.href='${root}'">취소</button>
+				<button type="button" class="btn btn-secondary btn-cancel">취소</button>
 				<div></div>
 				<button type="button" class="btn btn-warning getWishlist">확인</button>
             </div>
@@ -394,6 +394,11 @@
 		
 		$("#gift-friend").click(function(){
 			$("body").attr("class","modal-fix");
+		});
+        
+		$(document).on("click",".btn-cancel",function(){
+		    modal.style.display = "none"
+		    $("body").attr("class","");
 		});
     </script>
 </body>

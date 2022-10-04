@@ -25,7 +25,7 @@
 </style>
 <body>
 	<div>
-		content
+		wishlist
 	</div>	
 </body>
 </html>

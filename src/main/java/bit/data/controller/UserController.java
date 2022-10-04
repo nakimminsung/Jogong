@@ -26,8 +26,4 @@ public class UserController {
 	public int getUserFriendCount(int userNum) {
 		return userServiceInter.getUserFriendCount(userNum);
 	}
-	@GetMapping("/mypage")
-	public String mypage() {
-		return "/bit/mypage/cart";
-	}
 }
