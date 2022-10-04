@@ -11,4 +11,7 @@
 	<delete id="deleteCart" parameterType="int">
 		delete from cartList where num=#{cartNum}
 	</delete>
+	<update id="updateCart" parameterType="int">
+		update cartList set qty=#{qty} where num=#{cartNum}
+	</update>
 </mapper>

@@ -34,9 +34,17 @@ public class CartController {
 	public List<CartListDto> getCartList(int userNum) {
 		return cartServiceInter.getCartList(userNum);
 	}
+	
 	@GetMapping("/cart/delete")
 	public String deleteCart(int cartNum) {
 		cartServiceInter.deleteCart(cartNum);
+		
+		return "mypage/cart";
+	}
+	
+	@GetMapping("/cart/update")
+	public String updateCart(int cartNum, int qty) {
+		cartServiceInter.updateCart(cartNum, qty);
 		
 		return "mypage/cart";
 	}

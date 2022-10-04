@@ -240,10 +240,10 @@
 		align-items: center;
 	}
 	div.cart-modal-top{
-		margin-bottom: 40px;
+		margin-bottom: 35px;
 	}
 	div.cart-modal-middle{
-		margin-bottom: 30px;
+		margin-bottom: 35px;
 		width:100%;
 	}
 	div.cart-modal-bottom {
@@ -278,6 +278,7 @@
     	var publicOption = "";
     	let userNum = 1;
     	let productNum = "";
+    	var updateCartNum="";
 		
 		// 단건 상품 삭제
 		$(document).on("click",".cart-check-delete",function(){
@@ -285,7 +286,7 @@
 			var cartDeleteResult = confirm("상품 1종이 선물상자에서 삭제됩니다.\n정말 삭제할까요?");
 			
 			if(cartDeleteResult == true) {
-				var cartNum = $(this).attr("cartNum");
+				let cartNum = $(this).attr("cartNum");
 				
 				$.ajax({
 					type: "get",
@@ -318,6 +319,22 @@
 				}
 			});
         });
+		
+		// 장바구니 상품 수량 변경
+		$(document).on("click",".cart-qty-update",function(){
+			var qty = $("#cart-qty").val();
+			
+		  	$.ajax({
+				type: "get",
+				url: "../cart/update",
+				dataType: "text",
+				data: {"cartNum":updateCartNum,"qty":qty},
+				success:function(res){
+					
+					window.location.href="cart";
+				}
+			});
+		});
  		
 		// 수량변경
         $('.cart-modal-middle :button').on({'click' : function(e){
@@ -374,6 +391,7 @@
 	    
 		$(document).on("click",".cart-option-button",function(){
 			optionModal.style.display = "flex"
+			updateCartNum = $(this).attr("cartNum");
 		});
 	    
 		$(document).on("click",".cart-wish-button",function(){
@@ -436,7 +454,7 @@
 					s += "</div>";
 					s += "</div>";
 					s += "<div class='cart-object-top-right'>";
-					s += "<div class='cart-option-button'>";
+					s += "<div class='cart-option-button' cartNum='"+elt.num+"'>";
 					s += "수량 변경";
 					s += "</div>";
 					s += "<div class='cart-wish-button' productNum='"+elt.productNum+"'>";
@@ -506,7 +524,7 @@
             <div class="cart-modal-bottom">
 				<button type="button" class="btn btn-secondary btn-cancel" style="width:180px;">취소</button>
 				<div style="width:10px;"></div>
-				<button type="button" class="btn btn-warning" style="width:180px;">확인</button>
+				<button type="button" class="btn btn-warning cart-qty-update" style="width:180px;" cartNum="">확인</button>
             </div>
         </div>
     </div>

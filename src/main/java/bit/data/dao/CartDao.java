@@ -1,6 +1,7 @@
 package bit.data.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,9 @@ public class CartDao implements CartDaoInter {
 	public void deleteCart(int cartNum) {
 		session.selectOne(ns+"deleteCart", cartNum);
 	}
-	
+
+	@Override
+	public void updateCart(Map<String,Integer> map) {
+		session.selectOne(ns+"updateCart", map);
+	}
 }
