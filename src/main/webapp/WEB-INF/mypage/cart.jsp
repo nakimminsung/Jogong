@@ -54,7 +54,7 @@
 		width: 100%;
 		display: flex;
 		flex-direction:column;
-		justify-content: center;
+		justify-content: flex-start;
 	}
 	div.cart-object-top-left>div>b{
 		font-weight: normal;
@@ -191,7 +191,7 @@
         border-radius: 10px;
         border: 1px solid rgba( 255, 255, 255, 0.18 );
         width: 400px;
-        height: 200px;
+        height: 215px;
         position: relative;
         top: 0px;
         padding: 20px;
@@ -228,9 +228,6 @@
         top: 0px;
         padding: 20px;
     }
-    #cart-wish-modal .cart-modal-window {
-    	color: gray;
-    }
     .modal-fix {
 	  position: fixed;
 	  width :100%;
@@ -243,10 +240,11 @@
 		align-items: center;
 	}
 	div.cart-modal-top{
-		margin-bottom: 20px;
+		margin-bottom: 40px;
 	}
 	div.cart-modal-middle{
-		margin-bottom: 20px;
+		margin-bottom: 30px;
+		width:100%;
 	}
 	div.cart-modal-bottom {
 		display: flex;
@@ -256,15 +254,20 @@
 		display: flex;
 		flex-direction: column;
 	}
+	div.cart-wish-option input{
+		margin-top: 5px;
+	}
 	div.cart-wish-option>div {
 		display: flex;
 		flex-direction: row;
+		justify-content: flex-start;
 	}
 	div.cart-wish-option>div>div{
 		display: flex;
 		flex-direction: column;
 		margin-right: 10px;
 	}
+	input#cart-qty:focus {outline: none;}
 </style>
 <script>
 	$(function(){
@@ -278,19 +281,23 @@
 		
 		// 단건 상품 삭제
 		$(document).on("click",".cart-check-delete",function(){
-			confirm("상품을 삭제하시겠습니까?");
-			var cartNum = $(this).attr("cartNum");
 			
-			$.ajax({
-				type: "get",
-				url: "cart/delete",
-				dataType: "text",
-				data: {"cartNum":cartNum},
-				success:function(res){
-					
-					location.reload();
-				}
-			});
+			var cartDeleteResult = confirm("상품 1종이 선물상자에서 삭제됩니다.\n정말 삭제할까요?");
+			
+			if(cartDeleteResult == true) {
+				var cartNum = $(this).attr("cartNum");
+				
+				$.ajax({
+					type: "get",
+					url: "../cart/delete",
+					dataType: "text",
+					data: {"cartNum":cartNum},
+					success:function(res){
+						
+						window.location.href="cart";
+					}
+				});	
+			} 
 		});
         
 		// 장바구니에서 위시리스트 추가
@@ -298,9 +305,8 @@
         	
         	publicOption = $(".cart-wish-option").find(":input:radio[name=publicOption]:checked").val();
         	
-        	var wishData = JSON.stringify({"publicOption":publicOption, "userNum":userNum, "productNum":productNum});
+        	var wishData = {"publicOption":publicOption, "userNum":userNum, "productNum":productNum};
         	
-        	alert(wishData)
           	$.ajax({
 				type: "post",
 				url: "../wishlist/insert",
@@ -308,11 +314,39 @@
 				data: wishData,
 				success:function(res){
 					
-					alert("성공");
+					window.location.href="cart";
 				}
 			});
         });
-		
+ 		
+		// 수량변경
+        $('.cart-modal-middle :button').on({'click' : function(e){
+                e.preventDefault();
+                var $count = $(this).parent('.cart-modal-middle').find('#cart-qty');
+                var now = parseInt($count.val());
+                var min = 1;
+                var max = 999;
+                var num = now;
+                if($(this).hasClass('minus')){
+                    var type = 'm';
+                }else{
+                    var type = 'p';
+                }
+                if(type=='m'){
+                    if(now>min){
+                        num = now - 1;
+                    }
+                }else{
+                    if(now<max){
+                        num = now + 1;
+                    }
+                }
+                if(num != now){
+                    $count.val(num);
+                }
+            }
+        });
+        
         $(document).ready(function(){
             //전체 체크박스 클릭
             $("#cart-all-check").click(function() {
@@ -396,14 +430,14 @@
 					s += "<div class='cart-object-top-left'>";
 					s += "<img src='"+elt.thumbnailImageUrl+"' class='cart-image'>";
 					s += "<div>";
-					s += "<b class='cart-brand'>"+elt.brand+"</b>";
-					s += "<b class='cart-name'>"+elt.name+"</b>";
-					s += "<b class='cart-option'>옵션</b>";
+					s += "<b class='cart-brand' style='color:gray; font-size:13px;'>"+elt.brand+"</b>";
+					s += "<b class='cart-name' style='font-size:15px;'>"+elt.name+"</b>";
+					s += "<b class='cart-option'></b>";
 					s += "</div>";
 					s += "</div>";
 					s += "<div class='cart-object-top-right'>";
 					s += "<div class='cart-option-button'>";
-					s += "옵션/수량 변경";
+					s += "수량 변경";
 					s += "</div>";
 					s += "<div class='cart-wish-button' productNum='"+elt.productNum+"'>";
 					s += "위시로 이동";
@@ -462,15 +496,17 @@
     <div id="cart-option-modal" class="cart-modal-overlay">
         <div class="cart-modal-window">
         	<div class="cart-modal-top">
-	       		수량 변경
+	       		<b style="font-size: 20px;">수량 변경</b>
         	</div>
-        	<div class="cart-modal-middle">
-	       		11
+        	<div class="cart-modal-middle" style="border: 1px solid #f0f0f0; display: flex; align-items: unset; width: 100%;">
+	       		<button class="btn btn-outline-light text-dark minus">-</button>
+	       		<input type="tel" id="cart-qty" name="qty" value=1 style="width: 80%; border:white; text-align: center;">
+	       		<button class="btn btn-outline-light text-dark plus">+</button>
         	</div>
             <div class="cart-modal-bottom">
-				<button type="button" class="btn btn-secondary btn-cancel">취소</button>
-				<div></div>
-				<button type="button" class="btn btn-warning">확인</button>
+				<button type="button" class="btn btn-secondary btn-cancel" style="width:180px;">취소</button>
+				<div style="width:10px;"></div>
+				<button type="button" class="btn btn-warning" style="width:180px;">확인</button>
             </div>
         </div>
     </div>
@@ -478,18 +514,18 @@
     <div id="cart-wish-modal" class="cart-modal-overlay">
         <div class="cart-modal-window">
         	<div class="cart-modal-top">
-	       		<h4>위시의 공개범위를 선택해주세요</h4>
+	       		<b style="font-size: 20px;">위시의 공개범위를 선택해주세요</b>
         	</div>
         	<div class="cart-modal-middle">
         		<form>
 		       		<div class="cart-wish-option">
-		       			<div>
+		       			<div style="border-bottom: #f0f0f0 solid 1px; padding-bottom: 15px; margin-bottom: 15px;">
 		       				<div>
 				       			<input type="radio" name="publicOption" value=1 style="display: inline;" checked="checked">
 		       				</div>
 			       			<div>
-				       			<b style="display: block;">친구공개! 내 취향은 이거야</b>
-				       			<b>내 선물을 고민하는 친구를 위해 힌트 주기</b>
+				       			<b style="display: block; font-size: 17px; margin-bottom: 5px;">친구공개! 내 취향은 이거야</b>
+				       			<b style="font-size: 13px; color:gray;">내 선물을 고민하는 친구를 위해 힌트 주기</b>
 			       			</div>
 		       			</div>
 		       			<div>
@@ -497,17 +533,17 @@
 				       			<input type="radio" name="publicOption" value=0>
 		       				</div>
 			       			<div>
-				       			<b style="display: block;">비밀! 나만 볼 수 있어요</b>
-				       			<b>나만 알고 싶은 상품, 몰래 찜해두기</b>
+				       			<b style="display: block; font-size: 17px;">비밀! 나만 볼 수 있어요</b>
+				       			<b style="font-size: 13px; color:gray;">나만 알고 싶은 상품, 몰래 찜해두기</b>
 			       			</div>
 		       			</div>
 		       		</div>
         		</form>
         	</div>
             <div class="cart-modal-bottom">
-				<button type="button" class="btn btn-secondary btn-cancel">취소</button>
-				<div></div>
-				<button type="button" class="btn btn-warning cart-wish-insert">담기</button>
+				<button type="button" class="btn btn-secondary btn-cancel" style="width:180px;">취소</button>
+				<div style="width:10px;"></div>
+				<button type="button" class="btn btn-warning cart-wish-insert" style="width:180px;">담기</button>
             </div>
         </div>
     </div>

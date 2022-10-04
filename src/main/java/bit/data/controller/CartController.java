@@ -35,7 +35,9 @@ public class CartController {
 		return cartServiceInter.getCartList(userNum);
 	}
 	@GetMapping("/cart/delete")
-	public void deleteCart(int cartNum) {
+	public String deleteCart(int cartNum) {
 		cartServiceInter.deleteCart(cartNum);
+		
+		return "mypage/cart";
 	}
 }
