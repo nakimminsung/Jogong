@@ -25,6 +25,11 @@ public class ProductService implements ProductServiceInter {
 	}
 	
 	@Override
+	public List<ProductDto> getCart(int userNum) {
+		return daoInter.getCart(userNum);
+	}
+
+	@Override
 	public List<ProductDto> getProductTheme(int themeNum) {
 		return daoInter.getProductTheme(themeNum);
 	}

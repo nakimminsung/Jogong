@@ -22,9 +22,6 @@
     
 </head>
 <style>
-	div{
-		border: 0px solid gray;
-	}
 	body * {
 		font-size: 15px;
 	
@@ -144,9 +141,8 @@
 				<button type="button" class="btn btn-header"
 				onclick="location.href='${root}/join/joinMain'">회원가입</button>
 			</div>
-			<div>
-				<button type="button" class="btn btn-info" onclick="location.href='${root}/payview'">결제폼 이동</button>
-			</div>
+		
+
 			</c:if>
 			<c:if test="${sessionScope.loginok!=null}">
 			<b>${sessionScope.loginname}님</b>
@@ -156,10 +152,9 @@
 			<div>
 				<a href="${root}/cscenter/faq">고객센터</a>
 			</div>
-			<div>
-				<button type="button" class="btn btn-info" onclick="location.href='${root}/payview'">결제폼 이동</button>
-			</div>
+			
 			</c:if>
+
 		</div>
 	</div>	
 </body>

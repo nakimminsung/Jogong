@@ -4,6 +4,19 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 	
+	<!-- my -->
+ 	<definition name="myLayout" template="/WEB-INF/mylayout/myLayout.jsp">
+		<put-attribute name="header" value="/WEB-INF/layout/header.jsp"/>
+		<put-attribute name="menu" value="/WEB-INF/mylayout/menu.jsp"/>
+		<put-attribute name="myContent" value="/WEB-INF/mylayout/myContent.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"/>	
+	</definition>
+	
+	<!-- my -->
+	<definition name="/bit/mypage/*" extends="myLayout">
+		<put-attribute name="myContent" value="/WEB-INF/mypage/{1}.jsp"/>
+	</definition>
+	
 	<!-- layout -->
 	<definition name="layout" template="/WEB-INF/layout/layout.jsp">
 		<put-attribute name="header" value="/WEB-INF/layout/header.jsp"/>
@@ -52,6 +65,5 @@
 		<put-attribute name="footer" value="/WEB-INF/join/{1}.jsp"/>
 		
 	</definition>
-	
 	
 </tiles-definitions>
