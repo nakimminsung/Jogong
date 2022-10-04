@@ -492,7 +492,7 @@
 					s += "</div>";
 					
 				});
-				$("div.cart-total-right-price").find("b").text(totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+				$("div.cart-total-right-price").find("b.cart-total-price").text(totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 				$("div.cart-result").html(s);
 			}
 		});
@@ -507,10 +507,13 @@
 			</div>
 			<div class="cart-total-right">
 				<div class="cart-total-right-price">
-					총 결제금액 <b>0</b>원
+					<b style="font-size:17px; font-weight: normal;">총 결제 금액</b>
+					&nbsp;
+					<b class="cart-total-price" style="font-size: 20px;">0</b>
+					<b style="font-size:17px; font-weight: normal;">원</b>
 				</div>
-				<div class="cart-total-right-button">
-					<button type="button" class="btn btn-dark">나에게 선물하기</button>
+				<div class="cart-total-right-button" style="margin-left: 20px;">
+					<button type="button" class="btn btn-dark" style="margin-right: 10px;">나에게 선물하기</button>
 					<button type="button" class="btn btn-warning">선물하기</button>
 				</div>
 			</div>

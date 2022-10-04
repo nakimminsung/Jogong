@@ -40,14 +40,14 @@
 		border: 3px solid white;
 	}
 	div.my-menu {
-		padding: 20px 30px;
+		padding: 20px 0;
 	}
 	div.my-menu>div{
 		display: flex;
 		flex-direction: column;
 	}
 	div.my-menu-top{
-		margin-bottom: 20px;	
+		margin-bottom: 30px;	
 	}
 	div.my-menu>div>a{
 		display: block;
