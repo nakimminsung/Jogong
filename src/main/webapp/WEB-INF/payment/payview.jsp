@@ -20,6 +20,10 @@
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 </head>
 <script type="text/javascript">
+	var message = "";
+	var messagecard = "/jogong/resources/giftimage/card/a1.jpg";
+	var banner = "/jogong/resources/giftimage/banner/1.jpg";
+	
 	$(function() {
 		$(document).on("click",".message",function() {
 	 		var message = $(this).attr("value");
@@ -34,15 +38,15 @@
 		}); */ 
 		
 		$(".bannerImg").click(function () {
-			var banner = $(this).attr("src");
+			banner = $(this).attr("src");
 			
 			$("img#previewBanner").attr("src",banner);
 		});
 		
 		$(".cardImg").click(function () {
-			var card = $(this).attr("src");
+			messagecard = $(this).attr("src");
 			
-			$("img#previewTemplate").attr("src",card);
+			$("img#previewTemplate").attr("src",messagecard);
 		});
 		
 	 	$(document).ready(function(){
@@ -51,8 +55,9 @@
             	$("#msg_sample").text($(this).val());
             });
         });
-	 	
-	 
+	 	$(".bannerImg li img").on("click",function(e){
+	 		console.log($(this).attr("src"));
+	 	});
 	});
 </script>
 <body>
@@ -97,21 +102,21 @@
                                             <div class="scrollBox">
                                                 <div class="deco-list">
                                                     <ul class="banner-div" id="msg_banner">
-                                                        <li><img src="/jogong/resources/giftimage/banner/1.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/2.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/3.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/4.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/5.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/6.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/7.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/8.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/9.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/10.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/11.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/12.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/13.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/14.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/15.jpg" alt="배너이미지" class="bannerImg">
+                                                        <li><img src="/jogong/resources/giftimage/banner/1.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/2.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/3.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/4.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/5.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/6.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/7.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/8.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/9.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/10.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/11.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/12.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/13.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/14.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/15.jpg" alt="배너이미지" class="bannerImg"></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -137,7 +142,6 @@
                                                         <li><img src="/jogong/resources/giftimage/card/a11.jpg" alt="카드 이미지" class="cardImg"></li>
                                                         <li><img src="/jogong/resources/giftimage/card/a12.jpg" alt="카드 이미지" class="cardImg"></li>
                                                         <li><img src="/jogong/resources/giftimage/card/a13.jpg" alt="카드 이미지" class="cardImg"></li>
-                                                      
                                                     </ul>
                                                 </div>
                                             </div>
@@ -396,12 +400,6 @@
                         <tr>
                             <th>결제 금액</th>
                             <td><strong id="final_price">
-                          <%--   <%
-                            	int price = Integer.parseInt(request.getParameter("price"));
-                            	int count = Integer.parseInt(request.getParameter("count"));
-                            	
-                            	int totalcount = price * count;
-                            %> --%>
                             </strong>${totalprice} 원</td>
                         </tr>
                     </tfoot>
@@ -413,23 +411,23 @@
 <hr>
 	
 <script type="text/javascript">
-var customdata = JSON.parse('{"member_id":"${to_member_id}"}');
- //버튼 클릭하면 실행
+
+const rand = Math.random();
+//버튼 클릭하면 실행
 function payment(data) {
-	
     IMP.init('imp20164668');//아임포트 관리자 콘솔에서 확인한 '가맹점 식별코드' 입력
     IMP.request_pay({// param
         pg: "kakaopay.TC0ONETIME", //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
         pay_method: "card", //지불 방법
-        merchant_uid: "2231111", //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+
+        merchant_uid: rand, //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
         name : '${sangpum}', //결제창에 노출될 상품명
         amount: ${totalprice},
         buyer_name : "김민성",
-       custom_data : customdata,
+        custom_data : customdata,
     }, function (rsp) { // callback
         if (rsp.success) {
-        	   alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : "
-        			   +rsp.merchant_uid+ "결제완료"+ rsp.member_id);
+        	   alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료"+"count:"+rsp.custom_data.count+"받는사람:"+rsp.custom_data.member_id);
                
                jQuery.ajax({
                    url: "test.action",
@@ -444,7 +442,9 @@ function payment(data) {
                        "pg" : rsp.pg_provider,
                        "pay_method" : rsp.pay_method,
                        "custom_data" : rsp.custom_data,
-                   	}
+/*             		   "banner" : rsp.banner, 
+            		   "message" : rsp.message*/
+            		   }
                    });
          } else {
              alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
@@ -615,6 +615,15 @@ init();
 payed.onclick = function () {
     const selected = document.querySelector('.pay_box.clicked').parentNode;
     const val = selected.getAttribute('value');
+	
+  
+    message = $("#mms_send_msg").val();
+    
+    customdata = JSON.parse('{"member_id":"${to_member_id}","count":"${count}","message":"'+message+'","banner":"'+banner+'","messagecard":"'+messagecard+'"}' );
+    console.dir(customdata)
+    
+   
+    alert(message)
     
     if(val=='kakaopay'){
     	payment();
@@ -626,14 +635,6 @@ payed.onclick = function () {
    		danal(); 	
     }
 } 
-/* var payed = document.getElementById("paying");
-payed.onclick = function () {
-    const selected = document.querySelector('.pay_box.clicked').parentNode;
-    console.log(selected);
-    const val = selected.getAttribute('value');
-    console.log(val);
-}
-*/
 </script>
 </body>
 </html>
