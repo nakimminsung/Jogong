@@ -20,6 +20,9 @@
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 </head>
 <script type="text/javascript">
+var banner = "";
+var card = "";
+var message ="";
 	$(function() {
 		$(document).on("click",".message",function() {
 	 		var message = $(this).attr("value");
@@ -34,13 +37,13 @@
 		}); */ 
 		
 		$(".bannerImg").click(function () {
-			var banner = $(this).attr("src");
+			 banner = $(this).attr("src");
 			
 			$("img#previewBanner").attr("src",banner);
 		});
 		
 		$(".cardImg").click(function () {
-			var card = $(this).attr("src");
+			 card = $(this).attr("src");
 			
 			$("img#previewTemplate").attr("src",card);
 		});
@@ -97,21 +100,21 @@
                                             <div class="scrollBox">
                                                 <div class="deco-list">
                                                     <ul class="banner-div" id="msg_banner">
-                                                        <li><img src="/jogong/resources/giftimage/banner/1.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/2.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/3.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/4.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/5.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/6.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/7.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/8.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/9.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/10.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/11.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/12.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/13.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/14.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/15.jpg" alt="배너이미지" class="bannerImg">
+                                                        <li><img src="/jogong/resources/giftimage/banner/1.jpg" alt="배너이미지"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/2.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/3.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/4.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/5.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/6.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/7.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/8.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/9.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/10.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/11.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/12.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/13.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/14.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/15.jpg" alt="배너이미지" class="bannerImg"></li>
                                                     </ul>
                                                 </div>
                                             </div>

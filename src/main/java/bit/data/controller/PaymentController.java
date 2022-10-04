@@ -69,44 +69,40 @@ public class PaymentController {
 		 System.out.println(request.getParameter("amount"));
 		 System.out.println(request.getParameter("custom_data[member_id]"));
 		 System.out.println(request.getParameter("custom_data[count]"));
-
+//		 System.out.println(request.getParameter("custom_data[mesaage_card]"));
+//		 System.out.println(request.getParameter("custom_data[banner]"));
+//		 System.out.println(request.getParameter("custom_data[message]"));
+//		 System.out.println(request.getParameter("custom_data[address]"));
 		 
-//		 JSONParser jparser=new JSONParser();
-//	      try {
-//	         Object obj=jparser.parse(custom_data);
-//	         JSONObject jobj=(JSONObject)obj;
-//	         System.out.println("custom_data="+jobj.get("custom_data"));
-//	      } catch (ParseException e) {
-//	         e.printStackTrace();
-//	      }
-//	      Map<String, String> m=new HashMap<String, String>();
-//	      m.put("custom_data", custom_data);
-//	      return m;
 
-//		System.out.println(customData.toString());
-//		JSONParser parser = new JSONParser();
-//		Object obj = parser.parse(customData);
+		 String imp_uid = request.getParameter("imp_uid");
+		 String merchant_uid = request.getParameter("merchant_uid");
+		 String pg = request.getParameter("pg");
+		 String pay_method = request.getParameter("pay_method");
+		 String name = request.getParameter("name");
+		 String buyer_name = request.getParameter("buyer_name");
+		 String amount = request.getParameter("amount");
+		 String to_member_id = request.getParameter("custom_data[member_id]");
+		 String count = request.getParameter("custom_data[count]");
+		 String messagecard = request.getParameter("custom_data[messagecard]");
+		 String banner = request.getParameter("custom_data[banner]");
+		 String message = request.getParameter("custom_data[message]");
+		 
+		OrderTestDto ordertestDto = new OrderTestDto(); 
+		ordertestDto.setImp_uid(imp_uid);
+		ordertestDto.setMerchant_uid(merchant_uid);
+		ordertestDto.setName(name);
+		ordertestDto.setAmount(Integer.parseInt(amount));
+		ordertestDto.setBuyer_name(buyer_name);
+		ordertestDto.setPg(pg);
+		ordertestDto.setPay_method(pay_method);
+		ordertestDto.setTo_member_id(to_member_id);
+		ordertestDto.setCount(Integer.parseInt(count));
+		ordertestDto.setMessagecard(messagecard);
+		ordertestDto.setBanner(banner);
+		ordertestDto.setMessage(message);
 		
-//		JSONObject jsonObj = (JSONObject) obj;
-//		String count = (String)jsonObj.get("count");
-//		String to_member_id = (String)jsonObj.get("member_id");
-//		System.out.println(count);
-		
-//		OrderTestDto ordertestDto = new OrderTestDto(); 
-//		ordertestDto.setImp_uid(imp_uid);
-//		ordertestDto.setMerchant_uid(merchant_uid);
-//		ordertestDto.setName(name);
-//		ordertestDto.setAmount(amount);
-//		ordertestDto.setBuyer_name(buyer_name);
-//		ordertestDto.setPg(pg);
-//		ordertestDto.setPay_method(pay_method);
-//		ordertestDto.setTo_member_id(to_member_id);
-//		ordertestDto.setCount(Integer.parseInt(count));
-//		ordertestDto.setMessagecard(messagecard);
-//		ordertestDto.setBanner(banner);
-//		ordertestDto.setMessage(message);
-		
-//		ordersevice.insertOrder(ordertestDto);
+		ordersevice.insertOrder(ordertestDto);
 		
 	}
 	
