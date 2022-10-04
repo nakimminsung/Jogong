@@ -85,7 +85,7 @@
 	<div class="joinPersonal">
 		<h2 class="joinTitle">조공 회원가입</h2>
 		<p style="margin-top: 20px;">지금 회원가입 하신 후 조공에서 다양한 서비스를 경험해보세요</p>
-		<button class="btnJoin btn btn-danger">개인 회원가입</button>
+		<button class="btnJoin btn btn-danger" onclick="location.href = '../join/userAgree'" >개인 회원가입</button>
 		
 		<div class="snsJoin">
 			<button class="btnNaver" style="background-color: #19ce60; color: white;">N 네이버로 가입</button>&nbsp;&nbsp;&nbsp;
