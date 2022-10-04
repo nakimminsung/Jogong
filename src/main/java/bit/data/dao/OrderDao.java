@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import bit.data.dto.OrderDetailDto;
 import bit.data.dto.OrderTestDto;
 
 @Repository
@@ -27,4 +28,5 @@ public class OrderDao implements OrderDaoInter {
 		session.insert(ns+"insertOrder",dto);
 	}
 
+	
 }

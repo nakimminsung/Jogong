@@ -9,5 +9,6 @@ public interface ProductServiceInter {
 	public List<ProductDto> getCart(int userNum);
 	public List<ProductDto> getProduct(int price);
 	public List<ProductDto> getProductTheme(int themeNum);
-	public List<ProductDto> getTag(int themeNum);
+//	public List<ProductDto> getTag(int themeNum);
+	public ProductDto getProductDetail(int num);
 }

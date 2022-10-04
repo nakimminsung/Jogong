@@ -20,4 +20,9 @@ public class WishlistService implements WishlistServiceInter {
 		return wishlistDaoInter.getWishlist(userNum);
 	}
 
+	@Override
+	public void insertWishlist(WishlistDto dto) {
+		
+		wishlistDaoInter.insertWishlist(dto);
+	}
 }
