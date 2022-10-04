@@ -9,4 +9,20 @@
 	<select id="getUserFriendCount" parameterType="int" resultType="int">
 		select count(*) from user where num in (select friendNum from userFriend where userNum=${userNum})
 	</select>
+	<!-- 개인회원가입-->
+	<insert id="insertUser" parameterType="userDto">
+		insert into user values (null,#{email},#{password},#{nickname},#{profileImage},#{phone},#{address},#{gender},#{point},#{year},#{date},#{loginType},now(),#{isAdmin},#{salt})		
+	</insert>
+	<!-- 개인회원가입 중복체크 -->
+	<select id="getUserIdSearch" parameterType="String" resultType="int">
+		select sum(cnt) from (select count(*) cnt from user where email=#{email} union all select count(*) cnt from seller where email=#{email}) as t;
+	</select>
+	<!-- 로그인 -->
+	<select id="loginIdPassCheck" parameterType="Map" resultType="int">
+		select count(*) from user where email=#{loginid} and password=#{loginpass}
+	</select>
+	<!-- 로그인 후 아이디 및 사진 출력 및 salt 값 -->
+	<select id="getDataById" parameterType="String" resultType="userDto">
+		select * from user where email=#{id}
+	</select>
 </mapper>
