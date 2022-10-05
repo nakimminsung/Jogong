@@ -1,5 +1,7 @@
 package bit.data.service;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,4 +29,11 @@ public class OrderDetailService implements OrderDetailServiceInter {
 		// TODO Auto-generated method stub
 		return orderDetailDaoInter.getMaxNum();
 	}
+
+    @Override
+    public void insertSelfCart(HashMap<String, Object> map) {
+        
+        orderDetailDaoInter.insertSelfCart(map);
+    }
+	
 }

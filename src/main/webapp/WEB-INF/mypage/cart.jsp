@@ -420,22 +420,32 @@
 		// 나에게 선물하기
 		$("#cart-order-self").click(function(){
 			
-			var cartCheck = new Array();
+			var cartInsertList = [];
 			
 			$('input:checkbox[name=cart-check]:checked').each(function() {
-				var map = new Map();
-				map.set("productNum",$(this).attr("productNum"));
-				map.set("userNum",$(this).attr("userNum"));
-				map.set("friendNum",$(this).attr("userNum"));
-				map.set("qty",$(this).attr("qty"));
-				cartCheck.push(map);
+				
+				var data = {
+					productNum : $(this).attr("productNum"),
+					userNum : $(this).attr("userNum"),
+					friendNum : $(this).attr("userNum"),
+					qty : $(this).attr("qty"),
+					messageCard:"",
+					engrave:""
+				}
+				
+				cartInsertList.push(data);
 			});
 			
-			$.ajax({
+		 	for(let i=0; i<cartInsertList.length; i++) {
+				console.log(cartInsertList[i]);
+			}
+			
+		 	$.ajax({
 				type: "post",
-				url: "../orderDetail/listInsert",
+				url: "../orderDetail/insertSelfCart",
 				dataType: "text",
-				data: {"list":cartCheck},
+				data: JSON.stringify({"cartInsertList":cartInsertList}),
+				contentType: "application/json; charset=utf-8",
 				success:function(res){
 					
 					window.location.href="cart";
@@ -445,11 +455,10 @@
 		});
 	});
 	
-	
-	
 	// cart list 호출 함수
 	function cartlist() {
 		let userNum = 2;
+		let friendNum = userNum;
 			
 		var s="";
 		
@@ -468,7 +477,7 @@
 					
 					s += "<div class='cart-object'>";
 					s += "<div class='cart-check'>";
-					s += "<input type='checkbox' class='cart-check-one' name='cart-check' productNum='"+elt.productNum+"' cartNum='"+elt.num+"' qty='"+elt.qty+"'>";
+					s += "<input type='checkbox' class='cart-check-one' name='cart-check' userNum='"+userNum+"' friendNum='"+friendNum+"' productNum='"+elt.productNum+"' cartNum='"+elt.num+"' qty='"+elt.qty+"'>";
 					s += "<a class='cart-check-delete' cartNum='"+elt.num+"'>";
 					s += "<i class='fas fa-times'></i>";
 					s += "</a>";
