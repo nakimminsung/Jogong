@@ -13,9 +13,6 @@
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script><!-- jquery -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
-<!-- 이용약관 css -->
-<%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/terms.css"> --%>
-
 <style>
 	*{
 		/* font-family: 'Jua'; */
@@ -27,8 +24,8 @@
 		/* padding-top: 50px;
 		padding-left: 200px; */
 		margin-top: 30px;
-		padding-left: 20%;
-		padding-right: 20%;
+		padding-left: 24%;
+		padding-right: 24%;
 
 	}
 	
@@ -36,7 +33,8 @@
 		width: 100%;
 		height: 100px;
 		margin-top: 10px;
-		margin-bottom: 10px;
+		margin-bottom: 30px;
+		
 	}
 	
 	.stepBox ul{
@@ -52,6 +50,7 @@
 		text-align: center;
 		padding-top: 10px;
 		margin-top: 10px;
+		font-size: 20px;
 	}
 	
 	.agreeTerm{
@@ -120,8 +119,7 @@ $(document).ready(function(){
 		
 		//약관 동의(모두 동의)
 		$("#totalAgree").on('click', function(){
-			var checked = $(this).is(':checked');
-			//alert(checked);	
+			var checked = $(this).is(':checked');	
 			
 			if(checked) {
 		    	$(".agree").prop('checked', true);
@@ -151,10 +149,6 @@ $(document).ready(function(){
 			if(checked){
 				$(".agreeForm").hide();
 				$(".insertForm").show();
-				$(".agrees").css("background-color","white");
-				$(".agrees").css("font-weight","normal");
-				$(".insert").css("background-color","#dcdcdc");
-				$(".insert").css("font-weight","bold");
 				$("html").scrollTop(0);
 			}else{
 				alert("필수 약관을 동의해주시기 바랍니다");
@@ -173,21 +167,24 @@ $(document).ready(function(){
 			if(pw.match(regExp) == null){
 				// 처리할 문장
 				$("#userpw").html("형식에 맞게 입력하세요");
+				$(".password2").val("");
 			}else{
 				$("#userpw").html("");
+				$(".password2").val("");
 			}
 		});	
 			$(".password2").keyup(function () {
 				var check=$(this).val();
 				var pw=$(".password1").val();
 				
-			if(check.match(pw) == null){
+			if(pw==check){
+				$("#userpw2").html("");
+				
+			}else{
+
 				// 처리할 문장
 				$("#userpw2").html("비밀번호가 일치하지 않습니다.");
 				$("#userpw2").css("color","#FFAF00");
-				
-			}else{
-				$("#userpw2").html("");
 			}
 		});	
 		
@@ -291,17 +288,17 @@ const autoHyphen2 = (target) => {
 	<div style="background-color: white;">
 
 		<div class="userJoinTerm"> <!-- div 전체 -->
+			<div class="agreeForm">
+				<div class="stepBox">
+					<h2>판매자 회원가입</h2>
+					<ul>
+						<li style="color:red; font-weight: bold; border: 1px solid red;">1.약관 동의</li>
+						<li style="color:lightgray; font-weight: bold; border: 1px solid lightgray;">2.정보 입력</li>
+						<li style="color:lightgray; font-weight: bold; border: 1px solid lightgray;">3.가입 완료</li>
+					</ul>	
+				</div>
 			
-			<div class="stepBox">
-				<h2>개인 회원가입</h2>
-				<ul>
-					<li style="background-color: #dcdcdc; font-weight: bold;" class="agrees">1.약관 동의</li>
-					<li class="insert">2.정보 입력</li>
-					<li class="gaip">3.가입 완료</li>
-				</ul>	
-			</div>
 			
-		<div class="agreeForm">	
 			<div class="agreeTerm" >
 				<h5>서비스 이용약관</h5>
 				<hr>
@@ -327,6 +324,15 @@ const autoHyphen2 = (target) => {
 	</div>	
 		<!-- 정보 입력 테이블-->
 		<div class="insertForm" style="display: none;">
+			<!-- 단계 Step Box -->
+			<div class="stepBox">
+				<h2>판매자 회원가입</h2>
+				<ul>
+					<li style="color:lightgray; font-weight: bold; border: 1px solid lightgray;">1.약관 동의</li>
+					<li style="color:red; font-weight: bold; border: 1px solid red;">2.정보 입력</li>
+					<li style="color:lightgray; font-weight: bold; border: 1px solid lightgray;">3.가입 완료</li>
+				</ul>	
+			</div>
 			<form action="insert" method="post" enctype="multipart/form-data" onsubmit="return check()">
 				<h5 style="font-weight: bold;">개인 회원가입</h5>
 				<table class="table test" style="width: 100%">

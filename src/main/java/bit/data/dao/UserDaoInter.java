@@ -11,5 +11,5 @@ public interface UserDaoInter {
 	public void insertUser(UserDto dto);
 	public int getUserIdSearch(String email);
 	public int getIdPassCheck(Map<String, String> map);
-	public UserDto getDataById(String id);
+	public UserDto getDataById(String email);
 }

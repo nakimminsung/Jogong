@@ -133,7 +133,7 @@ public class JoinController {
 		
 
 		//자동입력
-		dto.setProfileImage("dd");
+		dto.setProfileImage("user_default.png");
 		dto.setAddress(address);
 		dto.setPoint(0);
 		dto.setYear(birthyear);
