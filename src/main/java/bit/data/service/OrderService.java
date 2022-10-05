@@ -80,4 +80,10 @@ public class OrderService implements OrderServiceInter {
 		return orderdao.getOrderDetailNum(num);
 	}
 
+	@Override
+	public Integer getFriendNum(int num) {
+		// TODO Auto-generated method stub
+		return orderdao.getFriendNum(num);
+	}
+
 }
