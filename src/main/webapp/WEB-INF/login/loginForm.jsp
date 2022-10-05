@@ -192,10 +192,12 @@ $(document).ready(function(){
                         const kakao_account = res.kakao_account;
                         console.log(kakao_account)
                         
+                        
+                        
                     }
                 });
             	
-                window.location.href='http://localhost:9000/jogong/loginForm' //리다이렉트 되는 코드
+                //window.location.href='http://localhost:9000/jogong/loginForm' //리다이렉트 되는 코드
             },
             fail: function(error) {
                 console.log(error);
