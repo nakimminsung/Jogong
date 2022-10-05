@@ -49,27 +49,41 @@ public class PaymentController {
        String pg = request.getParameter("pg");
        String pay_method = request.getParameter("pay_method");
        String name = request.getParameter("name");
+       
+       String buyer_addr = request.getParameter("buyer_addr");
        String buyer_name = request.getParameter("buyer_name");
+       String buyer_tel = request.getParameter("buyer_tel");
+       String buyer_postcode = request.getParameter("buyer_postcode");
        String amount = request.getParameter("amount");
+       
        String to_member_id = request.getParameter("custom_data[member_id]");
        String count = request.getParameter("custom_data[count]");
        String messagecard = request.getParameter("custom_data[messagecard]");
        String banner = request.getParameter("custom_data[banner]");
        String message = request.getParameter("custom_data[message]");
        
+       String point = request.getParameter("custom_data[point]");
+       
       OrderTestDto ordertestDto = new OrderTestDto(); 
       ordertestDto.setImp_uid(imp_uid);
       ordertestDto.setMerchant_uid(merchant_uid);
-      ordertestDto.setName(name);
-      ordertestDto.setAmount(Integer.parseInt(amount));
-      ordertestDto.setBuyer_name(buyer_name);
       ordertestDto.setPg(pg);
       ordertestDto.setPay_method(pay_method);
+      ordertestDto.setName(name);
+      
+      ordertestDto.setAddr(buyer_addr);
+      ordertestDto.setBuyer_name(buyer_name);
+      ordertestDto.setHp(buyer_tel);
+      ordertestDto.setPostalcode(buyer_postcode);
+      ordertestDto.setAmount(Integer.parseInt(amount));
+      
       ordertestDto.setTo_member_id(to_member_id);
       ordertestDto.setCount(Integer.parseInt(count));
       ordertestDto.setMessagecard(messagecard);
       ordertestDto.setBanner(banner);
       ordertestDto.setMessage(message);
+      
+      ordertestDto.setPoint(Integer.parseInt(point));
       
       ordersevice.insertOrder(ordertestDto);
    }
