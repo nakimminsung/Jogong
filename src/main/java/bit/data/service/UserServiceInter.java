@@ -9,6 +9,6 @@ public interface UserServiceInter {
 	public int getUserFriendCount(int userNum);
 	public void insertUser(UserDto dto);
 	public int getUserIdSearch(String email);
-	public int getIdPassCheck(String id,String pass);
-	public UserDto getDataById(String id);
+	public int getIdPassCheck(String email, String password);
+	public UserDto getDataById(String email);
 }

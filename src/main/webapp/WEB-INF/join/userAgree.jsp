@@ -119,8 +119,7 @@ $(document).ready(function(){
 		
 		//약관 동의(모두 동의)
 		$("#totalAgree").on('click', function(){
-			var checked = $(this).is(':checked');
-			//alert(checked);	
+			var checked = $(this).is(':checked');	
 			
 			if(checked) {
 		    	$(".agree").prop('checked', true);
@@ -168,21 +167,24 @@ $(document).ready(function(){
 			if(pw.match(regExp) == null){
 				// 처리할 문장
 				$("#userpw").html("형식에 맞게 입력하세요");
+				$(".password2").val("");
 			}else{
 				$("#userpw").html("");
+				$(".password2").val("");
 			}
 		});	
 			$(".password2").keyup(function () {
 				var check=$(this).val();
 				var pw=$(".password1").val();
 				
-			if(check.match(pw) == null){
+			if(pw==check){
+				$("#userpw2").html("");
+				
+			}else{
+
 				// 처리할 문장
 				$("#userpw2").html("비밀번호가 일치하지 않습니다.");
 				$("#userpw2").css("color","#FFAF00");
-				
-			}else{
-				$("#userpw2").html("");
 			}
 		});	
 		

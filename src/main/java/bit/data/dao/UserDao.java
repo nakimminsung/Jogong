@@ -45,8 +45,8 @@ public class UserDao implements UserDaoInter {
 	}
 
 	@Override
-	public UserDto getDataById(String id) {
+	public UserDto getDataById(String email) {
 		// TODO Auto-generated method stub
-		return session.selectOne(ns+"getDataById", id);
+		return session.selectOne(ns+"getDataById", email);
 	}
 }
