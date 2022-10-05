@@ -137,7 +137,7 @@ public class JoinController {
 		
 
 		//자동입력
-		dto.setProfileImage("user_default.png");
+		dto.setProfileImage("https://github.com/kkookkss/jogong_data/blob/main/user/man/500user_default.png?raw=true");
 		dto.setAddress(address);
 		dto.setPoint(0);
 		dto.setYear(birthyear);
