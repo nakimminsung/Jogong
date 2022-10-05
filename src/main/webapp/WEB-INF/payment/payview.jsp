@@ -30,6 +30,7 @@
 	var buyer_addr = "";
 	var buyer_tel = "";
 	var buyer_postcode = "";
+	var to_member_id = "";
 	
 	$(function() {
 		$(document).on("click",".message",function() {
@@ -80,7 +81,7 @@
             <div class="subcontents">
                 <h1>선물 발송·결제</h1>
                 <h2>선물 꾸미기</h2>
-                <p style="visibility:hidden" id="to_member_id">${to_member_id}</p>
+                <%-- <p style="visibility:hidden" id="to_member_id">${to_member_id}</p> --%>
                 <div class="justify-cont col-type01">
                     <!-- 테마와 배너 선택 -->
                     <div class="theme_all">
@@ -263,28 +264,26 @@
 						<tr>
 						<th> 받는사람 이름 </th>
 							<td>
-								<input type="text" style="width: 50%;" required name="companyName" id="to_name">
-								
+								<input type="text" style="width: 50%;" required name="companyName" id="to_name" value="${to_member_id }">
 							</td>
 						</tr>
 						<tr>
 						<th> 연락처 </th>
 							<td>
-								<input type="text" style="width: 50%;" required name="to_hp">
-								
+								<input type="text" style="width: 50%;" required id="to_hp" value="">
 							</td>
 						</tr>
 						<tr>
 							<th> 배송받을 주소 </th>
 							<td>
-								<input type="text" id="addr_1" placeholder="우편번호" style="width: 50%; margin-bottom: 5px;" required>
+								<input type="text" id="sample4_postcode" placeholder="우편번호" style="width: 50%; margin-bottom: 5px;" required value="">
 								<input type="button" onclick="sample4_execDaumPostcode()" class="btn btn-dark btn-sm" value="우편번호 찾기" style=" margin-bottom: 5px;"><br>
-								<input type="text" id="addr_2" placeholder="도로명주소" size="60" 
+								<input type="text" id="sample4_roadAddress" placeholder="도로명주소" size="60" value=""
 								style="width: 50%; margin-bottom: 5px;" required name="address1"><br>
 								
-								<input type="hidden" id="" placeholder="지번주소"  size="60">
+								<input type="hidden" id="sample4_jibunAddress" placeholder="지번주소"  size="60">
 								<span id="guide" style="color:#999; display:none"></span>
-								<input type="text" id="addr_3" placeholder="상세주소"  size="60" 
+								<input type="text" id="sample4_detailAddress" placeholder="상세주소"  size="60" value=""
 								style="width: 50%;"required name="address2"><br>
 								
 								<input type="hidden" id="sample4_extraAddress" placeholder="참고항목"  size="60">
@@ -318,7 +317,7 @@
                 <div class="row-type04" id="point_box">
                     <h4>보유 포인트</h4>
                     <p class="form-type01 btn-area" id="point_box_area">
-                        <span><em class="fc-01" id="gs_point">0</em> 원</span>
+                        <span><em class="fc-01" id="gs_point">${point}</em> 원</span>
                         <a href="javascript:giftishowPointUse()" id="giftishowPointChk" class="btn-type-c">전액사용</a>
                         <input type="text" id="giftishowUsePoint" value="0">
                     </p>
@@ -498,7 +497,7 @@ function payment(data) {
         pay_method: "card", //지불 방법
         merchant_uid: rand, //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
         name : '${sangpum}', //결제창에 노출될 상품명
-        //amount: ${totalprice},
+        amount: ${totalprice},
         buyer_name : "김민성",
         buyer_tel : buyer_tel,
         buyer_addr : buyer_addr,
@@ -522,8 +521,8 @@ function payment(data) {
                        "pay_method" : rsp.pay_method,
                        "custom_data" : rsp.custom_data,
                        "buyer_tel" : rsp.buyer_tel
-               	   	   "buyer_addr" : rsp.buyer_addr
-               	   	   "buyer_postcode" : rsp.buyer_postcode
+               	   	   //"buyer_addr" : rsp.buyer_addr
+               	   	   //"buyer_postcode" : rsp.buyer_postcode
             		   }
                    });
          } else {
@@ -543,7 +542,7 @@ function danal(data) {
 	    pay_method : 'phone',
 	    merchant_uid: rand, //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
         name : '${sangpum}', //결제창에 노출될 상품명
-        //amount: ${totalprice},
+        amount: ${totalprice},
         buyer_name : "김민성",
         buyer_tel : buyer_tel,
         buyer_addr : buyer_addr,
@@ -567,8 +566,8 @@ function danal(data) {
                        "pay_method" : rsp.pay_method,
                        "custom_data" : rsp.custom_data,
                        "buyer_tel" : rsp.buyer_tel
-               	   	   "buyer_addr" : rsp.buyer_addr
-               	   	   "buyer_postcode" : rsp.buyer_postcode
+                     //"buyer_addr" : rsp.buyer_addr
+               	   	   //"buyer_postcode" : rsp.buyer_postcode
             		   }
                    });
          } else {
@@ -613,8 +612,8 @@ function kg(data) {
                        "pay_method" : rsp.pay_method,
                        "custom_data" : rsp.custom_data,
                        "buyer_tel" : rsp.buyer_tel
-               	   	   "buyer_addr" : rsp.buyer_addr
-               	   	   "buyer_postcode" : rsp.buyer_postcode
+                     //"buyer_addr" : rsp.buyer_addr
+               	   	   //"buyer_postcode" : rsp.buyer_postcode
             		   }
                    });
          } else {
@@ -658,8 +657,8 @@ function toss(data) {
                        "pay_method" : rsp.pay_method,
                        "custom_data" : rsp.custom_data,
                        "buyer_tel" : rsp.buyer_tel
-               	   	   "buyer_addr" : rsp.buyer_addr
-               	   	   "buyer_postcode" : rsp.buyer_postcode
+                     //"buyer_addr" : rsp.buyer_addr
+               	   	   //"buyer_postcode" : rsp.buyer_postcode
             		   }
                    });
        } else {
@@ -771,12 +770,15 @@ payed.onclick = function () {
     const val = selected.getAttribute('value');
 	
     
-	buyer_addr = $("#addr_2").text()+$("addr_3").text();
-	buyer_tel = $("#to_hp").text();
-	buyer_postcode = $("#addr_2").text();
+	buyer_addr = $("#sample4_roadAddress").val()+$("#sample4_detailAddress").val();
+	buyer_tel = $("#to_hp").val();
+	to_member_id = $("#to_name").val();
+	buyer_postcode = $("#sample4_postcode").val();
+	alert(buyer_addr+","+buyer_postcode+","+buyer_tel);
+	
   
     message = $("#mms_send_msg").val();
-    customdata = JSON.parse('{"member_id":"${to_member_id}","count":"${count}","message":"'+message+'","banner":"'+banner+'","messagecard":"'+messagecard+'","buyer_addr":"'+buyer_addr+'"."buyer_tel":"'+buyer_tel+'","buyer_postcode":"'+buyer_postcode+'","point":"'+point+'"}' );
+    customdata = JSON.parse('{"amount":"${totalprice}","member_id":"'+to_member_id+'","count":"${count}","message":"'+message+'","banner":"'+banner+'","messagecard":"'+messagecard+'","buyer_addr":"'+buyer_addr+'","buyer_tel":"'+buyer_tel+'","buyer_postcode":"'+buyer_postcode+'","point":"${point}"}');
     console.dir(customdata)
     
    

@@ -7,6 +7,6 @@
 	</select>
 	
 	<insert id="insertOrder">
-	      insert into Order_Test values (null,#{imp_uid},#{merchant_uid},#{name},#{amount},#{buyer_name},#{pg},#{pay_method},#{to_member_id},#{count},#{point},now(),#{messagecard},#{banner},#{message},#{addr})
+	      insert into Order_Test values (null,#{imp_uid},#{merchant_uid},#{name},#{amount},#{buyer_name},#{pg},#{pay_method},#{to_member_id},#{count},#{point},now(),#{messagecard},#{banner},#{message},#{addr},null,#{hp},#{postalcode})
 	</insert>
 </mapper>
