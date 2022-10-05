@@ -56,7 +56,8 @@ public class PaymentController {
 		 String buyer_tel = request.getParameter("buyer_tel");
          String buyer_addr = request.getParameter("custom_data[buyer_addr]");
          String buyer_postcode = request.getParameter("custom_data[buyer_postcode]");
-	       
+         String userNum = request.getParameter("custom_data[userNum]");
+         String orderDetailNum = request.getParameter("custom_data[orderDetailNum]");
 		 
 		 OrderDto orderDto = new OrderDto(); 
 		 orderDto.setImp_uid(imp_uid);
@@ -67,8 +68,8 @@ public class PaymentController {
 		 orderDto.setBanner(banner);
 		 orderDto.setMessage(message);
 		 orderDto.setOrderStatus(success);
-		 orderDto.setUserNum(Integer.parseInt(amount));
-		 orderDto.setOrderDetailNum(Integer.parseInt(amount));
+		 orderDto.setUserNum(Integer.parseInt(userNum));
+		 orderDto.setOrderDetailNum(Integer.parseInt(orderDetailNum));
 		 orderDto.setHp(buyer_tel);
 		 orderDto.setDeliveryAddress(buyer_addr);
 		 orderDto.setPostalcode(buyer_postcode);
@@ -87,7 +88,12 @@ public class PaymentController {
 		Integer price = orderservice.getItemPriceSearch(num);
 		String thumbnailImage = orderservice.getItemThumbnailSearch(num);
 		Integer count = orderservice.getCount(num);
+		Integer userNum = orderservice.getUserNum(num);
+		Integer orderDetailNum = orderservice.getOrderDetailNum(num);
+		
 		Integer totalprice = price * count;
+		
+		
 		
 		ModelAndView mview = new ModelAndView();
 		
@@ -98,6 +104,8 @@ public class PaymentController {
 		mview.addObject("thumbnailImage",thumbnailImage);
 		mview.addObject("count",count);
 		mview.addObject("totalprice",totalprice);
+		mview.addObject("userNum",userNum);
+		mview.addObject("orderDetailNum",orderDetailNum);
 		
 		mview.setViewName("/bit/payment/payview");
 		
