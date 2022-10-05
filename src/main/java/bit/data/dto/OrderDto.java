@@ -24,4 +24,5 @@ public class OrderDto {
 	private int count;
 	private int userNum;
 	private int orderDetailNum;
+	private int friendNum;
 }

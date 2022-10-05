@@ -29,7 +29,7 @@
 
 	<!-- order에 필요한 nickname 조회 -->
 	<select id="getNickNameSearch" parameterType="int" resultType="string">
-		select nickname from user where  num in (select userNum from orderDetail where num = #{num})
+		select nickname from user where  num = (select userNum from orderDetail where num = #{num})
 	</select>
 
 	<!-- order에 필요한 count 조회 -->
@@ -49,6 +49,6 @@
 	
 	<!-- order 정보 insert -->
 	<insert id="insertOrder">
-	      insert into jogong.order values (null,#{imp_uid},#{totalPrice},now(),#{pg},#{pay_method},#{paidPoint},#{deliveryAddress},#{orderStatus},#{deliveryCharge},#{messagecard},#{banner},#{message},#{hp},#{count},#{postalcode},#{userNum},#{orderDetailNum})
+	      insert into jogong.order values (null,#{imp_uid},#{totalPrice},now(),#{pg},#{pay_method},#{paidPoint},#{deliveryAddress},#{orderStatus},#{deliveryCharge},#{messagecard},#{banner},#{message},#{hp},#{count},#{postalcode},#{userNum},#{orderDetailNum},#{friendNum})
 	</insert>
 </mapper>

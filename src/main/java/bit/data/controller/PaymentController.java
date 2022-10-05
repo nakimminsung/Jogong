@@ -88,8 +88,8 @@ public class PaymentController {
 	@GetMapping("/payview")
 	public ModelAndView payread(int num) {
 		
-		String buyer_name = orderservice.getfriendNickNameSearch(num);
-		String to_member_id = orderservice.getNickNameSearch(num);
+		String buyer_name = orderservice.getNickNameSearch(num);
+		String to_member_id = orderservice.getfriendNickNameSearch(num);
 		String sangpum = orderservice.getItemNameSearch(num);
 		Integer price = orderservice.getItemPriceSearch(num);
 		String thumbnailImage = orderservice.getItemThumbnailSearch(num);

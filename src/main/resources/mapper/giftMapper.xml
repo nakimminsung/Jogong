@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bit.data.dao.GitfDao">
+	<!-- 받은 선물함 조회  -->
+	<select id="getReceiveSearch">
+		select * from product where num in (select productNum from orderDetail where num in (SELECT orderDetailNum FROM jogong.order where friendNum=#{num}));
+	</select>
+
+	<!-- 보낸 선물함 조회  -->
+	<select id="getSendSearch">
+		select * from product where num in (select productNum from orderDetail where num in (SELECT orderDetailNum FROM jogong.order where userNum=#{num}));
+	</select>
+</mapper>
