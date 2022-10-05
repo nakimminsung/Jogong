@@ -31,112 +31,130 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	
 <style type="text/css">
+ 	div {
+        box-sizing: border-box;
+       
+      }
+	.flex-outer-container {
+	  margin: 0 auto;
+	  max-width: 1180px;
+	}
+	.flex-inner-container {
+	  display: flex;
+	  flex-direction: row;
+	  
+	  flex-wrap: wrap;
+	}
+  	@media (min-width: 600px) {
+	  .flex-outer-container {
+	    flex-direction: row;
+	    flex-wrap: wrap;
+	  }
+	  .flip {
+	    flex-basis: 50%;
+	  }
+	}
+	@media (min-width: 900px) {
+	  .flip {
+	    flex-basis: 20%;
+	  }
+	}
+	
+	.flip { 
+	  border: 1px solid #f6f7f7; 
+	 /* flex-grow: 1; */
+  	  width: 200px;
+      height: 300px;
+      /* perspective: 1100px; */ 
+      margin:10px;
+	}
+
+	.card {
+	  width: 100%; 
+	  height: 100%; 
+	  position: relative;
+	  transition: .4s;
+	  transform-style: preserve-3d;
+	}	
+	
+	.front, .back {
+	  position: absolute;
+	  width: 100%; 
+	  height: 100%;
+	  backface-visibility: hidden;
+	}
+	
+	.back { 
+	 
+	  transform: rotateY(180deg);
+	}
+	
+	.flip:hover .card {
+	  transform: rotateY(180deg);
+	}
 </style>
+<script type="text/javascript">
+
+</script>
 </head>
 <body>
-	<h1>reviewMain</h1>
-<%-- 	<div class="searcharea" style="width:100%; text-align: center;">
-		<form action="list">
-			<div class="input-group" style="width:450px;">
-				<!-- <select class="from-select" style="width:150px;" name="searchcolumn">
-					<option value="subject">제목</option>
-					<option value="id">아이디</option>
-					<option value="name">작성자</option>
-					<option value="content">내용</option>
-				</select> -->
-				&nbsp;&nbsp;&nbsp;
-				<input type="text" name="searchword" class="form-control" style="width:140px;"
-					placeholder="검색단어" value="${param.searchword }">
-				<button type="submit" class="btn btn-success">검색</button>
-			</div>
-		</form>
-		<a href="list?searchcolumn=id&searchword=${sessionScope.loginid }">내가쓴글</a>
+	<div  align="center">
+		<h4>실시간후기</h4>
+		<h6 style="color: gray;">고객분들의 실시간 후기를 소개합니다.</h6>
 	</div>
-	
-	<div class="boardlist" style="margin-top: 10px;">
-		<h3 class="alert alert-danger">총 ${totalCount }개의 글이 있습니다</h3>
-		<br><br>
-		<table class="table table-bordered">
-			<tr style="background-color: #ddd">
-				<th style="width: 50px;">번호</th>
-				<th style="width:350px;">제목</th>
-				<td style="width:80px;">작성자</td>
-				<td style="width:120px;">작성일</td>
-				<td style="width:50px;">조회</td>
-				<td style="width:50px;">좋아요</td>
-			</tr>
-		 	<c:if test="${totalCount == 0 }">
-				<tr>
-					<td colspan="6" align="center">
-						<h4>등록된 글이 없습니다</h4>
-					</td>
-				</tr>	
-			</c:if>
-			<c:if test="${totalCount > 0 }">
-				<c:forEach var="dto" items="${list }">
-					<tr>
-						<td align="center">${no }</td>
-						<c:set var="no" value="${no-1 }"/>
-						<td>
-							
-							
-							<a href="detail?num=${dto.num }&currentPage=${currentPage}" style="color:black;">
-								${dto.subject }
-								<c:if test="${dto.photo!='no' }">
-									<i class="fa fa-file-picture-o" style="color:gray;"></i>
-								</c:if>
-								
-							
-							</a>
-						</td>
-						<td align="center">${dto.name }</td>
-						<td align="center">
-							<fmt:formatDate value="${dto.createdAt }"  pattern="yyyy-MM-dd"/>
-						</td>
-						<td align="center">${dto.readcount }</td>
-						<td align="center">${dto.likes }</td>
-					</tr>
-				</c:forEach>
-			</c:if> 
-			
-			<!-- 글쓰기 버튼은 로그인을 해야만 보인다 -->
-			<c:if test="${sessionScope.loginok!=null }">
-				<tr>
-					<td colspan="6" align="right">
-						<button type="button" class="btn btn-outline-success"
-							onclick="location.href='form'">글쓰기</button>
-					</td>
-				</tr>
-			</c:if> 
-		</table>
-	</div>
-	
-	
-	
-	
-	
-	<div class="paging" style="margin-left:200px;">
-		<ul class="pagination">
-			<c:if test="${startPage>1 }">
-				<li class="page-item"><a href="list?currentPage=${startPage-1 }" class="page-link">이전</a></li>
-			</c:if>
-			
-			<!-- 페이지 번호 -->
-			<c:forEach var="pp" begin="${startPage }" end="${endPage }">
-				<c:if test="${pp==currentPage }">
-					<li class="page-item active"><a class="page-link" href="list?currentPage=${pp }">${pp }</a></li>
-				</c:if>
-				<c:if test="${pp!=currentPage }">
-					<li class="page-item"><a class="page-link" href="list?currentPage=${pp }">${pp }</a></li>
-				</c:if>	
+	<div class="flex-outer-container">
+		<div class="flex-inner-container">
+			<c:forEach var="dto" items="${list }">
+ 				<div class="flip">
+	        		<div class="card" >
+	        			<div class="front" style="overflow: hidden;">
+	        				<img src="${dto.reviewImageUrl }" width="250" height="250">
+	        				<h6 align="center" >${dto.subject }</h6>
+	        				<p align="right"><i class="fas fa-star" style="color: rgb(247, 200, 21);"></i><b>${dto.rating }</b></p>
+	        			</div>
+	        			<div class="back">
+	        				<h6>${dto.subject }</h6>
+	        				<p>${dto.content }</p>
+	        			</div>
+	        		</div>
+	      		</div>				
 			</c:forEach>
-			
-			
-			<c:if test="${endPage<totalPage }">
-				<li class="page-item"><a href="list?currentPage=${endPage+1 }" class="page-link">다음</a></li>	
-			</c:if>
-		</ul>
-	</div> --%>
+		</div>
+    </div>
+<%-- 	<div  align="center">
+		<h4>실시간후기</h4>
+		<h6 style="color: gray;">고객분들의 실시간 후기를 소개합니다</h6>
+	</div>
+	<c:forEach var="dto" items="${list }">
+		
+		<tr>
+			<td align="center">${no }</td>
+			<c:set var="no" value="${no-1 }"/>
+			<td>
+	
+				<!-- 답글일 경우 답글 이미지 넣기 -->
+				<c:if test="${dto.relevel>0 }">
+					<img src="../image/re.png">
+				</c:if>
+				<a href="detail?num=${dto.num }&currentPage=${currentPage}" style="color:black;">
+					${dto.subject }
+					<c:if test="${dto.photo!='no' }">
+						<i class="fa fa-file-picture-o" style="color:gray;"></i>
+					</c:if>
+					
+					<!-- 댓글이 0개 이상인경우에 댓글 갯수 출력 -->
+					<c:if test="${dto.acount>0 }">
+						<b style="color:red;">[${dto.acount }]</b>
+					</c:if>
+				</a>
+			</td>
+			<td align="center">${dto.name }</td>
+			<td align="center">
+				<fmt:formatDate value="${dto.writeday }"  pattern="yyyy-MM-dd"/>
+			</td>
+			<td align="center">${dto.readcount }</td>
+			<td align="center">${dto.likes }</td>
+		</tr>
+	</c:forEach> --%>
 </body>
 </html>
-
