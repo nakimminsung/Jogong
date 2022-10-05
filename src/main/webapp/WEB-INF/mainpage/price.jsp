@@ -34,7 +34,7 @@
 	}
 	
 	.cardPrice>img.card-img-top{
-		height: 15rem;
+		height: 17rem;
 	}
 	
 	.priceRange{
@@ -79,7 +79,7 @@
 			success:function(res){
 				console.log(res);
 				$.each(res,function(i,e){
-					s+="<div class='card cardPrice' onclick=\"location.href='${root}'\">"
+						s+="<div class='card cardPrice' onclick=\"location.href='product/detail?num="+e.num+"'\">";
 						s+="<img class='card-img-top' src='"+ e.thumbnailImageUrl+"' alt='Card image cap'>";
 						s+="<div class='card-body'>";
 							s+="<h5 class='card-title'>"+e.brand+"</h5>";

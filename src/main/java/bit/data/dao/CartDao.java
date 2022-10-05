@@ -24,5 +24,9 @@ public class CartDao implements CartDaoInter {
 	public void deleteCart(int cartNum) {
 		session.selectOne(ns+"deleteCart", cartNum);
 	}
-	
+
+	@Override
+	public void insertCart(CartListDto dto) {
+		session.insert(ns+"insertCart", dto);
+	}
 }

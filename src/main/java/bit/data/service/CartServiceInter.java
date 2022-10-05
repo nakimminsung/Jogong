@@ -7,4 +7,5 @@ import bit.data.dto.CartListDto;
 public interface CartServiceInter {
 	public List<CartListDto> getCartList(int userNum);
 	public void deleteCart(int cartNum);
+	public void insertCart(CartListDto dto);	
 }
