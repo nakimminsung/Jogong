@@ -10,9 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import bit.data.dto.OrderDetailDto;
 import bit.data.service.OrderDetailServiceInter;
 
@@ -45,25 +42,23 @@ public class OrderDetailController {
     
     // 나에게 선물하기 (cart)
     @PostMapping("/insertSelfCart")
-    public String insertSelfCart(
+    @ResponseBody
+    public Map<String, Integer> insertSelfCart(
             @RequestBody HashMap<String,Object> params) {
-        
         
         HashMap<String,Object> map = new HashMap<String,Object>();
         
         List<Map<String,Object>> cartList = (List<Map<String,Object>>) params.get("cartInsertList");
-        
-//        for(int i=0; i<cartList.size(); i++) {
-//            System.out.println(cartList.get(i).get("productNum"));
-//        }
         
         map.put("cartList" , cartList);
         
         orderDetailService.insertSelfCart(map);
         
         int num = orderDetailService.getMaxNum();
+        Map<String,Integer> map2 = new HashMap<String,Integer>();
+        map2.put("num", num);
         
-        return "redirect:../payview?num="+num;  
+        return map2;  
     }
     
 }

@@ -27,6 +27,11 @@ public class CartService implements CartServiceInter {
 	}
 
 	@Override
+    public void deleteCheckCart(HashMap<String, Object> map) {
+	    cartDaoInter.deleteCheckCart(map);
+    }
+
+    @Override
 	public void updateCart(int cartNum, int qty) {
 		Map<String,Integer> map = new HashMap<>();
 		map.put("cartNum", cartNum);

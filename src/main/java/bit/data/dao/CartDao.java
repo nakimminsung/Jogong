@@ -1,5 +1,6 @@
 package bit.data.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +25,20 @@ public class CartDao implements CartDaoInter {
 	@Override
 	public void deleteCart(int cartNum) {
 		session.selectOne(ns+"deleteCart", cartNum);
+	}
+	
+	@Override
+	public void deleteCheckCart(HashMap<String,Object> map) {
+	    
+	    List<Integer> list = (List<Integer>) map.get("deleteList");
+	    
+	    int cartNum;
+	    
+	    for(int i=0; i<list.size(); i++) {
+	        cartNum = Integer.parseInt(String.valueOf(list.get(i)));
+	        session.selectOne(ns+"deleteCart", cartNum);
+	    }
+	    
 	}
 
 	@Override

@@ -148,12 +148,32 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		height: 70px;
+		height: 50px;
 		border-bottom: 2px solid #f0f0f0;
 		padding-bottom: 5px;
 		position: sticky;
 		top:100px;
 		background-color: white;
+	
+	}
+	div.cart-test {
+		max-width: 800px;
+		margin: 0 0 0 auto;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		height: 70px;
+		border-bottom: 2px solid #f0f0f0;
+		padding-bottom: 5px;
+		position: sticky;
+		bottom: 0;
+		background-color: white;
+		border-top: 2px solid lightgray;
+		border-left: 2px solid lightgray;
+		border-right: 2px solid lightgray;
+		padding-right: 10px;
+		border-radius: 10px 10px 0 0;
+		padding-top:5px;
 	
 	}
 	div.cart-total-right {
@@ -281,14 +301,14 @@
 		cartlist();
 		
     	var publicOption = "";
-    	let userNum = 1;
-    	let productNum = "";
+    	var userNum = 1;
+    	var productNum = "";
     	var updateCartNum="";
 		
 		// 단건 상품 삭제
 		$(document).on("click",".cart-check-delete",function(){
 			
-			var cartDeleteResult = confirm("상품 1종이 선물상자에서 삭제됩니다.\n정말 삭제할까요?");
+			let cartDeleteResult = confirm("상품 1종이 선물상자에서 삭제됩니다.\n정말 삭제할까요?");
 			
 			if(cartDeleteResult == true) {
 				let cartNum = $(this).attr("cartNum");
@@ -304,6 +324,34 @@
 					}
 				});	
 			} 
+		});
+		
+		// 선택 삭제
+		$("#cart-all-delete").click(function(){
+			
+			let cartDeleteList = [];
+			
+			$('input:checkbox[name=cart-check]:checked').each(function() {			
+				cartDeleteList.push($(this).attr("cartNum"));
+			});
+			
+			let cartDeleteResult = confirm("상품 "+cartDeleteList.length+"건이 선물상자에서 삭제됩니다.\n정말 삭제할까요?");
+			console.log(cartDeleteList);
+			
+			if(cartDeleteResult == true) {
+				
+			 	$.ajax({
+					type: "post",
+					url: "../cart/checkDelete",
+					dataType: "text",
+					data: JSON.stringify({"cartDeleteList":cartDeleteList}),
+					contentType: "application/json; charset=utf-8",
+					success:function(res){
+						
+						window.location.href="cart";
+					}
+				});
+			}
 		});
         
 		// 장바구니에서 위시리스트 추가
@@ -420,11 +468,11 @@
 		// 나에게 선물하기
 		$("#cart-order-self").click(function(){
 			
-			var cartInsertList = [];
+			let cartInsertList = [];
 			
 			$('input:checkbox[name=cart-check]:checked').each(function() {
 				
-				var data = {
+				let data = {
 					productNum : $(this).attr("productNum"),
 					userNum : $(this).attr("userNum"),
 					friendNum : $(this).attr("userNum"),
@@ -436,19 +484,15 @@
 				cartInsertList.push(data);
 			});
 			
-		 	for(let i=0; i<cartInsertList.length; i++) {
-				console.log(cartInsertList[i]);
-			}
-			
 		 	$.ajax({
 				type: "post",
 				url: "../orderDetail/insertSelfCart",
-				dataType: "text",
+				dataType: "json",
 				data: JSON.stringify({"cartInsertList":cartInsertList}),
 				contentType: "application/json; charset=utf-8",
 				success:function(res){
 					
-					window.location.href="cart";
+					window.location.href="../payview?num="+res.num;
 				}
 			});
 			
@@ -536,10 +580,16 @@
 			<div class="cart-total-left">
 				<input type="checkbox" id="cart-all-check">
 			</div>
-			<div class="cart-total-right">
-				<div class="cart-total-right-price">
-					<b style="font-size:17px; font-weight: normal;">총 결제 금액</b>
-					&nbsp;
+			<div class="cart-total-right" style="padding-right: 10px;">
+				<b style="color:#a0a0a0; cursor: pointer;" id="cart-all-delete">삭제하기</b>
+			</div>
+		</div>
+		<div class="cart-result" style="position: relative; top:40px;">
+		</div>
+		<div class="cart-test" style="z-index: 100; width: 65%; display: flex; justify-content: flex-end; margin-top: 100px;">
+			<div class="cart-total-right" >
+				<div class="cart-total-right-price" style="margin-right: 10px;">
+					<b style="font-size:17px; font-weight: normal; margin-right: 30px;">총 결제 금액</b>
 					<b class="cart-total-price" style="font-size: 20px;">0</b>
 					<b style="font-size:17px; font-weight: normal;">원</b>
 				</div>
@@ -548,8 +598,6 @@
 					<button type="button" id="cart-order-gift" class="btn btn-warning">선물하기</button>
 				</div>
 			</div>
-		</div>
-		<div class="cart-result" style="position: relative; top:40px;">
 		</div>
 	</div>
 	<!-- option modal -->

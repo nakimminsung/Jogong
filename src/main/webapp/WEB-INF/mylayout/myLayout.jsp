@@ -35,7 +35,6 @@
 	  margin: 0 auto;
 	  height: auto;
 	  min-height: 100%;
-	  padding-bottom: 130px;
 	  position: relative;
 	}
 	div.content{
