@@ -21,4 +21,10 @@ public class OrderDetailService implements OrderDetailServiceInter {
 	public void insertSelfGift(OrderDetailDto dto) {
 		orderDetailDaoInter.insertSelfGift(dto);	
 	}
+
+	@Override
+	public int getMaxNum() {
+		// TODO Auto-generated method stub
+		return orderDetailDaoInter.getMaxNum();
+	}
 }

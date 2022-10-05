@@ -18,5 +18,6 @@ public class SellerDto {
 	private String bank;
 	private String accountNumber;
 	private Timestamp createdAt;
+	private String salt;
 	
 }

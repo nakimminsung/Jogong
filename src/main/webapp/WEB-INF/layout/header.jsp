@@ -69,7 +69,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 		display: flex;
 		justify-content: flex-end;
 		align-items: center;
-		min-width:250px;
+		min-width:300px;
 	}
 	form.search{
 	    display: flex;
@@ -123,7 +123,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 	border-radius:100px;
 	width:30px;
 	height:30px;
-	margin:10px 10px;
+	margin:5px 5px;
 	}
 </style>
 <body>
@@ -162,10 +162,10 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 			
 			<!-- 로그인 상태일때 -->
 			<c:if test="${sessionScope.loginok!=null}"> <!-- 세션영역(세션에서 찾을때 무조건써줘야함) -->
-				<a href="${root}/cscenter/faq"><b style="font-size: 16px;">고객센터</b></a>
-				<img src="${root}/resources/image/${sessionScope.loginphoto}" class="profile"><b style="max-width:500px;">${sessionScope.loginname}님</b>
+				<a href="${root}/cscenter/faq"><b style="font-size: 16px;">고객센터</b></a>&emsp;
+				<img src="${sessionScope.loginphoto}" class="profile"><b style="max-width:500px;">${sessionScope.loginname}님</b>
 				&nbsp;&nbsp;
-				<a class="login" href="${root}/logout">로그아웃</a>
+				<a class="logout" href="${root}/logout">로그아웃</a>
 			</c:if>
 			
 		</div>	<!-- div.right 종료 -->

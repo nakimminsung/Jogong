@@ -1,9 +1,13 @@
 package bit.data.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import bit.data.dto.OrderDetailDto;
 import bit.data.service.OrderDetailServiceInter;
@@ -15,13 +19,14 @@ public class OrderDetailController {
 	OrderDetailServiceInter orderDetailService;
 	
 	@PostMapping("/insert")
-	public String insert(OrderDetailDto dto)
+	@ResponseBody
+	public Map<String, Integer> insert(OrderDetailDto dto)
 	{
 		orderDetailService.insertOrderDetail(dto);
-		//int num = dto.getProductNum();
-		//System.out.println("성공 2");
-		//return "redirect:detail?num="+num;
-		return "redirect:/";	
+		int num = orderDetailService.getMaxNum();
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("num",num);
+		return map;	
 	}
 	
 	// 나에게 선물하기
@@ -29,7 +34,8 @@ public class OrderDetailController {
 	public String insertSelfGift(OrderDetailDto dto)
 	{
 		orderDetailService.insertSelfGift(dto);
-	
-		return "redirect:../payview";	
+		int num = orderDetailService.getMaxNum();
+		
+		return "redirect:../payview?num="+num;	
 	}
 }

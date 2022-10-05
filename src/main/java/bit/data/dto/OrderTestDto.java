@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 public class OrderTestDto {
 	private int num;
 	private Timestamp pay_date;
-	private boolean success;
 	private int point;
 	
 	private String imp_uid;
@@ -19,7 +18,6 @@ public class OrderTestDto {
 	private String pay_method;
 	private String name;
 	
-	private String addr;
 	private String buyer_name;
 	private String hp;
 	private String postalcode;
@@ -31,4 +29,6 @@ public class OrderTestDto {
 	private String banner;
 	private String message;
 
+	private String addr;
+	private String success;
 }

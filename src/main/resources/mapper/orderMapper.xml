@@ -2,11 +2,42 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bit.data.dao.OrderDao">
+	<!-- order 데이터 전체 조회  -->
 	<select id="getAllSearch">
-		select * from Order_Test 
+		select * from order 
 	</select>
-	
+
+	<!-- order에 필요한 상품 정보 조회(상품명) -->
+	<select id="getItemNameSearch" parameterType="int" resultType="string">
+		select name from product where num in (select productNum from orderDetail where num = #{num}) 
+	</select>
+
+	<!-- order에 필요한 상품 정보 조회(가격) -->
+	<select id="getItemPriceSearch" parameterType="int" resultType="int">
+		select price from product where num in (select productNum from orderDetail where num = #{num})
+	</select>
+
+	<!-- order에 필요한 상품 정보 조회(썸네일) -->
+	<select id="getItemThumbnailSearch" parameterType="int" resultType="string">
+		select thumbnailImageUrl from product where num in (select productNum from orderDetail where num = #{num}) 
+	</select>
+
+	<!-- order에 필요한 친구 nickname 조회 -->
+	<select id="getfriendNickNameSearch" parameterType="int" resultType="string">
+		select nickname from user where num in (select friendNum from orderDetail where num = #{num})
+	</select>
+
+	<!-- order에 필요한 nickname 조회 -->
+	<select id="getNickNameSearch" parameterType="int" resultType="string">
+		select nickname from user where  num in (select userNum from orderDetail where num = #{num})
+	</select>
+
+	<!-- order에 필요한 count 조회 -->
+	<select id="getCount" parameterType="int" resultType="int">
+		select qty from orderDetail where  num = #{num};
+	</select>
+
 	<insert id="insertOrder">
-	      insert into Order_Test values (null,#{imp_uid},#{merchant_uid},#{name},#{amount},#{buyer_name},#{pg},#{pay_method},#{to_member_id},#{count},#{point},now(),#{messagecard},#{banner},#{message},#{addr},null,#{hp},#{postalcode})
+	      insert into jogong.order values (null,#{imp_uid},#{totalPrice},now(),#{pg},#{pay_method},#{paidPoint},#{deliveryAddress},#{orderStatus},#{deliveryCharge},#{messagecard},#{banner},#{message},#{hp},#{count},#{postalcode},#{userNum},#{orderDetailNum})
 	</insert>
 </mapper>

@@ -11,12 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import bit.data.dto.UserDto;
 import bit.data.service.UserServiceInter;
 import util.SHA256Util;
-
+import bit.data.dto.KakaoDto;
 import bit.data.dto.SellerDto;
 import bit.data.service.SellerServiceInter;
 
@@ -74,19 +75,23 @@ public class JoinController {
 			address=address1 +", "+ address2;
 		}
 		
+		//SHA-256 암호화를 위한 salt 선언 및 dto에 담기
+		String salt=SHA256Util.generateSalt();
+		dto.setSalt(salt);
+		
+		//입력받은 password 가져오기
+		String password=dto.getPassword();
+		
+		//password에 SHA-256 암호화 적용시키기 (원본, 랜덤 salt 값)
+		password=SHA256Util.getEncrypt(password, salt);
+		
+		//암호화 적용된 비밀번호를 dto에 담기
+		dto.setPassword(password);
+		
+		//dto에 담기
 		dto.setAddress(address);
 		dto.setLogoImage("user_default.png");
-
-		//중간 확인 (콘솔)
-		System.out.println(dto.getEmail());
-		System.out.println(dto.getPassword());
-		System.out.println(dto.getCompanyName());
-		System.out.println(dto.getBusinessNumber());
-		System.out.println(dto.getLogoImage());	//null
-		System.out.println(dto.getPhone());
-		System.out.println(dto.getAddress());
-		System.out.println(dto.getBank());
-		System.out.println(dto.getAccountNumber());
+		
 		
 		//ServiceInter 의 insertSeller 호출 (dto 전달)
 		sellerService.insertSeller(dto);
@@ -133,7 +138,7 @@ public class JoinController {
 		
 
 		//자동입력
-		dto.setProfileImage("user_default.png");
+		dto.setProfileImage("https://github.com/kkookkss/jogong_data/blob/main/user/man/500user_default.png?raw=true");
 		dto.setAddress(address);
 		dto.setPoint(0);
 		dto.setYear(birthyear);
@@ -156,7 +161,27 @@ public class JoinController {
 		map.put("userCount", userCount);
 		return map;
 	}
-
+	
+	
+	//카카오 테스트
+	@GetMapping("/kakaoLogin")
+	public String kakaoLogin(@RequestParam(value = "code", required = false) String code) throws Exception {
+		System.out.println("#########" + code);
+		String access_Token = userService.getAccessToken(code);
+	    
+		// userInfo의 타입을 KakaoDTO로 변경 및 import.
+		KakaoDto userInfo = userService.getKakaoInfo(access_Token);
+	    
+		System.out.println("###access_Token#### : " + access_Token);
+//		System.out.println("###nickname#### : " + userInfo.get("nickname"));
+//		System.out.println("###email#### : " + userInfo.get("email"));
+		
+		System.out.println("###nickname#### : " + userInfo.getK_name());
+		System.out.println("###email#### : " + userInfo.getK_email());
+		
+		
+		return "member/testPage";
+	}
 
 	
 }

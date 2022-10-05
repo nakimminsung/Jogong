@@ -80,7 +80,7 @@
 				
 				<br>
 				<button type="button" class="btn btn-outline-secondary" style="margin-top: 20px;"
-				onclick="location.href='${root}/login/loginForm'">로그인 페이지로 이동</button>
+				onclick="location.href='${root}/loginForm'">로그인 페이지로 이동</button>
 				
 			</div>
 		
