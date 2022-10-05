@@ -218,5 +218,11 @@ $(document).ready(function(){
 			
 		});	//ajax 종료
 	});	//로그인 버튼 이벤트 종료
+	
+	
+	$(".btnKakaoLogin").click(function () {
+		location.href='http://localhost:9000/jogong/loginForm/kakaoLogin';
+	});
+	
 </script>
 </html>

@@ -142,6 +142,15 @@ public class LoginController {
 		
 	}
 	
+//	카카오 로그인
+	@GetMapping("/loginForm/kakaoLogin")
+	public String kakaoLogin() {
+
+		
+      return "/bit/login/kakaoLogin";
+	}
+	
+	
 	
 
 }
