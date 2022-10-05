@@ -39,4 +39,16 @@
 		select * from theme where num=#{themeNum} 
 	</select>
 	
+	<!-- 상세페이지 -->
+	<select id="selectProductDetail" parameterType="int" resultType="productDto">
+		select * from product where num=#{num}
+	</select>
+
 </mapper>
+
+
+
+
+
+
+

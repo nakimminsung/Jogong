@@ -11,4 +11,9 @@
 	<delete id="deleteCart" parameterType="int">
 		delete from cartList where num=#{cartNum};
 	</delete>
+	
+	<!-- 상세페이지 선물상자담기 -->
+	<insert id="insertCart" parameterType="cartListDto">
+		insert into cartList values (null,#{qty},#{messageCard},#{engrave},#{userNum},#{productNum})
+	</insert>
 </mapper>
