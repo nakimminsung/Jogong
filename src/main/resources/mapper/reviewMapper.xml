@@ -11,4 +11,20 @@
 	<select id="reviewRatingNum" parameterType="int" resultType="int">
 		select ifnull(count(*),0) from review where productNum=#{num}
 	</select>
+	
+	<!-- 리뷰페이지(review list page) -->
+	<select id="getTotalCount" parameterType="Map" resultType="int">
+		select count(*) from review 
+		<if test="searchcolumn!=null and searchword!=null">
+			where ${searchcolumn} like concat('%',#{searchword},'%')		
+		</if>
+	</select>
+	
+	<select id="getPagingList" parameterType="Map" resultType="reviewDto">   
+		select * from review 
+		<if test="searchcolumn!=null and searchword!=null">
+			where ${searchcolumn} like concat('%',#{searchword},'%') 		
+		</if>
+		limit #{startnum}, #{perpage}
+	</select>
 </mapper>

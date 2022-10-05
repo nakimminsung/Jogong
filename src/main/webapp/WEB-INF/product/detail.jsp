@@ -360,12 +360,13 @@ $(function(){
 		$.ajax({
 			type:"post",
 			url:"../orderDetail/insert",
-			dataType:"text", 
+			dataType:"json", 
 			data:data,
 			success:function(res){
 				/* alert("선물하기"); */
+			
 				modal.style.display = "none"
-				window.location.href="../payview";
+				window.location.href="../payview?num="+res.num; 
 				
 			},
 		});
