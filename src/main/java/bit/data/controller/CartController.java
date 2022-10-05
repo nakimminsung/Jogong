@@ -36,7 +36,7 @@ public class CartController {
 		return "mypage/cart";
 	}
 	
-	@GetMapping("/cart/update")
+	@GetMapping("/update")
 	public String updateCart(int cartNum, int qty) {
 		cartServiceInter.updateCart(cartNum, qty);
 		

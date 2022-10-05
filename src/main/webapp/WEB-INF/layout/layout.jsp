@@ -32,7 +32,6 @@ uri="http://tiles.apache.org/tags-tiles" %>
   </head>
   <style type="text/css">
     #wrapper {
-      width: 100%;
       height: auto;
       min-height: 100%;
       padding-top: 100px;
@@ -40,6 +39,7 @@ uri="http://tiles.apache.org/tags-tiles" %>
 
     #content {
       width: 100%;
+      
     }
 
     header#header {

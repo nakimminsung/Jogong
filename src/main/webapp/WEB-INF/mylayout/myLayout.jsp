@@ -32,7 +32,6 @@
 		z-index: 10;
 	}
 	div#wrapper{
-	  max-width: 1180px;
 	  margin: 0 auto;
 	  height: auto;
 	  min-height: 100%;
@@ -40,10 +39,11 @@
 	  position: relative;
 	}
 	div.content{
-		width:100%;
+		max-width: 1180px;
 		top:100px;
 		display: flex;
 		justify-content: space-between;
+		margin: 0 auto;
 	}
 	div#menu{
 		width:30%;

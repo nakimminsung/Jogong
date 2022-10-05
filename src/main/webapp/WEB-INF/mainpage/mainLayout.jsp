@@ -25,7 +25,7 @@
 	  min-height: 100%;
 	  padding-top: 100px;
 	}
-	div#header{
+	header#header{
 		background-color: #fff;
 		position: fixed;
 		top: 0;
@@ -33,8 +33,9 @@
 		height: 100px;
 		z-index: 100;
 	}
-	.content{
-	  width:100%;
+	div.content{
+	  max-width: 1180px;
+	  margin: 0 auto;
 	}
 	footer{
 	  background-color:lightblue;
@@ -45,10 +46,10 @@
 </style>
 </head>
 <body>
+	<header id="header">
+		<tiles:insertAttribute name="header"/>
+	</header>
 	<div id="wrapper">
-		<div id="header">
-			<tiles:insertAttribute name="header"/>
-		</div>
 		<div class="content">
 			<div id="gift">
 				<tiles:insertAttribute name="gift"/>

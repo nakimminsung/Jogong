@@ -23,7 +23,7 @@ public class WishlistController {
 		return "/mypage/mypage/wishlist";
 	}
 	
-	@PostMapping("/wishlist/cart_insert")
+	@PostMapping("/cart_insert")
 	public String insertWishlist(
 			@RequestParam("userNum") int userNum,
             @RequestParam("productNum") int productNum,

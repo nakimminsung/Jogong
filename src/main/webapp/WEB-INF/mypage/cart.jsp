@@ -150,7 +150,7 @@
 		align-items: center;
 		height: 70px;
 		border-bottom: 2px solid #f0f0f0;
-		padding-bottom: 20px;
+		padding-bottom: 5px;
 		position: sticky;
 		top:100px;
 		background-color: white;
@@ -197,8 +197,8 @@
         border: 1px solid rgba( 255, 255, 255, 0.18 );
         width: 400px;
         height: 215px;
-        position: relative;
-        top: 0px;
+        position: absolute;
+        top: 200px;
         padding: 20px;
     }
 	#cart-wish-modal.cart-modal-overlay {
@@ -229,8 +229,8 @@
         border: 1px solid rgba( 255, 255, 255, 0.18 );
         width: 400px;
         height: 300px;
-        position: relative;
-        top: 0px;
+   		position: absolute;
+        top: 200px;
         padding: 20px;
     }
     .modal-fix {
@@ -398,14 +398,13 @@
 		$(document).on("click",".cart-option-button",function(){
 			optionModal.style.display = "flex"
 			updateCartNum = $(this).attr("cartNum");
-			$("body").attr("class","modal-fix");
+			//$("body").attr("class","modal-fix");
 		});
 	    
 		$(document).on("click",".cart-wish-button",function(){
 			wishModal.style.display = "flex"
 			productNum = $(this).attr("productNum");
-			$("body").attr("class","modal-fix");
-			
+			//$("body").attr("class","modal-fix");
 		});
 		
 		$(document).on("click",".btn-cancel",function(){
@@ -416,10 +415,6 @@
 		$(document).on("click",".btn-cancel",function(){
 		    wishModal.style.display = "none"
 	        $("body").attr("class","");
-		});
-		
-		$(document).on(".cart-check-one","click",function(){
-			
 		});
 		
 		// 나에게 선물하기
@@ -545,7 +540,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="cart-result" style="position: relative; top:30px;">
+		<div class="cart-result" style="position: relative; top:40px;">
 		</div>
 	</div>
 	<!-- option modal -->
