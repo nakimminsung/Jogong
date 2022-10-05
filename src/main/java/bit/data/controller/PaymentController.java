@@ -58,7 +58,9 @@ public class PaymentController {
          String buyer_postcode = request.getParameter("custom_data[buyer_postcode]");
          String userNum = request.getParameter("custom_data[userNum]");
          String orderDetailNum = request.getParameter("custom_data[orderDetailNum]");
-		 
+		 String friendNum = request.getParameter("custom_data[friendNum]");
+         
+         
 		 OrderDto orderDto = new OrderDto(); 
 		 orderDto.setImp_uid(imp_uid);
 		 orderDto.setTotalPrice(Integer.parseInt(amount));
@@ -74,6 +76,7 @@ public class PaymentController {
 		 orderDto.setDeliveryAddress(buyer_addr);
 		 orderDto.setPostalcode(buyer_postcode);
 		 orderDto.setCount(Integer.parseInt(count));
+		 orderDto.setFriendNum(Integer.parseInt(friendNum));
 		 
 		orderservice.insertOrder(orderDto);
 		
@@ -82,14 +85,15 @@ public class PaymentController {
 	@GetMapping("/payview")
 	public ModelAndView payread(int num) {
 		
-		String buyer_name = orderservice.getfriendNickNameSearch(num);
-		String to_member_id = orderservice.getNickNameSearch(num);
+		String buyer_name = orderservice.getNickNameSearch(num);
+		String to_member_id = orderservice.getfriendNickNameSearch(num);
 		String sangpum = orderservice.getItemNameSearch(num);
 		Integer price = orderservice.getItemPriceSearch(num);
 		String thumbnailImage = orderservice.getItemThumbnailSearch(num);
 		Integer count = orderservice.getCount(num);
 		Integer userNum = orderservice.getUserNum(num);
 		Integer orderDetailNum = orderservice.getOrderDetailNum(num);
+		Integer friendNum = orderservice.getFriendNum(num);
 		
 		Integer totalprice = price * count;
 		
@@ -106,6 +110,7 @@ public class PaymentController {
 		mview.addObject("totalprice",totalprice);
 		mview.addObject("userNum",userNum);
 		mview.addObject("orderDetailNum",orderDetailNum);
+		mview.addObject("friendNum",friendNum);
 		
 		mview.setViewName("/bit/payment/payview");
 		

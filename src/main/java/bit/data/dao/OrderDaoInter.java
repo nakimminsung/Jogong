@@ -28,4 +28,5 @@ public interface OrderDaoInter {
 
 	public Integer getOrderDetailNum(int num);
 	
+	public Integer getFriendNum(int num);
 }
