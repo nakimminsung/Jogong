@@ -1,5 +1,6 @@
 package bit.data.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,15 +17,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import bit.data.dto.OrderTestDto;
+import bit.data.dto.OrderDto;
+import bit.data.dto.ProductDto;
 import bit.data.service.OrderServiceInter;
 
 @Controller
 public class PaymentController {
-<<<<<<< HEAD
 	
 	@Autowired
-	OrderServiceInter ordersevice;
+	OrderServiceInter orderservice;
 	
 	@Autowired
 	SqlSession sqlsession;
@@ -61,44 +62,6 @@ public class PaymentController {
 		 System.out.println(request.getParameter("custom_data[address]"));
 		 System.out.println(request.getParameter("success"));
 		 
-=======
-   
-   @Autowired
-   OrderServiceInter ordersevice;
-   
-   @Autowired
-   SqlSession sqlsession;
-   
-   @GetMapping("/payview")
-   public String payview() {
-      return "/bit/payment/payview";
-   }
-   
-   @GetMapping("/GiftTestForm")
-   public String GiftTestForm() {
-      return "/bit/payment/GiftTestForm";
-   }
-   
-   @RequestMapping(value = "/test.action", method = { RequestMethod.POST })
-   @ResponseBody
-   public void test(   
-            @RequestBody String custom_data,
-            HttpServletRequest request){
-         
-       System.out.println(custom_data);
-       System.out.println(request.getParameter("imp_uid"));
-       System.out.println(request.getParameter("merchant_uid"));
-       System.out.println(request.getParameter("pg"));
-       System.out.println(request.getParameter("pay_method"));
-       System.out.println(request.getParameter("name"));
-       System.out.println(request.getParameter("buyer_name"));
-       System.out.println(request.getParameter("amount"));
-       System.out.println(request.getParameter("custom_data[member_id]"));
-       System.out.println(request.getParameter("custom_data[count]"));
-       System.out.println(request.getParameter("custom_data[message]"));
-       System.out.println(request.getParameter("custom_data[messagecard]"));
-       System.out.println(request.getParameter("custom_data[banner]"));
->>>>>>> 83bf600c4b8484250d1bec221ef213f2aa593340
 
 		 String imp_uid = request.getParameter("imp_uid");
 		 String merchant_uid = request.getParameter("merchant_uid");
@@ -114,47 +77,54 @@ public class PaymentController {
 		 String message = request.getParameter("custom_data[message]");
 		 String success = request.getParameter("success");
 		 
-		OrderTestDto ordertestDto = new OrderTestDto(); 
-		ordertestDto.setImp_uid(imp_uid);
-		ordertestDto.setMerchant_uid(merchant_uid);
-		ordertestDto.setName(name);
-		ordertestDto.setAmount(Integer.parseInt(amount));
-		ordertestDto.setBuyer_name(buyer_name);
-		ordertestDto.setPg(pg);
-		ordertestDto.setPay_method(pay_method);
-		ordertestDto.setTo_member_id(to_member_id);
-		ordertestDto.setCount(Integer.parseInt(count));
-		ordertestDto.setMessagecard(messagecard);
-		ordertestDto.setBanner(banner);
-		ordertestDto.setMessage(message);
-		ordertestDto.setSuccess(success);
+		 OrderDto orderDto = new OrderDto(); 
+		 orderDto.setImp_uid(imp_uid);
+		 orderDto.setTotalPrice(Integer.parseInt(amount));
+		 orderDto.setPg(pg);
+		 orderDto.setPay_method(pay_method);
+  		 orderDto.setMessagecard(messagecard);
+		 orderDto.setBanner(banner);
+		 orderDto.setMessage(message);
+		 orderDto.setOrderStatus(success);
 		
-		ordersevice.insertOrder(ordertestDto);
+		orderservice.insertOrder(orderDto);
 		
 	}
 	
 
-	@PostMapping("/payview")
-	public ModelAndView payread(@RequestParam Map<String, String> map,
-			HttpServletRequest request) {
+	@GetMapping("/payview")
+	public ModelAndView payread(Integer num) {
 		
-		Integer price = Integer.parseInt(request.getParameter("price"));
-    	Integer count = Integer.parseInt(request.getParameter("count"));
-    	
+		String buyer_name = orderservice.getfriendNickNameSearch(num);
+		String to_member_id = orderservice.getNickNameSearch(num);
+		String sangpum = orderservice.getItemNameSearch(num);
+		Integer price = orderservice.getItemPriceSearch(num);
+		String thumbnailImage = orderservice.getItemThumbnailSearch(num);
+		Integer count = orderservice.getCount(num);
     	Integer totalprice = price * count;
 		
-		ModelAndView mview = new ModelAndView();
-		mview.addObject("sangpum",map.get("sangpum"));
-		mview.addObject("price",map.get("price"));
-		mview.addObject("to_member_id",map.get("to_member_id"));
-		mview.addObject("count",map.get("count"));
 		
+		
+		System.out.println(buyer_name);
+		System.out.println(to_member_id);
+		System.out.println(sangpum);
+		System.out.println(price);
+		System.out.println(thumbnailImage);
+		System.out.println(count);
+		System.out.println(totalprice);
+
+		ModelAndView mview = new ModelAndView();
+		
+		mview.addObject("buyer",buyer_name);
+		mview.addObject("to_member_id",to_member_id);
+		mview.addObject("productName",sangpum);
+		mview.addObject("price",price);
+		mview.addObject("thumbnailImage",thumbnailImage);
+		mview.addObject("count",count);
 		mview.addObject("totalprice",totalprice);
 		
 		mview.setViewName("payment/payview");
 		
-		//System.out.println(totalprice);
-	
 		return mview;
 	}
 	

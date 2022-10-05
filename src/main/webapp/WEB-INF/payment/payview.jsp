@@ -413,7 +413,7 @@ function payment(data) {
         merchant_uid: rand, //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
         name : '${sangpum}', //결제창에 노출될 상품명
         amount: ${totalprice},
-        buyer_name : "김민성",
+        buyer_name : "${buyer_name}",
         custom_data : customdata,
     }, function (rsp) { // callback
         if (rsp.success) {

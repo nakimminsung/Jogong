@@ -7,12 +7,18 @@ import lombok.Data;
 @Data
 public class OrderDto {
 	private int num;
-	private Timestamp orderData;
+	private String imp_uid;
 	private int totalPrice;
-	private int deleveryCharge;
-	private String deleveryAdress;
-	private String orderStatus;
+	private Timestamp orderDate;
+	private String pg;
+	private String pay_method;
 	private int paidPoint;
-	private int userNum;
-	private int orderDetailNum;
+	private String deliveryAddress;
+	private String orderStatus;
+	private int deliveryCharge;
+	private String messagecard;
+	private String banner;
+	private String message;
+	private String userNum;
+	private String orderDetailNum;
 }
