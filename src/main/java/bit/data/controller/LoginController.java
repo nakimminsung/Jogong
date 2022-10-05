@@ -38,7 +38,7 @@ public class LoginController {
 	@GetMapping("/loginForm")
 	public String loginForm(Model model,HttpSession session) {
 		model.addAttribute("rememberId",session.getAttribute("rememberId"));
-		model.addAttribute("savedId",session.getAttribute("loginid"));
+		model.addAttribute("savedId",session.getAttribute("loginid_user"));
 		
       return "/bit/login/loginForm";
 	}
@@ -79,7 +79,7 @@ public class LoginController {
 		session.removeAttribute("loginok");	//이걸로 비교할거라서 얘만 지우면되지만, id까지 지우기로함
 		//session.removeAttribute("loginid");
 		
-		return "/bit/main/main";
+		return "redirect:/";
 	}
 
 
@@ -107,7 +107,7 @@ public class LoginController {
 			//로그인한 아이디에 대한 정보를 얻어서 세션에 저장s
 			UserDto userDto=userService.getDataById(email);
 			session.setAttribute("loginok", "yes");
-			session.setAttribute("loginid", email);
+			session.setAttribute("loginid_user", email);
 			session.setAttribute("rememberId", rememberId.equals("false")?"no":"yes");
 			session.setAttribute("loginname", userDto.getNickname());
 			session.setAttribute("loginphoto", userDto.getProfileImage());
