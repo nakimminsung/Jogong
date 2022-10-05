@@ -5,7 +5,7 @@
 
 	<!-- seller DB insert -->
 	<insert id="insertSeller" parameterType="sellerDto">
-		insert into seller values (null,#{email},#{password},#{companyName},#{businessNumber},#{logoImage},#{phone},#{address},#{bank},#{accountNumber},now())
+		insert into seller values (null,#{email},#{password},#{companyName},#{businessNumber},#{logoImage},#{phone},#{address},#{bank},#{accountNumber},now(),#{salt})
 	</insert>
 	
 	<!-- seller 로그인 상태 체크 -->
