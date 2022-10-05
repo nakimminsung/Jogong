@@ -33,32 +33,17 @@ public class PaymentController {
       return "/bit/payment/payview";
    }
    
-   @GetMapping("/GiftTestForm")
-   public String GiftTestForm() {
-      return "/bit/payment/GiftTestForm";
-   }
+//   @GetMapping("/GiftTestForm")
+//   public String GiftTestForm() {
+//      return "/bit/payment/GiftTestForm";
+//   }
    
    @RequestMapping(value = "/test.action", method = { RequestMethod.POST })
    @ResponseBody
    public void test(   
             @RequestBody String custom_data,
             HttpServletRequest request){
-         
-//       System.out.println(custom_data);
-//       System.out.println(request.getParameter("imp_uid"));
-//       System.out.println(request.getParameter("merchant_uid"));
-//       System.out.println(request.getParameter("pg"));
-//       System.out.println(request.getParameter("pay_method"));
-//       System.out.println(request.getParameter("name"));
-//       System.out.println(request.getParameter("buyer_name"));
-//       System.out.println(request.getParameter("amount"));
-//       System.out.println(request.getParameter("custom_data[member_id]"));
-//       System.out.println(request.getParameter("custom_data[count]"));
-//       System.out.println(request.getParameter("custom_data[message]"));
-//       System.out.println(request.getParameter("custom_data[messagecard]"));
-//       System.out.println(request.getParameter("custom_data[banner]"));
-
-       
+	   
        String imp_uid = request.getParameter("imp_uid");
        String merchant_uid = request.getParameter("merchant_uid");
        String pg = request.getParameter("pg");
@@ -89,29 +74,29 @@ public class PaymentController {
       ordersevice.insertOrder(ordertestDto);
    }
    
-   @PostMapping("/payview")
-   public ModelAndView payread(@RequestParam Map<String, String> map,
-         HttpServletRequest request) {
-      
-      Integer price = Integer.parseInt(request.getParameter("price"));
-       Integer count = Integer.parseInt(request.getParameter("count"));
-       
-       Integer totalprice = price * count;
-      
-      ModelAndView mview = new ModelAndView();
-      mview.addObject("sangpum",map.get("sangpum"));
-      mview.addObject("price",map.get("price"));
-      mview.addObject("to_member_id",map.get("to_member_id"));
-      mview.addObject("count",map.get("count"));
-      
-      mview.addObject("totalprice",totalprice);
-      
-      mview.setViewName("payment/payview");
-      
-      //System.out.println(totalprice);
-   
-      return mview;
-   }
+//   @PostMapping("/payview")
+//   public ModelAndView payread(@RequestParam Map<String, String> map,
+//         HttpServletRequest request) {
+//      
+//      Integer price = Integer.parseInt(request.getParameter("price"));
+//       Integer count = Integer.parseInt(request.getParameter("count"));
+//       
+//       Integer totalprice = price * count;
+//      
+//      ModelAndView mview = new ModelAndView();
+//      mview.addObject("sangpum",map.get("sangpum"));
+//      mview.addObject("price",map.get("price"));
+//      mview.addObject("to_member_id",map.get("to_member_id"));
+//      mview.addObject("count",map.get("count"));
+//      
+//      mview.addObject("totalprice",totalprice);
+//      
+//      mview.setViewName("payment/payview");
+//      
+//      //System.out.println(totalprice);
+//   
+//      return mview;
+//   }
    
 
 }

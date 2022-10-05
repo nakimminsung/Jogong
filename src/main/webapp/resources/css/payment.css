@@ -1760,7 +1760,7 @@ table.t-foot>tfoot>tr>td {
         float: left;
         width: 50%;
        }
-       .col-half>.cardImg{
+       .col-half>.previewCardImg{
         letter-spacing: -0.5px;
         line-height: 1.6;
         word-wrap: break-word;
@@ -1875,17 +1875,23 @@ table.t-foot>tfoot>tr>td {
 		  transition: border 0.3s ease-in-out;
 		}
 		
-		.bannerImg{
+		/* .bannerImg{
 			border: 1px solid;
 			width: 100px;
 			height: 50px;
 			display: flex;
 			align-items: center;
 			justify-content: center;
-		}
+		} */
 		
-		.clicked {
-        color: gold;
+		.bannerImg.clicked {
+        border: 2px solid black;
      	}
      	
+     	/* .cardImg:active{
+     	border: 2px solid black;
+     	} */
+     	/* .cardImg.clicked {
+        border: 2px solid black;
+     	} */
      	
