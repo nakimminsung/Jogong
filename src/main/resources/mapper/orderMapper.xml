@@ -51,4 +51,9 @@
 	<insert id="insertOrder">
 	      insert into jogong.order values (null,#{imp_uid},#{totalPrice},now(),#{pg},#{pay_method},#{paidPoint},#{deliveryAddress},#{orderStatus},#{deliveryCharge},#{messagecard},#{banner},#{message},#{hp},#{count},#{postalcode},#{userNum},#{orderDetailNum},#{friendNum})
 	</insert>
+	
+	<!-- friendNum 조회-->
+	<select id="getFriendNum" parameterType="int" resultType="int">
+		select friendNum from orderDetail where num = #{num}
+	</select>
 </mapper>

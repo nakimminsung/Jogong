@@ -27,4 +27,6 @@ public interface OrderServiceInter {
 	public Integer getUserNum(int num);
 
 	public Integer getOrderDetailNum(int num);
+	
+	public Integer getFriendNum(int num);
 }
