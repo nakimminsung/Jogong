@@ -40,6 +40,13 @@
 					</td>
 				</tr>
 				
+				<tr>
+					<th width="120" style="background-color: lightgray;">포인트</th>
+					<td>
+						<input type="number" name="point" class="form-control" required="required" style="width: 150px;">
+					</td>
+				</tr>
+				
 				
 				<tr>
 					<td colspan="2" align="center">

@@ -28,7 +28,11 @@
 		text-align: center;
 	}
 	
-	.textBox{
+	.userTextBox{
+		margin-bottom: 10px;
+	}
+	
+	.sellerTextBox{
 		margin-bottom: 10px;
 	}
 	
@@ -117,18 +121,21 @@ $(document).ready(function(){
 				</div>
 				
 				<!-- user 로그인 정보 -->
-				<input type="email" class="form-control textBox" required placeholder="아이디(이메일 형식)" id="userEmail" value="${rememberId=='yes' ? savedId : ''}">
-				<input type="password" class="form-control textBox" required placeholder="비밀번호" id="userPassword">
-				<label style="float: left;"><input type="checkbox" class="form-check-input" id="rememberId" ${rememberId=='yes' ? 'checked' : ''}> 아이디 저장</label>		
+				<input type="email" class="form-control userTextBox" required placeholder="아이디(이메일 형식)" id="userEmail" value="${rememberId=='yes' ? savedId : ''}">
+				<input type="password" class="form-control userTextBox" required placeholder="비밀번호" id="userPassword">
+				<label style="float: left;"><input type="checkbox" class="form-check-input checkUser" id="rememberId" ${rememberId=='yes' ? 'checked' : ''}> 아이디 저장</label>		
 				<button type="button" class="loginok btn btn-danger" id="loginok" >로그인</button>
 				<hr>
 				
 				<!-- 소셜회원 로그인 박스 -->
 				<div class="snsLoginBox">
 					<button class="btnKakaoLogin" style="background-color: #fde102;"><i class='fas fa-comment'></i> 카카오로 로그인</button>&nbsp;&nbsp;&nbsp;
-					<button class="btnNaverLogin" style="background-color: #19ce60; color: white;">N 네이버로 로그인</button>
+					<!-- <button class="btnNaverLogin" style="background-color: #19ce60; color: white;">N 네이버로 로그인</button> -->
+					<button class="btnKakaoLogout" style="background-color: #19ce60; color: white;" onclick="kakaoLogout()">카카오 로그아웃</button>
 				</div>
+
 			</div>	
+
 				
 			<!-- 판매회원 로그인 박스 -->
 			<div class="sellerLoginBox">
@@ -140,9 +147,10 @@ $(document).ready(function(){
 				</div>
 			
 				
-				<input type="email" class="form-control textBox" required placeholder="아이디(이메일 형식)" id="sellerEmail">
-				<input type="password" class="form-control textBox" required placeholder="비밀번호" id="sellerPassword">
-				<label style="float: left;"><input type="checkbox" class="form-check-input"> 아이디 저장</label>
+				<input type="email" class="form-control sellerTextBox" required placeholder="아이디(이메일 형식)" id="sellerEmail" value="${rememberSellerId=='yes' ? savedSellerId : ''}">
+				<input type="password" class="form-control sellerTextBox" required placeholder="비밀번호" id="sellerPassword">
+				<label style="float: left;"><input type="checkbox" class="form-check-input checkSeller" id="rememberSellerId" ${rememberSellerId=='yes' ? 'checked' : ''}> 아이디 저장</label>
+				
 				<button type="button" class="btnLoginSeller btn btn-danger">로그인</button>
 				
 			</div>
@@ -160,7 +168,61 @@ $(document).ready(function(){
 	</div> <!-- 전체 div 종료 -->
 </body>
 
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>	<!-- 카카오 로그인 관련 -->
 <script>
+	
+	//카카오 로그인 버튼 이벤트
+	$(".btnKakaoLogin").click(function () {
+		location.href='javascript:kakaoLogin();';
+	});
+
+	//카카오 로그인 관련 메서드
+	window.Kakao.init('d4fc125a7dd0ad8b599aeac52a278521');	//본인 자바스크립트 API키
+
+    function kakaoLogin() {
+        window.Kakao.Auth.login({
+            scope: 'profile_nickname, profile_image, account_email, gender, birthday', //동의항목 페이지에 있는 개인정보 보호 테이블의 활성화된 ID값을 넣습니다.
+            success: function(response) {
+                
+            	console.log(response) // 로그인 성공하면 받아오는 데이터
+                
+                window.Kakao.API.request({ // 사용자 정보 가져오기 
+                    url: '/v2/user/me',
+                    success: (res) => {
+                        const kakao_account = res.kakao_account;
+                        console.log(kakao_account)
+                        
+                    }
+                });
+            	
+                window.location.href='http://localhost:9000/jogong/loginForm' //리다이렉트 되는 코드
+            },
+            fail: function(error) {
+                console.log(error);
+            }
+        });
+    }
+	
+	
+	//카카오 로그아웃  
+	function kakaoLogout() {
+	    if (Kakao.Auth.getAccessToken()) {
+	      Kakao.API.request({
+	        url: '/v1/user/unlink',
+	        success: function (response) {
+	           console.log(response)
+	           window.location.href='http://localhost:9000/jogong/'
+	        },
+	        fail: function (error) {
+	          console.log(error)
+	        },
+	      })
+	      Kakao.Auth.setAccessToken(undefined)
+	      
+	    }
+	  }  
+
+
 	//user 로그인 버튼
 	$("#loginok").click(function(){
 		var id=$("#userEmail").val();
@@ -193,11 +255,13 @@ $(document).ready(function(){
 		var root='${root}';
 		console.log("root : "+root);
 		
+		var rememberSellerId=$("#rememberSellerId").is(':checked');
+		
 		$.ajax({
 			type:"post",
 			url:root+"/sellerLogin",
 			dataType:"json",
-			data:{"email":email,"password":password},
+			data:{"email":email,"password":password,"rememberSellerId":rememberSellerId},
 			success:function(res){
 				if(res.result=='fail'){
 					alert("ID 혹은 비밀번호가 맞지 않습니다");
@@ -209,5 +273,7 @@ $(document).ready(function(){
 			
 		});	//ajax 종료
 	});	//로그인 버튼 이벤트 종료
+	
+	
 </script>
 </html>
