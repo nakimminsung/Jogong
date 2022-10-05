@@ -28,10 +28,10 @@ public class PaymentController {
    @Autowired
    SqlSession sqlsession;
    
-//   @GetMapping("/payview")
-//   public String payview() {
-//      return "/bit/payment/payview";
-//   }
+   @GetMapping("/payview")
+   public String payview() {
+      return "/bit/payment/payview";
+   }
    
    @GetMapping("/GiftTestForm")
    public String GiftTestForm() {
@@ -44,19 +44,19 @@ public class PaymentController {
             @RequestBody String custom_data,
             HttpServletRequest request){
          
-       System.out.println(custom_data);
-       System.out.println(request.getParameter("imp_uid"));
-       System.out.println(request.getParameter("merchant_uid"));
-       System.out.println(request.getParameter("pg"));
-       System.out.println(request.getParameter("pay_method"));
-       System.out.println(request.getParameter("name"));
-       System.out.println(request.getParameter("buyer_name"));
-       System.out.println(request.getParameter("amount"));
-       System.out.println(request.getParameter("custom_data[member_id]"));
-       System.out.println(request.getParameter("custom_data[count]"));
-       System.out.println(request.getParameter("custom_data[message]"));
-       System.out.println(request.getParameter("custom_data[messagecard]"));
-       System.out.println(request.getParameter("custom_data[banner]"));
+//       System.out.println(custom_data);
+//       System.out.println(request.getParameter("imp_uid"));
+//       System.out.println(request.getParameter("merchant_uid"));
+//       System.out.println(request.getParameter("pg"));
+//       System.out.println(request.getParameter("pay_method"));
+//       System.out.println(request.getParameter("name"));
+//       System.out.println(request.getParameter("buyer_name"));
+//       System.out.println(request.getParameter("amount"));
+//       System.out.println(request.getParameter("custom_data[member_id]"));
+//       System.out.println(request.getParameter("custom_data[count]"));
+//       System.out.println(request.getParameter("custom_data[message]"));
+//       System.out.println(request.getParameter("custom_data[messagecard]"));
+//       System.out.println(request.getParameter("custom_data[banner]"));
 
        
        String imp_uid = request.getParameter("imp_uid");
