@@ -23,33 +23,30 @@
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	
 </head>
+
 <script type="text/javascript">
 	var message = "";
 	var messagecard = "/jogong/resources/giftimage/card/a1.jpg";
 	var banner = "/jogong/resources/giftimage/banner/1.jpg";
+	var buyer_addr = "";
+	var buyer_tel = "";
+	var buyer_postcode = "";
+	var to_member_id = "";
 	
 	$(function() {
 		$(document).on("click",".message",function() {
 	 		var message = $(this).attr("value");
 	 		$("#mms_send_msg").val(message);
-	 		
 	 	 	$("#msg_sample").text(message);
 		});
-	/* 	$(".message").click(function() {
-	 		var message = $(this).attr("value");
-	 		$("#mms_send_msg").text(message);
-	 	 	$("#msg_sample").text(message);
-		}); */ 
 		
 		$(".bannerImg").click(function () {
 			banner = $(this).attr("src");
-			
 			$("img#previewBanner").attr("src",banner);
 		});
 		
 		$(".cardImg").click(function () {
 			messagecard = $(this).attr("src");
-			
 			$("img#previewTemplate").attr("src",messagecard);
 		});
 		
@@ -260,28 +257,26 @@
 						<tr>
 						<th> 받는사람 이름 </th>
 							<td>
-								<input type="text" style="width: 50%;" required name="companyName">
-								
+								<input type="text" style="width: 50%;" required name="companyName" id="to_name" value="${to_member_id }">
 							</td>
 						</tr>
 						<tr>
 						<th> 연락처 </th>
 							<td>
-								<input type="text" style="width: 50%;" required name="companyName">
-								
+								<input type="text" style="width: 50%;" required id="to_hp" value="">
 							</td>
 						</tr>
 						<tr>
 							<th> 배송받을 주소 </th>
 							<td>
-								<input type="text" id="sample4_postcode" placeholder="우편번호" style="width: 50%; margin-bottom: 5px;" required>
+								<input type="text" id="sample4_postcode" placeholder="우편번호" style="width: 50%; margin-bottom: 5px;" required value="">
 								<input type="button" onclick="sample4_execDaumPostcode()" class="btn btn-dark btn-sm" value="우편번호 찾기" style=" margin-bottom: 5px;"><br>
-								<input type="text" id="sample4_roadAddress" placeholder="도로명주소" size="60" 
+								<input type="text" id="sample4_roadAddress" placeholder="도로명주소" size="60" value=""
 								style="width: 50%; margin-bottom: 5px;" required name="address1"><br>
 								
 								<input type="hidden" id="sample4_jibunAddress" placeholder="지번주소"  size="60">
 								<span id="guide" style="color:#999; display:none"></span>
-								<input type="text" id="sample4_detailAddress" placeholder="상세주소"  size="60" 
+								<input type="text" id="sample4_detailAddress" placeholder="상세주소"  size="60" value=""
 								style="width: 50%;"required name="address2"><br>
 								
 								<input type="hidden" id="sample4_extraAddress" placeholder="참고항목"  size="60">
@@ -289,6 +284,7 @@
 							</td>
 						</tr>
 					</table>
+					<!-- 배송지 입력 폼  끝-->
             </div>
         </div>
     </div>
@@ -493,15 +489,20 @@ function payment(data) {
     IMP.request_pay({// param
         pg: "kakaopay.TC0ONETIME", //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
         pay_method: "card", //지불 방법
-
         merchant_uid: rand, //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
-        name : '${sangpum}', //결제창에 노출될 상품명
-        //amount: ${totalprice},
-        buyer_name : "김민성",
+        name : '${productName}', //결제창에 노출될 상품명
+        amount: '${totalprice}',
+        buyer_name : "${buyer_name}",
+        buyer_tel : buyer_tel,
+        buyer_addr : buyer_addr,
+        buyer_postcode : buyer_postcode,
+        
+        
+        
         custom_data : customdata,
     }, function (rsp) { // callback
         if (rsp.success) {
-        	   alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료"+"count:"+rsp.custom_data.count+"받는사람:"+rsp.custom_data.member_id);
+        	   alert("완료 -> 구매자 : "+rsp.buyer_name+"imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료"+"상품명:"+rsp.name+"가격:"+rsp.paid_amount+"count:"+rsp.custom_data.count+"받는사람:"+rsp.custom_data.member_id+"결제상태:"+rsp.success);
                
                jQuery.ajax({
                    url: "test.action",
@@ -516,6 +517,9 @@ function payment(data) {
                        "pg" : rsp.pg_provider,
                        "pay_method" : rsp.pay_method,
                        "custom_data" : rsp.custom_data,
+                       "success" : rsp.success,
+                       "buyer_tel" : rsp.buyer_tel
+                       
             		   }
                    });
          } else {
@@ -719,11 +723,10 @@ init3();
  
 var div2 = document.getElementsByClassName("pay_box");
 
-function handleClick(event) {
+ function handleClick(event) {
     //console.log(event.target);
     // console.log(this);
     // 콘솔창을 보면 둘다 동일한 값이 나온다
-
     //console.log(event.target.classList);
 
     if (event.target.classList[1] === "clicked") {
@@ -735,7 +738,7 @@ function handleClick(event) {
 
         event.target.classList.add("clicked");
     }
-}
+} 
 
 function init() {
     for (var i = 0; i < div2.length; i++) {
@@ -751,15 +754,15 @@ payed.onclick = function () {
     const selected = document.querySelector('.pay_box.clicked').parentNode;
     const val = selected.getAttribute('value');
 	
-  
+    buyer_addr = $("#sample4_roadAddress").val()+$("#sample4_detailAddress").val();
+	buyer_tel = $("#to_hp").val();
+	to_member_id = $("#to_name").val();
+	buyer_postcode = $("#sample4_postcode").val();
+	alert(buyer_addr+","+buyer_postcode+","+buyer_tel);
     message = $("#mms_send_msg").val();
-    
-    customdata = JSON.parse('{"member_id":"${to_member_id}","count":"${count}","message":"'+message+'","banner":"'+banner+'","messagecard":"'+messagecard+'"}' );
+    customdata = JSON.parse('{"amount":"${totalprice}","member_id":"'+to_member_id+'","count":"${count}","message":"'+message+'","banner":"'+banner+'","messagecard":"'+messagecard+'","buyer_addr":"'+buyer_addr+'","buyer_tel":"'+buyer_tel+'","buyer_postcode":"'+buyer_postcode+'","point":"${point}"}');
     console.dir(customdata)
-    
-   
-    alert(message)
-    
+     
     if(val=='kakaopay'){
     	payment();
     }else if(val=='tosspay'){

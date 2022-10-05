@@ -24,4 +24,5 @@ public class OrderTestDto {
 	private String banner;
 	private String message;
 	private String addr;
+	private String success;
 }
