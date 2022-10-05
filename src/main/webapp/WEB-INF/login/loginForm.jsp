@@ -130,9 +130,6 @@ $(document).ready(function(){
 				</div>
 			</div>
 			
-			
-			
-			
 				
 			<!-- 판매회원 로그인 박스 -->
 			<div class="sellerLoginBox">
@@ -144,9 +141,10 @@ $(document).ready(function(){
 				</div>
 			
 				
-				<input type="email" class="form-control textBox" required placeholder="아이디(이메일 형식)" id="sellerEmail">
+				<input type="email" class="form-control textBox" required placeholder="아이디(이메일 형식)" id="sellerEmail" value="<%=remember %>">
 				<input type="password" class="form-control textBox" required placeholder="비밀번호" id="sellerPassword">
-				<label style="float: left;"><input type="checkbox" class="form-check-input"> 아이디 저장</label>
+				<label style="float: left;"><input type="checkbox" class="form-check-input" name="remember"> 아이디 저장</label>
+				
 				<button type="button" class="btnLoginSeller btn btn-danger">로그인</button>
 				
 			</div>
