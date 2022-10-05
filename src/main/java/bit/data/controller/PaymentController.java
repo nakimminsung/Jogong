@@ -21,6 +21,7 @@ import bit.data.service.OrderServiceInter;
 
 @Controller
 public class PaymentController {
+<<<<<<< HEAD
 	
 	@Autowired
 	OrderServiceInter ordersevice;
@@ -60,6 +61,44 @@ public class PaymentController {
 		 System.out.println(request.getParameter("custom_data[address]"));
 		 System.out.println(request.getParameter("success"));
 		 
+=======
+   
+   @Autowired
+   OrderServiceInter ordersevice;
+   
+   @Autowired
+   SqlSession sqlsession;
+   
+   @GetMapping("/payview")
+   public String payview() {
+      return "/bit/payment/payview";
+   }
+   
+   @GetMapping("/GiftTestForm")
+   public String GiftTestForm() {
+      return "/bit/payment/GiftTestForm";
+   }
+   
+   @RequestMapping(value = "/test.action", method = { RequestMethod.POST })
+   @ResponseBody
+   public void test(   
+            @RequestBody String custom_data,
+            HttpServletRequest request){
+         
+       System.out.println(custom_data);
+       System.out.println(request.getParameter("imp_uid"));
+       System.out.println(request.getParameter("merchant_uid"));
+       System.out.println(request.getParameter("pg"));
+       System.out.println(request.getParameter("pay_method"));
+       System.out.println(request.getParameter("name"));
+       System.out.println(request.getParameter("buyer_name"));
+       System.out.println(request.getParameter("amount"));
+       System.out.println(request.getParameter("custom_data[member_id]"));
+       System.out.println(request.getParameter("custom_data[count]"));
+       System.out.println(request.getParameter("custom_data[message]"));
+       System.out.println(request.getParameter("custom_data[messagecard]"));
+       System.out.println(request.getParameter("custom_data[banner]"));
+>>>>>>> 83bf600c4b8484250d1bec221ef213f2aa593340
 
 		 String imp_uid = request.getParameter("imp_uid");
 		 String merchant_uid = request.getParameter("merchant_uid");

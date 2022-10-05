@@ -9,4 +9,5 @@ public interface OrderServiceInter {
 	public List<OrderTestDto> getAllSearch();
 	
 	public void insertOrder(OrderTestDto dto);
+
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import bit.data.dao.CartDaoInter;
 import bit.data.dto.CartListDto;
+import bit.data.dto.OrderDetailDto;
 
 @Service
 public class CartService implements CartServiceInter {
@@ -22,5 +23,10 @@ public class CartService implements CartServiceInter {
 	@Override
 	public void deleteCart(int cartNum) {
 		cartDaoInter.deleteCart(cartNum);
+	}
+
+	@Override
+	public void insertCart(CartListDto dto) {
+		cartDaoInter.insertCart(dto);
 	}
 }
