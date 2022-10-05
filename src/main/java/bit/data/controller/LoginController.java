@@ -37,7 +37,7 @@ public class LoginController {
 	@GetMapping("/loginForm")
 	public String loginForm(Model model,HttpSession session) {
 		model.addAttribute("rememberId",session.getAttribute("rememberId"));
-		model.addAttribute("savedId",session.getAttribute("loginid_user"));
+		model.addAttribute("savedId",session.getAttribute("loginid"));
 		
 		model.addAttribute("rememberSellerId",session.getAttribute("rememberSellerId"));
 		model.addAttribute("savedSellerId",session.getAttribute("loginid_seller"));	//변경
@@ -131,7 +131,7 @@ public class LoginController {
 			//로그인한 아이디에 대한 정보를 얻어서 세션에 저장s
 			UserDto userDto=userService.getDataById(email);
 			session.setAttribute("loginok", "yes");
-			session.setAttribute("loginid_user", email);
+			session.setAttribute("loginid", email);
 			session.setAttribute("rememberId", rememberId.equals("false")?"no":"yes");
 			session.setAttribute("loginname", userDto.getNickname());
 			session.setAttribute("loginphoto", userDto.getProfileImage());
