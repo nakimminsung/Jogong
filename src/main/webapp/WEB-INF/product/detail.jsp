@@ -114,7 +114,7 @@
 	}
 	
 	.detailGift{
-		width: 115px;
+		width: 120px;
     	padding: 13px 0 13px;
     	background-color: #ffde22;
   		border-radius: 5px;
@@ -122,7 +122,7 @@
 	}
 	
 	.detailSelfGift{
-		width: 115px;
+		width: 120px;
     	padding: 13px 0 13px;
     	background-color: #111;
     	color: #f5f5f5;

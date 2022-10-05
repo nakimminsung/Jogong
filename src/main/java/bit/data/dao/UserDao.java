@@ -49,4 +49,11 @@ public class UserDao implements UserDaoInter {
 		// TODO Auto-generated method stub
 		return session.selectOne(ns+"getDataById", email);
 	}
+
+	// 리뷰
+	@Override
+	public List<UserDto> getReviewUserInfo() {
+		// TODO Auto-generated method stub
+		return session.selectList(ns+"getReviewUserInfo");	
+	}
 }

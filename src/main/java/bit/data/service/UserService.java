@@ -52,4 +52,10 @@ public class UserService implements UserServiceInter {
 		return userDaoInter.getDataById(email);
 	}
 
+	// 리뷰페이지
+	@Override
+	public List<UserDto> getReviewUserInfo() {
+		// TODO Auto-generated method stub
+		return userDaoInter.getReviewUserInfo();
+	}
 }

@@ -25,4 +25,9 @@
 	<select id="getDataById" parameterType="String" resultType="userDto">
 		select * from user where email=#{email}
 	</select>
+	
+	<!--리뷰페이지 유저정보 -->
+	<select id="getReviewUserInfo" parameterType="int"  resultType="userDto">
+		select * from user where num in (select userNum from review where num=userNum)
+	</select>
 </mapper>
