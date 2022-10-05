@@ -130,7 +130,8 @@ $(document).ready(function(){
 				<!-- 소셜회원 로그인 박스 -->
 				<div class="snsLoginBox">
 					<button class="btnKakaoLogin" style="background-color: #fde102;"><i class='fas fa-comment'></i> 카카오로 로그인</button>&nbsp;&nbsp;&nbsp;
-					<button class="btnNaverLogin" style="background-color: #19ce60; color: white;">N 네이버로 로그인</button>
+					<!-- <button class="btnNaverLogin" style="background-color: #19ce60; color: white;">N 네이버로 로그인</button> -->
+					<button class="btnKakaoLogout" style="background-color: #19ce60; color: white;" onclick="kakaoLogout()">카카오 로그아웃</button>
 				</div>
 
 			</div>	
@@ -167,7 +168,61 @@ $(document).ready(function(){
 	</div> <!-- 전체 div 종료 -->
 </body>
 
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>	<!-- 카카오 로그인 관련 -->
 <script>
+	
+	//카카오 로그인 버튼 이벤트
+	$(".btnKakaoLogin").click(function () {
+		location.href='javascript:kakaoLogin();';
+	});
+
+	//카카오 로그인 관련 메서드
+	window.Kakao.init('d4fc125a7dd0ad8b599aeac52a278521');	//본인 자바스크립트 API키
+
+    function kakaoLogin() {
+        window.Kakao.Auth.login({
+            scope: 'profile_nickname, profile_image, account_email, gender, birthday', //동의항목 페이지에 있는 개인정보 보호 테이블의 활성화된 ID값을 넣습니다.
+            success: function(response) {
+                
+            	console.log(response) // 로그인 성공하면 받아오는 데이터
+                
+                window.Kakao.API.request({ // 사용자 정보 가져오기 
+                    url: '/v2/user/me',
+                    success: (res) => {
+                        const kakao_account = res.kakao_account;
+                        console.log(kakao_account)
+                        
+                    }
+                });
+            	
+                window.location.href='http://localhost:9000/jogong/loginForm' //리다이렉트 되는 코드
+            },
+            fail: function(error) {
+                console.log(error);
+            }
+        });
+    }
+	
+	
+	//카카오 로그아웃  
+	function kakaoLogout() {
+	    if (Kakao.Auth.getAccessToken()) {
+	      Kakao.API.request({
+	        url: '/v1/user/unlink',
+	        success: function (response) {
+	           console.log(response)
+	           window.location.href='http://localhost:9000/jogong/'
+	        },
+	        fail: function (error) {
+	          console.log(error)
+	        },
+	      })
+	      Kakao.Auth.setAccessToken(undefined)
+	      
+	    }
+	  }  
+
+
 	//user 로그인 버튼
 	$("#loginok").click(function(){
 		var id=$("#userEmail").val();
@@ -219,10 +274,6 @@ $(document).ready(function(){
 		});	//ajax 종료
 	});	//로그인 버튼 이벤트 종료
 	
-	
-	$(".btnKakaoLogin").click(function () {
-		location.href='http://localhost:9000/jogong/loginForm/kakaoLogin';
-	});
 	
 </script>
 </html>

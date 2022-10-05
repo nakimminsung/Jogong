@@ -1,5 +1,6 @@
 package bit.data.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -7,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import bit.data.dto.KakaoDto;
 import bit.data.dto.UserDto;
 
 @Repository
@@ -48,5 +50,20 @@ public class UserDao implements UserDaoInter {
 	public UserDto getDataById(String email) {
 		// TODO Auto-generated method stub
 		return session.selectOne(ns+"getDataById", email);
+	}
+	
+	// 정보 저장
+	@Override
+	public void kakaoinsert(HashMap<String, Object> userInfo) {
+		session.insert(ns+"kakaoInsert",userInfo);
+	}
+
+	// 정보 확인
+	@Override
+	public KakaoDto findkakao(HashMap<String, Object> userInfo) {
+		System.out.println("RN:"+userInfo.get("nickname"));
+		System.out.println("RE:"+userInfo.get("email"));
+		
+		return session.selectOne(ns+"findKakao", userInfo);
 	}
 }
