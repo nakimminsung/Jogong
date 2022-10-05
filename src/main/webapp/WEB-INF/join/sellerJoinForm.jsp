@@ -215,7 +215,7 @@
 				<tr>
 					<th><b>*</b> 비밀번호</th>
 					<td>
-						<input type="password" placeholder="영문, 숫자, 특수문자 8~12자" style="width: 50%;" required
+						<input type="password" placeholder="영문, 숫자, 특수문자 8~16자" style="width: 50%;" required
 						 name="password" class="password1">
 						 <div id="sellerPass1"></div>
 						
@@ -225,7 +225,7 @@
 				<tr>
 					<th><b>*</b> 비밀번호 확인</th>
 					<td>
-						<input type="password" placeholder="영문, 숫자, 특수문자 8~12자" style="width: 50%;" required
+						<input type="password" placeholder="영문, 숫자, 특수문자 8~16자" style="width: 50%;" required
 						 class="password2">
 						<div id="sellerPass2"></div>
 					</td>
