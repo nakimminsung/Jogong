@@ -36,7 +36,18 @@
 	<select id="getCount" parameterType="int" resultType="int">
 		select qty from orderDetail where  num = #{num};
 	</select>
-
+	
+	<!-- order에 넣을 userNum 조회 -->
+	<select id="getUserNum" parameterType="int" resultType="int">
+		select userNum from orderDetail where num = #{num}
+	</select>
+	
+	<!-- order에 넣을 orderDetailNum 조회-->
+	<select id="getOrderDetailNum" parameterType="int" resultType="int">
+		select num from orderDetail where num = #{num}
+	</select>
+	
+	<!-- order 정보 insert -->
 	<insert id="insertOrder">
 	      insert into jogong.order values (null,#{imp_uid},#{totalPrice},now(),#{pg},#{pay_method},#{paidPoint},#{deliveryAddress},#{orderStatus},#{deliveryCharge},#{messagecard},#{banner},#{message},#{hp},#{count},#{postalcode},#{userNum},#{orderDetailNum})
 	</insert>
