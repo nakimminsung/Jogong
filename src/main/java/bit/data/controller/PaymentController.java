@@ -1,16 +1,6 @@
 package bit.data.controller;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -26,12 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import com.google.gson.JsonParser;
-
 import bit.data.dto.OrderTestDto;
-import bit.data.dto.OrdercustomDto;
 import bit.data.service.OrderServiceInter;
 
 @Controller
@@ -69,10 +54,11 @@ public class PaymentController {
 		 System.out.println(request.getParameter("amount"));
 		 System.out.println(request.getParameter("custom_data[member_id]"));
 		 System.out.println(request.getParameter("custom_data[count]"));
-//		 System.out.println(request.getParameter("custom_data[mesaage_card]"));
-//		 System.out.println(request.getParameter("custom_data[banner]"));
-//		 System.out.println(request.getParameter("custom_data[message]"));
-//		 System.out.println(request.getParameter("custom_data[address]"));
+		 System.out.println(request.getParameter("custom_data[messagecard]"));
+		 System.out.println(request.getParameter("custom_data[banner]"));
+		 System.out.println(request.getParameter("custom_data[message]"));
+		 System.out.println(request.getParameter("custom_data[address]"));
+		 System.out.println(request.getParameter("success"));
 		 
 
 		 String imp_uid = request.getParameter("imp_uid");
@@ -87,6 +73,7 @@ public class PaymentController {
 		 String messagecard = request.getParameter("custom_data[messagecard]");
 		 String banner = request.getParameter("custom_data[banner]");
 		 String message = request.getParameter("custom_data[message]");
+		 String success = request.getParameter("success");
 		 
 		OrderTestDto ordertestDto = new OrderTestDto(); 
 		ordertestDto.setImp_uid(imp_uid);
@@ -101,15 +88,12 @@ public class PaymentController {
 		ordertestDto.setMessagecard(messagecard);
 		ordertestDto.setBanner(banner);
 		ordertestDto.setMessage(message);
+		ordertestDto.setSuccess(success);
 		
 		ordersevice.insertOrder(ordertestDto);
 		
 	}
 	
-	private void JSONArray() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@PostMapping("/payview")
 	public ModelAndView payread(@RequestParam Map<String, String> map,

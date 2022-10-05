@@ -13,6 +13,9 @@
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script><!-- jquery -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
+<!-- 이용약관 css -->
+<%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/terms.css"> --%>
+
 <style>
 	*{
 		/* font-family: 'Jua'; */
@@ -87,7 +90,20 @@ $(document).ready(function(){
 	 
 	 $.ajax({
 			type:"get",
-			url:"/jogong/resources/terms/sampleterm.jsp",
+			url:"/jogong/resources/terms/sampleterm1.jsp",
+			dataType:"html",
+			async: false,
+			success:function(res){
+				
+				$("div.getTerm").html(res);
+				
+			}
+			
+		});
+	 
+	 $.ajax({
+			type:"get",
+			url:"/jogong/resources/terms/sampleterm1.jsp",
 			dataType:"html",
 			async: false,
 			success:function(res){
