@@ -14,4 +14,5 @@ public class OrderDto {
 	private String orderStatus;
 	private int paidPoint;
 	private int userNum;
+	private int orderDetailNum;
 }

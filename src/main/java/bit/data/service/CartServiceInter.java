@@ -8,4 +8,5 @@ public interface CartServiceInter {
 	public List<CartListDto> getCartList(int userNum);
 	public void deleteCart(int cartNum);
 	public void updateCart(int cartNum, int qty);
+	public void insertCart(CartListDto dto);	
 }

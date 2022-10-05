@@ -315,7 +315,7 @@
         	
           	$.ajax({
 				type: "post",
-				url: "../wishlist/insert",
+				url: "../wishlist/cart_insert",
 				dataType: "text",
 				data: wishData,
 				success:function(res){
@@ -398,11 +398,13 @@
 		$(document).on("click",".cart-option-button",function(){
 			optionModal.style.display = "flex"
 			updateCartNum = $(this).attr("cartNum");
+			$("body").attr("class","modal-fix");
 		});
 	    
 		$(document).on("click",".cart-wish-button",function(){
 			wishModal.style.display = "flex"
 			productNum = $(this).attr("productNum");
+			$("body").attr("class","modal-fix");
 			
 		});
 		
@@ -416,18 +418,43 @@
 	        $("body").attr("class","");
 		});
 		
-		$(".cart-option-button").click(function(){
-			$("body").attr("class","modal-fix");
+		$(document).on(".cart-check-one","click",function(){
+			
 		});
 		
-		$(".cart-wish-button").click(function(){
-			$("body").attr("class","modal-fix");
+		// 나에게 선물하기
+		$("#cart-order-self").click(function(){
+			
+			var cartCheck = new Array();
+			
+			$('input:checkbox[name=cart-check]:checked').each(function() {
+				var map = new Map();
+				map.set("productNum",$(this).attr("productNum"));
+				map.set("userNum",$(this).attr("userNum"));
+				map.set("friendNum",$(this).attr("userNum"));
+				map.set("qty",$(this).attr("qty"));
+				cartCheck.push(map);
+			});
+			
+			$.ajax({
+				type: "post",
+				url: "../orderDetail/listInsert",
+				dataType: "text",
+				data: {"list":cartCheck},
+				success:function(res){
+					
+					window.location.href="cart";
+				}
+			});
+			
 		});
 	});
 	
+	
+	
 	// cart list 호출 함수
 	function cartlist() {
-		let userNum = 1;
+		let userNum = 2;
 			
 		var s="";
 		
@@ -446,7 +473,7 @@
 					
 					s += "<div class='cart-object'>";
 					s += "<div class='cart-check'>";
-					s += "<input type='checkbox' class='cart-check-one' name='check' cartNum='"+elt.num+"'>";
+					s += "<input type='checkbox' class='cart-check-one' name='cart-check' productNum='"+elt.productNum+"' cartNum='"+elt.num+"' qty='"+elt.qty+"'>";
 					s += "<a class='cart-check-delete' cartNum='"+elt.num+"'>";
 					s += "<i class='fas fa-times'></i>";
 					s += "</a>";
@@ -501,7 +528,7 @@
 </head>
 <body>
 	<div class="cart-wrapper">
-		<div class="cart-total">
+		<div class="cart-total" style="z-index: 100;">
 			<div class="cart-total-left">
 				<input type="checkbox" id="cart-all-check">
 			</div>
@@ -513,12 +540,12 @@
 					<b style="font-size:17px; font-weight: normal;">원</b>
 				</div>
 				<div class="cart-total-right-button" style="margin-left: 20px;">
-					<button type="button" class="btn btn-dark" style="margin-right: 10px;">나에게 선물하기</button>
-					<button type="button" class="btn btn-warning">선물하기</button>
+					<button type="button" id="cart-order-self" class="btn btn-dark" style="margin-right: 10px;">나에게 선물하기</button>
+					<button type="button" id="cart-order-gift" class="btn btn-warning">선물하기</button>
 				</div>
 			</div>
 		</div>
-		<div class="cart-result">
+		<div class="cart-result" style="position: relative; top:30px;">
 		</div>
 	</div>
 	<!-- option modal -->

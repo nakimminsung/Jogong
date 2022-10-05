@@ -5,12 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import bit.data.dto.WishlistDto;
 import bit.data.service.WishlistServiceInter;
 
 @Controller
+@RequestMapping("/wishlist")
 public class WishlistController {
 	
 	@Autowired
@@ -21,7 +23,7 @@ public class WishlistController {
 		return "/mypage/mypage/wishlist";
 	}
 	
-	@PostMapping("/wishlist/insert")
+	@PostMapping("/wishlist/cart_insert")
 	public String insertWishlist(
 			@RequestParam("userNum") int userNum,
             @RequestParam("productNum") int productNum,
@@ -35,5 +37,14 @@ public class WishlistController {
 		wishlistServiceInter.insertWishlist(wishlistDto);
 		
 		return "/mypage/cart";
+	}
+	
+	@PostMapping("/insert")
+	public String insert(WishlistDto dto)
+	{
+		wishlistServiceInter.insertWishlist(dto);
+		int num = dto.getProductNum();
+		System.out.println(num);
+		return "redirect:/product/detail?num="+num;
 	}
 }

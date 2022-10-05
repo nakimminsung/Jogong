@@ -30,4 +30,8 @@ public class CartDao implements CartDaoInter {
 	public void updateCart(Map<String,Integer> map) {
 		session.selectOne(ns+"updateCart", map);
 	}
+	
+	public void insertCart(CartListDto dto) {
+		session.insert(ns+"insertCart", dto);
+	}
 }

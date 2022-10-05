@@ -6,18 +6,28 @@
 <meta charset="UTF-8">
 
 <title>payment</title>
+	<!-- jQuery -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	
 	<!-- font -->
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Edu+VIC+WA+NT+Beginner:wght@600&family=Gamja+Flower&family=Single+Day&family=Jua&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
     
     <!-- bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/payment.css">
-	<!-- jQuery -->
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	
 	<!-- iamport.payment.js -->
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+	
+	<!-- daum 주소검색 -->
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	
 </head>
 <script type="text/javascript">
+	var message = "";
+	var messagecard = "/jogong/resources/giftimage/card/a1.jpg";
+	var banner = "/jogong/resources/giftimage/banner/1.jpg";
+	
 	$(function() {
 		$(document).on("click",".message",function() {
 	 		var message = $(this).attr("value");
@@ -29,18 +39,18 @@
 	 		var message = $(this).attr("value");
 	 		$("#mms_send_msg").text(message);
 	 	 	$("#msg_sample").text(message);
-		}); */
+		}); */ 
 		
 		$(".bannerImg").click(function () {
-			var banner = $(this).attr("src");
+			banner = $(this).attr("src");
 			
 			$("img#previewBanner").attr("src",banner);
 		});
 		
 		$(".cardImg").click(function () {
-			var card = $(this).attr("src");
+			messagecard = $(this).attr("src");
 			
-			$("img#previewTemplate").attr("src",card);
+			$("img#previewTemplate").attr("src",messagecard);
 		});
 		
 	 	$(document).ready(function(){
@@ -49,8 +59,16 @@
             	$("#msg_sample").text($(this).val());
             });
         });
+	 	$(".bannerImg li img").on("click",function(e){
+	 		console.log($(this).attr("src"));
+	 	});
 	 	
-	 
+	 	$(".FriendaddrShow").click(function(){
+	 		  $(".address").show();
+	 	});
+	 	$(".FriendaddrHide").click(function(){
+	 		  $(".address").hide();
+	 	});
 	});
 </script>
 <body>
@@ -59,6 +77,7 @@
             <div class="subcontents">
                 <h1>선물 발송·결제</h1>
                 <h2>선물 꾸미기</h2>
+                <p style="visibility:hidden" id="to_member_id">${to_member_id}</p>
                 <div class="justify-cont col-type01">
                     <!-- 테마와 배너 선택 -->
                     <div class="theme_all">
@@ -93,22 +112,22 @@
                                             <h4>배너</h4>
                                             <div class="scrollBox">
                                                 <div class="deco-list">
-                                                    <ul class="banner-div">
-                                                        <li><img src="/jogong/resources/giftimage/banner/1.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/2.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/3.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/4.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/5.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/6.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/7.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/8.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/9.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/10.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/11.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/12.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/13.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/14.jpg" alt="배너이미지" class="bannerImg">
-                                                        <li><img src="/jogong/resources/giftimage/banner/15.jpg" alt="배너이미지" class="bannerImg">
+                                                    <ul class="banner-div" id="msg_banner">
+                                                        <li><img src="/jogong/resources/giftimage/banner/1.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/2.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/3.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/4.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/5.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/6.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/7.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/8.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/9.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/10.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/11.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/12.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/13.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/14.jpg" alt="배너이미지" class="bannerImg"></li>
+                                                        <li><img src="/jogong/resources/giftimage/banner/15.jpg" alt="배너이미지" class="bannerImg"></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -120,7 +139,7 @@
                                             <h4>카드</h4>
                                             <div class="scrollBox">
                                                 <div class="deco-list">
-                                                    <ul class="card-div">
+                                                    <ul class="card-div" id="msg_card">
                                                         <li><img src="/jogong/resources/giftimage/card/a1.jpg" alt="카드 이미지" class="cardImg"></li>
                                                         <li><img src="/jogong/resources/giftimage/card/a2.jpg" alt="카드 이미지" class="cardImg"></li>
                                                         <li><img src="/jogong/resources/giftimage/card/a3.jpg" alt="카드 이미지" class="cardImg"></li>
@@ -134,7 +153,6 @@
                                                         <li><img src="/jogong/resources/giftimage/card/a11.jpg" alt="카드 이미지" class="cardImg"></li>
                                                         <li><img src="/jogong/resources/giftimage/card/a12.jpg" alt="카드 이미지" class="cardImg"></li>
                                                         <li><img src="/jogong/resources/giftimage/card/a13.jpg" alt="카드 이미지" class="cardImg"></li>
-                                                      
                                                     </ul>
                                                 </div>
                                             </div>
@@ -175,7 +193,7 @@
                         </ul>
                         </div>
                         <div class="msg-area">
-                            <input type="text" id="mms_send_msg">
+                            <input type="text" id="mms_send_msg" value="여기에 입력해주세요">
                         </div> 
                         <!-- 메세지 영역 끝--> 
                         
@@ -192,9 +210,9 @@
                                 <div class="pin">
                                     <div class="col-half">
                                         <div class="giftImg">
-                                            <img src="/jogong/resources/image/21.jpeg" alt="카드 이미지">
+                                            <img src="image/21.jpeg" alt="카드 이미지">
                                         </div>
-                                        <div class="cardImg">
+                                        <div class="previewCardImg">
                                             <img id="previewTemplate" src="/jogong/resources/giftimage/card/a1.jpg" alt="꾸미기 템플릿">
                                         </div>
                                     </div>
@@ -205,26 +223,89 @@
                             </div>
 
                             <!--텍스트 박스-->
-                            <p id="msg_sample"></p>
+                            <p id="msg_sample">여기에 입력해주세요</p>
 
                         </div>
                     </div>
                     <!-- 샘플이미지 끝-->
                 </div>
+                <hr>
+                
+                <!-- 배송지 선택 -->
+                <div class="delivery">   
+						<div class="gift_address">
+						<h3>선물 배송지 입력</h3>
+							 <div class="group_gift">
+								<div class="item_choice">
+									<input type="radio" id="inpFriend" name="inpWriter" class="FriendaddrHide" checked>
+									<label for="inpFriend" class="lab_choice">
+										<span class="ico_gift ico_radio"></span>
+										<span class="txt_name">선물받는 친구가 입력할 거에요</span>
+									</label>
+								</div>
+								<div class="item_choice">
+									<input type="radio" id="inpFriend" name="inpWriter" class="FriendaddrShow" >
+									<label for="inpFriend" class="lab_choice">
+										<span class="ico_gift ico_radio"></span>
+										<span class="txt_name">내가 친구 대신 입력할 거에요</span>
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 배송지 선택 끝 -->
+					
+					<!-- 배송지 입력 폼 -->
+					<table style="width: 100%; display: none;" class="address" >
+						<tr>
+						<th> 받는사람 이름 </th>
+							<td>
+								<input type="text" style="width: 50%;" required name="companyName">
+								
+							</td>
+						</tr>
+						<tr>
+						<th> 연락처 </th>
+							<td>
+								<input type="text" style="width: 50%;" required name="companyName">
+								
+							</td>
+						</tr>
+						<tr>
+							<th> 배송받을 주소 </th>
+							<td>
+								<input type="text" id="sample4_postcode" placeholder="우편번호" style="width: 50%; margin-bottom: 5px;" required>
+								<input type="button" onclick="sample4_execDaumPostcode()" class="btn btn-dark btn-sm" value="우편번호 찾기" style=" margin-bottom: 5px;"><br>
+								<input type="text" id="sample4_roadAddress" placeholder="도로명주소" size="60" 
+								style="width: 50%; margin-bottom: 5px;" required name="address1"><br>
+								
+								<input type="hidden" id="sample4_jibunAddress" placeholder="지번주소"  size="60">
+								<span id="guide" style="color:#999; display:none"></span>
+								<input type="text" id="sample4_detailAddress" placeholder="상세주소"  size="60" 
+								style="width: 50%;"required name="address2"><br>
+								
+								<input type="hidden" id="sample4_extraAddress" placeholder="참고항목"  size="60">
+								<input type="hidden" id="sample4_engAddress" placeholder="영문주소"  size="60" >
+							</td>
+						</tr>
+					</table>
             </div>
         </div>
     </div>
+
+
+    
 <div class="outer">
         <div id="inner1">
             <h3>선물 상품 정보</h3>
             <div class="gift-info row-type03">
                 <div>
-                    <img src="image/cake.jpg" alt="스트로베리 초콜릿 생크림" width="100px" ; height="100px">
+                    <img src="image/cake.jpg" alt="스트로베리 초콜릿 생크림" width="100px" height="100px">
                 </div>
                 <div class="gift-info-desc">
                     <span>투썸플레이스</span>
-                    <p><strong>스트로베리 초콜릿 생크림</strong></p>
-                    <p class="price">총 선물 수 <strong><span class="phoneCnt">0</span> 개</strong></p>
+                    <p><strong id="sangpum">${sangpum}</strong></p>
+                    <p class="count" id="count">총 선물 수 <strong><span class="phoneCnt">${count}</span> 개</strong></p>
                 </div>
                 <div class="tag">
 
@@ -284,26 +365,19 @@
                             <div data-v-8215c5a4="" class="main_title"><strong data-v-8215c5a4="">일반 결제</strong> <span
                                     data-v-8215c5a4="" class="sub_title">일시불・할부</span></div>
                         </h4>
-                        <div data-v-35b707e2="" data-v-8215c5a4="" class="pay_method" id="card" value="html5_inicis">
-                            <div data-v-35b707e2="" class="pay_item" id="normalpay">
+                        <div data-v-35b707e2="" data-v-8215c5a4="" class="pay_method" id="card">
+                            <div data-v-35b707e2="" class="pay_item" id="normalpay" value="html5_inicis">
                                 <div data-v-35b707e2="" class="pay_box">
                                     <div data-v-35b707e2="" class="pay_title">
                                         <p data-v-35b707e2="" class="main_title">신용/체크카드</p>
                                     </div>
                                 </div>
                             </div>
-                            <div data-v-35b707e2="" class="pay_item" id="quickpay" value="html5_inicis">
+                            <div data-v-35b707e2="" class="pay_item" id="quickpay" value="danal">
                                 <div data-v-35b707e2="" class="pay_box">
                                     <div data-v-35b707e2="" class="pay_title">
-                                        <p data-v-35b707e2="" class="main_title">계좌이체</p>
+                                        <p data-v-35b707e2="" class="main_title">핸드폰결제</p>
                                     </div>
-                                </div>
-                            </div>
-                            <div data-v-35b707e2="" class="pay_item" id="naverpay" value="html5_inicis">
-                                <div data-v-35b707e2="" class="pay_box">
-                                    <div data-v-35b707e2="" class="pay_title">
-                                        <p data-v-35b707e2="" class="main_title">네이버페이</p>
-                                    </div><img data-v-35b707e2="" src="image/naverpay.jpg" alt="네이버페이" class="pay_img">
                                 </div>
                             </div>
                             <div data-v-35b707e2="" class="pay_item" id="kakaopay" value="kakaopay">
@@ -318,13 +392,6 @@
                                     <div data-v-35b707e2="" class="pay_title">
                                         <p data-v-35b707e2="" class="main_title">토스</p>
                                     </div><img data-v-35b707e2="" src="image/tosspay.jpg" alt="토스" class="pay_img">
-                                </div>
-                            </div>
-                            <div data-v-35b707e2="" class="pay_item" id="paycopay" value="html5_inicis">
-                                <div data-v-35b707e2="" class="pay_box">
-                                    <div data-v-35b707e2="" class="pay_title">
-                                        <p data-v-35b707e2="" class="main_title">페이코</p>
-                                    </div><img data-v-35b707e2="" src="image/paycopay.jpg" alt="페이코" class="pay_img">
                                 </div>
                             </div>
                         </div>
@@ -380,11 +447,11 @@
         <div id="inner2">
             <div class="box-type01">
                 <h3>최종 결제 금액</h3>
-                <table class="t-head">
+                <table class="t-head tlable-light">
                     <tbody>
                         <tr>
                             <th>상품 금액</th>
-                            <td><strong id="total_sale_price">36,000</strong> 원</td>
+                            <td><strong id="total_sale_price">${price}</strong> 원</td>
                         </tr>
                         <tr>
                             <th>할인 금액</th>
@@ -406,7 +473,8 @@
                     <tfoot>
                         <tr>
                             <th>결제 금액</th>
-                            <td><strong id="final_price">36,000</strong> 원</td>
+                            <td><strong id="final_price">
+                            </strong>${totalprice} 원</td>
                         </tr>
                     </tfoot>
                 </table>
@@ -417,52 +485,23 @@
 <hr>
 	
 <script type="text/javascript">
-/*$(document).ready(function(){ 
- 	 $("").click(function(){ 
-    	payment(); //버튼 클릭하면 호출 
-    }); 
- 	 
-=======
-	</div>
 
-	<script type="text/javascript">
-$(document).ready(function(){ 
- 	 $("#iamportPayment").click(function(){ 
-    	payment(); //버튼 클릭하면 호출 
-    }); 
->>>>>>> 0ec93a028332c017ace3eb56df7c4f9cf45ed7d6
-	$("#iamportPayment2").click(function(){ 
-		danal();
-    }); 
- 	 
-	$("").click(function(){ 
-		kg();
-<<<<<<< HEAD
-    }); 
-	$("").click(function(){ 
-=======
-    });
-	$("#iamportPayment4").click(function(){ 
->>>>>>> 0ec93a028332c017ace3eb56df7c4f9cf45ed7d6
-		toss();
-    }); 
-})*/
-
- //버튼 클릭하면 실행
+const rand = Math.random();
+//버튼 클릭하면 실행
 function payment(data) {
     IMP.init('imp20164668');//아임포트 관리자 콘솔에서 확인한 '가맹점 식별코드' 입력
     IMP.request_pay({// param
         pg: "kakaopay.TC0ONETIME", //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
         pay_method: "card", //지불 방법
-        merchant_uid: "0034", //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
-        name: "음식", //결제창에 노출될 상품명
-        amount: 100, //금액
-        buyer_email : "testiamport@naver.com", 
-        buyer_name : "홍길동",
-        buyer_tel : "01012341234"
+
+        merchant_uid: rand, //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+        name : '${sangpum}', //결제창에 노출될 상품명
+        //amount: ${totalprice},
+        buyer_name : "김민성",
+        custom_data : customdata,
     }, function (rsp) { // callback
         if (rsp.success) {
-        	   alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료");
+        	   alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료"+"count:"+rsp.custom_data.count+"받는사람:"+rsp.custom_data.member_id);
                
                jQuery.ajax({
                    url: "test.action",
@@ -475,8 +514,9 @@ function payment(data) {
                        "amount" : rsp.paid_amount,
                        "buyer_name" : rsp.buyer_name,
                        "pg" : rsp.pg_provider,
-                       "pay_method" : rsp.pay_method
-                   	}
+                       "pay_method" : rsp.pay_method,
+                       "custom_data" : rsp.custom_data,
+            		   }
                    });
          } else {
              alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
@@ -493,7 +533,7 @@ function danal(data) {
 	IMP.request_pay({
 		pg : 'nice',
 	    pay_method : 'phone',
-	    merchant_uid: "0034", //상점에서 생성한 고유 주문번호
+	    merchant_uid: "0099", //상점에서 생성한 고유 주문번호
 	    name : '주문명:결제테스트',
 	    amount : 1000,
 	    buyer_email : 'iamport@siot.do',
@@ -529,13 +569,13 @@ function danal(data) {
      });
 }
 
-*/
+
 function kg(data) {
 	IMP.init('imp20164668');//아임포트 관리자 콘솔에서 확인한 '가맹점 식별코드' 입력
 	IMP.request_pay({
 		pg : 'html5_inicis',
 	    pay_method : 'card',
-	    merchant_uid: "0034", //상점에서 생성한 고유 주문번호
+	    merchant_uid: "0099", //상점에서 생성한 고유 주문번호
 	    name : '주문명:결제테스트',
 	    amount : 100,
 	    buyer_email : 'iamport@siot.do',
@@ -576,7 +616,7 @@ function toss(data) {
 	IMP.request_pay({
 		pg : 'tosspay',
 	    pay_method : 'card',
-	    merchant_uid: "0034", //상점에서 생성한 고유 주문번호
+	    merchant_uid: "0099", //상점에서 생성한 고유 주문번호
 	    name : '주문명:결제테스트',
 	    amount : 100,
 	    buyer_email : 'iamport@siot.do',
@@ -613,15 +653,78 @@ function toss(data) {
    });
 }
 
+/*배너 클릭시 색상변경 효과*/
+var bannerImg = document.getElementsByClassName("bannerImg");
 
+function handleClick2(event) {
+  //console.log(event.target);
+  // console.log(this);
+  // 콘솔창을 보면 둘다 동일한 값이 나온다
+
+  //console.log(event.target.classList);
+
+  if (event.target.classList[1] === "clicked") {
+    event.target.classList.remove("clicked");
+  } else {
+    for (var i = 0; i < bannerImg.length; i++) {
+    bannerImg[i].classList.remove("clicked");
+    }
+
+    event.target.classList.add("clicked");
+  }
+}
+
+function init2() {
+  for (var i = 0; i < bannerImg.length; i++) {
+	bannerImg[i].addEventListener("click", handleClick2);
+  }
+}
+
+init2();
+/*배너 클릭시 색상변경 효과 끝 */
+
+
+/*카드 클릭시 색상변경 효과*/
+var cardImg = document.getElementsByClassName("cardImg");
+
+function handleClick3(event) {
+  //console.log(event.target);
+  var tag=$(event.target);
+  tag.parent().siblings("li").find("img.cardImg").css("border","none");
+  event.target.style.border='2px solid black'; 
+  // console.log(this);
+  // 콘솔창을 보면 둘다 동일한 값이 나온다
+
+  //console.log(event.target.classList);
+
+  if (event.target.classList[1] === "clicked") {
+    event.target.classList.remove("clicked");
+  } else {
+    for (var i = 0; i < cardImg.length; i++) {
+    	cardImg[i].classList.remove("clicked");
+    }
+
+    event.target.classList.add("clicked");
+  }
+}
+
+function init3() {
+  for (var i = 0; i < cardImg.length; i++) {
+	  cardImg[i].addEventListener("click", handleClick3);
+  }
+}
+
+init3();
+/*카드 클릭시 색상변경 효과 끝 */
+ 
 var div2 = document.getElementsByClassName("pay_box");
 
 function handleClick(event) {
-    console.log(event.target);
+    //console.log(event.target);
     // console.log(this);
     // 콘솔창을 보면 둘다 동일한 값이 나온다
 
-    console.log(event.target.classList);
+    //console.log(event.target.classList);
 
     if (event.target.classList[1] === "clicked") {
         event.target.classList.remove("clicked");
@@ -637,7 +740,7 @@ function handleClick(event) {
 function init() {
     for (var i = 0; i < div2.length; i++) {
         div2[i].addEventListener("click", handleClick);
-        console.log(this)
+        //console.log(this)
     }
 }
 
@@ -647,6 +750,15 @@ init();
 payed.onclick = function () {
     const selected = document.querySelector('.pay_box.clicked').parentNode;
     const val = selected.getAttribute('value');
+	
+  
+    message = $("#mms_send_msg").val();
+    
+    customdata = JSON.parse('{"member_id":"${to_member_id}","count":"${count}","message":"'+message+'","banner":"'+banner+'","messagecard":"'+messagecard+'"}' );
+    console.dir(customdata)
+    
+   
+    alert(message)
     
     if(val=='kakaopay'){
     	payment();
@@ -654,16 +766,70 @@ payed.onclick = function () {
     	toss();            	
     }else if(val=='html5_inicis'){
     	kg();
+    }else if(val=='danal'){
+   		danal(); 	
     }
 } 
-/* var payed = document.getElementById("paying");
-payed.onclick = function () {
-    const selected = document.querySelector('.pay_box.clicked').parentNode;
-    console.log(selected);
-    const val = selected.getAttribute('value');
-    console.log(val);
-}
- */
- </script>
+</script>
 </body>
+<script type="text/javascript">
+//다음 주소검색 API
+//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+function sample4_execDaumPostcode() {
+new daum.Postcode({
+    oncomplete: function(data) {
+        // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+        // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+        // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+        var roadAddr = data.roadAddress; // 도로명 주소 변수
+        var extraRoadAddr = ''; // 참고 항목 변수
+
+        // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+        // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+        if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+            extraRoadAddr += data.bname;
+        }
+        // 건물명이 있고, 공동주택일 경우 추가한다.
+        if(data.buildingName !== '' && data.apartment === 'Y'){
+           extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+        }
+        // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+        if(extraRoadAddr !== ''){
+            extraRoadAddr = ' (' + extraRoadAddr + ')';
+        }
+
+        // 우편번호와 주소 정보를 해당 필드에 넣는다.
+        document.getElementById('sample4_postcode').value = data.zonecode;
+        document.getElementById("sample4_roadAddress").value = roadAddr;
+        document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+ 
+        document.getElementById("sample4_engAddress").value = data.addressEnglish;
+               
+        // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+        if(roadAddr !== ''){
+            document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+        } else {
+            document.getElementById("sample4_extraAddress").value = '';
+        }
+
+        var guideTextBox = document.getElementById("guide");
+        // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+        if(data.autoRoadAddress) {
+            var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+            guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+            guideTextBox.style.display = 'block';
+
+        } else if(data.autoJibunAddress) {
+            var expJibunAddr = data.autoJibunAddress;
+            guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+            guideTextBox.style.display = 'block';
+        } else {
+            guideTextBox.innerHTML = '';
+            guideTextBox.style.display = 'none';
+        }
+    }
+}).open();
+}
+</script>
 </html>

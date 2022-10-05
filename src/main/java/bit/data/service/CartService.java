@@ -35,4 +35,8 @@ public class CartService implements CartServiceInter {
 		cartDaoInter.updateCart(map);
 	}
 	
+	@Override
+	public void insertCart(CartListDto dto) {
+		cartDaoInter.insertCart(dto);
+	}
 }

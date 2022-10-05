@@ -14,4 +14,8 @@
 	<update id="updateCart" parameterType="int">
 		update cartList set qty=#{qty} where num=#{cartNum}
 	</update>
+	<!-- 상세페이지 선물상자담기 -->
+	<insert id="insertCart" parameterType="cartListDto">
+		insert into cartList values (null,#{qty},#{messageCard},#{engrave},#{userNum},#{productNum})
+	</insert>
 </mapper>

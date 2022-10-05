@@ -1,25 +1,35 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%> <%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core" %> <%@ taglib prefix="fmt"
+uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-	
-	<!-- font -->
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Edu+VIC+WA+NT+Beginner:wght@600&family=Gamja+Flower&family=Single+Day&family=Jua&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
-    
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+
+    <!-- font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Edu+VIC+WA+NT+Beginner:wght@600&family=Gamja+Flower&family=Single+Day&family=Jua&family=Nanum+Pen+Script&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-	
-	<!-- bootstrap 5 icon -->
-	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-    
+
+    <!-- bootstrap 5 icon -->
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-    
+
 </head>
 <style>
 	body * {
@@ -59,7 +69,7 @@
 		display: flex;
 		justify-content: flex-end;
 		align-items: center;
-		min-width:230px;
+		min-width:300px;
 	}
 	form.search{
 	    display: flex;
@@ -96,9 +106,9 @@
 	}
 	a.login {
 		color: #ff3c78;
-		font-size:20px;
-		font-weight:400;
-		margin-left:10px;
+		font-size:18px;
+		font-weight:bold;
+		margin-left:15px;
 	}
 	a.login:hover {
 		color: #ff3c78;
@@ -107,7 +117,13 @@
 	button.btn-header{
 		background-color: #ff3c78;
 		color: #fff;
-		font-weight:400;		
+		font-weight:400;	
+	}
+	.profile{
+	border-radius:100px;
+	width:30px;
+	height:30px;
+	margin:5px 5px;
 	}
 </style>
 <body>
@@ -128,19 +144,33 @@
 					<input disabled="disabled" type="text" placeholder="선물, 브랜드 검색" autocomplete="off" aria-required="true" aria-invalid="false" style="cursor: pointer; border:0px;">
 				</form>
 			</div>
-		</div>
+		</div> <!-- div.left 종료 -->
+		
 		<div class="right">
-			<div>
-				<a href="${root}/cscenter/faq">고객센터</a>
-			</div>
-			<div>
-				<a class="login" href="${root}">로그인</a>
-			</div>
-			<div>
-				<button type="button" class="btn btn-header"
-				onclick="location.href='${root}/join/joinMain'">회원가입</button>
-			</div>
-		</div>
-	</div>	
-</body>
+
+			<!-- 로그아웃 상태일때 -->
+			<c:if test="${sessionScope.loginok==null}"> <!-- 세션영역(세션에서 찾을때 무조건써줘야함) -->
+				<a href="${root}/cscenter/faq"><b style="font-size: 16px;">고객센터</b></a>
+				<a class="login" href="${root}/loginForm" style="margin-right: 10px;">로그인</a>
+			
+				<div>
+					<button type="button" class="btn btn-header"
+					onclick="location.href='${root}/join/joinMain'">회원가입</button>
+				</div>
+				
+			</c:if>
+			
+			<!-- 로그인 상태일때 -->
+			<c:if test="${sessionScope.loginok!=null}"> <!-- 세션영역(세션에서 찾을때 무조건써줘야함) -->
+				<a href="${root}/cscenter/faq"><b style="font-size: 16px;">고객센터</b></a>&emsp;
+				<img src="${sessionScope.loginphoto}" class="profile"><b style="max-width:500px;">${sessionScope.loginname}님</b>
+				&nbsp;&nbsp;
+				<a class="login" href="${root}/logout">로그아웃</a>
+			</c:if>
+			
+		</div>	<!-- div.right 종료 -->
+
+    </div>
+    <!--  div.header-wrapper 종료 -->
+  </body>
 </html>

@@ -174,6 +174,7 @@
 			
 			var ba = new Array();
 			var fs = "";	
+			
 			fl = $(".chkBox:checked").length;
 		
 		    $(".chkBox:checked").each(function() {

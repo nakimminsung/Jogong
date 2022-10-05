@@ -25,5 +25,5 @@ public class WishlistDao implements WishlistDaoInter {
 	public void insertWishlist(WishlistDto wishlistDto) {
 		session.selectOne(ns+"insertWishlist", wishlistDto);
 	};
-	
+
 }
