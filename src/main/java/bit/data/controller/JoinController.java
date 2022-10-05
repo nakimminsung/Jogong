@@ -74,19 +74,23 @@ public class JoinController {
 			address=address1 +", "+ address2;
 		}
 		
+		//SHA-256 암호화를 위한 salt 선언 및 dto에 담기
+		String salt=SHA256Util.generateSalt();
+		dto.setSalt(salt);
+		
+		//입력받은 password 가져오기
+		String password=dto.getPassword();
+		
+		//password에 SHA-256 암호화 적용시키기 (원본, 랜덤 salt 값)
+		password=SHA256Util.getEncrypt(password, salt);
+		
+		//암호화 적용된 비밀번호를 dto에 담기
+		dto.setPassword(password);
+		
+		//dto에 담기
 		dto.setAddress(address);
 		dto.setLogoImage("user_default.png");
-
-		//중간 확인 (콘솔)
-		System.out.println(dto.getEmail());
-		System.out.println(dto.getPassword());
-		System.out.println(dto.getCompanyName());
-		System.out.println(dto.getBusinessNumber());
-		System.out.println(dto.getLogoImage());	//null
-		System.out.println(dto.getPhone());
-		System.out.println(dto.getAddress());
-		System.out.println(dto.getBank());
-		System.out.println(dto.getAccountNumber());
+		
 		
 		//ServiceInter 의 insertSeller 호출 (dto 전달)
 		sellerService.insertSeller(dto);
@@ -133,7 +137,7 @@ public class JoinController {
 		
 
 		//자동입력
-		dto.setProfileImage("dd");
+		dto.setProfileImage("https://github.com/kkookkss/jogong_data/blob/main/user/man/500user_default.png?raw=true");
 		dto.setAddress(address);
 		dto.setPoint(0);
 		dto.setYear(birthyear);

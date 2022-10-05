@@ -23,6 +23,6 @@
 	</select>
 	<!-- 로그인 후 아이디 및 사진 출력 및 salt 값 -->
 	<select id="getDataById" parameterType="String" resultType="userDto">
-		select * from user where email=#{id}
+		select * from user where email=#{email}
 	</select>
 </mapper>

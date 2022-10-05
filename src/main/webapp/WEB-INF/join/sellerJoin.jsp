@@ -56,7 +56,7 @@
 	}
 	
 	.sellerTerm{
-		margin-top: 30px;
+		margin-top: 20px;
 	}
 	
 	.btnNext {
@@ -76,14 +76,6 @@
    		
    }
    
-   .term1{
-   	justify-content: space-between;
-   }
-   
-   .term2{
-   	justify-content: space-between;
-   }
-   
 
 </style>
 </head>
@@ -101,22 +93,8 @@ $(document).ready(function(){
 				
 			}
 			
-		});
-	 
+		});//ajax 종료
 	
-	$.ajax({
-		type:"get",
-		url:"/jogong/resources/terms/sellerTerm2.jsp",
-		dataType:"html",
-		async: false,
-		success:function(res){
-			
-			$("div.getTerm2").html(res);
-			
-		}
-		
-	});
-
 	$.ajax({
 		type:"get",
 		url:"/jogong/resources/terms/sellerTerm3.jsp",
@@ -128,22 +106,56 @@ $(document).ready(function(){
 			
 		}
 		
+	});//ajax 종료
+	
+	
+	//약관 동의(모두 동의)
+	$("#totalAgree").on('click', function(){
+		var checked = $(this).is(':checked');
+		//alert(checked);
+		
+		if(checked) {
+	    	$(".agree").prop('checked', true);
+	    }else{
+	    	$(".agree").prop('checked', false);
+	    }
+		
 	});
-
-
-
-	$.ajax({
-		type:"get",
-		url:"/jogong/resources/terms/sellerTerm4.jsp",
-		dataType:"html",
-		async: false,
-		success:function(res){
-			
-			$("div.getTerm4").html(res);
-			
+	
+	//약관 체크 여부에 따라 total check값 변경
+	$(".agree").on('click', function(){
+		var checked1 = $("#agree1").is(':checked');
+		var checked2 = $("#agree2").is(':checked');
+		
+		if(checked1!=checked2){
+			$("#totalAgree").prop('checked', false);
+		}else if(checked1==false || checked2==false){
+			$("#totalAgree").prop('checked', false);
+		}else{
+			$("#totalAgree").prop('checked', true);
 		}
 		
 	});
+	
+	
+	$(".btnNext").click(function () {
+		var checked = $("#totalAgree").is(':checked');
+		//alert(checked);
+		
+		//totalAgree에 체크되어있다면
+		if(checked){
+			
+			f_link();
+			 
+		}else{
+			alert("필수 약관을 동의해주시기 바랍니다");
+			
+			return;
+		}
+		
+	});	//btnNext 버튼클릭 이벤트 종료
+	
+	
 
 });
 	
@@ -169,51 +181,31 @@ $(document).ready(function(){
 			
 
 
-			<div class="input-group term1">
+			<div class="term">
 				<!-- 이용약관 div 1 -->
-				<div class="sellerTerm" style="width: 49%; height: 300px;">
-					<label style="float: right;"><input type="checkbox" class="form-check-input"> 조공 이용약관</label>
+				<div class="sellerTerm" style="width: 100%; height: 280px;">
+					<label style="float: right;"><input type="checkbox" class="form-check-input agree" id="agree1"> 조공 이용약관</label>
 					<div class="getTerm1" style="width: 100%; height: 240px; border: 1px solid gray; overflow:scroll;">
 						
 					</div>
 				</div>
 				
 				<!-- 이용약관 div 2 -->
-				<div class="sellerTerm" style="width: 49%; height: 300px;">
-					<label style="float: right;"><input type="checkbox" class="form-check-input"> 조공 개인정보 수집</label>
-					<div class="getTerm2" style="width: 100%; height: 240px; border: 1px solid gray; overflow:scroll;">
-						
-					</div>
-				</div>
-			</div>
-			
-			
-			<div class="input-group term2">
-			
-				<!-- 이용약관 div 3 -->
-				<div class="sellerTerm" style="width: 49%; height: 300px;">
-					<label style="float: right;"><input type="checkbox" class="form-check-input"> 오픈마켓 판매자 약관</label>
+				<div class="sellerTerm" style="width: 100%; height: 280px;">
+					<label style="float: right;"><input type="checkbox" class="form-check-input agree" id="agree2"> 조공 판매자 약관</label>
 					<div class="getTerm3" style="width: 100%; height: 240px; border: 1px solid gray; overflow:scroll;">
-						
-					</div>
-					
-				</div>
-				
-				<!-- 이용약관 div 4 -->
-				<div class="sellerTerm" style="width: 49%; height: 300px;">
-					<label style="float: right;"><input type="checkbox" class="form-check-input"> 판매자 개인정보 수집 및 이용안내</label>
-					<div class="getTerm4" style="width: 100%; height: 240px; border: 1px solid gray; overflow:scroll;">
 						
 					</div>
 				</div>
 			</div>
 
+
 			
 			<!-- 다음 버튼 -->
 			<br>
 			<div style="text-align: center; font-weight: bold; height: 50px;">
-				<label><input type="checkbox" class="form-check-input"> 전체 약관에 동의합니다.</label><br><br>
-				<button type="button" class="btnNext btn btn-outline-secondary" onclick="f_link();">다음</button>
+				<label><input type="checkbox" class="form-check-input" id="totalAgree"> 전체 약관에 동의합니다.</label><br><br>
+				<button type="button" class="btnNext btn btn-outline-secondary">다음</button>
 			</div>
 				
 		</div> <!-- 전체 div : sellerJoinTerm 종료 -->

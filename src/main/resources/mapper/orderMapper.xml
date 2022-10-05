@@ -9,27 +9,27 @@
 
 	<!-- order에 필요한 상품 정보 조회(상품명) -->
 	<select id="getItemNameSearch" parameterType="int" resultType="string">
-		select name from product where num in (select productNum from orderDetail where num in (select orderDetailNum from order where num = #{num})); 
+		select name from product where num in (select productNum from orderDetail where num = #{num}) 
 	</select>
 
 	<!-- order에 필요한 상품 정보 조회(가격) -->
 	<select id="getItemPriceSearch" parameterType="int" resultType="int">
-		select price from product where num in (select productNum from orderDetail where num in (select orderDetailNum from order where num = #{num})); 
+		select price from product where num in (select productNum from orderDetail where num = #{num})
 	</select>
 
 	<!-- order에 필요한 상품 정보 조회(썸네일) -->
 	<select id="getItemThumbnailSearch" parameterType="int" resultType="string">
-		select thumbnailImageUrl from product where num in (select productNum from orderDetail where num in (select orderDetailNum from order where num = #{num})); 
+		select thumbnailImageUrl from product where num in (select productNum from orderDetail where num = #{num}) 
 	</select>
 
 	<!-- order에 필요한 친구 nickname 조회 -->
 	<select id="getfriendNickNameSearch" parameterType="int" resultType="string">
-		select nickname from user where num in (select friendNum from orderDetail where num in (select orderDetailNum from order where num = #{num})); 
+		select nickname from user where num in (select friendNum from orderDetail where num = #{num})
 	</select>
 
 	<!-- order에 필요한 nickname 조회 -->
 	<select id="getNickNameSearch" parameterType="int" resultType="string">
-		select nickname from user where  num in (select userNum from orderDetail where num in (select orderDetailNum from order where num = #{num})); 
+		select nickname from user where  num in (select userNum from orderDetail where num = #{num})
 	</select>
 
 	<!-- order에 필요한 count 조회 -->
@@ -38,6 +38,6 @@
 	</select>
 
 	<insert id="insertOrder">
-	      insert into order values (null,#{imp_uid},#{totalPrice},now(),#{pg},#{pay_method},#{paidPoint},#{deliveryAddress},#{orderStatus},#{deliveryCharge},#{messagecard},#{banner},#{message},#{addr},#{success})
+	      insert into jogong.order values (null,#{imp_uid},#{totalPrice},now(),#{pg},#{pay_method},#{paidPoint},#{deliveryAddress},#{orderStatus},#{deliveryCharge},#{messagecard},#{banner},#{message},#{hp},#{count},#{postalcode},#{userNum},#{orderDetailNum})
 	</insert>
 </mapper>

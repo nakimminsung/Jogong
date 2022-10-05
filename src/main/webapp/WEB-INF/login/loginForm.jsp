@@ -28,7 +28,11 @@
 		text-align: center;
 	}
 	
-	.textBox{
+	.userTextBox{
+		margin-bottom: 10px;
+	}
+	
+	.sellerTextBox{
 		margin-bottom: 10px;
 	}
 	
@@ -98,6 +102,7 @@ $(document).ready(function(){
 		$(".userLoginBox").show();
 	});
 	
+	
 });
 </script>
 <body>
@@ -116,11 +121,10 @@ $(document).ready(function(){
 				</div>
 				
 				<!-- user 로그인 정보 -->
-				<input type="email" class="form-control textBox" required placeholder="아이디(이메일 형식)" id="loginid" name="id">
-				<input type="password" class="form-control textBox" required placeholder="비밀번호" id="loginpass">
-				<label style="float: left;"><input type="checkbox" class="form-check-input"> 아이디 저장</label>
-				<button type="button" class="loginok btn btn-danger" id="loginok">로그인</button>
-			
+				<input type="email" class="form-control userTextBox" required placeholder="아이디(이메일 형식)" id="userEmail" value="${rememberId=='yes' ? savedId : ''}">
+				<input type="password" class="form-control userTextBox" required placeholder="비밀번호" id="userPassword">
+				<label style="float: left;"><input type="checkbox" class="form-check-input checkUser" id="rememberId" ${rememberId=='yes' ? 'checked' : ''}> 아이디 저장</label>		
+				<button type="button" class="loginok btn btn-danger" id="loginok" >로그인</button>
 				<hr>
 				
 				<!-- 소셜회원 로그인 박스 -->
@@ -128,11 +132,9 @@ $(document).ready(function(){
 					<button class="btnKakaoLogin" style="background-color: #fde102;"><i class='fas fa-comment'></i> 카카오로 로그인</button>&nbsp;&nbsp;&nbsp;
 					<button class="btnNaverLogin" style="background-color: #19ce60; color: white;">N 네이버로 로그인</button>
 				</div>
-			</div>
-			
-			
-			
-			
+
+			</div>	
+
 				
 			<!-- 판매회원 로그인 박스 -->
 			<div class="sellerLoginBox">
@@ -144,9 +146,10 @@ $(document).ready(function(){
 				</div>
 			
 				
-				<input type="email" class="form-control textBox" required placeholder="아이디(이메일 형식)" id="sellerEmail">
-				<input type="password" class="form-control textBox" required placeholder="비밀번호" id="sellerPassword">
-				<label style="float: left;"><input type="checkbox" class="form-check-input"> 아이디 저장</label>
+				<input type="email" class="form-control sellerTextBox" required placeholder="아이디(이메일 형식)" id="sellerEmail" value="${rememberSellerId=='yes' ? savedSellerId : ''}">
+				<input type="password" class="form-control sellerTextBox" required placeholder="비밀번호" id="sellerPassword">
+				<label style="float: left;"><input type="checkbox" class="form-check-input checkSeller" id="rememberSellerId" ${rememberSellerId=='yes' ? 'checked' : ''}> 아이디 저장</label>
+				
 				<button type="button" class="btnLoginSeller btn btn-danger">로그인</button>
 				
 			</div>
@@ -167,14 +170,15 @@ $(document).ready(function(){
 <script>
 	//user 로그인 버튼
 	$("#loginok").click(function(){
-		var id=$("#loginid").val();
-		var pass=$("#loginpass").val();
+		var id=$("#userEmail").val();
+		var pass=$("#userPassword").val();
+		var rememberId=$("#rememberId").is(':checked');
 
 		$.ajax({
 			type:"post",
 			url:"userLogin",
 			dataType:"json",
-			data:{"id":id,"pass":pass},
+			data:{"email":id,"password":pass,"rememberId":rememberId},
 			success:function(res){
 				if(res.result=="fail"){
 					alert("아이디나 비밀번호가 틀렸습니다");
@@ -196,11 +200,13 @@ $(document).ready(function(){
 		var root='${root}';
 		console.log("root : "+root);
 		
+		var rememberSellerId=$("#rememberSellerId").is(':checked');
+		
 		$.ajax({
 			type:"post",
 			url:root+"/sellerLogin",
 			dataType:"json",
-			data:{"email":email,"password":password},
+			data:{"email":email,"password":password,"rememberSellerId":rememberSellerId},
 			success:function(res){
 				if(res.result=='fail'){
 					alert("ID 혹은 비밀번호가 맞지 않습니다");

@@ -19,6 +19,9 @@ public class OrderDto {
 	private String messagecard;
 	private String banner;
 	private String message;
-	private String userNum;
-	private String orderDetailNum;
+	private String hp;
+	private String postalcode;
+	private int count;
+	private int userNum;
+	private int orderDetailNum;
 }

@@ -14,18 +14,18 @@
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <style type="text/css">
 	*{
-		/* font-family: 'Jua'; */
+		
 	}
-
-	div.userJoinTerm{
+	
+	div.all{
 		width: 100%;
-		height: 1100px;
+		height: 600px;
 		/* padding-top: 50px;
 		padding-left: 200px; */
 		margin-top: 30px;
-		padding-left: 20%;
-		padding-right: 20%;
-
+		padding-left: 24%;
+		padding-right: 24%;
+		text-align: center;
 	}
 	
 	.stepBox{
@@ -48,41 +48,43 @@
 		text-align: center;
 		padding-top: 10px;
 		margin-top: 10px;
+		font-size: 20px;
 	}
-	
-	.userJoinTerm{
-		margin-top: 50px;
-	}
-	
-	.btnNext {
-      width: 200px;
-      height: 50px;
-      font-size: 20px;
-      /* border: 0px;
-      border-radius: 8px; */
-      
-   }
+
 </style>
 </head>
 <body>
+	<c:set var="root" value="<%=request.getContextPath() %>"/>
 	<div style="background-color: white;">
-
-		<div class="userJoinTerm"> <!-- div 전체 -->
+		<div class="all">
+			
+			<!-- 단계 Step Box -->
 			<div class="stepBox">
 				<h2>개인 회원가입</h2>
 				<ul>
-					<li class="agrees">1.약관 동의</li>
-					<li class="insert">2.정보 입력</li>
-					<li style="background-color: #dcdcdc; font-weight: bold;" class="gaip">3.가입 완료</li>
-				</ul>	
+					<li style="color:lightgray; font-weight: bold; border: 1px solid lightgray;">1.약관 동의</li>
+					<li style="color:lightgray; font-weight: bold; border: 1px solid lightgray;">2.정보 입력</li>
+					<li style="color:red; font-weight: bold; border: 1px solid red;">3.가입 완료</li>
+				</ul>		
+			</div> <!-- stepBox 종료 -->
+			
+			<hr style="margin-top: 30px; margin-bottom: 70px;">
+			
+			<!-- textBox -->
+			<div class="textBox" style="height: 400px; vertical-align: middle;">
+				
+				<i class='fas fa-check-circle' style='font-size:60px; color:#19ce60'></i>
+				<br><br>
+				<p style="color: gray; font-size: 36px;">조공 <b style="color: black; font-size: 36px;">회원가입이 완료</b>되었습니다.</p>
+				<p>회원님은 조공의 모든 기능을 사용하실 수 있습니다. 로그인 후 이용 가능합니다.</p>
+				
+				<br>
+				<button type="button" class="btn btn-outline-secondary" style="margin-top: 20px;"
+				onclick="location.href='${root}/loginForm'">로그인 페이지로 이동</button>
+				
 			</div>
-	
-			<div class="userSuccessTerm" >
-				가입 완료하였습니다.<br>
-				가입을 진심으로 축하드립니다.
-				</div>
-		</div> <!-- 전체 div : sellerJoinTerm 종료 -->
-	
+		
+		</div> <!-- div.all 종료 -->
 	</div>
 </body>
 </html>

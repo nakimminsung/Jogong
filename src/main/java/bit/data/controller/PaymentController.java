@@ -45,23 +45,6 @@ public class PaymentController {
 	public void test(   
 				@RequestBody String custom_data,
 				HttpServletRequest request){
-			
-		 System.out.println(custom_data);
-		 System.out.println(request.getParameter("imp_uid"));
-		 System.out.println(request.getParameter("merchant_uid"));
-		 System.out.println(request.getParameter("pg"));
-		 System.out.println(request.getParameter("pay_method"));
-		 System.out.println(request.getParameter("name"));
-		 System.out.println(request.getParameter("buyer_name"));
-		 System.out.println(request.getParameter("amount"));
-		 System.out.println(request.getParameter("custom_data[member_id]"));
-		 System.out.println(request.getParameter("custom_data[count]"));
-		 System.out.println(request.getParameter("custom_data[messagecard]"));
-		 System.out.println(request.getParameter("custom_data[banner]"));
-		 System.out.println(request.getParameter("custom_data[message]"));
-		 System.out.println(request.getParameter("custom_data[address]"));
-		 System.out.println(request.getParameter("success"));
-		 
 
 		 String imp_uid = request.getParameter("imp_uid");
 		 String merchant_uid = request.getParameter("merchant_uid");
@@ -76,6 +59,10 @@ public class PaymentController {
 		 String banner = request.getParameter("custom_data[banner]");
 		 String message = request.getParameter("custom_data[message]");
 		 String success = request.getParameter("success");
+		 String buyer_tel = request.getParameter("buyer_tel");
+         String buyer_addr = request.getParameter("custom_data[buyer_addr]");
+         String buyer_postcode = request.getParameter("custom_data[buyer_postcode]");
+	       
 		 
 		 OrderDto orderDto = new OrderDto(); 
 		 orderDto.setImp_uid(imp_uid);
@@ -86,14 +73,19 @@ public class PaymentController {
 		 orderDto.setBanner(banner);
 		 orderDto.setMessage(message);
 		 orderDto.setOrderStatus(success);
-		
+		 orderDto.setUserNum(Integer.parseInt(amount));
+		 orderDto.setOrderDetailNum(Integer.parseInt(amount));
+		 orderDto.setHp(buyer_tel);
+		 orderDto.setDeliveryAddress(buyer_addr);
+		 orderDto.setPostalcode(buyer_postcode);
+		 orderDto.setCount(Integer.parseInt(count));
+		 
 		orderservice.insertOrder(orderDto);
 		
 	}
 	
-
 	@GetMapping("/payview")
-	public ModelAndView payread(Integer num) {
+	public ModelAndView payread(int num) {
 		
 		String buyer_name = orderservice.getfriendNickNameSearch(num);
 		String to_member_id = orderservice.getNickNameSearch(num);
@@ -101,18 +93,8 @@ public class PaymentController {
 		Integer price = orderservice.getItemPriceSearch(num);
 		String thumbnailImage = orderservice.getItemThumbnailSearch(num);
 		Integer count = orderservice.getCount(num);
-    	Integer totalprice = price * count;
+		Integer totalprice = price * count;
 		
-		
-		
-		System.out.println(buyer_name);
-		System.out.println(to_member_id);
-		System.out.println(sangpum);
-		System.out.println(price);
-		System.out.println(thumbnailImage);
-		System.out.println(count);
-		System.out.println(totalprice);
-
 		ModelAndView mview = new ModelAndView();
 		
 		mview.addObject("buyer",buyer_name);
@@ -123,7 +105,7 @@ public class PaymentController {
 		mview.addObject("count",count);
 		mview.addObject("totalprice",totalprice);
 		
-		mview.setViewName("payment/payview");
+		mview.setViewName("/bit/payment/payview");
 		
 		return mview;
 	}
