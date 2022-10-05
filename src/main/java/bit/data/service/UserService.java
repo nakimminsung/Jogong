@@ -38,18 +38,18 @@ public class UserService implements UserServiceInter {
 		return userDaoInter.getUserIdSearch(email);
 	}
 	@Override
-	public int getIdPassCheck(String id, String pass) {
+	public int getIdPassCheck(String email, String password) {
 		// TODO Auto-generated method stub
 		Map<String, String> map=new HashMap<String, String>();
-		map.put("loginid", id);
-		map.put("loginpass", pass);
+		map.put("loginid", email);
+		map.put("loginpass", password);
 		return userDaoInter.getIdPassCheck(map);
 	}
 
 	@Override
-	public UserDto getDataById(String id) {
+	public UserDto getDataById(String email) {
 		// TODO Auto-generated method stub
-		return userDaoInter.getDataById(id);
+		return userDaoInter.getDataById(email);
 	}
 
 }
