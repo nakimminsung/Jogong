@@ -24,7 +24,8 @@
 		font-size: 15px;
 	}
 	div.gift-background {
-		background-color: #f0f0f0;
+		background-color: #f7f7f7;
+		border-radius: 20px;
 	}
 	div.gift-wrapper{
 		padding: 50px 0;
@@ -186,8 +187,6 @@
 		    });			
 			
 			if(fl != 0){
-				$(".friend-length").text(fl);
-				
 				fs += "<ul class='wish' style='padding-left:0;'>";
 				
 				$.each(ba, function(i,elt) {
@@ -232,7 +231,11 @@
 						$("h2.friendText").text("선물하기");
 						$("#gift-friend").attr("src",wishImg);
 						
-						wl += "<h4 style='margin-bottom:20px; margin-top:50px;'>"+wishName+"님의 위시리스트</h4>";
+						if(res.length != 0){
+							wl += "<h4 style='margin-bottom:20px; margin-top:50px;'>"+wishName+"님의 위시리스트</h4>";
+						} else {
+							wl += "<h4 style='margin-bottom:20px; margin-top:50px;'>선물가능한 상품이 없어요.</h4>";
+						}
 						
 						wl += "<ul style='padding-left:0;'>";
 						
@@ -275,7 +278,7 @@
 					
 					s += "<li style='list-style:none; float:left;'>";
 					s += "<div style='margin-right:50px;'>";
-					s += "<input type='checkbox' style='margin-right:10px;' class='chkBox'>";
+					s += "<input type='radio' style='margin-right:10px;' class='chkBox' name='radio'>";
 					s += "<label>";
 					s += "<img src='"+elt.profileImage+"' width='100' class='gift-friend-img' style='margin-right:5px;'>";
 					s += "<b num='"+elt.num+"'>"+elt.nickname+"</b>";
@@ -341,13 +344,6 @@
 	            </div>
         	</div>
             <div class="gift-modal-top">
-            	<div>나</div>
-            	<div class="gift-modal-friend-list">
-	            	<div class="gift-modal-select">
-	            		<input type="checkbox" class="chkBox">
-			            <img src="${root }/image/default.png" class="gift-friend-img"> 명국
-	            	</div>
-            	</div>
             	<div style="margin: 10px 0;">
             		친구목록
             		<span style="font-size: 15px; margin-bottom: 5px;" class="friend-count"></span>

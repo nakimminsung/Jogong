@@ -60,10 +60,10 @@
 	<div class="my-menu-wrapper">
 		<div class="my-profile">
 			<div class="my-pofile-left" style="display: flex; align-items: center;">
-				<img alt="profileImage" src="${root}/image/default.png" id="my-profile-img">
+				<img alt="profileImage" src="${sessionScope.loginphoto}" id="my-profile-img">
 			</div>
 			<div class="my-profile-right" style="padding-left: 10px; display:flex; flex-direction:column; justify-content: center; align-items: flex-start;">
-				<b style="font-size: 20px; display: block;">이름</b>
+				<b style="font-size: 20px; display: block;">${sessionScope.loginname}</b>
 				<b style="font-size: 15px;">내 생일은 6월 3일</b>
 			</div>
 		</div>
