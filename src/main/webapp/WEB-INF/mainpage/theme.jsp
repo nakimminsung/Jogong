@@ -29,11 +29,11 @@
 	}
 	
 	.cardTheme>img.card-img-top{ 
-		height: 15rem;
+		height: 17rem;
 	}
 	
 	.tp{
-		margin-left: 30px;
+		margin-left: 50px;
 		margin-bottom: 30px;
 		cursor: pointer;
 	}
@@ -117,7 +117,7 @@
 				success:function(res){
 					console.log(res);
 					$.each(res,function(i,e){
-						s+="<div class='card cardTheme' onclick=\"location.href='${root}'\">"
+						s+="<div class='card cardTheme' onclick=\"location.href='product/detail?num="+e.num+"'\">";
 							s+="<img class='card-img-top' src='"+ e.thumbnailImageUrl+"' alt='Card image cap'>";
 							s+="<div class='card-body'>";
 								s+="<h5 class='card-title'>"+e.brand+"</h5>";
@@ -207,7 +207,5 @@
 				
 				<button class="loadProduct">더보기&nbsp;<i class='fas fa-angle-down'></i></button>
 			</div> 
-	
-	
 </body>
 </html>
