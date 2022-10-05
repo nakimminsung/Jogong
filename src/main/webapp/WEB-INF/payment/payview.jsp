@@ -212,7 +212,7 @@
                                         <div class="giftImg">
                                             <img src="image/21.jpeg" alt="카드 이미지">
                                         </div>
-                                        <div class="cardImg">
+                                        <div class="previewCardImg">
                                             <img id="previewTemplate" src="/jogong/resources/giftimage/card/a1.jpg" alt="꾸미기 템플릿">
                                         </div>
                                     </div>
@@ -447,7 +447,7 @@
         <div id="inner2">
             <div class="box-type01">
                 <h3>최종 결제 금액</h3>
-                <table class="t-head">
+                <table class="t-head tlable-light">
                     <tbody>
                         <tr>
                             <th>상품 금액</th>
@@ -496,7 +496,7 @@ function payment(data) {
 
         merchant_uid: rand, //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
         name : '${sangpum}', //결제창에 노출될 상품명
-        amount: ${totalprice},
+        //amount: ${totalprice},
         buyer_name : "김민성",
         custom_data : customdata,
     }, function (rsp) { // callback
@@ -656,12 +656,12 @@ function toss(data) {
 /*배너 클릭시 색상변경 효과*/
 var bannerImg = document.getElementsByClassName("bannerImg");
 
-function handleClick(event) {
-  console.log(event.target);
+function handleClick2(event) {
+  //console.log(event.target);
   // console.log(this);
   // 콘솔창을 보면 둘다 동일한 값이 나온다
 
-  console.log(event.target.classList);
+  //console.log(event.target.classList);
 
   if (event.target.classList[1] === "clicked") {
     event.target.classList.remove("clicked");
@@ -674,23 +674,57 @@ function handleClick(event) {
   }
 }
 
-function init() {
+function init2() {
   for (var i = 0; i < bannerImg.length; i++) {
-	bannerImg[i].addEventListener("click", handleClick);
+	bannerImg[i].addEventListener("click", handleClick2);
   }
 }
 
-//init();
+init2();
 /*배너 클릭시 색상변경 효과 끝 */
 
+
+/*카드 클릭시 색상변경 효과*/
+var cardImg = document.getElementsByClassName("cardImg");
+
+function handleClick3(event) {
+  //console.log(event.target);
+  var tag=$(event.target);
+  tag.parent().siblings("li").find("img.cardImg").css("border","none");
+  event.target.style.border='2px solid black'; 
+  // console.log(this);
+  // 콘솔창을 보면 둘다 동일한 값이 나온다
+
+  //console.log(event.target.classList);
+
+  if (event.target.classList[1] === "clicked") {
+    event.target.classList.remove("clicked");
+  } else {
+    for (var i = 0; i < cardImg.length; i++) {
+    	cardImg[i].classList.remove("clicked");
+    }
+
+    event.target.classList.add("clicked");
+  }
+}
+
+function init3() {
+  for (var i = 0; i < cardImg.length; i++) {
+	  cardImg[i].addEventListener("click", handleClick3);
+  }
+}
+
+init3();
+/*카드 클릭시 색상변경 효과 끝 */
+ 
 var div2 = document.getElementsByClassName("pay_box");
 
 function handleClick(event) {
-    console.log(event.target);
+    //console.log(event.target);
     // console.log(this);
     // 콘솔창을 보면 둘다 동일한 값이 나온다
 
-    console.log(event.target.classList);
+    //console.log(event.target.classList);
 
     if (event.target.classList[1] === "clicked") {
         event.target.classList.remove("clicked");
@@ -706,7 +740,7 @@ function handleClick(event) {
 function init() {
     for (var i = 0; i < div2.length; i++) {
         div2[i].addEventListener("click", handleClick);
-        console.log(this)
+        //console.log(this)
     }
 }
 
