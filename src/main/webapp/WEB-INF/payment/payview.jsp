@@ -296,10 +296,10 @@
             <h3>선물 상품 정보</h3>
             <div class="gift-info row-type03">
                 <div>
-                    <img src="image/cake.jpg" alt="스트로베리 초콜릿 생크림" width="100px" height="100px">
+                    <img src="${thumbnailImage}" alt="스트로베리 초콜릿 생크림" width="100px" height="100px">
                 </div>
                 <div class="gift-info-desc">
-                    <span>투썸플레이스</span>
+                    <span>${productName}</span>
                     <p><strong id="sangpum">${sangpum}</strong></p>
                     <p class="count" id="count">총 선물 수 <strong><span class="phoneCnt">${count}</span> 개</strong></p>
                 </div>
@@ -535,16 +535,17 @@ function danal(data) {
 		pg : 'nice',
 	    pay_method : 'phone',
 	    merchant_uid: rand, //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
-        name : '${sangpum}', //결제창에 노출될 상품명
-        amount: ${totalprice},
-        buyer_name : "김민성",
+        name : '${productName}', //결제창에 노출될 상품명
+        amount: '${totalprice}',
+        buyer_name : "${buyer_name}",
         buyer_tel : buyer_tel,
         buyer_addr : buyer_addr,
         buyer_postcode : buyer_postcode,
+        
         custom_data : customdata,
     }, function (rsp) { // callback
         if (rsp.success) {
-        	   alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료"+"count:"+rsp.custom_data.count+"받는사람:"+rsp.custom_data.member_id);
+        	   alert("완료 -> 구매자 : "+rsp.buyer_name+"imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료"+"상품명:"+rsp.name+"가격:"+rsp.paid_amount+"count:"+rsp.custom_data.count+"받는사람:"+rsp.custom_data.member_id+"결제상태:"+rsp.success);
                
                jQuery.ajax({
                    url: "test.action",
@@ -559,9 +560,8 @@ function danal(data) {
                        "pg" : rsp.pg_provider,
                        "pay_method" : rsp.pay_method,
                        "custom_data" : rsp.custom_data,
+                       "success" : rsp.success,
                        "buyer_tel" : rsp.buyer_tel
-                     //"buyer_addr" : rsp.buyer_addr
-               	   	   //"buyer_postcode" : rsp.buyer_postcode
             		   }
                    });
          } else {
@@ -581,16 +581,17 @@ function kg(data) {
 		pg : 'html5_inicis',
 	    pay_method : 'card',
 	    merchant_uid: rand, //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
-        name : '${sangpum}', //결제창에 노출될 상품명
-        //amount: ${totalprice},
-        buyer_name : "김민성",
+        name : '${productName}', //결제창에 노출될 상품명
+        amount: '${totalprice}',
+        buyer_name : "${buyer_name}",
         buyer_tel : buyer_tel,
         buyer_addr : buyer_addr,
         buyer_postcode : buyer_postcode,
+        
         custom_data : customdata,
     }, function (rsp) { // callback
         if (rsp.success) {
-        	   alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료"+"count:"+rsp.custom_data.count+"받는사람:"+rsp.custom_data.member_id);
+        	   alert("완료 -> 구매자 : "+rsp.buyer_name+"imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료"+"상품명:"+rsp.name+"가격:"+rsp.paid_amount+"count:"+rsp.custom_data.count+"받는사람:"+rsp.custom_data.member_id+"결제상태:"+rsp.success);
                
                jQuery.ajax({
                    url: "test.action",
@@ -605,9 +606,8 @@ function kg(data) {
                        "pg" : rsp.pg_provider,
                        "pay_method" : rsp.pay_method,
                        "custom_data" : rsp.custom_data,
+                       "success" : rsp.success,
                        "buyer_tel" : rsp.buyer_tel
-                     //"buyer_addr" : rsp.buyer_addr
-               	   	   //"buyer_postcode" : rsp.buyer_postcode
             		   }
                    });
          } else {
@@ -626,16 +626,17 @@ function toss(data) {
 		pg : 'tosspay',
 	    pay_method : 'card',
 	    merchant_uid: rand, //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
-        name : '${sangpum}', //결제창에 노출될 상품명
-        //amount: ${totalprice},
-        buyer_name : "김민성",
+        name : '${productName}', //결제창에 노출될 상품명
+        amount: '${totalprice}',
+        buyer_name : "${buyer_name}",
         buyer_tel : buyer_tel,
         buyer_addr : buyer_addr,
         buyer_postcode : buyer_postcode,
+        
         custom_data : customdata,
     }, function (rsp) { // callback
         if (rsp.success) {
-        	   alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료"+"count:"+rsp.custom_data.count+"받는사람:"+rsp.custom_data.member_id);
+        	   alert("완료 -> 구매자 : "+rsp.buyer_name+"imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료"+"상품명:"+rsp.name+"가격:"+rsp.paid_amount+"count:"+rsp.custom_data.count+"받는사람:"+rsp.custom_data.member_id+"결제상태:"+rsp.success);
                
                jQuery.ajax({
                    url: "test.action",
@@ -650,9 +651,8 @@ function toss(data) {
                        "pg" : rsp.pg_provider,
                        "pay_method" : rsp.pay_method,
                        "custom_data" : rsp.custom_data,
+                       "success" : rsp.success,
                        "buyer_tel" : rsp.buyer_tel
-                     //"buyer_addr" : rsp.buyer_addr
-               	   	   //"buyer_postcode" : rsp.buyer_postcode
             		   }
                    });
        } else {
