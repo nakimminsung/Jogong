@@ -9,4 +9,8 @@
 	<insert id="insertSelfGift" parameterType="orderDetailDto">
 		insert into orderDetail (num, qty, messageCard, engrave, friendNum, userNum, productNum) values (null,#{qty},#{messageCard},#{engrave},#{userNum},#{userNum},#{productNum})
 	</insert>
+	
+	<select id="getMaxNum" resultType="int">
+		select ifnull(max(num),0) from orderDetail
+	</select>
 </mapper>

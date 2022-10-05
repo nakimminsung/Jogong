@@ -23,4 +23,10 @@ public class OrderDetailDao implements OrderDetailDaoInter{
 	public void insertSelfGift(OrderDetailDto dto) {
 		session.insert(ns+"insertSelfGift", dto);
 	}
+
+	@Override
+	public int getMaxNum() {
+		// TODO Auto-generated method stub
+		return session.selectOne(ns+"getMaxNum");
+	}	
 }

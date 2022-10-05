@@ -6,4 +6,5 @@ public interface OrderDetailDaoInter {
 
 	public void insertOrderDetail(OrderDetailDto dto);	
 	public void insertSelfGift(OrderDetailDto dto);
+	public int getMaxNum();
 }
