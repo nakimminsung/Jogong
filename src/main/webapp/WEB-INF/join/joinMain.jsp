@@ -11,6 +11,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"><!-- bootstrap 5 -->
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script><!-- bootstrap 5 icon -->
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script><!-- jquery -->
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
 <style>
 	*{
@@ -112,6 +113,60 @@
 	function f_link(){
 	    location.href = "../join/sellerJoin";
 	}
+	
+	
+	//카카오 로그인 버튼 이벤트
+	$(".btnKakao").click(function () {
+		location.href='javascript:kakaoLogin();';
+	});
 
+	//카카오 로그인 관련 메서드
+	window.Kakao.init('d4fc125a7dd0ad8b599aeac52a278521');	//본인 자바스크립트 API키
+
+    function kakaoLogin() {
+        window.Kakao.Auth.login({
+            scope: 'profile_nickname, profile_image, account_email, gender, birthday', //동의항목 페이지에 있는 개인정보 보호 테이블의 활성화된 ID값을 넣습니다.
+            success: function(response) {
+                
+            	console.log(response) // 로그인 성공하면 받아오는 데이터
+                
+                window.Kakao.API.request({ // 사용자 정보 가져오기 
+                    url: '/v2/user/me',
+                    success: (res) => {
+                         let email= res.kakao_account.email;
+                         let birthday = res.kakao_account.birthday;
+                         let nickname = res.properties.nickname;
+                         let image = res.properties.profile_image;
+                         let gender = (res.kakao_account.gender=="female"?"2":"1");
+                         
+                        
+                        //console.log(kakao_email+"/"+kakao_birthday+"/"+kakao_nickname+"/"+kakao_image+"/"+kakao_gender);
+                        
+                        $.ajax({
+                			type:"post",
+                			url:"insertKakao",
+                			dataType:"html",
+                			data:{"email":email,"nickname":nickname,"profileImage":image,"gender":gender,"date":birthday},          
+                			success:function(ok){
+                				alert("회원가입완료");
+                				location.href="/jogong/loginForm";
+                				
+                			},error : function(xhr, status, error){
+            					alert('이미 가입된 이메일이 있습니다.' );
+            					location.href="/jogong/loginForm";
+            				}
+                			
+                		});
+                        
+                    }
+                });
+            	
+            },
+            fail: function(error) {
+                console.log(error);
+            }
+        });
+    }
+	
 </script>
 </html>

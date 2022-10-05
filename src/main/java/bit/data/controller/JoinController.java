@@ -182,6 +182,26 @@ public class JoinController {
 		
 		return "member/testPage";
 	}
+	
+	
+	@PostMapping("/insertKakao")
+	public String insert(UserDto dto) {
+		//자동입력
+		dto.setPhone("0");
+		dto.setSalt("0");
+		dto.setPassword("0");
+		dto.setAddress("no");
+		dto.setPoint(0);
+		dto.setYear("0");
+		dto.setLoginType("카카오");
+		dto.setAdmin(false);
+		
+		userService.insertUser(dto);
+		
+		
+		return "redirect:/";
+		
+	}
 
 	
 }

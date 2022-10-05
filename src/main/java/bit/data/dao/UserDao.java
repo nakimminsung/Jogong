@@ -66,4 +66,14 @@ public class UserDao implements UserDaoInter {
 		
 		return session.selectOne(ns+"findKakao", userInfo);
 	}
+
+	//성민 카카오
+
+	@Override
+	public void insertKakao(UserDto dto) {
+		// TODO Auto-generated method stub
+		session.insert(ns+"insertUser", dto);
+	}
+	
+	
 }

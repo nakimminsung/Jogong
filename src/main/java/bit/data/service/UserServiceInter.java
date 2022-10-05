@@ -16,4 +16,5 @@ public interface UserServiceInter {
 	//카카오테스트
 	public String getAccessToken (String authorize_code);
 	public KakaoDto getKakaoInfo(String access_Token);
+	public void insertKakao(UserDto dto);
 }

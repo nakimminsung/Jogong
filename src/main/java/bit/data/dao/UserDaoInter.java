@@ -18,4 +18,5 @@ public interface UserDaoInter {
 	//카카오
 	public void kakaoinsert(HashMap<String, Object> userInfo);
 	public KakaoDto findkakao(HashMap<String, Object> userInfo);
+	public void insertKakao(UserDto dto);
 }

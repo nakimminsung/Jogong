@@ -175,6 +175,13 @@ public class UserService implements UserServiceInter {
 		}
         
 	}
+
+	@Override
+	public void insertKakao(UserDto dto) {
+		// TODO Auto-generated method stub
+		userDaoInter.insertKakao(dto);;
+		
+	}
 	
 
 }

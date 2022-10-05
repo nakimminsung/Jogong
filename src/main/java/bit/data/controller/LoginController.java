@@ -3,6 +3,7 @@ package bit.data.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -149,8 +150,31 @@ public class LoginController {
 		
       return "/bit/login/kakaoLogin";
 	}
-	
-	
-	
+
+//성민 카카오 로그인
+	@PostMapping("/userKakaoLogin")
+	@ResponseBody
+	public Map<String, String> userkakaologinprocess(String email, HttpSession session)
+	{
+		
+		Map<String, String> map=new HashMap<String, String>();
+				
+		if(email!=null)//카카오로부터 이메일 가져오는 경우
+		{
+			//유지 시간 설정
+			session.setMaxInactiveInterval(60*60*4);//4시간
+			//로그인한 아이디에 대한 정보를 얻어서 세션에 저장s
+			UserDto userDto=userService.getDataById(email);
+			session.setAttribute("loginok", "yes");
+			session.setAttribute("loginid", email);
+			session.setAttribute("loginname", userDto.getNickname());
+			session.setAttribute("loginphoto", userDto.getProfileImage());
+			
+		}
+		map.put("result","success");
+		
+		return map;
+		
+	}
 	
 }

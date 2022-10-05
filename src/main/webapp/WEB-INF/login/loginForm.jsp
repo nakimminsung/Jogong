@@ -171,7 +171,7 @@ $(document).ready(function(){
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>	<!-- 카카오 로그인 관련 -->
 <script>
 	
-	//카카오 로그인 버튼 이벤트
+	//성민 카카오 로그인 버튼 이벤트
 	$(".btnKakaoLogin").click(function () {
 		location.href='javascript:kakaoLogin();';
 	});
@@ -180,27 +180,30 @@ $(document).ready(function(){
 	window.Kakao.init('d4fc125a7dd0ad8b599aeac52a278521');	//본인 자바스크립트 API키
 
     function kakaoLogin() {
-        window.Kakao.Auth.login({
-            scope: 'profile_nickname, profile_image, account_email, gender, birthday', //동의항목 페이지에 있는 개인정보 보호 테이블의 활성화된 ID값을 넣습니다.
-            success: function(response) {
+        window.Kakao.API.request({ // 사용자 정보 가져오기 
+            url: '/v2/user/me',
+            success: (res) => {
+                 let email= res.kakao_account.email;
+                 
                 
-            	console.log(response) // 로그인 성공하면 받아오는 데이터
+                console.log(res);
+               
+                $.ajax({
+        			type:"post",
+        			url:"userKakaoLogin",
+        			dataType:"json",
+        			data:{"email":email},          
+        			success:function(ok){
+       					location.href="/jogong/";	
+        			}
+        		});
                 
-                window.Kakao.API.request({ // 사용자 정보 가져오기 
-                    url: '/v2/user/me',
-                    success: (res) => {
-                        const kakao_account = res.kakao_account;
-                        console.log(kakao_account)
-                        
-                    }
-                });
-            	
-                window.location.href='http://localhost:9000/jogong/loginForm' //리다이렉트 되는 코드
-            },
-            fail: function(error) {
-                console.log(error);
-            }
+            },fail: function(err) {
+                alert("가입된 이메일이 없습니다.");
+                location.href="/jogong/join/joinMain";
+             }
         });
+            
     }
 	
 	
@@ -211,7 +214,7 @@ $(document).ready(function(){
 	        url: '/v1/user/unlink',
 	        success: function (response) {
 	           console.log(response)
-	           window.location.href='http://localhost:9000/jogong/'
+	           window.location.href='/jogong/'
 	        },
 	        fail: function (error) {
 	          console.log(error)
@@ -225,7 +228,7 @@ $(document).ready(function(){
 
 	//user 로그인 버튼
 	$("#loginok").click(function(){
-		var id=$("#userEmail").val();
+		var email=$("#userEmail").val();
 		var pass=$("#userPassword").val();
 		var rememberId=$("#rememberId").is(':checked');
 
@@ -233,12 +236,12 @@ $(document).ready(function(){
 			type:"post",
 			url:"userLogin",
 			dataType:"json",
-			data:{"email":id,"password":pass,"rememberId":rememberId},
+			data:{"email":email,"password":pass,"rememberId":rememberId},
 			success:function(res){
 				if(res.result=="fail"){
 					alert("아이디나 비밀번호가 틀렸습니다");
 				}else{
-					location.href="http://localhost:9000/jogong/";
+					location.href="/jogong/";
 				}
 						
 			},

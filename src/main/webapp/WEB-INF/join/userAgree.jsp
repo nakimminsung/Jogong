@@ -187,7 +187,7 @@ $(document).ready(function(){
 				$("#userpw2").css("color","#FFAF00");
 			}
 		});	
-		
+		// 아이디 중복체크
 			$(".idcheck").click(function() {
 				if($(".putId").val()==""){
 					$("#idCheckResult").text("다시 입력해주시기 바랍니다");
