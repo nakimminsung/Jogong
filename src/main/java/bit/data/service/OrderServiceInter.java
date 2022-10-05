@@ -24,4 +24,7 @@ public interface OrderServiceInter {
 	
 	public void insertOrder(OrderDto dto);
 
+	public Integer getUserNum(int num);
+
+	public Integer getOrderDetailNum(int num);
 }

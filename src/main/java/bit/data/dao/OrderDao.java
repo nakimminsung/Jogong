@@ -68,4 +68,18 @@ public class OrderDao implements OrderDaoInter {
 		session.insert(ns+"insertOrder",dto);
 	}
 
+
+	@Override
+	public Integer getUserNum(int num) {
+		// TODO Auto-generated method stub
+		return session.selectOne(ns+"getUserNum",num);
+	}
+
+
+	@Override
+	public Integer getOrderDetailNum(int num) {
+		// TODO Auto-generated method stub
+		return session.selectOne(ns+"getOrderDetailNum",num);
+	}
+
 }
