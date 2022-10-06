@@ -40,7 +40,7 @@ public class GiftController {
 	@ResponseBody
 	public List<OrderDto> getSenderData(int num) {
 		
-		return giftservice.getReceiveSearch(num);
+		return giftservice.getSendSearch(num);
 	}
 	
 }
