@@ -18,4 +18,6 @@ public class ReviewDto {
 	private int productNum;
 	private int tagNum;
 	
+	// product
+	private String name;
 }
