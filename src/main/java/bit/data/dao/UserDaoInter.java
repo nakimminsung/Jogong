@@ -1,10 +1,8 @@
 package bit.data.dao;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import bit.data.dto.KakaoDto;
 import bit.data.dto.UserDto;
 
 public interface UserDaoInter {

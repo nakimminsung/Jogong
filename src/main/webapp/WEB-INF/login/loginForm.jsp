@@ -19,7 +19,7 @@
 	
 	div.all{
 		width: 100%;
-		height: 500px;
+		height: 800px;
 		/* padding-top: 50px;
 		padding-left: 200px; */
 		margin-top: 100px;
@@ -129,12 +129,32 @@ $(document).ready(function(){
 				
 				<!-- 소셜회원 로그인 박스 -->
 				<div class="snsLoginBox">
+					
+					<!-- 카카오 로그인 -->
 					<button class="btnKakaoLogin" style="background-color: #fde102;"><i class='fas fa-comment'></i> 카카오로 로그인</button>&nbsp;&nbsp;&nbsp;
-					<!-- <button class="btnNaverLogin" style="background-color: #19ce60; color: white;">N 네이버로 로그인</button> -->
 					<button class="btnKakaoLogout" style="background-color: #19ce60; color: white;" onclick="kakaoLogout()">카카오 로그아웃</button>
-				</div>
+					
+					<!-- 네이버 로그인 -->
+					<!-- <button class="btnNaverLogin" style="background-color: #19ce60; color: white;">N 네이버로 로그인</button> -->
+					<div class="naver" style="margin-top: 20px;">
+						<div class="container">
+							<h1>Naver Login API 사용하기</h1>
+							<div class="login-area">
+								<div id="message">
+									로그인 버튼을 눌러 로그인 해주세요.
+								</div>
+								<div id="button_area">
+									<div id="naverIdLogin"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				
+				
+				
+				</div>	<!-- 소셜 로그인 div 종료 -->
 
-			</div>	
+			</div>	<!-- 일반 회원 div 종료 -->
 
 				
 			<!-- 판매회원 로그인 박스 -->
@@ -169,7 +189,85 @@ $(document).ready(function(){
 </body>
 
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>	<!-- 카카오 로그인 관련 -->
+<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>	<!-- 네이버 로그인 관련 -->
 <script>
+	
+	//네이버 로그인
+	const naverLogin = new naver.LoginWithNaverId(
+			{
+				clientId: "CweUwT4uDWQRHuTIz4CB",	/* "YOUR_CLIENT_ID" */
+				callbackUrl: "http://localhost:9000/jogong/loginForm",	/* "YOUR_CALLBACK_URL" */
+				loginButton: {color: "green", type: 2, height: 40}	/* #03c75a */
+			}
+		);
+
+	naverLogin.init(); // 로그인 설정
+	
+	//네이버 로그인 정보 가져오기
+	naverLogin.getLoginStatus(function (status) {
+      if (status) {
+		const name=naverLogin.user.getName();
+		const email=naverLogin.user.getEmail();
+		const profile_image=naverLogin.user.getProfileImage();
+		const gender=naverLogin.user.getGender();
+		const birthday=naverLogin.user.getBirthday();
+		
+		/* 
+		console.log(name);
+		console.log(email);
+		console.log(profile_image);
+		console.log(gender);
+		console.log(birthday);
+		 */
+		 
+		setLoginStatus(); //모든 필수 정보 제공 동의하면 실행하는 함수
+		
+		//이메일을 선택하지 않으면 선택창으로 돌아갑니다.
+		/* if(email===null||email===undefined){
+			alert("이메일이 필요합니다. 정보제공에 동의해주세요.");
+            naverLogin.reprompt();
+            return ;
+            
+			}else{
+				setLoginStatus(); //모든 필수 정보 제공 동의하면 실행하는 함수
+			}
+		*/
+		}
+	});
+	
+	console.log(naverLogin);
+	
+	
+	
+	//네이버 가져온 정보 출력(message) & 로그아웃
+ 	function setLoginStatus(){
+		
+ 		const message_area=document.getElementById('message');
+		message_area.innerHTML=
+			`
+			<h3> Login 성공 </h3>
+			<div>user name : ${naverLogin.user.name}</div>
+			<div>user email : ${naverLogin.user.email}</div>
+			<div>user profile_image : ${naverLogin.user.profile_image}</div>
+			<div>user gender : ${naverLogin.user.gender}</div>
+			<div>user birthday : ${naverLogin.user.birthday}</div>
+			`;
+		
+		const button_area=document.getElementById('button_area');
+		button_area.innerHTML="<button id='btn_logout'>로그아웃</button>";
+
+		const logout=document.getElementById('btn_logout');
+		logout.addEventListener('click',(e)=>{
+        	naverLogin.logout();
+			location.replace("http://localhost:9000/jogong");
+      })
+    }
+	
+	
+	
+	
+	
+	
 	
 	//카카오 로그인 버튼 이벤트
 	$(".btnKakaoLogin").click(function () {
