@@ -196,7 +196,16 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
             });
 	}
  
-
+//네이버 관련 테스트중
+	const naverLogin = new naver.LoginWithNaverId(
+			{
+				clientId: "CweUwT4uDWQRHuTIz4CB",	/* "YOUR_CLIENT_ID" */
+				callbackUrl: "http://localhost:9000/jogong/loginForm",	/* "YOUR_CALLBACK_URL" */
+				//로그인 팝업 여부
+				isPopup: false,
+				loginButton: {color: "green", type: 3, height: 50}
+			}
+		);
 </script>	
   
 </html>

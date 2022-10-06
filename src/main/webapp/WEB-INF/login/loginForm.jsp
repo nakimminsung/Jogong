@@ -142,7 +142,6 @@ $(document).ready(function(){
 					<!-- <button class="btnNaverLogin" style="background-color: #19ce60; color: white;">N 네이버로 로그인</button> -->
 					<div class="naver" style="margin-top: 20px;">
 						<div class="container">
-							<h1>Naver Login API 사용하기</h1>
 							<div class="login-area">
 								<div id="message">
 									로그인 버튼을 눌러 로그인 해주세요.
@@ -191,16 +190,10 @@ $(document).ready(function(){
 	
 <script>
 	
-	//네이버 로그인
-	const naverLogin = new naver.LoginWithNaverId(
-			{
-				clientId: "CweUwT4uDWQRHuTIz4CB",	/* "YOUR_CLIENT_ID" */
-				callbackUrl: "http://localhost:9000/jogong/loginForm",	/* "YOUR_CALLBACK_URL" */
-				loginButton: {color: "green", type: 3, height: 50}	/* #03c75a */
-			}
-		);
-
-	naverLogin.init(); // 로그인 설정
+	
+	
+	// 네아로 로그인 정보를 초기화하기 위하여 init을 호출
+	naverLogin.init(); 
 	
 	//네이버 로그인 정보 가져오기
 	naverLogin.getLoginStatus(function (status) {
@@ -211,17 +204,16 @@ $(document).ready(function(){
 		const gender=naverLogin.user.getGender=="F"?"2":"1";
 		const oldbirthday=naverLogin.user.getBirthday();
 		const birthday=oldbirthday.replace(/-/g, "");
-		
-		console.log(birthday);
 		 
+		//회원가입 or 로그인을 위한 Data 전달
 		$.ajax({  
 			type:"post",
-			url:"userNaverLogin",
+			url:"userNaverLogin",	//LoginController
 			dataType:"json",
 			data:{"email":email,"nickname":nickname,"profileImage":image,"gender":gender,"date":birthday},         
 			success:function(ok){
 
-				location.href="/jogong/";	
+				//location.href="/jogong/";	
 
 			},error : function(xhr, status, error){  	// 필요한 정보 못가져올 경우 일반회원폼 이동
 
@@ -236,30 +228,25 @@ $(document).ready(function(){
 		}
 	});
 	
-	console.log(naverLogin);
+//	console.log(naverLogin);
 	
 	
 	
 	//네이버 가져온 정보 출력(message) & 로그아웃
  	function setLoginStatus(){
-		
- 		const message_area=document.getElementById('message');
-		message_area.innerHTML=
-			`
-			<h3>로그인 성공<h3>
-			<button type="button" class="btn btn-success" id="btn_logout">로그아웃 테스트</button>
-			`
+    
+      const message_area=document.getElementById('message');
+      message_area.innerHTML=`
+      <h3> Login 성공 </h3>
+      `;
+     
+      const button_area=document.getElementById('button_area');
+      button_area.innerHTML="<button class='btn btn-dark' id='btn_logout'>로그아웃</button>";
 
-		
-		const button_area=document.getElementById('button_area');
-		button_area.innerHTML="<button id='btn_logout'>로그아웃</button>";
-		
-		//<button id='btn_logout'>로그아웃</button>
-
-		const logout=document.getElementById('btn_logout');
-		logout.addEventListener('click',(e)=>{
-        	naverLogin.logout();	//로그아웃 메서드인듯
-			location.replace("http://localhost:9000/jogong");
+      const logout=document.getElementById('btn_logout');
+      logout.addEventListener('click',(e)=>{
+        naverLogin.logout();	//로그아웃 메서드인듯
+		location.replace("http://localhost:9000/jogong/loginForm");
       })
     }
 	
