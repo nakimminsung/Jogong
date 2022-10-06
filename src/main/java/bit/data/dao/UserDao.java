@@ -1,5 +1,6 @@
 package bit.data.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -7,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import bit.data.dto.KakaoDto;
 import bit.data.dto.UserDto;
 
 @Repository
@@ -49,4 +51,6 @@ public class UserDao implements UserDaoInter {
 		// TODO Auto-generated method stub
 		return session.selectOne(ns+"getDataById", email);
 	}
+	
+	
 }

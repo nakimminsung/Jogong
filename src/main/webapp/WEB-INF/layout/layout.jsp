@@ -31,6 +31,14 @@ uri="http://tiles.apache.org/tags-tiles" %>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
   </head>
   <style type="text/css">
+  
+  	@font-face {
+	    font-family: 'BMDOHYEON';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMDOHYEON.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+	}
+  	
     #wrapper {
       height: auto;
       min-height: 100%;

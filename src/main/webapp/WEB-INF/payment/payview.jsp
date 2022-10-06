@@ -23,33 +23,30 @@
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	
 </head>
+
 <script type="text/javascript">
 	var message = "";
 	var messagecard = "/jogong/resources/giftimage/card/a1.jpg";
 	var banner = "/jogong/resources/giftimage/banner/1.jpg";
+	var buyer_addr = "";
+	var buyer_tel = "";
+	var buyer_postcode = "";
+	var to_member_id = "";
 	
 	$(function() {
 		$(document).on("click",".message",function() {
 	 		var message = $(this).attr("value");
 	 		$("#mms_send_msg").val(message);
-	 		
 	 	 	$("#msg_sample").text(message);
 		});
-	/* 	$(".message").click(function() {
-	 		var message = $(this).attr("value");
-	 		$("#mms_send_msg").text(message);
-	 	 	$("#msg_sample").text(message);
-		}); */ 
 		
 		$(".bannerImg").click(function () {
 			banner = $(this).attr("src");
-			
 			$("img#previewBanner").attr("src",banner);
 		});
 		
 		$(".cardImg").click(function () {
 			messagecard = $(this).attr("src");
-			
 			$("img#previewTemplate").attr("src",messagecard);
 		});
 		
@@ -77,7 +74,7 @@
             <div class="subcontents">
                 <h1>선물 발송·결제</h1>
                 <h2>선물 꾸미기</h2>
-                <p style="visibility:hidden" id="to_member_id">${to_member_id}</p>
+                <%-- <p style="visibility:hidden" id="to_member_id">${to_member_id}</p> --%>
                 <div class="justify-cont col-type01">
                     <!-- 테마와 배너 선택 -->
                     <div class="theme_all">
@@ -260,28 +257,26 @@
 						<tr>
 						<th> 받는사람 이름 </th>
 							<td>
-								<input type="text" style="width: 50%;" required name="companyName">
-								
+								<input type="text" style="width: 50%;" required name="companyName" id="to_name" value="${to_member_id }">
 							</td>
 						</tr>
 						<tr>
 						<th> 연락처 </th>
 							<td>
-								<input type="text" style="width: 50%;" required name="companyName">
-								
+								<input type="text" style="width: 50%;" required id="to_hp" value="">
 							</td>
 						</tr>
 						<tr>
 							<th> 배송받을 주소 </th>
 							<td>
-								<input type="text" id="sample4_postcode" placeholder="우편번호" style="width: 50%; margin-bottom: 5px;" required>
+								<input type="text" id="sample4_postcode" placeholder="우편번호" style="width: 50%; margin-bottom: 5px;" required value="">
 								<input type="button" onclick="sample4_execDaumPostcode()" class="btn btn-dark btn-sm" value="우편번호 찾기" style=" margin-bottom: 5px;"><br>
-								<input type="text" id="sample4_roadAddress" placeholder="도로명주소" size="60" 
+								<input type="text" id="sample4_roadAddress" placeholder="도로명주소" size="60" value=""
 								style="width: 50%; margin-bottom: 5px;" required name="address1"><br>
 								
 								<input type="hidden" id="sample4_jibunAddress" placeholder="지번주소"  size="60">
 								<span id="guide" style="color:#999; display:none"></span>
-								<input type="text" id="sample4_detailAddress" placeholder="상세주소"  size="60" 
+								<input type="text" id="sample4_detailAddress" placeholder="상세주소"  size="60" value=""
 								style="width: 50%;"required name="address2"><br>
 								
 								<input type="hidden" id="sample4_extraAddress" placeholder="참고항목"  size="60">
@@ -289,6 +284,7 @@
 							</td>
 						</tr>
 					</table>
+					<!-- 배송지 입력 폼  끝-->
             </div>
         </div>
     </div>
@@ -300,10 +296,10 @@
             <h3>선물 상품 정보</h3>
             <div class="gift-info row-type03">
                 <div>
-                    <img src="image/cake.jpg" alt="스트로베리 초콜릿 생크림" width="100px" height="100px">
+                    <img src="${thumbnailImage}" alt="스트로베리 초콜릿 생크림" width="100px" height="100px">
                 </div>
                 <div class="gift-info-desc">
-                    <span>투썸플레이스</span>
+                    <span>${productName}</span>
                     <p><strong id="sangpum">${sangpum}</strong></p>
                     <p class="count" id="count">총 선물 수 <strong><span class="phoneCnt">${count}</span> 개</strong></p>
                 </div>
@@ -315,7 +311,7 @@
                 <div class="row-type04" id="point_box">
                     <h4>보유 포인트</h4>
                     <p class="form-type01 btn-area" id="point_box_area">
-                        <span><em class="fc-01" id="gs_point">0</em> 원</span>
+                        <span><em class="fc-01" id="gs_point">${point}</em> 원</span>
                         <a href="javascript:giftishowPointUse()" id="giftishowPointChk" class="btn-type-c">전액사용</a>
                         <input type="text" id="giftishowUsePoint" value="0">
                     </p>
@@ -493,15 +489,18 @@ function payment(data) {
     IMP.request_pay({// param
         pg: "kakaopay.TC0ONETIME", //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
         pay_method: "card", //지불 방법
-
         merchant_uid: rand, //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
-        name : '${sangpum}', //결제창에 노출될 상품명
-        //amount: ${totalprice},
-        buyer_name : "김민성",
+        name : '${productName}', //결제창에 노출될 상품명
+        amount: '${totalprice}',
+        buyer_name : "${buyer_name}",
+        buyer_tel : buyer_tel,
+        buyer_addr : buyer_addr,
+        buyer_postcode : buyer_postcode,
+        
         custom_data : customdata,
     }, function (rsp) { // callback
         if (rsp.success) {
-        	   alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료"+"count:"+rsp.custom_data.count+"받는사람:"+rsp.custom_data.member_id);
+        	   alert("완료 -> 구매자 : "+rsp.buyer_name+"imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료"+"상품명:"+rsp.name+"가격:"+rsp.paid_amount+"count:"+rsp.custom_data.count+"받는사람:"+rsp.custom_data.member_id+"결제상태:"+rsp.success);
                
                jQuery.ajax({
                    url: "test.action",
@@ -516,6 +515,8 @@ function payment(data) {
                        "pg" : rsp.pg_provider,
                        "pay_method" : rsp.pay_method,
                        "custom_data" : rsp.custom_data,
+                       "success" : rsp.success,
+                       "buyer_tel" : rsp.buyer_tel
             		   }
                    });
          } else {
@@ -533,17 +534,18 @@ function danal(data) {
 	IMP.request_pay({
 		pg : 'nice',
 	    pay_method : 'phone',
-	    merchant_uid: "0099", //상점에서 생성한 고유 주문번호
-	    name : '주문명:결제테스트',
-	    amount : 1000,
-	    buyer_email : 'iamport@siot.do',
-	    buyer_name : '구매자이름',
-	    buyer_tel : '010-1234-5678',
-	    buyer_addr : '서울특별시 강남구 삼성동',
-	    buyer_postcode : '123-456'
-	}, function (rsp) { // callback
+	    merchant_uid: rand, //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+        name : '${productName}', //결제창에 노출될 상품명
+        amount: '${totalprice}',
+        buyer_name : "${buyer_name}",
+        buyer_tel : buyer_tel,
+        buyer_addr : buyer_addr,
+        buyer_postcode : buyer_postcode,
+        
+        custom_data : customdata,
+    }, function (rsp) { // callback
         if (rsp.success) {
-        	 alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료");
+        	   alert("완료 -> 구매자 : "+rsp.buyer_name+"imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료"+"상품명:"+rsp.name+"가격:"+rsp.paid_amount+"count:"+rsp.custom_data.count+"받는사람:"+rsp.custom_data.member_id+"결제상태:"+rsp.success);
                
                jQuery.ajax({
                    url: "test.action",
@@ -556,8 +558,11 @@ function danal(data) {
                        "amount" : rsp.paid_amount,
                        "buyer_name" : rsp.buyer_name,
                        "pg" : rsp.pg_provider,
-                       "pay_method" : rsp.pay_method
-                   	}
+                       "pay_method" : rsp.pay_method,
+                       "custom_data" : rsp.custom_data,
+                       "success" : rsp.success,
+                       "buyer_tel" : rsp.buyer_tel
+            		   }
                    });
          } else {
              alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
@@ -575,17 +580,18 @@ function kg(data) {
 	IMP.request_pay({
 		pg : 'html5_inicis',
 	    pay_method : 'card',
-	    merchant_uid: "0099", //상점에서 생성한 고유 주문번호
-	    name : '주문명:결제테스트',
-	    amount : 100,
-	    buyer_email : 'iamport@siot.do',
-	    buyer_name : '구매자이름',
-	    buyer_tel : '010-1234-5678',
-	    buyer_addr : '서울특별시 강남구 삼성동',
-	    buyer_postcode : '123-456'
-	}, function (rsp) { // callback
+	    merchant_uid: rand, //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+        name : '${productName}', //결제창에 노출될 상품명
+        amount: '${totalprice}',
+        buyer_name : "${buyer_name}",
+        buyer_tel : buyer_tel,
+        buyer_addr : buyer_addr,
+        buyer_postcode : buyer_postcode,
+        
+        custom_data : customdata,
+    }, function (rsp) { // callback
         if (rsp.success) {
-        	 alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료");
+        	   alert("완료 -> 구매자 : "+rsp.buyer_name+"imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료"+"상품명:"+rsp.name+"가격:"+rsp.paid_amount+"count:"+rsp.custom_data.count+"받는사람:"+rsp.custom_data.member_id+"결제상태:"+rsp.success);
                
                jQuery.ajax({
                    url: "test.action",
@@ -598,8 +604,11 @@ function kg(data) {
                        "amount" : rsp.paid_amount,
                        "buyer_name" : rsp.buyer_name,
                        "pg" : rsp.pg_provider,
-                       "pay_method" : rsp.pay_method
-                   	}
+                       "pay_method" : rsp.pay_method,
+                       "custom_data" : rsp.custom_data,
+                       "success" : rsp.success,
+                       "buyer_tel" : rsp.buyer_tel
+            		   }
                    });
          } else {
              alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
@@ -616,33 +625,36 @@ function toss(data) {
 	IMP.request_pay({
 		pg : 'tosspay',
 	    pay_method : 'card',
-	    merchant_uid: "0099", //상점에서 생성한 고유 주문번호
-	    name : '주문명:결제테스트',
-	    amount : 100,
-	    buyer_email : 'iamport@siot.do',
-	    buyer_name : '구매자이름',
-	    buyer_tel : '010-1234-5678',
-	    buyer_addr : '서울특별시 강남구 삼성동',
-	    buyer_postcode : '123-456'
-}, function (rsp) { // callback
-      if (rsp.success) {
-    	  
-    	  alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료");
-          
-          jQuery.ajax({
-              url: "test.action",
-              method: "POST",
-			dataType:"json",
-              data: {
-                  "imp_uid": rsp.imp_uid,
-                  "merchant_uid": rsp.merchant_uid,
-                  "name" : rsp.name,
-                  "amount" : rsp.paid_amount,
-                  "buyer_name" : rsp.buyer_name,
-                  "pg" : rsp.pg_provider,
-                  "pay_method" : rsp.pay_method
-              	}
-              });
+	    merchant_uid: rand, //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+        name : '${productName}', //결제창에 노출될 상품명
+        amount: '${totalprice}',
+        buyer_name : "${buyer_name}",
+        buyer_tel : buyer_tel,
+        buyer_addr : buyer_addr,
+        buyer_postcode : buyer_postcode,
+        
+        custom_data : customdata,
+    }, function (rsp) { // callback
+        if (rsp.success) {
+        	   alert("완료 -> 구매자 : "+rsp.buyer_name+"imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료"+"상품명:"+rsp.name+"가격:"+rsp.paid_amount+"count:"+rsp.custom_data.count+"받는사람:"+rsp.custom_data.member_id+"결제상태:"+rsp.success);
+               
+               jQuery.ajax({
+                   url: "test.action",
+                   method: "POST",
+     			dataType:"json",
+                   data: {
+                       "imp_uid": rsp.imp_uid,
+                       "merchant_uid": rsp.merchant_uid,
+                       "name" : rsp.name,
+                       "amount" : rsp.paid_amount,
+                       "buyer_name" : rsp.buyer_name,
+                       "pg" : rsp.pg_provider,
+                       "pay_method" : rsp.pay_method,
+                       "custom_data" : rsp.custom_data,
+                       "success" : rsp.success,
+                       "buyer_tel" : rsp.buyer_tel
+            		   }
+                   });
        } else {
     	   alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
            var msg = "결제에 실패했습니다"
@@ -719,11 +731,10 @@ init3();
  
 var div2 = document.getElementsByClassName("pay_box");
 
-function handleClick(event) {
+ function handleClick(event) {
     //console.log(event.target);
     // console.log(this);
     // 콘솔창을 보면 둘다 동일한 값이 나온다
-
     //console.log(event.target.classList);
 
     if (event.target.classList[1] === "clicked") {
@@ -735,7 +746,7 @@ function handleClick(event) {
 
         event.target.classList.add("clicked");
     }
-}
+} 
 
 function init() {
     for (var i = 0; i < div2.length; i++) {
@@ -751,15 +762,15 @@ payed.onclick = function () {
     const selected = document.querySelector('.pay_box.clicked').parentNode;
     const val = selected.getAttribute('value');
 	
-  
+    buyer_addr = $("#sample4_roadAddress").val()+$("#sample4_detailAddress").val();
+	buyer_tel = $("#to_hp").val();
+	to_member_id = $("#to_name").val();
+	buyer_postcode = $("#sample4_postcode").val();
+	//alert(buyer_addr+","+buyer_postcode+","+buyer_tel);
     message = $("#mms_send_msg").val();
-    
-    customdata = JSON.parse('{"member_id":"${to_member_id}","count":"${count}","message":"'+message+'","banner":"'+banner+'","messagecard":"'+messagecard+'"}' );
+    customdata = JSON.parse('{"amount":"${totalprice}","member_id":"'+to_member_id+'","count":"${count}","message":"'+message+'","banner":"'+banner+'","messagecard":"'+messagecard+'","buyer_addr":"'+buyer_addr+'","buyer_tel":"'+buyer_tel+'","buyer_postcode":"'+buyer_postcode+'","point":"${point}","userNum":"${userNum}","orderDetailNum":"${orderDetailNum}","friendNum":"${friendNum}"}');
     console.dir(customdata)
-    
-   
-    alert(message)
-    
+     
     if(val=='kakaopay'){
     	payment();
     }else if(val=='tosspay'){
