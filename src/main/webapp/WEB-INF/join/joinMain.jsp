@@ -138,10 +138,8 @@
                          let nickname = res.properties.nickname;
                          let image = res.properties.profile_image;
                          let gender = (res.kakao_account.gender=="female"?"2":"1");
-                         
-                        
-                        //console.log(kakao_email+"/"+kakao_birthday+"/"+kakao_nickname+"/"+kakao_image+"/"+kakao_gender);
-                        
+                       
+                        //회원가입 ajax
                         $.ajax({
                 			type:"post",
                 			url:"insertKakao",
@@ -149,17 +147,25 @@
                 			data:{"email":email,"nickname":nickname,"profileImage":image,"gender":gender,"date":birthday},          
                 			success:function(ok){
                 				alert("회원가입완료");
-                				location.href="/jogong/loginForm";
+                				location.href="/jogong/";
                 				
                 			},error : function(xhr, status, error){
-            					alert('이미 가입된 이메일이 있습니다.' );
-            					location.href="/jogong/loginForm";
-            				}
+                			    //로그인 ajax
+            					$.ajax({
+            	        			type:"post",
+            	        			url:"userKakaoLogin",
+            	        			dataType:"json",
+            	        			data:{"email":email},          
+            	        			success:function(ok){
+            	       					location.href="/jogong/";	
+            	        			}
+            	        		});
+            				}//error(회원가입될 경우);
                 			
-                		});
+                		});//회원가입 ajax;
                         
                     }
-                });
+                });// 사용자 정보 가져오기 ;
             	
             },
             fail: function(error) {

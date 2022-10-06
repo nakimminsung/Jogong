@@ -3,7 +3,6 @@ package bit.data.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -143,15 +142,27 @@ public class LoginController {
 		
 	}
 	
-//	카카오 로그인
-	@GetMapping("/loginForm/kakaoLogin")
-	public String kakaoLogin() {
-
+	//카카오 회원가입
+	@PostMapping("/insertKakao")
+	public String insert(UserDto dto) {
+		//자동입력
+		dto.setPhone("0");
+		dto.setSalt("0");
+		dto.setPassword("0");
+		dto.setAddress("no");
+		dto.setPoint(0);
+		dto.setYear("0");
+		dto.setLoginType("카카오");
+		dto.setAdmin(false);
 		
-      return "/bit/login/kakaoLogin";
+		userService.insertUser(dto);
+		
+		
+		return "redirect:/";
+		
 	}
 
-//성민 카카오 로그인
+	//카카오 로그인
 	@PostMapping("/userKakaoLogin")
 	@ResponseBody
 	public Map<String, String> userkakaologinprocess(String email, HttpSession session)

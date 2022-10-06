@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import bit.data.dto.UserDto;
 import bit.data.service.UserServiceInter;
 import util.SHA256Util;
-import bit.data.dto.KakaoDto;
 import bit.data.dto.SellerDto;
 import bit.data.service.SellerServiceInter;
 
@@ -100,8 +100,6 @@ public class JoinController {
    }
 	
 	
-	
-	
 
 	// 성민
 	
@@ -162,28 +160,7 @@ public class JoinController {
 		return map;
 	}
 	
-	
-	//카카오 테스트
-	@GetMapping("/kakaoLogin")
-	public String kakaoLogin(@RequestParam(value = "code", required = false) String code) throws Exception {
-		System.out.println("#########" + code);
-		String access_Token = userService.getAccessToken(code);
-	    
-		// userInfo의 타입을 KakaoDTO로 변경 및 import.
-		KakaoDto userInfo = userService.getKakaoInfo(access_Token);
-	    
-		System.out.println("###access_Token#### : " + access_Token);
-//		System.out.println("###nickname#### : " + userInfo.get("nickname"));
-//		System.out.println("###email#### : " + userInfo.get("email"));
-		
-		System.out.println("###nickname#### : " + userInfo.getK_name());
-		System.out.println("###email#### : " + userInfo.getK_email());
-		
-		
-		return "member/testPage";
-	}
-	
-	
+	//카카오 회원가입
 	@PostMapping("/insertKakao")
 	public String insert(UserDto dto) {
 		//자동입력
@@ -200,6 +177,32 @@ public class JoinController {
 		
 		
 		return "redirect:/";
+		
+	}
+	
+	//카카오 로그인
+	@PostMapping("/userKakaoLogin")
+	@ResponseBody
+	public Map<String, String> userkakaologinprocess(String email, HttpSession session)
+	{
+		
+		Map<String, String> map=new HashMap<String, String>();
+				
+		if(email!=null)//카카오로부터 이메일 가져오는 경우
+		{
+			//유지 시간 설정
+			session.setMaxInactiveInterval(60*60*4);//4시간
+			//로그인한 아이디에 대한 정보를 얻어서 세션에 저장s
+			UserDto userDto=userService.getDataById(email);
+			session.setAttribute("loginok", "yes");
+			session.setAttribute("loginid", email);
+			session.setAttribute("loginname", userDto.getNickname());
+			session.setAttribute("loginphoto", userDto.getProfileImage());
+			
+		}
+		map.put("result","success");
+		
+		return map;
 		
 	}
 

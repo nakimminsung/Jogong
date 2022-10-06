@@ -130,8 +130,7 @@ $(document).ready(function(){
 				<!-- 소셜회원 로그인 박스 -->
 				<div class="snsLoginBox">
 					<button class="btnKakaoLogin" style="background-color: #fde102;"><i class='fas fa-comment'></i> 카카오로 로그인</button>&nbsp;&nbsp;&nbsp;
-					<!-- <button class="btnNaverLogin" style="background-color: #19ce60; color: white;">N 네이버로 로그인</button> -->
-					<button class="btnKakaoLogout" style="background-color: #19ce60; color: white;" onclick="kakaoLogout()">카카오 로그아웃</button>
+					<button class="btnNaverLogin" style="background-color: #19ce60; color: white;">N 네이버로 로그인</button>
 				</div>
 
 			</div>	
@@ -171,7 +170,7 @@ $(document).ready(function(){
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>	<!-- 카카오 로그인 관련 -->
 <script>
 	
-	//성민 카카오 로그인 버튼 이벤트
+	//카카오 로그인 버튼 이벤트
 	$(".btnKakaoLogin").click(function () {
 		location.href='javascript:kakaoLogin();';
 	});
@@ -180,51 +179,65 @@ $(document).ready(function(){
 	window.Kakao.init('d4fc125a7dd0ad8b599aeac52a278521');	//본인 자바스크립트 API키
 
     function kakaoLogin() {
-        window.Kakao.API.request({ // 사용자 정보 가져오기 
-            url: '/v2/user/me',
-            success: (res) => {
-                 let email= res.kakao_account.email;
-                 
+        window.Kakao.Auth.login({
+            scope: 'profile_nickname, profile_image, account_email, gender, birthday', //동의항목 페이지에 있는 개인정보 보호 테이블의 활성화된 ID값을 넣습니다.
+            success: function(response) {
                 
-                console.log(res);
-               
-                $.ajax({
-        			type:"post",
-        			url:"userKakaoLogin",
-        			dataType:"json",
-        			data:{"email":email},          
-        			success:function(ok){
-       					location.href="/jogong/";	
-        			}
-        		});
+            	console.log(response) // 로그인 성공하면 받아오는 데이터
                 
-            },fail: function(err) {
-                alert("가입된 이메일이 없습니다.");
-                location.href="/jogong/join/joinMain";
-             }
-        });
-            
-    }
-	
-	
-	//카카오 로그아웃  
-	function kakaoLogout() {
-	    if (Kakao.Auth.getAccessToken()) {
-	      Kakao.API.request({
-	        url: '/v1/user/unlink',
-	        success: function (response) {
-	           console.log(response)
-	           window.location.href='/jogong/'
-	        },
-	        fail: function (error) {
-	          console.log(error)
-	        },
-	      })
-	      Kakao.Auth.setAccessToken(undefined)
-	      
-	    }
-	  }  
+                window.Kakao.API.request({ // 사용자 정보 가져오기 
+                    url: '/v2/user/me',
+                    success: (res) => {
+                         let email= res.kakao_account.email;
+                         let birthday = res.kakao_account.birthday;
+                         let nickname = res.properties.nickname;
+                         let image = res.properties.profile_image;
+                         let gender = (res.kakao_account.gender=="female"?"2":"1");
 
+                        //console.log(kakao_email+"/"+kakao_birthday+"/"+kakao_nickname+"/"+kakao_image+"/"+kakao_gender);
+                        
+                        $.ajax({
+                			type:"post",
+                			url:"insertKakao",
+                			dataType:"html",
+                			data:{"email":email,"nickname":nickname,"profileImage":image,"gender":gender,"date":birthday},          
+                			success:function(ok){
+                				alert("회원가입완료");
+                				$.ajax({
+            	        			type:"post",
+            	        			url:"userKakaoLogin",
+            	        			dataType:"json",
+            	        			data:{"email":email},          
+            	        			success:function(ok){
+            	       					location.href="/jogong/";	
+            	        			}
+            	        		});
+                				
+                			},error : function(xhr, status, error){
+
+            					$.ajax({
+            	        			type:"post",
+            	        			url:"userKakaoLogin",
+            	        			dataType:"json",
+            	        			data:{"email":email},          
+            	        			success:function(ok){
+            	       					location.href="/jogong/";	
+            	        			}
+            	        		});
+            				}
+                			
+                		});
+              
+                    }
+                });
+            	
+            },
+            fail: function(error) {
+                console.log(error);
+            }
+        });
+    }// kakaoLogin()
+	
 
 	//user 로그인 버튼
 	$("#loginok").click(function(){

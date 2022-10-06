@@ -29,6 +29,9 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    
+    <!-- 카카오 로그인 관련 -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>	
 
 </head>
 <style>
@@ -165,7 +168,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 				<a href="${root}/cscenter/faq"><b style="font-size: 16px;">고객센터</b></a>&emsp;
 				<img src="${sessionScope.loginphoto}" class="profile"><b style="max-width:500px;">${sessionScope.loginname}님</b>
 				&nbsp;&nbsp;
-				<a class="logout" href="${root}/logout">로그아웃</a>
+				<a class="logout" href="${root}/logout" onclick="kakaoLogout()">로그아웃</a>
 			</c:if>
 			
 		</div>	<!-- div.right 종료 -->
@@ -173,4 +176,19 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     </div>
     <!--  div.header-wrapper 종료 -->
   </body>
+<script>
+//카카오 로그아웃  
+	  window.Kakao.init('d4fc125a7dd0ad8b599aeac52a278521');  
+		function kakaoLogout() {
+            if (!Kakao.Auth.getAccessToken()) {
+                alert('Not logged in.');
+                return;
+            }
+            Kakao.Auth.logout(function() {
+                alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken());
+            });
+	}
+ 
+</script>	
+  
 </html>
