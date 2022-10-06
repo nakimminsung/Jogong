@@ -192,7 +192,17 @@ $(document).ready(function(){
                         const kakao_account = res.kakao_account;
                         console.log(kakao_account)
                         
+                        let profile_nickname = kakao_account.profile.nickname;
+                        let profile_image = properties.profile_image;
+                        let email = kakao_account.email;
+                        let gender = kakao_account.gender;
+                        let birthday = kakao_account.birthday;
                         
+                        console.log(profile_nickname);
+                        console.log(profile_image);
+                        console.log(email);
+                        console.log(gender);
+                        console.log(birthday);
                         
                     }
                 });
