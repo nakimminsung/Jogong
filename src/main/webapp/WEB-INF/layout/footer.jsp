@@ -31,7 +31,7 @@
 			<button type="button" class="btn btn-info" onclick="location.href='${root}/GiftTestForm'">결제폼 이동</button>
 		</div> --%>
 		<div>
-			<button type="button" class="btn btn-info" onclick="location.href='${root}/presentForm'">선물함 이동</button>
+			<button type="button" class="btn btn-info" onclick="location.href='${root}/gift/presentForm'">선물함 이동</button>
 		</div>
     </div>
 </body>

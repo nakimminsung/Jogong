@@ -563,6 +563,37 @@ a.btn-layerClose:hover {
 <script type="text/javascript">
 	$(function() {
 		
+		let num = 2; 
+		$.ajax({
+			type: "get",
+			url: "../gift/receivelist",
+			dataType: "json",
+			data: {"num":num},
+		    success : function(res){
+		    	$.each(res, function(i,elt) {
+		    		console.log(elt.productName);
+		    		console.log(elt.deliveryAddress);
+		    		
+		    		console.log(elt.thumbnailImageUrl);
+		    		console.log(elt.brand);
+		    		console.log(elt.nickname);
+		    		console.log(elt.message);
+		    		console.log(elt.orderDate);
+		    		console.log(elt.profileImage);
+		    		console.log(elt.banner);
+		    		console.log(elt.hp);
+		    		console.log(elt.postalcode);
+		    		
+		    	})
+		    },
+		    error : function(){
+		      alert("에러")		
+		    }
+		  });
+		
+		
+		
+		
 		//오더리시브호출
  		order_recevie();
  		/* order_send(); */
@@ -719,6 +750,7 @@ a.btn-layerClose:hover {
 </script>
 <body>
 <div class="Gift"></div>
+
 </body>
 <script type="text/javascript">
 //다음 주소검색 API

@@ -28,5 +28,4 @@ public class GiftDao implements GiftDaoInter{
 		return session.selectList(ns+"getSendSearch",userNum);
 	}
 	
-	
 }
