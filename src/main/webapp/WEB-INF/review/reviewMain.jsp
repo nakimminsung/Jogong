@@ -31,112 +31,204 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	
 <style type="text/css">
+	@font-face {
+    	font-family: 'SeoulNamsanM';
+    	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');
+    	font-weight: normal;
+    	font-style: normal;
+	}
+	
+	body * {
+		font-size: 15px;
+		font-family: 'SeoulNamsanM';
+		word-spacing: -1px;
+	}
+	
+ 	div {
+        box-sizing: border-box;
+       
+      }
+	.flex-outer-container {
+	  margin: 0 auto;
+	  max-width: 1180px;
+	  padding-left:70px;
+	}
+	.flex-inner-container {
+	  display: flex;
+	  flex-direction: row;
+	  
+	  flex-wrap: wrap;
+	}
+	
+  	@media (min-width: 600px) {
+	  .flex-outer-container {
+	    flex-direction: row;
+	    flex-wrap: wrap;
+	  }
+	  .flip {
+	    flex-basis: 50%;
+	  }
+	}
+	
+	@media (min-width: 900px) {
+	  .flip {
+	    flex-basis: 20%;
+	  }
+	}
+	
+	.flip { 
+	/*   border: 1px solid #f6f7f7;  */
+	 /* flex-grow: 1; */
+  	  width: 200px;
+      height: 310px;
+      /* perspective: 1100px; */ 
+      margin:20px;
+      border-radius: 20px;
+	}
+
+	.card-review {
+	  width: 100%; 
+	  height: 100%; 
+	  position: relative;
+	  transition: .4s;
+	  transform-style: preserve-3d;
+      border-radius: 20px;
+      border: 1px solid #f6f7f7;
+	}	
+	
+	.front, .back {
+	  position: absolute;
+	  width: 100%; 
+	  height: 100%;
+	  backface-visibility: hidden;
+      border-radius: 20px;
+	}
+	
+	.back { 
+	 
+	  transform: rotateY(180deg);
+	}
+	
+	.flip:hover .card-review {
+	  transform: rotateY(180deg);
+	}
+	
+	.reviewBox>img {
+    	border-radius: 70%;
+    	overflow: hidden;
+	}
+	
+	.reviewBox {
+    	/* border-radius: 70%;
+    	overflow: hidden; */
+    	position: absolute;
+    	right: 20px;
+	}
+	
+	.back {
+		position: relative;
+	}
+	
+	.backBottom {
+    	position: absolute;
+    	bottom: 2px;
+    	padding-left: 10px;
+	}
+	
+	.backBottom>a:hover {
+    	color: gray;
+	}
+	
+	.frontInfo{ 
+		padding-left: 10px;
+	}
+	
+	/* .reviewDate{ 
+		position: absolute;
+		right: 5px;
+	} */
 </style>
+<script type="text/javascript">
+
+	$(function(){
+		var userId = $('.reviewUser').val();
+		/* console.log(userId); */
+		$("document").ready(function(){
+		 	getUserList(); 
+		});	
+	});
+	
+	 function getUserList(){
+		$.ajax({
+			type:"get",
+			url:"../user/review",
+			dataType:"json", 
+			success:function(res){
+				/*  console.log(res); */
+				$.each(res,function(i,e){
+					var s = "";
+				 	s+="<div class='reviewBox'>"; 
+					s+="<img src='"+e.profileImage+"' width=20>"+e.nickname;
+					s+="</div>"; 
+					$(".reviewUser[userNum="+e.num+"]").html(s);
+					//console.log(s);
+				});
+			}
+		});
+	}   
+
+</script>
 </head>
 <body>
-	<h1>reviewMain</h1>
-<%-- 	<div class="searcharea" style="width:100%; text-align: center;">
-		<form action="list">
-			<div class="input-group" style="width:450px;">
-				<!-- <select class="from-select" style="width:150px;" name="searchcolumn">
-					<option value="subject">제목</option>
-					<option value="id">아이디</option>
-					<option value="name">작성자</option>
-					<option value="content">내용</option>
-				</select> -->
-				&nbsp;&nbsp;&nbsp;
-				<input type="text" name="searchword" class="form-control" style="width:140px;"
-					placeholder="검색단어" value="${param.searchword }">
-				<button type="submit" class="btn btn-success">검색</button>
-			</div>
-		</form>
-		<a href="list?searchcolumn=id&searchword=${sessionScope.loginid }">내가쓴글</a>
+	<input type="hidden" class="reviewUser" value=${dto.userNum }>
+	<input type="hidden" class="reviewImage" value="${dto.reviewImageUrl}">
+	<input type="hidden" class="reviewSubject" value="${dto.subject }">
+	
+	<div  align="center">
+		<h4>실시간후기</h4>
+		<h6 style="color: gray;">고객분들의 실시간 후기를 소개합니다.</h6>
+	</div>
+	${dto.subject }
+	<div class="flex-outer-container">
+		<div class="flex-inner-container">
+			 <c:forEach var="dto" items="${list }">
+ 				<div class="flip">
+	        		<div class="card-review" >
+	        		
+	        			<div class="front" style="overflow: hidden;">
+	        				<img src="${dto.reviewImageUrl }" width="250" height="250">
+	        				<div class="frontInfo">
+		        				<h6 style="display:inline;">${dto.subject }</h6 >
+		        				<p  style="display:inline; position: absolute; right: 15px;"><i class="fas fa-star" style="color: rgb(247, 200, 21);"></i><b>${dto.rating }</b></p>
+		        				<p class="reviewUser" userNum="${dto.userNum }"></p>
+	        				</div>
+	        				<!-- <img src= -->
+	        			</div>
+	        			
+	        			<div class="back">
+	        				<h5 style="text-align: center; font-weight: 900;">${dto.subject }</h5 >
+	        				<div class="backTop">
+	        					<p style="color: gray;">${dto.content }</p>
+	        				</div>
+	        				<div class="backBottom" style="position: left;">
+	        					<a href="${root }/jogong/product/detail?num=${dto.productNum}" style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 190px;'>${dto.name }</a>
+	        					<div class="reviewDate">
+	        						<fmt:formatDate value="${dto.createdAt}"  pattern="yyyy-MM-dd"/>
+	        					</div>
+	        				</div>
+	        			</div>
+	        			
+	        		</div>
+	      		</div>				
+			</c:forEach> 
+		</div>
+    </div>
+    
+	<div class="outside">
+    	<div class="inside">
+    		inside
+    	</div>
 	</div>
 	
-	<div class="boardlist" style="margin-top: 10px;">
-		<h3 class="alert alert-danger">총 ${totalCount }개의 글이 있습니다</h3>
-		<br><br>
-		<table class="table table-bordered">
-			<tr style="background-color: #ddd">
-				<th style="width: 50px;">번호</th>
-				<th style="width:350px;">제목</th>
-				<td style="width:80px;">작성자</td>
-				<td style="width:120px;">작성일</td>
-				<td style="width:50px;">조회</td>
-				<td style="width:50px;">좋아요</td>
-			</tr>
-		 	<c:if test="${totalCount == 0 }">
-				<tr>
-					<td colspan="6" align="center">
-						<h4>등록된 글이 없습니다</h4>
-					</td>
-				</tr>	
-			</c:if>
-			<c:if test="${totalCount > 0 }">
-				<c:forEach var="dto" items="${list }">
-					<tr>
-						<td align="center">${no }</td>
-						<c:set var="no" value="${no-1 }"/>
-						<td>
-							
-							
-							<a href="detail?num=${dto.num }&currentPage=${currentPage}" style="color:black;">
-								${dto.subject }
-								<c:if test="${dto.photo!='no' }">
-									<i class="fa fa-file-picture-o" style="color:gray;"></i>
-								</c:if>
-								
-							
-							</a>
-						</td>
-						<td align="center">${dto.name }</td>
-						<td align="center">
-							<fmt:formatDate value="${dto.createdAt }"  pattern="yyyy-MM-dd"/>
-						</td>
-						<td align="center">${dto.readcount }</td>
-						<td align="center">${dto.likes }</td>
-					</tr>
-				</c:forEach>
-			</c:if> 
-			
-			<!-- 글쓰기 버튼은 로그인을 해야만 보인다 -->
-			<c:if test="${sessionScope.loginok!=null }">
-				<tr>
-					<td colspan="6" align="right">
-						<button type="button" class="btn btn-outline-success"
-							onclick="location.href='form'">글쓰기</button>
-					</td>
-				</tr>
-			</c:if> 
-		</table>
-	</div>
-	
-	
-	
-	
-	
-	<div class="paging" style="margin-left:200px;">
-		<ul class="pagination">
-			<c:if test="${startPage>1 }">
-				<li class="page-item"><a href="list?currentPage=${startPage-1 }" class="page-link">이전</a></li>
-			</c:if>
-			
-			<!-- 페이지 번호 -->
-			<c:forEach var="pp" begin="${startPage }" end="${endPage }">
-				<c:if test="${pp==currentPage }">
-					<li class="page-item active"><a class="page-link" href="list?currentPage=${pp }">${pp }</a></li>
-				</c:if>
-				<c:if test="${pp!=currentPage }">
-					<li class="page-item"><a class="page-link" href="list?currentPage=${pp }">${pp }</a></li>
-				</c:if>	
-			</c:forEach>
-			
-			
-			<c:if test="${endPage<totalPage }">
-				<li class="page-item"><a href="list?currentPage=${endPage+1 }" class="page-link">다음</a></li>	
-			</c:if>
-		</ul>
-	</div> --%>
 </body>
-</html>
-
+</html> 

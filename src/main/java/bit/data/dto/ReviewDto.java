@@ -8,13 +8,16 @@ import lombok.Data;
 public class ReviewDto {
 
 	private int num;
+	private String subject;
 	private String content;
 	private int rating;
 	private Timestamp createdAt;
 	private boolean publicOption;
+	private String reviewImageUrl;
 	private int userNum;
 	private int productNum;
-	private int reviewImageNum;
 	private int tagNum;
 	
+	// product
+	private String name;
 }
