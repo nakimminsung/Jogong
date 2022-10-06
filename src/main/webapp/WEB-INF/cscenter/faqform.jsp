@@ -98,7 +98,7 @@
 	.rollingNc {
 	padding-top:10px; 
 	padding-bottom:10px; 
-	height:40px; 
+	height:35px; 
 	overflow:hidden; 
 	background:#fff; 
 	width:800px; 
@@ -184,11 +184,11 @@
 			<tr>
 				<td> 
 					<div onclick="test('${dto.num }')" style="cursor: pointer;">
-					 <b style="color: red; font-size: 20px;">Q.</b>&emsp;<span>${dto.title }</span><br>
+					 <b style="color: red; font-size: 20px;">Q.</b>&emsp;<span><b>${dto.title }</b></span><br>
 					</div> 
 					<br>
 					 <div id="answer${dto.num }" style="display: none;">
-					 	<pre style="font-size: 15px;"><b style="color: red; font-size: 20px;">A.</b>&emsp;${dto.content }</pre><br>
+					 	<pre style="font-size: 15px;font-family: 'SeoulNamsanM'; "><b style="color: red; font-size: 20px;">A.</b>&emsp;${dto.content }</pre><br>
 					 </div>	
 				</td>
 			</tr>

@@ -183,7 +183,6 @@ public class LoginController {
 			
 		}
 		map.put("result",email!=null?"success":"fail");
-		System.out.println(map);
 		
 		return map;
 	}
