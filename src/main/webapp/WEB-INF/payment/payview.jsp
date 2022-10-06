@@ -74,7 +74,7 @@
             <div class="subcontents">
                 <h1>선물 발송·결제</h1>
                 <h2>선물 꾸미기</h2>
-                <p style="visibility:hidden" id="to_member_id">${to_member_id}</p>
+                <%-- <p style="visibility:hidden" id="to_member_id">${to_member_id}</p> --%>
                 <div class="justify-cont col-type01">
                     <!-- 테마와 배너 선택 -->
                     <div class="theme_all">
@@ -296,10 +296,10 @@
             <h3>선물 상품 정보</h3>
             <div class="gift-info row-type03">
                 <div>
-                    <img src="image/cake.jpg" alt="스트로베리 초콜릿 생크림" width="100px" height="100px">
+                    <img src="${thumbnailImage}" alt="스트로베리 초콜릿 생크림" width="100px" height="100px">
                 </div>
                 <div class="gift-info-desc">
-                    <span>투썸플레이스</span>
+                    <span>${productName}</span>
                     <p><strong id="sangpum">${sangpum}</strong></p>
                     <p class="count" id="count">총 선물 수 <strong><span class="phoneCnt">${count}</span> 개</strong></p>
                 </div>
@@ -311,7 +311,7 @@
                 <div class="row-type04" id="point_box">
                     <h4>보유 포인트</h4>
                     <p class="form-type01 btn-area" id="point_box_area">
-                        <span><em class="fc-01" id="gs_point">0</em> 원</span>
+                        <span><em class="fc-01" id="gs_point">${point}</em> 원</span>
                         <a href="javascript:giftishowPointUse()" id="giftishowPointChk" class="btn-type-c">전액사용</a>
                         <input type="text" id="giftishowUsePoint" value="0">
                     </p>
@@ -497,7 +497,50 @@ function payment(data) {
         buyer_addr : buyer_addr,
         buyer_postcode : buyer_postcode,
         
-        
+        custom_data : customdata,
+    }, function (rsp) { // callback
+        if (rsp.success) {
+        	   alert("완료 -> 구매자 : "+rsp.buyer_name+"imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료"+"상품명:"+rsp.name+"가격:"+rsp.paid_amount+"count:"+rsp.custom_data.count+"받는사람:"+rsp.custom_data.member_id+"결제상태:"+rsp.success);
+               
+               jQuery.ajax({
+                   url: "test.action",
+                   method: "POST",
+     			dataType:"json",
+                   data: {
+                       "imp_uid": rsp.imp_uid,
+                       "merchant_uid": rsp.merchant_uid,
+                       "name" : rsp.name,
+                       "amount" : rsp.paid_amount,
+                       "buyer_name" : rsp.buyer_name,
+                       "pg" : rsp.pg_provider,
+                       "pay_method" : rsp.pay_method,
+                       "custom_data" : rsp.custom_data,
+                       "success" : rsp.success,
+                       "buyer_tel" : rsp.buyer_tel
+            		   }
+                   });
+         } else {
+             alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
+             var msg = "결제에 실패했습니다"
+             msg = "에러내용:" + rsp.error_msg;
+             
+             alert(msg);
+         }
+     });
+}
+
+function danal(data) {
+	IMP.init('imp20164668');//아임포트 관리자 콘솔에서 확인한 '가맹점 식별코드' 입력
+	IMP.request_pay({
+		pg : 'nice',
+	    pay_method : 'phone',
+	    merchant_uid: rand, //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+        name : '${productName}', //결제창에 노출될 상품명
+        amount: '${totalprice}',
+        buyer_name : "${buyer_name}",
+        buyer_tel : buyer_tel,
+        buyer_addr : buyer_addr,
+        buyer_postcode : buyer_postcode,
         
         custom_data : customdata,
     }, function (rsp) { // callback
@@ -519,49 +562,7 @@ function payment(data) {
                        "custom_data" : rsp.custom_data,
                        "success" : rsp.success,
                        "buyer_tel" : rsp.buyer_tel
-                       
             		   }
-                   });
-         } else {
-             alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
-             var msg = "결제에 실패했습니다"
-             msg = "에러내용:" + rsp.error_msg;
-             
-             alert(msg);
-         }
-     });
-}
-
-function danal(data) {
-	IMP.init('imp20164668');//아임포트 관리자 콘솔에서 확인한 '가맹점 식별코드' 입력
-	IMP.request_pay({
-		pg : 'nice',
-	    pay_method : 'phone',
-	    merchant_uid: "0099", //상점에서 생성한 고유 주문번호
-	    name : '주문명:결제테스트',
-	    amount : 1000,
-	    buyer_email : 'iamport@siot.do',
-	    buyer_name : '구매자이름',
-	    buyer_tel : '010-1234-5678',
-	    buyer_addr : '서울특별시 강남구 삼성동',
-	    buyer_postcode : '123-456'
-	}, function (rsp) { // callback
-        if (rsp.success) {
-        	 alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료");
-               
-               jQuery.ajax({
-                   url: "test.action",
-                   method: "POST",
-     			dataType:"json",
-                   data: {
-                       "imp_uid": rsp.imp_uid,
-                       "merchant_uid": rsp.merchant_uid,
-                       "name" : rsp.name,
-                       "amount" : rsp.paid_amount,
-                       "buyer_name" : rsp.buyer_name,
-                       "pg" : rsp.pg_provider,
-                       "pay_method" : rsp.pay_method
-                   	}
                    });
          } else {
              alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
@@ -579,17 +580,18 @@ function kg(data) {
 	IMP.request_pay({
 		pg : 'html5_inicis',
 	    pay_method : 'card',
-	    merchant_uid: "0099", //상점에서 생성한 고유 주문번호
-	    name : '주문명:결제테스트',
-	    amount : 100,
-	    buyer_email : 'iamport@siot.do',
-	    buyer_name : '구매자이름',
-	    buyer_tel : '010-1234-5678',
-	    buyer_addr : '서울특별시 강남구 삼성동',
-	    buyer_postcode : '123-456'
-	}, function (rsp) { // callback
+	    merchant_uid: rand, //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+        name : '${productName}', //결제창에 노출될 상품명
+        amount: '${totalprice}',
+        buyer_name : "${buyer_name}",
+        buyer_tel : buyer_tel,
+        buyer_addr : buyer_addr,
+        buyer_postcode : buyer_postcode,
+        
+        custom_data : customdata,
+    }, function (rsp) { // callback
         if (rsp.success) {
-        	 alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료");
+        	   alert("완료 -> 구매자 : "+rsp.buyer_name+"imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료"+"상품명:"+rsp.name+"가격:"+rsp.paid_amount+"count:"+rsp.custom_data.count+"받는사람:"+rsp.custom_data.member_id+"결제상태:"+rsp.success);
                
                jQuery.ajax({
                    url: "test.action",
@@ -602,8 +604,11 @@ function kg(data) {
                        "amount" : rsp.paid_amount,
                        "buyer_name" : rsp.buyer_name,
                        "pg" : rsp.pg_provider,
-                       "pay_method" : rsp.pay_method
-                   	}
+                       "pay_method" : rsp.pay_method,
+                       "custom_data" : rsp.custom_data,
+                       "success" : rsp.success,
+                       "buyer_tel" : rsp.buyer_tel
+            		   }
                    });
          } else {
              alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
@@ -620,33 +625,36 @@ function toss(data) {
 	IMP.request_pay({
 		pg : 'tosspay',
 	    pay_method : 'card',
-	    merchant_uid: "0099", //상점에서 생성한 고유 주문번호
-	    name : '주문명:결제테스트',
-	    amount : 100,
-	    buyer_email : 'iamport@siot.do',
-	    buyer_name : '구매자이름',
-	    buyer_tel : '010-1234-5678',
-	    buyer_addr : '서울특별시 강남구 삼성동',
-	    buyer_postcode : '123-456'
-}, function (rsp) { // callback
-      if (rsp.success) {
-    	  
-    	  alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료");
-          
-          jQuery.ajax({
-              url: "test.action",
-              method: "POST",
-			dataType:"json",
-              data: {
-                  "imp_uid": rsp.imp_uid,
-                  "merchant_uid": rsp.merchant_uid,
-                  "name" : rsp.name,
-                  "amount" : rsp.paid_amount,
-                  "buyer_name" : rsp.buyer_name,
-                  "pg" : rsp.pg_provider,
-                  "pay_method" : rsp.pay_method
-              	}
-              });
+	    merchant_uid: rand, //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+        name : '${productName}', //결제창에 노출될 상품명
+        amount: '${totalprice}',
+        buyer_name : "${buyer_name}",
+        buyer_tel : buyer_tel,
+        buyer_addr : buyer_addr,
+        buyer_postcode : buyer_postcode,
+        
+        custom_data : customdata,
+    }, function (rsp) { // callback
+        if (rsp.success) {
+        	   alert("완료 -> 구매자 : "+rsp.buyer_name+"imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료"+"상품명:"+rsp.name+"가격:"+rsp.paid_amount+"count:"+rsp.custom_data.count+"받는사람:"+rsp.custom_data.member_id+"결제상태:"+rsp.success);
+               
+               jQuery.ajax({
+                   url: "test.action",
+                   method: "POST",
+     			dataType:"json",
+                   data: {
+                       "imp_uid": rsp.imp_uid,
+                       "merchant_uid": rsp.merchant_uid,
+                       "name" : rsp.name,
+                       "amount" : rsp.paid_amount,
+                       "buyer_name" : rsp.buyer_name,
+                       "pg" : rsp.pg_provider,
+                       "pay_method" : rsp.pay_method,
+                       "custom_data" : rsp.custom_data,
+                       "success" : rsp.success,
+                       "buyer_tel" : rsp.buyer_tel
+            		   }
+                   });
        } else {
     	   alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
            var msg = "결제에 실패했습니다"
@@ -758,9 +766,9 @@ payed.onclick = function () {
 	buyer_tel = $("#to_hp").val();
 	to_member_id = $("#to_name").val();
 	buyer_postcode = $("#sample4_postcode").val();
-	alert(buyer_addr+","+buyer_postcode+","+buyer_tel);
+	//alert(buyer_addr+","+buyer_postcode+","+buyer_tel);
     message = $("#mms_send_msg").val();
-    customdata = JSON.parse('{"amount":"${totalprice}","member_id":"'+to_member_id+'","count":"${count}","message":"'+message+'","banner":"'+banner+'","messagecard":"'+messagecard+'","buyer_addr":"'+buyer_addr+'","buyer_tel":"'+buyer_tel+'","buyer_postcode":"'+buyer_postcode+'","point":"${point}"}');
+    customdata = JSON.parse('{"amount":"${totalprice}","member_id":"'+to_member_id+'","count":"${count}","message":"'+message+'","banner":"'+banner+'","messagecard":"'+messagecard+'","buyer_addr":"'+buyer_addr+'","buyer_tel":"'+buyer_tel+'","buyer_postcode":"'+buyer_postcode+'","point":"${point}","userNum":"${userNum}","orderDetailNum":"${orderDetailNum}","friendNum":"${friendNum}"}');
     console.dir(customdata)
      
     if(val=='kakaopay'){
