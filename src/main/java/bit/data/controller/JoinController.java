@@ -90,7 +90,7 @@ public class JoinController {
 		
 		//dto에 담기
 		dto.setAddress(address);
-		dto.setLogoImage("user_default.png");
+		dto.setLogoImage("https://github.com/kkookkss/jogong_data/blob/main/user/man/500user_default.png?raw=true");
 		
 		
 		//ServiceInter 의 insertSeller 호출 (dto 전달)
@@ -162,26 +162,5 @@ public class JoinController {
 		return map;
 	}
 	
-	
-	//카카오 테스트
-	@GetMapping("/kakaoLogin")
-	public String kakaoLogin(@RequestParam(value = "code", required = false) String code) throws Exception {
-		System.out.println("#########" + code);
-		String access_Token = userService.getAccessToken(code);
-	    
-		// userInfo의 타입을 KakaoDTO로 변경 및 import.
-		KakaoDto userInfo = userService.getKakaoInfo(access_Token);
-	    
-		System.out.println("###access_Token#### : " + access_Token);
-//		System.out.println("###nickname#### : " + userInfo.get("nickname"));
-//		System.out.println("###email#### : " + userInfo.get("email"));
-		
-		System.out.println("###nickname#### : " + userInfo.getK_name());
-		System.out.println("###email#### : " + userInfo.getK_email());
-		
-		
-		return "member/testPage";
-	}
-
 	
 }
