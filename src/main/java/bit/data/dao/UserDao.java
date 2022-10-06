@@ -49,6 +49,12 @@ public class UserDao implements UserDaoInter {
 		// TODO Auto-generated method stub
 		return session.selectOne(ns+"getDataById", email);
 	}
+
+	/*
+	 * @Override public void insertKakao(UserDto dto) { // TODO Auto-generated
+	 * method stub session.insert(ns+"insertUser", dto); }
+	 */
 	
+
 	
 }

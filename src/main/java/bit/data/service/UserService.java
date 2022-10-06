@@ -1,12 +1,12 @@
 package bit.data.service;
 
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 
 import bit.data.dao.UserDaoInter;
 import bit.data.dto.UserDto;
@@ -54,6 +54,13 @@ public class UserService implements UserServiceInter {
 	}
 	
 	
+	/*@Override
+	public void insertKakao(UserDto dto) {
+		// TODO Auto-generated method stub
+		userDaoInter.insertKakao(dto);;
+		
+	}*/
 	
+
 
 }

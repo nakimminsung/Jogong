@@ -13,4 +13,6 @@ public interface UserServiceInter {
 	public UserDto getDataById(String email);
 	
 
+	//public void insertKakao(UserDto dto);
+
 }
