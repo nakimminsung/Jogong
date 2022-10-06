@@ -32,6 +32,15 @@ public class UserController {
 	public String cartList() {
 	    return "/mypage/mypage/cart";
 	}
+	
+    @GetMapping("/mypage/user")
+    public String userPage() {
+        return "/mypage/mypage/user";
+    }
+    @GetMapping("/mypage/qna")
+    public String qnaPage() {
+        return "/mypage/mypage/qna";
+    }
 }
 
 

@@ -70,15 +70,15 @@
 		<div class="my-menu">
 			<div class="my-menu-top">
 				<h3>쇼핑정보</h3>
-				<a href="${root}/mypage/cart">선물함</a>
-				<a href="${root}/mypage/wishlist">위시리스트</a>
-				<a href="${root}/mypage/orderlist">주문내역</a>
-				<a href="${root}/mypage/review">선물후기</a>
+				<a href="${root}/orderDetail/page">선물함</a>
+				<a href="${root}/wishlist/page">위시리스트</a>
+				<a href="${root}/mypage/cart">장바구니</a>
+				<a href="${root}/review/page">선물후기</a>
 			</div>
 			<div class="my-menu-bottom">
 				<h3>내 정보</h3>
-				<a>프로필 정보</a>
-				<a>주소록</a>
+				<a href="${root}/mypage/user">프로필 정보</a>
+				<a href="${root}/mypage/qna">Q&A</a>
 			</div>
 		</div>
 	</div>	

@@ -18,7 +18,7 @@ public class WishlistController {
 	@Autowired
 	WishlistServiceInter wishlistServiceInter;
 	
-	@GetMapping("/mypage/wishlist")
+	@GetMapping("/page")
 	public String mypage() {
 		return "/mypage/mypage/wishlist";
 	}

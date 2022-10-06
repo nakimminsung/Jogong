@@ -57,7 +57,7 @@
 	  width: 100%;
 	  height: 130px;
 	  position: relative;
-	  bottom:0;
+	  bottom: 0;
 	}
 
 </style>

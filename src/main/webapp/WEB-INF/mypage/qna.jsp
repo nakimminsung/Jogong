@@ -25,21 +25,20 @@
 </style>
 <body>
 	<div>
-		<h1>wishlist</h1>
-		<h1>wishlist</h1>
-		<h1>wishlist</h1>
-		<h1>wishlist</h1>
-		<h1>wishlist</h1>
-		<h1>wishlist</h1>
-		<h1>wishlist</h1>
-		<h1>wishlist</h1>
-		<h1>wishlist</h1>
-		<h1>wishlist</h1>
-		<h1>wishlist</h1>
-		<h1>wishlist</h1>
-		<h1>wishlist</h1>
-		<h1>wishlist</h1>
-		<h1>wishlist</h1>
+		<h1>qna</h1>
+		<h1>qna</h1>
+		<h1>qna</h1>
+		<h1>qna</h1>
+		<h1>qna</h1>
+		<h1>qna</h1>
+		<h1>qna</h1>
+		<h1>qna</h1>
+		<h1>qna</h1>
+		<h1>qna</h1>
+		<h1>qna</h1>
+		<h1>qna</h1>
+		<h1>qna</h1>
+		<h1>qna</h1>
 	</div>	
 </body>
 </html>
