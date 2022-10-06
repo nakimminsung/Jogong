@@ -108,25 +108,25 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 		margin-right:12px;
 	}
 	a.login {
-		color: #ff3c78;
+		color: #add0bb;
 		font-size:18px;
 		font-weight:bold;
 		margin-left:15px;
 	}
 	a.login:hover {
-		color: #ff3c78;
+		color: #add0bb;
 		text-decoration: none;
 	}
 	button.btn-header{
-		background-color: #ff3c78;
-		color: #fff;
+		background-color: #cff0cc;
+		color: #000;
 		font-weight:400;	
 	}
 	.profile{
-	border-radius:100px;
-	width:30px;
-	height:30px;
-	margin:5px 5px;
+		border-radius:100px;
+		width:30px;
+		height:30px;
+		margin:5px 5px;
 	}
 </style>
 <body>
@@ -168,7 +168,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 				<a href="${root}/cscenter/faq"><b style="font-size: 16px;">고객센터</b></a>&emsp;
 				<img src="${sessionScope.loginphoto}" class="profile"><b style="max-width:500px;">${sessionScope.loginname}님</b>
 				&nbsp;&nbsp;
-				<a class="logout" href="${root}/logout">로그아웃</a>
+				<a class="logout" href="${root}/logout" style="color: #add0bb;">로그아웃</a>
 			</c:if>
 			
 		</div>	<!-- div.right 종료 -->

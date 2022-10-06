@@ -13,8 +13,8 @@
 	</definition>
 	
 	<!-- my -->
-	<definition name="/bit/mypage/*" extends="myLayout">
-		<put-attribute name="myContent" value="/WEB-INF/mypage/{1}.jsp"/>
+	<definition name="/mypage/*/*" extends="myLayout">
+		<put-attribute name="myContent" value="/WEB-INF/{1}/{2}.jsp"/>
 	</definition>
 	
 	<!-- layout -->
