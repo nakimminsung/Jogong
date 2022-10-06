@@ -65,11 +65,11 @@
 	div.snsLoginBox{
 		width: 100%;
 		margin-top: 15px;
-		justify-content: space-between;
+		justify-content: space-around;
 	}
 	
 	div.snsLoginBox button{
-		width: 47%;
+		width: 45%;
 		height: 40px;
 		border: 0px;
 		border-radius: 8px;
@@ -128,14 +128,17 @@ $(document).ready(function(){
 				<hr>
 				
 				<!-- 소셜회원 로그인 박스 -->
-				<div class="snsLoginBox">
+				<div class="snsLoginBox input-group">
 					
-					<!-- 카카오 로그인 -->
-					<button class="btnKakaoLogin" style="background-color: #fde102; height: 50px;"><i class='fas fa-comment'></i> 카카오 로그인</button>&nbsp;&nbsp;&nbsp;
-					<button class="btnNaverLogin" style="background-color: #03c75a; height: 50px; color: white;">N 네이버 로그인</button>
+					<!-- 카카오 로그인 버튼 -->
+					<button class="btnKakaoLogin" style="background-color: #fde102; height: 50px;"><i class='fas fa-comment'></i> 카카오 아이디로 로그인</button>&nbsp;&nbsp;
+					
+					<!-- 네이버 로그인 버튼이 생기는 영역 -->
+					<div id="naverIdLogin"></div>
 			
 					
 					<!-- 네이버 로그인 -->
+					<!-- <button class="btnNaverLogin" style="background-color: #03c75a; height: 50px; color: white;">N 네이버 아이디로 로그인</button> -->
 					<!-- <button class="btnNaverLogin" style="background-color: #19ce60; color: white;">N 네이버로 로그인</button> -->
 					<div class="naver" style="margin-top: 20px;">
 						<div class="container">
@@ -145,7 +148,7 @@ $(document).ready(function(){
 									로그인 버튼을 눌러 로그인 해주세요.
 								</div>
 								<div id="button_area">
-									<div id="naverIdLogin"></div>
+									
 								</div>
 							</div>
 						</div>
@@ -182,7 +185,10 @@ $(document).ready(function(){
 </body>
 
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>	<!-- 카카오 로그인 관련 -->
-<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>	<!-- 네이버 로그인 관련 -->
+
+<!-- 네이버 로그인 관련 // header.jsp 의 스크립트에 삽입했음 -->
+<!-- <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script> -->
+	
 <script>
 	
 	//네이버 로그인
@@ -190,7 +196,7 @@ $(document).ready(function(){
 			{
 				clientId: "CweUwT4uDWQRHuTIz4CB",	/* "YOUR_CLIENT_ID" */
 				callbackUrl: "http://localhost:9000/jogong/loginForm",	/* "YOUR_CALLBACK_URL" */
-				loginButton: {color: "green", type: 2, height: 40}	/* #03c75a */
+				loginButton: {color: "green", type: 3, height: 50}	/* #03c75a */
 			}
 		);
 
@@ -202,16 +208,20 @@ $(document).ready(function(){
 		const nickname=naverLogin.user.getName();
 		const email=naverLogin.user.getEmail();
 		const image=naverLogin.user.getProfileImage();
-		const gender=naverLogin.user.getGender();
-		const birthday=naverLogin.user.getBirthday();
+		const gender=naverLogin.user.getGender=="F"?"2":"1";
+		const oldbirthday=naverLogin.user.getBirthday();
+		const birthday=oldbirthday.replace(/-/g, "");
+		
+		console.log(birthday);
 		 
 		$.ajax({  
 			type:"post",
 			url:"userNaverLogin",
 			dataType:"json",
-			data:{"nickname":nickname,"email":email,"profileImage":image,"gender":gender,"date":birthday},         
+			data:{"email":email,"nickname":nickname,"profileImage":image,"gender":gender,"date":birthday},         
 			success:function(ok){
-					location.href="/jogong/";	
+
+				location.href="/jogong/";	
 
 			},error : function(xhr, status, error){  	// 필요한 정보 못가져올 경우 일반회원폼 이동
 
@@ -223,14 +233,10 @@ $(document).ready(function(){
 	
 	setLoginStatus(); //모든 필수 정보 제공 동의하면 실행하는 함수
 		
-		
-		
-		
-		
 		}
 	});
 	
-	//console.log(naverLogin);
+	console.log(naverLogin);
 	
 	
 	

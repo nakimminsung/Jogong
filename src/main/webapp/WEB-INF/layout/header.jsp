@@ -32,6 +32,9 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     
     <!-- 카카오 로그인 관련 -->
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>	
+    
+    <!-- 네이버 로그인 관련 -->
+    <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 
 </head>
 <style>
@@ -169,6 +172,9 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 				<img src="${sessionScope.loginphoto}" class="profile"><b style="max-width:500px;">${sessionScope.loginname}님</b>
 				&nbsp;&nbsp;
 				<a class="logout" href="${root}/logout" style="color: #add0bb;">로그아웃</a>
+				
+				<!-- 네이버 로그아웃 테스트 -->
+				<button id='btn_logout' >네이버 로그아웃</button>
 			</c:if>
 			
 		</div>	<!-- div.right 종료 -->
@@ -176,6 +182,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     </div>
     <!--  div.header-wrapper 종료 -->
   </body>
+  
 <script>
 //카카오 로그아웃  
 	  window.Kakao.init('d4fc125a7dd0ad8b599aeac52a278521');  
@@ -189,6 +196,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
             });
 	}
  
+
 </script>	
   
 </html>
