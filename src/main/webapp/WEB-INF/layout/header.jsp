@@ -136,7 +136,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 			<div class="menu">
 				<a href="${root}">브랜드</a>
 				<a href="${root}">카테고리</a>
-				<a href="${root}">후기</a>
+				<a href="${root}/review/list">후기</a>
 			</div>
 			<div class="search-box">
 				<form class="search">

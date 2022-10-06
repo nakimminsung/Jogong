@@ -31,6 +31,19 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	
 <style type="text/css">
+	@font-face {
+    	font-family: 'SeoulNamsanM';
+    	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');
+    	font-weight: normal;
+    	font-style: normal;
+	}
+	
+	body * {
+		font-size: 15px;
+		font-family: 'SeoulNamsanM';
+		word-spacing: -1px;
+	}
+	
  	div {
         box-sizing: border-box;
        
@@ -38,6 +51,7 @@
 	.flex-outer-container {
 	  margin: 0 auto;
 	  max-width: 1180px;
+	  padding-left:70px;
 	}
 	.flex-inner-container {
 	  display: flex;
@@ -66,9 +80,9 @@
 	/*   border: 1px solid #f6f7f7;  */
 	 /* flex-grow: 1; */
   	  width: 200px;
-      height: 300px;
+      height: 310px;
       /* perspective: 1100px; */ 
-      margin:10px;
+      margin:20px;
       border-radius: 20px;
 	}
 
@@ -79,7 +93,7 @@
 	  transition: .4s;
 	  transform-style: preserve-3d;
       border-radius: 20px;
-      border: 1px solid gray;
+      border: 1px solid #f6f7f7;
 	}	
 	
 	.front, .back {
@@ -100,11 +114,39 @@
 	}
 	
 	.reviewBox>img {
-    	/* width: 150px;
-    	height: 150px; */ 
     	border-radius: 70%;
     	overflow: hidden;
 	}
+	
+	.reviewBox {
+    	/* border-radius: 70%;
+    	overflow: hidden; */
+    	position: absolute;
+    	right: 20px;
+	}
+	
+	.back {
+		position: relative;
+	}
+	
+	.backBottom {
+    	position: absolute;
+    	bottom: 2px;
+    	padding-left: 10px;
+	}
+	
+	.backBottom>a:hover {
+    	color: gray;
+	}
+	
+	.frontInfo{ 
+		padding-left: 10px;
+	}
+	
+	/* .reviewDate{ 
+		position: absolute;
+		right: 5px;
+	} */
 </style>
 <script type="text/javascript">
 
@@ -155,19 +197,25 @@
 	        		
 	        			<div class="front" style="overflow: hidden;">
 	        				<img src="${dto.reviewImageUrl }" width="250" height="250">
-	        				<h6 style="display:inline;">${dto.subject }</h6 >
-	        				<p  style="display:inline;"><i class="fas fa-star" style="color: rgb(247, 200, 21);"></i><b>${dto.rating }</b></p>
-	        				<p class="reviewUser" userNum="${dto.userNum }"ß></p>
+	        				<div class="frontInfo">
+		        				<h6 style="display:inline;">${dto.subject }</h6 >
+		        				<p  style="display:inline; position: absolute; right: 15px;"><i class="fas fa-star" style="color: rgb(247, 200, 21);"></i><b>${dto.rating }</b></p>
+		        				<p class="reviewUser" userNum="${dto.userNum }"></p>
+	        				</div>
 	        				<!-- <img src= -->
 	        			</div>
 	        			
 	        			<div class="back">
-	        				<%-- <div onclick="location.href='product/detail?num=${e.num}">
-	        					
-	        				</div> --%>
-	        				<a href="${root }/jogong/product/detail?num=${dto.productNum}">${dto.name }</a>
-	        				<fmt:formatDate value="${dto.createdAt}"  pattern="yyyy-MM-dd"/>
-	        				
+	        				<h5 style="text-align: center; font-weight: 900;">${dto.subject }</h5 >
+	        				<div class="backTop">
+	        					<p style="color: gray;">${dto.content }</p>
+	        				</div>
+	        				<div class="backBottom" style="position: left;">
+	        					<a href="${root }/jogong/product/detail?num=${dto.productNum}" style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 190px;'>${dto.name }</a>
+	        					<div class="reviewDate">
+	        						<fmt:formatDate value="${dto.createdAt}"  pattern="yyyy-MM-dd"/>
+	        					</div>
+	        				</div>
 	        			</div>
 	        			
 	        		</div>
@@ -175,6 +223,12 @@
 			</c:forEach> 
 		</div>
     </div>
+    
+	<div class="outside">
+    	<div class="inside">
+    		inside
+    	</div>
+	</div>
 	
 </body>
 </html> 

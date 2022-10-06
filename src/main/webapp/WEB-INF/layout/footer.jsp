@@ -30,9 +30,6 @@
 		<div>
 			<button type="button" class="btn btn-info" onclick="location.href='${root}/GiftTestForm'">결제폼 이동</button>
 		</div>
-		<div>
-			<button type="button" class="btn btn-info" onclick="location.href='${root}/review/list'">리뷰 이동</button>
-		</div>
     </div>
 </body>
 </html>
