@@ -120,15 +120,14 @@
 		location.href='javascript:kakaoLogin();';
 	});
 
-	//카카오 로그인 관련 메서드
+	//카카오 회원가입&로그인 관련 메서드
 	window.Kakao.init('d4fc125a7dd0ad8b599aeac52a278521');	//본인 자바스크립트 API키
 
     function kakaoLogin() {
         window.Kakao.Auth.login({
             scope: 'profile_nickname, profile_image, account_email, gender, birthday', //동의항목 페이지에 있는 개인정보 보호 테이블의 활성화된 ID값을 넣습니다.
-            success: function(response) {
-                
-            	console.log(response) // 로그인 성공하면 받아오는 데이터
+            success: function(response) {  
+            	//console.log(response) // 로그인 성공하면 받아오는 데이터
                 
                 window.Kakao.API.request({ // 사용자 정보 가져오기 
                     url: '/v2/user/me',
@@ -138,41 +137,32 @@
                          let nickname = res.properties.nickname;
                          let image = res.properties.profile_image;
                          let gender = (res.kakao_account.gender=="female"?"2":"1");
-                       
-                        //회원가입 ajax
-                        $.ajax({
-                			type:"post",
-                			url:"insertKakao",
-                			dataType:"html",
-                			data:{"email":email,"nickname":nickname,"profileImage":image,"gender":gender,"date":birthday},          
-                			success:function(ok){
-                				alert("회원가입완료");
-                				location.href="/jogong/";
-                				
-                			},error : function(xhr, status, error){
-                			    //로그인 ajax
-            					$.ajax({
+
+                        //console.log(kakao_email+"/"+kakao_birthday+"/"+kakao_nickname+"/"+kakao_image+"/"+kakao_gender);
+                        	
+                				$.ajax({  
             	        			type:"post",
             	        			url:"userKakaoLogin",
             	        			dataType:"json",
-            	        			data:{"email":email},          
+            	        			data:{"email":email,"nickname":nickname,"profileImage":image,"gender":gender,"date":birthday},          
             	        			success:function(ok){
             	       					location.href="/jogong/";	
-            	        			}
-            	        		});
-            				}//error(회원가입될 경우);
+
+                					},error : function(xhr, status, error){  	// 카카오로그인에서 필요한 정보 못가져올 경우 일반회원폼 이동
+
+            							alert("필요한 정보를 가져올 수 없어 일반 회원가입으로 이동합니다");
+            							location.href="/jogong/join/userAgree";	
+            						}//error
                 			
-                		});//회원가입 ajax;
-                        
-                    }
-                });// 사용자 정보 가져오기 ;
+                			});//ajax
+                 	   }//success
+                });//request
             	
-            },
-            fail: function(error) {
-                console.log(error);
-            }
-        });
-    }
-	
+          	  },
+           	fail: function(error) {
+            console.log(error);
+           }
+       });
+   }// kakaoLogin()
 </script>
 </html>

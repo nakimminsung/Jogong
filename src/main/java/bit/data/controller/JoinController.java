@@ -160,36 +160,25 @@ public class JoinController {
 		return map;
 	}
 	
-	//카카오 회원가입
-	@PostMapping("/insertKakao")
-	public String insert(UserDto dto) {
-		//자동입력
-		dto.setPhone("0");
-		dto.setSalt("0");
-		dto.setPassword("0");
-		dto.setAddress("no");
-		dto.setPoint(0);
-		dto.setYear("0");
-		dto.setLoginType("카카오");
-		dto.setAdmin(false);
-		
-		userService.insertUser(dto);
-		
-		
-		return "redirect:/";
-		
-	}
-	
-	//카카오 로그인
-	@PostMapping("/userKakaoLogin")
-	@ResponseBody
-	public Map<String, String> userkakaologinprocess(String email, HttpSession session)
-	{
-		
-		Map<String, String> map=new HashMap<String, String>();
-				
-		if(email!=null)//카카오로부터 이메일 가져오는 경우
-		{
+	//카카오 회원가입&로그인
+		@PostMapping("/userKakaoLogin")
+		@ResponseBody
+		public Map<String, String> userkakaologinprocess(String email, HttpSession session,UserDto dto){
+			
+			Map<String, String> map=new HashMap<String, String>();
+			int userCount=userService.getUserIdSearch(email);  //seller,user 가입된 이메일 있으면 가입 안됨.
+			if(userCount==0) {
+			dto.setPhone("0");
+			dto.setSalt("0");
+			dto.setPassword("0");
+			dto.setAddress("no");
+			dto.setPoint(0);
+			dto.setYear("0");
+			dto.setLoginType("카카오");
+			dto.setAdmin(false);
+			
+			userService.insertUser(dto);
+			
 			//유지 시간 설정
 			session.setMaxInactiveInterval(60*60*4);//4시간
 			//로그인한 아이디에 대한 정보를 얻어서 세션에 저장s
@@ -199,12 +188,23 @@ public class JoinController {
 			session.setAttribute("loginname", userDto.getNickname());
 			session.setAttribute("loginphoto", userDto.getProfileImage());
 			
+					
+			}else{
+				//유지 시간 설정
+				session.setMaxInactiveInterval(60*60*4);//4시간
+				//로그인한 아이디에 대한 정보를 얻어서 세션에 저장s
+				UserDto userDto=userService.getDataById(email);
+				session.setAttribute("loginok", "yes");
+				session.setAttribute("loginid", email);
+				session.setAttribute("loginname", userDto.getNickname());
+				session.setAttribute("loginphoto", userDto.getProfileImage());
+				
+			}
+			map.put("result",email!=null?"success":"fail");
+			System.out.println(map);
+			
+			return map;
+			
 		}
-		map.put("result","success");
-		
-		return map;
-		
-	}
 
-	
 }

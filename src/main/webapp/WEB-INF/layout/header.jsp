@@ -168,7 +168,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 				<a href="${root}/cscenter/faq"><b style="font-size: 16px;">고객센터</b></a>&emsp;
 				<img src="${sessionScope.loginphoto}" class="profile"><b style="max-width:500px;">${sessionScope.loginname}님</b>
 				&nbsp;&nbsp;
-				<a class="logout" href="${root}/logout" onclick="kakaoLogout()">로그아웃</a>
+				<a class="logout" href="${root}/logout">로그아웃</a>
 			</c:if>
 			
 		</div>	<!-- div.right 종료 -->
