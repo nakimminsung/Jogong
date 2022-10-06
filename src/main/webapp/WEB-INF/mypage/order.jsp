@@ -563,6 +563,38 @@ a.btn-layerClose:hover {
 <script type="text/javascript">
 	$(function() {
 		
+		let num = 2; 
+		$.ajax({
+			type: "get",
+			url: "../gift/receivelist",
+			dataType: "json",
+			data: {"num":num},
+		    success : function(res){
+		    	$.each(res, function(i,elt) {
+		    		console.log(elt.productName);
+		    		console.log(elt.deliveryAddress);
+		    		
+		    		console.log(elt.thumbnailImageUrl);
+		    		console.log(elt.brand);
+		    		console.log(elt.nickname);
+		    		console.log(elt.message);
+		    		console.log(elt.orderDate);
+		    		console.log(elt.profileImage);
+		    		console.log(elt.banner);
+		    		console.log(elt.hp);
+		    		console.log(elt.postalcode);
+		    		
+		    	})
+		    },
+		    error : function(){
+		      alert("에러")		
+		    }
+		  });
+		
+		
+		
+		
+		
 		$('.btn-example').click(function(){
 	        var $href = $(this).attr('href');
 	        layer_popup($href);
@@ -632,6 +664,67 @@ a.btn-layerClose:hover {
 	  </div>
 	</div> 
 	
+		<div class="container mt-3" style="display: flex;
+	  flex-direction: row; height:900px; justify-content: center;
+	  flex-wrap:wrap;">
+	
+	  <div class="card" style="width:300px; height:200px;">
+	    <img class="card-img-top" src="https://img1.kakaocdn.net/thumb/C600x600.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20211116142439_3f7c46a144de45888ecea88a5d07111b.png" alt="Card image" style="width:100%">
+	    <div class="card-body">
+	      <p class="card-title">교촌치킨</p>
+	      <h5 class="card-text">교촌 허니 치킨</h5>
+	      <h6 class="card-text" style="float:left;"><b>from.김민성</b></h6>
+	      
+	      <a href="#layer2" class="btn-example"> 
+	      <button class="button" style="margin-left:10px">메시지 카드 보기</button>
+	      </a>
+	      
+	      <p style="color:gray; text-align: left; margin-top:10px">2022.09.28 오후 09:16</p>
+	    </div>
+	  </div>
+	</div> 
+	
+	<div class="container mt-3" style="display: flex;
+	  flex-direction: row; height:900px; justify-content: center;
+	  flex-wrap:wrap;">
+	
+	  <div class="card" style="width:300px; height:200px;">
+	    <img class="card-img-top" src="https://img1.kakaocdn.net/thumb/C600x600.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20211116142439_3f7c46a144de45888ecea88a5d07111b.png" alt="Card image" style="width:100%">
+	    <div class="card-body">
+	      <p class="card-title">교촌치킨</p>
+	      <h5 class="card-text">교촌 허니 치킨</h5>
+	      <h6 class="card-text" style="float:left;"><b>from.김민성</b></h6>
+	      
+	      <a href="#layer2" class="btn-example"> 
+	      <button class="button" style="margin-left:10px">메시지 카드 보기</button>
+	      </a>
+	      
+	      <p style="color:gray; text-align: left; margin-top:10px">2022.09.28 오후 09:16</p>
+	    </div>
+	  </div>
+	</div> 
+	
+		<div class="container mt-3" style="display: flex;
+	  flex-direction: row; height:900px; justify-content: center;
+	  flex-wrap:wrap;">
+	
+	  <div class="card" style="width:300px; height:200px;">
+	    <img class="card-img-top" src="https://img1.kakaocdn.net/thumb/C600x600.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20211116142439_3f7c46a144de45888ecea88a5d07111b.png" alt="Card image" style="width:100%">
+	    <div class="card-body">
+	      <p class="card-title">교촌치킨</p>
+	      <h5 class="card-text">교촌 허니 치킨</h5>
+	      <h6 class="card-text" style="float:left;"><b>from.김민성</b></h6>
+	      
+	      <a href="#layer2" class="btn-example"> 
+	      <button class="button" style="margin-left:10px">메시지 카드 보기</button>
+	      </a>
+	      
+	      <p style="color:gray; text-align: left; margin-top:10px">2022.09.28 오후 09:16</p>
+	    </div>
+	  </div>
+	</div> 
+	
+	
 	<!-- 팝업 영역 -->
 	<div class="dim-layer">
     <div class="dimBg"></div>
@@ -693,12 +786,12 @@ a.btn-layerClose:hover {
                 	<!-- 배송지 입력 폼 -->
                 	<form action="">
 						<table style="width: 70%; display: none; margin: 10px auto;" class="table table-bordered address"  >
-							<tr>
+<%-- 							<tr>
 							<th style="text-align: center"> 이름 </th>
 								<td>
 									<input type="text" style="width: 100%;" required name="companyName" id="to_name" value="${to_member_id }">
 								</td>
-							</tr>
+							</tr>--%>
 							<tr>
 							<th style="text-align: center"> 연락처 </th>
 								<td>

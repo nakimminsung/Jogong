@@ -55,6 +55,53 @@ p.card-title{
   </div>
 </div> 
 
+  <div class="card" style="width:300px; height:200px;">
+    <img class="card-img-top" src="https://img1.kakaocdn.net/thumb/C600x600.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20211116142439_3f7c46a144de45888ecea88a5d07111b.png" alt="Card image" style="width:100%">
+    <div class="card-body">
+      <p class="card-title">교촌치킨</p>
+      <h5 class="card-text">교촌 허니 치킨</h5>
+      <h6 class="card-text" style="float:left;"><b>from.김민성</b></h6> 
+      <button class="button" style="margin-left:10px">메시지 카드 보기</button>
+      <p style="color:gray; text-align: left; margin-top:10px">2022.09.28 오후 09:16</p>
+    </div>
+  </div>
+</div> 
+
+  <div class="card" style="width:300px; height:200px;">
+    <img class="card-img-top" src="https://img1.kakaocdn.net/thumb/C600x600.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20211116142439_3f7c46a144de45888ecea88a5d07111b.png" alt="Card image" style="width:100%">
+    <div class="card-body">
+      <p class="card-title">교촌치킨</p>
+      <h5 class="card-text">교촌 허니 치킨</h5>
+      <h6 class="card-text" style="float:left;"><b>from.김민성</b></h6> 
+      <button class="button" style="margin-left:10px">메시지 카드 보기</button>
+      <p style="color:gray; text-align: left; margin-top:10px">2022.09.28 오후 09:16</p>
+    </div>
+  </div>
+</div> 
+
+  <div class="card" style="width:300px; height:200px;">
+    <img class="card-img-top" src="https://img1.kakaocdn.net/thumb/C600x600.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20211116142439_3f7c46a144de45888ecea88a5d07111b.png" alt="Card image" style="width:100%">
+    <div class="card-body">
+      <p class="card-title">교촌치킨</p>
+      <h5 class="card-text">교촌 허니 치킨</h5>
+      <h6 class="card-text" style="float:left;"><b>from.김민성</b></h6> 
+      <button class="button" style="margin-left:10px">메시지 카드 보기</button>
+      <p style="color:gray; text-align: left; margin-top:10px">2022.09.28 오후 09:16</p>
+    </div>
+  </div>
+</div> 
+
+  <div class="card" style="width:300px; height:200px;">
+    <img class="card-img-top" src="https://img1.kakaocdn.net/thumb/C600x600.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20211116142439_3f7c46a144de45888ecea88a5d07111b.png" alt="Card image" style="width:100%">
+    <div class="card-body">
+      <p class="card-title">교촌치킨</p>
+      <h5 class="card-text">교촌 허니 치킨</h5>
+      <h6 class="card-text" style="float:left;"><b>from.김민성</b></h6> 
+      <button class="button" style="margin-left:10px">메시지 카드 보기</button>
+      <p style="color:gray; text-align: left; margin-top:10px">2022.09.28 오후 09:16</p>
+    </div>
+  </div>
+</div> 
 
 </body>
 </html>
