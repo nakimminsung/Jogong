@@ -29,6 +29,9 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    
+    <!-- 카카오 로그인 관련 -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>	
 
 </head>
 <style>
@@ -173,4 +176,19 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     </div>
     <!--  div.header-wrapper 종료 -->
   </body>
+<script>
+//카카오 로그아웃  
+	  window.Kakao.init('d4fc125a7dd0ad8b599aeac52a278521');  
+		function kakaoLogout() {
+            if (!Kakao.Auth.getAccessToken()) {
+                alert('Not logged in.');
+                return;
+            }
+            Kakao.Auth.logout(function() {
+                alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken());
+            });
+	}
+ 
+</script>	
+  
 </html>

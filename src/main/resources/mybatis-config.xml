@@ -29,9 +29,7 @@
 		<typeAlias type="bit.data.dto.UserDto" alias="userDto"/>
 		<typeAlias type="bit.data.dto.UserFriendDto" alias="userFriendDto"/>
 		<typeAlias type="bit.data.dto.WishlistDto" alias="wishlistDto"/>
-		
-		<!-- 2022-10-05 kakaoDto 추가 -->
-		<typeAlias type="bit.data.dto.KakaoDto" alias="kakaoDto"/>
+
 		
 	</typeAliases>
 </configuration>
