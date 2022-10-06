@@ -38,4 +38,5 @@
 	<insert id="kakaoInsert" parameterType="java.util.HashMap">
 		insert into user(nickname, email) values(#{nickname}, #{email})
 	</insert>
+	
 </mapper>
