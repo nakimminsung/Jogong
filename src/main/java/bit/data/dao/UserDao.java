@@ -56,6 +56,10 @@ public class UserDao implements UserDaoInter {
 	 * method stub session.insert(ns+"insertUser", dto); }
 	 */
 	
-
-	
+	// 리뷰
+	@Override
+	public List<UserDto> getReviewUserInfo() {
+		// TODO Auto-generated method stub
+		return session.selectList(ns+"getReviewUserInfo");	
+	}
 }

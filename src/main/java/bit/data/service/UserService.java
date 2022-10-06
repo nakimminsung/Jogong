@@ -60,7 +60,12 @@ public class UserService implements UserServiceInter {
 		userDaoInter.insertKakao(dto);;
 		
 	}*/
-	
 
+	// 리뷰페이지
+	@Override
+	public List<UserDto> getReviewUserInfo() {
+		// TODO Auto-generated method stub
+		return userDaoInter.getReviewUserInfo();
+	}
 
 }

@@ -18,6 +18,11 @@ public class ReviewController {
 	@Autowired
 	ReviewServiceInter reviewService;
 	
+    @GetMapping("/page")
+    public String reviewPage() {
+        return "/mypage/mypage/review";
+    }
+	
 	@GetMapping("/list")
 	public String reviewList(
 			@RequestParam(defaultValue = "1") int currentPage, /*null 일경우 기본페이지를 1로*/
