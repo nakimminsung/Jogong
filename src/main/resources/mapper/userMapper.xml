@@ -26,20 +26,4 @@
 		select * from user where email=#{email}
 	</select>
 	
-<<<<<<< HEAD
-=======
-	
-	
-	<!-- 카카오 테스트 --> 
-	<!-- 정보 찾기 -->
-	<select id="findKakao" parameterType="java.util.HashMap" resultType="kakaoDto">
-		select * from user where nickname=#{nickname} and email=#{email}
-	</select>
-
-	<!-- 정보 저장 -->
-	<insert id="kakaoInsert" parameterType="java.util.HashMap">
-		insert into user(nickname, email) values(#{nickname}, #{email})
-	</insert>
-	
->>>>>>> c2c606ad63de8951d0d43dc61529dd633cbe7ff7
 </mapper>
