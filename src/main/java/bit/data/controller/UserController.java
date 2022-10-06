@@ -33,6 +33,7 @@ public class UserController {
 	    return "/mypage/mypage/cart";
 	}
 	
+
     @GetMapping("/mypage/user")
     public String userPage() {
         return "/mypage/mypage/user";
@@ -41,6 +42,14 @@ public class UserController {
     public String qnaPage() {
         return "/mypage/mypage/qna";
     }
+
+	@GetMapping("/user/review")
+	@ResponseBody
+	public List<UserDto> getReviewUserInfo(){
+		
+		return userServiceInter.getReviewUserInfo();
+	}
+
 }
 
 

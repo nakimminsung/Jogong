@@ -21,7 +21,7 @@
 		<typeAlias type="bit.data.dto.QnaCategoryDto" alias="qnaCategoryDto"/>
 		<typeAlias type="bit.data.dto.QnaDto" alias="qnaDto"/>
 		<typeAlias type="bit.data.dto.ReviewDto" alias="reviewDto"/>
-		<typeAlias type="bit.data.dto.ReviewImageDto" alias="reviewImageDto"/>
+	<!-- 	<typeAlias type="bit.data.dto.ReviewImageDto" alias="reviewImageDto"/> -->
 		<typeAlias type="bit.data.dto.SellerDto" alias="sellerDto"/>
 		<typeAlias type="bit.data.dto.TagDto" alias="tagDto"/>
 		<typeAlias type="bit.data.dto.ThemeDto" alias="themeDto"/>

@@ -11,8 +11,8 @@ public interface UserServiceInter {
 	public int getUserIdSearch(String email);
 	public int getIdPassCheck(String email, String password);
 	public UserDto getDataById(String email);
-	
 
+	// 리뷰페이지
+	public List<UserDto> getReviewUserInfo();
 	//public void insertKakao(UserDto dto);
-
 }
