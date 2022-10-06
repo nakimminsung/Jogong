@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import bit.data.dto.KakaoDto;
 import bit.data.dto.UserDto;
 
 public interface UserDaoInter {
@@ -15,4 +14,8 @@ public interface UserDaoInter {
 	public int getIdPassCheck(Map<String, String> map);
 	public UserDto getDataById(String email);
 	
+	/*
+	 * //카카오 public void insertKakao(UserDto dto);
+	 */
+
 }
