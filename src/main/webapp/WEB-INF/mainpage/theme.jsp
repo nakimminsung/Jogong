@@ -20,6 +20,18 @@
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     
 <style type="text/css">
+	@font-face {
+    	font-family: 'SeoulNamsanM';
+    	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');
+    	font-weight: normal;
+    	font-style: normal;
+	}
+	
+	body * {
+		font-size: 15px;
+		font-family: 'SeoulNamsanM';
+		word-spacing: -1px;
+	}
 	
 	.productTheme{
 		width:90%;

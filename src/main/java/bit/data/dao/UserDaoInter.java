@@ -12,9 +12,10 @@ public interface UserDaoInter {
 	public int getUserIdSearch(String email);
 	public int getIdPassCheck(Map<String, String> map);
 	public UserDto getDataById(String email);
+	// 리뷰페이지
+	public List<UserDto> getReviewUserInfo();
 	
 	/*
 	 * //카카오 public void insertKakao(UserDto dto);
 	 */
-
 }

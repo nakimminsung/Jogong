@@ -30,4 +30,11 @@ public class UserController {
 	public String mypage() {
 		return "/bit/mypage/cart";
 	}
+	
+	@GetMapping("/user/review")
+	@ResponseBody
+	public List<UserDto> getReviewUserInfo(){
+		
+		return userServiceInter.getReviewUserInfo();
+	}
 }
