@@ -131,8 +131,8 @@ $(document).ready(function(){
 				<div class="snsLoginBox">
 					
 					<!-- 카카오 로그인 -->
-					<button class="btnKakaoLogin" style="background-color: #fde102;"><i class='fas fa-comment'></i> 카카오로 로그인</button>&nbsp;&nbsp;&nbsp;
-					
+					<button class="btnKakaoLogin" style="background-color: #fde102; height: 50px;"><i class='fas fa-comment'></i> 카카오 로그인</button>&nbsp;&nbsp;&nbsp;
+					<button class="btnNaverLogin" style="background-color: #03c75a; height: 50px; color: white;">N 네이버 로그인</button>
 			
 					
 					<!-- 네이버 로그인 -->
@@ -165,7 +165,6 @@ $(document).ready(function(){
 					<h3 style="float: left;">판매 회원 로그인</h3>
 					<button type="button" class="btnChange2 btn-sm btn-dark" style="float: right; margin-bottom: 5px;">일반회원 전환</button>
 				</div>
-			
 				
 				<input type="email" class="form-control sellerTextBox" required placeholder="아이디(이메일 형식)" id="sellerEmail" value="${rememberSellerId=='yes' ? savedSellerId : ''}">
 				<input type="password" class="form-control sellerTextBox" required placeholder="비밀번호" id="sellerPassword">
@@ -200,36 +199,38 @@ $(document).ready(function(){
 	//네이버 로그인 정보 가져오기
 	naverLogin.getLoginStatus(function (status) {
       if (status) {
-		const name=naverLogin.user.getName();
+		const nickname=naverLogin.user.getName();
 		const email=naverLogin.user.getEmail();
-		const profile_image=naverLogin.user.getProfileImage();
+		const image=naverLogin.user.getProfileImage();
 		const gender=naverLogin.user.getGender();
 		const birthday=naverLogin.user.getBirthday();
-		
-		/* 
-		console.log(name);
-		console.log(email);
-		console.log(profile_image);
-		console.log(gender);
-		console.log(birthday);
-		 */
 		 
-		setLoginStatus(); //모든 필수 정보 제공 동의하면 실행하는 함수
+		$.ajax({  
+			type:"post",
+			url:"userNaverLogin",
+			dataType:"json",
+			data:{"nickname":nickname,"email":email,"profileImage":image,"gender":gender,"date":birthday},         
+			success:function(ok){
+					location.href="/jogong/";	
+
+			},error : function(xhr, status, error){  	// 필요한 정보 못가져올 경우 일반회원폼 이동
+
+				alert("필요한 정보를 가져올 수 없어 일반 회원가입으로 이동합니다");
+				location.href="/jogong/join/userAgree";	
+			}//error
+	
+		});//ajax 종료
+	
+	setLoginStatus(); //모든 필수 정보 제공 동의하면 실행하는 함수
 		
-		//이메일을 선택하지 않으면 선택창으로 돌아갑니다.
-		/* if(email===null||email===undefined){
-			alert("이메일이 필요합니다. 정보제공에 동의해주세요.");
-            naverLogin.reprompt();
-            return ;
-            
-			}else{
-				setLoginStatus(); //모든 필수 정보 제공 동의하면 실행하는 함수
-			}
-		*/
+		
+		
+		
+		
 		}
 	});
 	
-	console.log(naverLogin);
+	//console.log(naverLogin);
 	
 	
 	
@@ -239,20 +240,19 @@ $(document).ready(function(){
  		const message_area=document.getElementById('message');
 		message_area.innerHTML=
 			`
-			<h3> Login 성공 </h3>
-			<div>user name : ${naverLogin.user.name}</div>
-			<div>user email : ${naverLogin.user.email}</div>
-			<div>user profile_image : ${naverLogin.user.profile_image}</div>
-			<div>user gender : ${naverLogin.user.gender}</div>
-			<div>user birthday : ${naverLogin.user.birthday}</div>
-			`;
+			<h3>로그인 성공<h3>
+			<button type="button" class="btn btn-success" id="btn_logout">로그아웃 테스트</button>
+			`
+
 		
 		const button_area=document.getElementById('button_area');
 		button_area.innerHTML="<button id='btn_logout'>로그아웃</button>";
+		
+		//<button id='btn_logout'>로그아웃</button>
 
 		const logout=document.getElementById('btn_logout');
 		logout.addEventListener('click',(e)=>{
-        	naverLogin.logout();
+        	naverLogin.logout();	//로그아웃 메서드인듯
 			location.replace("http://localhost:9000/jogong");
       })
     }
