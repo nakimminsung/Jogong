@@ -55,6 +55,7 @@ public class UserService implements UserServiceInter {
 	
 	
 	
+<<<<<<< HEAD
 	//////////카카오 테스트//////////
 
 	@Override
@@ -64,5 +65,7 @@ public class UserService implements UserServiceInter {
 		
 	}
 	
+=======
+>>>>>>> c2c606ad63de8951d0d43dc61529dd633cbe7ff7
 
 }

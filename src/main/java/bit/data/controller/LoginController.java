@@ -186,7 +186,6 @@ public class LoginController {
 		System.out.println(map);
 		
 		return map;
-		
 	}
 	
 }

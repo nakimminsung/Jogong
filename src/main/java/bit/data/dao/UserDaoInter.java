@@ -14,6 +14,9 @@ public interface UserDaoInter {
 	public int getIdPassCheck(Map<String, String> map);
 	public UserDto getDataById(String email);
 	
+<<<<<<< HEAD
 	//카카오
 	public void insertKakao(UserDto dto);
+=======
+>>>>>>> c2c606ad63de8951d0d43dc61529dd633cbe7ff7
 }

@@ -85,37 +85,46 @@
 		
 		//password1 에 입력했을때
 		$(".password1").keydown(function () {
+			
+			// .password2 값 비우기
+			$(".password2").val("");
+			
+			//입력한 비밀번호
 			var pw=$(this).val();
 			
 			// 정규 표현식
 			var regExp = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
 
+			// 입력한 비밀번호pw가 정규 표현식을 통과하지 못하면
 			if(pw.match(regExp) == null){
-				
-				// 정규 표현식을 통과하지 못하면
 				$("#sellerPass1").html("형식에 맞게 입력하세요");
 				
+			// 정규 표현식을 통과하면
 			}else{
-				
-				// 정규 표현식을 통과하면
 				$("#sellerPass1").html("");
 			}
+			
 		});	
 		
 		//password2 에 입력했을때
 		$(".password2").keyup(function () {
-
-			var check=$(this).val();
+			
+			//입력한 비밀번호1
 			var pw=$(".password1").val();
+			
+			//입력한 비밀번호2
+			var check=$(this).val();
+			
+			//두 값이 일치하면 sellerPass2 문구 지우기
+			if(pw==check){
+				$("#sellerPass2").html("");
 				
-			if(check.match(pw) == null){
-				// 처리할 문장
+			//일치하지 않으면 sellerPass2d에 불일치 문구 출력
+			} else {
 				$("#sellerPass2").html("비밀번호가 일치하지 않습니다.");
 				$("#sellerPass2").css("color","#FFAF00");
-				
-			}else{
-				$("#sellerPass2").html("");
 			}
+	
 		});			
 		
 		//onsubmit : submit 하기 직전에 호출되는 메서드
@@ -135,6 +144,16 @@
 		
 		// id 중복 체크 버튼 클릭 이벤트
 		$(".idcheck").click(function() {
+			
+			//이메일 형식 유효성 검사
+			var email_rule =  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+			var mail = $(".putId").val();
+			
+			//자바스크립트에서 제공하는 test() 메서드를 사용 -> ture / false 반환
+			if(!email_rule.test(mail)){
+			      alert("이메일을 형식에 맞게 입력해주세요.");
+			    return false;
+			  }
 			
 			//이메일 입력란이 공란일 때
 			if($(".putId").val()==""){
@@ -160,6 +179,10 @@
 				}
 			}); //ajax 종료
 		}); //중복 체크 이벤트 종료
+		
+		
+		
+		
 		
 		
 	});// $function 종료
@@ -206,7 +229,8 @@
 				<tr>
 					<th><b>*</b> 아이디</th>
 					<td>
-						<input type="email" placeholder="이메일 형식으로 입력" style="width: 50%;" required name="email" class="putId">
+						<input type="email" placeholder="이메일 형식으로 입력" style="width: 50%;" 
+						required name="email" class="putId" autofocus>
 						<button type="button" class="btn btn-dark btn-sm idcheck">중복 확인</button>
 						<div id="idCheckResult"></div>
 					</td>
@@ -274,9 +298,10 @@
 						<b>*</b> 사업자 등록번호
 					</th>
 					<td style="padding-left: 10px;">
-						<input type="text" id="businessNumber" style="width: 50%;" placeholder="숫자만 입력" required name="businessNumber">
+						<input type="text" id="businessNumber" style="width: 50%;" placeholder="숫자만 입력" 
+						required name="businessNumber" maxlength=12">
 
-						<button type="button" class="btn btn-dark btn-sm" style="width: 105px;">사업자 인증</button>
+						<button type="button" class="btn btn-dark btn-sm btnBusiness" style="width: 105px;">사업자 인증</button>
 					</td>
 				</tr>
 				
@@ -354,28 +379,6 @@
 
 <script type="text/javascript">
 
-	/* //중복체크 버튼 클릭 시 ID체크
-	$("#btnidcheck").click(function () {
-		
-		$.ajax({
-			type:"get",
-			dataType:"json",
-			url:"idcheck",
-			data:{"id":$("#loginid2").val()},	//loginid가 충돌나는 현상있어서 2로바꿈
-			success:function(res){
-				
-				if(res.count==0){
-					$("div.idsuccess").text("ok");	
-				}else{
-					$("div.idsuccess").text("fail");
-				}
-				
-			}	//res
-			
-		}); //ajax
-	});	//id체크
-	 */
-	
 	// 사업자등록증 하이픈 자동 입력 (3-2-5)
 	$('#businessNumber').keydown(function (e) {
 	    var key = e.charCode || e.keyCode || 0;
@@ -393,6 +396,44 @@
 		return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
 		// Key 8번 백스페이스, Key 9번 탭, Key 46번 Delete 부터 0 ~ 9까지, Key 96 ~ 105까지 넘버패트
 		// 한마디로 JQuery 0 ~~~ 9 숫자 백스페이스, 탭, Delete 키 넘버패드외에는 입력못함
+	});
+	
+	//사업자 등록 번호 유효성 검사 메서드
+	function checkBizID(bizID){
+		
+		// bizID는 숫자만 10자리로 해서 문자열로 넘긴다.
+		var checkID = new Array(1, 3, 7, 1, 3, 7, 1, 3, 5, 1);
+		var tmpBizID, i, chkSum=0, c2, remander;
+		bizID = bizID.replace(/-/gi,'');
+
+		for (i=0; i<=7; i++) chkSum += checkID[i] * bizID.charAt(i);
+		c2 = "0" + (checkID[8] * bizID.charAt(8));
+		c2 = c2.substring(c2.length - 2, c2.length);
+		chkSum += Math.floor(c2.charAt(0)) + Math.floor(c2.charAt(1));
+		remander = (10 - (chkSum % 10)) % 10 ;
+
+		if (Math.floor(bizID.charAt(9)) == remander) return true ; // OK!
+		
+		return false;
+		
+	} //유효성 검사 메서드 종료
+	
+	//사업자 인증 버튼 이벤트
+	$(".btnBusiness").click(function () {
+	
+		var bizId = $("#businessNumber").val();
+		
+		if(checkBizID(bizId)==false){
+			alert("사업자 등록번호가 유효하지 않습니다.");
+		    return;
+		    
+		}else {
+			
+			/* seller 테이블에서 사업자등록번호 조회해서 없을때 유효해야함 */
+			alert("유효한 사업자 등록번호입니다.");
+		}
+		
+		
 	});
 	
 	
@@ -455,6 +496,8 @@
         }).open();
     }
 
+		
+		
 	
 </script>
 

@@ -12,5 +12,9 @@ public interface UserServiceInter {
 	public int getIdPassCheck(String email, String password);
 	public UserDto getDataById(String email);
 	
+<<<<<<< HEAD
 	public void insertKakao(UserDto dto);
+=======
+
+>>>>>>> c2c606ad63de8951d0d43dc61529dd633cbe7ff7
 }

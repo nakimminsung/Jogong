@@ -1,7 +1,5 @@
 package bit.data.controller;
 
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,21 +7,17 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import bit.data.dto.OrderDto;
-import bit.data.dto.ProductDto;
 import bit.data.service.OrderServiceInter;
 
 @Controller
 public class PaymentController {
-	
 	@Autowired
 	OrderServiceInter orderservice;
 	
@@ -62,8 +56,11 @@ public class PaymentController {
 		 String buyer_tel = request.getParameter("buyer_tel");
          String buyer_addr = request.getParameter("custom_data[buyer_addr]");
          String buyer_postcode = request.getParameter("custom_data[buyer_postcode]");
-	       
-		 
+         String userNum = request.getParameter("custom_data[userNum]");
+         String orderDetailNum = request.getParameter("custom_data[orderDetailNum]");
+		 String friendNum = request.getParameter("custom_data[friendNum]");
+         
+         
 		 OrderDto orderDto = new OrderDto(); 
 		 orderDto.setImp_uid(imp_uid);
 		 orderDto.setTotalPrice(Integer.parseInt(amount));
@@ -73,12 +70,13 @@ public class PaymentController {
 		 orderDto.setBanner(banner);
 		 orderDto.setMessage(message);
 		 orderDto.setOrderStatus(success);
-		 orderDto.setUserNum(Integer.parseInt(amount));
-		 orderDto.setOrderDetailNum(Integer.parseInt(amount));
+		 orderDto.setUserNum(Integer.parseInt(userNum));
+		 orderDto.setOrderDetailNum(Integer.parseInt(orderDetailNum));
 		 orderDto.setHp(buyer_tel);
 		 orderDto.setDeliveryAddress(buyer_addr);
 		 orderDto.setPostalcode(buyer_postcode);
 		 orderDto.setCount(Integer.parseInt(count));
+		 orderDto.setFriendNum(Integer.parseInt(friendNum));
 		 
 		orderservice.insertOrder(orderDto);
 		
@@ -87,13 +85,19 @@ public class PaymentController {
 	@GetMapping("/payview")
 	public ModelAndView payread(int num) {
 		
-		String buyer_name = orderservice.getfriendNickNameSearch(num);
-		String to_member_id = orderservice.getNickNameSearch(num);
+		String buyer_name = orderservice.getNickNameSearch(num);
+		String to_member_id = orderservice.getfriendNickNameSearch(num);
 		String sangpum = orderservice.getItemNameSearch(num);
 		Integer price = orderservice.getItemPriceSearch(num);
 		String thumbnailImage = orderservice.getItemThumbnailSearch(num);
 		Integer count = orderservice.getCount(num);
+		Integer userNum = orderservice.getUserNum(num);
+		Integer orderDetailNum = orderservice.getOrderDetailNum(num);
+		Integer friendNum = orderservice.getFriendNum(num);
+		
 		Integer totalprice = price * count;
+		
+		
 		
 		ModelAndView mview = new ModelAndView();
 		
@@ -104,6 +108,9 @@ public class PaymentController {
 		mview.addObject("thumbnailImage",thumbnailImage);
 		mview.addObject("count",count);
 		mview.addObject("totalprice",totalprice);
+		mview.addObject("userNum",userNum);
+		mview.addObject("orderDetailNum",orderDetailNum);
+		mview.addObject("friendNum",friendNum);
 		
 		mview.setViewName("/bit/payment/payview");
 		

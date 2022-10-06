@@ -181,6 +181,7 @@ $(document).ready(function(){
                 window.Kakao.API.request({ // 사용자 정보 가져오기 
                     url: '/v2/user/me',
                     success: (res) => {
+
                          let email= res.kakao_account.email;
                          let birthday = res.kakao_account.birthday;
                          let nickname = res.properties.nickname;
@@ -213,7 +214,6 @@ $(document).ready(function(){
            }
        });
    }// kakaoLogin()
-
 
 	//user 로그인 버튼
 	$("#loginok").click(function(){

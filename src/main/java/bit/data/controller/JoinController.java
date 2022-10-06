@@ -90,7 +90,7 @@ public class JoinController {
 		
 		//dto에 담기
 		dto.setAddress(address);
-		dto.setLogoImage("user_default.png");
+		dto.setLogoImage("https://github.com/kkookkss/jogong_data/blob/main/user/man/500user_default.png?raw=true");
 		
 		
 		//ServiceInter 의 insertSeller 호출 (dto 전달)

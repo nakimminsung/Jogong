@@ -68,4 +68,22 @@ public class OrderService implements OrderServiceInter {
 		orderdao.insertOrder(dto);
 	}
 
+	@Override
+	public Integer getUserNum(int num) {
+		// TODO Auto-generated method stub
+		return orderdao.getUserNum(num);
+	}
+
+	@Override
+	public Integer getOrderDetailNum(int num) {
+		// TODO Auto-generated method stub
+		return orderdao.getOrderDetailNum(num);
+	}
+
+	@Override
+	public Integer getFriendNum(int num) {
+		// TODO Auto-generated method stub
+		return orderdao.getFriendNum(num);
+	}
+
 }

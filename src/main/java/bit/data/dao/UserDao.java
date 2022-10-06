@@ -51,6 +51,7 @@ public class UserDao implements UserDaoInter {
 		return session.selectOne(ns+"getDataById", email);
 	}
 	
+<<<<<<< HEAD
 
 	@Override
 	public void insertKakao(UserDto dto) {
@@ -58,5 +59,7 @@ public class UserDao implements UserDaoInter {
 		session.insert(ns+"insertUser", dto);
 	}
 	
+=======
+>>>>>>> c2c606ad63de8951d0d43dc61529dd633cbe7ff7
 	
 }
