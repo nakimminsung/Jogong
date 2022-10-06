@@ -1,8 +1,10 @@
 package bit.data.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import bit.data.dto.KakaoDto;
 import bit.data.dto.UserDto;
 
 public interface UserDaoInter {
@@ -14,4 +16,5 @@ public interface UserDaoInter {
 	public UserDto getDataById(String email);
 	// 리뷰페이지
 	public List<UserDto> getReviewUserInfo();
+
 }

@@ -11,12 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import bit.data.dto.UserDto;
 import bit.data.service.UserServiceInter;
 import util.SHA256Util;
-
+import bit.data.dto.KakaoDto;
 import bit.data.dto.SellerDto;
 import bit.data.service.SellerServiceInter;
 
@@ -89,7 +90,7 @@ public class JoinController {
 		
 		//dto에 담기
 		dto.setAddress(address);
-		dto.setLogoImage("user_default.png");
+		dto.setLogoImage("https://github.com/kkookkss/jogong_data/blob/main/user/man/500user_default.png?raw=true");
 		
 		
 		//ServiceInter 의 insertSeller 호출 (dto 전달)
@@ -137,7 +138,7 @@ public class JoinController {
 		
 
 		//자동입력
-		dto.setProfileImage("user_default.png");
+		dto.setProfileImage("https://github.com/kkookkss/jogong_data/blob/main/user/man/500user_default.png?raw=true");
 		dto.setAddress(address);
 		dto.setPoint(0);
 		dto.setYear(birthyear);
@@ -160,7 +161,6 @@ public class JoinController {
 		map.put("userCount", userCount);
 		return map;
 	}
-
-
+	
 	
 }

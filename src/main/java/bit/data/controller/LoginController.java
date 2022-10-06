@@ -103,7 +103,7 @@ public class LoginController {
 		session.removeAttribute("loginok");	//이걸로 비교할거라서 얘만 지우면되지만, id까지 지우기로함
 		//session.removeAttribute("loginid");
 		
-		return "/bit/main/main";
+		return "redirect:/";
 	}
 
 
@@ -142,6 +142,16 @@ public class LoginController {
 		
 	}
 	
-	
+//	카카오 로그인
+	@GetMapping("/loginForm/kakaoLogin")
+	public String kakaoLogin() {
 
+		
+		
+      return "/bit/login/kakaoLogin";
+	}
+	
+	
+	
+	
 }
