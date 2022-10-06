@@ -410,6 +410,9 @@
    		display: flex;
    		align-items: center;
     }
+    button#cart-order-gift {
+    	background-color: #cff0cc;
+    }
 </style>
 <script>
 	$(function(){
@@ -886,7 +889,7 @@
 				</div>
 				<div class="cart-total-right-button" style="margin-left: 20px;">
 					<button type="button" id="cart-order-self" class="btn btn-dark" style="margin-right: 10px;">나에게 선물하기</button>
-					<button type="button" id="cart-order-gift" class="btn btn-warning">친구에게 선물하기</button>
+					<button type="button" id="cart-order-gift" class="btn">친구에게 선물하기</button>
 				</div>
 			</div>
 		</div>

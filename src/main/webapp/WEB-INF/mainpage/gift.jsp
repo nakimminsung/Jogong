@@ -162,6 +162,9 @@
    		display: flex;
    		align-items: center;
     }
+    button.getWishlist {
+    	background-color: #cff0cc;
+    }
 </style>
 <script>
 	$(function(){
@@ -354,7 +357,7 @@
             <div class="gift-modal-button">
 				<button type="button" class="btn btn-secondary btn-cancel">취소</button>
 				<div></div>
-				<button type="button" class="btn btn-warning getWishlist">확인</button>
+				<button type="button" class="btn getWishlist">확인</button>
             </div>
             </form>
         </div>
