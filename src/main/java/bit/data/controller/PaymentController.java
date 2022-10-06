@@ -31,7 +31,7 @@ public class PaymentController {
 	
 	@GetMapping("/GiftTestForm")
 	public String GiftTestForm() {
-		return "/bit/payment/GiftTestForm";
+		return "/bit/payment/PopupTest";
 	}
 	
 	@RequestMapping(value = "/test.action", method = { RequestMethod.POST })
