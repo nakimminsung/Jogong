@@ -4,11 +4,9 @@
 
 <mapper namespace="bit.data.dao.WishlistDao">
 	<select id="selectAllWishlist" parameterType="int" resultType="wishlistDto">
-		select * from wishList where userNum=${userNum} and publicOption=1;
+		select * from wishlist where userNum=${userNum} and publicOption=1;
 	</select>
-	
-	<!-- 상세페이지 위시리스트 -->
 	<insert id="insertWishlist" parameterType="wishlistDto">
-		insert into wishlist values (null,#{publicOption},#{userNum},#{productNum})
+		insert into wishlist (num, publicOption, userNum, productNum) values (null, #{publicOption}, #{userNum}, #{productNum})
 	</insert>
 </mapper>  

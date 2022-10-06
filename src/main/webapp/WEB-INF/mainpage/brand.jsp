@@ -28,6 +28,9 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
     <!-- slick -->
     <link
@@ -35,6 +38,8 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
       type="text/css"
       href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
     />
+    
+    
     <script
       type="text/javascript"
       src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
@@ -67,9 +72,74 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         top: 100px;
       }
       button.slick-prev {
+      	position: relative;
+      	top: 145px;
+  		left: 150px;
+  		z-index: 100;
+  		border-radius: 0;
+  		width: 300px;
+  		height: 100px;
+  		font-size: 50px;
+  		background:rgba(30, 30, 30, 0.5);
+  		border: 0px;
+  		color: #000;
+  		font-weight: 1000;
       }
       button.slick-next {
+        position: relative;
+      	top: 145px;
+      	right: 140px;
+  		z-index: 100;
+  		border-radius: 0;
+  		width: 300px;
+  		height: 100px;
+  		font-size: 50px;
+  		background:rgba(30, 30, 30, 0.5);
+  		border: 0px;
+  		color: #000;
+  		font-weight: 1000;
       }
+      
+      $wh : #ffffff;
+	  $bk : #000000;
+	  $pt : #ffc0cb;
+	
+	  button.slick-arrow {
+	  		font-size:50px;
+	        z-index: 10;
+	        width: 100px;
+	        height: 100px;
+	        background: rgba($bk, 0.2);
+	
+	        transition: background 0.5s;
+	        &:hover {
+	            background: rgba($pt, 0.9);
+	
+	            &::before {
+	                color: rgba($bk, 0.5);
+	            }
+	        }
+	        &::before {
+	            font-family: 'Line Awesome Free';
+	            font-weight: 900;
+	            font-size: 49px;
+	            transition: all 0.5s;
+	        }
+	    }
+	    
+	    .slick-prev {
+			
+	        &::before {
+	            content: "<"";
+	        }
+	    }
+	
+	    .slick-next {
+	
+	        &::before {
+	            content: ">";
+	        }
+	    }
     </style>
   </head>
   <body>
@@ -119,6 +189,8 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         slidesToShow: 5,
         slidesToScroll: 1,
       });
+      $(".slick-prev").html("<");
+      $(".slick-next").html(">");
     </script>
   </body>
 </html>
