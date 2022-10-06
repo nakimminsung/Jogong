@@ -1,32 +1,31 @@
-package bit.data.dao;
+package bit.data.service;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
+import bit.data.dao.GiftDaoInter;
 import bit.data.dto.OrderDto;
 import bit.data.dto.ProductDto;
 import bit.data.dto.UserDto;
 
-@Repository
-public class GiftDao implements GiftDaoInter{
+@Service
+public class GiftService implements GiftServiceInter{
 
 	@Autowired
-	SqlSession session;
-	String ns="bit.data.dao.GiftDao.";
-	
+	GiftDaoInter giftDao;
+
 	@Override
 	public List<OrderDto> getReceiveSearch(int userNum) {
 		// TODO Auto-generated method stub
-		return session.selectList(ns+"getReceiveSearch",userNum);
+		return giftDao.getReceiveSearch(userNum);
 	}
+
 	@Override
 	public List<OrderDto> getSendSearch(int userNum) {
 		// TODO Auto-generated method stub
-		return session.selectList(ns+"getSendSearch",userNum);
+		return giftDao.getSendSearch(userNum);
 	}
-	
-	
+
 }

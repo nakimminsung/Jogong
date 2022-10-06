@@ -89,4 +89,11 @@ public class OrderDao implements OrderDaoInter {
 		return session.selectOne(ns+"getFriendNum",num);
 	}
 
+
+	@Override
+	public Integer getProductNum(int num) {
+		// TODO Auto-generated method stub
+		return session.selectOne(ns+"getProductNum",num);
+	}
+
 }

@@ -47,13 +47,19 @@
 		select num from orderDetail where num = #{num}
 	</select>
 	
-	<!-- order 정보 insert -->
-	<insert id="insertOrder">
-	      insert into jogong.order values (null,#{imp_uid},#{totalPrice},now(),#{pg},#{pay_method},#{paidPoint},#{deliveryAddress},#{orderStatus},#{deliveryCharge},#{messagecard},#{banner},#{message},#{hp},#{count},#{postalcode},#{userNum},#{orderDetailNum},#{friendNum})
-	</insert>
 	
 	<!-- friendNum 조회-->
 	<select id="getFriendNum" parameterType="int" resultType="int">
 		select friendNum from orderDetail where num = #{num}
 	</select>
+
+	<!-- productNum 조회-->
+	<select id="getProductNum" parameterType="int" resultType="int">
+		select productNum from orderDetail where num = #{num}
+	</select>
+
+	<!-- order 정보 insert -->
+	<insert id="insertOrder">
+	      insert into jogong.order values (null,#{imp_uid},#{totalPrice},now(),#{pg},#{pay_method},#{paidPoint},#{deliveryAddress},#{orderStatus},#{deliveryCharge},#{messagecard},#{banner},#{message},#{hp},#{count},#{postalcode},#{userNum},#{orderDetailNum},#{friendNum},#{productNum})
+	</insert>
 </mapper>
