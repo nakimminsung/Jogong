@@ -22,8 +22,8 @@ public class WishlistDao implements WishlistDaoInter {
 	}
 
 	@Override
-	public void insertWishlist(WishlistDto dto) {
-		session.insert(ns+"insertWishlist", dto);
-	}; 
+	public void insertWishlist(WishlistDto wishlistDto) {
+		session.selectOne(ns+"insertWishlist", wishlistDto);
+	};
 
 }

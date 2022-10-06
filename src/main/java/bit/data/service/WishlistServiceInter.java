@@ -6,5 +6,5 @@ import bit.data.dto.WishlistDto;
 
 public interface WishlistServiceInter {
 	public List<WishlistDto> getWishlist(int userNum);
-	public void insertWishlist(WishlistDto dto);	
+	public void insertWishlist (WishlistDto wishlistDto);
 }

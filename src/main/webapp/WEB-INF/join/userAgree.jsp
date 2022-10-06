@@ -187,7 +187,7 @@ $(document).ready(function(){
 				$("#userpw2").css("color","#FFAF00");
 			}
 		});	
-		
+		// 아이디 중복체크
 			$(".idcheck").click(function() {
 				if($(".putId").val()==""){
 					$("#idCheckResult").text("다시 입력해주시기 바랍니다");
@@ -290,7 +290,7 @@ const autoHyphen2 = (target) => {
 		<div class="userJoinTerm"> <!-- div 전체 -->
 			<div class="agreeForm">
 				<div class="stepBox">
-					<h2>판매자 회원가입</h2>
+					<h2>개인 회원가입</h2>
 					<ul>
 						<li style="color:red; font-weight: bold; border: 1px solid red;">1.약관 동의</li>
 						<li style="color:lightgray; font-weight: bold; border: 1px solid lightgray;">2.정보 입력</li>
@@ -326,7 +326,7 @@ const autoHyphen2 = (target) => {
 		<div class="insertForm" style="display: none;">
 			<!-- 단계 Step Box -->
 			<div class="stepBox">
-				<h2>판매자 회원가입</h2>
+				<h2>개인 회원가입</h2>
 				<ul>
 					<li style="color:lightgray; font-weight: bold; border: 1px solid lightgray;">1.약관 동의</li>
 					<li style="color:red; font-weight: bold; border: 1px solid red;">2.정보 입력</li>

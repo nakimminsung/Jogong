@@ -21,8 +21,7 @@ public class WishlistService implements WishlistServiceInter {
 	}
 
 	@Override
-	public void insertWishlist(WishlistDto dto) {
-		
-		wishlistDaoInter.insertWishlist(dto);
+	public void insertWishlist(WishlistDto wishlistDto) {
+		wishlistDaoInter.insertWishlist(wishlistDto);
 	}
 }
