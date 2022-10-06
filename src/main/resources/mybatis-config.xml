@@ -21,17 +21,14 @@
 		<typeAlias type="bit.data.dto.QnaCategoryDto" alias="qnaCategoryDto"/>
 		<typeAlias type="bit.data.dto.QnaDto" alias="qnaDto"/>
 		<typeAlias type="bit.data.dto.ReviewDto" alias="reviewDto"/>
-		<typeAlias type="bit.data.dto.ReviewImageDto" alias="reviewImageDto"/>
+	<!-- 	<typeAlias type="bit.data.dto.ReviewImageDto" alias="reviewImageDto"/> -->
 		<typeAlias type="bit.data.dto.SellerDto" alias="sellerDto"/>
 		<typeAlias type="bit.data.dto.TagDto" alias="tagDto"/>
 		<typeAlias type="bit.data.dto.ThemeDto" alias="themeDto"/>
 		<typeAlias type="bit.data.dto.ThemeProductDto" alias="themeProductDto"/>
 		<typeAlias type="bit.data.dto.UserDto" alias="userDto"/>
 		<typeAlias type="bit.data.dto.UserFriendDto" alias="userFriendDto"/>
-		<typeAlias type="bit.data.dto.WishlistDto" alias="wishlistDto"/>
-		
-		<!-- 2022-10-05 kakaoDto 추가 -->
-		<typeAlias type="bit.data.dto.KakaoDto" alias="kakaoDto"/>
-		
+		<typeAlias type="bit.data.dto.WishlistDto" alias="wishlistDto"/>	
+		<typeAlias type="java.util.HashMap" alias="HashMap"/>	
 	</typeAliases>
 </configuration>

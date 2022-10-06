@@ -21,13 +21,36 @@ public class UserController {
 	public List<UserDto> getUserFriendData(int userNum) {
 		return userServiceInter.getUserFriendData(userNum);
 	}
+	
 	@GetMapping("/user/friendCount")
 	@ResponseBody
 	public int getUserFriendCount(int userNum) {
 		return userServiceInter.getUserFriendCount(userNum);
 	}
-	@GetMapping("/mypage")
-	public String mypage() {
-		return "/bit/mypage/cart";
+	
+	@GetMapping("/mypage/cart")
+	public String cartList() {
+	    return "/mypage/mypage/cart";
 	}
+	
+
+    @GetMapping("/mypage/user")
+    public String userPage() {
+        return "/mypage/mypage/user";
+    }
+    @GetMapping("/mypage/qna")
+    public String qnaPage() {
+        return "/mypage/mypage/qna";
+    }
+
+	@GetMapping("/user/review")
+	@ResponseBody
+	public List<UserDto> getReviewUserInfo(){
+		
+		return userServiceInter.getReviewUserInfo();
+	}
+
 }
+
+
+
