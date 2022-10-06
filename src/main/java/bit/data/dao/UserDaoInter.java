@@ -15,7 +15,4 @@ public interface UserDaoInter {
 	public int getIdPassCheck(Map<String, String> map);
 	public UserDto getDataById(String email);
 	
-	//카카오
-	public void kakaoinsert(HashMap<String, Object> userInfo);
-	public KakaoDto findkakao(HashMap<String, Object> userInfo);
 }
