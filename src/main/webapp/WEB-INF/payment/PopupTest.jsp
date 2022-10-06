@@ -1,57 +1,24 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	
-	<!-- font -->
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Edu+VIC+WA+NT+Beginner:wght@600&family=Gamja+Flower&family=Single+Day&family=Jua&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
-    
-    <!-- bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-	
-	<!-- bootstrap 5 icon -->
-	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-    
-    <!-- jquery -->
-    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-    
-    <!-- 부트스트랩 아이콘 -->
-	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<!-- 부트스트랩 아이콘 -->
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
-	<!-- daum 주소검색 -->
-	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-    
-</head>
-<style>
-div.card{
-   margin-left:30px
-}
-p.card-title{
-   color:blue;
-   font-size:12px;
-}
+<!-- daum 주소검색 -->
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<style type="text/css">
+/* * {
+  margin: 0;
+  padding: 0;
+} */
 
-.button{
-   background-color:#cff0cc;
-   border-radius: 10px;
-    border:0;
-    outline:0;
-    font-size:5px; 
-    padding:3px 10px;
-}
-
-.button:hover {
-
-  background: green; 
-  color: white;
-  border:0;
-  outline:0;
-}
+/* body {
+  margin: 100px;
+} */
 
 .pop-layer .pop-container {
   padding: 20px 25px;
@@ -73,7 +40,7 @@ p.card-title{
 .pop-layer {
   display: none;
   position: absolute;
-  top: 35%;
+  top: 40%;
   left: 45%;
   width: 410px;
   height: auto;
@@ -560,6 +527,7 @@ a.btn-layerClose:hover {
   }
 
 </style>
+</head>
 <script type="text/javascript">
 	$(function() {
 		
@@ -590,8 +558,7 @@ a.btn-layerClose:hover {
 	        }
 
 	        $el.find('a.btn_close').click(function(){
-	            isDim ? $('.dim-layer').hide() : $el.hide(); // 닫기 버튼을 클릭하면 레이어가 닫힌다.
-	            $(".address").hide();
+	            isDim ? $('.dim-layer').fadeOut() : $el.fadeOut(); // 닫기 버튼을 클릭하면 레이어가 닫힌다.
 	            return false;
 	        });
 
@@ -612,28 +579,31 @@ a.btn-layerClose:hover {
 
 </script>
 <body>
-	<div class="container mt-3" style="display: flex;
-	  flex-direction: row; height:900px; justify-content: center;
-	  flex-wrap:wrap;">
-	
-	  <div class="card" style="width:300px; height:200px;">
-	    <img class="card-img-top" src="https://img1.kakaocdn.net/thumb/C600x600.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20211116142439_3f7c46a144de45888ecea88a5d07111b.png" alt="Card image" style="width:100%">
-	    <div class="card-body">
-	      <p class="card-title">교촌치킨</p>
-	      <h5 class="card-text">교촌 허니 치킨</h5>
-	      <h6 class="card-text" style="float:left;"><b>from.김민성</b></h6>
-	      
-	      <a href="#layer2" class="btn-example"> 
-	      <button class="button" style="margin-left:10px">메시지 카드 보기</button>
-	      </a>
-	      
-	      <p style="color:gray; text-align: left; margin-top:10px">2022.09.28 오후 09:16</p>
-	    </div>
-	  </div>
-	</div> 
-	
-	<!-- 팝업 영역 -->
-	<div class="dim-layer">
+
+<!-- <div style="height: 300px;"></div>
+<a href="#layer1" class="btn-example">일반 팝업레이어</a>
+<div id="layer1" class="pop-layer">
+    <div class="pop-container">
+        <div class="pop-conts">
+            content //
+            <p class="ctxt mb20">Thank you.<br>
+                Your registration was submitted successfully.<br>
+                Selected invitees will be notified by e-mail on JANUARY 24th.<br><br>
+                Hope to see you soon!
+            </p>
+
+            <div class="btn-r">
+                <a href="#" class="btn-layerClose">Close</a>
+            </div>
+            // content
+        </div>
+    </div>
+</div> -->
+
+<br/><br/>
+
+<a href="#layer2" class="btn-example">딤처리 팝업레이어 1</a>
+<div class="dim-layer">
     <div class="dimBg"></div>
     <div id="layer2" class="pop-layer">
         <div class="pop-container">
@@ -746,6 +716,8 @@ a.btn-layerClose:hover {
         </div>
     </div>
 </div>
+
+
 </body>
 <script type="text/javascript">
 //다음 주소검색 API
