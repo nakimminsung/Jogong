@@ -69,6 +69,7 @@
 	});
 </script>
 <body>
+
 <div class="paymain">
         <div class="new-order">
             <div class="subcontents">
@@ -207,7 +208,7 @@
                                 <div class="pin">
                                     <div class="col-half">
                                         <div class="giftImg">
-                                            <img src="image/21.jpeg" alt="카드 이미지">
+                                            <img src="${thumbnailImage}" alt="카드 이미지">
                                         </div>
                                         <div class="previewCardImg">
                                             <img id="previewTemplate" src="/jogong/resources/giftimage/card/a1.jpg" alt="꾸미기 템플릿">

@@ -1,57 +1,24 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	
-	<!-- font -->
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Edu+VIC+WA+NT+Beginner:wght@600&family=Gamja+Flower&family=Single+Day&family=Jua&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
-    
-    <!-- bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-	
-	<!-- bootstrap 5 icon -->
-	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-    
-    <!-- jquery -->
-    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-    
-    <!-- 부트스트랩 아이콘 -->
-	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<!-- 부트스트랩 아이콘 -->
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
-	<!-- daum 주소검색 -->
-	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-    
-</head>
-<style>
-div.card{
-   margin-left:30px
-}
-p.card-title{
-   color:blue;
-   font-size:12px;
-}
+<!-- daum 주소검색 -->
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<style type="text/css">
+/* * {
+  margin: 0;
+  padding: 0;
+} */
 
-.button{
-   background-color:#cff0cc;
-   border-radius: 10px;
-    border:0;
-    outline:0;
-    font-size:5px; 
-    padding:3px 10px;
-}
-
-.button:hover {
-
-  background: green; 
-  color: white;
-  border:0;
-  outline:0;
-}
+/* body {
+  margin: 100px;
+} */
 
 .pop-layer .pop-container {
   padding: 20px 25px;
@@ -73,7 +40,7 @@ p.card-title{
 .pop-layer {
   display: none;
   position: absolute;
-  top: 35%;
+  top: 40%;
   left: 45%;
   width: 410px;
   height: auto;
@@ -560,12 +527,9 @@ a.btn-layerClose:hover {
   }
 
 </style>
+</head>
 <script type="text/javascript">
 	$(function() {
-		
-		//오더리시브호출
- 		order_recevie();
- 		/* order_send(); */
 		
 		$('.btn-example').click(function(){
 	        var $href = $(this).attr('href');
@@ -594,8 +558,7 @@ a.btn-layerClose:hover {
 	        }
 
 	        $el.find('a.btn_close').click(function(){
-	            isDim ? $('.dim-layer').hide() : $el.hide(); // 닫기 버튼을 클릭하면 레이어가 닫힌다.
-	            $(".address").hide();
+	            isDim ? $('.dim-layer').fadeOut() : $el.fadeOut(); // 닫기 버튼을 클릭하면 레이어가 닫힌다.
 	            return false;
 	        });
 
@@ -612,113 +575,149 @@ a.btn-layerClose:hover {
 	 	$(".btn_crad").click(function(){
 	 		  $(".address").toggle();
 	 	});
-		
-	 	
-	 	
-	 	function order_recevie() {
-	 		var num = 2;
-			var s="";
-				
-			$.ajax({
-				type: "get",
-				url: "../gift/receivelist",
-				dataType: "json",
-				data: {"num":num},
-				success:function(res){
-					
-		 			$.each(res, function(i,elt) {
-		 				
-		 				s+= "<div class='container mt-3' style='display: flex; flex-direction: row; height:900px; justify-content: center; flex-wrap:wrap;'>"
-	 					s+=	"<div class='card' style='width:300px; height:200px;'>"
-	 					s+=	"<img class='card-img-top' src="+elt.thumbnailImageUrl+" alt='Card image' style='width:100%'>"
-	 					s+=	"<div class='card-body'>"
-	 					s+=	"<p class='card-title'>"+elt.brand+"</p>"
-	 					s+=	"<h5 class='card-text'>"+elt.productName+"</h5>"
-	 					s+= "<h6 class='card-text' style='float:left;'><b>from.'"+elt.nickname+"'</b></h6>"
-	 					s+=	"<p style='color:gray; text-align: left; margin-top:10px'>"+elt.orderDate+"</p></div></div></div>"
-					});
-		 			
-					$("div.Gift").html(s);
-				}
-			});
-		}
 	});
-	 	
-	 	
-	 	
-	 /* 	function order_send() {
-	 		var num = 5;
-			var s="";
-				
-			$.ajax({
-				type: "get",
-				url: "../gift/sendlist",
-				dataType: "json",
-				data: {"num":num},
-				success:function(res){
-					
-		 			$.each(res, function(i,elt) {
-		 				
-		 				s+= "<div class='container mt-3' style='display: flex; flex-direction: row; height:900px; justify-content: center; flex-wrap:wrap;'>"
-	 					s+=	"<div class='card' style='width:300px; height:200px;'>"
-	 					s+=	"<img class='card-img-top' src="+elt.thumbnailImageUrl+" alt='Card image' style='width:100%'>"
-	 					s+=	"<div class='card-body'>"
-	 					s+=	"<p class='card-title'>"+elt.brand+"</p>"
-	 					s+=	"<h5 class='card-text'>"+elt.productName+"</h5>"
-	 					s+= "<h6 class='card-text' style='float:left;'><b>from.'"+elt.nickname+"'</b></h6>"
-	 					s+=	"<a href='#layer2' class='btn-example'>" 
-	 					s+=	"<button class='button' style='margin-left:10px'>메시지 카드 보기</button></a>"
-	 					s+=	"<p style='color:gray; text-align: left; margin-top:10px'>"+elt.orderDate+"</p></div></div></div>"
-	 					
-	 					<!-- 팝업 영역 -->
-	 					s+= "<div class='dim-layer'> <div class='dimBg'></div> <div id='layer2' class='pop-layer'> <div class='pop-container'>"
-	 					s+= "<div class='pop-conts'> <div class='layer_body'> <div class='wrap_msgprofile'> <div class='box_profile'> <div class='thumb_profile'>"
-			            s+= "<img width='36' height='36' class='img_g' src='"+elt.profileImage+"'>"
-			            s+= "<img width='42' height='42' class='frame_squircle' src='/jogong/resources/image/frame_msgsquircle.png'>"
-			            s+= "</div> </div>" 
-			            s+= "<strong class='tit_g'> <span id='nickname' class='txt_name'>"+elt.nickname+"</span>님이 보낸 메시지 </strong> </div>"
-			            s+= "<div class='wrap_msgcard'> <div class='card_g custom_mask_frame'> <div class='thumb_media custom_background_image'>"
-			            s+=	"<a href='#none' class='link_media'> <img alt='배너' class='img_g' src='"+elt.banner+"'></a></div>"			
-			            s+=	"<p class='txt_letter'>"+elt.message+"</p> <a href='#none' class='link_prd'> <span class='info_prd'> <span class='thumb_prd'>"	
-			            s+=	"<img class='img_g' src='"+elt.thumbnailImageUrl+"' alt='여기에 상품이미지'> </span>"		
-			            s+=	"<span id='productWrapper' class='txt_prd'> <span class='screen_out'>"+elt.brand+"</span> <em id='brandName' class='txt_brand'>"+elt.brand+"</em>"
-		 				s+=	"<span class='screen_out'>"+elt.productName+"</span> <strong id='productName' class='txt_name'>"+elt.productName+"</strong> </span> </span> </a>"
-		 			 	s+=	"<div class='tbl_btn'> <div class='item_btn'> <button type='button' class='btn_crad'> <span class='ico_gift2 ico_delete'></span>"
-		 				s+=	"<span class='txt_g'>주소 입력</span> </button> </div> </div> </div> </div>"
-		 												
-		 				<!-- 배송지 입력 폼 -->					               	
-		 				s+= "<form action=''>"
-		 				s+=	"<table style='width: 70%; display: none; margin: 10px auto;' class='table table-bordered address'>"
-		 				
-		 				s+=	"<tr> <th style='text-align: center'> 연락처 </th>" 
-		 				s+=	"<td> <input type='text' style='width: 100%;' required id='to_hp' value='"+elt.hp+"'> </td> </td>"
-		 					
-		 				s+=	"<tr> <th style='text-align: center'> 주소 </th> <td>" 
-		 				s+=	"<div style='width: 100%; border: none;' class='input-group'>" 
-		 				s+=	"<input type='text' id='sample4_postcode' placeholder='우편번호' style='width: 60%; border:1px solid black; margin-bottom: 5px;' required value='"+elt.postalcode+"'>"		
-		 				s+=	"<input type='button' onclick='sample4_execDaumPostcode()' class='btn btn-dark btn-sm' value='우편번호' style='margin-bottom: 5px; float: right;'><br></div>"
-		 				s+=	"<input type='text' id='sample4_roadAddress' placeholder='도로명주소' size='60' value='"+elt.deliveryAddress+"' style='width: 100%; margin-bottom: 5px;' required name='address1'><br>"
-		 				s+=	"<input type='hidden' id='sample4_jibunAddress' placeholder='지번주소' size='60'>"
-		 				s+=	"<span id='guide' style='color:#999; display:none'></span>"
-		 				s+=	"<input type='text' id='sample4_detailAddress' placeholder='상세주소'  size='60' value='' style='width: 100%;'required name='address2'><br>"
-		 				s+=	"<input type='hidden' id='sample4_extraAddress' placeholder='참고항목'  size='60'> <input type='hidden' id='sample4_engAddress' placeholder='영문주소'  size='60' ></td></tr>"
-		 				s+=	"<tr style='border-bottom: none;'> <td colspan='2' style='text-align: center; border: none;'>"
-		 				s+=	"<button type='submit' class='btn btn-success'>저장</button>"						
-		 				s+=	"</td></tr></table></form></div>"
-							
-		 				s+= "<a href='#none' class='btn_close'><span class='ico_gift2 ico_close'>닫기</span></a>"
-		 				s+= "</div></div></div></div>"
-					});
-		 			
-					$("div.Gift").html(s);
-				}
-			});
-		}
-	}); */
 
 </script>
 <body>
-<div class="Gift"></div>
+
+<!-- <div style="height: 300px;"></div>
+<a href="#layer1" class="btn-example">일반 팝업레이어</a>
+<div id="layer1" class="pop-layer">
+    <div class="pop-container">
+        <div class="pop-conts">
+            content //
+            <p class="ctxt mb20">Thank you.<br>
+                Your registration was submitted successfully.<br>
+                Selected invitees will be notified by e-mail on JANUARY 24th.<br><br>
+                Hope to see you soon!
+            </p>
+
+            <div class="btn-r">
+                <a href="#" class="btn-layerClose">Close</a>
+            </div>
+            // content
+        </div>
+    </div>
+</div> -->
+
+<br/><br/>
+
+<a href="#layer2" class="btn-example">딤처리 팝업레이어 1</a>
+<div class="dim-layer">
+    <div class="dimBg"></div>
+    <div id="layer2" class="pop-layer">
+        <div class="pop-container">
+            <div class="pop-conts">
+                <!--content //-->
+                <div class="layer_body">
+                	<div class="wrap_msgprofile">
+                		<div class="box_profile">
+                			<div class="thumb_profile">
+	                			<img width="36" height="36" class="img_g" src="/jogong/resources/image/21.jpeg">
+	                			<img width="42" height="42" class="frame_squircle" src="/jogong/resources/image/frame_msgsquircle.png">
+	                		</div>	
+                		</div>   
+                		<!--  -->
+                		<strong class="tit_g">
+                			<span id="nickname" class="txt_name">보낸 사람 이름</span>"님이 보낸 메시지"
+                			<!--  -->
+                			<!--  -->
+                		</strong>
+                	</div>
+                	<!--  -->
+                	<div class="wrap_msgcard">
+						<div class="card_g custom_mask_frame">
+							<div class="thumb_media custom_background_image">
+								<a href="#none" class="link_media">
+									<img alt="메시지카드" class="img_g" src="/jogong/resources/giftimage/banner/1.jpg">
+								</a>
+							</div>
+							<!--  -->
+							<p class="txt_letter">여기에 친구가 보낸 메시지 떠야함</p>
+							<!--  -->
+							<a href="#none" class="link_prd">
+								<span class="info_prd">
+									<span class="thumb_prd">
+										<img class="img_g" src="/jogong/resources/image/21.jpeg" alt="여기에 상품이미지">
+									</span>
+									<span id="productWrapper" class="txt_prd">
+										<span class="screen_out">브랜드명</span>
+										<em id="brandName" class="txt_brand">ex)정관장</em>
+										<span class="screen_out">상품명</span>
+										<strong id="productName" class="txt_name">ex)정관장 홍삼 세트</strong>
+									</span>
+								</span>
+							</a>
+							<!--  -->
+							<div class="tbl_btn">
+								<div class="item_btn">
+									<button type="button" class="btn_crad">
+										<span class="ico_gift2 ico_delete"></span>
+										<span class="txt_g">주소 입력</span>
+									</button>
+								</div>
+							</div>
+						</div>                	
+                	</div>
+                	
+                	<!-- 배송지 입력 폼 -->
+                	<form action="">
+						<table style="width: 70%; display: none; margin: 10px auto;" class="table table-bordered address"  >
+							<tr>
+							<th style="text-align: center"> 이름 </th>
+								<td>
+									<input type="text" style="width: 100%;" required name="companyName" id="to_name" value="${to_member_id }">
+								</td>
+							</tr>
+							<tr>
+							<th style="text-align: center"> 연락처 </th>
+								<td>
+									<input type="text" style="width: 100%;" required id="to_hp" value="">
+								</td>
+							</tr>
+							<tr>
+								<th style="text-align: center"> 주소 </th>
+								<td>
+									<div style="width: 100%; border: none;" class="input-group"> 
+									<input type="text" id="sample4_postcode" placeholder="우편번호" style="width: 60%; border:1px solid black; margin-bottom: 5px;" required value="" >
+									<input type="button" onclick="sample4_execDaumPostcode()" class="btn btn-dark btn-sm" value="우편번호" style=" margin-bottom: 5px; float: right;" ><br>
+									</div>
+									<input type="text" id="sample4_roadAddress" placeholder="도로명주소" size="60" value=""
+									style="width: 100%; margin-bottom: 5px;" required name="address1"><br>
+									
+									<input type="hidden" id="sample4_jibunAddress" placeholder="지번주소"  size="60">
+									<span id="guide" style="color:#999; display:none"></span>
+									<input type="text" id="sample4_detailAddress" placeholder="상세주소"  size="60" value=""
+									style="width: 100%;"required name="address2"><br>
+									
+									<input type="hidden" id="sample4_extraAddress" placeholder="참고항목"  size="60">
+									<input type="hidden" id="sample4_engAddress" placeholder="영문주소"  size="60" >
+								</td>
+							</tr>
+							<tr style="border-bottom: none;">
+								<td colspan="2" style="text-align: center; border: none; " >
+									<button type="submit" class="btn btn-success">저장</button>
+								</td>
+							</tr>
+						</table>
+					</form>	
+					<!-- 배송지 입력 폼  끝-->
+                </div>
+                
+                <!-- close -->
+                <!-- <div class="btn-r">
+                    <a href="#" class="btn-layerClose">Close</a>
+                </div> -->
+                <a href="#none" class="btn_close">
+                	<span class="ico_gift2 ico_close">닫기</span>
+                </a>
+                <!--// content-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
 </body>
 <script type="text/javascript">
 //다음 주소검색 API

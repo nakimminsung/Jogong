@@ -20,26 +20,14 @@
     
 <style type="text/css">
 
-	@font-face {
-	    font-family: 'RixInooAriDuriR';
-	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/RixInooAriDuriR.woff2') format('woff2');
-	    font-weight: normal;
-	    font-style: normal;
-	}
 	
-	@font-face {
-    font-family: 'BMDOHYEON';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMDOHYEON.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-	}	
 	
 	@font-face {
     font-family: 'SeoulNamsanM';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-}
+	}
 	
 	body * {
 		 font-family: 'SeoulNamsanM';
