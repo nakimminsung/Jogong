@@ -475,7 +475,8 @@ a.btn-layerClose:hover {
     vertical-align: top;
     background-position: -230px -955px;
 	}
- */  .txt_g{
+ */  
+ .txt_g{
      -webkit-text-size-adjust: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     cursor: pointer;
@@ -524,7 +525,6 @@ a.btn-layerClose:hover {
   	width: 60px;
   	vertical-align: middle;
   }
-}
 
 </style>
 </head>
