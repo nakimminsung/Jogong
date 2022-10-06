@@ -29,5 +29,5 @@
 		    deliveryAdrress = #{deliveryAdrress}
 		where num=#{num};
 	</update>
-
+	
 </mapper>
