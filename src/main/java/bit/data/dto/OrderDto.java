@@ -25,4 +25,11 @@ public class OrderDto {
 	private int userNum;
 	private int orderDetailNum;
 	private int friendNum;
+	private int productNum;
+	private String nickname;
+	private String profileImage;
+	private String productName;
+	private String thumbnailImageUrl;
+	private String brand;
+	
 }
