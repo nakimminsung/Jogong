@@ -1,12 +1,6 @@
 package bit.data.service;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,12 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
 import bit.data.dao.UserDaoInter;
-import bit.data.dto.KakaoDto;
 import bit.data.dto.UserDto;
 
 @Service
@@ -65,6 +54,13 @@ public class UserService implements UserServiceInter {
 	}
 	
 	
+	/*@Override
+	public void insertKakao(UserDto dto) {
+		// TODO Auto-generated method stub
+		userDaoInter.insertKakao(dto);;
+		
+	}*/
 	
+
 
 }
