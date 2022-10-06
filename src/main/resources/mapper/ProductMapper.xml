@@ -43,7 +43,6 @@
 	<select id="selectProductDetail" parameterType="int" resultType="productDto">
 		select * from product where num=#{num}
 	</select>
-
 </mapper>
 
 

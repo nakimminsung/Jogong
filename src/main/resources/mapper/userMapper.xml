@@ -26,17 +26,8 @@
 		select * from user where email=#{email}
 	</select>
 	
-	
-	
-	<!-- 카카오 테스트 --> 
-	<!-- 정보 찾기 -->
-	<select id="findKakao" parameterType="java.util.HashMap" resultType="kakaoDto">
-		select * from user where nickname=#{nickname} and email=#{email}
+	<!--리뷰페이지 유저정보 -->
+	<select id="getReviewUserInfo" parameterType="int"  resultType="userDto">
+		select * from user where num in (select userNum from review where num=userNum)
 	</select>
-
-	<!-- 정보 저장 -->
-	<insert id="kakaoInsert" parameterType="java.util.HashMap">
-		insert into user(nickname, email) values(#{nickname}, #{email})
-	</insert>
-	
 </mapper>

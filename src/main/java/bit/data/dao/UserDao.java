@@ -8,7 +8,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import bit.data.dto.KakaoDto;
 import bit.data.dto.UserDto;
 
 @Repository
@@ -51,6 +50,16 @@ public class UserDao implements UserDaoInter {
 		// TODO Auto-generated method stub
 		return session.selectOne(ns+"getDataById", email);
 	}
+
+	/*
+	 * @Override public void insertKakao(UserDto dto) { // TODO Auto-generated
+	 * method stub session.insert(ns+"insertUser", dto); }
+	 */
 	
-	
+	// 리뷰
+	@Override
+	public List<UserDto> getReviewUserInfo() {
+		// TODO Auto-generated method stub
+		return session.selectList(ns+"getReviewUserInfo");	
+	}
 }

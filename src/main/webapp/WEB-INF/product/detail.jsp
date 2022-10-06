@@ -33,6 +33,19 @@
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <style>
+	@font-face {
+    font-family: 'SeoulNamsanM';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+	}
+	
+	body * {
+		font-size: 15px;
+		font-family: 'SeoulNamsanM';
+		word-spacing: -1px;
+	}
+
 	.detailContainer{	
 		display:grid; 
 		grid-template-columns: 3fr 4fr 2fr;
@@ -464,7 +477,7 @@ $(function(){
 			</div>
 			
 			<div class="detailItem detailContent">
-				<h3>${dto.name }</h3>
+				<h3 style="font-weight: bold">${dto.name }</h3>
 				<div class="review">
 					<div class="rating" data-rate=${reviewAvg }>
 						<i class="fas fa-star"></i>
@@ -485,7 +498,7 @@ $(function(){
 			</div>
 			
 			<div class="detailItem detailRight">
-				<p><b>${dto.name }</b></p>
+				<p style="font-weight: bold">${dto.name }</p>
 				<div class="detailNum">
 					<span>수량</span>
 					<span class="detailCount">
