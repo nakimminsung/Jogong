@@ -769,7 +769,7 @@ payed.onclick = function () {
 	buyer_postcode = $("#sample4_postcode").val();
 	//alert(buyer_addr+","+buyer_postcode+","+buyer_tel);
     message = $("#mms_send_msg").val();
-    customdata = JSON.parse('{"amount":"${totalprice}","member_id":"'+to_member_id+'","count":"${count}","message":"'+message+'","banner":"'+banner+'","messagecard":"'+messagecard+'","buyer_addr":"'+buyer_addr+'","buyer_tel":"'+buyer_tel+'","buyer_postcode":"'+buyer_postcode+'","point":"${point}","userNum":"${userNum}","orderDetailNum":"${orderDetailNum}","friendNum":"${friendNum}"}');
+    customdata = JSON.parse('{"amount":"${totalprice}","member_id":"'+to_member_id+'","count":"${count}","message":"'+message+'","banner":"'+banner+'","messagecard":"'+messagecard+'","buyer_addr":"'+buyer_addr+'","buyer_tel":"'+buyer_tel+'","buyer_postcode":"'+buyer_postcode+'","point":"${point}","userNum":"${userNum}","orderDetailNum":"${orderDetailNum}","friendNum":"${friendNum}","productNum":"${productNum}"}');
     console.dir(customdata)
      
     if(val=='kakaopay'){
