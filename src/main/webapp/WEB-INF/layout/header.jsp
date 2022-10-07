@@ -147,7 +147,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     border-radius: 20px;
     width: 180px;
     position: absolute;
-    left: 72%;
+    left: 74.5%;
     background-color: white;
     border: none;
     box-shadow: 1px 1px 3px gray;
@@ -164,11 +164,11 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 	
 	}
 	
-	.logout{
+/* 	.logout{
 	padding: 20px 12px 0;
     border-top: 1px solid hsla(0,0%,85.1%,.5);
 	
-	}
+	} */
 	
 	
 </style>
@@ -208,7 +208,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 			
 			<!-- 로그인 상태일때 -->
 			<c:if test="${sessionScope.loginok!=null}"> <!-- 세션영역(세션에서 찾을때 무조건써줘야함) -->
-				<a href="${root}/cscenter/faq"><b style="font-size: 16px; word-spacing: -1px;">고객센터</b></a>&emsp;
 				<div class="mainProfile" style="cursor: pointer;">
 					<img src="${sessionScope.loginphoto}" class="profile">
 					<b style="max-width:500px;">${sessionScope.loginname}님</b>&emsp;<span class="upIcon"><i class='fas fa-angle-down'></i></span>
@@ -228,16 +227,15 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 		<div>
 			<div class="myMenu">
 				<a href="/jogong/mypage/cart" >마이페이지</a><br> 
-				<a href="#">쿠폰함</a> 
+				<a href="#">쿠폰함</a><br>
+				<a href="${root}/cscenter/faq">고객센터</a><br> 
+				<a href="${root}/logout">로그아웃</a> 
 			</div>
 		</div> 
-		<div class="logout">
-			<button type="button" onclick="location.href='${root}/logout'" class="btn"> 로그아웃</button>
-		</div>
 	</div>  
   </body>
 <script>
-//카카오 로그아웃  
+/* //카카오 로그아웃  
 	  window.Kakao.init('d4fc125a7dd0ad8b599aeac52a278521');  
 		function kakaoLogout() {
             if (!Kakao.Auth.getAccessToken()) {
@@ -247,7 +245,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
             Kakao.Auth.logout(function() {
                 alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken());
             });
-	}
+	} */
 		
 		$(".mainProfile").click(function () {
 			$(".quick").toggle();
