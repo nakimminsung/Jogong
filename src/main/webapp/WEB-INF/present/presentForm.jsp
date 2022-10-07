@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 </head>
 <body>
 <style>
@@ -810,7 +811,7 @@ new daum.Postcode({
 }).open();
 }
 </script>
-
+<!-- 
 <div class="container mt-3" style="display: flex;
   flex-direction: row; height:900px; justify-content: center;
   flex-wrap:wrap;">
@@ -880,6 +881,29 @@ new daum.Postcode({
       <p style="color:gray; text-align: left; margin-top:10px">2022.09.28 오후 09:16</p>
     </div>
   </div>
-</div>
+</div> -->
+
+
+<script>
+Kakao.init('1704daabe07853563026fbd3b27ddd21');
+function link_kakao() {
+    var sh_title = "선물이 도착했어요!";
+    var sh_desc = "선물이 도착했어요! 선물함에서 선물을 확인해보세요";
+    Kakao.Link.sendDefault({
+        objectType: 'feed',
+        content: {
+            title: sh_title,
+            description: sh_desc,
+            imageUrl: "https://mblogthumb-phinf.pstatic.net/20130227_217/ohbammbi_1361903848949HrG6D_JPEG/Matira-Point-Bora-Bora-Tahiti1.jpg?type=w2",
+            link: {
+                mobileWebUrl: "",
+                webUrl: ""
+            }
+        },
+    });
+}
+
+</script>
+
 </body>
 </html>
