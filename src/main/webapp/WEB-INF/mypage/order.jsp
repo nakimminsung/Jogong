@@ -28,6 +28,19 @@
     
 </head>
 <style>
+div.gift-wrapper{
+	padding-top:100px;
+	width:100%;
+	display:flex;
+	flex-direction:column;
+	
+}
+div.Gift{
+	width:100%;
+	display:flex;
+	flex-direction:row;
+	flex-wrap:wrap;
+}
 div.card{
    margin-left:30px
 }
@@ -559,6 +572,10 @@ a.btn-layerClose:hover {
   	vertical-align: middle;
   }
 
+  .container mt-3{
+  	width:33%;
+  	height:400px;
+  }
 </style>
 <script type="text/javascript">
 	$(function() {
@@ -659,13 +676,13 @@ a.btn-layerClose:hover {
 					
 		 			$.each(res, function(i,elt) {
 		 				
-		 				s+= "<div class='container mt-3' style='display: flex; flex-direction: row; height:900px; justify-content: center; flex-wrap:wrap;'>"
-	 					s+=	"<div class='card' style='width:300px; height:200px;'>"
+		 				s+= "<div class='container mt-3' style='width:33%; height:500px;'>"
+	 					s+=	"<div class='card'>"
 	 					s+=	"<img class='card-img-top' src="+elt.thumbnailImageUrl+" alt='Card image' style='width:100%'>"
 	 					s+=	"<div class='card-body'>"
 	 					s+=	"<p class='card-title'>"+elt.brand+"</p>"
 	 					s+=	"<h5 class='card-text'>"+elt.productName+"</h5>"
-	 					s+= "<h6 class='card-text' style='float:left;'><b>from.'"+elt.nickname+"'</b></h6>"
+	 					s+= "<h6 class='card-text' style='float:left;'><b>To.'"+elt.nickname+"'</b></h6>"
 	 					s+=	"<p style='color:gray; text-align: left; margin-top:10px'>"+elt.orderDate+"</p></div></div></div>"
 					});
 		 			
@@ -749,8 +766,10 @@ a.btn-layerClose:hover {
 
 </script>
 <body>
-<div class="Gift"></div>
-
+<div class="gift-wrapper">
+	<div class="gift-menu">메뉴</div>
+	<div class="Gift"></div>
+</div>
 </body>
 <script type="text/javascript">
 //다음 주소검색 API
