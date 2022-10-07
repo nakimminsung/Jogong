@@ -42,7 +42,6 @@ div.Gift{
 	flex-wrap:wrap;
 }
 div.card{
-   margin-left:30px
 }
 p.card-title{
    color:blue;
@@ -580,6 +579,7 @@ a.btn-layerClose:hover {
   .container mt-3{
   	width:33%;
   	height:400px;
+  	justify-content: space-around;
   }
   
   
@@ -702,6 +702,7 @@ a.btn-layerClose:hover {
 	 	function order_recevie() {
 		 	// 로그인 세션아이디num으로 변경
 	 		var num = 2;
+//	 		var num = ${sessionScope.loginname};
 			var s="";
 
 			$.ajax({
@@ -712,8 +713,7 @@ a.btn-layerClose:hover {
 				success:function(res){
 					
 		 			$.each(res, function(i,elt) {
-		 				
-		 				s+= "<div class='container mt-3' style='width:33%; height:500px;'>"
+		 				s+= "<div class='container mt-3' style='width:33%; height:500px; cursor:pointer;' onclick=\"location.href='../${root}product/detail?num="+elt.productNum+"'\">"
 	 					s+=	"<div class='card'>"
 	 					s+=	"<img class='card-img-top' src="+elt.thumbnailImageUrl+" alt='Card image' style='width:100%'>"
 	 					s+=	"<div class='card-body'>"
@@ -733,6 +733,7 @@ a.btn-layerClose:hover {
 	 	
 	  	function order_send() {
 	 		var num = 5;
+//	 		var num = ${sessionScope.loginname};
 			var s="";
 				
 			$.ajax({
@@ -744,8 +745,8 @@ a.btn-layerClose:hover {
 					
 		 			$.each(res, function(i,elt) {
 		 				
-		 				s+= "<div class='container mt-3' style='width:33%; height:500px;'>"
-	 					s+=	"<div class='card' style='width:300px; height:200px;'>"
+		 				s+= "<div class='container mt-3' style='width:33%; height:500px; cursor:pointer;' onclick=\"location.href='../${root}product/detail?num="+elt.productNum+"'\">"
+	 					s+=	"<div class='card'>"
 	 					s+=	"<img class='card-img-top' src="+elt.thumbnailImageUrl+" alt='Card image' style='width:100%'>"
 	 					s+=	"<div class='card-body'>"
 	 					s+=	"<p class='card-title'>"+elt.brand+"</p>"
