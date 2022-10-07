@@ -595,13 +595,18 @@ a.btn-layerClose:hover {
 		
 		
 		//오더리시브호출
- 		order_recevie();
- 		/* order_send(); */
+ 		/* order_recevie(); */
+ 		order_send(); 
 		
-		$('.btn-example').click(function(){
+ 		$(document).on("click",".btn-example",function(){
+ 			var $href = $(this).attr('href');
+	        layer_popup($href);
+ 		});
+ 		
+		/* $('.btn-example').click(function(){
 	        var $href = $(this).attr('href');
 	        layer_popup($href);
-	    });
+	    }); */
 	    function layer_popup(el){
 
 	        var $el = $(el);    //레이어의 id를 $el 변수에 저장
@@ -639,14 +644,16 @@ a.btn-layerClose:hover {
 	 /*    $(".btn_crad").click(function(){
 	    	console.log(111)
 	 		  $(".address").show();
-	 	}); */
+	 	}); 
 	 	$(".btn_crad").click(function(){
 	 		  $(".address").toggle();
-	 	});
-		
+	 	}); */
+	 	$(document).on("click",".btn_crad",function(){
+	 		$(".address").toggle();
+ 		});
 	 	
 	 	
-	 	function order_recevie() {
+/* 	 	function order_recevie() {
 	 		var num = 2;
 			var s="";
 				
@@ -673,11 +680,11 @@ a.btn-layerClose:hover {
 				}
 			});
 		}
-	});
+	}); */
 	 	
 	 	
 	 	
-	 /* 	function order_send() {
+	 	function order_send() {
 	 		var num = 5;
 			var s="";
 				
@@ -701,7 +708,7 @@ a.btn-layerClose:hover {
 	 					s+=	"<button class='button' style='margin-left:10px'>메시지 카드 보기</button></a>"
 	 					s+=	"<p style='color:gray; text-align: left; margin-top:10px'>"+elt.orderDate+"</p></div></div></div>"
 	 					
-	 					<!-- 팝업 영역 -->
+	 				 	<!-- 팝업 영역 -->
 	 					s+= "<div class='dim-layer'> <div class='dimBg'></div> <div id='layer2' class='pop-layer'> <div class='pop-container'>"
 	 					s+= "<div class='pop-conts'> <div class='layer_body'> <div class='wrap_msgprofile'> <div class='box_profile'> <div class='thumb_profile'>"
 			            s+= "<img width='36' height='36' class='img_g' src='"+elt.profileImage+"'>"
@@ -745,12 +752,11 @@ a.btn-layerClose:hover {
 				}
 			});
 		}
-	}); */
+	}); 
 
 </script>
 <body>
 <div class="Gift"></div>
-
 </body>
 <script type="text/javascript">
 //다음 주소검색 API
