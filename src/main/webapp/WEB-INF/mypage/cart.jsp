@@ -21,9 +21,6 @@
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     
 <style>
-	body * {
-		font-size: 13px;
-	}
 	div.cart-wrapper{
 		max-width: 100%;
 		position:relative;
@@ -870,7 +867,7 @@
 </head>
 <body>
 	<div class="cart-wrapper">
-		<div class="cart-total" style="z-index: 100;">
+		<div class="cart-total"  style="z-index: 2;">
 			<div class="cart-total-left">
 				<input type="checkbox" id="cart-all-check">
 			</div>
