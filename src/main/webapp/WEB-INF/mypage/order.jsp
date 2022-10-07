@@ -507,6 +507,11 @@ a.btn-layerClose:hover {
     font-size: 0;
     background-color: #fafafa;
   }
+  
+  	img.card-img-top{
+		height: 15rem;
+	}
+  
 /*   .ico_delete {
     -webkit-text-size-adjust: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -576,49 +581,68 @@ a.btn-layerClose:hover {
   	width:33%;
   	height:400px;
   }
+  
+  
+  ul.tab_receive{
+    font-size: 14px;
+    line-height: 1.5;
+    color: #000;
+    list-style: none;
+    overflow: hidden;
+    margin: 30px 0 40px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ededed;
+  }
+  
+  li.presentation{
+    font-size: 14px;
+    line-height: 1.5;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    float: left;
+  }
+  
+  a.link_tab{
+    line-height: 1.5;
+    list-style: none;
+    overflow-anchor: none;
+    text-decoration: none;
+    display: block;
+    padding: 0 2px 2px;
+    font-weight: 600;
+    border-bottom: 3px solid black;
+    color: #000;
+    opacity: 1;
+    font-size: 20px;
+  }
+  
+  a.link_tab:hover{
+  	color:#add0bb;
+  }
+  
 </style>
 <script type="text/javascript">
 	$(function() {
-		
-		let num = 2; 
-		$.ajax({
-			type: "get",
-			url: "../gift/receivelist",
-			dataType: "json",
-			data: {"num":num},
-		    success : function(res){
-		    	$.each(res, function(i,elt) {
-		    		console.log(elt.productName);
-		    		console.log(elt.deliveryAddress);
-		    		
-		    		console.log(elt.thumbnailImageUrl);
-		    		console.log(elt.brand);
-		    		console.log(elt.nickname);
-		    		console.log(elt.message);
-		    		console.log(elt.orderDate);
-		    		console.log(elt.profileImage);
-		    		console.log(elt.banner);
-		    		console.log(elt.hp);
-		    		console.log(elt.postalcode);
-		    		
-		    	})
-		    },
-		    error : function(){
-		      alert("에러")		
-		    }
-		  });
-		
-		
-		
+
+		$("document").ready(function(){
+			order_send(); 
+		});	
 		
 		//오더리시브호출
- 		order_recevie();
- 		/* order_send(); */
+// 		order_recevie();
+// 		order_send(); 
 		
-		$('.btn-example').click(function(){
-	        var $href = $(this).attr('href');
-	        layer_popup($href);
-	    });
+		$('#receivePresentbox').click(function(){
+			order_send();
+		});
+
+		$('#sendPresentbox').click(function(){
+			order_recevie();
+		});
+		
+		
 	    function layer_popup(el){
 
 	        var $el = $(el);    //레이어의 id를 $el 변수에 저장
@@ -664,9 +688,10 @@ a.btn-layerClose:hover {
 	 	
 	 	
 	 	function order_recevie() {
+		 	// 로그인 세션아이디num으로 변경
 	 		var num = 2;
 			var s="";
-				
+
 			$.ajax({
 				type: "get",
 				url: "../gift/receivelist",
@@ -681,8 +706,8 @@ a.btn-layerClose:hover {
 	 					s+=	"<img class='card-img-top' src="+elt.thumbnailImageUrl+" alt='Card image' style='width:100%'>"
 	 					s+=	"<div class='card-body'>"
 	 					s+=	"<p class='card-title'>"+elt.brand+"</p>"
-	 					s+=	"<h5 class='card-text'>"+elt.productName+"</h5>"
-	 					s+= "<h6 class='card-text' style='float:left;'><b>To.'"+elt.nickname+"'</b></h6>"
+	 					s+=	"<h5 class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 1000px;'>"+elt.productName+"</h5>"
+	 					s+= "<h6 class='card-text' style=''><b>To.'"+elt.nickname+"'</b></h6>"
 	 					s+=	"<p style='color:gray; text-align: left; margin-top:10px'>"+elt.orderDate+"</p></div></div></div>"
 					});
 		 			
@@ -694,7 +719,7 @@ a.btn-layerClose:hover {
 	 	
 	 	
 	 	
-	 /* 	function order_send() {
+	  	function order_send() {
 	 		var num = 5;
 			var s="";
 				
@@ -707,13 +732,13 @@ a.btn-layerClose:hover {
 					
 		 			$.each(res, function(i,elt) {
 		 				
-		 				s+= "<div class='container mt-3' style='display: flex; flex-direction: row; height:900px; justify-content: center; flex-wrap:wrap;'>"
+		 				s+= "<div class='container mt-3' style='width:33%; height:500px;'>"
 	 					s+=	"<div class='card' style='width:300px; height:200px;'>"
 	 					s+=	"<img class='card-img-top' src="+elt.thumbnailImageUrl+" alt='Card image' style='width:100%'>"
 	 					s+=	"<div class='card-body'>"
 	 					s+=	"<p class='card-title'>"+elt.brand+"</p>"
-	 					s+=	"<h5 class='card-text'>"+elt.productName+"</h5>"
-	 					s+= "<h6 class='card-text' style='float:left;'><b>from.'"+elt.nickname+"'</b></h6>"
+	 					s+=	"<h5 class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 1000px;'>"+elt.productName+"</h5>"
+	 					s+= "<h6 class='card-text'><b>from.'"+elt.nickname+"'</b></h6>"
 	 					s+=	"<a href='#layer2' class='btn-example'>" 
 	 					s+=	"<button class='button' style='margin-left:10px'>메시지 카드 보기</button></a>"
 	 					s+=	"<p style='color:gray; text-align: left; margin-top:10px'>"+elt.orderDate+"</p></div></div></div>"
@@ -762,12 +787,17 @@ a.btn-layerClose:hover {
 				}
 			});
 		}
-	}); */
+
 
 </script>
 <body>
 <div class="gift-wrapper">
-	<div class="gift-menu">메뉴</div>
+	<div class="gift-menu">
+		<ul role="tablist" class="tab_receive">
+			<li class="presentation"><a class="link_tab" id="receivePresentbox" onclick="getReceiverBox">받은선물함</a></li>
+			<li class="presentation" style="margin-left:10px"><a class="link_tab" id="sendPresentbox" onclick="getSenderBox"> 보낸선물함 </a></li>
+		</ul>
+	</div>
 	<div class="Gift"></div>
 </div>
 </body>
