@@ -37,6 +37,13 @@
 		on u.num = r.userNum 
 		where r.productNum = #{productNum}
 	</select>
+	
+	<!-- 상세페이지 리뷰 수 -->
+	<select id="getReviewCount" parameterType="int" resultType="int">
+		select count(*) from review r inner join product p 
+		on r.productNum = p.num 
+		where r.productNum = #{productNum};
+	</select>
 </mapper>
 
 

@@ -55,4 +55,10 @@ public class ReviewService implements ReviewServiceInter{
 		
 		return reviewDaoInter.getProductReviewList(productNum);
 	}
+
+	@Override
+	public int getReviewCount(int productNum) {
+		
+		return reviewDaoInter.getReviewCount(productNum);
+	}
 }

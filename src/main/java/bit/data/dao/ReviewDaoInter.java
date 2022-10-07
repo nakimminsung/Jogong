@@ -13,4 +13,6 @@ public interface ReviewDaoInter {
 	public List<ReviewDto> getPagingList(Map<String, Object> map);
 	//상세페이지
 	public List<ReviewDto> getProductReviewList(int productNum);
+	//상세페이지 리뷰수
+	public int getReviewCount(int productNum);
 }

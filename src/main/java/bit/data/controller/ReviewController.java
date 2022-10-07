@@ -89,4 +89,12 @@ public class ReviewController {
 	{
 		return reviewService.getProductReviewList(productNum);
 	}
+	
+	// 상세페이지 리뷰수
+	@GetMapping("/count")
+	@ResponseBody
+	public int getReviewCount(int productNum)
+	{
+		return reviewService.getReviewCount(productNum);
+	}
 }

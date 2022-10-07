@@ -12,4 +12,6 @@ public interface ReviewServiceInter {
 	public List<ReviewDto> getPagingList(String searchcolumn, String searchword, int startnum, int perpage);
 	//상세페이지
 	public List<ReviewDto> getProductReviewList(int productNum);
+	//상세페이지 리뷰수
+	public int getReviewCount(int productNum);
 }

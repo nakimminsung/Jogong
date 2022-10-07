@@ -47,4 +47,10 @@ public class ReviewDao implements ReviewDaoInter {
 		return session.selectList(ns+"getReviewByProduct", productNum);
 	}
 	
+	// 상세페이지 리뷰수 
+	@Override
+	public int getReviewCount(int productNum) {
+		
+		return session.selectOne(ns+"getReviewCount", productNum);
+	}
 }
