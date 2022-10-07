@@ -23,6 +23,17 @@
     
 </head>
 <style type="text/css">
+	@font-face {
+    font-family: 'SeoulNamsanM';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+	}
+	body * {
+		font-size: 15px;
+		font-family: 'SeoulNamsanM';
+		word-spacing: -1px;
+	}
 	header{
 		background-color: #fff;
 		position: fixed;
@@ -30,6 +41,9 @@
 		width: 100%;
 		height: 100px;
 		z-index: 10;
+		font-size: 15px;
+		font-family: 'SeoulNamsanM';
+		word-spacing: -1px;
 	}
 	div#wrapper{
 	  margin: 0 auto;

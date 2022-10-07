@@ -58,10 +58,6 @@
    		font-size: 12px;
    }
    
-   b {
-		color: red;
-	}
-	
 	.insertForm th{
 		width: 160px;
 		background-color: #dcdcdc;
@@ -220,14 +216,14 @@
 				<tr>
 					<td colspan="2">
 						<div class="subText">
-							<b>*</b> 표시 항목은 필수 입력 사항입니다.<br>
+							<b style="color: red;">*</b> 표시 항목은 필수 입력 사항입니다.<br>
 							&nbsp;&nbsp;정확한 정보를 입력해주시기 바랍니다. 부정확한 정보 입력 시 회원탈퇴 및 이용정지될 수 있습니다.
 						</div>
 					</td>
 				</tr>
 				
 				<tr>
-					<th><b>*</b> 아이디</th>
+					<th><b style="color: red;">*</b> 아이디</th>
 					<td>
 						<input type="email" placeholder="이메일 형식으로 입력" style="width: 50%;" 
 						required name="email" class="putId" autofocus>
@@ -237,7 +233,7 @@
 				</tr>
 
 				<tr>
-					<th><b>*</b> 비밀번호</th>
+					<th><b style="color: red;">*</b> 비밀번호</th>
 					<td>
 						<input type="password" placeholder="영문, 숫자, 특수문자 8~16자" style="width: 50%;" required
 						 name="password" class="password1">
@@ -247,7 +243,7 @@
 				</tr>
 
 				<tr>
-					<th><b>*</b> 비밀번호 확인</th>
+					<th><b style="color: red;">*</b> 비밀번호 확인</th>
 					<td>
 						<input type="password" placeholder="영문, 숫자, 특수문자 8~16자" style="width: 50%;" required
 						 class="password2">
@@ -256,9 +252,10 @@
 				</tr>
 
 				<tr>
-					<th><b>*</b> 담당자 연락처</th>
+					<th><b style="color: red;">*</b> 담당자 연락처</th>
 					<td>
-						<input type="text" style="width: 50%;" placeholder="010-1234-5678" required name="phone">
+						<input type="text" style="width: 50%;" placeholder="010-1234-5678" required name="phone"
+						minlength = "12" maxlength="13">
 						
 					</td>
 				</tr>
@@ -286,7 +283,7 @@
 				</tr>
 				
 				<tr>
-					<th><b>*</b> 개인 / 법인명</th>
+					<th><b style="color: red;">*</b> 개인 / 법인명</th>
 					<td>
 						<input type="text" style="width: 50%;" required name="companyName">
 						
@@ -295,18 +292,18 @@
 				
 				<tr>
 					<th>
-						<b>*</b> 사업자 등록번호
+						<b style="color: red;">*</b> 사업자 등록번호
 					</th>
 					<td style="padding-left: 10px;">
 						<input type="text" id="businessNumber" style="width: 50%;" placeholder="숫자만 입력" 
-						required name="businessNumber" maxlength=12">
+						required name="businessNumber" minlength = "12" maxlength="12">
 
 						<button type="button" class="btn btn-dark btn-sm btnBusiness" style="width: 105px;">사업자 인증</button>
 					</td>
 				</tr>
 				
 				<tr>
-					<th><b>*</b> 사업장 주소</th>
+					<th><b style="color: red;">*</b> 사업장 주소</th>
 					<td>
 						<input type="text" id="sample4_postcode" placeholder="우편번호" style="width: 50%; margin-bottom: 5px;" required>
 						<input type="button" onclick="sample4_execDaumPostcode()" class="btn btn-dark btn-sm" value="우편번호 찾기" style=" margin-bottom: 5px;"><br>
@@ -333,7 +330,7 @@
 				</tr>
 				
 				<tr>
-					<th><b>*</b> 정산 계좌은행</th>
+					<th><b style="color: red;">*</b> 정산 계좌은행</th>
 					<td>
 						<select name="bank" required>
 	                        <option value="" disabled selected style="display: none;">은행을 선택하세요</option>
@@ -355,7 +352,7 @@
 				</tr>
 				
 				<tr>
-					<th><b>*</b> 정산 계좌번호</th>
+					<th><b style="color: red;">*</b> 정산 계좌번호</th>
 					<td>
 						<input type="text" style="width: 50%;" required name="accountNumber">
 						
