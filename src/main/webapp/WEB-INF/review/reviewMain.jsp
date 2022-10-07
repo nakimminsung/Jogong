@@ -178,6 +178,30 @@
 			}
 		});
 	}   
+	 
+	 function getProductList(price){                                                             
+			var s = "";
+			$.ajax({
+				type:"get",
+				url:"product/list",
+				data:{"price":price},
+				dataType:"json", 
+				success:function(res){
+					console.log(res);
+					$.each(res,function(i,e){
+							s+="<div class='card cardPrice' onclick=\"location.href='product/detail?num="+e.num+"'\">";
+							s+="<img class='card-img-top' src='"+ e.thumbnailImageUrl+"' alt='Card image cap'>";
+							s+="<div class='card-body'>";
+								s+="<h5 class='card-title'>"+e.brand+"</h5>";
+								s+="<p class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 350px;'>"+e.name+"</p>";
+								s+="<p class='card-text'><b>&#8361;"+e.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+"</b></p>";
+							s+="</div>";
+						s+="</div>";
+					});
+					$("div.productPrice").html(s);
+				}
+			});
+		}
 
 </script>
 </head>
@@ -198,7 +222,16 @@
 	        		<div class="card-review" >
 	        		
 	        			<div class="front" style="overflow: hidden;">
-	        				<img src="${dto.reviewImageUrl }" width="250" height="250">
+	        			
+	        				    <c:if test="${dto.reviewImageUrl==null}"> 
+            						<img src="${dto.thumbnailImageUrl }" width="250" height="250">
+       			 				</c:if>
+       			 				
+       			 				<c:if test="${dto.reviewImageUrl !=null }">
+       			 					<img src="${dto.reviewImageUrl }" width="250" height="250">
+       			 				</c:if>
+       			 					
+	        				<%-- <img src="${dto.reviewImageUrl }" width="250" height="250"> --%>
 	        				<div class="frontInfo">
 		        				<h6 style="display:inline;">${dto.subject }</h6 >
 		        				<p  style="display:inline; position: absolute; right: 15px;"><i class="fas fa-star" style="color: rgb(247, 200, 21);"></i><b>${dto.rating }</b></p>
@@ -225,12 +258,5 @@
 			</c:forEach> 
 		</div>
     </div>
-    
-	<div class="outside">
-    	<div class="inside">
-    		inside
-    	</div>
-	</div>
-	
 </body>
 </html> 

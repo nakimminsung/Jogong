@@ -20,4 +20,9 @@ public class ReviewDto {
 	
 	// product
 	private String name;
+	private String thumbnailImageUrl;
+	
+	// user
+	private String nickname;
+	private String profileImage;
 }
