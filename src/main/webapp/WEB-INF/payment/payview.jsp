@@ -69,6 +69,7 @@
 	});
 </script>
 <body>
+
 <div class="paymain">
         <div class="new-order">
             <div class="subcontents">
@@ -207,7 +208,7 @@
                                 <div class="pin">
                                     <div class="col-half">
                                         <div class="giftImg">
-                                            <img src="image/21.jpeg" alt="카드 이미지">
+                                            <img src="${thumbnailImage}" alt="카드 이미지">
                                         </div>
                                         <div class="previewCardImg">
                                             <img id="previewTemplate" src="/jogong/resources/giftimage/card/a1.jpg" alt="꾸미기 템플릿">
@@ -768,7 +769,7 @@ payed.onclick = function () {
 	buyer_postcode = $("#sample4_postcode").val();
 	//alert(buyer_addr+","+buyer_postcode+","+buyer_tel);
     message = $("#mms_send_msg").val();
-    customdata = JSON.parse('{"amount":"${totalprice}","member_id":"'+to_member_id+'","count":"${count}","message":"'+message+'","banner":"'+banner+'","messagecard":"'+messagecard+'","buyer_addr":"'+buyer_addr+'","buyer_tel":"'+buyer_tel+'","buyer_postcode":"'+buyer_postcode+'","point":"${point}","userNum":"${userNum}","orderDetailNum":"${orderDetailNum}","friendNum":"${friendNum}"}');
+    customdata = JSON.parse('{"amount":"${totalprice}","member_id":"'+to_member_id+'","count":"${count}","message":"'+message+'","banner":"'+banner+'","messagecard":"'+messagecard+'","buyer_addr":"'+buyer_addr+'","buyer_tel":"'+buyer_tel+'","buyer_postcode":"'+buyer_postcode+'","point":"${point}","userNum":"${userNum}","orderDetailNum":"${orderDetailNum}","friendNum":"${friendNum}","productNum":"${productNum}"}');
     console.dir(customdata)
      
     if(val=='kakaopay'){
