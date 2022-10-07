@@ -30,4 +30,5 @@
 	<select id="getReviewUserInfo" parameterType="int"  resultType="userDto">
 		select * from user where num in (select userNum from review where num=userNum)
 	</select>
+
 </mapper>
