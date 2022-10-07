@@ -31,7 +31,7 @@ public class PaymentController {
 	
 	@GetMapping("/GiftTestForm")
 	public String GiftTestForm() {
-		return "/bit/payment/GiftTestForm";
+		return "/bit/payment/PopupTest";
 	}
 	
 	@RequestMapping(value = "/test.action", method = { RequestMethod.POST })
@@ -59,7 +59,7 @@ public class PaymentController {
          String userNum = request.getParameter("custom_data[userNum]");
          String orderDetailNum = request.getParameter("custom_data[orderDetailNum]");
 		 String friendNum = request.getParameter("custom_data[friendNum]");
-         
+         String productNum = request.getParameter("custom_data[productNum]");
          
 		 OrderDto orderDto = new OrderDto(); 
 		 orderDto.setImp_uid(imp_uid);
@@ -77,6 +77,7 @@ public class PaymentController {
 		 orderDto.setPostalcode(buyer_postcode);
 		 orderDto.setCount(Integer.parseInt(count));
 		 orderDto.setFriendNum(Integer.parseInt(friendNum));
+		 orderDto.setProductNum(Integer.parseInt(productNum));
 		 
 		orderservice.insertOrder(orderDto);
 		
@@ -94,7 +95,7 @@ public class PaymentController {
 		Integer userNum = orderservice.getUserNum(num);
 		Integer orderDetailNum = orderservice.getOrderDetailNum(num);
 		Integer friendNum = orderservice.getFriendNum(num);
-		
+		Integer productNum = orderservice.getProductNum(num);
 		Integer totalprice = price * count;
 		
 		
@@ -111,6 +112,7 @@ public class PaymentController {
 		mview.addObject("userNum",userNum);
 		mview.addObject("orderDetailNum",orderDetailNum);
 		mview.addObject("friendNum",friendNum);
+		mview.addObject("productNum",productNum);
 		
 		mview.setViewName("/bit/payment/payview");
 		
