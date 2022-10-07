@@ -1,57 +1,28 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-	
-	<!-- font -->
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Edu+VIC+WA+NT+Beginner:wght@600&family=Gamja+Flower&family=Single+Day&family=Jua&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
-    
-    <!-- bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-	
-	<!-- bootstrap 5 icon -->
-	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-    
-    <!-- jquery -->
-    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-    
-    <!-- ë¶€íŠ¸ìŠ¤íŠ¸ë© ì•„ì´ì½˜ -->
-	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-
-	<!-- daum ì£¼ì†Œê²€ìƒ‰ -->
-	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-    
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 </head>
+<body>
 <style>
-div.gift-wrapper{
-	padding-top:100px;
-	width:100%;
-	display:flex;
-	flex-direction:column;
-	
-}
-div.Gift{
-	width:100%;
-	display:flex;
-	flex-direction:row;
-	flex-wrap:wrap;
-}
 div.card{
-   margin-left:30px
+	margin-left:30px
 }
 p.card-title{
-   color:blue;
-   font-size:12px;
+	color:blue;
+	font-size:12px;
 }
 
 .button{
-   background-color:#cff0cc;
-   border-radius: 10px;
+	background-color:#cff0cc;
+	border-radius: 10px;
     border:0;
     outline:0;
     font-size:5px; 
@@ -65,6 +36,23 @@ p.card-title{
   border:0;
   outline:0;
 }
+
+</style>
+
+<!-- ºÎÆ®½ºÆ®·¦ ¾ÆÀÌÄÜ -->
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+<!-- daum ÁÖ¼Ò°Ë»ö -->
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<style type="text/css">
+/* * {
+  margin: 0;
+  padding: 0;
+} */
+
+/* body {
+  margin: 100px;
+} */
 
 .pop-layer .pop-container {
   padding: 20px 25px;
@@ -86,7 +74,7 @@ p.card-title{
 .pop-layer {
   display: none;
   position: absolute;
-  top: 35%;
+  top: 40%;
   left: 45%;
   width: 410px;
   height: auto;
@@ -507,11 +495,6 @@ a.btn-layerClose:hover {
     font-size: 0;
     background-color: #fafafa;
   }
-  
-  	img.card-img-top{
-		height: 15rem;
-	}
-  
 /*   .ico_delete {
     -webkit-text-size-adjust: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -577,88 +560,19 @@ a.btn-layerClose:hover {
   	vertical-align: middle;
   }
 
-  .container mt-3{
-  	width:33%;
-  	height:400px;
-  }
-  
-  
-  ul.tab_receive{
-    font-size: 14px;
-    line-height: 1.5;
-    color: #000;
-    list-style: none;
-    overflow: hidden;
-    margin: 30px 0 40px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ededed;
-  }
-  
-  li.presentation{
-    font-size: 14px;
-    line-height: 1.5;
-    color: #000;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    float: left;
-  }
-  
-  a.link_tab{
-    line-height: 1.5;
-    list-style: none;
-    overflow-anchor: none;
-    text-decoration: none;
-    display: block;
-    padding: 0 2px 2px;
-    color: #000;
-    opacity: 1; 
-    font-size: 20px;
-  }
-  
-  a.link_tab:hover{
-   	color:#000; 
-  	font-weight: 600;
-  }
- 
-  a.link_tab:active{
-    color:#000; 
-  	font-weight: 600;
-  }
-
 </style>
+</head>
 <script type="text/javascript">
 	$(function() {
-
-		$("document").ready(function(){
-			order_send(); 
-			$("#receivePresentbox").css("border-bottom","3px solid black");
-		});	
 		
-		//ì˜¤ë”ë¦¬ì‹œë¸Œí˜¸ì¶œ
-// 		order_recevie();
-// 		order_send(); 
-
-		$('.link_tab').click(function() {
-			$('.link_tab').css("border-bottom","");
-			$(this).css("border-bottom","3px solid black");
-		});
-		
-		$('#receivePresentbox').click(function(){
-			
-			order_send();
-		});
-
-		$('#sendPresentbox').click(function(){
-			
-			order_recevie();
-		});
-		
-		
+		$('.btn-example').click(function(){
+	        var $href = $(this).attr('href');
+	        layer_popup($href);
+	    });
 	    function layer_popup(el){
 
-	        var $el = $(el);    //ë ˆì´ì–´ì˜ idë¥¼ $el ë³€ìˆ˜ì— ì €ì¥
-	        var isDim = $el.prev().hasClass('dimBg'); //dimmed ë ˆì´ì–´ë¥¼ ê°ì§€í•˜ê¸° ìœ„í•œ boolean ë³€ìˆ˜
+	        var $el = $(el);    //·¹ÀÌ¾îÀÇ id¸¦ $el º¯¼ö¿¡ ÀúÀå
+	        var isDim = $el.prev().hasClass('dimBg'); //dimmed ·¹ÀÌ¾î¸¦ °¨ÁöÇÏ±â À§ÇÑ boolean º¯¼ö
 
 	        isDim ? $('.dim-layer').fadeIn() : $el.fadeIn();
 
@@ -667,7 +581,7 @@ a.btn-layerClose:hover {
 	            docWidth = $(document).width(),
 	            docHeight = $(document).height();
 
-	        // í™”ë©´ì˜ ì¤‘ì•™ì— ë ˆì´ì–´ë¥¼ ë„ìš´ë‹¤.
+	        // È­¸éÀÇ Áß¾Ó¿¡ ·¹ÀÌ¾î¸¦ ¶ç¿î´Ù.
 	        if ($elHeight < docHeight || $elWidth < docWidth) {
 	            $el.css({
 	                marginTop: -$elHeight /2,
@@ -678,8 +592,7 @@ a.btn-layerClose:hover {
 	        }
 
 	        $el.find('a.btn_close').click(function(){
-	            isDim ? $('.dim-layer').hide() : $el.hide(); // ë‹«ê¸° ë²„íŠ¼ì„ í´ë¦­í•˜ë©´ ë ˆì´ì–´ê°€ ë‹«íŒë‹¤.
-	            $(".address").hide();
+	            isDim ? $('.dim-layer').fadeOut() : $el.fadeOut(); // ´İ±â ¹öÆ°À» Å¬¸¯ÇÏ¸é ·¹ÀÌ¾î°¡ ´İÈù´Ù.
 	            return false;
 	        });
 
@@ -696,158 +609,183 @@ a.btn-layerClose:hover {
 	 	$(".btn_crad").click(function(){
 	 		  $(".address").toggle();
 	 	});
-		
-	 	
-	 	
-	 	function order_recevie() {
-		 	// ë¡œê·¸ì¸ ì„¸ì…˜ì•„ì´ë””numìœ¼ë¡œ ë³€ê²½
-	 		var num = 2;
-			var s="";
-
-			$.ajax({
-				type: "get",
-				url: "../gift/receivelist",
-				dataType: "json",
-				data: {"num":num},
-				success:function(res){
-					
-		 			$.each(res, function(i,elt) {
-		 				
-		 				s+= "<div class='container mt-3' style='width:33%; height:500px;'>"
-	 					s+=	"<div class='card'>"
-	 					s+=	"<img class='card-img-top' src="+elt.thumbnailImageUrl+" alt='Card image' style='width:100%'>"
-	 					s+=	"<div class='card-body'>"
-	 					s+=	"<p class='card-title'>"+elt.brand+"</p>"
-	 					s+=	"<h5 class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 1000px;'>"+elt.productName+"</h5>"
-	 					s+= "<h6 class='card-text' style=''><b>To.'"+elt.nickname+"'</b></h6>"
-	 					s+=	"<p style='color:gray; text-align: left; margin-top:10px'>"+elt.orderDate+"</p></div></div></div>"
-					});
-		 			
-					$("div.Gift").html(s);
-				}
-			});
-		}
 	});
-	 	
-	 	
-	 	
-	  	function order_send() {
-	 		var num = 5;
-			var s="";
-				
-			$.ajax({
-				type: "get",
-				url: "../gift/sendlist",
-				dataType: "json",
-				data: {"num":num},
-				success:function(res){
-					
-		 			$.each(res, function(i,elt) {
-		 				
-		 				s+= "<div class='container mt-3' style='width:33%; height:500px;'>"
-	 					s+=	"<div class='card' style='width:300px; height:200px;'>"
-	 					s+=	"<img class='card-img-top' src="+elt.thumbnailImageUrl+" alt='Card image' style='width:100%'>"
-	 					s+=	"<div class='card-body'>"
-	 					s+=	"<p class='card-title'>"+elt.brand+"</p>"
-	 					s+=	"<h5 class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 1000px;'>"+elt.productName+"</h5>"
-	 					s+= "<h6 class='card-text'><b>from.'"+elt.nickname+"'</b></h6>"
-	 					s+=	"<a href='#layer2' class='btn-example'>" 
-	 					s+=	"<button class='button' style='margin-left:10px'>ë©”ì‹œì§€ ì¹´ë“œ ë³´ê¸°</button></a>"
-	 					s+=	"<p style='color:gray; text-align: left; margin-top:10px'>"+elt.orderDate+"</p></div></div></div>"
-	 					
-	 					<!-- íŒì—… ì˜ì—­ -->
-	 					s+= "<div class='dim-layer'> <div class='dimBg'></div> <div id='layer2' class='pop-layer'> <div class='pop-container'>"
-	 					s+= "<div class='pop-conts'> <div class='layer_body'> <div class='wrap_msgprofile'> <div class='box_profile'> <div class='thumb_profile'>"
-			            s+= "<img width='36' height='36' class='img_g' src='"+elt.profileImage+"'>"
-			            s+= "<img width='42' height='42' class='frame_squircle' src='/jogong/resources/image/frame_msgsquircle.png'>"
-			            s+= "</div> </div>" 
-			            s+= "<strong class='tit_g'> <span id='nickname' class='txt_name'>"+elt.nickname+"</span>ë‹˜ì´ ë³´ë‚¸ ë©”ì‹œì§€ </strong> </div>"
-			            s+= "<div class='wrap_msgcard'> <div class='card_g custom_mask_frame'> <div class='thumb_media custom_background_image'>"
-			            s+=	"<a href='#none' class='link_media'> <img alt='ë°°ë„ˆ' class='img_g' src='"+elt.banner+"'></a></div>"			
-			            s+=	"<p class='txt_letter'>"+elt.message+"</p> <a href='#none' class='link_prd'> <span class='info_prd'> <span class='thumb_prd'>"	
-			            s+=	"<img class='img_g' src='"+elt.thumbnailImageUrl+"' alt='ì—¬ê¸°ì— ìƒí’ˆì´ë¯¸ì§€'> </span>"		
-			            s+=	"<span id='productWrapper' class='txt_prd'> <span class='screen_out'>"+elt.brand+"</span> <em id='brandName' class='txt_brand'>"+elt.brand+"</em>"
-		 				s+=	"<span class='screen_out'>"+elt.productName+"</span> <strong id='productName' class='txt_name'>"+elt.productName+"</strong> </span> </span> </a>"
-		 			 	s+=	"<div class='tbl_btn'> <div class='item_btn'> <button type='button' class='btn_crad'> <span class='ico_gift2 ico_delete'></span>"
-		 				s+=	"<span class='txt_g'>ì£¼ì†Œ ì…ë ¥</span> </button> </div> </div> </div> </div>"
-		 												
-		 				<!-- ë°°ì†¡ì§€ ì…ë ¥ í¼ -->					               	
-		 				s+= "<form action=''>"
-		 				s+=	"<table style='width: 70%; display: none; margin: 10px auto;' class='table table-bordered address'>"
-		 				
-		 				s+=	"<tr> <th style='text-align: center'> ì—°ë½ì²˜ </th>" 
-		 				s+=	"<td> <input type='text' style='width: 100%;' required id='to_hp' value='"+elt.hp+"'> </td> </td>"
-		 					
-		 				s+=	"<tr> <th style='text-align: center'> ì£¼ì†Œ </th> <td>" 
-		 				s+=	"<div style='width: 100%; border: none;' class='input-group'>" 
-		 				s+=	"<input type='text' id='sample4_postcode' placeholder='ìš°í¸ë²ˆí˜¸' style='width: 60%; border:1px solid black; margin-bottom: 5px;' required value='"+elt.postalcode+"'>"		
-		 				s+=	"<input type='button' onclick='sample4_execDaumPostcode()' class='btn btn-dark btn-sm' value='ìš°í¸ë²ˆí˜¸' style='margin-bottom: 5px; float: right;'><br></div>"
-		 				s+=	"<input type='text' id='sample4_roadAddress' placeholder='ë„ë¡œëª…ì£¼ì†Œ' size='60' value='"+elt.deliveryAddress+"' style='width: 100%; margin-bottom: 5px;' required name='address1'><br>"
-		 				s+=	"<input type='hidden' id='sample4_jibunAddress' placeholder='ì§€ë²ˆì£¼ì†Œ' size='60'>"
-		 				s+=	"<span id='guide' style='color:#999; display:none'></span>"
-		 				s+=	"<input type='text' id='sample4_detailAddress' placeholder='ìƒì„¸ì£¼ì†Œ'  size='60' value='' style='width: 100%;'required name='address2'><br>"
-		 				s+=	"<input type='hidden' id='sample4_extraAddress' placeholder='ì°¸ê³ í•­ëª©'  size='60'> <input type='hidden' id='sample4_engAddress' placeholder='ì˜ë¬¸ì£¼ì†Œ'  size='60' ></td></tr>"
-		 				s+=	"<tr style='border-bottom: none;'> <td colspan='2' style='text-align: center; border: none;'>"
-		 				s+=	"<button type='submit' class='btn btn-success'>ì €ì¥</button>"						
-		 				s+=	"</td></tr></table></form></div>"
-							
-		 				s+= "<a href='#none' class='btn_close'><span class='ico_gift2 ico_close'>ë‹«ê¸°</span></a>"
-		 				s+= "</div></div></div></div>"
-					});
-		 			
-					$("div.Gift").html(s);
-				}
-			});
-		}
-
 
 </script>
 <body>
-<div class="gift-wrapper">
-	<div class="gift-menu">
-		<ul role="tablist" class="tab_receive">
-			<li class="presentation"><a class="link_tab" id="receivePresentbox">ë°›ì€ì„ ë¬¼í•¨</a></li>
-			<li class="presentation" style="margin-left:10px"><a class="link_tab" id="sendPresentbox"> ë³´ë‚¸ì„ ë¬¼í•¨ </a></li>
-		</ul>
-	</div>
-	<div class="Gift"></div>
+
+<!-- <div style="height: 300px;"></div>
+<a href="#layer1" class="btn-example">ÀÏ¹İ ÆË¾÷·¹ÀÌ¾î</a>
+<div id="layer1" class="pop-layer">
+    <div class="pop-container">
+        <div class="pop-conts">
+            content //
+            <p class="ctxt mb20">Thank you.<br>
+                Your registration was submitted successfully.<br>
+                Selected invitees will be notified by e-mail on JANUARY 24th.<br><br>
+                Hope to see you soon!
+            </p>
+
+            <div class="btn-r">
+                <a href="#" class="btn-layerClose">Close</a>
+            </div>
+            // content
+        </div>
+    </div>
+</div> -->
+
+<br/><br/>
+
+<a href="#layer2" class="btn-example">µõÃ³¸® ÆË¾÷·¹ÀÌ¾î 1</a>
+<div class="dim-layer">
+    <div class="dimBg"></div>
+    <div id="layer2" class="pop-layer">
+        <div class="pop-container">
+            <div class="pop-conts">
+                <!--content //-->
+                <div class="layer_body">
+                	<div class="wrap_msgprofile">
+                		<div class="box_profile">
+                			<div class="thumb_profile">
+	                			<img width="36" height="36" class="img_g" src="/jogong/resources/image/21.jpeg">
+	                			<img width="42" height="42" class="frame_squircle" src="/jogong/resources/image/frame_msgsquircle.png">
+	                		</div>	
+                		</div>   
+                		<!--  -->
+                		<strong class="tit_g">
+                			<span id="nickname" class="txt_name">º¸³½ »ç¶÷ ÀÌ¸§</span>"´ÔÀÌ º¸³½ ¸Ş½ÃÁö"
+                			<!--  -->
+                			<!--  -->
+                		</strong>
+                	</div>
+                	<!--  -->
+                	<div class="wrap_msgcard">
+						<div class="card_g custom_mask_frame">
+							<div class="thumb_media custom_background_image">
+								<a href="#none" class="link_media">
+									<img alt="¸Ş½ÃÁöÄ«µå" class="img_g" src="/jogong/resources/giftimage/banner/1.jpg">
+								</a>
+							</div>
+							<!--  -->
+							<p class="txt_letter">¿©±â¿¡ Ä£±¸°¡ º¸³½ ¸Ş½ÃÁö ¶°¾ßÇÔ</p>
+							<!--  -->
+							<a href="#none" class="link_prd">
+								<span class="info_prd">
+									<span class="thumb_prd">
+										<img class="img_g" src="/jogong/resources/image/21.jpeg" alt="¿©±â¿¡ »óÇ°ÀÌ¹ÌÁö">
+									</span>
+									<span id="productWrapper" class="txt_prd">
+										<span class="screen_out">ºê·£µå¸í</span>
+										<em id="brandName" class="txt_brand">ex)Á¤°üÀå</em>
+										<span class="screen_out">»óÇ°¸í</span>
+										<strong id="productName" class="txt_name">ex)Á¤°üÀå È«»ï ¼¼Æ®</strong>
+									</span>
+								</span>
+							</a>
+							<!--  -->
+							<div class="tbl_btn">
+								<div class="item_btn">
+									<button type="button" class="btn_crad">
+										<span class="ico_gift2 ico_delete"></span>
+										<span class="txt_g">ÁÖ¼Ò ÀÔ·Â</span>
+									</button>
+								</div>
+							</div>
+						</div>                	
+                	</div>
+                	
+                	<!-- ¹è¼ÛÁö ÀÔ·Â Æû -->
+                	<form action="">
+						<table style="width: 70%; display: none; margin: 10px auto;" class="table table-bordered address"  >
+							<tr>
+							<th style="text-align: center"> ÀÌ¸§ </th>
+								<td>
+									<input type="text" style="width: 100%;" required name="companyName" id="to_name" value="${to_member_id }">
+								</td>
+							</tr>
+							<tr>
+							<th style="text-align: center"> ¿¬¶ôÃ³ </th>
+								<td>
+									<input type="text" style="width: 100%;" required id="to_hp" value="">
+								</td>
+							</tr>
+							<tr>
+								<th style="text-align: center"> ÁÖ¼Ò </th>
+								<td>
+									<div style="width: 100%; border: none;" class="input-group"> 
+									<input type="text" id="sample4_postcode" placeholder="¿ìÆí¹øÈ£" style="width: 60%; border:1px solid black; margin-bottom: 5px;" required value="" >
+									<input type="button" onclick="sample4_execDaumPostcode()" class="btn btn-dark btn-sm" value="¿ìÆí¹øÈ£" style=" margin-bottom: 5px; float: right;" ><br>
+									</div>
+									<input type="text" id="sample4_roadAddress" placeholder="µµ·Î¸íÁÖ¼Ò" size="60" value=""
+									style="width: 100%; margin-bottom: 5px;" required name="address1"><br>
+									
+									<input type="hidden" id="sample4_jibunAddress" placeholder="Áö¹øÁÖ¼Ò"  size="60">
+									<span id="guide" style="color:#999; display:none"></span>
+									<input type="text" id="sample4_detailAddress" placeholder="»ó¼¼ÁÖ¼Ò"  size="60" value=""
+									style="width: 100%;"required name="address2"><br>
+									
+									<input type="hidden" id="sample4_extraAddress" placeholder="Âü°íÇ×¸ñ"  size="60">
+									<input type="hidden" id="sample4_engAddress" placeholder="¿µ¹®ÁÖ¼Ò"  size="60" >
+								</td>
+							</tr>
+							<tr style="border-bottom: none;">
+								<td colspan="2" style="text-align: center; border: none; " >
+									<button type="submit" class="btn btn-success">ÀúÀå</button>
+								</td>
+							</tr>
+						</table>
+					</form>	
+					<!-- ¹è¼ÛÁö ÀÔ·Â Æû  ³¡-->
+                </div>
+                
+                <!-- close -->
+                <!-- <div class="btn-r">
+                    <a href="#" class="btn-layerClose">Close</a>
+                </div> -->
+                <a href="#none" class="btn_close">
+                	<span class="ico_gift2 ico_close">´İ±â</span>
+                </a>
+                <!--// content-->
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 <script type="text/javascript">
-//ë‹¤ìŒ ì£¼ì†Œê²€ìƒ‰ API
-//ë³¸ ì˜ˆì œì—ì„œëŠ” ë„ë¡œëª… ì£¼ì†Œ í‘œê¸° ë°©ì‹ì— ëŒ€í•œ ë²•ë ¹ì— ë”°ë¼, ë‚´ë ¤ì˜¤ëŠ” ë°ì´í„°ë¥¼ ì¡°í•©í•˜ì—¬ ì˜¬ë°”ë¥¸ ì£¼ì†Œë¥¼ êµ¬ì„±í•˜ëŠ” ë°©ë²•ì„ ì„¤ëª…í•©ë‹ˆë‹¤.
+//´ÙÀ½ ÁÖ¼Ò°Ë»ö API
+//º» ¿¹Á¦¿¡¼­´Â µµ·Î¸í ÁÖ¼Ò Ç¥±â ¹æ½Ä¿¡ ´ëÇÑ ¹ı·É¿¡ µû¶ó, ³»·Á¿À´Â µ¥ÀÌÅÍ¸¦ Á¶ÇÕÇÏ¿© ¿Ã¹Ù¸¥ ÁÖ¼Ò¸¦ ±¸¼ºÇÏ´Â ¹æ¹ıÀ» ¼³¸íÇÕ´Ï´Ù.
 function sample4_execDaumPostcode() {
 new daum.Postcode({
     oncomplete: function(data) {
-        // íŒì—…ì—ì„œ ê²€ìƒ‰ê²°ê³¼ í•­ëª©ì„ í´ë¦­í–ˆì„ë•Œ ì‹¤í–‰í•  ì½”ë“œë¥¼ ì‘ì„±í•˜ëŠ” ë¶€ë¶„.
+        // ÆË¾÷¿¡¼­ °Ë»ö°á°ú Ç×¸ñÀ» Å¬¸¯ÇßÀ»¶§ ½ÇÇàÇÒ ÄÚµå¸¦ ÀÛ¼ºÇÏ´Â ºÎºĞ.
 
-        // ë„ë¡œëª… ì£¼ì†Œì˜ ë…¸ì¶œ ê·œì¹™ì— ë”°ë¼ ì£¼ì†Œë¥¼ í‘œì‹œí•œë‹¤.
-        // ë‚´ë ¤ì˜¤ëŠ” ë³€ìˆ˜ê°€ ê°’ì´ ì—†ëŠ” ê²½ìš°ì—” ê³µë°±('')ê°’ì„ ê°€ì§€ë¯€ë¡œ, ì´ë¥¼ ì°¸ê³ í•˜ì—¬ ë¶„ê¸° í•œë‹¤.
-        var roadAddr = data.roadAddress; // ë„ë¡œëª… ì£¼ì†Œ ë³€ìˆ˜
-        var extraRoadAddr = ''; // ì°¸ê³  í•­ëª© ë³€ìˆ˜
+        // µµ·Î¸í ÁÖ¼ÒÀÇ ³ëÃâ ±ÔÄ¢¿¡ µû¶ó ÁÖ¼Ò¸¦ Ç¥½ÃÇÑ´Ù.
+        // ³»·Á¿À´Â º¯¼ö°¡ °ªÀÌ ¾ø´Â °æ¿ì¿£ °ø¹é('')°ªÀ» °¡Áö¹Ç·Î, ÀÌ¸¦ Âü°íÇÏ¿© ºĞ±â ÇÑ´Ù.
+        var roadAddr = data.roadAddress; // µµ·Î¸í ÁÖ¼Ò º¯¼ö
+        var extraRoadAddr = ''; // Âü°í Ç×¸ñ º¯¼ö
 
-        // ë²•ì •ë™ëª…ì´ ìˆì„ ê²½ìš° ì¶”ê°€í•œë‹¤. (ë²•ì •ë¦¬ëŠ” ì œì™¸)
-        // ë²•ì •ë™ì˜ ê²½ìš° ë§ˆì§€ë§‰ ë¬¸ìê°€ "ë™/ë¡œ/ê°€"ë¡œ ëë‚œë‹¤.
-        if(data.bname !== '' && /[ë™|ë¡œ|ê°€]$/g.test(data.bname)){
+        // ¹ıÁ¤µ¿¸íÀÌ ÀÖÀ» °æ¿ì Ãß°¡ÇÑ´Ù. (¹ıÁ¤¸®´Â Á¦¿Ü)
+        // ¹ıÁ¤µ¿ÀÇ °æ¿ì ¸¶Áö¸· ¹®ÀÚ°¡ "µ¿/·Î/°¡"·Î ³¡³­´Ù.
+        if(data.bname !== '' && /[µ¿|·Î|°¡]$/g.test(data.bname)){
             extraRoadAddr += data.bname;
         }
-        // ê±´ë¬¼ëª…ì´ ìˆê³ , ê³µë™ì£¼íƒì¼ ê²½ìš° ì¶”ê°€í•œë‹¤.
+        // °Ç¹°¸íÀÌ ÀÖ°í, °øµ¿ÁÖÅÃÀÏ °æ¿ì Ãß°¡ÇÑ´Ù.
         if(data.buildingName !== '' && data.apartment === 'Y'){
            extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
         }
-        // í‘œì‹œí•  ì°¸ê³ í•­ëª©ì´ ìˆì„ ê²½ìš°, ê´„í˜¸ê¹Œì§€ ì¶”ê°€í•œ ìµœì¢… ë¬¸ìì—´ì„ ë§Œë“ ë‹¤.
+        // Ç¥½ÃÇÒ Âü°íÇ×¸ñÀÌ ÀÖÀ» °æ¿ì, °ıÈ£±îÁö Ãß°¡ÇÑ ÃÖÁ¾ ¹®ÀÚ¿­À» ¸¸µç´Ù.
         if(extraRoadAddr !== ''){
             extraRoadAddr = ' (' + extraRoadAddr + ')';
         }
 
-        // ìš°í¸ë²ˆí˜¸ì™€ ì£¼ì†Œ ì •ë³´ë¥¼ í•´ë‹¹ í•„ë“œì— ë„£ëŠ”ë‹¤.
+        // ¿ìÆí¹øÈ£¿Í ÁÖ¼Ò Á¤º¸¸¦ ÇØ´ç ÇÊµå¿¡ ³Ö´Â´Ù.
         document.getElementById('sample4_postcode').value = data.zonecode;
         document.getElementById("sample4_roadAddress").value = roadAddr;
         document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
  
         document.getElementById("sample4_engAddress").value = data.addressEnglish;
                
-        // ì°¸ê³ í•­ëª© ë¬¸ìì—´ì´ ìˆì„ ê²½ìš° í•´ë‹¹ í•„ë“œì— ë„£ëŠ”ë‹¤.
+        // Âü°íÇ×¸ñ ¹®ÀÚ¿­ÀÌ ÀÖÀ» °æ¿ì ÇØ´ç ÇÊµå¿¡ ³Ö´Â´Ù.
         if(roadAddr !== ''){
             document.getElementById("sample4_extraAddress").value = extraRoadAddr;
         } else {
@@ -855,15 +793,15 @@ new daum.Postcode({
         }
 
         var guideTextBox = document.getElementById("guide");
-        // ì‚¬ìš©ìê°€ 'ì„ íƒ ì•ˆí•¨'ì„ í´ë¦­í•œ ê²½ìš°, ì˜ˆìƒ ì£¼ì†Œë¼ëŠ” í‘œì‹œë¥¼ í•´ì¤€ë‹¤.
+        // »ç¿ëÀÚ°¡ '¼±ÅÃ ¾ÈÇÔ'À» Å¬¸¯ÇÑ °æ¿ì, ¿¹»ó ÁÖ¼Ò¶ó´Â Ç¥½Ã¸¦ ÇØÁØ´Ù.
         if(data.autoRoadAddress) {
             var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-            guideTextBox.innerHTML = '(ì˜ˆìƒ ë„ë¡œëª… ì£¼ì†Œ : ' + expRoadAddr + ')';
+            guideTextBox.innerHTML = '(¿¹»ó µµ·Î¸í ÁÖ¼Ò : ' + expRoadAddr + ')';
             guideTextBox.style.display = 'block';
 
         } else if(data.autoJibunAddress) {
             var expJibunAddr = data.autoJibunAddress;
-            guideTextBox.innerHTML = '(ì˜ˆìƒ ì§€ë²ˆ ì£¼ì†Œ : ' + expJibunAddr + ')';
+            guideTextBox.innerHTML = '(¿¹»ó Áö¹ø ÁÖ¼Ò : ' + expJibunAddr + ')';
             guideTextBox.style.display = 'block';
         } else {
             guideTextBox.innerHTML = '';
@@ -873,4 +811,99 @@ new daum.Postcode({
 }).open();
 }
 </script>
+<!-- 
+<div class="container mt-3" style="display: flex;
+  flex-direction: row; height:900px; justify-content: center;
+  flex-wrap:wrap;">
+
+  <div class="card" style="width:300px; height:200px;">
+    <img class="card-img-top" src="https://img1.kakaocdn.net/thumb/C600x600.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20211116142439_3f7c46a144de45888ecea88a5d07111b.png" alt="Card image" style="width:100%">
+    <div class="card-body">
+      <p class="card-title">±³ÃÌÄ¡Å²</p>
+      <h5 class="card-text">±³ÃÌ Çã´Ï Ä¡Å²</h5>
+      <h6 class="card-text" style="float:left;"><b>from.±è¹Î¼º</b></h6> 
+      <button class="button" style="margin-left:10px">¸Ş½ÃÁö Ä«µå º¸±â</button>
+      <p style="color:gray; text-align: left; margin-top:10px">2022.09.28 ¿ÀÈÄ 09:16</p>
+    </div>
+  </div>
+
+  <div class="card" style="width:300px; height:200px;">
+    <img class="card-img-top" src="https://img1.kakaocdn.net/thumb/C600x600.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20211116142439_3f7c46a144de45888ecea88a5d07111b.png" alt="Card image" style="width:100%">
+    <div class="card-body">
+      <p class="card-title">±³ÃÌÄ¡Å²</p>
+      <h5 class="card-text">±³ÃÌ Çã´Ï Ä¡Å²</h5>
+      <h6 class="card-text" style="float:left;"><b>from.±è¹Î¼º</b></h6> 
+      <button class="button" style="margin-left:10px">¸Ş½ÃÁö Ä«µå º¸±â</button>
+      <p style="color:gray; text-align: left; margin-top:10px">2022.09.28 ¿ÀÈÄ 09:16</p>
+    </div>
+  </div>
+
+  <div class="card" style="width:300px; height:200px;">
+    <img class="card-img-top" src="https://img1.kakaocdn.net/thumb/C600x600.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20211116142439_3f7c46a144de45888ecea88a5d07111b.png" alt="Card image" style="width:100%">
+    <div class="card-body">
+      <p class="card-title">±³ÃÌÄ¡Å²</p>
+      <h5 class="card-text">±³ÃÌ Çã´Ï Ä¡Å²</h5>
+      <h6 class="card-text" style="float:left;"><b>from.±è¹Î¼º</b></h6> 
+      <button class="button" style="margin-left:10px">¸Ş½ÃÁö Ä«µå º¸±â</button>
+      <p style="color:gray; text-align: left; margin-top:10px">2022.09.28 ¿ÀÈÄ 09:16</p>
+    </div>
+  </div>
+
+  <div class="card" style="width:300px; height:200px;">
+    <img class="card-img-top" src="https://img1.kakaocdn.net/thumb/C600x600.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20211116142439_3f7c46a144de45888ecea88a5d07111b.png" alt="Card image" style="width:100%">
+    <div class="card-body">
+      <p class="card-title">±³ÃÌÄ¡Å²</p>
+      <h5 class="card-text">±³ÃÌ Çã´Ï Ä¡Å²</h5>
+      <h6 class="card-text" style="float:left;"><b>from.±è¹Î¼º</b></h6> 
+      <button class="button" style="margin-left:10px">¸Ş½ÃÁö Ä«µå º¸±â</button>
+      <p style="color:gray; text-align: left; margin-top:10px">2022.09.28 ¿ÀÈÄ 09:16</p>
+    </div>
+  </div>
+
+  <div class="card" style="width:300px; height:200px;">
+    <img class="card-img-top" src="https://img1.kakaocdn.net/thumb/C600x600.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20211116142439_3f7c46a144de45888ecea88a5d07111b.png" alt="Card image" style="width:100%">
+    <div class="card-body">
+      <p class="card-title">±³ÃÌÄ¡Å²</p>
+      <h5 class="card-text">±³ÃÌ Çã´Ï Ä¡Å²</h5>
+      <h6 class="card-text" style="float:left;"><b>from.±è¹Î¼º</b></h6> 
+      <button class="button" style="margin-left:10px">¸Ş½ÃÁö Ä«µå º¸±â</button>
+      <p style="color:gray; text-align: left; margin-top:10px">2022.09.28 ¿ÀÈÄ 09:16</p>
+    </div>
+  </div>
+
+  <div class="card" style="width:300px; height:200px;">
+    <img class="card-img-top" src="https://img1.kakaocdn.net/thumb/C600x600.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20211116142439_3f7c46a144de45888ecea88a5d07111b.png" alt="Card image" style="width:100%">
+    <div class="card-body">
+      <p class="card-title">±³ÃÌÄ¡Å²</p>
+      <h5 class="card-text">±³ÃÌ Çã´Ï Ä¡Å²</h5>
+      <h6 class="card-text" style="float:left;"><b>from.±è¹Î¼º</b></h6> 
+      <button class="button" style="margin-left:10px">¸Ş½ÃÁö Ä«µå º¸±â</button>
+      <p style="color:gray; text-align: left; margin-top:10px">2022.09.28 ¿ÀÈÄ 09:16</p>
+    </div>
+  </div>
+</div> -->
+
+
+<script>
+Kakao.init('1704daabe07853563026fbd3b27ddd21');
+function link_kakao() {
+    var sh_title = "¼±¹°ÀÌ µµÂøÇß¾î¿ä!";
+    var sh_desc = "¼±¹°ÀÌ µµÂøÇß¾î¿ä! ¼±¹°ÇÔ¿¡¼­ ¼±¹°À» È®ÀÎÇØº¸¼¼¿ä";
+    Kakao.Link.sendDefault({
+        objectType: 'feed',
+        content: {
+            title: sh_title,
+            description: sh_desc,
+            imageUrl: "https://mblogthumb-phinf.pstatic.net/20130227_217/ohbammbi_1361903848949HrG6D_JPEG/Matira-Point-Bora-Bora-Tahiti1.jpg?type=w2",
+            link: {
+                mobileWebUrl: "",
+                webUrl: ""
+            }
+        },
+    });
+}
+
+</script>
+
+</body>
 </html>

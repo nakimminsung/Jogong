@@ -18,6 +18,18 @@
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     
 <style type="text/css">
+	@font-face {
+    font-family: 'SeoulNamsanM';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+	}
+	
+	body * {
+		 font-family: 'SeoulNamsanM';
+		 word-spacing: -1px;
+	}
+	
 	.faqSearch{ 
 		width: 100%;
 		height:200px;
@@ -114,11 +126,11 @@
 			<tr>
 				<td> 
 					<div onclick="test('${dto.num }')" style="cursor: pointer;">
-					 <b style="color: red; font-size: 20px;">Q.</b>&nbsp;&nbsp;<span>${dto.title }</span><br>
+					 <b style="color: red; font-size: 20px;">Q.</b>&nbsp;&nbsp;<span><b>${dto.title }</b></span><br>
 					</div> 
 					<br>
 					 <div id="answer${dto.num }" style="display: none;">
-					 	<pre style="font-size: 15px;"><b style="color: red; font-size: 20px;">A.</b>&nbsp;&nbsp;${dto.content }</pre><br>
+					 	<pre style="font-size: 15px;font-family: 'SeoulNamsanM';"><b style="color: red; font-size: 20px;">A.</b>&nbsp;&nbsp;${dto.content }</pre><br>
 					 </div>	
 				</td>
 			</tr>

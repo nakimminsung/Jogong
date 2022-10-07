@@ -15,6 +15,18 @@
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <style type="text/css">
 	
+	@font-face {
+    font-family: 'SeoulNamsanM';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+	
+	body * {
+		 font-family: 'SeoulNamsanM';
+		 word-spacing: -1px;
+	}
+	
 	.ncontent{
 	background-color: #f5f5f5; 
 	padding-left: 40px; 
@@ -31,7 +43,7 @@
 		$("#ncontent"+num).toggle();
 		
 		  if($("#ncontent"+num).is(":visible")){
-			  $("#title"+num).css("background-color","#FFF064");
+			  $("#title"+num).css("background-color","#cff0cc");
 			  $("#icon"+num).html("<i class='fas fa-angle-up'></i>");
 		  }else {
 			  $("#title"+num).css("background-color","white");
@@ -44,7 +56,7 @@
 </head>
 <body>
 <div style="background-color: white;">
-<h3 class="alert alert-secondary" style="width: 100%">공지사항</h3>
+<h3 class="alert alert-secondary" style="width: 100%;">공지사항</h3>
 
 	<table class="table">
 		

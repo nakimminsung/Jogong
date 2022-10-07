@@ -20,26 +20,14 @@
     
 <style type="text/css">
 
-	@font-face {
-	    font-family: 'RixInooAriDuriR';
-	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/RixInooAriDuriR.woff2') format('woff2');
-	    font-weight: normal;
-	    font-style: normal;
-	}
 	
-	@font-face {
-    font-family: 'BMDOHYEON';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMDOHYEON.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-	}	
 	
 	@font-face {
     font-family: 'SeoulNamsanM';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-}
+	}
 	
 	body * {
 		 font-family: 'SeoulNamsanM';
@@ -98,7 +86,7 @@
 	.rollingNc {
 	padding-top:10px; 
 	padding-bottom:10px; 
-	height:40px; 
+	height:35px; 
 	overflow:hidden; 
 	background:#fff; 
 	width:800px; 
@@ -184,11 +172,11 @@
 			<tr>
 				<td> 
 					<div onclick="test('${dto.num }')" style="cursor: pointer;">
-					 <b style="color: red; font-size: 20px;">Q.</b>&emsp;<span>${dto.title }</span><br>
+					 <b style="color: red; font-size: 20px;">Q.</b>&emsp;<span><b>${dto.title }</b></span><br>
 					</div> 
 					<br>
 					 <div id="answer${dto.num }" style="display: none;">
-					 	<pre style="font-size: 15px;"><b style="color: red; font-size: 20px;">A.</b>&emsp;${dto.content }</pre><br>
+					 	<pre style="font-size: 15px;font-family: 'SeoulNamsanM'; "><b style="color: red; font-size: 20px;">A.</b>&emsp;${dto.content }</pre><br>
 					 </div>	
 				</td>
 			</tr>

@@ -400,7 +400,7 @@ const autoHyphen2 = (target) => {
 						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>휴대폰번호</th>
 						<td>
 							<div style="width: 300px;">
-								<input type="text" oninput="autoHyphen2(this)" name="phone" maxlength="13" placeholder="전화번호를 입력하세요" required="required" class="form-control">
+								<input type="text" oninput="autoHyphen2(this)" name="phone" placeholder="010-0000-0000" required="required" class="form-control" pattern=".{13,13}" >
 							</div>
 						</td>	
 					</tr>
