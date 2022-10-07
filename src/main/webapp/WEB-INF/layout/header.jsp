@@ -204,7 +204,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 			
 				<div>
 					<button type="button" class="btn btn-header"
-					onclick="location.href='${root}/join/joinMain'">회원가입</button>
+					onclick="location.href='${root}/join/joinMain'"><b>회원가입</b></button>
 				</div>
 				
 			</c:if>
@@ -225,6 +225,8 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     </div>
     <!--  div.header-wrapper 종료 -->
     
+    
+    <!-- 로그인 상태일때 내림 목록 -->
      <div class="quick" style="z-index:1000;">
 		<div>
 			<img src="${sessionScope.loginphoto}" style="width: 50px;border-radius:100px;height:50px;">
@@ -243,7 +245,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
   </body>
   
 <script>
-//카카오 로그아웃  
+	  //카카오 로그아웃
 	  window.Kakao.init('d4fc125a7dd0ad8b599aeac52a278521');  
 		function kakaoLogout() {
             if (!Kakao.Auth.getAccessToken()) {
