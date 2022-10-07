@@ -24,12 +24,14 @@
 	div.cart-wrapper{
 		max-width: 100%;
 		position:relative;
-		width: 100%
+		width: 100%;
+		min-height: 800px;
 	}
 	div.cart-result{
-		max-width: 800px;
+		max-width: 100%;
 		margin: 0 0 0 auto;
 		margin-top: 20px;
+		min-height: 600px;
 	}
 	div.cart-object{
 		width: 100%;
@@ -139,7 +141,7 @@
 		display: inline;
 	}
 	div.cart-total {
-		max-width: 800px;
+		max-width: 100%;
 		margin: 0 0 0 auto;
 		display: flex;
 		justify-content: space-between;
@@ -162,7 +164,7 @@
 		border-bottom: 2px solid #f0f0f0;
 		padding-bottom: 5px;
 		position: sticky;
-		bottom: 0;
+		bottom:0;
 		background-color: white;
 		border-top: 2px solid lightgray;
 		border-left: 2px solid lightgray;
@@ -417,7 +419,7 @@
 		cartlist();
 		
     	var publicOption = "";
-    	var userNum = 1;
+    	var userNum = ${sessionScope.loginid};
     	var productNum = "";
     	var updateCartNum="";
 		
@@ -880,8 +882,8 @@
 					<b style="font-size:17px; font-weight: normal;">원</b>
 				</div>
 				<div class="cart-total-right-button" style="margin-left: 20px;">
-					<button type="button" id="cart-order-self" class="btn btn-dark" style="margin-right: 10px;">나에게 선물하기</button>
-					<button type="button" id="cart-order-gift" class="btn">친구에게 선물하기</button>
+					<button type="button" id="cart-order-self" class="btn btn-dark" style="margin-right: 10px; font-weight: 1000;">나에게 선물하기</button>
+					<button type="button" id="cart-order-gift" class="btn" style="font-weight: 1000;">친구에게 선물하기</button>
 				</div>
 			</div>
 		</div>

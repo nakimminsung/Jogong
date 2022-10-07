@@ -69,9 +69,9 @@
 		float: right;
 	}
 	footer{
-	  background-color:lightgray;
+	  background-color: #fafafc;
 	  width: 100%;
-	  height: 130px;
+	  height: 155px;
 	  position: relative;
 	}
 
