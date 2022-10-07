@@ -129,9 +129,9 @@
 	.detailGift{
 		width: 120px;
     	padding: 13px 0 13px;
-    	background-color: #ffde22;
+    	background-color: #cff0cc;
   		border-radius: 5px;
-  		border-color: #ffde22;
+  		border-color: #cff0cc;
 	}
 	
 	.detailSelfGift{
@@ -264,6 +264,10 @@
     div.detail-modal-body {
     	overflow: auto;
     	height: 230px;
+    }
+    
+    .detailDescButton>span{ 
+    	cursor:pointer;
     }
 	
 </style>
@@ -451,7 +455,40 @@ $(function(){
     $(".btn-calcel").click(function(){
     	modal.style.display = "none"
     })
+    
+    // 상세설명, 리뷰 
+    $("document").ready(function(){
+    	getDetailProDesc();
+	});
+    
+    $("#detailProDesc").click(function(){
+    	getDetailProDesc();
+    });
+    
+    $("#detailReview").click(function(){
+    	var s = "";
+    	var productNum = $('input[name=productNum]').val();
+    	console.log(productNum);
+    	$.ajax({ 
+			type:"get",
+			url:"../review/productReview",
+			data:{"productNum":productNum},
+			dataType:"json",
+			success:function(res){
+				console.log(res);
+				$.each(res,function(i,e){
+					s+="<p>"+e.subject+"</p>"
+				});
+				$(".detailDescContent").html(s);
+			}
+    });
+    });
 });
+
+	function getDetailProDesc(){
+		var s = "<img src='${dto.description }' style='width:100%;'>"
+	    $(".detailDescContent").html(s);
+	}
 </script>
 </head>
 <body>
@@ -530,8 +567,17 @@ $(function(){
 				</div>
 			</div>
 			
-			<div class="detailItem detailDescription">		
-				<img src="${dto.description }" style="width:100%;">
+			<!-- <div class="datailInfo">
+				<span>dd</span>
+			</div> -->
+			
+			<div class="detailItem detailDescription">
+				<div class="detailDescButton">
+					<span id="detailProDesc">상품설명</span>
+					<span id="detailReview">선물후기</span>
+				</div>	
+				<div class="detailDescContent"></div>		
+				<%-- <img src="${dto.description }" style="width:100%;"> --%>
 			</div>
 			
 			<!-- 선물하기 modal -->

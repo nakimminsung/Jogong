@@ -48,4 +48,11 @@ public class ReviewService implements ReviewServiceInter{
 		
 		return reviewDaoInter.getPagingList(map);
 	}
+
+	// 상세페이지
+	@Override
+	public List<ReviewDto> getProductReviewList(int productNum) {
+		
+		return reviewDaoInter.getProductReviewList(productNum);
+	}
 }

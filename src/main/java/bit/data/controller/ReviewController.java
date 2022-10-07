@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import bit.data.dto.ReviewDto;
 import bit.data.service.ReviewServiceInter;
@@ -34,7 +35,7 @@ public class ReviewController {
 		//페이징 처리에 필요한 변수들
 		//전체 갯수
 		int totalCount=reviewService.getTotalCount(sc, sw);
-		int perPage=10;//한페이지당 보여질 글의 갯수
+		int perPage=100000;//한페이지당 보여질 글의 갯수
 		int perBlock=5;//한블럭당 보여질 페이지의 갯수
 		int startNum;//db에서 가져올 글의 시작번호(mysql은 첫글이 0번,오라클은 1번)
 		int startPage;//각블럭당 보여질 시작페이지
@@ -79,5 +80,13 @@ public class ReviewController {
 
 		System.out.println("totalCount=" +totalCount);
 		return "/bit/review/reviewMain";
+	}
+	
+	// 상세페이지 
+	@GetMapping("/productReview")
+	@ResponseBody
+	public List<ReviewDto> getProductReviewList(int productNum)
+	{
+		return reviewService.getProductReviewList(productNum);
 	}
 }
