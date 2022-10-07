@@ -24,22 +24,13 @@
 <style>
 </style>
 <body>
-	<div>
-		<h1>wishlist</h1>
-		<h1>wishlist</h1>
-		<h1>wishlist</h1>
-		<h1>wishlist</h1>
-		<h1>wishlist</h1>
-		<h1>wishlist</h1>
-		<h1>wishlist</h1>
-		<h1>wishlist</h1>
-		<h1>wishlist</h1>
-		<h1>wishlist</h1>
-		<h1>wishlist</h1>
-		<h1>wishlist</h1>
-		<h1>wishlist</h1>
-		<h1>wishlist</h1>
-		<h1>wishlist</h1>
+	<div class="wish-wrapper" style="height:1000px; width: 100%;">
+		<div class="wish-top">
+			<b>${sessionScope.loginname}님의</b>
+			<b>위시리스트</b>
+		</div>
+		<div class="wish-list">
+		</div>
 	</div>	
 </body>
 </html>

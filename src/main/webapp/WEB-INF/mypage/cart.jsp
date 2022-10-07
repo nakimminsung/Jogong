@@ -27,7 +27,6 @@
 	div.cart-wrapper{
 		max-width: 100%;
 		position:relative;
-		padding-top: 50px;
 		width: 100%
 	}
 	div.cart-result{
@@ -751,7 +750,7 @@
 	
 		// cart list 호출 함수
 		function cartlist() {
-			let userNum = 2;
+			let userNum = ${sessionScope.loginid};
 			let friendNum = userNum;
 				
 			var s="";
@@ -880,7 +879,7 @@
 		</div>
 		<div class="cart-result" style="position: relative; top:40px;">
 		</div>
-		<div class="cart-test" style="z-index: 100; width: 70%; display: flex; justify-content: flex-end; margin-top: 100px;">
+		<div class="cart-test" style="z-index: 100; width: 75%; display: flex; justify-content: flex-end; margin-top: 100px;">
 			<div class="cart-total-right" >
 				<div class="cart-total-right-price" style="margin-right: 10px;">
 					<b style="font-size:17px; font-weight: normal; margin-right: 30px;">총 결제 금액</b>

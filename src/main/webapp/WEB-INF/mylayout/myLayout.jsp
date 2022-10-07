@@ -36,6 +36,7 @@
 	  height: auto;
 	  min-height: 100%;
 	  position: relative;
+	  padding-top: 100px;
 	}
 	div.content{
 		max-width: 1180px;

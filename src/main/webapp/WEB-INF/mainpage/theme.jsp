@@ -115,7 +115,7 @@
 		
 	    $(".loadProduct").click(function(e){ 
 	        e.preventDefault();
-	        $("div.cardTheme:hidden").slice(0, 4).show();
+	        $("div.cardTheme:hidden").slice(0, 3).show();
 	    });    
 	});
 	 
@@ -141,7 +141,7 @@
 					
 					$("div.productTheme").html(s);
 					
-					$("div.cardTheme").slice(0, 5).hide(); 
+					$("div.cardTheme").slice(0, 6).hide(); 
 				}
 			});
 		}
