@@ -3,6 +3,9 @@ package bit.data.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import bit.data.dto.SellerDto;
@@ -97,11 +101,28 @@ public class LoginController {
 	 
 	
 	@GetMapping("/logout")
-	public String logout(HttpSession session)
+	public String logout(HttpSession session, HttpServletRequest request, HttpServletResponse response)
 	{
 		//로그아웃 시 제거되어야 할 세션
-		session.removeAttribute("loginok");	//이걸로 비교할거라서 얘만 지우면되지만, id까지 지우기로함
+//		session.removeAttribute("loginok");	//이걸로 비교할거라서 얘만 지우면되지만, id까지 지우기로함
 		//session.removeAttribute("loginid");
+		
+		session.invalidate();
+		
+		Cookie[] cookies = request.getCookies(); // 모든 쿠키의 정보를 cookies에 저장
+		
+		if(cookies != null){ // 쿠키가 한개라도 있으면 실행
+
+			for(int i=0; i< cookies.length; i++){
+
+			cookies[i].setMaxAge(0); // 유효시간을 0으로 설정
+
+			response.addCookie(cookies[i]); // 응답 헤더에 추가
+
+			}
+
+		}
+		
 		
 		return "redirect:/";
 	}
@@ -180,6 +201,60 @@ public class LoginController {
 			
 		}
 		map.put("result",email!=null?"success":"fail");
+		
+		return map;
+	}
+	
+	//네이버 회원가입&로그인
+	@PostMapping("/userNaverLogin")
+	@ResponseBody
+	public Map<String, String> usernaverloginprocess(String email, HttpSession session, UserDto dto){
+		
+		Map<String, String> map=new HashMap<String, String>();
+		int userCount=userService.getUserIdSearch(email);  //seller,user 가입된 이메일 있으면 가입 안됨.
+		
+		// 해당 email로 가입된 유저 정보가 없으면 DB insert로 진행
+		if(userCount==0) {
+		
+			dto.setSalt("0");
+			dto.setPoint(0);
+			dto.setAdmin(false);
+			dto.setLoginType("네이버");
+		
+			userService.insertUser(dto);
+			
+			//유지 시간 설정
+			session.setMaxInactiveInterval(60*60*4);//4시간
+	
+			//로그인한 아이디에 대한 정보를 얻어서 세션에 저장
+			UserDto userDto=userService.getDataById(email);
+			
+			session.setAttribute("loginok", "yes");
+			session.setAttribute("loginid", email);
+			session.setAttribute("loginname", userDto.getNickname());
+			session.setAttribute("loginphoto", userDto.getProfileImage());
+			
+			//qna insert 테스트
+			session.setAttribute("loginUserNum", userDto.getNum());
+		
+		}else{ // email 정보가 없다면 로그인으로
+			
+			//유지 시간 설정
+			session.setMaxInactiveInterval(60*60*4);//4시간
+			
+			//로그인한 아이디에 대한 정보를 얻어서 세션에 저장s
+			UserDto userDto=userService.getDataById(email);
+			session.setAttribute("loginok", "yes");
+			session.setAttribute("loginid", email);
+			session.setAttribute("loginname", userDto.getNickname());
+			session.setAttribute("loginphoto", userDto.getProfileImage());
+			
+			//qna insert 테스트 (네이버 계정 userNum 가져오는것 확인 완료)
+			session.setAttribute("loginUserNum", userDto.getNum());
+			
+		}
+		map.put("result",email!=null?"success":"fail");
+		System.out.println(map);
 		
 		return map;
 	}

@@ -32,6 +32,9 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     
     <!-- 카카오 로그인 관련 -->
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>	
+    
+    <!-- 네이버 로그인 관련 -->
+	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 
 </head>
 <style>
@@ -201,7 +204,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 			
 				<div>
 					<button type="button" class="btn btn-header"
-					onclick="location.href='${root}/join/joinMain'">회원가입</button>
+					onclick="location.href='${root}/join/joinMain'"><b>회원가입</b></button>
 				</div>
 				
 			</c:if>
@@ -212,6 +215,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 					<img src="${sessionScope.loginphoto}" class="profile">
 					<b style="max-width:500px;">${sessionScope.loginname}님</b>&emsp;<span class="upIcon"><i class='fas fa-angle-down'></i></span>
 				</div>
+
 			</c:if>
 			
 		</div>	<!-- div.right 종료 -->
@@ -219,6 +223,8 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     </div>
     <!--  div.header-wrapper 종료 -->
     
+    
+    <!-- 로그인 상태일때 내림 목록 -->
      <div class="quick" style="z-index:1000;">
 		<div>
 			<img src="${sessionScope.loginphoto}" style="width: 50px;border-radius:100px;height:50px;">
@@ -234,8 +240,13 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 		</div> 
 	</div>  
   </body>
+  
 <script>
+<<<<<<< HEAD
+	  //카카오 로그아웃
+=======
 /* //카카오 로그아웃  
+>>>>>>> 756729fab20010df321f93767cc815ddfbb1a76d
 	  window.Kakao.init('d4fc125a7dd0ad8b599aeac52a278521');  
 		function kakaoLogout() {
             if (!Kakao.Auth.getAccessToken()) {
@@ -259,6 +270,19 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 			  }
 		})
  
+		
+		// 네이버 로그인 관련 // header.jsp 의 스크립트에 삽입했음
+		let naverLogin = new naver.LoginWithNaverId(
+				{
+					clientId: "CweUwT4uDWQRHuTIz4CB",	/* "YOUR_CLIENT_ID" */
+					callbackUrl: "http://localhost:9000/jogong/loginForm",	/* "YOUR_CALLBACK_URL" */
+					//로그인 팝업 여부
+					isPopup: false,
+					loginButton: {color: "green", type: 3, height: 50}
+				}
+			);
+		
+
 </script>	
   
 </html>
