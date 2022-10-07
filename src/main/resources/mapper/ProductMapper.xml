@@ -43,6 +43,17 @@
 	<select id="selectProductDetail" parameterType="int" resultType="productDto">
 		select * from product where num=#{num}
 	</select>
+	
+	<!-- 카테고리전체 -->
+   <select id="getCategory" resultType="categoryDto">
+      select * from category order by num asc
+   </select>
+   
+   <!-- 카테고리 num -->
+   <select id="getCategoryByNum" parameterType="int" resultType="String">
+      select name from category where num=#{num}
+   </select>
+	
 </mapper>
 
 

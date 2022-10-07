@@ -2,11 +2,17 @@ package bit.data.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import bit.data.dao.ProductDaoInter;
+import bit.data.dto.CategoryDto;
 import bit.data.dto.ProductDto;
 import bit.data.service.ProductServiceInter;
 import bit.data.service.ReviewServiceInter;
@@ -71,5 +77,26 @@ public class ProductController {
 		mview.setViewName("/bit/product/detail");
 		
 		return mview;
+	}
+	
+	@GetMapping("/category")
+	public String category(Model model) {
+		List<CategoryDto> category=productService.getCategory();
+		model.addAttribute("category", category);
+	
+		return "/bit/category/categoryMain";
+	}
+	
+	@GetMapping("/category/categoryDetail")
+	public String categoryMain(Model model,HttpServletRequest request) {
+		List<CategoryDto> category=productService.getCategory();
+		model.addAttribute("category", category);
+		int num=Integer.parseInt(request.getParameter("num"));
+		String catebynum=productService.getCategoryByNum(num);
+		model.addAttribute("catebynum", catebynum);
+		model.addAttribute("num",num);
+		
+	
+		return "/bit/category/detail";
 	}
 }

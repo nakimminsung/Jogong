@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import bit.data.dao.ProductDaoInter;
+import bit.data.dto.CategoryDto;
 import bit.data.dto.ProductDto;
 
 @Service
@@ -44,4 +45,18 @@ public class ProductService implements ProductServiceInter {
 //	
 //		return daoInter.getTag(themeNum);
 //	}
+
+	@Override
+	public List<CategoryDto> getCategory() {
+		// TODO Auto-generated method stub
+		return productDaoInter.getCategory();
+	}
+
+	@Override
+	public String getCategoryByNum(int num) {
+		// TODO Auto-generated method stub
+		return productDaoInter.getCategoryByNum(num);
+	}
+	
+	
 }

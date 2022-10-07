@@ -184,7 +184,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 			</div>
 			<div class="menu">
 				<a href="${root}">브랜드</a>
-				<a href="${root}">카테고리</a>
+				<a href="${root}/category">카테고리</a>
 				<a href="${root}/review/list">후기</a>
 			</div>
 			<div class="search-box">
@@ -242,9 +242,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
   </body>
   
 <script>
-<<<<<<< HEAD
-	  //카카오 로그아웃
-=======
 /* //카카오 로그아웃  
 >>>>>>> 756729fab20010df321f93767cc815ddfbb1a76d
 	  window.Kakao.init('d4fc125a7dd0ad8b599aeac52a278521');  
