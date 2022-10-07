@@ -470,8 +470,9 @@
                     <tfoot>
                         <tr>
                             <th>결제 금액</th>
-                            <td><strong id="final_price">
-                            </strong>${totalprice} 원</td>
+                            <td id="final_price">
+                            	<strong id="final_price">${totalprice} 원</strong>
+                            </td>
                         </tr>
                     </tfoot>
                 </table>
@@ -501,7 +502,7 @@ function payment(data) {
         custom_data : customdata,
     }, function (rsp) { // callback
         if (rsp.success) {
-        	   alert("완료 -> 구매자 : "+rsp.buyer_name+"imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료"+"상품명:"+rsp.name+"가격:"+rsp.paid_amount+"count:"+rsp.custom_data.count+"받는사람:"+rsp.custom_data.member_id+"결제상태:"+rsp.success);
+        	   //alert("완료 -> 구매자 : "+rsp.buyer_name+"imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료"+"상품명:"+rsp.name+"가격:"+rsp.paid_amount+"count:"+rsp.custom_data.count+"받는사람:"+rsp.custom_data.member_id+"결제상태:"+rsp.success);
                
                jQuery.ajax({
                    url: "test.action",
@@ -520,6 +521,9 @@ function payment(data) {
                        "buyer_tel" : rsp.buyer_tel
             		   }
                    });
+               
+               location.replace("${root}/jogong");
+               
          } else {
              alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
              var msg = "결제에 실패했습니다"
@@ -535,7 +539,7 @@ function danal(data) {
 	IMP.request_pay({
 		pg : 'nice',
 	    pay_method : 'phone',
-	    merchant_uid: rand, //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+        merchant_uid: rand, //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
         name : '${productName}', //결제창에 노출될 상품명
         amount: '${totalprice}',
         buyer_name : "${buyer_name}",
@@ -546,42 +550,44 @@ function danal(data) {
         custom_data : customdata,
     }, function (rsp) { // callback
         if (rsp.success) {
-        	   alert("완료 -> 구매자 : "+rsp.buyer_name+"imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료"+"상품명:"+rsp.name+"가격:"+rsp.paid_amount+"count:"+rsp.custom_data.count+"받는사람:"+rsp.custom_data.member_id+"결제상태:"+rsp.success);
+        	   //alert("완료 -> 구매자 : "+rsp.buyer_name+"imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료"+"상품명:"+rsp.name+"가격:"+rsp.paid_amount+"count:"+rsp.custom_data.count+"받는사람:"+rsp.custom_data.member_id+"결제상태:"+rsp.success);
                
-               jQuery.ajax({
-                   url: "test.action",
-                   method: "POST",
-     			dataType:"json",
-                   data: {
-                       "imp_uid": rsp.imp_uid,
-                       "merchant_uid": rsp.merchant_uid,
-                       "name" : rsp.name,
-                       "amount" : rsp.paid_amount,
-                       "buyer_name" : rsp.buyer_name,
-                       "pg" : rsp.pg_provider,
-                       "pay_method" : rsp.pay_method,
-                       "custom_data" : rsp.custom_data,
-                       "success" : rsp.success,
-                       "buyer_tel" : rsp.buyer_tel
-            		   }
-                   });
-         } else {
-             alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
-             var msg = "결제에 실패했습니다"
-             msg = "에러내용:" + rsp.error_msg;
-             
-             alert(msg);
-         }
-     });
+            jQuery.ajax({
+                url: "test.action",
+                method: "POST",
+  			dataType:"json",
+                data: {
+                    "imp_uid": rsp.imp_uid,
+                    "merchant_uid": rsp.merchant_uid,
+                    "name" : rsp.name,
+                    "amount" : rsp.paid_amount,
+                    "buyer_name" : rsp.buyer_name,
+                    "pg" : rsp.pg_provider,
+                    "pay_method" : rsp.pay_method,
+                    "custom_data" : rsp.custom_data,
+                    "success" : rsp.success,
+                    "buyer_tel" : rsp.buyer_tel
+         		   }
+                });
+            
+            location.replace("${root}/jogong");
+            
+      } else {
+          alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
+          var msg = "결제에 실패했습니다"
+          msg = "에러내용:" + rsp.error_msg;
+          
+          alert(msg);
+      }
+  });
 }
-
 
 function kg(data) {
 	IMP.init('imp20164668');//아임포트 관리자 콘솔에서 확인한 '가맹점 식별코드' 입력
 	IMP.request_pay({
 		pg : 'html5_inicis',
 	    pay_method : 'card',
-	    merchant_uid: rand, //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+        merchant_uid: rand, //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
         name : '${productName}', //결제창에 노출될 상품명
         amount: '${totalprice}',
         buyer_name : "${buyer_name}",
@@ -592,33 +598,36 @@ function kg(data) {
         custom_data : customdata,
     }, function (rsp) { // callback
         if (rsp.success) {
-        	   alert("완료 -> 구매자 : "+rsp.buyer_name+"imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료"+"상품명:"+rsp.name+"가격:"+rsp.paid_amount+"count:"+rsp.custom_data.count+"받는사람:"+rsp.custom_data.member_id+"결제상태:"+rsp.success);
+        	   //alert("완료 -> 구매자 : "+rsp.buyer_name+"imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료"+"상품명:"+rsp.name+"가격:"+rsp.paid_amount+"count:"+rsp.custom_data.count+"받는사람:"+rsp.custom_data.member_id+"결제상태:"+rsp.success);
                
-               jQuery.ajax({
-                   url: "test.action",
-                   method: "POST",
-     			dataType:"json",
-                   data: {
-                       "imp_uid": rsp.imp_uid,
-                       "merchant_uid": rsp.merchant_uid,
-                       "name" : rsp.name,
-                       "amount" : rsp.paid_amount,
-                       "buyer_name" : rsp.buyer_name,
-                       "pg" : rsp.pg_provider,
-                       "pay_method" : rsp.pay_method,
-                       "custom_data" : rsp.custom_data,
-                       "success" : rsp.success,
-                       "buyer_tel" : rsp.buyer_tel
-            		   }
-                   });
-         } else {
-             alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
-             var msg = "결제에 실패했습니다"
-             msg = "에러내용:" + rsp.error_msg;
-             
-             alert(msg);
-         }
-     });
+            jQuery.ajax({
+                url: "test.action",
+                method: "POST",
+  			dataType:"json",
+                data: {
+                    "imp_uid": rsp.imp_uid,
+                    "merchant_uid": rsp.merchant_uid,
+                    "name" : rsp.name,
+                    "amount" : rsp.paid_amount,
+                    "buyer_name" : rsp.buyer_name,
+                    "pg" : rsp.pg_provider,
+                    "pay_method" : rsp.pay_method,
+                    "custom_data" : rsp.custom_data,
+                    "success" : rsp.success,
+                    "buyer_tel" : rsp.buyer_tel
+         		   }
+                });
+            
+            location.replace("${root}/jogong");
+            
+      } else {
+          alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
+          var msg = "결제에 실패했습니다"
+          msg = "에러내용:" + rsp.error_msg;
+          
+          alert(msg);
+      }
+  });
 }
  
 function toss(data) {
@@ -626,7 +635,7 @@ function toss(data) {
 	IMP.request_pay({
 		pg : 'tosspay',
 	    pay_method : 'card',
-	    merchant_uid: rand, //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+        merchant_uid: rand, //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
         name : '${productName}', //결제창에 노출될 상품명
         amount: '${totalprice}',
         buyer_name : "${buyer_name}",
@@ -637,33 +646,36 @@ function toss(data) {
         custom_data : customdata,
     }, function (rsp) { // callback
         if (rsp.success) {
-        	   alert("완료 -> 구매자 : "+rsp.buyer_name+"imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료"+"상품명:"+rsp.name+"가격:"+rsp.paid_amount+"count:"+rsp.custom_data.count+"받는사람:"+rsp.custom_data.member_id+"결제상태:"+rsp.success);
+        	   //alert("완료 -> 구매자 : "+rsp.buyer_name+"imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid+ "결제완료"+"상품명:"+rsp.name+"가격:"+rsp.paid_amount+"count:"+rsp.custom_data.count+"받는사람:"+rsp.custom_data.member_id+"결제상태:"+rsp.success);
                
-               jQuery.ajax({
-                   url: "test.action",
-                   method: "POST",
-     			dataType:"json",
-                   data: {
-                       "imp_uid": rsp.imp_uid,
-                       "merchant_uid": rsp.merchant_uid,
-                       "name" : rsp.name,
-                       "amount" : rsp.paid_amount,
-                       "buyer_name" : rsp.buyer_name,
-                       "pg" : rsp.pg_provider,
-                       "pay_method" : rsp.pay_method,
-                       "custom_data" : rsp.custom_data,
-                       "success" : rsp.success,
-                       "buyer_tel" : rsp.buyer_tel
-            		   }
-                   });
-       } else {
-    	   alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
-           var msg = "결제에 실패했습니다"
-           msg = "에러내용:" + rsp.error_msg;
-           
-           alert(msg);
-       }
-   });
+            jQuery.ajax({
+                url: "test.action",
+                method: "POST",
+  			dataType:"json",
+                data: {
+                    "imp_uid": rsp.imp_uid,
+                    "merchant_uid": rsp.merchant_uid,
+                    "name" : rsp.name,
+                    "amount" : rsp.paid_amount,
+                    "buyer_name" : rsp.buyer_name,
+                    "pg" : rsp.pg_provider,
+                    "pay_method" : rsp.pay_method,
+                    "custom_data" : rsp.custom_data,
+                    "success" : rsp.success,
+                    "buyer_tel" : rsp.buyer_tel
+         		   }
+                });
+            
+            location.replace("${root}/jogong");
+            
+      } else {
+          alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
+          var msg = "결제에 실패했습니다"
+          msg = "에러내용:" + rsp.error_msg;
+          
+          alert(msg);
+      }
+  });
 }
 
 /*배너 클릭시 색상변경 효과*/
