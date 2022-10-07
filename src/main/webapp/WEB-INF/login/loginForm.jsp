@@ -214,7 +214,7 @@ $(document).ready(function(){
 		}	//if 종료
 	});	//naverLogin.getLoginStatus 종료
 	
-	console.log(naverLogin);
+	//console.log(naverLogin);
 
 	
 	
