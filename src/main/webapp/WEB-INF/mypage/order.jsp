@@ -42,7 +42,6 @@ div.Gift{
 	flex-wrap:wrap;
 }
 div.card{
-   margin-left:30px
 }
 p.card-title{
    color:blue;
@@ -114,25 +113,6 @@ p.card-title{
   	font-weight: 600;
   }
   
-   .layer_body{
-     -webkit-text-size-adjust: none;
-    font-size: 14px;
-    line-height: 1.5;
-    color: #000;
-    font-family: -apple-system,Apple SD Gothic Neo,\b9d1\c740  \ace0\b515,Malgun Gothic,sans-serif,ArialUnicodeMs;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
-    position: static;
-    left: auto;
-    right: auto;
-    top: auto;
-    bottom: auto;
-    max-height: 630px;
-    box-sizing: border-box;
- } 
   .wrap_msgprofile{
   	-webkit-text-size-adjust: none;
     font-size: 14px;
@@ -504,6 +484,15 @@ p.card-title{
   }
   .gift_window{
   	-webkit-text-size-adjust: none;
+
+  .container mt-3{
+  	width:33%;
+  	height:400px;
+  	justify-content: space-around;
+  }
+  
+  
+  ul.tab_receive{
     font-size: 14px;
     line-height: 1.5;
     color: #000;
@@ -607,12 +596,12 @@ p.card-title{
 		});
 		
 		$(document).on("click","#msgbtn",function() {
-		    <!-- 여러개의 버튼이 모두 클릭되어서 모두 호출된다
-		    //$(".modal").modal({remote : 'layer.html'});
-		    //$(".modal").modal('show');
+		    <!-- 여러개의 버튼이 모두 클릭되어서 모두 호출된다 -->
+		    $(".modal").modal({remote : 'layer.html'});
+		    $(".modal").modal('show');
 		    
 		    <!-- (this)로 찍으면 배경만 나옴 -->
-		    $(this).modal('show');
+		    //$(this).modal('show');
 		});
 		
 		$(document).on("click",".btn_crad",function() {
@@ -628,9 +617,10 @@ p.card-title{
 		
 	});	
 	
- 	function order_recevie() {
+	function order_recevie() {
 	 	// 로그인 세션아이디num으로 변경
  		var num = 2;
+// 		var num = ${sessionScope.loginname};
 		var s="";
 
 		$.ajax({
@@ -641,8 +631,7 @@ p.card-title{
 			success:function(res){
 				
 	 			$.each(res, function(i,elt) {
-	 				
-	 				s+= "<div class='container mt-3' style='width:33%; height:500px;'>"
+	 				s+= "<div class='container mt-3' style='width:33%; height:500px; cursor:pointer;' onclick=\"location.href='../${root}product/detail?num="+elt.productNum+"'\">"
  					s+=	"<div class='card'>"
  					s+=	"<img class='card-img-top' src="+elt.thumbnailImageUrl+" alt='Card image' style='width:100%'>"
  					s+=	"<div class='card-body'>"
@@ -657,8 +646,12 @@ p.card-title{
 		});
 	}; 
 	
+	 	
+	 	
+	 	
 	  	function order_send() {
 	 		var num = 5;
+//	 		var num = ${sessionScope.loginname};
 			var s="";
 				
 			$.ajax({
@@ -670,8 +663,8 @@ p.card-title{
 					
 		 			$.each(res, function(i,elt) {
 		 				
-		 				s+= "<div class='container mt-3' style='width:33%; height:500px;'>"
-	 					s+=	"<div class='card' style='width:300px; height:200px;'>"
+		 				s+= "<div class='container mt-3' style='width:33%; height:500px; cursor:pointer;' onclick=\"location.href='../${root}product/detail?num="+elt.productNum+"'\">"
+	 					s+=	"<div class='card'>"
 	 					s+=	"<img class='card-img-top' src="+elt.thumbnailImageUrl+" alt='Card image' style='width:100%'>"
 	 					s+=	"<div class='card-body'>"
 	 					s+=	"<p class='card-title'>"+elt.brand+"</p>"

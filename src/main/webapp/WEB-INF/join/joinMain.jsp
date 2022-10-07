@@ -13,6 +13,7 @@
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script><!-- jquery -->
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
+
 <style>
 	*{
 		/* font-family: 'Jua'; */
@@ -49,7 +50,7 @@
 	}
 	
 	div.snsJoin{
-		width: 500px;
+		width: 100%;
 		margin-top: 30px;
 		justify-content: space-between;
 	}
@@ -88,9 +89,12 @@
 		<p style="margin-top: 20px;">지금 회원가입 하신 후 조공에서 다양한 서비스를 경험해보세요</p>
 		<button class="btnJoin btn btn-danger" onclick="location.href = '../join/userAgree'" >개인 회원가입</button>
 		
-		<div class="snsJoin">
-			<button class="btnKakao" style="background-color: #fde102;"><i class='fas fa-comment'></i> 카카오로 가입</button>&nbsp;&nbsp;&nbsp;
-			<button class="btnNaver" style="background-color: #19ce60; color: white;">N 네이버로 가입</button>
+		<div class="snsJoin input-group">
+			<button class="btnKakao" style="background-color: #fde102; height: 50px;"><i class='fas fa-comment'></i>  카카오 아이디로 로그인</button>&nbsp;&nbsp;&nbsp;
+			<!-- 네이버 로그인 버튼이 생기는 영역 -->
+			<div id="naverIdLogin"></div>
+			
+			<!-- <button class="btnNaver" style="background-color: #19ce60; color: white;">N 네이버로 가입</button> -->
 		</div>
 		
 		<p style="margin-top: 10px; color: gray; font-size: 14px;">SNS계정 회원가입(만 14세 이상 가능)</p>
@@ -164,5 +168,47 @@
            }
        });
    }// kakaoLogin()
+   
+   
+   
+    //네이버 로그인 정보를 초기화하기 위하여 init을 호출
+	naverLogin.init();
+	
+	//초기화할 때 로그아웃
+	naverLogin.logout();
+	
+	//네이버 로그인 정보 가져오기
+	naverLogin.getLoginStatus(function (status) {
+      if (status) {
+		const nickname=naverLogin.user.getName();
+		const email=naverLogin.user.getEmail();
+		const image=naverLogin.user.getProfileImage();
+		const gender=naverLogin.user.getGender=="F"?"2":"1";
+		const oldbirthday=naverLogin.user.getBirthday();
+		const birthday=oldbirthday.replace(/-/g, "");
+		 
+		//회원가입 or 로그인을 위한 Data 전달
+		$.ajax({  
+			type:"post",
+			url:"userNaverLogin",	//LoginController
+			dataType:"json",
+			data:{"email":email,"nickname":nickname,"profileImage":image,"gender":gender,"date":birthday},         
+			success:function(ok){
+
+				//location.href="/jogong/";	
+
+			},error : function(xhr, status, error){  	// 필요한 정보 못가져올 경우 일반회원폼 이동
+
+				alert("필요한 정보를 가져올 수 없어 일반 회원가입으로 이동합니다");
+				location.href="/jogong/join/userAgree";	
+			}//error
+	
+		});//ajax 종료
+
+		
+		}	//if 종료
+	});	//naverLogin.getLoginStatus 종료
+   
+   
 </script>
 </html>

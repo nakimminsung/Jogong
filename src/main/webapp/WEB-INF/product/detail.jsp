@@ -129,9 +129,9 @@
 	.detailGift{
 		width: 120px;
     	padding: 13px 0 13px;
-    	background-color: #ffde22;
+    	background-color: #cff0cc;
   		border-radius: 5px;
-  		border-color: #ffde22;
+  		border-color: #cff0cc;
 	}
 	
 	.detailSelfGift{
@@ -265,6 +265,68 @@
     	overflow: auto;
     	height: 230px;
     }
+    
+    .detailDescButton>span{ 
+    	cursor:pointer;
+    }
+	
+	
+	
+	
+	
+	
+	 ul.tab_receive{
+    font-size: 14px;
+    line-height: 1.5;
+    color: #000;
+    list-style: none;
+    overflow: hidden;
+    margin: 30px 0 40px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ededed;
+  }
+  
+  li.presentation{
+    font-size: 14px;
+    line-height: 1.5;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    float: left;
+  }
+  
+  a.link_tab{
+    line-height: 1.5;
+    list-style: none;
+    overflow-anchor: none;
+    text-decoration: none;
+    display: block;
+    padding: 0 2px 2px;
+    color: #000;
+    opacity: 1; 
+    font-size: 15px;
+  }
+  
+  a.link_tab:hover{
+   	color:#000; 
+  	font-weight: 600;
+  }
+ 
+  a.link_tab:active{
+    color:#000; 
+  	font-weight: 600;
+  }
+
+	#detailProDesc{
+		width:130px;
+		text-align: center;
+	}
+	
+	#detailReview{
+		width:130px;
+		text-align: center;
+	}
 	
 </style>
 <script type="text/javascript">
@@ -451,7 +513,75 @@ $(function(){
     $(".btn-calcel").click(function(){
     	modal.style.display = "none"
     })
+    
+    // 상세설명, 리뷰 
+    $("document").ready(function(){
+    	getDetailProDesc();
+	});
+    
+    $("#detailProDesc").click(function(){
+    	getDetailProDesc();
+    });
+    
+    $("#detailReview").click(function(){
+    	var s = "";
+    	var productNum = $('input[name=productNum]').val();
+    	console.log(productNum);
+    	$.ajax({ 
+			type:"get",
+			url:"../review/productReview",
+			data:{"productNum":productNum},
+			dataType:"json",
+			success:function(res){
+				console.log(res);
+				$.each(res,function(i,e){
+					s+="<p>"+e.subject+"</p>"
+				});
+				$(".detailDescContent").html(s);
+			}
+    	});
+    });
+    
+	$('a.link_tab').click(function() {
+		$('a.link_tab').css("border-bottom","");
+		$(this).css("border-bottom","3px solid black");
+	});
+	
+	$("document").ready(function(){
+		borderBottom();
+		getReviewCount();
+	});	
 });
+
+	function borderBottom(){
+		$('a.link_tab').css("border-bottom","");
+		$("#detailProDesc").css("border-bottom","3px solid black");
+	}
+	
+	function getDetailProDesc(){
+		var s = "<img src='${dto.description }' style='width:100%;'>"
+	    $(".detailDescContent").html(s);
+	}
+	
+	function getReviewCount(){
+		var productNum = $('input[name=productNum]').val();
+		var s ="";
+		$.ajax({ 
+			type:"get",
+			url:"../review/count",
+			data:{"productNum":productNum},
+			dataType:"json",
+			success:function(res){
+				console.log(res);
+				//var count = parseInt(res);
+				//console.log(count);
+				
+				 s += "선물후기("+res+")";
+				$("#detailReview").text(s);
+			}
+			
+    	});
+	}
 </script>
 </head>
 <body>
@@ -530,9 +660,16 @@ $(function(){
 				</div>
 			</div>
 			
-			<div class="detailItem detailDescription">		
-				<img src="${dto.description }" style="width:100%;">
-			</div>
+			<!-- 버튼 -->
+			<div class="detailItem detailDescription">
+				<div class="detailDescButton">
+					<ul class="tab_receive">
+						<li class="presentation"><a class="link_tab" id="detailProDesc">상품설명</a></li>
+						<li class="presentation" style="margin-left:60px"><a class="link_tab" id="detailReview"></a></li>
+					</ul>
+				</div>	
+				<div class="detailDescContent"></div>	
+			</div>		
 			
 			<!-- 선물하기 modal -->
 		    <div id="orderDetailModal" class="gift-modal-overlay">

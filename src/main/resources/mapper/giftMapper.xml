@@ -6,7 +6,7 @@
 	<!-- 받은 선물함 조회  -->
 	<select id="getSendSearch" parameterType="int" resultType="orderDto">
 		select o.num, o.banner, o.orderDate,o.message, o.hp, o.postalcode, o.deliveryAdrress as deliveryAddress ,
-		p.name as productName, p.thumbnailImageUrl, p.brand, u.nickname, u.profileImage
+		p.num as productNum, p.name as productName, p.thumbnailImageUrl, p.brand, u.nickname, u.profileImage
 		from  jogong.order as o left join user as u on o.userNum=u.num 
 		left join product as p on o.productNum = p.num
 		where friendNum=#{num};
@@ -15,7 +15,7 @@
 	<!-- 보낸 선물함 조회  -->
 	<select id="getReceiveSearch" parameterType="int" resultType="orderDto">
 		select o.banner, o.orderDate, 
-		p.name as productName, p.thumbnailImageUrl, p.brand, u.nickname, u.profileImage
+		p.num as productNum, p.name as productName, p.thumbnailImageUrl, p.brand, u.nickname, u.profileImage
 		from  jogong.order as o left join user as u on o.friendNum=u.num 
 		left join product as p on o.productNum = p.num
 		where userNum=#{num};
