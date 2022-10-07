@@ -258,7 +258,8 @@
 				<tr>
 					<th><b>*</b> 담당자 연락처</th>
 					<td>
-						<input type="text" style="width: 50%;" placeholder="010-1234-5678" required name="phone">
+						<input type="text" style="width: 50%;" placeholder="010-1234-5678" required name="phone"
+						minlength = "12" maxlength="13">
 						
 					</td>
 				</tr>
@@ -299,7 +300,7 @@
 					</th>
 					<td style="padding-left: 10px;">
 						<input type="text" id="businessNumber" style="width: 50%;" placeholder="숫자만 입력" 
-						required name="businessNumber" maxlength=12">
+						required name="businessNumber" minlength = "12" maxlength="12">
 
 						<button type="button" class="btn btn-dark btn-sm btnBusiness" style="width: 105px;">사업자 인증</button>
 					</td>

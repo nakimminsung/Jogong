@@ -206,5 +206,60 @@ public class JoinController {
 			return map;
 			
 		}
+		
+		
+		//네이버 회원가입&로그인
+		@PostMapping("/userNaverLogin")
+		@ResponseBody
+		public Map<String, String> usernaverloginprocess(String email, HttpSession session, UserDto dto){
+			
+			Map<String, String> map=new HashMap<String, String>();
+			int userCount=userService.getUserIdSearch(email);  //seller,user 가입된 이메일 있으면 가입 안됨.
+			
+			// 해당 email로 가입된 유저 정보가 없으면 DB insert로 진행
+			if(userCount==0) {
+			
+				dto.setSalt("0");
+				dto.setPoint(0);
+				dto.setAdmin(false);
+				dto.setLoginType("네이버");
+			
+				userService.insertUser(dto);
+				
+				//유지 시간 설정
+				session.setMaxInactiveInterval(60*60*4);//4시간
+		
+				//로그인한 아이디에 대한 정보를 얻어서 세션에 저장
+				UserDto userDto=userService.getDataById(email);
+				
+				session.setAttribute("loginok", "yes");
+				session.setAttribute("loginid", email);
+				session.setAttribute("loginname", userDto.getNickname());
+				session.setAttribute("loginphoto", userDto.getProfileImage());
+				
+				//qna insert 테스트
+				session.setAttribute("loginUserNum", userDto.getNum());
+			
+			}else{ // email 정보가 없다면 로그인으로
+				
+				//유지 시간 설정
+				session.setMaxInactiveInterval(60*60*4);//4시간
+				
+				//로그인한 아이디에 대한 정보를 얻어서 세션에 저장s
+				UserDto userDto=userService.getDataById(email);
+				session.setAttribute("loginok", "yes");
+				session.setAttribute("loginid", email);
+				session.setAttribute("loginname", userDto.getNickname());
+				session.setAttribute("loginphoto", userDto.getProfileImage());
+				
+				//qna insert 테스트 (네이버 계정 userNum 가져오는것 확인 완료)
+				session.setAttribute("loginUserNum", userDto.getNum());
+				
+			}
+			map.put("result",email!=null?"success":"fail");
+			System.out.println(map);
+			
+			return map;
+		}
 
 }

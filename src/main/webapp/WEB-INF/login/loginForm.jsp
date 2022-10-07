@@ -19,7 +19,7 @@
 	
 	div.all{
 		width: 100%;
-		height: 800px;
+		height: 500px;
 		/* padding-top: 50px;
 		padding-left: 200px; */
 		margin-top: 100px;
@@ -45,7 +45,7 @@
 		color: white;
 		 */
 		font-weight: bold;
-		margin-top: 20px;
+		margin-top: 40px;
 		background-color: #ef3e43;
 	}
 	
@@ -125,39 +125,26 @@ $(document).ready(function(){
 				<input type="password" class="form-control userTextBox" required placeholder="비밀번호" id="userPassword">
 				<label style="float: left;"><input type="checkbox" class="form-check-input checkUser" id="rememberId" ${rememberId=='yes' ? 'checked' : ''}> 아이디 저장</label>		
 				<button type="button" class="loginok btn btn-danger" id="loginok" >로그인</button>
-				<hr>
+				<hr style="margin-top: 30px; margin-bottom: 30px; ">
 				
 				<!-- 소셜회원 로그인 박스 -->
 				<div class="snsLoginBox input-group">
 					
 					<!-- 카카오 로그인 버튼 -->
-					<button class="btnKakaoLogin" style="background-color: #fde102; height: 50px;"><i class='fas fa-comment'></i> 카카오 아이디로 로그인</button>&nbsp;&nbsp;
+					<button class="btnKakaoLogin" style="background-color: #fde102; height: 50px;"><i class='fas fa-comment'></i>  카카오 아이디로 로그인</button>&nbsp;&nbsp;
 					
 					<!-- 네이버 로그인 버튼이 생기는 영역 -->
 					<div id="naverIdLogin"></div>
-			
-					
-					<!-- 네이버 로그인 -->
 					<!-- <button class="btnNaverLogin" style="background-color: #03c75a; height: 50px; color: white;">N 네이버 아이디로 로그인</button> -->
-					<!-- <button class="btnNaverLogin" style="background-color: #19ce60; color: white;">N 네이버로 로그인</button> -->
-					<div class="naver" style="margin-top: 20px;">
-						<div class="container">
-							<div class="login-area">
-								<div id="message">
-									로그인 버튼을 눌러 로그인 해주세요.
-								</div>
-								<div id="button_area">
-									
-								</div>
-							</div>
-						</div>
-					</div>
+
 				
 				
 				</div>	<!-- 소셜 로그인 div 종료 -->
 
 			</div>	<!-- 일반 회원 div 종료 -->
 
+			
+			
 				
 			<!-- 판매회원 로그인 박스 -->
 			<div class="sellerLoginBox">
@@ -184,26 +171,26 @@ $(document).ready(function(){
 </body>
 
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>	<!-- 카카오 로그인 관련 -->
-
-<!-- 네이버 로그인 관련 // header.jsp 의 스크립트에 삽입했음 -->
-<!-- <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script> -->
-	
+<!-- 네이버 로그인 관련 -->
+<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 <script>
 	
-	
-	
+
 	// 네아로 로그인 정보를 초기화하기 위하여 init을 호출
-	naverLogin.init(); 
+	naverLogin.init();
 	
-	//네이버 로그인 정보 가져오기
+	// 초기화할 때 로그아웃
+	naverLogin.logout();
+	
+	//네이버 로그인 정보 가져와서 담기
 	naverLogin.getLoginStatus(function (status) {
       if (status) {
-		const nickname=naverLogin.user.getName();
-		const email=naverLogin.user.getEmail();
-		const image=naverLogin.user.getProfileImage();
-		const gender=naverLogin.user.getGender=="F"?"2":"1";
-		const oldbirthday=naverLogin.user.getBirthday();
-		const birthday=oldbirthday.replace(/-/g, "");
+		let nickname=naverLogin.user.getName();
+		let email=naverLogin.user.getEmail();
+		let image=naverLogin.user.getProfileImage();
+		let gender=naverLogin.user.getGender=="F"?"2":"1";
+		let oldbirthday=naverLogin.user.getBirthday();
+		let birthday=oldbirthday.replace(/-/g, "");
 		 
 		//회원가입 or 로그인을 위한 Data 전달
 		$.ajax({  
@@ -213,7 +200,7 @@ $(document).ready(function(){
 			data:{"email":email,"nickname":nickname,"profileImage":image,"gender":gender,"date":birthday},         
 			success:function(ok){
 
-				//location.href="/jogong/";	
+				location.href="/jogong/";
 
 			},error : function(xhr, status, error){  	// 필요한 정보 못가져올 경우 일반회원폼 이동
 
@@ -222,35 +209,13 @@ $(document).ready(function(){
 			}//error
 	
 		});//ajax 종료
-	
-	setLoginStatus(); //모든 필수 정보 제공 동의하면 실행하는 함수
-		
-		}
-	});
-	
-//	console.log(naverLogin);
-	
-	
-	
-	//네이버 가져온 정보 출력(message) & 로그아웃
- 	function setLoginStatus(){
-    
-      const message_area=document.getElementById('message');
-      message_area.innerHTML=`
-      <h3> Login 성공 </h3>
-      `;
-     
-      const button_area=document.getElementById('button_area');
-      button_area.innerHTML="<button class='btn btn-dark' id='btn_logout'>로그아웃</button>";
 
-      const logout=document.getElementById('btn_logout');
-      logout.addEventListener('click',(e)=>{
-        naverLogin.logout();	//로그아웃 메서드인듯
-		location.replace("http://localhost:9000/jogong/loginForm");
-      })
-    }
+		
+		}	//if 종료
+	});	//naverLogin.getLoginStatus 종료
 	
-	
+	console.log(naverLogin);
+
 	
 	
 	

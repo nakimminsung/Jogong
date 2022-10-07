@@ -34,7 +34,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>	
     
     <!-- 네이버 로그인 관련 -->
-    <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 
 </head>
 <style>
@@ -171,10 +171,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 				<a href="${root}/cscenter/faq"><b style="font-size: 16px;">고객센터</b></a>&emsp;
 				<img src="${sessionScope.loginphoto}" class="profile"><b style="max-width:500px;">${sessionScope.loginname}님</b>
 				&nbsp;&nbsp;
-				<a class="logout" href="${root}/logout" style="color: #add0bb;">로그아웃</a>
-				
-				<!-- 네이버 로그아웃 테스트 -->
-				<button id='btn_logout' >네이버 로그아웃</button>
+				<a class="logout" href="${root}/logout" onclick="http://nid.naver.com/nidlogin.logout" style="color: #add0bb;">로그아웃</a>
 			</c:if>
 			
 		</div>	<!-- div.right 종료 -->
@@ -196,16 +193,23 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
             });
 	}
  
-//네이버 관련 테스트중
-	const naverLogin = new naver.LoginWithNaverId(
-			{
-				clientId: "CweUwT4uDWQRHuTIz4CB",	/* "YOUR_CLIENT_ID" */
-				callbackUrl: "http://localhost:9000/jogong/loginForm",	/* "YOUR_CALLBACK_URL" */
-				//로그인 팝업 여부
-				isPopup: false,
-				loginButton: {color: "green", type: 3, height: 50}
-			}
-		);
+		
+		// 네이버 로그인 관련 // header.jsp 의 스크립트에 삽입했음
+		let naverLogin = new naver.LoginWithNaverId(
+				{
+					clientId: "CweUwT4uDWQRHuTIz4CB",	/* "YOUR_CLIENT_ID" */
+					callbackUrl: "http://localhost:9000/jogong/loginForm",	/* "YOUR_CALLBACK_URL" */
+					//로그인 팝업 여부
+					isPopup: false,
+					loginButton: {color: "green", type: 3, height: 50}
+				}
+			);
+		
+				
+
+	
+
+	
 </script>	
   
 </html>
