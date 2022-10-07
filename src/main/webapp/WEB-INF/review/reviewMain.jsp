@@ -52,12 +52,14 @@
 	  margin: 0 auto;
 	  max-width: 1180px;
 	  padding-left:70px;
+	  
 	}
 	.flex-inner-container {
 	  display: flex;
 	  flex-direction: row;
-	  
+
 	  flex-wrap: wrap;
+	  
 	}
 	
   	@media (min-width: 600px) {
