@@ -327,8 +327,8 @@
         border: 1px solid rgba( 255, 255, 255, 0.18 );
         width: 400px;
         height: 600px;
-        position: relative;
-        top: -170px;
+        position: fixed;
+        top: 2%;
         padding: 20px;
     }
     #gift-modal .gift-close-area {
@@ -392,7 +392,7 @@
     	left: 325px;
     	cursor: pointer;
     }
-        div.gift-friend-list{
+    div.gift-friend-list{
  		height: 300px;
  		margin-top: 20px;
     }
@@ -701,9 +701,6 @@
 		
         const modal = document.getElementById("gift-modal")
         const btnModal = document.getElementById("cart-order-gift")
-		
- 
-		
 		const closeBtn = modal.querySelector(".gift-close-area")
 		
 		closeBtn.addEventListener("click", e => {
@@ -741,13 +738,12 @@
 			if(checkSize != 0){
 			    modal.style.display = "flex"
 				$("body").attr("class","modal-fix");
-				friendList();				
+				friendList();
 			} else {
 				alert("선택하신 상품이 없습니다.");
 			}
 		});
 	}); // $(fucntion)
-	
 		// cart list 호출 함수
 		function cartlist() {
 			let userNum = ${sessionScope.loginid};
@@ -877,7 +873,7 @@
 				<b style="color:#a0a0a0; cursor: pointer;" id="cart-all-delete">삭제하기</b>
 			</div>
 		</div>
-		<div class="cart-result" style="position: relative; top:40px;">
+		<div class="cart-result" style="position: relative; top: -10px;">
 		</div>
 		<div class="cart-test" style="z-index: 100; width: 75%; display: flex; justify-content: flex-end; margin-top: 100px;">
 			<div class="cart-total-right" >
@@ -907,7 +903,7 @@
             <div class="cart-modal-bottom">
 				<button type="button" class="btn btn-secondary btn-cancel" style="width:180px;">취소</button>
 				<div style="width:10px;"></div>
-				<button type="button" class="btn btn-warning cart-qty-update" style="width:180px;" cartNum="">확인</button>
+				<button type="button" class="btn cart-qty-update" style="width:180px; background-color: #cff0cc;" cartNum="">확인</button>
             </div>
         </div>
     </div>
@@ -944,7 +940,7 @@
             <div class="cart-modal-bottom">
 				<button type="button" class="btn btn-secondary btn-cancel" style="width:180px;">취소</button>
 				<div style="width:10px;"></div>
-				<button type="button" class="btn btn-warning cart-wish-insert" style="width:180px;">담기</button>
+				<button type="button" class="btn cart-wish-insert" style="width:180px; background-color: #cff0cc;">담기</button>
             </div>
         </div>
     </div>
@@ -982,7 +978,7 @@
             <div class="gift-modal-button">
 				<button type="button" class="btn btn-secondary btn-cancel">취소</button>
 				<div></div>
-				<button type="button" class="btn btn-warning" id="cart-gift-friend">확인</button>
+				<button type="button" class="btn" id="cart-gift-friend" style="background-color: #cff0cc;">확인</button>
             </div>
             </form>
         </div>

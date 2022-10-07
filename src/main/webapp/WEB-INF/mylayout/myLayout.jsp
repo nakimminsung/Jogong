@@ -44,6 +44,7 @@
 		display: flex;
 		justify-content: space-between;
 		margin: 0 auto;
+		min-height: 800px;
 	}
 	div#menu{
 		width:30%;
@@ -58,7 +59,6 @@
 	  width: 100%;
 	  height: 130px;
 	  position: relative;
-	  bottom: 0;
 	}
 
 </style>
