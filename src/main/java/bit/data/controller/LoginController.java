@@ -171,12 +171,9 @@ public class LoginController {
 		Map<String, String> map=new HashMap<String, String>();
 		int userCount=userService.getUserIdSearch(email);  //seller,user 가입된 이메일 있으면 가입 안됨.
 		if(userCount==0) {
-		dto.setPhone("0");
 		dto.setSalt("0");
-		dto.setPassword("0");
-		dto.setAddress("no");
 		dto.setPoint(0);
-		dto.setYear("0");
+		
 		dto.setLoginType("카카오");
 		dto.setAdmin(false);
 		
@@ -204,7 +201,6 @@ public class LoginController {
 			
 		}
 		map.put("result",email!=null?"success":"fail");
-		System.out.println(map);
 		
 		return map;
 	}
