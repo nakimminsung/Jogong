@@ -611,34 +611,46 @@ a.btn-layerClose:hover {
     text-decoration: none;
     display: block;
     padding: 0 2px 2px;
-    font-weight: 600;
-    border-bottom: 3px solid black;
     color: #000;
-    opacity: 1;
+    opacity: 1; 
     font-size: 20px;
   }
   
   a.link_tab:hover{
-  	color:#add0bb;
+   	color:#000; 
+  	font-weight: 600;
   }
-  
+ 
+  a.link_tab:active{
+    color:#000; 
+  	font-weight: 600;
+  }
+
 </style>
 <script type="text/javascript">
 	$(function() {
 
 		$("document").ready(function(){
 			order_send(); 
+			$("#receivePresentbox").css("border-bottom","3px solid black");
 		});	
 		
 		//오더리시브호출
 // 		order_recevie();
 // 		order_send(); 
+
+		$('.link_tab').click(function() {
+			$('.link_tab').css("border-bottom","");
+			$(this).css("border-bottom","3px solid black");
+		});
 		
 		$('#receivePresentbox').click(function(){
+			
 			order_send();
 		});
 
 		$('#sendPresentbox').click(function(){
+			
 			order_recevie();
 		});
 		
@@ -794,8 +806,8 @@ a.btn-layerClose:hover {
 <div class="gift-wrapper">
 	<div class="gift-menu">
 		<ul role="tablist" class="tab_receive">
-			<li class="presentation"><a class="link_tab" id="receivePresentbox" onclick="getReceiverBox">받은선물함</a></li>
-			<li class="presentation" style="margin-left:10px"><a class="link_tab" id="sendPresentbox" onclick="getSenderBox"> 보낸선물함 </a></li>
+			<li class="presentation"><a class="link_tab" id="receivePresentbox">받은선물함</a></li>
+			<li class="presentation" style="margin-left:10px"><a class="link_tab" id="sendPresentbox"> 보낸선물함 </a></li>
 		</ul>
 	</div>
 	<div class="Gift"></div>
