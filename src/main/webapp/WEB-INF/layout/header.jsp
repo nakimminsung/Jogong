@@ -199,6 +199,22 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 
     </div>
     <!--  div.header-wrapper 종료 -->
+    
+       <!-- 로그인 상태일때 내림 목록 -->
+     <div class="quick" style="z-index:1000;">
+		<div>
+			<img src="${sessionScope.loginphoto}" style="width: 50px;border-radius:100px;height:50px;">
+			<span style="align-items: center;padding: 0 12px;"><b style="max-width:500px;">${sessionScope.loginname}님</b></span>
+		</div> 
+		<div>
+			<div class="myMenu">
+				<a href="/jogong/mypage/cart" >마이페이지</a><br> 
+				<a href="#">쿠폰함</a><br>
+				<a href="${root}/cscenter/faq">고객센터</a><br> 
+				<a href="${root}/logout">로그아웃</a> 
+			</div>
+		</div> 
+	</div>  
   </body>
 <script>
 	//카카오 로그아웃  
