@@ -55,7 +55,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         justify-content: center;
       }
       div.event-object {
-        width: 250px;
+        width: 350px;
         height: 350px;
         padding: 0 10px;
         margin: 30px 0;
@@ -74,29 +74,29 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
       button.slick-prev {
       	position: relative;
       	top: 145px;
-  		left: 150px;
-  		z-index: 100;
+  		left: 0px;
+  		z-index: 10;
   		border-radius: 0;
   		width: 300px;
   		height: 100px;
   		font-size: 50px;
-  		background:rgba(30, 30, 30, 0.5);
+  		background: #fff;
   		border: 0px;
-  		color: #000;
+  		color: #f0f0f0;
   		font-weight: 1000;
       }
       button.slick-next {
         position: relative;
       	top: 145px;
-      	right: 140px;
-  		z-index: 100;
+      	right: 0px;
+  		z-index: 10;
   		border-radius: 0;
   		width: 300px;
   		height: 100px;
   		font-size: 50px;
-  		background:rgba(30, 30, 30, 0.5);
+  		background: #fff;
   		border: 0px;
-  		color: #000;
+  		color: #f0f0f0;
   		font-weight: 1000;
       }
       
@@ -186,7 +186,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     <script type="text/javascript">
       $(".event-wrapper").slick({
         lazyLoad: "ondemand",
-        slidesToShow: 5,
+        slidesToShow: 4,
         slidesToScroll: 1,
       });
       $(".slick-prev").html("<");

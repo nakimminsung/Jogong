@@ -35,9 +35,8 @@
 		flex-direction: row;
 	}
 	img#my-profile-img {
-		width:110px;
-		border-radius: 40px;
-		border: 3px solid white;
+		width:90px;
+		border-radius: 35px;
 	}
 	div.my-menu {
 		padding: 20px 0;
@@ -53,6 +52,12 @@
 		display: block;
 		margin: 5px;
 		font-size: 17px;
+		font-weight: 1000;
+		color: #a0a0a0;
+	}
+	a.menu-select:hover {
+		color: #000;
+		font-weight: 1000;
 	}
 </style>
 <body>
@@ -63,22 +68,22 @@
 				<img alt="profileImage" src="${sessionScope.loginphoto}" id="my-profile-img">
 			</div>
 			<div class="my-profile-right" style="padding-left: 10px; display:flex; flex-direction:column; justify-content: center; align-items: flex-start;">
-				<b style="font-size: 20px; display: block;">${sessionScope.loginname}</b>
+				<b style="font-size: 25px; display: block; font-weight: 1000;">${sessionScope.loginname}</b>
 				<b style="font-size: 15px;">내 생일은 6월 3일</b>
 			</div>
 		</div>
 		<div class="my-menu">
 			<div class="my-menu-top">
-				<h3>쇼핑정보</h3>
-				<a href="${root}/orderDetail/page">선물함</a>
-				<a href="${root}/wishlist/page">위시리스트</a>
-				<a href="${root}/mypage/cart">장바구니</a>
-				<a href="${root}/review/page">선물후기</a>
+				<h3 style="font-weight: 1000;">쇼핑정보</h3>
+				<a class="menu-select menu-gift" href="${root}/orderDetail/page">선물함</a>
+				<a class="menu-select menu-wish" href="${root}/wishlist/page">위시리스트</a>
+				<a class="menu-select menu-cart" href="${root}/mypage/cart">장바구니</a>
+				<a class="menu-select menu-review" href="${root}/review/page">선물후기</a>
 			</div>
 			<div class="my-menu-bottom">
-				<h3>내 정보</h3>
-				<a href="${root}/mypage/user">프로필 정보</a>
-				<a href="${root}/mypage/qna">Q&A</a>
+				<h3 style="font-weight: 1000;">내 정보</h3>
+				<a class="menu-select menu-profile" href="${root}/mypage/user">프로필 정보</a>
+				<a class="menu-select menu-qna" href="${root}/mypage/qna">Q&A</a>
 			</div>
 		</div>
 	</div>	

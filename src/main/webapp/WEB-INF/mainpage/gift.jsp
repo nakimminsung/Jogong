@@ -92,10 +92,10 @@
         z-index: 999;
     }
     .modal-fix {
-	  position: fixed;
-	  width :100%;
-	  height: 100%;
-	  overflow: scroll;
+	    position: fixed;
+	    width :100%;
+	    height: 100%;
+	    overflow: scroll;
 	}
     div.gift-title{
     	display: flex;
@@ -135,6 +135,8 @@
     	margin-bottom: -10px;
     }
     div.gift-modal-search input{
+    	position:relative;
+    	top:10px;
     	width:100%;
     	height: 40px;
     }
@@ -151,7 +153,15 @@
     }
     div.friend-result{
     	overflow: auto;
-    	height: 230px; 	
+    	height: 290px; 	
+    }
+    div.friend-result input{
+    	position: relative;
+    	top: 10px;
+    }
+    div.friend-result b{
+    	position: relative;
+    	top: 5px;
     }
     div.friend-select-list {
     	height: 80px;
@@ -264,7 +274,7 @@
 	});
 		
 	function list() {
-		var userNum = 2;
+		var userNum = ${sessionScope.loginid};
 			
 		var s="";
 			
@@ -339,14 +349,14 @@
 	            </div>
 	            <div class="friend-select-list">
 	            	<img src="${root }/image/default.png" class="gift-friend-img">
-	            	선물할 친구를 선택하세요.
+	            	<b style="font-weight: normal; position: relative; top: 5px; left: 5px;">선물할 친구를 선택하세요.</b>
 	            </div>
 	            <div class="gift-modal-search">
 	            	<input type="search" placeholder="이름, 닉네임 검색">
 	            	<img src="${root}/image/search.svg">
 	            </div>
         	</div>
-            <div class="gift-modal-top">
+            <div class="gift-modal-middle">
             	<div style="margin: 10px 0;">
             		친구목록
             		<span style="font-size: 15px; margin-bottom: 5px;" class="friend-count"></span>
