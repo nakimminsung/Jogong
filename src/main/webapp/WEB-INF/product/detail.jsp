@@ -449,7 +449,7 @@ $(function(){
 	
 	
 	$("#btn_orderDetail").click(function(){
-		var userNum = 2;
+		var userNum = ${sessionScope.loginid};
 		var s="";
 		
 		$.ajax({
@@ -595,7 +595,7 @@ $(function(){
 	 	<input type="hidden" name="messageCard" value="">
 	 	<input type="hidden" name="engrave" value="">
 	 	<!-- <input type="hidden" name="friendNum" value="1"> -->
-	 	<input type="hidden" name="userNum" value="2">
+	 	<input type="hidden" name="userNum" value="${sessionScope.loginid}">
 	 	<input type="hidden" name="productNum" value="${dto.num }">
 	 	
 	 	<!-- wishlist -->

@@ -24,13 +24,14 @@
 	div.cart-wrapper{
 		max-width: 100%;
 		position:relative;
-		padding-top: 50px;
-		width: 100%
+		width: 100%;
+		min-height: 800px;
 	}
 	div.cart-result{
-		max-width: 800px;
+		max-width: 100%;
 		margin: 0 0 0 auto;
 		margin-top: 20px;
+		min-height: 600px;
 	}
 	div.cart-object{
 		width: 100%;
@@ -61,6 +62,7 @@
 	}
 	img.cart-image {
 		margin-right: 10px;
+		margin-top: 0;
 	}
 	div.cart-object-top-right{
 		display:flex;
@@ -140,7 +142,7 @@
 		display: inline;
 	}
 	div.cart-total {
-		max-width: 800px;
+		max-width: 100%;
 		margin: 0 0 0 auto;
 		display: flex;
 		justify-content: space-between;
@@ -163,7 +165,7 @@
 		border-bottom: 2px solid #f0f0f0;
 		padding-bottom: 5px;
 		position: sticky;
-		bottom: 0;
+		bottom:0;
 		background-color: white;
 		border-top: 2px solid lightgray;
 		border-left: 2px solid lightgray;
@@ -325,8 +327,8 @@
         border: 1px solid rgba( 255, 255, 255, 0.18 );
         width: 400px;
         height: 600px;
-        position: relative;
-        top: -170px;
+        position: fixed;
+        top: 2%;
         padding: 20px;
     }
     #gift-modal .gift-close-area {
@@ -390,7 +392,7 @@
     	left: 325px;
     	cursor: pointer;
     }
-        div.gift-friend-list{
+    div.gift-friend-list{
  		height: 300px;
  		margin-top: 20px;
     }
@@ -410,6 +412,7 @@
     button#cart-order-gift {
     	background-color: #cff0cc;
     }
+
 </style>
 <script>
 	$(function(){
@@ -418,7 +421,7 @@
 		cartlist();
 		
     	var publicOption = "";
-    	var userNum = 1;
+    	var userNum = ${sessionScope.loginid};
     	var productNum = "";
     	var updateCartNum="";
 		
@@ -699,9 +702,6 @@
 		
         const modal = document.getElementById("gift-modal")
         const btnModal = document.getElementById("cart-order-gift")
-		
- 
-		
 		const closeBtn = modal.querySelector(".gift-close-area")
 		
 		closeBtn.addEventListener("click", e => {
@@ -739,16 +739,15 @@
 			if(checkSize != 0){
 			    modal.style.display = "flex"
 				$("body").attr("class","modal-fix");
-				friendList();				
+				friendList();
 			} else {
 				alert("선택하신 상품이 없습니다.");
 			}
 		});
 	}); // $(fucntion)
-	
 		// cart list 호출 함수
 		function cartlist() {
-			let userNum = 2;
+			let userNum = ${sessionScope.loginid};
 			let friendNum = userNum;
 				
 			var s="";
@@ -875,9 +874,9 @@
 				<b style="color:#a0a0a0; cursor: pointer;" id="cart-all-delete">삭제하기</b>
 			</div>
 		</div>
-		<div class="cart-result" style="position: relative; top:40px;">
+		<div class="cart-result" style="position: relative; top: -10px;">
 		</div>
-		<div class="cart-test" style="z-index: 100; width: 70%; display: flex; justify-content: flex-end; margin-top: 100px;">
+		<div class="cart-test" style="z-index: 100; width: 75%; display: flex; justify-content: flex-end; margin-top: 100px;">
 			<div class="cart-total-right" >
 				<div class="cart-total-right-price" style="margin-right: 10px;">
 					<b style="font-size:17px; font-weight: normal; margin-right: 30px;">총 결제 금액</b>
@@ -885,8 +884,8 @@
 					<b style="font-size:17px; font-weight: normal;">원</b>
 				</div>
 				<div class="cart-total-right-button" style="margin-left: 20px;">
-					<button type="button" id="cart-order-self" class="btn btn-dark" style="margin-right: 10px;">나에게 선물하기</button>
-					<button type="button" id="cart-order-gift" class="btn">친구에게 선물하기</button>
+					<button type="button" id="cart-order-self" class="btn btn-dark" style="margin-right: 10px; font-weight: 1000;">나에게 선물하기</button>
+					<button type="button" id="cart-order-gift" class="btn" style="font-weight: 1000;">친구에게 선물하기</button>
 				</div>
 			</div>
 		</div>
@@ -905,7 +904,7 @@
             <div class="cart-modal-bottom">
 				<button type="button" class="btn btn-secondary btn-cancel" style="width:180px;">취소</button>
 				<div style="width:10px;"></div>
-				<button type="button" class="btn btn-warning cart-qty-update" style="width:180px;" cartNum="">확인</button>
+				<button type="button" class="btn cart-qty-update" style="width:180px; background-color: #cff0cc;" cartNum="">확인</button>
             </div>
         </div>
     </div>
@@ -942,7 +941,7 @@
             <div class="cart-modal-bottom">
 				<button type="button" class="btn btn-secondary btn-cancel" style="width:180px;">취소</button>
 				<div style="width:10px;"></div>
-				<button type="button" class="btn btn-warning cart-wish-insert" style="width:180px;">담기</button>
+				<button type="button" class="btn cart-wish-insert" style="width:180px; background-color: #cff0cc;">담기</button>
             </div>
         </div>
     </div>
@@ -980,7 +979,7 @@
             <div class="gift-modal-button">
 				<button type="button" class="btn btn-secondary btn-cancel">취소</button>
 				<div></div>
-				<button type="button" class="btn btn-warning" id="cart-gift-friend">확인</button>
+				<button type="button" class="btn" id="cart-gift-friend" style="background-color: #cff0cc;">확인</button>
             </div>
             </form>
         </div>

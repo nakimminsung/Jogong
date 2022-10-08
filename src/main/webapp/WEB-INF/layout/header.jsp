@@ -140,31 +140,28 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 	}
 	
 	.quick{
-    line-height: 2;
-    color: rgba(0,0,0,.87);
-    box-sizing: inherit;
-    font-size: 100%;
-    font-weight: 400;
- 	display:none;
-    padding: 16px;
-    border-radius: 20px;
-    width: 180px;
-    position: absolute;
-    left: 74.5%;
-    background-color: white;
-    border: none;
-    box-shadow: 1px 1px 3px gray;
-  	
-	
+	    line-height: 2;
+	    color: rgba(0,0,0,.87);
+	    box-sizing: inherit;
+	    font-size: 100%;
+	    font-weight: 400;
+	 	display:none;
+	    padding: 16px;
+	    border-radius: 20px;
+	    width: 180px;
+	    position: absolute;
+	    left: 74.5%;
+	    background-color: white;
+	    border: none;
+	    box-shadow: 1px 1px 3px gray;
 	}
 	.myMenu{
-	adding: 10px 12px;
-    border-radius: 8px;
-    text-align: left;
-    font-size: 13px;
-    font-weight: 500;
-    padding: 12px;
-	
+		adding: 10px 12px;
+	    border-radius: 8px;
+	    text-align: left;
+	    font-size: 13px;
+	    font-weight: 500;
+	    padding: 12px;
 	}
 	
 /* 	.logout{
@@ -173,6 +170,30 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 	
 	} */
 	
+	a.menu-select>span{
+		font-size: 18px;
+	    font-weight: 1000;
+	    position: relative;
+	    color: #888;
+	}
+	a.menu-select>span:hover {
+		color: #000
+	}
+	span::after {
+		content: '';
+	    display: block;
+	    width: 0;
+	    height: 5px;
+	    position: absolute;
+	    left: 0;
+	    bottom: -5px;
+	    background-color: #cff0cc;
+	    opacity: 0.9;
+	}
+	a.menu-select:hover span::after {
+	    width: 100%;
+	    transition: width .3s;
+	}
 	
 </style>
 <body>
@@ -183,9 +204,9 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 				<a href="${root}">조공</a>
 			</div>
 			<div class="menu">
-				<a href="${root}/brand/list">브랜드</a>
-				<a href="${root}">카테고리</a>
-				<a href="${root}/review/list">후기</a>
+				<a class="menu-select" href="${root}/brand/list"><span>브랜드</span></a>
+				<a class="menu-select" href="${root}"><span>카테고리</span></a>
+				<a class="menu-select" href="${root}/review/list"><span>후기</span></a>
 			</div>
 			<div class="search-box">
 				<form class="search">
@@ -223,7 +244,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     </div>
     <!--  div.header-wrapper 종료 -->
     
-    
     <!-- 로그인 상태일때 내림 목록 -->
      <div class="quick" style="z-index:1000;">
 		<div>
@@ -242,18 +262,15 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
   </body>
   
 <script>
-	  //카카오 로그아웃
-/* //카카오 로그아웃  
->>>>>>> 756729fab20010df321f93767cc815ddfbb1a76d
-	  window.Kakao.init('d4fc125a7dd0ad8b599aeac52a278521');  
-		function kakaoLogout() {
-            if (!Kakao.Auth.getAccessToken()) {
-                alert('Not logged in.');
-                return;
-            }
-            Kakao.Auth.logout(function() {
-                alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken());
-            });
+/*  //카카오 로그아웃  
+	function kakaoLogout() {
+    	if (!Kakao.Auth.getAccessToken()) {
+        	alert('Not logged in.');
+            return;
+        }
+        Kakao.Auth.logout(function() {
+        	alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken());
+        });
 	} */
 		
 		$(".mainProfile").click(function () {
@@ -280,7 +297,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 				}
 			);
 		
-
 </script>	
   
 </html>
