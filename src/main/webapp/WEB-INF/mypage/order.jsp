@@ -619,8 +619,8 @@ p.card-title{
 	
 	function order_recevie() {
 	 	// 로그인 세션아이디num으로 변경
- 		var num = 2;
-// 		var num = ${sessionScope.loginname};
+// 		var num = 2;
+ 		var num = ${sessionScope.loginUserNum};
 		var s="";
 
 		$.ajax({
@@ -650,8 +650,8 @@ p.card-title{
 	 	
 	 	
 	  	function order_send() {
-	 		var num = 5;
-//	 		var num = ${sessionScope.loginname};
+//	 		var num = 5;
+	 		var num = ${sessionScope.loginUserNum};
 			var s="";
 				
 			$.ajax({
@@ -663,17 +663,15 @@ p.card-title{
 					
 		 			$.each(res, function(i,elt) {
 		 				
-		 				s+= "<div class='container mt-3' style='width:33%; height:500px; cursor:pointer;' onclick=\"location.href='../${root}product/detail?num="+elt.productNum+"'\">"
+		 				s+= "<div class='container mt-3' style='width:33%; height:500px; cursor:pointer;'>"
 	 					s+=	"<div class='card'>"
-	 					s+=	"<img class='card-img-top' src="+elt.thumbnailImageUrl+" alt='Card image' style='width:100%'>"
+ 	 					s+=	"<img class='card-img-top' src="+elt.thumbnailImageUrl+" alt='Card image' style='width:100%' onclick=\"location.href='../${root}product/detail?num="+elt.productNum+"'\">"
 	 					s+=	"<div class='card-body'>"
 	 					s+=	"<p class='card-title'>"+elt.brand+"</p>"
 	 					s+=	"<h5 class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 1000px;'>"+elt.productName+"</h5>"
-	 					s+= "<h6 class='card-text'><b>from."+elt.nickname+"</b></h6>"
-	 					s+=	"<button class='button' id='msgbtn' style='margin-left:10px'>메시지 카드 보기</button>"
+	 					s+= "<h6 class='card-text' style='float:left'><b>from."+elt.nickname+"</b></h6>"
+	 					s+=	"<button class='button' id='msgbtn' style='margin-left:10px;'>메시지 카드 보기</button>"
 	 					s+=	"<p style='color:gray; text-align: left; margin-top:10px'>"+elt.orderDate+"</p></div></div></div>"
-	 					
-	 					/* 하나 누를때마다 하나의 정보를 들고오는 ajax 처리 */
 	 					
 	 					<!-- 팝업영역 -->
 	 					s+=	"<div class='modal' id='myModal'>"
