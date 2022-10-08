@@ -211,6 +211,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 			
 			<!-- 로그인 상태일때 -->
 			<c:if test="${sessionScope.loginok!=null}"> <!-- 세션영역(세션에서 찾을때 무조건써줘야함) -->
+
 				<div class="mainProfile" style="cursor: pointer;">
 					<img src="${sessionScope.loginphoto}" class="profile">
 					<b style="max-width:500px;">${sessionScope.loginname}님</b>&emsp;<span class="upIcon"><i class='fas fa-angle-down'></i></span>
@@ -235,16 +236,14 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 				<a href="/jogong/mypage/cart" >마이페이지</a><br> 
 				<a href="#">쿠폰함</a><br>
 				<a href="${root}/cscenter/faq">고객센터</a><br> 
-				<a href="${root}/logout">로그아웃</a> 
+				<a href="${root}/logout" onclick="return confirm('로그아웃 하시겠습니까?');">로그아웃</a>
 			</div>
 		</div> 
 	</div>  
   </body>
   
 <script>
-<<<<<<< HEAD
-	  //카카오 로그아웃
-=======
+
 /* //카카오 로그아웃  
 >>>>>>> 756729fab20010df321f93767cc815ddfbb1a76d
 	  window.Kakao.init('d4fc125a7dd0ad8b599aeac52a278521');  

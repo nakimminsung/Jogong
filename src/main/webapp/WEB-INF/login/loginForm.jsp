@@ -58,7 +58,7 @@
 		color: white;
 		 */
 		font-weight: bold;
-		margin-top: 20px;
+		margin-top: 40px;
 		background-color: #ef3e43;
 	}
 	
@@ -216,8 +216,6 @@ $(document).ready(function(){
 	
 	//console.log(naverLogin);
 
-	
-	
 	
 	
 	
