@@ -20,16 +20,18 @@
    }
    
    .htitle{
-	  /* background-color: #ffd700; */
-	  background-color: #cff0cc;
+	  /* background-color: #c4bee2; */	/* 연보라 */
+	  background-color: #e0dbef;		/* 연연보라 */
+	  /* background-color: #cff0cc; */
   	  height: 200px;
   	  padding-left: 25%;
   	  padding-top: 80px;
-  	  font-family: Jua;
+  	  /* font-family: Jua; */
+  	  font-weight: bold;
    }
    
    div.ibox {
-      margin-top: 1%;
+      margin-top: 3%;
       margin-left: 25%;
 	  background-color: white;
       width: 1000px;
@@ -41,11 +43,16 @@
       vertical-align: middle;
    }
    
-   button.sub {
+   .btnsub {
       width: 200px;
       height: 50px;
-      background-color: #ffd700;
+      /* background-color: #cff0cc; */
+      background-color: #c4bee2;
       font-size: 20px;
+      font-weight: bold;
+      color: black;
+      border: 1px solid #cff0cc;
+      border-radius: 5px;
    }
    
    i.star {
@@ -181,7 +188,7 @@
             <tr>
                <th colspan="2" style="text-align: center;">
                   <!-- <button type="submit" class="btn btn-warning sub">문의 접수</button> -->
-                  <button type="button" class="btn btn-warning sub">문의 접수</button>
+                  <button type="button" class="btnsub">문의 접수</button>
                </th>
             </tr>
             
