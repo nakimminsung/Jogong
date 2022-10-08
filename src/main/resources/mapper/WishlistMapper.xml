@@ -9,4 +9,13 @@
 	<insert id="insertWishlist" parameterType="wishlistDto">
 		insert into wishlist (num, publicOption, userNum, productNum) values (null, #{publicOption}, #{userNum}, #{productNum})
 	</insert>
+	<select id="selectUserWishlist" parameterType="int" resultType="wishlistDto">
+		select p.thumbnailImageUrl, p.name, p.price, w.num, w.publicOption, w.userNum, w.productNum from wishlist w inner join product p on w.productNum = p.num where userNum=#{userNum}
+	</select>
+	<delete id="deleteWishlist" parameterType="int">
+		delete from wishlist where num=#{num}
+	</delete>
+	<update  id="updateWishlist" parameterType="HashMap">
+		update wishlist set publicOption=#{publicOption} where num=#{num}
+	</update>
 </mapper>  

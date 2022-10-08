@@ -21,10 +21,29 @@
 	</select>
 	
 	<select id="getPagingList" parameterType="Map" resultType="reviewDto">   
-		select p.name, r.num, r.subject, r.content, r.rating, r.createdAt, r.reviewImageUrl, r.userNum, r.productNum from product p inner join review r on productNum = p.num
+		select p.name, p.thumbnailImageUrl, r.num, r.subject, r.content, r.rating, r.createdAt, r.reviewImageUrl, r.userNum, r.productNum from product p inner join review r on productNum = p.num
 		<if test="searchcolumn!=null and searchword!=null">
 			where ${searchcolumn} like concat('%',#{searchword},'%') 		
 		</if>
 		limit #{startnum}, #{perpage}
 	</select>
+	
+	<!-- 상세페이지 -->
+	<select id="getReviewByProduct" parameterType="int" resultType="reviewDto">
+		select r.subject, r.content, r.rating, r.createdAt, r.publicOption, r.reviewImageUrl, r.productNum, r.userNum, p.name, u.nickname, u.profileImage 
+		from review r inner join product p 
+		on r.productNum = p.num 
+		inner join jogong.user u 
+		on u.num = r.userNum 
+		where r.productNum = #{productNum}
+	</select>
+	
+	<!-- 상세페이지 리뷰 수 -->
+	<select id="getReviewCount" parameterType="int" resultType="int">
+		select count(*) from review r inner join product p 
+		on r.productNum = p.num 
+		where r.productNum = #{productNum};
+	</select>
 </mapper>
+
+

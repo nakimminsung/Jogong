@@ -50,6 +50,7 @@
 	  height: auto;
 	  min-height: 100%;
 	  position: relative;
+	  padding-top: 100px;
 	}
 	div.content{
 		max-width: 1180px;
@@ -57,6 +58,7 @@
 		display: flex;
 		justify-content: space-between;
 		margin: 0 auto;
+		min-height: 800px;
 	}
 	div#menu{
 		width:30%;
@@ -67,11 +69,10 @@
 		float: right;
 	}
 	footer{
-	  background-color:lightgray;
+	  background-color: #fafafc;
 	  width: 100%;
-	  height: 130px;
+	  height: 155px;
 	  position: relative;
-	  bottom: 0;
 	}
 
 </style>
