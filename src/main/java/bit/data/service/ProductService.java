@@ -1,6 +1,8 @@
 package bit.data.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,10 +55,28 @@ public class ProductService implements ProductServiceInter {
 	}
 
 	@Override
-	public String getCategoryByNum(int num) {
+	public String getCategoryByNum(int categoryNum) {
 		// TODO Auto-generated method stub
-		return productDaoInter.getCategoryByNum(num);
+		return productDaoInter.getCategoryByNum(categoryNum);
 	}
+
+	@Override
+	public int getTotalProductByCateNum(int categoryNum) {
+		// TODO Auto-generated method stub
+		return productDaoInter.getTotalProductByCateNum(categoryNum);
+	}
+
+	@Override
+	public List<ProductDto> getProductByNum(int categoryNum, String sort) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("categoryNum", categoryNum);
+		map.put("sort", sort);
+		
+		return productDaoInter.getProductByNum(map);
+	}
+
+	
 	
 	
 }

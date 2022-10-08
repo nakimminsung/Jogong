@@ -1,6 +1,8 @@
 package bit.data.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -90,13 +92,32 @@ public class ProductController {
 	@GetMapping("/category/categoryDetail")
 	public String categoryMain(Model model,HttpServletRequest request) {
 		List<CategoryDto> category=productService.getCategory();
-		model.addAttribute("category", category);
-		int num=Integer.parseInt(request.getParameter("num"));
-		String catebynum=productService.getCategoryByNum(num);
-		model.addAttribute("catebynum", catebynum);
-		model.addAttribute("num",num);
+		int categoryNum=Integer.parseInt(request.getParameter("num"));
+		String categoryName=productService.getCategoryByNum(categoryNum);		
+		int count=productService.getTotalProductByCateNum(categoryNum);
+		String sort = "createdAt";
 		
-	
+		List<ProductDto> productList = productService.getProductByNum(categoryNum, sort);
+		
+		model.addAttribute("category", category);
+		model.addAttribute("categoryName", categoryName);
+		model.addAttribute("num",categoryNum);
+		model.addAttribute("count",count);
+		model.addAttribute("productList", productList);
+		
+			
 		return "/bit/category/detail";
 	}
+	
+	@GetMapping("/category/categorySort")
+	@ResponseBody
+	public Map<String, Object> getSort(int num, String sort){
+		Map<String, Object> map= new HashMap<String, Object>();
+		int categoryNum=num;
+		List<ProductDto> productList = productService.getProductByNum(categoryNum, sort);
+		map.put("productList", productList);
+		return map;
+		
+	}
+
 }

@@ -1,6 +1,7 @@
 package bit.data.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,10 +60,25 @@ public class ProductDao implements ProductDaoInter {
 	}
 
 	@Override
-	public String getCategoryByNum(int num) {
+	public String getCategoryByNum(int categoryNum) {
 		// TODO Auto-generated method stub
-		return session.selectOne(ns+"getCategoryByNum",num);
+		return session.selectOne(ns+"getCategoryByNum",categoryNum);
 	}
+
+	@Override
+	public int getTotalProductByCateNum(int categoryNum) {
+		// TODO Auto-generated method stub
+		return session.selectOne(ns+"getTotalProductByCateNum",categoryNum);
+	}
+
+	@Override
+	public List<ProductDto> getProductByNum(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return session.selectList(ns+"getProductByNum",map);
+	}
+
+	
+	
 	
 	
 }

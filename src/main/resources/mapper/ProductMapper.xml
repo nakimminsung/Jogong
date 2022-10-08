@@ -49,9 +49,19 @@
       select * from category order by num asc
    </select>
    
-   <!-- 카테고리 num -->
+   <!-- 카테고리명 by num -->
    <select id="getCategoryByNum" parameterType="int" resultType="String">
-      select name from category where num=#{num}
+      select name from category where num=#{categoryNum}
+   </select>
+   
+   <!-- 카테고리에 해당하는 상품들 갯수 -->
+   <select id="getTotalProductByCateNum" parameterType="int" resultType="int">
+      select count(*) from product where categoryNum=#{categoryNum}
+   </select>
+   
+   <!-- 정렬 -->
+   <select id="getProductByNum" parameterType="map" resultType="productDto">
+      select * from product where categoryNum=#{categoryNum} order by ${sort}
    </select>
 	
 </mapper>

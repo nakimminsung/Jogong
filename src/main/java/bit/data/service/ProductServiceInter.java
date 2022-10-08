@@ -13,5 +13,7 @@ public interface ProductServiceInter {
 //	public List<ProductDto> getTag(int themeNum);
 	public ProductDto getProductDetail(int num);
 	public List<CategoryDto> getCategory();
-	public String getCategoryByNum(int num);
+	public String getCategoryByNum(int categoryNum);
+	public int getTotalProductByCateNum(int categoryNum);
+	public List<ProductDto> getProductByNum(int categoryNum,String sort);
 }
