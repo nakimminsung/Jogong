@@ -32,22 +32,12 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     
     <!-- 카카오 로그인 관련 -->
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>	
-    
-    <!-- 네이버 로그인 관련 -->
-	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 
 </head>
 <style>
-	@font-face {
-    font-family: 'SeoulNamsanM';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-	}
-	* {
+	body * {
 		font-size: 15px;
-		font-family: 'SeoulNamsanM';
-		word-spacing: -1px;
+	
 	}
 	div.header-wrapper {
 		display: flex;
@@ -57,7 +47,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 		padding: 16px 3px;
 	}
 	a {
-		color: black;
 		text-decoration: none;
 	}
 	div>a:hover {
@@ -133,47 +122,36 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 		font-weight:400;	
 	}
 	.profile{
-		border-radius:100px;
+		border-radius:12px;
 		width:30px;
 		height:30px;
 		margin:5px 5px;
 	}
 	
-	.quick{
-    line-height: 2;
-    color: rgba(0,0,0,.87);
-    box-sizing: inherit;
-    font-size: 100%;
-    font-weight: 400;
- 	display:none;
-    padding: 16px;
-    border-radius: 20px;
-    width: 180px;
-    position: absolute;
-    left: 74.5%;
-    background-color: white;
-    border: none;
-    box-shadow: 1px 1px 3px gray;
-  	
-	
+	a.menu-select>span{
+		font-size: 18px;
+	    font-weight: 1000;
+	    position: relative;
+	    color: #888;
 	}
-	.myMenu{
-	adding: 10px 12px;
-    border-radius: 8px;
-    text-align: left;
-    font-size: 13px;
-    font-weight: 500;
-    padding: 12px;
-	
+	a.menu-select>span:hover {
+		color: #000
 	}
-	
-/* 	.logout{
-	padding: 20px 12px 0;
-    border-top: 1px solid hsla(0,0%,85.1%,.5);
-	
-	} */
-	
-	
+	span::after {
+		content: '';
+	    display: block;
+	    width: 0;
+	    height: 5px;
+	    position: absolute;
+	    left: 0;
+	    bottom: -5px;
+	    background-color: #cff0cc;
+	    opacity: 0.9;
+	}
+	a.menu-select:hover span::after {
+	    width: 100%;
+	    transition: width .3s;
+	}
 </style>
 <body>
 	<c:set var="root" value="<%=request.getContextPath() %>"/>
@@ -183,9 +161,9 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 				<a href="${root}">조공</a>
 			</div>
 			<div class="menu">
-				<a href="${root}/brand/list">브랜드</a>
-				<a href="${root}">카테고리</a>
-				<a href="${root}/review/list">후기</a>
+				<a class="menu-select" href="${root}"><span>브랜드</span></a>
+				<a class="menu-select" href="${root}"><span>카테고리</span></a>
+				<a class="menu-select" href="${root}/review/list"><span>후기</span></a>
 			</div>
 			<div class="search-box">
 				<form class="search">
@@ -199,88 +177,41 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 			<!-- 로그아웃 상태일때 -->
 			<c:if test="${sessionScope.loginok==null}"> <!-- 세션영역(세션에서 찾을때 무조건써줘야함) -->
-				<a href="${root}/cscenter/faq"><b style="font-size: 15px; word-spacing: -1px;">고객센터</b></a>
+				<a href="${root}/cscenter/faq"><b style="font-size: 16px;">고객센터</b></a>
 				<a class="login" href="${root}/loginForm" style="margin-right: 10px;">로그인</a>
 			
 				<div>
 					<button type="button" class="btn btn-header"
-					onclick="location.href='${root}/join/joinMain'"><b>회원가입</b></button>
+					onclick="location.href='${root}/join/joinMain'">회원가입</button>
 				</div>
 				
 			</c:if>
 			
 			<!-- 로그인 상태일때 -->
 			<c:if test="${sessionScope.loginok!=null}"> <!-- 세션영역(세션에서 찾을때 무조건써줘야함) -->
-				<div class="mainProfile" style="cursor: pointer;">
-					<img src="${sessionScope.loginphoto}" class="profile">
-					<b style="max-width:500px;">${sessionScope.loginname}님</b>&emsp;<span class="upIcon"><i class='fas fa-angle-down'></i></span>
-				</div>
-
+				<a href="${root}/cscenter/faq"><b style="font-size: 16px;">고객센터</b></a>&emsp;
+				<img src="${sessionScope.loginphoto}" class="profile"><b style="max-width:500px;">${sessionScope.loginname}님</b>
+				&nbsp;&nbsp;
+				<a class="logout" href="${root}/logout" style="color: #add0bb;">로그아웃</a>
 			</c:if>
 			
 		</div>	<!-- div.right 종료 -->
 
     </div>
     <!--  div.header-wrapper 종료 -->
-    
-    
-    <!-- 로그인 상태일때 내림 목록 -->
-     <div class="quick" style="z-index:1000;">
-		<div>
-			<img src="${sessionScope.loginphoto}" style="width: 50px;border-radius:100px;height:50px;">
-			<span style="align-items: center;padding: 0 12px;"><b style="max-width:500px;">${sessionScope.loginname}님</b></span>
-		</div> 
-		<div>
-			<div class="myMenu">
-				<a href="/jogong/mypage/cart" >마이페이지</a><br> 
-				<a href="#">쿠폰함</a><br>
-				<a href="${root}/cscenter/faq">고객센터</a><br> 
-				<a href="${root}/logout">로그아웃</a> 
-			</div>
-		</div> 
-	</div>  
   </body>
-  
 <script>
-	  //카카오 로그아웃
-/* //카카오 로그아웃  
->>>>>>> 756729fab20010df321f93767cc815ddfbb1a76d
-	  window.Kakao.init('d4fc125a7dd0ad8b599aeac52a278521');  
-		function kakaoLogout() {
-            if (!Kakao.Auth.getAccessToken()) {
-                alert('Not logged in.');
-                return;
-            }
-            Kakao.Auth.logout(function() {
-                alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken());
-            });
-	} */
-		
-		$(".mainProfile").click(function () {
-			$(".quick").toggle();
-			
-			if($(".quick").is(":visible")){
-			      $(".fas").html("");
-				  $(".upIcon").html("<i class='fas fa-angle-up'></i>");
-			  }else{
-				  $(".fas").html("");
-				  $(".upIcon").html("<i class='fas fa-angle-down'></i>");
-			  }
-		})
- 
-		
-		// 네이버 로그인 관련 // header.jsp 의 스크립트에 삽입했음
-		let naverLogin = new naver.LoginWithNaverId(
-				{
-					clientId: "CweUwT4uDWQRHuTIz4CB",	/* "YOUR_CLIENT_ID" */
-					callbackUrl: "http://localhost:9000/jogong/loginForm",	/* "YOUR_CALLBACK_URL" */
-					//로그인 팝업 여부
-					isPopup: false,
-					loginButton: {color: "green", type: 3, height: 50}
-				}
-			);
-		
-
+	//카카오 로그아웃  
+	window.Kakao.init('d4fc125a7dd0ad8b599aeac52a278521');  
+	function kakaoLogout() {
+    	if (!Kakao.Auth.getAccessToken()) {
+        	alert('Not logged in.');
+            return;
+        }
+        Kakao.Auth.logout(function() {
+        	alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken());
+        });
+	}
 </script>	
   
 </html>

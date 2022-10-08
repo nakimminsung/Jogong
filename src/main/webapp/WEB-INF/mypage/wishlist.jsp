@@ -69,7 +69,8 @@
 	}
 	.wish-object-left-left>img{
 		width:120px; 
-		height:120px; 
+		height:120px;
+		margin: 0;
 	}
 	div.wish-object-left-right {
 		width:100%; 
@@ -83,7 +84,7 @@
 		flex-direction: column;
 	}
 	b.wish-product-name {
-		font-size: 20px; 
+		font-size: 17px; 
 		margin-bottom: 5px;
 	}
 	div.wish-public-button {

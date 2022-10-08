@@ -62,6 +62,7 @@
 	}
 	img.cart-image {
 		margin-right: 10px;
+		margin-top: 0;
 	}
 	div.cart-object-top-right{
 		display:flex;
@@ -411,6 +412,7 @@
     button#cart-order-gift {
     	background-color: #cff0cc;
     }
+
 </style>
 <script>
 	$(function(){
