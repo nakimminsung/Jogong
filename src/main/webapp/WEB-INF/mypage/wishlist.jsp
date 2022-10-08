@@ -21,7 +21,10 @@
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     
 </head>
-<style>	
+<style>
+	a.menu-wish {
+	    color:#000 !important;
+	}
 	body * {
 		font-size: 15px;
 	}

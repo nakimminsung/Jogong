@@ -22,6 +22,9 @@
     
 </head>
 <style>
+	a.menu-review {
+    	color:#000 !important;
+	}
 </style>
 <body>
 	<div>

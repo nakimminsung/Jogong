@@ -21,6 +21,9 @@
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     
 <style>
+	a.menu-cart {
+    	color:#000 !important;
+	}
 	div.cart-wrapper{
 		max-width: 100%;
 		position:relative;
