@@ -55,6 +55,10 @@
 		font-weight: 1000;
 		color: #a0a0a0;
 	}
+	a.menu-select:hover {
+		color: #000;
+		font-weight: 1000;
+	}
 </style>
 <body>
 	<c:set var="root" value="<%=request.getContextPath() %>"/>
@@ -71,15 +75,15 @@
 		<div class="my-menu">
 			<div class="my-menu-top">
 				<h3 style="font-weight: 1000;">쇼핑정보</h3>
-				<a href="${root}/orderDetail/page">선물함</a>
-				<a href="${root}/wishlist/page">위시리스트</a>
-				<a href="${root}/mypage/cart">장바구니</a>
-				<a href="${root}/review/page">선물후기</a>
+				<a class="menu-select menu-gift" href="${root}/orderDetail/page">선물함</a>
+				<a class="menu-select menu-wish" href="${root}/wishlist/page">위시리스트</a>
+				<a class="menu-select menu-cart" href="${root}/mypage/cart">장바구니</a>
+				<a class="menu-select menu-review" href="${root}/review/page">선물후기</a>
 			</div>
 			<div class="my-menu-bottom">
 				<h3 style="font-weight: 1000;">내 정보</h3>
-				<a href="${root}/mypage/user">프로필 정보</a>
-				<a href="${root}/mypage/qna">Q&A</a>
+				<a class="menu-select menu-profile" href="${root}/mypage/user">프로필 정보</a>
+				<a class="menu-select menu-qna" href="${root}/mypage/qna">Q&A</a>
 			</div>
 		</div>
 	</div>	

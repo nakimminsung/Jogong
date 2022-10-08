@@ -21,11 +21,11 @@
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     
 <style>
+	a.menu-cart {
+    	color:#000 !important;
+	}
 	div.cart-wrapper{
-		max-width: 100%;
-		position:relative;
 		width: 100%;
-		min-height: 800px;
 	}
 	div.cart-result{
 		max-width: 100%;
@@ -141,19 +141,38 @@
 		height:  86px;
 		display: inline;
 	}
-	div.cart-total {
+	div.cart-top{
 		max-width: 100%;
 		margin: 0 0 0 auto;
+		position: sticky;
+		height: 120px;
+		top: 100px;
+		background-color: white;
+		border-bottom: 2px solid #f0f0f0;
+		padding-bottom: 5px;
+		padding-top: 24px;
+	}
+
+	div.cart-title>span{
+		font-size: 25px;
+		font-weight: 1000;
+	}
+	div.cart-title>hr{
+		width: 87px; 
+		height: 10px; 
+		position: relative; 
+		top:-28px; 
+		color: #cff0cc; 
+		opacity: 1; 
+		z-index: -1;
+	}
+	div.cart-title{
+		margin-bottom: -25px;
+	}
+	div.cart-total {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		height: 50px;
-		border-bottom: 2px solid #f0f0f0;
-		padding-bottom: 5px;
-		position: sticky;
-		top:100px;
-		background-color: white;
-	
 	}
 	div.cart-test {
 		max-width: 800px;
@@ -820,7 +839,7 @@
 		}
 		// 친구 리스트
 		function friendList() {
-			var userNum = 2;
+			var userNum = ${sessionScope.loginid};
 				
 			var s="";
 				
@@ -866,12 +885,18 @@
 </head>
 <body>
 	<div class="cart-wrapper">
-		<div class="cart-total"  style="z-index: 2;">
-			<div class="cart-total-left">
-				<input type="checkbox" id="cart-all-check">
+		<div class="cart-top" style="z-index: 2;">
+			<div class="cart-title">
+				<span>장바구니</span>
+				<hr>
 			</div>
-			<div class="cart-total-right" style="padding-right: 10px;">
-				<b style="color:#a0a0a0; cursor: pointer;" id="cart-all-delete">삭제하기</b>
+			<div class="cart-total">
+				<div class="cart-total-left">
+					<input type="checkbox" id="cart-all-check">
+				</div>
+				<div class="cart-total-right" style="padding-right: 10px;">
+					<b style="color:#a0a0a0; cursor: pointer;" id="cart-all-delete">삭제하기</b>
+				</div>
 			</div>
 		</div>
 		<div class="cart-result" style="position: relative; top: -10px;">

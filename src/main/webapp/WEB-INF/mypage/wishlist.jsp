@@ -21,7 +21,10 @@
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     
 </head>
-<style>	
+<style>
+	a.menu-wish {
+	    color:#000 !important;
+	}
 	body * {
 		font-size: 15px;
 	}
@@ -30,11 +33,11 @@
 		margin-bottom: 100px;
 	}
 	div.wish-top {
-		padding: 10px 0;
+		padding: 25px 0;
 		position:sticky;
 		top:100px;
 		background-color: white;
-		height: 100px;
+		height: 90px;
 	}
 	div.wish-top>hr{
 		width: 110px; 
@@ -45,12 +48,9 @@
 		opacity: 1; 
 		z-index: -1;
 	}
-	b.wish-top-b1 {
-		display: block;
-		font-size: 25px;
-	}
 	b.wish-top-b2 {
 		font-size: 25px;
+		font-weight: 1000;
 	}
 	div.wish-content {
 		margin-bottom: 10px;
@@ -278,7 +278,6 @@
 <body>
 	<div class="wish-wrapper">
 		<div class="wish-top">
-			<b class="wish-top-b1">${sessionScope.loginname}님의</b>
 			<b class="wish-top-b2">위시리스트</b>
 			<hr>
 		</div>

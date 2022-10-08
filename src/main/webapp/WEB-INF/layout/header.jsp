@@ -39,10 +39,10 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 </head>
 <style>
 	@font-face {
-    font-family: 'SeoulNamsanM';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+	    font-family: 'SeoulNamsanM';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
 	}
 	* {
 		font-size: 15px;
@@ -116,6 +116,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 	div.search-box img{
 		width:20px;
 		margin-right:12px;
+		margin-top: 0;
 	}
 	a.login {
 		color: #add0bb;
@@ -170,13 +171,13 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 	
 	} */
 	
-	a.menu-select>span{
+	a.header-menu>span{
 		font-size: 18px;
 	    font-weight: 1000;
 	    position: relative;
 	    color: #888;
 	}
-	a.menu-select>span:hover {
+	a.header-menu>span:hover {
 		color: #000
 	}
 	span::after {
@@ -190,7 +191,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 	    background-color: #cff0cc;
 	    opacity: 0.9;
 	}
-	a.menu-select:hover span::after {
+	a.header-menu:hover span::after {
 	    width: 100%;
 	    transition: width .3s;
 	}
@@ -204,9 +205,9 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 				<a href="${root}">조공</a>
 			</div>
 			<div class="menu">
-				<a class="menu-select" href="${root}/brand/list"><span>브랜드</span></a>
-				<a class="menu-select" href="${root}"><span>카테고리</span></a>
-				<a class="menu-select" href="${root}/review/list"><span>후기</span></a>
+				<a class="header-menu header-brand" href="${root}/brand/list"><span>브랜드</span></a>
+				<a class="header-menu header-cate" href="${root}"><span>카테고리</span></a>
+				<a class="header-menu header-review" href="${root}/review/list"><span>후기</span></a>
 			</div>
 			<div class="search-box">
 				<form class="search">
@@ -252,7 +253,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 		</div> 
 		<div>
 			<div class="myMenu">
-				<a href="/jogong/mypage/cart" >마이페이지</a><br> 
+				<a href="/jogong/orderDetail/page">마이페이지</a><br> 
 				<a href="#">쿠폰함</a><br>
 				<a href="${root}/cscenter/faq">고객센터</a><br> 
 				<a href="${root}/logout">로그아웃</a> 

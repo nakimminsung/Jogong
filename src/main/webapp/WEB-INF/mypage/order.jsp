@@ -28,6 +28,9 @@
     
 </head>
 <style>
+a.menu-gift {
+    color:#000 !important;
+}
 div.gift-wrapper{
 	padding-top:100px;
 	width:100%;
