@@ -22,26 +22,69 @@
     
 </head>
 <style>
+
 	a.menu-review {
     	color:#000 !important;
 	}
+	div.review-wrapper {
+		width: 100%;
+		padding-top: 25px;
+	}
+	div.review-title {
+		margin-bottom: 0px;
+	}
+	div.review-title>span {
+		font-size: 25px;
+		font-weight: 1000;
+	}
+	div.review-title>hr{
+		width: 87px; 
+		height: 10px; 
+		position: relative; 
+		top:-28px; 
+		color: #cff0cc; 
+		opacity: 1; 
+		z-index: -1;
+	}
+	div.review-menu {
+		margin:0 auto; 
+		width: 80%; 
+		background-color: #f0f0f0; 
+		display: flex; 
+		justify-content: center;
+		height: 40px;
+		border-top: 1px solid lightgray;
+		border-bottom: 1px solid lightgray;
+	}
+	div.review-menu span {
+		font-size: 16px;
+		color: #808080;
+	}
+	div.review-menu>div {
+		cursor: pointer; 
+		width: 50%; 
+		display: flex; 
+		justify-content: center; 
+		align-items: center;
+	}
 </style>
 <body>
-	<div>
-		<h1>review</h1>
-		<h1>review</h1>
-		<h1>review</h1>
-		<h1>review</h1>
-		<h1>review</h1>
-		<h1>review</h1>
-		<h1>review</h1>
-		<h1>review</h1>
-		<h1>review</h1>
-		<h1>review</h1>
-		<h1>review</h1>
-		<h1>review</h1>
-		<h1>review</h1>
-		<h1>review</h1>
+	<div class="review-wrapper">
+		<div class="review-title">
+			<span>선물후기</span>
+			<hr>
+		</div>
+		<div class="review-menu">
+			<div class="review-before">
+				<span>작성 가능한 후기</span>
+			</div>
+			<span style="display: flex; align-items: center; color:#d0d0d0; font-size: 15px; font-weight: 10;">|</span>
+			<div class="review-after">
+				<span>작성한 후기(0)</span>
+			</div>
+		</div>
+		<div class="review-result">
+		</div>
 	</div>	
 </body>
 </html>

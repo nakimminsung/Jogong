@@ -39,10 +39,10 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 </head>
 <style>
 	@font-face {
-    font-family: 'SeoulNamsanM';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+	    font-family: 'SeoulNamsanM';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
 	}
 	* {
 		font-size: 15px;
@@ -116,6 +116,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 	div.search-box img{
 		width:20px;
 		margin-right:12px;
+		margin-top: 0;
 	}
 	a.login {
 		color: #add0bb;
