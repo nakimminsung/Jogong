@@ -296,7 +296,7 @@ p.card-title{
     letter-spacing: -.033em;
     word-break: break-all;
   }
-  .link_prd{
+/*   .link_prd{
   	-webkit-text-size-adjust: none;
     font-size: 14px;
     line-height: 1.5;
@@ -308,7 +308,7 @@ p.card-title{
     display: block;
     position: relative;
     padding: 16px 20px;
-  }
+  } */
   .info_prd{
     -webkit-text-size-adjust: none;
     font-size: 14px;
@@ -575,8 +575,10 @@ p.card-title{
 
 </style>
 <script type="text/javascript">
-	/* var btn_cardNum = $('#msgbtn[name=i]');
-	var msg_cardNum = $('.modal[name=i]'); */
+	/*
+	var btn_cardNum = $('#msgbtn[name=i]');
+	var msg_cardNum = $('.modal[name=i]'); 
+	*/
 	
 	$(function() {
 
@@ -600,7 +602,7 @@ p.card-title{
 			order_recevie();
 		});
 		
-		$(document).on("click","#msgbtn",function() {
+	 	$(document).on("click","#msgbtn",function() {
 		    <!-- 여러개의 버튼이 모두 클릭되어서 모두 호출된다 -->
 		    $(".modal").modal({remote : 'layer.html'});
 		    $(".modal").modal('show');
@@ -609,13 +611,15 @@ p.card-title{
 		    //$(this).modal('show');
 		});
 		
-	/* 	$(document).on("click",btn_cardNum,function() {
+	 	/* 	
+	 	$(document).on("click",btn_cardNum,function() {
 		    <!-- 여러개의 버튼이 모두 클릭되어서 모두 호출된다 -->
 		    $(msg_cardNum).modal({remote : 'layer.html'});
 		    $(msg_cardNum).modal('show');
-		}); */
-		
-		/* $(document).on("click",".btn_crad",function() {
+		});
+		 */
+		 
+		 $(document).on("click",".btn_crad",function() {
 			<!-- 여러개의 버튼이 모두 클릭되어서 모두 호출된다-->
 			 $(".address").toggle();
 		});
@@ -624,7 +628,7 @@ p.card-title{
 			 <!-- 여러개의 버튼이 모두 클릭되어서 모두 호출된다-->
 			$(".address").hide();
 			$(".modal").modal('hide');
-	    }); */
+	    });
 		
 	});	
 	
@@ -642,12 +646,12 @@ p.card-title{
 			success:function(res){
 				
 	 			$.each(res, function(i,elt) {
-	 				s+= "<div class='container mt-3' style='width:33%; height:500px; cursor:pointer;' onclick=\"location.href='../${root}product/detail?num="+elt.productNum+"'\">"
+	 				s+= "<div class='container mt-3' style='width:33%; height:500px;'>"
  					s+=	"<div class='card'>"
- 					s+=	"<img class='card-img-top' src="+elt.thumbnailImageUrl+" alt='Card image' style='width:100%'>"
+ 					s+=	"<img class='card-img-top' src="+elt.thumbnailImageUrl+" alt='Card image' style='width:100%; cursor:pointer;' onclick=\"location.href='../${root}product/detail?num="+elt.productNum+"'\">"
  					s+=	"<div class='card-body'>"
  					s+=	"<p class='card-title'>"+elt.brand+"</p>"
- 					s+=	"<h5 class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 1000px;'>"+elt.productName+"</h5>"
+ 					s+=	"<h5 class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 1000px;cursor:pointer;' onclick=\"location.href='../${root}product/detail?num="+elt.productNum+"'\">"+elt.productName+"</h5>"
  					s+= "<h6 class='card-text' style=''><b>To.'"+elt.nickname+"'</b></h6>"
  					s+=	"<p style='color:gray; text-align: left; margin-top:10px'>"+elt.orderDate+"</p></div></div></div>"
 				});
@@ -674,12 +678,12 @@ p.card-title{
 					
 		 			$.each(res, function(i,elt) {
 		 				
-		 				s+= "<div class='container mt-3' style='width:33%; height:500px; cursor:pointer;' onclick=\"location.href='../${root}product/detail?num="+elt.productNum+"'\">"
+		 				s+= "<div class='container mt-3' style='width:33%; height:500px;'>"
 	 					s+=	"<div class='card'>"
-	 					s+=	"<img class='card-img-top' src="+elt.thumbnailImageUrl+" alt='Card image' style='width:100%'>"
+	 					s+=	"<img class='card-img-top' src="+elt.thumbnailImageUrl+" alt='Card image' style='width:100%; cursor:pointer;' onclick=\"location.href='../${root}product/detail?num="+elt.productNum+"'\">"
 	 					s+=	"<div class='card-body'>"
 	 					s+=	"<p class='card-title'>"+elt.brand+"</p>"
-	 					s+=	"<h5 class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 1000px;'>"+elt.productName+"</h5>"
+	 					s+=	"<h5 class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 1000px;cursor:pointer;' onclick=\"location.href='../${root}product/detail?num="+elt.productNum+"'\">"+elt.productName+"</h5>"
 	 					s+= "<h6 class='card-text'><b>from."+elt.nickname+"</b></h6>"
 	 					s+=	"<button class='button' id='msgbtn' style='margin-left:10px'>메시지 카드 보기</button>"
 	 					//s+=	"<button class='button' id='msgbtn' style='margin-left:10px' name='"+i+"'>메시지 카드 보기</button>"
