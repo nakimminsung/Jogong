@@ -44,6 +44,22 @@
 		on r.productNum = p.num 
 		where r.productNum = #{productNum};
 	</select>
+	
+	<!-- 마이페이지 작성한 리뷰목록 -->
+	<select id="selectReviewByUser" parameterType="int" resultType="reviewDto">
+		select p.name, p.thumbnailImageUrl, p.brand, r.num, r.productNum, r.subject, r.content, r.rating, r.createdAt, r.publicOption, r.tagNum, r.reviewImageUrl 
+		from review r inner join product p 
+		on r.productNum = p.num 
+		where userNum=#{userNum}
+	</select>
+	
+	<!-- 마이페이지 작성한 리뷰 갯수 -->
+	<select id="selectReviewCount" parameterType="int" resultType="int">
+		select count(*)
+		from review r inner join product p 
+		on r.productNum = p.num 
+		where userNum=#{userNum}
+	</select>
 </mapper>
 
 
