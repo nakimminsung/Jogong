@@ -572,6 +572,8 @@ p.card-title{
 
 </style>
 <script type="text/javascript">
+	/* var btn_cardNum = $('#msgbtn[name=i]');
+	var msg_cardNum = $('.modal[name=i]'); */
 	
 	$(function() {
 
@@ -604,7 +606,13 @@ p.card-title{
 		    //$(this).modal('show');
 		});
 		
-		$(document).on("click",".btn_crad",function() {
+	/* 	$(document).on("click",btn_cardNum,function() {
+		    <!-- 여러개의 버튼이 모두 클릭되어서 모두 호출된다 -->
+		    $(msg_cardNum).modal({remote : 'layer.html'});
+		    $(msg_cardNum).modal('show');
+		}); */
+		
+		/* $(document).on("click",".btn_crad",function() {
 			<!-- 여러개의 버튼이 모두 클릭되어서 모두 호출된다-->
 			 $(".address").toggle();
 		});
@@ -613,7 +621,7 @@ p.card-title{
 			 <!-- 여러개의 버튼이 모두 클릭되어서 모두 호출된다-->
 			$(".address").hide();
 			$(".modal").modal('hide');
-	    });
+	    }); */
 		
 	});	
 	
@@ -671,12 +679,14 @@ p.card-title{
 	 					s+=	"<h5 class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 1000px;'>"+elt.productName+"</h5>"
 	 					s+= "<h6 class='card-text'><b>from."+elt.nickname+"</b></h6>"
 	 					s+=	"<button class='button' id='msgbtn' style='margin-left:10px'>메시지 카드 보기</button>"
+	 					//s+=	"<button class='button' id='msgbtn' style='margin-left:10px' name='"+i+"'>메시지 카드 보기</button>"
 	 					s+=	"<p style='color:gray; text-align: left; margin-top:10px'>"+elt.orderDate+"</p></div></div></div>"
 	 					
 	 					/* 하나 누를때마다 하나의 정보를 들고오는 ajax 처리 */
 	 					
 	 					<!-- 팝업영역 -->
 	 					s+=	"<div class='modal' id='myModal'>"
+	 					//s+=	"<div class='modal' id='myModal' name='"+i+"'>"
 	 					s+=	"<div class='modal-dialog'>"
 	 					s+=	"<div class='modal-content'>"
 	 					s+=	"<div class='gift_window'>"
@@ -699,14 +709,15 @@ p.card-title{
 	 					s+=	"<a href='#none' class='link_media'><img alt='메시지카드' class='img_g' src='"+elt.banner+"'></a>"
 	 					s+=	"</div>"
 	 					s+=	"<p class='txt_letter'>"+elt.message+"</p>"
-	 					s+=	"<a href='#none' class='link_prd'>"
+	 					//s+=	"<a href='#none' class='link_prd'>"
 	 					s+=	"<span class='info_prd'>"
 	 					s+=	"<span class='thumb_prd'><img class='img_g' src='"+elt.thumbnailImageUrl+"' alt='여기에 상품이미지'></span>" 
 	 					s+=	"<span id='productWrapper' class='txt_prd'>" 
 	 					s+=	"<span class='screen_out'>"+elt.brand+"</span> "
 	 					s+=	"<em id='brandName' class='txt_brand'>"+elt.brand+"</em> <span class='screen_out'>"+elt.productName+"</span>"
 	 					s+=	"<strong id='productName' class='txt_name'>"+elt.productName+"</strong>"
-						s+=	"</span></span></a>"
+						s+=	"</span></span>"
+						//s+=	"</a>"
 							
 						s+=	"<div class='tbl_btn'>"
 						s+=	"<div class='item_btn'>"
