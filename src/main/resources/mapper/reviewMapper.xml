@@ -60,6 +60,7 @@
 		on r.productNum = p.num 
 		where userNum=#{userNum}
 	</select>
+	
 </mapper>
 
 
