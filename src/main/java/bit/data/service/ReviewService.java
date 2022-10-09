@@ -73,4 +73,11 @@ public class ReviewService implements ReviewServiceInter{
     public int selectReviewCount(int userNum) {
         return reviewDaoInter.selectReviewCount(userNum);
     }
+    
+    // 리뷰 생성
+    @Override
+    public void insertReview(ReviewDto reviewDto) {
+        reviewDaoInter.insertReview(reviewDto);
+    }
+    
 }

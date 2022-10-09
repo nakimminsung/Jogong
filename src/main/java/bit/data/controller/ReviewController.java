@@ -1,21 +1,29 @@
 package bit.data.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import bit.data.dto.ReviewDto;
 import bit.data.service.ReviewServiceInter;
+import util.ChangeName;
 
 @Controller
 @RequestMapping("/review")
 public class ReviewController {
+    
 	@Autowired
 	ReviewServiceInter reviewService;
 	
@@ -110,5 +118,47 @@ public class ReviewController {
 	@ResponseBody
 	public int selectReviewCount(int userNum) {
 	    return reviewService.selectReviewCount(userNum);
+	}
+	
+	// 리뷰생성
+	@PostMapping("/insert")
+	public String insertReview(ReviewDto reviewDto, List<MultipartFile> upload, HttpServletRequest request) {
+	    
+	    // 톰캣에 올라간 upload 폴더 경로 구하기
+        String path = request.getSession().getServletContext().getRealPath("/resources/upload");
+        System.out.println(path);
+        
+        
+        // 업로드를 안했을 경우 9번지의 파일명이 ""이 된다
+        // 업로드 안해도 upload size가 1이됨
+        System.out.println(upload.size());
+        
+        if(upload.get(0).getOriginalFilename().equals("")) {
+            reviewDto.setReviewImageUrl("no");
+        }else {
+            String photo = "";
+            int idx=1;
+            for(MultipartFile multi:upload) {
+                
+                //파일명을 현재 날짜로 변경 후 ,로 연결
+                String newName = idx++ + "_" + ChangeName.getChangeFileName(multi.getOriginalFilename());
+                photo += newName+",";
+                
+                // 업로드
+                try {
+                    multi.transferTo(new File(path+"/"+newName));
+                } catch (IllegalStateException | IOException e) {
+                    e.printStackTrace();
+                }
+                
+            }
+            // 마지막 컴마 제거
+            photo = photo.substring(0,photo.length()-1);
+            // dto에 저장
+            reviewDto.setReviewImageUrl(photo);
+        }
+        // db에 업로드
+	    reviewService.insertReview(reviewDto);
+	    return "/mypage/mypage/review";
 	}
 }

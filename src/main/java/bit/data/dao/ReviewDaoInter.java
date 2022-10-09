@@ -19,4 +19,6 @@ public interface ReviewDaoInter {
 	public List<ReviewDto> selectReviewByUser(int userNum);
 	// 마이페이지 리뷰수
 	public int selectReviewCount(int userNum);
+	// 리뷰 생성
+	public void insertReview(ReviewDto reviewDto);
 }

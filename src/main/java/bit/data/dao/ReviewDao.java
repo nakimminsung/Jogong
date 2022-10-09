@@ -65,4 +65,10 @@ public class ReviewDao implements ReviewDaoInter {
     public int selectReviewCount(int userNum) {
         return session.selectOne(ns+"selectReviewCount", userNum);
     }
+    
+    // 리뷰 생성
+    @Override
+    public void insertReview(ReviewDto reviewDto) {
+        session.selectOne(ns+"insertReview", reviewDto);
+    }
 }

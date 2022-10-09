@@ -304,11 +304,11 @@
 	div.review-option-object {
 		width: 50%;
 	}
-	div.review-option-object>img {
+	div.review-option-object img {
 		width: 50px; 
 		height: 50px; 
 		border:0px; 
-		border-radius: 20px; 
+		border-radius: 15px; 
 		background-color: #ffeeaa;
 	}
 	div.reivew-option-info {
@@ -380,6 +380,7 @@
 			$(".review-form").css("display","flex");
 			
 			let num = $(this).attr("productNum");
+			$("input[name=productNum]").attr("value",num);
 			
 			let s = "";
 			
@@ -418,8 +419,8 @@
 			$(".review-form").css("display","none");
 		});
 		
-		// 작성한 후기 갯수
 		$(document).ready(function(){
+			// 작성한 후기 갯수
 			let userNum = ${sessionScope.loginid};
 				
 			$.ajax({
@@ -430,6 +431,26 @@
 				success:function(res){
 		
 					$("span.review-menu-count").text("("+res+")");
+				}
+			});
+			
+			// 태그 정보 불러오기
+			let s = "";
+			
+			$.ajax({
+				type: "get",
+				url: "../tag/select",
+				dataType: "json",
+				success:function(res){
+					
+					$.each(res, function(i,elt) {
+						
+						s += "<div class='review-tag-obejct' style='background-color:"+elt.backgroundColor+"' tagNum='"+elt.num+"'>";
+						s += "<span style='color:"+elt.textColor+"'>#"+elt.content+"</span>";
+						s += "</div>";
+					
+					});
+					$("div.review-tag").html(s);
 				}
 			});
 		});
@@ -477,8 +498,17 @@
 		
 		// 태그 선택시 이벤트
 		$(document).on("click",".review-tag-obejct",function(){
+			
+			let tagNum = $(this).attr("tagNum");
+			$("input[name=tagNum]").attr("value",tagNum);
+			
 			$(this).css("border","3px solid lightgray");
 			$(this).siblings(".review-tag-obejct").css("border","0px solid lightgray");
+		});
+		
+		// 사진첨부 실행
+		$(".form-photo-button").click(function(){
+			$("input[name=upload]").trigger("click");
 		});
 	});
 	
@@ -549,18 +579,20 @@
 	 				s += "<span>"+elt.name+"</span>";
 	 				s += "</div>";
 	 				s += "<div class='review-product-date'>";
-	 				s += "<span>"+new Date(+elt.createdAt + 3240 * 10000).toISOString().replace("T", " ").replace(/\..*/, '')+"</span>";
+	 				s += "<span>"+elt.createdAt+"</span>";
 	 				s += "</div>";
 	 				s += "</div>";
 	 				s += "</div>";
 	 				s += "<div class='review-show' style='display:none; justify-content:space-between; border-top:1px solid #f0f0f0; margin-bottom:10px;'>";
 	 				s += "<div class='review-show-left'>";
-	 				s += "<img src='"+elt.reviewImageUrl+"'>";
+	 				if(elt.reviewImageUrl != null) {
+		 				s += "<img src='"+elt.reviewImageUrl+"'>";	
+	 				}
 	 				s += "<span class='review-subject'>"+elt.subject+"</span>";
 	 				s += "<span>"+elt.content+"</span>";
 	 				s += "</div>";
 	 				s += "<div class='review-show-right'>";
-	 				s += "<span>"+new Date(+elt.createdAt + 3240 * 10000).toISOString().replace("T", " ").replace(/\..*/, '')+"</span>";
+	 				s += "<span>"+elt.createdAt+"</span>";
 	 				s += "</div>";
 	 				s += "</div>";
 	 				s += "<div class='review-button review-show'>";
@@ -595,9 +627,10 @@
 		<div class="review-result"></div>
 		<div class="review-form">
 		<form action="insert" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="id" value="${sessionScope.loginid}">
-			<input type="hidden" name="rating" value="">
-			<input type="hidden" name="" value="">
+			<input type="hidden" name="userNum" value="${sessionScope.loginid}">
+			<input type="hidden" name="productNum" value="">
+			<input type="hidden" name="tagNum" value="">
+			<input type="file" name="upload" style="display: none">
 			<div class="form-product-info"></div>
 			<div class="form-rating">
 				<span>선물로 만족하셨나요?</span>
@@ -636,17 +669,7 @@
 			<div class="form-tag">
 				<span class="review-tag-title">이 선물의 태그를 남겨주세요</span>
 				<span class="review-tag-info">#어떤 선물인가요?</span>
-				<div class="review-tag">
-					<div class="review-tag-obejct" tagNum=1>
-						<span>#생일</span>
-					</div>
-					<div class="review-tag-obejct" tagNum=2>
-						<span>#연인</span>
-					</div>
-					<div class="review-tag-obejct" tagNum=3>
-						<span>#효도</span>
-					</div>
-				</div>
+				<div class="review-tag"></div>
 			</div>
 			<div class="form-option">
 				<span class="review-option-title">후기 등록 프로필을 선택해주세요</span>
@@ -656,14 +679,14 @@
 					<div class="review-option-object">
 						<label>
 							<input type="radio" name="publicOption" value="0">
-							<img src="">
+							<img src="https://gift-s.kakaocdn.net/dn/gift/gift/neo.png">
 							<span>익명표기</span>
 						</label>
 					</div>
 					<div class="review-option-object">
 						<label>
 							<input type="radio" name="publicOption" value="1">
-							<img src="">
+							<img src="https://gift-s.kakaocdn.net/dn/gift/common/profile_default_1808.png">
 							<span>사진/닉네임 공개</span>
 						</label>
 					</div>

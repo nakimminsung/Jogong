@@ -61,6 +61,10 @@
 		where userNum=#{userNum}
 	</select>
 	
+	<!-- 리뷰 생성 -->
+	<insert id="insertReview" parameterType="reviewDto">
+		insert into review values (null,#{subject},#{content},#{rating},now(),#{publicOption},#{reviewImageUrl},#{userNum},#{productNum},#{tagNum})
+	</insert>
 </mapper>
 
 
