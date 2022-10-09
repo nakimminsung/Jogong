@@ -198,11 +198,9 @@
 	div.form-review {
 		border-bottom: 1px solid #f0f0f0; 
 		padding-bottom: 20px; 
-		margin-top: -20px;
+		margin-top: 20px;
 	}
 	span.form-review-title {
-		position: relative; 
-		top:50px; 
 		display: block; 
 		font-size: 20px; 
 		font-weight: 1000;
@@ -214,10 +212,11 @@
 		width: 777px; 
 		position: relative; 
 		top: 70px; 
-		eft:10px;
+		left:10px;
 	}
 	label.lab_tbx>span {
-		font-size: 12px; color: #a0a0a0;
+		font-size: 12px; 
+		color: #a0a0a0;
 	}
 	textarea#tf_review {
 		height: 185px; 
@@ -438,7 +437,7 @@
 		// 마우스오버시 별점 설정
 		$(document).on("mouseover",".make_star i",function(){
 			let targetNum = $(this).index()+1;
-			$(this).parents(".make_star").attr("review-rating",targetNum);
+			$("input[name=rating]").attr("value",targetNum);
 			$('.make_star i').css({"color":"#000"});
 			$('.make_star i:nth-child(-n+'+targetNum+')').css({"color":"#fbea4e"});
 			
@@ -456,7 +455,7 @@
 		// 클릭시 별점 설정
 		$(document).on("click",".make_star i",function(){
 			let targetNum = $(this).index()+1;
-			$(this).parents(".make_star").attr("review-rating",targetNum);
+			$("input[name=rating]").attr("value",targetNum);
 			$('.make_star i').css({"color":"#000"});
 			$('.make_star i:nth-child(-n+'+targetNum+')').css({"color":"#fbea4e"});
 			
@@ -595,6 +594,10 @@
 			</div>
 		<div class="review-result"></div>
 		<div class="review-form">
+		<form action="insert" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="id" value="${sessionScope.loginid}">
+			<input type="hidden" name="rating" value="">
+			<input type="hidden" name="" value="">
 			<div class="form-product-info"></div>
 			<div class="form-rating">
 				<span>선물로 만족하셨나요?</span>
@@ -616,10 +619,9 @@
 			<div class="form-review">
 				<span class="form-review-title">선물 후기를 남겨주세요</span>
 				<div class="form-write-box">
-					<label class="lab_tbx" for="tf_review">
-						<span>받은 선물의 소중한 후기를 남겨주세요.<br>남겨주신 후기는 다른 분들이 선물을 선택할 때 큰 도움이 됩니다.</span>
-					</label>
-					<textarea cols="20" rows="1" id="tf_review" spellcheck="true" autocapitalize="off" autocomplete="off" autocorrect="off"></textarea>
+					<input type="text" name="subject" class="form-control" placeholder="제목" style="position:relative; top: 20px; ">
+					<label class="lab_tbx" for="tf_review"></label>
+					<textarea name="content" class="form-control" cols="20" rows="1" id="tf_review" spellcheck="true" autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="받은 선물의 소중한 후기를 남겨주세요. 남겨주신 후기는 다른 분들이 선물을 선택할 때 큰 도움이 됩니다."></textarea>
 				</div>
 				<div class="form-photo-button">
 					<i class='fas fa-camera'></i>
@@ -652,14 +654,18 @@
 				<span class="review-term2">아이콘 프로필의 홍보 활용 여부는 등록한 후기 별로 설정이 가능합니다.</span>
 				<div class="review-option-select">
 					<div class="review-option-object">
-						<input type="radio">
-						<img src="">
-						<span>익명표기</span>
+						<label>
+							<input type="radio" name="publicOption" value="0">
+							<img src="">
+							<span>익명표기</span>
+						</label>
 					</div>
 					<div class="review-option-object">
-						<input type="radio">
-						<img src="">
-						<span>사진/닉네임 공개</span>
+						<label>
+							<input type="radio" name="publicOption" value="1">
+							<img src="">
+							<span>사진/닉네임 공개</span>
+						</label>
 					</div>
 				</div>
 				<div class="reivew-option-info">
@@ -677,6 +683,7 @@
 				<button type="button" class="btn btn-dark review-button review-cancel">취소</button>
 				<button type="submit" class="btn review-button review-insert">동의 후 작성완료</button>
 			</div>
+			</form>
 		</div>
 	</div>	
 </body>
