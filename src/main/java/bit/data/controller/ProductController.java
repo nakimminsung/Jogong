@@ -101,8 +101,8 @@ public class ProductController {
 		
 		model.addAttribute("category", category);
 		model.addAttribute("categoryName", categoryName);
-		model.addAttribute("num",categoryNum);
-		model.addAttribute("count",count);
+		model.addAttribute("categoryNum",categoryNum);
+		model.addAttribute("totalCount",count);
 		model.addAttribute("productList", productList);
 		
 			

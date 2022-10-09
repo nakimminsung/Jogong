@@ -25,6 +25,15 @@
 		 font-family: 'SeoulNamsanM';
 		 word-spacing: -1px;
 	}
+	h2{
+		margin: auto;
+	    display: flex;
+		width: 1200px;   
+		padding-top: 2%;
+		padding-bottom: 1%; 
+	
+	}
+	
 	
 	.categoryTotal{
 		text-align: center;
@@ -51,7 +60,7 @@
 	
 	}
 	
-	.sort{
+	.categorySort{
 		width: 100px;
 	    border: 0px;
 	    font-size: 15px;
@@ -63,36 +72,54 @@
 		flex-wrap: wrap;
 		margin: auto;
 		justify-content: space-around;		
+		margin-top: 10px;
 	}
 	
 	.productItem{
 		width: 280px;
+		padding-bottom: 5%;
+	}
+	
+	.brandName{
+		font-weight: bold;
+		font-size: 18px;
+	}
+	
+	.productName{
+		font-size: 18px;
+	
+	}
+	
+	.productPrice{
+		font-weight: bold;
+		font-size: 20px;
+		
 	}
 
 </style>
 </head>
 <body>
 	<div style="width: 100%;" class="contentsBody">
-		<h2 style="font-weight: bold; width: 900px;">${catebynum }</h2><br>
-			<div class="categoryTotal">
-				<c:forEach var="cate" items="${category}" >
-					<a href="/jogong/category/categoryDetail?num=${cate.num}">
-						<img src="${cate.categoryImage }" class="cateImage" ><br>
-						<c:set var="s1" value="${cate.num }"></c:set>
-						<c:if test="${num==s1}">
-							<span style="font-size: 15px; display:inline-block; margin: 10px 0px;border-bottom: 2px solid black;width:100px;">${cate.name }</span>
+		<h2 style="font-weight: bold;">${categoryName }</h2>	
+			<div class="categoryTotal">	
+				<c:forEach var="category" items="${category}" >
+					<a href="/jogong/category/categoryDetail?num=${category.num}">
+						<img src="${category.categoryImage }" class="cateImage" ><br>
+						<c:set var="s1" value="${category.num }"></c:set>
+						<c:if test="${categoryNum==s1}">
+							<span style="font-size: 15px; display:inline-block; margin: 10px 0px;border-bottom: 2px solid black;width:100px;">${category.name }</span>
 						</c:if>
-						<c:if test="${num!=s1}">
-							<span style="font-size: 15px; display:inline-block; margin: 10px 0px;">${cate.name }</span>
+						<c:if test="${categoryNum!=s1}">
+							<span style="font-size: 15px; display:inline-block; margin: 10px 0px;">${category.name }</span>
 						</c:if>					
 					</a>
 				</c:forEach>
 				<div style="border-bottom: 1px solid #dcdcdc; width: 100%;"></div>
 			</div>
 			<div class="List">
-				<h3 style="width: 1200px; margin: auto; margin-top: 30px; padding-legt: 10px;">총 ${count }개</h3>
+				<h5 style="width: 1200px; margin: auto; margin-top: 30px; padding-left: 10px;">총 ${totalCount }개</h5>
 				<div style="width: 1200px; margin:auto; display: flex; flex-direction: row-reverse;">
-					<select class="sort" name="sort">
+					<select class="categorySort" name="sort">
 						<option value="createdAt desc" selected>최신순</option>
 						<option value="price desc">가격높은순</option>
 						<option value="price asc">가격낮은순</option>
@@ -106,39 +133,40 @@
 							<a href="/jogong/product/detail?num=${productList.num}"> 
 								<img src="${productList.thumbnailImageUrl }" class="productImage"><br>
 								<span style="display: inline-block;">
-									<span>${productList.name }</span><br>
-									<span><fmt:formatNumber value="${productList.price}" type="number"/>원</span>
+									<span class="brandName">${productList.brand }</span><br>
+									<span class="productName">${productList.name }</span><br>
+									<span class="productPrice"><fmt:formatNumber value="${productList.price}" type="number"/>원</span>
 								</span>
 							</a>
 						</div>
 					</c:forEach>
 				</div>
 				</div>
-		</div>
-	</div>	
+		</div>	
 </body>
 <script type="text/javascript">
 	$(function () {
-		$(".sort").change(function() {
+		$(".categorySort").change(function() {
 			var sort=$(this).val();
 			var s= "";
 			 $.ajax({
 					type:"get",
 					url:"categorySort",
 					dataType:"json",
-					data:{"num":${num}, "sort":sort},
+					data:{"num":${categoryNum}, "sort":sort},
 					success:function(res){
 						$(".productList").empty();	
 						
 						$.each(res.productList, function(i,elt) {
 							var price= elt.price.toLocaleString();
 							
-							s += "<div>";
+							s += "<div class='productItem'>";
 							s += "<a href='/jogong/product/detail?num="+elt.num+"'>";
 							s += "<img src='"+elt.thumbnailImageUrl+"'class='productImage'><br>";
 							s += "<p style='display: inline-block;'>";
-							s += "<span>"+elt.name+"</span><br>";
-							s += "<span>"+price+"원</span>";
+							s += "<span class='brandName'>"+elt.brand+"</span><br>";
+							s += "<span class='productName'>"+elt.name+"</span><br>";
+							s += "<span class='productPrice'>"+price+"원</span>";
 							s += "</p>";
 							s += "</a>";
 							s += "</div>";
