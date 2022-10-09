@@ -73,7 +73,7 @@
 	$(function(){
 		
 		$("document").ready(function(){
-			getProductList(50000);
+			getProductList(1);
 		});	
 		
 		$("span.pr").click(function(){

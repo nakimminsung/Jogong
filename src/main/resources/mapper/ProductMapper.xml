@@ -26,7 +26,7 @@
 		<if test="price==4">
 		 	 where price &gt; 200000
 		</if>
-		order by readCount limit 4			
+		order by readCount desc limit 4			
 	</select>
 	
 	<!-- 테마별 -->
