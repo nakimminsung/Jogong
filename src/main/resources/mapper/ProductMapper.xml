@@ -43,9 +43,13 @@
 	<select id="selectProductDetail" parameterType="int" resultType="productDto">
 		select * from product where num=#{num}
 	</select>
-	
 	<!-- 조회수 -->
 	<update id="updateReadCount" parameterType="int">
 		update product set readcount=readcount+1 where num=#{num}
 	</update>
+	<!-- 마이페이지 리뷰 작성가능한 상품목록 -->
+	<select id="selectWriteableList" parameterType="int" resultType="productDto">
+		select * from product where num in (select o.productNum from orderDetail o left join review r on o.productNum = r.productNum where r.productNum is null and o.userNum=#{userNum})
+	</select>
 </mapper>
+

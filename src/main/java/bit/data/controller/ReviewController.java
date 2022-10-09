@@ -97,4 +97,18 @@ public class ReviewController {
 	{
 		return reviewService.getReviewCount(productNum);
 	}
+	
+	// 마이페이지 작성한 리뷰목록
+	@GetMapping("/writtenReview")
+	@ResponseBody
+	public List<ReviewDto> selectReviewByUser(int userNum) {
+	    return reviewService.selectReviewByUser(userNum);
+	}
+	
+	// 마이페이지 리뷰수
+	@GetMapping("/myCount")
+	@ResponseBody
+	public int selectReviewCount(int userNum) {
+	    return reviewService.selectReviewCount(userNum);
+	}
 }

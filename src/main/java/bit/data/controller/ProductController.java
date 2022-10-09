@@ -54,6 +54,12 @@ public class ProductController {
 		return productService.getFriendWishlist(userNum);
 	}
 	
+	@GetMapping("/select/WriteableList")
+	@ResponseBody
+	public List<ProductDto> selectWriteableList(int userNum) {
+	    return productService.selectWriteableList(userNum);
+	}
+	
 	// 상세페이지
 	@GetMapping("/product/detail")
 	public ModelAndView productDetail(int num) {
@@ -74,5 +80,12 @@ public class ProductController {
 		mview.setViewName("/bit/product/detail");
 		
 		return mview;
+	}
+	
+	// 마이페이지 리뷰작성폼시 상품데이터 get
+	@GetMapping("/product/select")
+	@ResponseBody
+	public ProductDto selectProduct(int num) {
+	    return productService.getProductDetail(num);
 	}
 }

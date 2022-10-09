@@ -51,4 +51,10 @@ public class ProductService implements ProductServiceInter {
 //	
 //		return daoInter.getTag(themeNum);
 //	}
+
+    @Override
+    public List<ProductDto> selectWriteableList(int userNum) {
+        return productDaoInter.selectWriteableList(userNum);
+    }
+	
 }

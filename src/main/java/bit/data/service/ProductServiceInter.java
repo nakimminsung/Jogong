@@ -12,4 +12,5 @@ public interface ProductServiceInter {
 //	public List<ProductDto> getTag(int themeNum);
 	public ProductDto getProductDetail(int num);
 	public void updateReadCount(int num);
+	public List<ProductDto> selectWriteableList(int userNum);
 }
