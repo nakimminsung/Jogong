@@ -39,7 +39,7 @@
 			color: gray;
 			cursor: pointer;
 		}
-		img {
+		div.footer-right img {
 			margin-top: 10px;
 		}
 	</style>
