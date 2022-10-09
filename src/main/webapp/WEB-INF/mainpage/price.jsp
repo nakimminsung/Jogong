@@ -73,7 +73,7 @@
 	$(function(){
 		
 		$("document").ready(function(){
-			getProductList(50000);
+			getProductList(1);
 		});	
 		
 		$("span.pr").click(function(){
@@ -90,7 +90,7 @@
 			data:{"price":price},
 			dataType:"json", 
 			success:function(res){
-				console.log(res);
+			
 				$.each(res,function(i,e){
 						s+="<div class='card cardPrice' onclick=\"location.href='product/detail?num="+e.num+"'\">";
 						s+="<img class='card-img-top' src='"+ e.thumbnailImageUrl+"' alt='Card image cap'>";

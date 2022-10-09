@@ -11,4 +11,5 @@ public interface ProductServiceInter {
 	public List<ProductDto> getProductTheme(int themeNum);
 //	public List<ProductDto> getTag(int themeNum);
 	public ProductDto getProductDetail(int num);
+	public void updateReadCount(int num);
 }

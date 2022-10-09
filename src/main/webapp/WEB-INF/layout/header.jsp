@@ -242,11 +242,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
   </body>
   
 <script>
-<<<<<<< HEAD
-	  //카카오 로그아웃
-=======
 /* //카카오 로그아웃  
->>>>>>> 756729fab20010df321f93767cc815ddfbb1a76d
 	  window.Kakao.init('d4fc125a7dd0ad8b599aeac52a278521');  
 		function kakaoLogout() {
             if (!Kakao.Auth.getAccessToken()) {

@@ -44,6 +44,12 @@ public class ProductDao implements ProductDaoInter {
 		return session.selectOne(ns+"selectProductDetail",num);
 	}
 
+	@Override
+	public void updateReadCount(int num) {
+		
+		session.update(ns+"updateReadCount", num);
+	}
+	
 //	@Override
 //	public List<ProductDto> getTag(int themeNum) {
 //

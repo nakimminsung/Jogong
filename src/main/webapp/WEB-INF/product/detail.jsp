@@ -70,7 +70,8 @@
 	}
 	
 	.detailDescription{
-		border-right: 1px solid #C8D2D1;
+		margin-top:30px;
+		/* border-right: 1px solid #C8D2D1; */
 	}
 	
 	.detailRight{
@@ -81,7 +82,7 @@
 	
 	.detailContent{ 
 		margin-left: 40px;
-		border-right: 1px solid #C8D2D1;
+		/* border-right: 1px solid #C8D2D1; */
 	}
 	
 	._delivery{
@@ -266,13 +267,9 @@
     	height: 230px;
     }
     
-    .detailDescButton>span{ 
+    .detailDescButton>ul>li{ 
     	cursor:pointer;
     }
-	
-	
-	
-	
 	
 	
 	 ul.tab_receive{
@@ -328,6 +325,30 @@
 		text-align: center;
 	}
 	
+	.detailLine {
+   		background-color:#C8D2D1;
+	}
+
+	.reviewContentBtn{
+		margin-left: 700px;
+	}
+	
+	.latestProduct{ 
+		margin-right: 30px;
+	}
+	
+	.reviewUserImg{ 
+		width: 50px;
+    	height: 50px;  
+    	border-radius: 80%;
+    	overflow: hidden;	
+	}
+	
+	.reviewUserImg>img{ 
+		width: 100%;
+    	height: 100%;
+    	object-fit: cover;	
+	}
 </style>
 <script type="text/javascript">
 $(function(){
@@ -342,14 +363,7 @@ $(function(){
 	}else{
 		$('._delivery').text(" 배송비포함");
 	}
-	
-	var rating = $('.review .rating');
-	
-	rating.each(function(){
-		var targetScore = $(this).attr('data-rate');
-		$(this).find('.fa-star:nth-child(-n'+targetScore+')').css({color:'#F7C815'});
-	});
-	
+
 	// 수량버튼
 	var _price = $(".proPrice").val();
 	var plus = document.querySelector(".detailPlus");
@@ -364,7 +378,6 @@ $(function(){
 		count++;
 		result.textContent = count;
 		var totalcostNum = count * _price;
-		/* console.log(totalcostNum); */
 		var totalcost = totalcostNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 		$('.totalcost').text(totalcost+"원");
 	
@@ -416,7 +429,6 @@ $(function(){
 	
 	$(".detailWishlist").click(function(){
 		var data = $("#insertDetail").serialize();
-	/* 	alert(data); */
 		 var s ="";
 		$.ajax({
 			type:"post",
@@ -438,7 +450,6 @@ $(function(){
 			dataType:"json", 
 			data:data,
 			success:function(res){
-				/* alert("선물하기"); */
 			
 				modal.style.display = "none"
 				window.location.href="../payview?num="+res.num; 
@@ -523,6 +534,7 @@ $(function(){
     	getDetailProDesc();
     });
     
+    // review content 
     $("#detailReview").click(function(){
     	var s = "";
     	var productNum = $('input[name=productNum]').val();
@@ -533,9 +545,34 @@ $(function(){
 			data:{"productNum":productNum},
 			dataType:"json",
 			success:function(res){
-				console.log(res);
+				getReviewCount2();
+				//console.log(res);
+				s+="<h3 class='reviewContent' style='font-weight:600;'></h3>";
+				s+="<div class='reviewContentBtn'>";
+					s+="<span class='latestProduct'>최신순</span><span class='popProduct'>별점순</span>";
+				s+="</div>";
+				s += "<hr class='detailLine'>";
 				$.each(res,function(i,e){
-					s+="<p>"+e.subject+"</p>"
+				
+					s+="<div class='reviewUser' >";
+						s+="<div class='reviewUserImg' style='float:left;'>";
+							s+="<img src='"+e.profileImage+"' width='30'>";
+						s+="</div>";
+						
+						s+="<div class='review' style='float:left;'>";
+							for(var i=0; i<e.rating; i++)
+							{
+								s+="<i class='fas fa-star' style='color:#F7C815'></i>";
+							}
+						s+="</div>";
+					s+="</div>";
+
+					s+="<br>";
+					s+="<p>"+e.nickname+"</p>";
+					s+="<span>"+e.content+"</span>";
+					s+="<p style='float:right; color:gray; margin-right:35px;'>"+e.createdAt+"</p>";
+					/* s+="</div>"; */ 
+					s+= "<hr class='detailLine'>";
 				});
 				$(".detailDescContent").html(s);
 			}
@@ -547,9 +584,17 @@ $(function(){
 		$(this).css("border-bottom","3px solid black");
 	});
 	
-	$("document").ready(function(){
+	$(document).ready(function(){
 		borderBottom();
 		getReviewCount();
+		
+		// 별점
+		var rating = $('.review .rating');
+		rating.each(function(){
+			var targetScore = $(this).attr('data-rate');
+			$(this).find('.fa-star:nth-child(-n'+targetScore+')').css({color:'#F7C815'});
+		});
+		
 	});	
 });
 
@@ -572,14 +617,24 @@ $(function(){
 			data:{"productNum":productNum},
 			dataType:"json",
 			success:function(res){
-				console.log(res);
-				//var count = parseInt(res);
-				//console.log(count);
-				
 				 s += "선물후기("+res+")";
 				$("#detailReview").text(s);
 			}
-			
+    	});
+	}
+	
+	function getReviewCount2(){
+		var productNum = $('input[name=productNum]').val();
+		var s ="";
+		$.ajax({ 
+			type:"get",
+			url:"../review/count",
+			data:{"productNum":productNum},
+			dataType:"json",
+			success:function(res){
+				 s+="선물후기 " +res;
+				$(".reviewContent").text(s);
+			}	
     	});
 	}
 </script>
@@ -594,12 +649,8 @@ $(function(){
 	 	<input type="hidden" name="qty" value="1">
 	 	<input type="hidden" name="messageCard" value="">
 	 	<input type="hidden" name="engrave" value="">
-	 	<!-- <input type="hidden" name="friendNum" value="1"> -->
 	 	<input type="hidden" name="userNum" value="2">
 	 	<input type="hidden" name="productNum" value="${dto.num }">
-	 	
-	 	<!-- wishlist -->
-	 	<!-- <input type="hidden" name="publicOption" value="0"> -->
 	 	
 		<div class="detailContainer">
 			<div class="detailItem">
@@ -617,7 +668,6 @@ $(function(){
 						<i class="fas fa-star"></i> 
 						&nbsp;(${reviewCount } 건의 선물후기)
 					</div>
-					
 				</div>
 				<br><br>
 				<h3 class="_price"></h3>
@@ -674,7 +724,6 @@ $(function(){
 			<!-- 선물하기 modal -->
 		    <div id="orderDetailModal" class="gift-modal-overlay">
 		        <div class="gift-modal-window">
-		        	<!-- <form> -->
 		        	<div class="gift-modal-top">
 			            <div class="gift-title">
 			            	<div>
@@ -714,7 +763,6 @@ $(function(){
 						<div></div>
 						<button type="button" class="btn btn-warning getWishlist" id="btn_orderDetailInsert">확인</button>
 		            </div>
-		         <!--    </form> -->
 		        </div>
 		    </div>
 		    
@@ -731,7 +779,6 @@ $(function(){
 				    </div>
 				</div>
 			</div>
-			
 			
 			<!-- wishlist Modal -->
 			<div class="modal fade" id="wishlistModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -753,7 +800,6 @@ $(function(){
 			        </label>
 			      </div>
 			      <div class="modal-footer">
-			     	<!--  formaction="../wishlist/insert" -->
 			        <button type="button" class="detailWishlist" data-dismiss="modal">담기</button>
 			      </div>
 			    </div>
