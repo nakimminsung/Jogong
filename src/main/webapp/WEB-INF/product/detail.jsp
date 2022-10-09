@@ -362,12 +362,12 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         margin-right: 30px;
       }
 
-      .reviewUserImg {
+       .reviewUserImg {
         width: 50px;
         height: 50px;
         border-radius: 80%;
         overflow: hidden;
-      }
+      } 
 
       .reviewUserImg > img {
         width: 100%;
@@ -581,7 +581,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 
       					s+="<div class='reviewUser' >";
       						s+="<div class='reviewUserImg' style='float:left;'>";
-      							s+="<img src='"+e.profileImage+"' width='30'>";
+      							s+="<img src='"+e.profileImage+"' width='30' style='margin:0px;'>";
       						s+="</div>";
 
       						s+="<div class='review' style='float:left;'>";
@@ -666,8 +666,8 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
   </head>
   <body>
     <c:set var="root" value="<%=request.getContextPath() %>" />
-    <input type="hidden" class="proPrice" value="${dto.price" } />
-    <input type="hidden" class="delivery" value="${dto.deliveryOption" } />
+    <input type="hidden" class="proPrice" value="${dto.price }" />
+    <input type="hidden" class="delivery" value="${dto.deliveryOption }" />
 
     <form id="insertDetail" method="post" enctype="multipart/form-data">
       <!-- order detail (선물하기, 나에게 선물하기, 선물상자 담기)-->
@@ -686,7 +686,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         <div class="detailItem detailContent">
           <h3 style="font-weight: bold">${dto.name }</h3>
           <div class="review">
-            <div class="rating" data-rate="${reviewAvg" }>
+            <div class="rating" data-rate="${reviewAvg }">
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>

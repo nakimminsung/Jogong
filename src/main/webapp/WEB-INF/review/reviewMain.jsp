@@ -214,11 +214,11 @@
 	        		<div class="card-review" >
 	        			<div class="front" style="overflow: hidden;">
 	        				    <c:if test="${dto.reviewImageUrl==null}"> 
-            						<img src="${dto.thumbnailImageUrl }" width="250" height="250">
+            						<img src="${dto.thumbnailImageUrl }" width="250" height="250" style="margin:0px;">
        			 				</c:if>
        			 				
        			 				<c:if test="${dto.reviewImageUrl !=null }">
-       			 					<img src="${dto.reviewImageUrl }" width="250" height="250">
+       			 					<img src="${dto.reviewImageUrl }" width="250" height="250" style="margin:0px;">
        			 				</c:if>
 	        				<div class="frontInfo">
 		        				<h6 style="display:inline;">${dto.subject }</h6 >
