@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import bit.data.dto.OrderDto;
-import bit.data.dto.ProductDto;
-import bit.data.dto.UserDto;
 
 @Repository
 public class GiftDao implements GiftDaoInter{

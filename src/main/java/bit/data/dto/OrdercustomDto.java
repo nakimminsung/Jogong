@@ -1,7 +1,5 @@
 package bit.data.dto;
 
-import java.sql.Timestamp;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

@@ -3,8 +3,6 @@ package bit.data.dao;
 import java.util.List;
 
 import bit.data.dto.OrderDto;
-import bit.data.dto.OrderTestDto;
-import bit.data.dto.ProductDto;
 
 public interface OrderDaoInter {
 

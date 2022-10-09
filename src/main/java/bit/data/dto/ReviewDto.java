@@ -24,6 +24,7 @@ public class ReviewDto {
 	// product
 	private String name;
 	private String thumbnailImageUrl;
+	private String brand;
 	
 	// user
 	private String nickname;

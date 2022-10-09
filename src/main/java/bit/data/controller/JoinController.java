@@ -188,6 +188,8 @@ public class JoinController {
 			session.setAttribute("loginname", userDto.getNickname());
 			session.setAttribute("loginphoto", userDto.getProfileImage());
 			
+			session.setAttribute("loginUserNum", userDto.getNum());
+			
 					
 			}else{
 				//유지 시간 설정
@@ -198,6 +200,8 @@ public class JoinController {
 				session.setAttribute("loginid", email);
 				session.setAttribute("loginname", userDto.getNickname());
 				session.setAttribute("loginphoto", userDto.getProfileImage());
+				
+				session.setAttribute("loginUserNum", userDto.getNum());
 				
 			}
 			map.put("result",email!=null?"success":"fail");

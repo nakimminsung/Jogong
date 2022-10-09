@@ -3,7 +3,6 @@ package bit.data.dao;
 import java.util.List;
 
 import bit.data.dto.ProductDto;
-import bit.data.dto.ReviewDto;
 
 public interface ProductDaoInter {
 	public List<ProductDto> getFriendWishlist(int userNum);

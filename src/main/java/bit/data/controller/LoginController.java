@@ -14,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import bit.data.dto.SellerDto;
@@ -91,6 +90,8 @@ public class LoginController {
 			session.setAttribute("loginphoto", sellerDto.getLogoImage());
 			
 			session.setAttribute("rememberSellerId", rememberSellerId.equals("false")?"no":"yes");
+			
+			//sellerNum  보류
 
 
 		}
@@ -103,27 +104,11 @@ public class LoginController {
 	@GetMapping("/logout")
 	public String logout(HttpSession session, HttpServletRequest request, HttpServletResponse response)
 	{
+		
 		//로그아웃 시 제거되어야 할 세션
-//		session.removeAttribute("loginok");	//이걸로 비교할거라서 얘만 지우면되지만, id까지 지우기로함
+		session.removeAttribute("loginok");	//이걸로 비교할거라서 얘만 지우면되지만, id까지 지우기로함
 		//session.removeAttribute("loginid");
-		
-		session.invalidate();
-		
-		Cookie[] cookies = request.getCookies(); // 모든 쿠키의 정보를 cookies에 저장
-		
-		if(cookies != null){ // 쿠키가 한개라도 있으면 실행
-
-			for(int i=0; i< cookies.length; i++){
-
-			cookies[i].setMaxAge(0); // 유효시간을 0으로 설정
-
-			response.addCookie(cookies[i]); // 응답 헤더에 추가
-
-			}
-
-		}
-		
-		
+				
 		return "redirect:/";
 	}
 
@@ -149,13 +134,15 @@ public class LoginController {
 		{
 			//유지 시간 설정
 			session.setMaxInactiveInterval(60*60*4);//4시간
-			//로그인한 아이디에 대한 정보를 얻어서 세션에 저장s
+			//로그인한 아이디에 대한 정보를 얻어서 세션에 저장
 			UserDto userDto=userService.getDataById(email);
 			session.setAttribute("loginok", "yes");
 			session.setAttribute("loginid", email);
 			session.setAttribute("rememberId", rememberId.equals("false")?"no":"yes");
 			session.setAttribute("loginname", userDto.getNickname());
 			session.setAttribute("loginphoto", userDto.getProfileImage());
+			
+			session.setAttribute("loginUserNum", userDto.getNum());
 			
 		}
 		map.put("result", result==1?"success":"fail");
@@ -188,6 +175,8 @@ public class LoginController {
 		session.setAttribute("loginname", userDto.getNickname());
 		session.setAttribute("loginphoto", userDto.getProfileImage());
 		
+		session.setAttribute("loginUserNum", userDto.getNum());
+		
 				
 		}else{
 			//유지 시간 설정
@@ -199,6 +188,7 @@ public class LoginController {
 			session.setAttribute("loginname", userDto.getNickname());
 			session.setAttribute("loginphoto", userDto.getProfileImage());
 			
+			session.setAttribute("loginUserNum", userDto.getNum());
 		}
 		map.put("result",email!=null?"success":"fail");
 		

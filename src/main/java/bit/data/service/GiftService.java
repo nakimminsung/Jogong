@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 
 import bit.data.dao.GiftDaoInter;
 import bit.data.dto.OrderDto;
-import bit.data.dto.ProductDto;
-import bit.data.dto.UserDto;
 
 @Service
 public class GiftService implements GiftServiceInter{
