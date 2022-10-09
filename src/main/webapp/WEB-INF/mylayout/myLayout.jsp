@@ -58,7 +58,7 @@
 		display: flex;
 		justify-content: space-between;
 		margin: 0 auto;
-		min-height: 800px;
+		min-height: 600px;
 	}
 	div#menu{
 		width:30%;
