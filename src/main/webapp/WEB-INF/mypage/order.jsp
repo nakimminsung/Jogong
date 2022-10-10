@@ -28,13 +28,6 @@
     
 </head>
 <style>
-div.gift-wrapper{
-	padding-top:100px;
-	width:100%;
-	display:flex;
-	flex-direction:column;
-	
-}
 div.Gift{
 	width:100%;
 	display:flex;
@@ -42,6 +35,15 @@ div.Gift{
 	flex-wrap:wrap;
 }
 div.card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: 0.25rem;
 }
 p.card-title{
    color:blue;
@@ -569,7 +571,141 @@ p.card-title{
     box-sizing: border-box;
   }
   
+  div.gift-wrapper {
+            padding-top: 100px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
 
+        }
+
+        .card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid rgba(0, 0, 0, .125);
+            border-radius: 0.25rem;
+        }
+
+        div.Gift {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .container {
+            width: 25%;
+            height: 400px;
+            padding-right: var(--bs-gutter-x, .75rem);
+            padding-left: var(--bs-gutter-x, .75rem);
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        p.card-title {
+            color: blue;
+            font-size: 12px;
+            margin-bottom: 0.5rem;
+        }
+
+        .btn-open {
+            background-color: #cff0cc;
+            border-radius: 10px;
+            border: 0;
+            outline: 0;
+            font-size: 5px;
+            padding: 3px 10px;
+        }
+
+        .h5.card-text {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            display: block;
+            max-width: 1000px;
+            font-size: 1.25rem;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        .h6.card-text {
+            float: left;
+            font-size: 1rem;
+        }
+
+        .btn-open:hover {
+
+            background: green;
+            color: white;
+            border: 0;
+            outline: 0;
+        }
+
+        .card-body {
+            flex: 1 1 auto;
+            padding: 1rem 1rem;
+        }
+
+
+
+        /* mystyle.css */
+        /* The Modal (background) */
+        .mymodal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fff;
+            width: 350px;
+            border-radius: 10px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
 </style>
 <script type="text/javascript">
 	
@@ -670,11 +806,11 @@ p.card-title{
 	 					s+=	"<p class='card-title'>"+elt.brand+"</p>"
 	 					s+=	"<h5 class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 1000px;'>"+elt.productName+"</h5>"
 	 					s+= "<h6 class='card-text' style='float:left'><b>from."+elt.nickname+"</b></h6>"
-	 					s+=	"<button class='button' id='msgbtn' style='margin-left:10px;'>메시지 카드 보기</button>"
+	 					s+=	"<button class='btn-open' id='msgbtn' style='margin-left:10px;'>메시지 카드 보기</button>"
 	 					s+=	"<p style='color:gray; text-align: left; margin-top:10px'>"+elt.orderDate+"</p></div></div></div>"
 	 					
 	 					<!-- 팝업영역 -->
-	 					s+=	"<div class='modal' id='myModal'>"
+	 					s+=	"<div class='mymodal' style='display:none'>"
 	 					s+=	"<div class='modal-dialog'>"
 	 					s+=	"<div class='modal-content'>"
 	 					s+=	"<div class='gift_window'>"
@@ -714,11 +850,11 @@ p.card-title{
 						s+=	"</button></div></div></div></div></div>"
 		 											
 						s+=	"<a href='#none' class='btn_close'>"
-						s+=	"<span class='ico_gift2 ico_close'>닫기</span>"
+						s+=	"<span class='close'>닫기</span>"
 						s+=	"</a></div>"
 		 										
 						s+=	"<form action=''>"
-						s+=	"<table style='width: 70%; display: none; margin: 10px auto;' class='table table-bordered address'>"
+						s+=	"<table style='width: 70%; display: none; margin: 10px auto;' class='address'>"
 						//s+=	"<tr><th style='text-align: center'> 이름 </th>"
 						//s+=	"<td><input type='text' style='width: 100%;' required name='companyName' id='to_name' value='11받는사람이름'></td></tr>"
 							
@@ -758,6 +894,77 @@ p.card-title{
 </div>
 </body>
 <script type="text/javascript">
+window.onload = function() {
+	// Modal을 가져옵니다.
+	var modals = document.getElementsByClassName("mymodal");
+	//var modals = document.querySelector('.mymodal');
+	// Modal을 띄우는 클래스 이름을 가져옵니다.
+	var btns = document.getElementsByClassName("btn-open");
+	// Modal을 닫는 close 클래스를 가져옵니다.
+	var spanes = document.getElementsByClassName("btn_close");
+	var funcs = [];
+
+	console.log(modals);
+	console.log(modals.length);
+
+	console.log(btns);
+	console.log(btns.length);
+
+	console.log(spanes);
+	console.log(spanes.length);
+	// Modal을 띄우고 닫는 클릭 이벤트를 정의한 함수
+	function Modal(num) {
+	    return function () {
+	        // 해당 클래스의 내용을 클릭하면 Modal을 띄웁니다.
+	        btns[num].onclick = function () {
+	            modals[num].style.display = "block";
+	            console.log(num);
+	        };
+
+	        // <span> 태그(X 버튼)를 클릭하면 Modal이 닫습니다.
+	        spanes[num].onclick = function () {
+	            modals[num].style.display = "none";
+	        };
+	    };
+	}
+
+	// 원하는 Modal 수만큼 Modal 함수를 호출해서 funcs 함수에 정의합니다.
+	for (var i = 0; i < btns.length; i++) {
+	    funcs[i] = Modal(i);
+	}
+
+	// 원하는 Modal 수만큼 funcs 함수를 호출합니다.
+	for (var j = 0; j < btns.length; j++) {
+	    funcs[j]();
+	}
+
+	// Modal 영역 밖을 클릭하면 Modal을 닫습니다.
+	window.onclick = function (event) {
+	    if (event.target.className == "mymodal") {
+	        event.target.style.display = "none";
+	    }
+	};
+
+	// 주소입력
+ 	$(document).on("click", ".btn_crad", function () {
+		console.log(1);
+ 		$(".address").toggle();
+	});
+
+	$(".btn_crad").click(function(){
+		console.log(2);
+		$(".address").toggle();
+	});
+	
+
+	$(document).on("click", ".ico_close", function () {
+	    $(".address").hide();
+	    $(".mymodal").modal('hide');
+	});
+
+
+};
+
 //다음 주소검색 API
 //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
 function sample4_execDaumPostcode() {
