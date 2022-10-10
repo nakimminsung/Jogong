@@ -124,11 +124,15 @@ div.my-menu>div>a{
 					<div class="my-menu-top">
 						<h3>브랜드</h3>
 						<a href="" class="sorting"><img data-v-9f20d01e="" src="https://sodagift.com/icons/category_all.svg" style="width:20px; height:20px; border-radius:10px">전체</a>
-						<a href="" class="sorting"><img data-v-9f20d01e="" src="https://sodagift.com/img/image/1975054641867258.svg" style="width:20px; height:20px; border-radius:10px">식품</a>
-						<a href="" class="sorting"><img data-v-9f20d01e="" src="https://sodagift.com/img/image/1975104603360769.svg" style="width:20px; height:20px; border-radius:10px">건강식품</a>
+						<a href="" class="sorting"><img data-v-9f20d01e="" src="https://sodagift.com/img/image/1975054641867258.svg" style="width:20px; height:20px; border-radius:10px">패션</a>
+						<a href="" class="sorting"><img data-v-9f20d01e="" src="https://sodagift.com/img/image/1975104603360769.svg" style="width:20px; height:20px; border-radius:10px">음식</a>
 						<a href="" class="sorting"><img data-v-9f20d01e="" src="https://sodagift.com/img/image/1898623566327609.svg" style="width:20px; height:20px; border-radius:10px">뷰티</a>
-						<a href="" class="sorting"><img data-v-9f20d01e="" src="https://sodagift.com/img/image/1974989170738795.svg" style="width:20px; height:20px; border-radius:10px">가전제품</a>
-						<a href="" class="sorting"><img data-v-9f20d01e="" src="https://sodagift.com/img/image/1975550610153350.svg" style="width:20px; height:20px; border-radius:10px">키친</a>
+						<a href="" class="sorting"><img data-v-9f20d01e="" src="https://sodagift.com/img/image/1974989170738795.svg" style="width:20px; height:20px; border-radius:10px">전자기기</a>
+						<a href="" class="sorting"><img data-v-9f20d01e="" src="https://sodagift.com/img/image/1975550610153350.svg" style="width:20px; height:20px; border-radius:10px">카페</a>
+						<a href="" class="sorting"><img data-v-9f20d01e="" src="https://sodagift.com/img/image/1975550610153350.svg" style="width:20px; height:20px; border-radius:10px">건강식품</a>
+						<a href="" class="sorting"><img data-v-9f20d01e="" src="https://sodagift.com/img/image/1975550610153350.svg" style="width:20px; height:20px; border-radius:10px">생활용품</a>
+						<a href="" class="sorting"><img data-v-9f20d01e="" src="https://sodagift.com/img/image/1975550610153350.svg" style="width:20px; height:20px; border-radius:10px">카카오프렌즈</a>
+						<a href="" class="sorting"><img data-v-9f20d01e="" src="https://sodagift.com/img/image/1975550610153350.svg" style="width:20px; height:20px; border-radius:10px">반려용품</a>
 					</div>
 				</div>
 			</div>	
