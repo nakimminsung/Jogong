@@ -44,7 +44,7 @@
 	<select id="getReviewCount" parameterType="int" resultType="int">
 		select count(*) from review r inner join product p 
 		on r.productNum = p.num 
-		where r.productNum = #{productNum};
+		where r.productNum = #{productNum}
 	</select>
 	
 	<!-- 마이페이지 작성한 리뷰목록 -->

@@ -18,7 +18,7 @@ public class OptionDao implements OptionDaoInter {
 	@Override
 	public List<OptionDto> getAllOption(int productNum) {
 
-		return session.selectList(ns+"selectProductOption");
+		return session.selectList(ns+"selectProductOption", productNum);
 	}
 	
 }

@@ -71,11 +71,8 @@
 </style>
 <script type="text/javascript">
 	$(function(){
-		
-		$("document").ready(function(){
-			getProductList(1);
-		});	
-		
+		getProductList(1);
+	
 		$("span.pr").click(function(){
 			var price = $(this).attr("price");
 			getProductList(price);

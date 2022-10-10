@@ -31,7 +31,7 @@
 	
 	<!-- 테마별 -->
 	<select id="selectProductByTheme" parameterType="int" resultType="productDto">
-		select * from product where num in (select productNum from themeProduct where themeNum=#{themeNum});
+		select * from product where num in (select productNum from themeProduct where themeNum=#{themeNum})
 	</select>
 	
 	<!-- 태그 -->
