@@ -30,11 +30,13 @@
 	
 	<!-- 상세페이지 -->
 	<select id="getReviewByProduct" parameterType="int" resultType="reviewDto">
-		select r.subject, r.content, r.rating, r.createdAt, r.publicOption, r.reviewImageUrl, r.productNum, r.userNum, p.name, u.nickname, u.profileImage 
+		select t.content tagContent, t.backgroundColor, t.textColor, r.subject, r.content, r.rating, r.createdAt, r.publicOption, r.reviewImageUrl, r.productNum, r.userNum, p.name, u.nickname, u.profileImage 
 		from review r inner join product p 
 		on r.productNum = p.num 
 		inner join jogong.user u 
 		on u.num = r.userNum 
+		inner join tag t 
+		on t.num = r.tagNum
 		where r.productNum = #{productNum}
 	</select>
 	

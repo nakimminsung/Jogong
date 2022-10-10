@@ -374,6 +374,16 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         height: 100%;
         object-fit: cover;
       }
+      
+      div.reviewTag{
+      	width:55px;
+      	height: 25px; 
+      	border-radius: 10px; 
+      	display: flex; 
+      	justify-content: center; 
+      	align-items: center;
+      	margin-top: 20px;
+      }
     </style>
     <script type="text/javascript">
       $(function(){
@@ -594,9 +604,12 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 
       					s+="<br>";
       					s+="<p>"+e.nickname+"</p>";
-      					s+="<span>"+e.content+"</span>";
-      					s+="<p style='float:right; color:gray; margin-right:35px;'>"+e.createdAt+"</p>";
-      					/* s+="</div>"; */
+      					s+="<span >"+e.content+"</span>";
+      					s+="<div class='reviewTag' style='background-color:"+e.backgroundColor+"'>";
+	      					s+="<span>#"+e.tagContent+"</span>";
+	      				s+="</div>";
+	      				s+="<p style='float:right; color:gray; margin-right:35px; position:relative; top:-20px;'>"+e.createdAt+"</p>";
+      					
       					s+= "<hr class='detailLine'>";
       				});
       				$(".detailDescContent").html(s);
@@ -709,6 +722,11 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 
         <div class="detailItem detailRight">
           <p style="font-weight: bold">${dto.name }</p>
+          <!-- 옵션넣기 -->
+          <c:if test="${dto.sizeOption == 1}">
+          	<p>ss</p>
+          </c:if>
+          
           <div class="detailNum">
             <span>수량</span>
             <span class="detailCount">
