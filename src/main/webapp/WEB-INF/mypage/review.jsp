@@ -125,22 +125,27 @@
 		color:#808080; 
 		font-size: 13px;
 	}
-	div.review-show-left{
+	div.review-content {
+		padding: 20px 0;
+	}
+	div.review-content-left{
 		display:flex;
 		flex-direction:column;
 	}
-	div.review-show-left>img{
+	div.review-content-right>img{
 		width:200px; 
 		height:200px;
+		display: flex;
+		flex-direction: column;
 	}
 	span.review-subject{
 		font-size:20px; 
 		margin:10px 0;
 	}
-	div.review-show-right {
-		padding:10px;
+	div.review-content-right {
+		padding: 0 10px;
 	}
-	div.review-show-right span{
+	div.review-content-right span{
 		color:#808080;
 		font-size: 13px;
 	}
@@ -344,14 +349,14 @@
 		
 		// 리뷰보기 버튼 이벤트
 		$(document).on("click",".review-show",function(){
-			$(this).siblings(".review-show").slideToggle().css("display","flex");
+			$(this).siblings(".review-content").slideToggle().css("display","flex");
 			$(this).attr("class","review-button review-hide");
 			$(this).text("리뷰닫기").css({"color":"#808080","font-size":"13px"});
 		});
 		
 		// 리뷰닫기 버튼 이벤트
 		$(document).on("click",".review-hide",function(){
-			$(this).siblings(".review-show").slideToggle().css("display","flex");
+			$(this).siblings(".review-content").slideToggle().css("display","flex");
 			$(this).attr("class","review-button review-show");
 			$(this).text("작성한 리뷰 보기").css({"color":"#808080","font-size":"13px"});
 		});
@@ -583,16 +588,17 @@
 	 				s += "</div>";
 	 				s += "</div>";
 	 				s += "</div>";
-	 				s += "<div class='review-show' style='display:none; justify-content:space-between; border-top:1px solid #f0f0f0; margin-bottom:10px;'>";
-	 				s += "<div class='review-show-left'>";
-	 				if(elt.reviewImageUrl != null) {
-		 				s += "<img src='"+elt.reviewImageUrl+"'>";	
-	 				}
+	 				s += "<div class='review-content' style='display:none; justify-content:space-between; border-top:1px solid #f0f0f0; margin-bottom:10px;'>";
+	 				s += "<div class='review-content-left'>";
 	 				s += "<span class='review-subject'>"+elt.subject+"</span>";
 	 				s += "<span>"+elt.content+"</span>";
 	 				s += "</div>";
-	 				s += "<div class='review-show-right'>";
-	 				s += "<span>"+elt.createdAt+"</span>";
+	 				s += "<div class='review-content-right'>";
+	 				s += "<span>작성날짜: "+elt.createdAt+"</span>";
+	 				s += "<div class='review-update' style='width:150px; height:40px; display:flex; justify-content:center; align-items:center; border:1px solid #d0d0d0; cursor:pointer;'>수정하기</div>"
+	 				if(elt.reviewImageUrl != null) {
+		 				s += "<img src='"+elt.reviewImageUrl+"' onerror='this.style.display=\"none\"'>";	
+	 				}
 	 				s += "</div>";
 	 				s += "</div>";
 	 				s += "<div class='review-button review-show'>";

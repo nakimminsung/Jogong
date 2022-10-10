@@ -178,8 +178,31 @@
 </style>
 <script>
 	$(function(){
+		
+        const modal = document.getElementById("gift-modal")
+        const btnModal = document.getElementById("gift-friend")
+		
+		const closeBtn = modal.querySelector(".gift-close-area")
+		
+		
 		$(".gift-friend-img").click(function(){
-			list();
+			
+			let userNum = $("input[name=userNum]").attr("value");
+			
+			if(${empty sessionScope.loginid}) {
+				if(!confirm("로그인이 필요한 메뉴입니다.\n로그인하시겠습니까?")){
+		
+				} else {
+					location.href="${root}/loginForm";
+				}
+				return
+			} else {
+				//  로그인 상태일 때 친구목록 불러오기
+				btnModal.addEventListener("click", e => {
+		    		modal.style.display = "flex"
+				})
+				list(userNum);
+			}
 		});
 		
 		var fl = 0;
@@ -271,12 +294,40 @@
 				});
 			}
 		});
-	});
+		closeBtn.addEventListener("click", e => {
+		    modal.style.display = "none"
+	        $("body").attr("class","");
+		})
 		
-	function list() {
-		var userNum = ${sessionScope.loginid};
-			
-		var s="";
+		modal.addEventListener("click", e => {
+		    const evTarget = e.target
+			    if(evTarget.classList.contains("gift-modal-overlay")) {
+			        modal.style.display = "none"
+	        		$("body").attr("class","");
+			    }
+		})
+		
+		window.addEventListener("keyup", e => {
+    		if(modal.style.display === "flex" && e.key === "Escape") {
+        		modal.style.display = "none"
+        		$("body").attr("class","");
+   			}
+		})
+		
+		$("#gift-friend").click(function(){
+			$("body").attr("class","modal-fix");
+		});
+        
+		$(document).on("click",".btn-cancel",function(){
+		    modal.style.display = "none"
+		    $("body").attr("class","");
+		});
+	});
+	
+	// 친구목록 조회 함수
+	function list(userNum) {
+		
+		let s="";
 			
 		$.ajax({
 			type: "get",
@@ -317,6 +368,7 @@
 </script>
 </head>
 <body>
+	<input type="hidden" name="userNum" value="${sessionScope.loginid}">
 	<div class="gift-background">
 		<div class="gift-wrapper">
 			<div class="gift-top">
@@ -372,44 +424,5 @@
             </form>
         </div>
     </div>
-    <script>
-        const modal = document.getElementById("gift-modal")
-        const btnModal = document.getElementById("gift-friend")
-		
-        btnModal.addEventListener("click", e => {
-		    modal.style.display = "flex"
-		})
-		
-		const closeBtn = modal.querySelector(".gift-close-area")
-		
-		closeBtn.addEventListener("click", e => {
-		    modal.style.display = "none"
-	        $("body").attr("class","");
-		})
-		
-		modal.addEventListener("click", e => {
-		    const evTarget = e.target
-			    if(evTarget.classList.contains("gift-modal-overlay")) {
-			        modal.style.display = "none"
-	        		$("body").attr("class","");
-			    }
-		})
-		
-		window.addEventListener("keyup", e => {
-    		if(modal.style.display === "flex" && e.key === "Escape") {
-        		modal.style.display = "none"
-        		$("body").attr("class","");
-   			}
-		})
-		
-		$("#gift-friend").click(function(){
-			$("body").attr("class","modal-fix");
-		});
-        
-		$(document).on("click",".btn-cancel",function(){
-		    modal.style.display = "none"
-		    $("body").attr("class","");
-		});
-    </script>
 </body>
 </html>
