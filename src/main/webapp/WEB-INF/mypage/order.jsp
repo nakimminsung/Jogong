@@ -602,10 +602,10 @@ p.card-title{
 			order_recevie();
 		});
 		
-	 	$(document).on("click","#msgbtn",function() {
+	 	$(document).on("click","#msgbtn1",function() {
 		    <!-- 여러개의 버튼이 모두 클릭되어서 모두 호출된다 -->
-		    $(".modal").modal({remote : 'layer.html'});
-		    $(".modal").modal('show');
+		    $("#myModal1").modal({remote : 'layer.html'});
+		    $("#myModal1").modal('show');
 		    
 		    <!-- (this)로 찍으면 배경만 나옴 -->
 		    //$(this).modal('show');
@@ -685,14 +685,14 @@ p.card-title{
 	 					s+=	"<p class='card-title'>"+elt.brand+"</p>"
 	 					s+=	"<h5 class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 1000px;cursor:pointer;' onclick=\"location.href='../${root}product/detail?num="+elt.productNum+"'\">"+elt.productName+"</h5>"
 	 					s+= "<h6 class='card-text'><b>from."+elt.nickname+"</b></h6>"
-	 					s+=	"<button class='button' id='msgbtn' style='margin-left:10px'>메시지 카드 보기</button>"
+	 					s+=	"<button class='button' id='msgbtn"+i+"' style='margin-left:10px'>메시지 카드 보기</button>"
 	 					//s+=	"<button class='button' id='msgbtn' style='margin-left:10px' name='"+i+"'>메시지 카드 보기</button>"
 	 					s+=	"<p style='color:gray; text-align: left; margin-top:10px'>"+elt.orderDate+"</p></div></div></div>"
 	 					
 	 					/* 하나 누를때마다 하나의 정보를 들고오는 ajax 처리 */
 	 					
 	 					<!-- 팝업영역 -->
-	 					s+=	"<div class='modal' id='myModal'>"
+	 					s+=	"<div class='modal' id='myModal"+i+"'>"
 	 					//s+=	"<div class='modal' id='myModal' name='"+i+"'>"
 	 					s+=	"<div class='modal-dialog'>"
 	 					s+=	"<div class='modal-content'>"
