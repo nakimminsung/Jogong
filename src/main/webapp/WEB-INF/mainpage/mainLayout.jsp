@@ -48,9 +48,9 @@
 	  margin: 0 auto;
 	}
 	footer{
-	  background-color:lightblue;
+	  background-color: #fafafc;
 	  width: 100%;
-	  height: 150px;
+	  height: 155px;
 	  position : relative;
 	}
 </style>

@@ -1,10 +1,7 @@
 package bit.data.service;
 
 import java.util.List;
-
 import bit.data.dto.OrderDto;
-import bit.data.dto.OrderTestDto;
-import bit.data.dto.ProductDto;
 
 public interface OrderServiceInter {
 	
@@ -29,4 +26,6 @@ public interface OrderServiceInter {
 	public Integer getOrderDetailNum(int num);
 	
 	public Integer getFriendNum(int num);
+	
+	public Integer getProductNum(int num);
 }

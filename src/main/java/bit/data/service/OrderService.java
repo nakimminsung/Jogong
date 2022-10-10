@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import bit.data.dao.OrderDaoInter;
-import bit.data.dto.OrderDetailDto;
 import bit.data.dto.OrderDto;
-import bit.data.dto.OrderTestDto;
-import bit.data.dto.ProductDto;
 
 @Service
 public class OrderService implements OrderServiceInter {
@@ -84,6 +81,12 @@ public class OrderService implements OrderServiceInter {
 	public Integer getFriendNum(int num) {
 		// TODO Auto-generated method stub
 		return orderdao.getFriendNum(num);
+	}
+
+	@Override
+	public Integer getProductNum(int num) {
+		// TODO Auto-generated method stub
+		return orderdao.getProductNum(num);
 	}
 
 }

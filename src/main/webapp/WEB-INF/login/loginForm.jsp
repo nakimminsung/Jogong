@@ -45,7 +45,7 @@
 		color: white;
 		 */
 		font-weight: bold;
-		margin-top: 20px;
+		margin-top: 40px;
 		background-color: #ef3e43;
 	}
 	
@@ -58,18 +58,18 @@
 		color: white;
 		 */
 		font-weight: bold;
-		margin-top: 20px;
+		margin-top: 40px;
 		background-color: #ef3e43;
 	}
 	
 	div.snsLoginBox{
 		width: 100%;
 		margin-top: 15px;
-		justify-content: space-between;
+		justify-content: space-around;
 	}
 	
 	div.snsLoginBox button{
-		width: 47%;
+		width: 45%;
 		height: 40px;
 		border: 0px;
 		border-radius: 8px;
@@ -125,16 +125,26 @@ $(document).ready(function(){
 				<input type="password" class="form-control userTextBox" required placeholder="비밀번호" id="userPassword">
 				<label style="float: left;"><input type="checkbox" class="form-check-input checkUser" id="rememberId" ${rememberId=='yes' ? 'checked' : ''}> 아이디 저장</label>		
 				<button type="button" class="loginok btn btn-danger" id="loginok" >로그인</button>
-				<hr>
+				<hr style="margin-top: 30px; margin-bottom: 30px; ">
 				
 				<!-- 소셜회원 로그인 박스 -->
-				<div class="snsLoginBox">
-					<button class="btnKakaoLogin" style="background-color: #fde102;"><i class='fas fa-comment'></i> 카카오로 로그인</button>&nbsp;&nbsp;&nbsp;
-					<button class="btnNaverLogin" style="background-color: #19ce60; color: white;">N 네이버로 로그인</button>
-				</div>
+				<div class="snsLoginBox input-group">
+					
+					<!-- 카카오 로그인 버튼 -->
+					<button class="btnKakaoLogin" style="background-color: #fde102; height: 50px;"><i class='fas fa-comment'></i>  카카오 아이디로 로그인</button>&nbsp;&nbsp;
+					
+					<!-- 네이버 로그인 버튼이 생기는 영역 -->
+					<div id="naverIdLogin"></div>
+					<!-- <button class="btnNaverLogin" style="background-color: #03c75a; height: 50px; color: white;">N 네이버 아이디로 로그인</button> -->
 
-			</div>	
+				
+				
+				</div>	<!-- 소셜 로그인 div 종료 -->
 
+			</div>	<!-- 일반 회원 div 종료 -->
+
+			
+			
 				
 			<!-- 판매회원 로그인 박스 -->
 			<div class="sellerLoginBox">
@@ -144,7 +154,6 @@ $(document).ready(function(){
 					<h3 style="float: left;">판매 회원 로그인</h3>
 					<button type="button" class="btnChange2 btn-sm btn-dark" style="float: right; margin-bottom: 5px;">일반회원 전환</button>
 				</div>
-			
 				
 				<input type="email" class="form-control sellerTextBox" required placeholder="아이디(이메일 형식)" id="sellerEmail" value="${rememberSellerId=='yes' ? savedSellerId : ''}">
 				<input type="password" class="form-control sellerTextBox" required placeholder="비밀번호" id="sellerPassword">
@@ -162,7 +171,53 @@ $(document).ready(function(){
 </body>
 
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>	<!-- 카카오 로그인 관련 -->
+<!-- 네이버 로그인 관련 -->
+<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 <script>
+	
+
+	// 네아로 로그인 정보를 초기화하기 위하여 init을 호출
+	naverLogin.init();
+	
+	// 초기화할 때 로그아웃
+	naverLogin.logout();
+	
+	//네이버 로그인 정보 가져와서 담기
+	naverLogin.getLoginStatus(function (status) {
+      if (status) {
+		let nickname=naverLogin.user.getName();
+		let email=naverLogin.user.getEmail();
+		let image=naverLogin.user.getProfileImage();
+		let gender=naverLogin.user.getGender=="F"?"2":"1";
+		let oldbirthday=naverLogin.user.getBirthday();
+		let birthday=oldbirthday.replace(/-/g, "");
+		 
+		//회원가입 or 로그인을 위한 Data 전달
+		$.ajax({  
+			type:"post",
+			url:"userNaverLogin",	//LoginController
+			dataType:"json",
+			data:{"email":email,"nickname":nickname,"profileImage":image,"gender":gender,"date":birthday},         
+			success:function(ok){
+
+				location.href="/jogong/";
+
+			},error : function(xhr, status, error){  	// 필요한 정보 못가져올 경우 일반회원폼 이동
+
+				alert("필요한 정보를 가져올 수 없어 일반 회원가입으로 이동합니다");
+				location.href="/jogong/join/userAgree";	
+			}//error
+	
+		});//ajax 종료
+
+		
+		}	//if 종료
+	});	//naverLogin.getLoginStatus 종료
+	
+	//console.log(naverLogin);
+
+	
+	
 	
 	//카카오 로그인 버튼 이벤트
 	$(".btnKakaoLogin").click(function () {

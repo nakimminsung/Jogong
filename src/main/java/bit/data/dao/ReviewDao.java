@@ -39,6 +39,30 @@ public class ReviewDao implements ReviewDaoInter {
 		
 		return session.selectList(ns+"getPagingList",map);
 	}
+
+	// 상세페이지 
+	@Override
+	public List<ReviewDto> getProductReviewList(int productNum) {
+		
+		return session.selectList(ns+"getReviewByProduct", productNum);
+	}
 	
+	// 상세페이지 리뷰수 
+	@Override
+	public int getReviewCount(int productNum) {
+		
+		return session.selectOne(ns+"getReviewCount", productNum);
+	}
 	
+	// 마이페이지 작성한 리뷰목록
+    @Override
+    public List<ReviewDto> selectReviewByUser(int userNum) {
+        return session.selectList(ns+"selectReviewByUser", userNum);
+    }
+    
+    // 마이페이지 리뷰수
+    @Override
+    public int selectReviewCount(int userNum) {
+        return session.selectOne(ns+"selectReviewCount", userNum);
+    }
 }

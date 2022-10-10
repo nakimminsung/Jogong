@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bit.data.dao.GiftDao">
+
+	<!-- 받은 선물함 조회  -->
+	<select id="getSendSearch" parameterType="int" resultType="orderDto">
+		select o.num, o.banner, o.orderDate,o.message, o.hp, o.postalcode, o.deliveryAdrress as deliveryAddress ,
+		p.num as productNum, p.name as productName, p.thumbnailImageUrl, p.brand, u.nickname, u.profileImage
+		from  jogong.order as o left join user as u on o.userNum=u.num 
+		left join product as p on o.productNum = p.num
+		where friendNum=#{num};
+	</select>
+
+	<!-- 보낸 선물함 조회  -->
+	<select id="getReceiveSearch" parameterType="int" resultType="orderDto">
+		select o.banner, o.orderDate, 
+		p.num as productNum, p.name as productName, p.thumbnailImageUrl, p.brand, u.nickname, u.profileImage
+		from  jogong.order as o left join user as u on o.friendNum=u.num 
+		left join product as p on o.productNum = p.num
+		where userNum=#{num};
+	</select>
+	
+	<!-- 주소 입력 -->
+	<update id="updateAddressOrder" parameterType="orderDto">
+		update jogong.order
+		set hp = #{hp},
+		    postalcode = #{postalcode},
+		    deliveryAdrress = #{deliveryAdrress}
+		where num=#{num};
+	</update>
+	
+</mapper>

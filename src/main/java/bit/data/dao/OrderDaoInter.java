@@ -3,8 +3,6 @@ package bit.data.dao;
 import java.util.List;
 
 import bit.data.dto.OrderDto;
-import bit.data.dto.OrderTestDto;
-import bit.data.dto.ProductDto;
 
 public interface OrderDaoInter {
 
@@ -29,4 +27,6 @@ public interface OrderDaoInter {
 	public Integer getOrderDetailNum(int num);
 	
 	public Integer getFriendNum(int num);
+
+	public Integer getProductNum(int num);
 }

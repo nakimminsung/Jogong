@@ -20,15 +20,18 @@
    }
    
    .htitle{
-	  background-color: #ffd700;
+	  /* background-color: #c4bee2; */	/* 연보라 */
+	  background-color: #e0dbef;		/* 연연보라 */
+	  /* background-color: #cff0cc; */
   	  height: 200px;
   	  padding-left: 25%;
   	  padding-top: 80px;
-  	  font-family: Jua;
+  	  /* font-family: Jua; */
+  	  font-weight: bold;
    }
    
    div.ibox {
-      margin-top: 1%;
+      margin-top: 3%;
       margin-left: 25%;
 	  background-color: white;
       width: 1000px;
@@ -40,11 +43,16 @@
       vertical-align: middle;
    }
    
-   button.sub {
+   .btnsub {
       width: 200px;
       height: 50px;
-      background-color: #ffd700;
+      /* background-color: #cff0cc; */
+      background-color: #c4bee2;
       font-size: 20px;
+      font-weight: bold;
+      color: black;
+      border: 1px solid #cff0cc;
+      border-radius: 5px;
    }
    
    i.star {
@@ -83,7 +91,27 @@
    
       }); // change 이벤트 종료      
       
+    
+
+      //문의 접수 버튼 클릭 이벤트 (세션의 userNum 확인용도)
+	$(".sub").click(function () {
+		
+		var test=$("#loginUserNum").val();
+		
+		alert(test);
+		
+	});
       
+	//onsubmit : submit 하기 직전에 호출되는 메서드
+	function check(){
+		
+	//활용 예정
+	
+	} // check() 메서드 종료
+      
+      
+      
+	  
 
       
    }); // function 종료
@@ -99,8 +127,8 @@
       <form action="qnainsert" method="post" enctype="multipart/form-data">
       
       <!-- 보이진않지만 폼 전송할때 같이 보내야하는 데이터 -->
-      <%-- <input type="hidden" name="userNum" value="${sessionScope.loginid}"> --%>
-      <input type="hidden" name="userNum" value="1">
+      <input type="hidden" name="userNum" value="${sessionScope.loginUserNum}" id="loginUserNum">
+      <!-- <input type="hidden" name="userNum" value="1"> -->
       
          <table class="table form" style="border-top: 1px solid gray;" >
             <tr>
@@ -159,7 +187,8 @@
 
             <tr>
                <th colspan="2" style="text-align: center;">
-                  <button type="submit" class="btn btn-warning sub">문의 접수</button>
+                  <!-- <button type="submit" class="btn btn-warning sub">문의 접수</button> -->
+                  <button type="button" class="btnsub">문의 접수</button>
                </th>
             </tr>
             
@@ -172,12 +201,7 @@
 <script type="text/javascript">
 
 
-// 문의 접수 버튼 클릭 이벤트
-$(".sub").click(function () {
-   
-   alert("문의를 등록하시겠습니까?");
-   
-});
+
 
 
 </script>

@@ -32,11 +32,17 @@ uri="http://tiles.apache.org/tags-tiles" %>
   </head>
   <style type="text/css">
   
-  	@font-face {
-	    font-family: 'BMDOHYEON';
-	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMDOHYEON.woff') format('woff');
-	    font-weight: normal;
-	    font-style: normal;
+ 	@font-face {
+    font-family: 'SeoulNamsanM';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+	}
+	
+	body * {
+		font-size: 15px;
+		font-family: 'SeoulNamsanM';
+		word-spacing: -1px;
 	}
   	
     #wrapper {
@@ -60,14 +66,14 @@ uri="http://tiles.apache.org/tags-tiles" %>
     }
 
     footer {
-      background-color: lightblue;
+      background-color: #fafafc;
       width: 100%;
-      height: 150px;
+      height: 155px;
       position: relative;
     }
   </style>
   <body>
-    <header id="header">
+    <header id="header" style=" z-index: 999;">
       <tiles:insertAttribute name="header" />
     </header>
     <div id="wrapper">

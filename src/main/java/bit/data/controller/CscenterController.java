@@ -107,7 +107,7 @@ public class CscenterController {
 	        }
 
 	        
-	        // dto 에 업로드파일 담기
+	        // dto 에 업로드파일의 파일명 담기
 	      if (upload.getOriginalFilename().equals("")) // 업로드를 안했을때 (" " 빈 문자열)
 	      {
 	         dto.setImageUrl(null);   // imageUrl에 null값 부여
