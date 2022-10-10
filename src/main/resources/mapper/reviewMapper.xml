@@ -59,6 +59,16 @@
 		where r.userNum=#{userNum} order by num desc
 	</select>
 	
+	<!-- 마이페이지 리뷰 조회 -->
+	<select id="selectReviewByNum" parameterType="int" resultType="reviewDto">
+		select 
+		r.num,r.subject,r.content,r.rating,r.createdAt,r.publicOption,r.reviewImageUrl,r.userNum,r.productNum,r.tagNum,
+		t.content tagName,t.backgroundColor tagBColor,t.textColor tagTColor
+		from review r inner join tag t 
+		on r.tagNum = t.num 
+		where r.num=#{num}
+	</select>
+	
 	<!-- 마이페이지 작성한 리뷰 갯수 -->
 	<select id="selectReviewCount" parameterType="int" resultType="int">
 		select count(*)

@@ -186,6 +186,11 @@
 		flex-direction: column; 
 		padding-top: 20px;
 	}
+	div.review-update-form {
+		display:none; 
+		flex-direction: column; 
+		padding-top: 20px;
+	}
 	div.review-object {
 		margin-bottom: 30px; 
 		border-bottom: 1px solid #f0f0f0;
@@ -359,6 +364,9 @@
 	button.review-insert{
 		background-color: #cff0cc;
 	}
+	button.review-update-btn{
+		background-color: #cff0cc;
+	}
 	span.review-term2 {
 		font-size: 13px; 
 		color: #a0a0a0;
@@ -489,6 +497,81 @@
 			});
 		});
 		
+		// 리뷰수정 버튼 이벤트
+		$(document).on("click",".review-update-button",function(){
+			
+			$(".review-top-fix").css("display","none");
+			$(".review-menu").css("display","none");
+			$(".review-result").css("display","none");
+			
+			$(".review-update-form").css("display","flex");
+			
+			let productNum = $(this).attr("productNum");
+			let reviewNum = $(this).attr("reviewNum");
+			$("input[name=num]").attr("value",reviewNum);
+			
+			// 기존 리뷰 정보 출력
+			$.ajax({
+				type: "get",
+				url: "../review/selectOne",
+				dataType: "json",
+				data: {"num":reviewNum},
+				success:function(res){
+					
+					$("input[name=subject]").val(res.subject);
+					$("textarea[name=content]").val(res.content);
+					$("div.review-tag-obejct[tagNum="+res.tagNum+"]").css("border","3px solid lightgray");
+					$("input[name=tagNum]").attr("value",res.tagNum);
+					$("div.rating").attr("data-rate",res.rating);
+					$("input[name=rating]").attr("value",res.rating);
+					
+					if(res.publicOption) {
+						$("input.review-update-option[name=publicOption][value='1']").attr("checked","checked");
+					} else {
+						$("input.review-update-option[name=publicOption][value='0']").attr("checked","checked");
+					}
+					
+					// 작성된 리뷰의 별점 표시
+					var rating = $(".rating");
+					
+					rating.each(function(){
+						var targetScore = $(this).attr("data-rate");
+						$(this).find("i:nth-child(-n+"+targetScore+")").css("color","#fbea4e");
+					});
+				}
+			});
+			
+			// 페이지 상단 상품정보 출력
+			let s = "";
+			
+			$.ajax({
+				type: "get",
+				url: "../product/select",
+				dataType: "json",
+				data: {"num":productNum},
+				success:function(res){
+					
+					s += "<div class='review-object'>";
+					s += "<div class='review-top'>";
+					s += "<div class='review-product-image'>";
+					s += "<img src='"+res.thumbnailImageUrl+"'>";
+					s += "</div>";
+					s += "<div class='review-product-info'>";
+					s += "<div class='review-product-content'>";
+					s += "<span class='review-product-content-span1'>"+res.brand+"</span>";
+					s += "<span>"+res.name+"</span>";
+					s += "</div>";
+					s += "</div>";
+					s += "</div>";
+					s += "</div>";
+					
+					$("div.form-product-info").html(s);
+				}
+			});
+			
+			
+		});
+		
 		// 취소버튼 이벤트
 		$(".review-cancel").click(function(){
 			$(".review-top-fix").css("display","block");
@@ -593,7 +676,7 @@
 			}
 		});
 		
-		// 리뷰 수정 모달
+	/* 	// 리뷰 수정 모달
 	    const reviewModal = document.getElementById("review-modal")
 	    
 		$(document).on("click",".review-update-button",function(){
@@ -608,7 +691,7 @@
 		$(document).on("click",".btn-cancel",function(){
 		    reviewModal.style.display = "none"
 	        $("body").attr("class","");
-		});
+		}); */
 	});
 	
 	// 작성 가능한 후기
@@ -714,7 +797,7 @@
 	 				s += "</div>";
 	 				s += "<div class='review-content-right'>";
 	 				s += "<span class='review-delete' style='font-size:20px; color:#d0d0d0; cursor:pointer;' reviewNum='"+elt.num+"'>X</span>";
-	 				s += "<div class='review-update-button' style='position:relative; top:10px; left:-20px; width:150px; height:40px; display:flex; justify-content:center; align-items:center; border:1px solid #d0d0d0; cursor:pointer;' reviewNum='"+elt.num+"'>수정하기</div>"
+	 				s += "<div class='review-update-button' style='position:relative; top:10px; left:-20px; width:150px; height:40px; display:flex; justify-content:center; align-items:center; border:1px solid #d0d0d0; cursor:pointer;' reviewNum='"+elt.num+"' productNum='"+elt.productNum+"'>수정하기</div>"
 	 				s += "</div>";
 	 				s += "</div>";
 	 				s += "<div class='review-button review-show'>";
@@ -755,7 +838,7 @@
 				
 				$.each(res, function(i,elt) {
 					
-					s += "<div class='review-tag-obejct review-tag-select' style='background-color:"+elt.backgroundColor+"' tagNum='"+elt.num+"'>";
+					s += "<div class='review-tag-obejct review-tag-select' name='tag' style='background-color:"+elt.backgroundColor+"' tagNum='"+elt.num+"'>";
 					s += "<span style='color:"+elt.textColor+"'>#"+elt.content+"</span>";
 					s += "</div>";
 				
@@ -797,13 +880,16 @@
 				</div>
 			</div>
 		<div class="review-result"></div>
+		<!-- 리뷰 작성 폼 -->
 		<div class="review-form">
 			<form action="insert" method="post" enctype="multipart/form-data">
+				
 				<input type="hidden" name="userNum" value="${sessionScope.loginid}">
 				<input type="hidden" name="productNum" value="">
 				<input type="hidden" name="tagNum" value="16">
 				<input type="hidden" name="rating" value="3">
 				<input type="file" name="upload" style="display: none">
+				
 				<div class="form-product-info"></div>
 				<div class="form-rating">
 					<span>선물로 만족하셨나요?</span>
@@ -881,25 +967,92 @@
 				</div>
 			</form>
 		</div>
-	</div>
-	<!-- review update modal -->
-    <div id="review-modal" class="review-modal-overlay">
-        <div class="review-modal-window">
-        	<form action="update" method="post" enctype="multipart/form-data">
+		<!-- 리뷰 수정 폼 -->
+		<div class="review-update-form">
+			<form action="insert" method="post" enctype="multipart/form-data">
+			
 				<input type="hidden" name="userNum" value="${sessionScope.loginid}">
-				<input type="hidden" name="productNum" value="">
-				<input type="hidden" name="tagNum" value="16">
+				<input type="hidden" name="tagNum" value="">
 				<input type="hidden" name="rating" value="">
-				<input type="hidden" name="num" value="">
 				<input type="file" name="upload" style="display: none">
-        	
-        	</form>
-            <div class="review-modal-bottom">
-				<button type="button" class="btn btn-secondary btn-cancel" style="width:180px;">취소</button>
-				<div style="width:10px;"></div>
-				<button type="button" class="btn review-update-btn" style="width:180px; background-color: #cff0cc;">담기</button>
-            </div>
-        </div>
-    </div>
+				
+				<div class="form-product-info"></div>
+				<div class="form-rating">
+					<span>선물로 만족하셨나요?</span>
+					<div class="make_star">
+						<div class="rating">
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+						</div>
+					</div>
+					<div>
+						<i class='fas fa-quote-left'></i>
+						<span class="rating-message">별점을 선택해주세요</span>
+						<i class='fas fa-quote-right'></i>
+					</div>
+				</div>
+				<div class="form-review">
+					<span class="form-review-title">선물 후기를 남겨주세요</span>
+					<div class="form-write-box">
+						<input type="text" name="subject" class="form-control" placeholder="제목" style="position:relative; top: 20px; ">
+						<label class="lab_tbx" for="tf_review"></label>
+						<textarea name="content" class="form-control" cols="20" rows="1" id="tf_review" spellcheck="true" autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="받은 선물의 소중한 후기를 남겨주세요. 남겨주신 후기는 다른 분들이 선물을 선택할 때 큰 도움이 됩니다."></textarea>
+					</div>
+					<div class="form-photo-button">
+						<i class='fas fa-camera'></i>
+						<span>사진 첨부</span>
+					</div>
+					<i class='far fa-question-circle'></i>
+					<span class="review-term">교환권 도용 피해 예방을 위해 바코드 정보를 노출하지 않도록 주의해 주세요.</span>
+					<br>
+					<i class='far fa-question-circle'></i>
+					<span class="review-term">전기통신사업법에 따라 방송통신심의위원회에서 불법 촬영물 등으로 심의한 정보에 해당하는 영상이나 이미지는 삭제될 수 있어요.</span>
+				</div>
+				<div class="form-tag">
+					<span class="review-tag-title">이 선물의 태그를 남겨주세요</span>
+					<span class="review-tag-info">#어떤 선물인가요?</span>
+					<div class="review-tag"></div>
+				</div>
+				<div class="form-option">
+					<span class="review-option-title">후기 등록 프로필을 선택해주세요</span>
+					<span class="review-term2">프로필을 '사진/닉네임 공개'로 선택하신 경우, 작성하신 후기가 다른 고객들의 선물 고민에 도움을 주는 상품 홍보 및 광고에 활용될 때에 닉네임이 함께 공개됩니다. 프로필 공개를 원치 않으시면 '익명' 프로필로 선택해 주세요.</span><br>
+					<span class="review-term2">아이콘 프로필의 홍보 활용 여부는 등록한 후기 별로 설정이 가능합니다.</span>
+					<div class="review-option-select">
+						<div class="review-option-object">
+							<label>
+								<input class="review-update-option" type="radio" name="publicOption" value="1">
+								<img src="https://gift-s.kakaocdn.net/dn/gift/common/profile_default_1808.png">
+								<span>사진/닉네임 공개</span>
+							</label>
+						</div>
+						<div class="review-option-object">
+							<label>
+								<input class="review-update-option" type="radio" name="publicOption" value="0">
+								<img src="https://gift-s.kakaocdn.net/dn/gift/gift/neo.png">
+								<span>익명표기</span>
+							</label>
+						</div>
+					</div>
+					<div class="reivew-option-info">
+						<i class='far fa-question-circle'></i>
+						<span class="review-term">카카오쇼핑 이용약관에 따른 운영정책에 위반되는 내용 작성 시 통보 없이 삭제 및 혜택이 회수될 수 있습니다.</span><br>
+						<i class='far fa-question-circle'></i>
+						<span class="review-term">회원님의 휴대폰 번호와 같은 개인 정보 및 바코드 정보 노출이 금지되어 있으며 관련해서 발생하는 모든 피해에 대해 카카오는 책임지지 않습니다.</span><br>
+						<i class='far fa-question-circle'></i>
+						<span class="review-term">후기 등록 시 카카오톡 선물하기의 검색 결과, 콘텐츠, 프로모션 홍보 및 광고 등에 활용될 수 있음에 동의 되며, 동의 철회시 까지 유효합니다.</span><br>
+						<i class='far fa-question-circle'></i>
+						<span class="review-term">동의하신 이후에도 해당 후기를 언제든지 고객센터를 통해 활용 동의 철회 또는 삭제 요청 할 수 있으며, ‘작성한 후기’ 페이지에서 직접 삭제도 가능합니다.</span>
+					</div>
+				</div>
+				<div class="form-button">
+					<button type="button" class="btn btn-dark review-button review-cancel">취소</button>
+					<button type="submit" class="btn review-button review-update-btn">동의 후 수정완료</button>
+				</div>
+			</form>
+		</div>
+	</div>
 </body>
 </html>

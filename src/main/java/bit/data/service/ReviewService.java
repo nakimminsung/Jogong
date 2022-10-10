@@ -85,4 +85,10 @@ public class ReviewService implements ReviewServiceInter{
     public void deleteReview(int num) {
         reviewDaoInter.deleteReview(num);
     }
+    
+    // 리뷰 단건 조회
+    @Override
+    public ReviewDto selectReviewByNum(int num) {
+        return reviewDaoInter.selectReviewByNum(num);
+    }
 }

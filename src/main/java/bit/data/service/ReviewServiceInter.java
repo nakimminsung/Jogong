@@ -22,4 +22,6 @@ public interface ReviewServiceInter {
     public void insertReview(ReviewDto reviewDto);
     // 리뷰 삭제
     public void deleteReview(int num);
+    // 리뷰 단건 조회
+    public ReviewDto selectReviewByNum(int num);
 }

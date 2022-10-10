@@ -156,4 +156,11 @@ public class ReviewController {
 	    reviewService.deleteReview(num);
 	    return "/mypage/mypage/review";
 	}
+	
+	// 리뷰 단건 조회
+	@GetMapping("/selectOne")
+	@ResponseBody
+	public ReviewDto selectReviewByNum(int num) {
+	    return reviewService.selectReviewByNum(num);
+	}
 }
