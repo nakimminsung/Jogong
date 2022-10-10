@@ -572,72 +572,13 @@ p.card-title{
     box-sizing: border-box;
   }
   
-  /* mystyle.css */
-        /* The Modal (background) */
-        .mymodal {
-            display: none;
-            /* Hidden by default */
-            position: fixed;
-            /* Stay in place */
-            z-index: 1;
-            /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%;
-            /* Full width */
-            height: 100%;
-            /* Full height */
-            overflow: auto;
-            /* Enable scroll if needed */
-            background-color: rgb(0, 0, 0);
-            /* Fallback color */
-            background-color: rgba(0, 0, 0, 0.4);
-            /* Black w/ opacity */
-        }
-
-        /* Modal Content/Box */
-        .modal-content {
-            background-color: #fff;
-            width: 350px;
-            border-radius: 10px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 30px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
-            text-align: center;
-        }
-
-        /* The Close Button */
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
 
 </style>
-
-
 <script type="text/javascript">
 	/*
 	var btn_cardNum = $('#msgbtn[name=i]');
 	var msg_cardNum = $('.modal[name=i]'); 
 	*/
-	
-	
-	//var msgbtn = (this).$("#msgbtn");
-	//var msgbtn = $("#msgbtn");
-	//var msgmodal = $(".modal0");
-	
 	
 	$(function() {
 
@@ -661,82 +602,22 @@ p.card-title{
 			order_recevie();
 		});
 		
-		window.onload = function() {
-			   // Modal을 가져옵니다.
-			   var modals = document.getElementsByClassName("mymodal");
-			   //var modals = document.querySelector('.mymodal');
-			   // Modal을 띄우는 클래스 이름을 가져옵니다.
-			   var btns = document.getElementsByClassName("btn-open");
-			   // Modal을 닫는 close 클래스를 가져옵니다.
-			   var spanes = document.getElementsByClassName("btn_close");
-			   var funcs = [];
-			   
-		        // Modal을 띄우고 닫는 클릭 이벤트를 정의한 함수
-		        function Modal(num) {
-		            return function () {
-		                // 해당 클래스의 내용을 클릭하면 Modal을 띄웁니다.
-		                btns[num].onclick = function () {
-		                    modals[num].style.display = "block";
-		                    console.log(num);
-		                };
-
-		                // <span> 태그(X 버튼)를 클릭하면 Modal이 닫습니다.
-		                spanes[num].onclick = function () {
-		                    modals[num].style.display = "none";
-		                };
-		            };
-		        }
-
-		        // 원하는 Modal 수만큼 Modal 함수를 호출해서 funcs 함수에 정의합니다.
-		        for (var i = 0; i < btns.length; i++) {
-		            funcs[i] = Modal(i);
-		        }
-
-		        // 원하는 Modal 수만큼 funcs 함수를 호출합니다.
-		        for (var j = 0; j < btns.length; j++) {
-		            funcs[j]();
-		        }
-
-		        // Modal 영역 밖을 클릭하면 Modal을 닫습니다.
-		        window.onclick = function (event) {
-		            if (event.target.className == "modal") {
-		                event.target.style.display = "none";
-		            }
-		        };
-
-		        $(document).on("click", ".btn_crad", function () {
-		            $(".address").toggle();
-		        });
-
-		        $(document).on("click", ".ico_close", function () {
-		            $(".address").hide();
-		            $(".modal").modal('hide');
-		        });
-		 		}
-	 /* 	$(document).on("click","#msgbtn",function() {
+	 	$(document).on("click","#msgbtn",function() {
 		    <!-- 여러개의 버튼이 모두 클릭되어서 모두 호출된다 -->
 		    $(".modal").modal({remote : 'layer.html'});
 		    $(".modal").modal('show');
 		    
 		    <!-- (this)로 찍으면 배경만 나옴 -->
 		    //$(this).modal('show');
-		}); 
-		
-	 	$(document).on("click","#msgbtn0",function() {
-		    <!-- 여러개의 버튼이 모두 클릭되어서 모두 호출된다 -->
-		    $(".modal0").css("display","block")
-		    
-		    <!-- (this)로 찍으면 배경만 나옴 -->
-		    //$(this).modal('show');
 		});
 		
-	 	
+	 	/* 	
 	 	$(document).on("click",btn_cardNum,function() {
 		    <!-- 여러개의 버튼이 모두 클릭되어서 모두 호출된다 -->
 		    $(msg_cardNum).modal({remote : 'layer.html'});
 		    $(msg_cardNum).modal('show');
 		});
-		 
+		 */
 		 
 		 $(document).on("click",".btn_crad",function() {
 			<!-- 여러개의 버튼이 모두 클릭되어서 모두 호출된다-->
@@ -748,7 +629,7 @@ p.card-title{
 			$(".address").hide();
 			$(".modal").modal('hide');
 	    });
-		*/
+		
 	});	
 	
 	function order_recevie() {
@@ -804,15 +685,16 @@ p.card-title{
 	 					s+=	"<p class='card-title'>"+elt.brand+"</p>"
 	 					s+=	"<h5 class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 1000px;cursor:pointer;' onclick=\"location.href='../${root}product/detail?num="+elt.productNum+"'\">"+elt.productName+"</h5>"
 	 					s+= "<h6 class='card-text'><b>from."+elt.nickname+"</b></h6>"
-	 					s+=	"<button class='btn-open' style='margin-left:10px'>메시지 카드 보기</button>"
+	 					s+=	"<button class='button' id='msgbtn' style='margin-left:10px'>메시지 카드 보기</button>"
 	 					//s+=	"<button class='button' id='msgbtn' style='margin-left:10px' name='"+i+"'>메시지 카드 보기</button>"
 	 					s+=	"<p style='color:gray; text-align: left; margin-top:10px'>"+elt.orderDate+"</p></div></div></div>"
 	 					
 	 					/* 하나 누를때마다 하나의 정보를 들고오는 ajax 처리 */
 	 					
 	 					<!-- 팝업영역 -->
-	 					s+=	"<div class='mymodal' style = display:none;>"
+	 					s+=	"<div class='modal' id='myModal'>"
 	 					//s+=	"<div class='modal' id='myModal' name='"+i+"'>"
+	 					s+=	"<div class='modal-dialog'>"
 	 					s+=	"<div class='modal-content'>"
 	 					s+=	"<div class='gift_window'>"
 	 					s+=	"<div class='gift_card'>"
@@ -877,16 +759,13 @@ p.card-title{
 						s+=	"<tr style='border-bottom: none;'>"								
 						s+=	"<td colspan='2' style='text-align: center; border: none;'>"								
 						s+=	"<button type='submit' class='btn btn-success'>저장</button>"							
-						s+=	"</td></tr></table></form></div></div></div></div></div>"					
+						s+=	"</td></tr></table></form></div></div></div></div></div></div>"					
 					});
 					$("div.Gift").html(s);
 				}
 			});
 		}
 </script>
- <script>
-</script>
-  
 <body>
 <div class="gift-wrapper">
 	<div class="gift-menu">
