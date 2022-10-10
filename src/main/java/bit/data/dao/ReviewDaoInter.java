@@ -21,4 +21,6 @@ public interface ReviewDaoInter {
 	public int selectReviewCount(int userNum);
 	// 리뷰 생성
 	public void insertReview(ReviewDto reviewDto);
+	// 리뷰 삭제
+	public void deleteReview(int num);
 }

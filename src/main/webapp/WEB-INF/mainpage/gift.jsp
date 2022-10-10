@@ -143,7 +143,7 @@
     div.gift-modal-search img{
     	width:30px;
     	position: relative;
-    	top: -35px;
+    	top: -25px;
     	left: 325px;
     	cursor: pointer;
     }

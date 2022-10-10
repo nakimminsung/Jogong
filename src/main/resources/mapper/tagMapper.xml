@@ -4,6 +4,9 @@
 
 <mapper namespace="bit.data.dao.TagDao">
 	<select id="selectTag" resultType="tagDto">
-		select * from tag
+		select * from tag where num<![CDATA[<]]>16
+	</select>
+	<select id="selectTagByNum" resultType="tagDto">
+		select * from tag where num=${num}
 	</select>
 </mapper>

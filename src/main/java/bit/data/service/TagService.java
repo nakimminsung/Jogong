@@ -19,4 +19,8 @@ public class TagService implements TagServiceInter {
         return tagDaoInter.selectTag();
     }
 
+    @Override
+    public TagDto selectTagByNum(int num) {
+        return tagDaoInter.selectTagByNum(num);
+    }
 }

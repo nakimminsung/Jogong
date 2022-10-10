@@ -80,4 +80,9 @@ public class ReviewService implements ReviewServiceInter{
         reviewDaoInter.insertReview(reviewDto);
     }
     
+    // 리뷰 삭제
+    @Override
+    public void deleteReview(int num) {
+        reviewDaoInter.deleteReview(num);
+    }
 }

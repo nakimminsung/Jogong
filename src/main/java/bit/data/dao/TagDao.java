@@ -15,9 +15,15 @@ public class TagDao implements TagDaoInter {
     SqlSession session;
     String ns = "bit.data.dao.TagDao.";
     
+    // 태그전체조회
     @Override
     public List<TagDto> selectTag() {
         return session.selectList(ns+"selectTag");
     }
 
+    // 태그 한개 조회
+    @Override
+    public TagDto selectTagByNum(int num) {
+        return session.selectOne(ns+"selectTagByNum", num);
+    }
 }

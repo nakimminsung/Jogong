@@ -29,4 +29,9 @@ public class ReviewDto {
 	// user
 	private String nickname;
 	private String profileImage;
+	
+	// tag
+	private String tagName;
+	private String tagTColor;
+	private String tagBColor;
 }

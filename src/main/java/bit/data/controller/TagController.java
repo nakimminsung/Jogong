@@ -21,4 +21,10 @@ public class TagController {
     public List<TagDto> selectTag() {
         return tagServiceInter.selectTag();
     }
+    
+    @GetMapping("/tag/selectOne")
+    @ResponseBody
+    public TagDto selectTagByNum(int num) {
+        return tagServiceInter.selectTagByNum(num);
+    }
 }

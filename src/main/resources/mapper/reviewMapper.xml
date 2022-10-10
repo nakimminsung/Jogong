@@ -47,10 +47,16 @@
 	
 	<!-- 마이페이지 작성한 리뷰목록 -->
 	<select id="selectReviewByUser" parameterType="int" resultType="reviewDto">
-		select p.name, p.thumbnailImageUrl, p.brand, r.num, r.productNum, r.subject, r.content, r.rating, r.createdAt, r.publicOption, r.tagNum, r.reviewImageUrl 
-		from review r inner join product p 
-		on r.productNum = p.num 
-		where userNum=#{userNum}
+		select 
+		p.name, p.thumbnailImageUrl, p.brand, 
+		r.num, r.productNum, r.subject, r.content, r.rating, r.createdAt, r.publicOption, r.tagNum, r.reviewImageUrl, 
+		t.content tagName, t.backgroundColor tagBColor, t.textColor tagTColor
+		from review r 
+		inner join product p 
+		on r.productNum = p.num
+		inner join tag t
+		on r.tagNum = t.num
+		where r.userNum=#{userNum} order by num desc
 	</select>
 	
 	<!-- 마이페이지 작성한 리뷰 갯수 -->
@@ -65,6 +71,11 @@
 	<insert id="insertReview" parameterType="reviewDto">
 		insert into review values (null,#{subject},#{content},#{rating},now(),#{publicOption},#{reviewImageUrl},#{userNum},#{productNum},#{tagNum})
 	</insert>
+	
+	<!-- 리뷰 삭제 -->
+	<delete id="deleteReview" parameterType="int">
+		delete from review where num=#{num}
+	</delete>
 </mapper>
 
 

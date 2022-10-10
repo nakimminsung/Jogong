@@ -71,4 +71,11 @@ public class ReviewDao implements ReviewDaoInter {
     public void insertReview(ReviewDto reviewDto) {
         session.selectOne(ns+"insertReview", reviewDto);
     }
+    
+    // 리뷰 삭제
+    @Override
+    public void deleteReview(int num) {
+        session.selectOne(ns+"deleteReview", num);
+    }
+    
 }

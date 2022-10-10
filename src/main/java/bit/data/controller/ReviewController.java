@@ -124,14 +124,7 @@ public class ReviewController {
 	@PostMapping("/insert")
 	public String insertReview(ReviewDto reviewDto, List<MultipartFile> upload, HttpServletRequest request) {
 	    
-	    // 톰캣에 올라간 upload 폴더 경로 구하기
         String path = request.getSession().getServletContext().getRealPath("/resources/upload");
-        System.out.println(path);
-        
-        
-        // 업로드를 안했을 경우 9번지의 파일명이 ""이 된다
-        // 업로드 안해도 upload size가 1이됨
-        System.out.println(upload.size());
         
         if(upload.get(0).getOriginalFilename().equals("")) {
             reviewDto.setReviewImageUrl("no");
@@ -139,12 +132,10 @@ public class ReviewController {
             String photo = "";
             int idx=1;
             for(MultipartFile multi:upload) {
-                
-                //파일명을 현재 날짜로 변경 후 ,로 연결
+
                 String newName = idx++ + "_" + ChangeName.getChangeFileName(multi.getOriginalFilename());
                 photo += newName+",";
                 
-                // 업로드
                 try {
                     multi.transferTo(new File(path+"/"+newName));
                 } catch (IllegalStateException | IOException e) {
@@ -152,13 +143,17 @@ public class ReviewController {
                 }
                 
             }
-            // 마지막 컴마 제거
             photo = photo.substring(0,photo.length()-1);
-            // dto에 저장
             reviewDto.setReviewImageUrl(photo);
         }
-        // db에 업로드
 	    reviewService.insertReview(reviewDto);
+	    return "/mypage/mypage/review";
+	}
+	
+	// 리뷰 삭제 
+	@GetMapping("/delete")
+	public String deleteReview(int num) {
+	    reviewService.deleteReview(num);
 	    return "/mypage/mypage/review";
 	}
 }
