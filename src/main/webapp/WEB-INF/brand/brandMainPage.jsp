@@ -164,7 +164,7 @@ div.my-menu>div>a{
 				  <div class="card">
 				    <img class="card-img-top" src="https://sodagift.com/img/image/1704673251338799.jpg" alt="Card image" style="width:100%">
 				    <div class="card-body">
-  				      <h5 class="card-text">투썸플레이스</h5>
+  				      <a href="detail?brand=투썸플레이스"><h5 class="card-text">투썸플레이스</h5></a>
 				      <p class="card-title">아는 사람은 다 안다는 소문난 케이크 맛집. 케이크와 함께 커피도 같이 선물하면 센스만점!</p>
 				    </div>
 				  </div>

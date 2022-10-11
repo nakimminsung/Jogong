@@ -7,6 +7,19 @@
 		SELECT companyName FROM seller;
 	</select>
 	
+	<select id="getLogoImg" parameterType="String" resultType="String">
+		select logoImage from seller where companyName = #{brand}
+	</select>
+	
+	
+	<select id="getTotalBrandCount" parameterType="String" resultType="int">
+		 select count(*) from product where brand=#{brand}
+	</select>
+	
+	<select id="getBrandByName" parameterType="map" resultType="productDto">
+      select * from product where brand=#{brand} order by ${sort}
+   </select>
+	
 </mapper>
 
 

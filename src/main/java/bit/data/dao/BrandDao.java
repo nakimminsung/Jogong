@@ -1,10 +1,13 @@
 package bit.data.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import bit.data.dto.ProductDto;
 
 @Repository
 public class BrandDao implements BrandDaoInter{
@@ -17,5 +20,21 @@ public class BrandDao implements BrandDaoInter{
 	public List<String> getAllBrand() {
 		return session.selectList(ns+"getAllBrand");
 	}
+	@Override
+	public int getTotalBrandCount(String brand) {
+		// TODO Auto-generated method stub
+		return session.selectOne(ns+"getTotalBrandCount",brand);
+	}
 	
+	@Override
+	public List<ProductDto> getBrandByName(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return session.selectList(ns+"getBrandByName",map);
+	}
+	
+	@Override
+	public String getLogoImg(String brand) {
+		// TODO Auto-generated method stub
+		return session.selectOne(ns+"getLogoImg",brand);
+	}
 }
