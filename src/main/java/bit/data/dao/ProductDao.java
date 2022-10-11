@@ -94,6 +94,18 @@ public class ProductDao implements ProductDaoInter {
 		return session.selectOne(ns+"getSearchCount",searchword);
 	}
 	
+	@Override
+	public List<ProductDto> getSearchProduct(String searchword) {
+		
+		return session.selectList(ns+"getSearchProduct",searchword);
+	}
+	
+	@Override
+	public List<ProductDto> getSearchProductBySort(Map<String, Object> map) {
+		
+		return session.selectList(ns+"getSearchProductBySort",map);
+	}
+	
 	
 	
 }

@@ -156,6 +156,7 @@
 					success:function(res){
 						$(".productList").empty();	
 						
+						/* 
 						$.each(res.productList, function(i,elt) {
 							var price= elt.price.toLocaleString();
 							
@@ -171,6 +172,7 @@
 							s += "</div>";
 						});
 						$(".productList").append(s);
+						 */
 					}
 					
 					

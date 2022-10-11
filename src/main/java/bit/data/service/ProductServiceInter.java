@@ -23,4 +23,6 @@ public interface ProductServiceInter {
 	
 	//search
 	public int getSearchCount(String searchword);
+	public List<ProductDto> getSearchProduct(String searchword);
+	public List<ProductDto> getSearchProductBySort(String searchword, String sort);
 }

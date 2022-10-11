@@ -218,7 +218,8 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 				
 				<form class="search" action="${root}/search" method="get" id="searchProduct">
 					<img src="${root}/image/search.svg">
-					<input type="text" placeholder="선물, 브랜드 검색" name="searchword" style="border:0px; width: 400px; background-color: #f4f4f4;">
+					<input type="text" placeholder="선물, 브랜드 검색" name="searchword" autocomplete="off"
+					 style="border:none; outline:none; width: 400px; background-color: #f4f4f4;">
 				</form>
 				<%--
 				<form class="search" onclick="location.href='${root}/search'" style="cursor: pointer;">
