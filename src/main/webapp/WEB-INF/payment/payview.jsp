@@ -388,7 +388,7 @@
                                 <div data-v-35b707e2="" class="pay_box">
                                     <div data-v-35b707e2="" class="pay_title">
                                         <p data-v-35b707e2="" class="main_title">토스</p>
-                                    </div><img data-v-35b707e2="" src="image/tosspay.jpg" alt="토스" class="pay_img">
+                                    </div><img data-v-35b707e2="" src="image/tosspay.png" alt="토스" class="pay_img" style="width:100px; height:30px" >
                                 </div>
                             </div>
                         </div>
@@ -398,23 +398,23 @@
                                 <li data-v-2e66a968="" class="benefit_item"><img data-v-2e66a968=""
                                         src="image/계좌이체.png"
                                         alt="계좌 이체" class="benefit_img">
-                                    <p data-v-2e66a968="" class="benefit_desc"><span data-v-2e66a968="" class="blind">계좌
-                                            이체</span>결제 시 최대 5만 포인트 적립 </p><a data-v-2e66a968="" href="" target="_blank"
+                                    <p data-v-2e66a968="" class="benefit_desc"><span data-v-2e66a968="" class="blind">
+                                            이체</span>&nbsp;&nbsp;결제 시 최대 5만 포인트 적립 </p><a data-v-2e66a968="" href="" target="_blank"
                                         class="btn_more">더보기</a>
                                 </li>
                                 <li data-v-2e66a968="" class="benefit_item"><img data-v-2e66a968=""
-                                        src="image/tosspay.jpg"
+                                        src="image/tosspay.png""
                                         alt="토스" class="benefit_img" >
                                     <p data-v-2e66a968="" class="benefit_desc"><span data-v-2e66a968=""
-                                            class="blind">토스</span>첫 결제시 3천원 캐시백 </p><a data-v-2e66a968=""
-                                        href="tosspay.jpg" target="_blank" class="btn_more">더보기</a>
+                                            class="blind">토스</span>&nbsp;&nbsp;첫 결제시 3천원 캐시백 </p><a data-v-2e66a968=""
+                                        href=" target="_blank" class="btn_more">더보기</a>
                                 </li>
                                 <li data-v-2e66a968="" class="benefit_item"><img data-v-2e66a968=""
-                                        src="image/paycopay.jpg"
+                                        src="image/payco.png"
                                         alt="페이코" class="benefit_img">
                                     <p data-v-2e66a968="" class="benefit_desc"><span data-v-2e66a968=""
-                                            class="blind">페이코</span>페이코 포인트로 결제 시 5% 적립 </p><a data-v-2e66a968=""
-                                        href="paycopay.jpg" target="_blank" class="btn_more">더보기</a>
+                                            class="blind">페이코</span>&nbsp;&nbsp;페이코 포인트로 결제 시 5% 적립 </p><a data-v-2e66a968=""
+                                        href="" target="_blank" class="btn_more">더보기</a>
                                 </li>
                             </ul>
                         </div>
