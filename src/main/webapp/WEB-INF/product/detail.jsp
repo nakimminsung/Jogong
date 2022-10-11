@@ -634,7 +634,7 @@ form h1 {
   	});
 
   	$("#btn_orderDetail").click(function(){
-  		var userNum = ${sessionScope.loginid};
+  		var userNum = $('input[name=userNum]').attr("value");
   		var s="";
   		$.ajax({
   			type: "get",
@@ -860,7 +860,9 @@ form h1 {
     <input type="hidden" name="messageCard" value="" />
     <input type="hidden" name="engrave" value="" />
     <!-- <input type="hidden" name="friendNum" value="1"> -->
-    <input type="hidden" name="userNum" value="${sessionScope.loginid}" />
+    <c:if test="${empty sessionScope.loginUserNum}">
+    	<input type="hidden" name="userNum" value="${sessionScope.loginUserNum}" />
+    </c:if>
     <input type="hidden" name="productNum" value="${dto.num }" />
     <input type="hidden" name="productOption" value=""/>
 
