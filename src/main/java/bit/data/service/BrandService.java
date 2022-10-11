@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import bit.data.dao.BrandDao;
 import bit.data.dao.BrandDaoInter;
+import bit.data.dto.SellerDto;
 
 @Service
 public class BrandService implements BrandServiceInter {
@@ -14,8 +16,13 @@ public class BrandService implements BrandServiceInter {
 	BrandDaoInter brandDao;
 	
 	@Override
-	public List<String> getAllBrand() {
+	public List<SellerDto> getAllBrand() {
 		return brandDao.getAllBrand();
+	}
+
+	@Override
+	public List<SellerDto> selectBrandTheme(String sort) {
+		return brandDao.selectBrandTheme(sort);
 	}
 
 }
