@@ -210,7 +210,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 				<a class="header-menu header-review" href="${root}/review/list"><span>후기</span></a>
 			</div>
 			<div class="search-box">
-				<form class="search">
+				<form class="search" onclick="location.href='${root}/search/searchMain'" style="cursor: pointer;">
 					<img src="${root}/image/search.svg">
 					<input disabled="disabled" type="text" placeholder="선물, 브랜드 검색" autocomplete="off" aria-required="true" aria-invalid="false" style="cursor: pointer; border:0px;">
 				</form>

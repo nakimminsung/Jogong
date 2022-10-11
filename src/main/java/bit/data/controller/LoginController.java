@@ -3,7 +3,6 @@ package bit.data.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,7 +23,6 @@ import bit.data.dto.UserDto;
 import util.SHA256Util;
 
 @Controller
-
 public class LoginController {
 
 	//초기 세팅
@@ -89,8 +87,7 @@ public class LoginController {
 			session.setAttribute("loginname", sellerDto.getCompanyName());
 			session.setAttribute("loginphoto", sellerDto.getLogoImage());
 			
-			session.setAttribute("rememberSellerId", rememberSellerId.equals("false")?"no":"yes");
-			
+			session.setAttribute("rememberSellerId", rememberSellerId.equals("false")?"no":"yes");			
 			//sellerNum  보류
 
 
@@ -107,7 +104,17 @@ public class LoginController {
 		
 		//로그아웃 시 제거되어야 할 세션
 		session.removeAttribute("loginok");	//이걸로 비교할거라서 얘만 지우면되지만, id까지 지우기로함
-		//session.removeAttribute("loginid");
+		session.removeAttribute("loginid");
+		session.removeAttribute("loginid_seller");
+		session.removeAttribute("loginUserNum");
+		session.removeAttribute("loginname");
+		session.removeAttribute("loginphoto");
+		session.removeAttribute("loginType");
+		
+		
+		
+		//session.invalidate();
+		//로그인폼에서 ID저장이
 				
 		return "redirect:/";
 	}
@@ -143,6 +150,7 @@ public class LoginController {
 			session.setAttribute("loginphoto", userDto.getProfileImage());
 			
 			session.setAttribute("loginUserNum", userDto.getNum());
+			session.setAttribute("loginType", userDto.getLoginType());
 			
 		}
 		map.put("result", result==1?"success":"fail");
@@ -176,6 +184,7 @@ public class LoginController {
 		session.setAttribute("loginphoto", userDto.getProfileImage());
 		
 		session.setAttribute("loginUserNum", userDto.getNum());
+		session.setAttribute("loginType", userDto.getLoginType());
 		
 				
 		}else{
@@ -189,6 +198,7 @@ public class LoginController {
 			session.setAttribute("loginphoto", userDto.getProfileImage());
 			
 			session.setAttribute("loginUserNum", userDto.getNum());
+			session.setAttribute("loginType", userDto.getLoginType());
 		}
 		map.put("result",email!=null?"success":"fail");
 		
@@ -226,6 +236,7 @@ public class LoginController {
 			
 			//qna insert 테스트
 			session.setAttribute("loginUserNum", userDto.getNum());
+			session.setAttribute("loginType", userDto.getLoginType());
 		
 		}else{ // email 정보가 없다면 로그인으로
 			
@@ -241,6 +252,7 @@ public class LoginController {
 			
 			//qna insert 테스트 (네이버 계정 userNum 가져오는것 확인 완료)
 			session.setAttribute("loginUserNum", userDto.getNum());
+			session.setAttribute("loginType", userDto.getLoginType());
 			
 		}
 		map.put("result",email!=null?"success":"fail");
