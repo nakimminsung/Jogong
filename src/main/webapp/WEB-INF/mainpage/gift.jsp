@@ -400,7 +400,7 @@
 			<div class="gift-bottom"></div>
 		</div>
 	</div>
-	<!-- modal -->
+	<!--  친구 선택 modal -->
     <div id="gift-modal" class="gift-modal-overlay">
         <div class="gift-modal-window">
         	<form>
