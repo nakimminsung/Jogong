@@ -2,11 +2,8 @@ package bit.data.controller;
 
 import java.util.List;
 
-<<<<<<< HEAD
 import javax.servlet.http.HttpServletRequest;
 
-=======
->>>>>>> 00caaca7b1cc7481b63a26cacf1e40c8a6181426
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
