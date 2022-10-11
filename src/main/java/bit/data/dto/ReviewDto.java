@@ -13,7 +13,8 @@ public class ReviewDto {
 	private String subject;
 	private String content;
 	private int rating;
-	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
+
+	@JsonFormat(pattern="yyyy-MM-dd", timezone = "Asia/Seoul")
 	private Timestamp createdAt;
 	private boolean publicOption;
 	private String reviewImageUrl;

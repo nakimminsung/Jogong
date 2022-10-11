@@ -4,12 +4,13 @@
 <mapper namespace="bit.data.dao.OrderDetailDao">
 	
 	<insert id="insertOrderDetail" parameterType="orderDetailDto">
-		insert into orderDetail values (null,#{qty},#{messageCard},#{engrave},#{friendNum},#{userNum},#{productNum})
+		insert into orderDetail values (null,#{qty},#{messageCard},#{engrave},#{friendNum},#{userNum},#{productNum},#{productOption})
 	</insert>
 	
 	<!-- 나에게 선물하기 --> 
 	<insert id="insertSelfGift" parameterType="orderDetailDto">
-		insert into orderDetail (num, qty, messageCard, engrave, friendNum, userNum, productNum) values (null,#{qty},#{messageCard},#{engrave},#{userNum},#{userNum},#{productNum})
+		insert into orderDetail (num, qty, messageCard, engrave, friendNum, userNum, productNum, productOption) 
+		values (null,#{qty},#{messageCard},#{engrave},#{userNum},#{userNum},#{productNum},#{productOption})
 	</insert>
 	
 	<select id="getMaxNum" resultType="int">

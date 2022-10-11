@@ -68,6 +68,9 @@ public class ProductController {
 		int reviewAvg = reviewService.getRating(num);
 		int reviewCount = reviewService.getRatingNum(num);
 		
+		// 조회수 증가
+	//	productService.updateReadCount(num);
+		
 		mview.addObject("dto",dto);
 		
 		mview.addObject("reviewAvg", reviewAvg);
