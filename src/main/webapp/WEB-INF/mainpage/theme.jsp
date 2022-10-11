@@ -100,13 +100,9 @@
 </style>
 </head>
 <script type="text/javascript">
-	
 	$(function(){
-		$("document").ready(function(){
-			getThemeList(2);
-		//	getTagList(2);
-		});	
-		
+		getThemeList(2);
+
 		$("div.tp").click(function(){
 			var themeNum = $(this).attr("themeNum");
 			getThemeList(themeNum);
