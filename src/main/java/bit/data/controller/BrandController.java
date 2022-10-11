@@ -84,14 +84,14 @@ public class BrandController {
 	@ResponseBody
 	public List<SellerDto> categoryAllSelect() {
 		
-		return brandService.getAllBrand();
+		return brandServiceInter.getAllBrand();
 	}
 
 	@GetMapping("/selectBrandName")
 	@ResponseBody
 	public List<SellerDto> selectBrandName(String name) {
-		System.out.println(name+","+brandService.selectBrandName(name).size());
-		return brandService.selectBrandName(name);
+		System.out.println(name+","+brandServiceInter.selectBrandName(name).size());
+		return brandServiceInter.selectBrandName(name);
 	}
 	
 }
