@@ -11,18 +11,24 @@
 		SELECT companyName,description,brandphoto FROM jogong.seller where sort=#{sort};
 	</select>
 	
-	<select id="getLogoImg" parameterType="String" resultType="String">
-		select logoImage from seller where companyName = #{brand}
+	<select id="getLogoDesc" parameterType="String" resultType="SellerDto">
+		select logoImage,description from seller where companyName = #{brand}
 	</select>
-	
 	
 	<select id="getTotalBrandCount" parameterType="String" resultType="int">
 		 select count(*) from product where brand=#{brand}
 	</select>
 	
+	<select id="getBrandAll" parameterType="String" resultType="ProductDto">
+		select * from product where brand=#{brand}
+	</select>
+	
+
 	<select id="getBrandByName" parameterType="map" resultType="productDto">
       select * from product where brand=#{brand} order by ${sort}
    </select>
+	
+	
 	
 </mapper>
 

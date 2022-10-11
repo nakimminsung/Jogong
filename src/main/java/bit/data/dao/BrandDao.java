@@ -39,8 +39,14 @@ public class BrandDao implements BrandDaoInter{
 	}
 	
 	@Override
-	public String getLogoImg(String brand) {
+	public SellerDto getLogoDesc(String brand) {
 		// TODO Auto-generated method stub
-		return session.selectOne(ns+"getLogoImg",brand);
+		return session.selectOne(ns+"getLogoDesc",brand);
+	}
+	
+	@Override
+	public List<ProductDto> getBrandAll(String brand) {
+		// TODO Auto-generated method stub
+		return session.selectList(ns+"getBrandAll",brand);
 	}
 }

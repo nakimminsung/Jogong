@@ -8,6 +8,7 @@ public interface BrandServiceInter {
 	public List<SellerDto> getAllBrand();
 	public int getTotalBrandCount(String brand);
 	public List<ProductDto> getBrandByName(String brand,String sort);
-	public String getLogoImg(String brand);
 	public List<SellerDto> selectBrandTheme(String sort);
+	public SellerDto getLogoDesc(String brand);
+	public List<ProductDto> getBrandAll(String brand);
 }

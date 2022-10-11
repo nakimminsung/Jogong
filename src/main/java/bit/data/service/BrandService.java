@@ -7,7 +7,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import bit.data.dao.BrandDao;
 import bit.data.dao.BrandDaoInter;
 import bit.data.dto.ProductDto;
 import bit.data.dto.SellerDto;
@@ -16,11 +15,11 @@ import bit.data.dto.SellerDto;
 public class BrandService implements BrandServiceInter {
 
 	@Autowired
-	BrandDaoInter brandDao;
+	BrandDaoInter brandDaoInter;
 	
 	@Override
 	public List<SellerDto> getAllBrand() {
-		return brandDao.getAllBrand();
+		return brandDaoInter.getAllBrand();
 	}
 	@Override
 	public List<ProductDto> getBrandByName(String brand, String sort) {
@@ -28,23 +27,27 @@ public class BrandService implements BrandServiceInter {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("sort", sort);
 		map.put("brand", brand);
-		return brandDao.getBrandByName(map);
+		return brandDaoInter.getBrandByName(map);
 	}
 	@Override
 	public int getTotalBrandCount(String brand) {
 		// TODO Auto-generated method stub
-		return brandDao.getTotalBrandCount(brand);
+		return brandDaoInter.getTotalBrandCount(brand);
 	}
 	
 	@Override
-	public String getLogoImg(String brand) {
-		// TODO Auto-generated method stub
-		return brandDao.getLogoImg(brand);
-	}
-
-	@Override
 	public List<SellerDto> selectBrandTheme(String sort) {
-		return brandDao.selectBrandTheme(sort);
+		return brandDaoInter.selectBrandTheme(sort);
 	}
-
+	@Override
+	public SellerDto getLogoDesc(String brand) {
+		// TODO Auto-generated method stub
+		return brandDaoInter.getLogoDesc(brand);
+	}
+	
+	@Override
+	public List<ProductDto> getBrandAll(String brand) {
+		// TODO Auto-generated method stub
+		return brandDaoInter.getBrandAll(brand);
+	}
 }

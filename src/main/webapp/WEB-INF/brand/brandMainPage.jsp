@@ -142,15 +142,9 @@ $(function(){
 	
 	
 </script>
-<div>
+<%-- < div>
 <button type="button" class="btn btn-info" onclick="location.href='${root}/jogong/brand/detail'">세부 페이지 이동</button>
-</div>
-
-<%-- <div>
- <c:forEach var="brand" items="${list}">
-	<p>${brand}</p>
-</c:forEach> 
-</div>--%>
+</div> --%>
 
 
 <div style="min-height:1500px">
