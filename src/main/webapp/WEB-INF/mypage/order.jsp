@@ -633,7 +633,7 @@ p.card-title{
 	});	
 	
 	function showcard(i){
-		alert(i);
+		//alert(i);
 		 $("#myModal"+i).modal({remote : 'layer.html'});
 		    $("#myModal"+i).modal('show');
 	}
@@ -691,7 +691,7 @@ p.card-title{
 	 					s+=	"<p class='card-title'>"+elt.brand+"</p>"
 	 					s+=	"<h5 class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 1000px;cursor:pointer;' onclick=\"location.href='../${root}product/detail?num="+elt.productNum+"'\">"+elt.productName+"</h5>"
 	 					s+= "<h6 class='card-text'><b>from."+elt.nickname+"</b></h6>"
-	 					s+=	"<button class='button' id='msgbtn' style='margin-left:10px' onclick='"+i+"'>메시지 카드 보기</button>"
+	 					s+=	"<button class='button' id='msgbtn"+i+"' style='margin-left:10px' onclick='showcard("+i+")'>메시지 카드 보기</button>"
 	 					//s+=	"<button class='button' id='msgbtn' style='margin-left:10px' name='"+i+"'>메시지 카드 보기</button>"
 	 					s+=	"<p style='color:gray; text-align: left; margin-top:10px'>"+elt.orderDate+"</p></div></div></div>"
 	 					
