@@ -22,7 +22,9 @@
     
 </head>
 <style>
-
+	.body{
+		min-height:600px;
+	}
 </style>
 <body>
 	<div>

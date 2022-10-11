@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import bit.data.dto.SellerDto;
+
 @Repository
 public class BrandDao implements BrandDaoInter{
 
@@ -14,8 +16,19 @@ public class BrandDao implements BrandDaoInter{
 	String ns = "bit.data.dao.BrandDao.";
 	
 	@Override
-	public List<String> getAllBrand() {
+	public List<SellerDto> getAllBrand() {
 		return session.selectList(ns+"getAllBrand");
+	}
+
+	@Override
+	public List<SellerDto> selectBrandTheme(String sort) {
+		// TODO Auto-generated method stub
+		return session.selectList(ns+"selectBrandTheme",sort);
+	}
+
+	@Override
+	public List<SellerDto> selectBrandName(String name) {
+		return session.selectList(ns+"selectBrandName",name);
 	}
 	
 }

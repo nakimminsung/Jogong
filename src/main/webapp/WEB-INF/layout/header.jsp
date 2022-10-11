@@ -207,13 +207,15 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 				</a>
 			</div>
 			<div class="menu">
+
 				<a class="header-menu header-brand" href="${root}/brand/list"><span>브랜드</span></a>
-				<a class="header-menu header-cate" href="${root}"><span>카테고리</span></a>
+				<a class="header-menu header-cate" href="${root}/category"><span>카테고리</span></a>
 				<a class="header-menu header-review" href="${root}/review/list"><span>후기</span></a>
 				<a class="header-menu header-event" href="${root}/event/event"><span>이벤트</span></a>
+
 			</div>
 			<div class="search-box">
-				<form class="search">
+				<form class="search" onclick="location.href='${root}/search/searchMain'" style="cursor: pointer;">
 					<img src="${root}/image/search.svg">
 					<input disabled="disabled" type="text" placeholder="선물, 브랜드 검색" autocomplete="off" aria-required="true" aria-invalid="false" style="cursor: pointer; border:0px;">
 				</form>
@@ -267,7 +269,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
   </body>
   
 <script>
-
 /*  //카카오 로그아웃  
 	function kakaoLogout() {
     	if (!Kakao.Auth.getAccessToken()) {
@@ -277,6 +278,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         Kakao.Auth.logout(function() {
         	alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken());
         });
+
 	} */
 		
 		$(".mainProfile").click(function () {
