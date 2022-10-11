@@ -2,6 +2,10 @@ package bit.data.service;
 
 import java.util.List;
 
+import bit.data.dto.SellerDto;
+
 public interface BrandServiceInter {
-	public List<String> getAllBrand();
+	public List<SellerDto> getAllBrand();
+	
+	public List<SellerDto> selectBrandTheme(String sort);
 }
