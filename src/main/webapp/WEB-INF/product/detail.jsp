@@ -735,12 +735,11 @@ form h1 {
   							}
   						s+="</div>";
   					s+="</div>";
-
   					s+="<br>";
   					s+="<p>"+e.nickname+"</p>";
   					s+="<span >"+e.content+"</span>";
-  					s+="<div class='reviewTag' style='background-color:"+e.backgroundColor+"'>";
-   					s+="<span>#"+e.tagContent+"</span>";
+  					s+="<div class='reviewTag' style='background-color:"+e.tagBColor+"'>";
+   					s+="<span>#"+e.tagName+"</span>";
    				s+="</div>";
    				s+="<p style='float:right; color:gray; margin-right:35px; position:relative; top:-20px;'>"+e.createdAt+"</p>";
   					
@@ -860,7 +859,7 @@ form h1 {
     <input type="hidden" name="messageCard" value="" />
     <input type="hidden" name="engrave" value="" />
     <!-- <input type="hidden" name="friendNum" value="1"> -->
-    <c:if test="${empty sessionScope.loginUserNum}">
+    <c:if test="${!empty sessionScope.loginUserNum}">
     	<input type="hidden" name="userNum" value="${sessionScope.loginUserNum}" />
     </c:if>
     <input type="hidden" name="productNum" value="${dto.num }" />
@@ -966,6 +965,7 @@ form h1 {
             <b>선물하기</b>
           </button>
         </div>
+        
       </div>
 
       <!-- 버튼 -->
@@ -1067,6 +1067,7 @@ form h1 {
                 style="float: left"
               />
               <h4><b>선물상자에 상품을 담았어요</b></h4>
+              <a href="${root}/mypage/cart">선물상자 보러가기</a>
             </div>
             <div class="modal-footer">
               <button type="button" class="detailCart" data-dismiss="modal">
