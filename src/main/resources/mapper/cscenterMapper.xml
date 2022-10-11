@@ -16,7 +16,7 @@
    </select>
    <!-- Faq카테고리 -->
    <select id="getFaqCategory" resultType="faqCategoryDto">
-      select * from faqCategory order by num asc;
+      select * from faqCategory order by num asc
    </select>
    <!-- Faq 검색 -->
    <select id="getSearchFaq" parameterType="Map" resultType="faqDto">

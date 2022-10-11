@@ -104,11 +104,10 @@ public class LoginController {
 	@GetMapping("/logout")
 	public String logout(HttpSession session, HttpServletRequest request, HttpServletResponse response)
 	{
-		
 		//로그아웃 시 제거되어야 할 세션
 		session.removeAttribute("loginok");	//이걸로 비교할거라서 얘만 지우면되지만, id까지 지우기로함
-		//session.removeAttribute("loginid");
-				
+		session.removeAttribute("loginUserNum");
+
 		return "redirect:/";
 	}
 

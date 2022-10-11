@@ -38,7 +38,14 @@ public class ProductService implements ProductServiceInter {
 	public ProductDto getProductDetail(int num) {
 		
 		return productDaoInter.getProductDetail(num);
+	}
+
+	@Override
+	public void updateReadCount(int num) {
+		
+		productDaoInter.updateReadCount(num);	
 	}	
+	
 //	@Override
 //	public List<ProductDto> getTag(int themeNum) {
 //	

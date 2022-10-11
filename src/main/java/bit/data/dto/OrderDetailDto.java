@@ -11,4 +11,5 @@ public class OrderDetailDto {
 	private int friendNum;
 	private int userNum;
 	private int productNum;
+	private String productOption;
 }

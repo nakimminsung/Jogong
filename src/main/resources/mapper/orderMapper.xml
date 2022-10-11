@@ -34,7 +34,7 @@
 
 	<!-- order에 필요한 count 조회 -->
 	<select id="getCount" parameterType="int" resultType="int">
-		select qty from orderDetail where  num = #{num};
+		select qty from orderDetail where  num = #{num}
 	</select>
 	
 	<!-- order에 넣을 userNum 조회 -->

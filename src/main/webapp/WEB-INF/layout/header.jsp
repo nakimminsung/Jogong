@@ -274,7 +274,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         Kakao.Auth.logout(function() {
         	alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken());
         });
-
 	} */
 		
 		$(".mainProfile").click(function () {
