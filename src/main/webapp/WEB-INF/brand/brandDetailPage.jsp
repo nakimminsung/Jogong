@@ -325,9 +325,9 @@
 				<div class='card cardTheme'>
 					<img class='card-img-top' src='/jogong/resources/image/21.jpeg' alt='Card image cap'>
 					<div class='card-body'>
-						<h5 class='card-title'>브랜드명</h5>
+						<h5 class='card-title'>브랜드명을 입력하세요</h5>
 						<p class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 350px;'>상품명</p>
-						<p class='card-text'><b>가격</b></p>
+						<p class='card-text'><b>가격을 입력하세요</b></p>
 					</div>
 				</div>
 				</li>
