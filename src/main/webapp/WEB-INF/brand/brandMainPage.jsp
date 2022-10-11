@@ -25,6 +25,10 @@
 
 </head>
 <style>
+a.header-brand>span{
+	color:#000 !important;
+	border-bottom: 5px solid #cff0cc;
+}
 div#wrapper{
   margin: 0 auto;
   height: auto;

@@ -6,6 +6,10 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style type="text/css">
+	a.header-brand>span{
+		color:#000 !important;
+		border-bottom: 5px solid #cff0cc;
+	}
 	.brandTop{
 		-webkit-text-size-adjust: 100%;
 	    word-break: normal;
