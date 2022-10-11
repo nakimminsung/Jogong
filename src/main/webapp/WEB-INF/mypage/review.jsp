@@ -486,7 +486,7 @@
 					s += "<div class='review-product-info'>";
 					s += "<div class='review-product-content'>";
 					s += "<span class='review-product-content-span1'>"+res.brand+"</span>";
-					s += "<span>"+res.name+"</span>";
+					s += "<a href='../product/detail?num="+res.num+"'>"+res.name+"</a>";
 					s += "</div>";
 					s += "</div>";
 					s += "</div>";
@@ -559,7 +559,7 @@
 					s += "<div class='review-product-info'>";
 					s += "<div class='review-product-content'>";
 					s += "<span class='review-product-content-span1'>"+res.brand+"</span>";
-					s += "<span>"+res.name+"</span>";
+					s += "<a href='../product/detail?num="+res.num+"'>"+res.name+"</a>";
 					s += "</div>";
 					s += "</div>";
 					s += "</div>";
@@ -717,7 +717,7 @@
 	 				s += "<div class='review-product-info'>";
 	 				s += "<div class='review-product-content'>";
 	 				s += "<span class='review-product-content-span1'>"+elt.brand+"</span>";
-	 				s += "<span>"+elt.name+"</span>";
+	 				s += "<a href='../product/detail?num="+elt.num+"'>"+elt.name+"</a>";
 	 				s += "</div>";
 	 				//s += "<div class='review-product-date'>";
 	 				//s += "<span>11</span>";
@@ -758,7 +758,7 @@
 	 				s += "<div class='review-product-info'>";
 	 				s += "<div class='review-product-content'>";
 	 				s += "<span class='review-product-content-span1'>"+elt.brand+"</span>";
-	 				s += "<span>"+elt.name+"</span>";
+	 				s += "<a href='../product/detail?num="+elt.productNum+"'>"+elt.name+"</a>";
 	 				s += "</div>";
 	 				s += "<div class='review-product-date'>";
 	 				s += "<span> 작성날짜: "+elt.createdAt+"</span>";

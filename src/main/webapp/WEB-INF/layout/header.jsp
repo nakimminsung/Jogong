@@ -99,7 +99,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 		margin-left:10px;
 	}
 	div.home{
-		min-width:60px;
+		min-width:150px;
 		width:100%;
 		max-width:120px;
 	}
@@ -107,7 +107,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 		font-size:30px;
 	}
 	div.menu{
-		min-width:180px;
+		min-width:280px;
 	}
 	div.search-box{
 		width:100%;
@@ -203,7 +203,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 		<div class="left">
 			<div class="home">
 				<a href="${root}">
-					<img src="/jogong/resources/image/main.png" style="width: 100%">
+					<img src="${root}/image/jogong1.png" style="width:120px;">
 				</a>
 			</div>
 			<div class="menu">
@@ -211,6 +211,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 				<a class="header-menu header-brand" href="${root}/brand/list"><span>브랜드</span></a>
 				<a class="header-menu header-cate" href="${root}/category"><span>카테고리</span></a>
 				<a class="header-menu header-review" href="${root}/review/list"><span>후기</span></a>
+				<a class="header-menu header-event" href="${root}/event/event"><span>이벤트</span></a>
 
 			</div>
 			<div class="search-box">

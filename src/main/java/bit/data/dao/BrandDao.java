@@ -31,6 +31,11 @@ public class BrandDao implements BrandDaoInter{
 		// TODO Auto-generated method stub
 		return session.selectList(ns+"selectBrandTheme",sort);
 	}
+
+	@Override
+	public List<SellerDto> selectBrandName(String name) {
+		return session.selectList(ns+"selectBrandName",name);
+	}
 	
 	@Override
 	public List<ProductDto> getBrandByName(Map<String, Object> map) {

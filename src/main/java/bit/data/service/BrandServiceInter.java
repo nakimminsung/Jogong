@@ -11,4 +11,5 @@ public interface BrandServiceInter {
 	public List<SellerDto> selectBrandTheme(String sort);
 	public SellerDto getLogoDesc(String brand);
 	public List<ProductDto> getBrandAll(String brand);
+	public List<SellerDto> selectBrandName(String name);
 }
