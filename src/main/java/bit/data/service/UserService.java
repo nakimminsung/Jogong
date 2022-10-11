@@ -18,9 +18,8 @@ public class UserService implements UserServiceInter {
 	UserDaoInter userDaoInter;
 	
 	@Override
-	public List<UserDto> getUserFriendData(int userNum) {
-		
-		return userDaoInter.getUserFriendData(userNum);
+	public List<UserDto> getUserFriendData(Map<String,Object> map) {
+		return userDaoInter.getUserFriendData(map);
 	}
 
 	@Override
