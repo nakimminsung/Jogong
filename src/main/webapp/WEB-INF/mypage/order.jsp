@@ -28,16 +28,6 @@
     
 </head>
 <style>
-a.menu-gift {
-    color:#000 !important;
-}
-div.gift-wrapper{
-	padding-top:100px;
-	width:100%;
-	display:flex;
-	flex-direction:column;
-	
-}
 div.Gift{
 	width:100%;
 	display:flex;
@@ -45,6 +35,15 @@ div.Gift{
 	flex-wrap:wrap;
 }
 div.card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: 0.25rem;
 }
 p.card-title{
    color:blue;
@@ -296,7 +295,7 @@ p.card-title{
     letter-spacing: -.033em;
     word-break: break-all;
   }
-/*   .link_prd{
+  .link_prd{
   	-webkit-text-size-adjust: none;
     font-size: 14px;
     line-height: 1.5;
@@ -308,7 +307,7 @@ p.card-title{
     display: block;
     position: relative;
     padding: 16px 20px;
-  } */
+  }
   .info_prd{
     -webkit-text-size-adjust: none;
     font-size: 14px;
@@ -572,13 +571,89 @@ p.card-title{
     box-sizing: border-box;
   }
   
+  div.gift-wrapper {
+            padding-top: 100px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
 
+        }
+
+        .card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid rgba(0, 0, 0, .125);
+            border-radius: 0.25rem;
+        }
+
+        div.Gift {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .container {
+            width: 25%;
+            height: 400px;
+            padding-right: var(--bs-gutter-x, .75rem);
+            padding-left: var(--bs-gutter-x, .75rem);
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        p.card-title {
+            color: blue;
+            font-size: 12px;
+            margin-bottom: 0.5rem;
+        }
+
+        .btn-open {
+            background-color: #cff0cc;
+            border-radius: 10px;
+            border: 0;
+            outline: 0;
+            font-size: 5px;
+            padding: 3px 10px;
+        }
+
+        .h5.card-text {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            display: block;
+            max-width: 1000px;
+            font-size: 1.25rem;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        .h6.card-text {
+            float: left;
+            font-size: 1rem;
+        }
+
+        .btn-open:hover {
+
+            background: green;
+            color: white;
+            border: 0;
+            outline: 0;
+        }
+
+        .card-body {
+            flex: 1 1 auto;
+            padding: 1rem 1rem;
+        }
 </style>
 <script type="text/javascript">
-	/*
-	var btn_cardNum = $('#msgbtn[name=i]');
-	var msg_cardNum = $('.modal[name=i]'); 
-	*/
 	
 	$(function() {
 
@@ -603,6 +678,7 @@ p.card-title{
 		});
 		
 	 	/* $(document).on("click","#msgbtn1",function() {
+
 		    <!-- 여러개의 버튼이 모두 클릭되어서 모두 호출된다 -->
 		    $("#myModal1").modal({remote : 'layer.html'});
 		    $("#myModal1").modal('show');
@@ -611,15 +687,7 @@ p.card-title{
 		    //$(this).modal('show');
 		}); */
 		
-	 	/* 	
-	 	$(document).on("click",btn_cardNum,function() {
-		    <!-- 여러개의 버튼이 모두 클릭되어서 모두 호출된다 -->
-		    $(msg_cardNum).modal({remote : 'layer.html'});
-		    $(msg_cardNum).modal('show');
-		});
-		 */
-		 
-		 $(document).on("click",".btn_crad",function() {
+		$(document).on("click",".btn_crad",function() {
 			<!-- 여러개의 버튼이 모두 클릭되어서 모두 호출된다-->
 			 $(".address").toggle();
 		});
@@ -640,8 +708,8 @@ p.card-title{
 	
 	function order_recevie() {
 	 	// 로그인 세션아이디num으로 변경
- 		var num = 2;
-// 		var num = ${sessionScope.loginname};
+// 		var num = 2;
+ 		var num = ${sessionScope.loginUserNum};
 		var s="";
 
 		$.ajax({
@@ -652,12 +720,12 @@ p.card-title{
 			success:function(res){
 				
 	 			$.each(res, function(i,elt) {
-	 				s+= "<div class='container mt-3' style='width:33%; height:500px;'>"
+	 				s+= "<div class='container mt-3' style='width:33%; height:500px; cursor:pointer;' onclick=\"location.href='../${root}product/detail?num="+elt.productNum+"'\">"
  					s+=	"<div class='card'>"
- 					s+=	"<img class='card-img-top' src="+elt.thumbnailImageUrl+" alt='Card image' style='width:100%; cursor:pointer;' onclick=\"location.href='../${root}product/detail?num="+elt.productNum+"'\">"
+ 					s+=	"<img class='card-img-top' src="+elt.thumbnailImageUrl+" alt='Card image' style='width:100%'>"
  					s+=	"<div class='card-body'>"
  					s+=	"<p class='card-title'>"+elt.brand+"</p>"
- 					s+=	"<h5 class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 1000px;cursor:pointer;' onclick=\"location.href='../${root}product/detail?num="+elt.productNum+"'\">"+elt.productName+"</h5>"
+ 					s+=	"<h5 class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 1000px;'>"+elt.productName+"</h5>"
  					s+= "<h6 class='card-text' style=''><b>To.'"+elt.nickname+"'</b></h6>"
  					s+=	"<p style='color:gray; text-align: left; margin-top:10px'>"+elt.orderDate+"</p></div></div></div>"
 				});
@@ -671,8 +739,8 @@ p.card-title{
 	 	
 	 	
 	  	function order_send() {
-	 		var num = 5;
-//	 		var num = ${sessionScope.loginname};
+//	 		var num = 5;
+	 		var num = ${sessionScope.loginUserNum};
 			var s="";
 				
 			$.ajax({
@@ -684,22 +752,22 @@ p.card-title{
 					
 		 			$.each(res, function(i,elt) {
 		 				
-		 				s+= "<div class='container mt-3' style='width:33%; height:500px;'>"
+		 				s+= "<div class='container mt-3' style='width:33%; height:500px; cursor:pointer;'>"
 	 					s+=	"<div class='card'>"
-	 					s+=	"<img class='card-img-top' src="+elt.thumbnailImageUrl+" alt='Card image' style='width:100%; cursor:pointer;' onclick=\"location.href='../${root}product/detail?num="+elt.productNum+"'\">"
+ 	 					s+=	"<img class='card-img-top' src="+elt.thumbnailImageUrl+" alt='Card image' style='width:100%' onclick=\"location.href='../${root}product/detail?num="+elt.productNum+"'\">"
 	 					s+=	"<div class='card-body'>"
 	 					s+=	"<p class='card-title'>"+elt.brand+"</p>"
 	 					s+=	"<h5 class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 1000px;cursor:pointer;' onclick=\"location.href='../${root}product/detail?num="+elt.productNum+"'\">"+elt.productName+"</h5>"
 	 					s+= "<h6 class='card-text'><b>from."+elt.nickname+"</b></h6>"
 	 					s+=	"<button class='button' id='msgbtn"+i+"' style='margin-left:10px' onclick='showcard("+i+")'>메시지 카드 보기</button>"
 	 					//s+=	"<button class='button' id='msgbtn' style='margin-left:10px' name='"+i+"'>메시지 카드 보기</button>"
+
 	 					s+=	"<p style='color:gray; text-align: left; margin-top:10px'>"+elt.orderDate+"</p></div></div></div>"
-	 					
-	 					/* 하나 누를때마다 하나의 정보를 들고오는 ajax 처리 */
 	 					
 	 					<!-- 팝업영역 -->
 	 					s+=	"<div class='modal' id='myModal"+i+"'>"
 	 					//s+=	"<div class='modal' id='myModal' name='"+i+"'>"
+
 	 					s+=	"<div class='modal-dialog'>"
 	 					s+=	"<div class='modal-content'>"
 	 					s+=	"<div class='gift_window'>"
@@ -722,15 +790,14 @@ p.card-title{
 	 					s+=	"<a href='#none' class='link_media'><img alt='메시지카드' class='img_g' src='"+elt.banner+"'></a>"
 	 					s+=	"</div>"
 	 					s+=	"<p class='txt_letter'>"+elt.message+"</p>"
-	 					//s+=	"<a href='#none' class='link_prd'>"
+	 					s+=	"<a href='#none' class='link_prd'>"
 	 					s+=	"<span class='info_prd'>"
 	 					s+=	"<span class='thumb_prd'><img class='img_g' src='"+elt.thumbnailImageUrl+"' alt='여기에 상품이미지'></span>" 
 	 					s+=	"<span id='productWrapper' class='txt_prd'>" 
 	 					s+=	"<span class='screen_out'>"+elt.brand+"</span> "
 	 					s+=	"<em id='brandName' class='txt_brand'>"+elt.brand+"</em> <span class='screen_out'>"+elt.productName+"</span>"
 	 					s+=	"<strong id='productName' class='txt_name'>"+elt.productName+"</strong>"
-						s+=	"</span></span>"
-						//s+=	"</a>"
+						s+=	"</span></span></a>"
 							
 						s+=	"<div class='tbl_btn'>"
 						s+=	"<div class='item_btn'>"
@@ -739,12 +806,12 @@ p.card-title{
 						s+=	"<span class='txt_g'>주소 입력 및 수정</span>"
 						s+=	"</button></div></div></div></div></div>"
 		 											
-						s+=	"<a href='#none' class='btn_close'>"
-						s+=	"<span class='ico_gift2 ico_close'>닫기</span>"
+						s+=	"<a href='#none' class='ico_close'>"
+						s+=	"<span class='close'>닫기</span>"
 						s+=	"</a></div>"
 		 										
 						s+=	"<form action=''>"
-						s+=	"<table style='width: 70%; display: none; margin: 10px auto;' class='table table-bordered address'>"
+						s+=	"<table style='width: 70%; display: none; margin: 10px auto;' class='address'>"
 						//s+=	"<tr><th style='text-align: center'> 이름 </th>"
 						//s+=	"<td><input type='text' style='width: 100%;' required name='companyName' id='to_name' value='11받는사람이름'></td></tr>"
 							
