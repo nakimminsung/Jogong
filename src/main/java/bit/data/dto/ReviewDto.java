@@ -13,6 +13,7 @@ public class ReviewDto {
 	private String subject;
 	private String content;
 	private int rating;
+
 	@JsonFormat(pattern="yyyy-MM-dd", timezone = "Asia/Seoul")
 	private Timestamp createdAt;
 	private boolean publicOption;
@@ -31,7 +32,7 @@ public class ReviewDto {
 	private String profileImage;
 	
 	// tag
-	private String tagContent;
-	private String backgroundColor;
-	private String textColor;
+	private String tagName;
+	private String tagTColor;
+	private String tagBColor;
 }

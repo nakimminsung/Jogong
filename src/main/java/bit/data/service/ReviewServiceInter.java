@@ -18,4 +18,12 @@ public interface ReviewServiceInter {
 	public List<ReviewDto> selectReviewByUser(int userNum);
 	// 마이페이지 리뷰수
     public int selectReviewCount(int userNum);
+    // 리뷰 생성
+    public void insertReview(ReviewDto reviewDto);
+    // 리뷰 삭제
+    public void deleteReview(int num);
+    // 리뷰 단건 조회
+    public ReviewDto selectReviewByNum(int num);
+    // 리뷰 업데이트
+    public void updateReview(ReviewDto reviewDto);
 }

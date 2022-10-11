@@ -9,4 +9,5 @@ public interface GiftDaoInter {
 
 	public List<OrderDto> getSendSearch(int userNum);
 	
+	public void updateAddressOrder();
 }
