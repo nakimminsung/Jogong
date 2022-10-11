@@ -698,7 +698,7 @@ p.card-title{
 	 					/* 하나 누를때마다 하나의 정보를 들고오는 ajax 처리 */
 	 					
 	 					<!-- 팝업영역 -->
-	 					s+=	"<div class='modal' id='myModal'>"
+	 					s+=	"<div class='modal' id='myModal"+i+"'>"
 	 					//s+=	"<div class='modal' id='myModal' name='"+i+"'>"
 	 					s+=	"<div class='modal-dialog'>"
 	 					s+=	"<div class='modal-content'>"
