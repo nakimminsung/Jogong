@@ -39,10 +39,10 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 </head>
 <style>
 	@font-face {
-    font-family: 'SeoulNamsanM';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+	    font-family: 'SeoulNamsanM';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
 	}
 	* {
 		font-size: 15px;
@@ -116,6 +116,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 	div.search-box img{
 		width:20px;
 		margin-right:12px;
+		margin-top: 0;
 	}
 	a.login {
 		color: #add0bb;
@@ -140,31 +141,28 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 	}
 	
 	.quick{
-    line-height: 2;
-    color: rgba(0,0,0,.87);
-    box-sizing: inherit;
-    font-size: 100%;
-    font-weight: 400;
- 	display:none;
-    padding: 16px;
-    border-radius: 20px;
-    width: 180px;
-    position: absolute;
-    left: 74.5%;
-    background-color: white;
-    border: none;
-    box-shadow: 1px 1px 3px gray;
-  	
-	
+	    line-height: 2;
+	    color: rgba(0,0,0,.87);
+	    box-sizing: inherit;
+	    font-size: 100%;
+	    font-weight: 400;
+	 	display:none;
+	    padding: 16px;
+	    border-radius: 20px;
+	    width: 180px;
+	    position: absolute;
+	    left: 74.5%;
+	    background-color: white;
+	    border: none;
+	    box-shadow: 1px 1px 3px gray;
 	}
 	.myMenu{
-	adding: 10px 12px;
-    border-radius: 8px;
-    text-align: left;
-    font-size: 13px;
-    font-weight: 500;
-    padding: 12px;
-	
+		adding: 10px 12px;
+	    border-radius: 8px;
+	    text-align: left;
+	    font-size: 13px;
+	    font-weight: 500;
+	    padding: 12px;
 	}
 	
 /* 	.logout{
@@ -173,6 +171,30 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 	
 	} */
 	
+	a.header-menu>span{
+		font-size: 18px;
+	    font-weight: 1000;
+	    position: relative;
+	    color: #888;
+	}
+	a.header-menu>span:hover {
+		color: #000
+	}
+	span::after {
+		content: '';
+	    display: block;
+	    width: 0;
+	    height: 5px;
+	    position: absolute;
+	    left: 0;
+	    bottom: -5px;
+	    background-color: #cff0cc;
+	    opacity: 0.9;
+	}
+	a.header-menu:hover span::after {
+	    width: 100%;
+	    transition: width .3s;
+	}
 	
 </style>
 <body>
@@ -183,9 +205,11 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 				<a href="${root}">조공</a>
 			</div>
 			<div class="menu">
-				<a href="${root}">브랜드</a>
-				<a href="${root}/category">카테고리</a>
-				<a href="${root}/review/list">후기</a>
+
+				<a class="header-menu header-brand" href="${root}/brand/list"><span>브랜드</span></a>
+				<a class="header-menu header-cate" href="${root}"><span>카테고리</span></a>
+				<a class="header-menu header-review" href="${root}/review/list"><span>후기</span></a>
+
 			</div>
 			<div class="search-box">
 				<form class="search">
@@ -211,6 +235,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 			
 			<!-- 로그인 상태일때 -->
 			<c:if test="${sessionScope.loginok!=null}"> <!-- 세션영역(세션에서 찾을때 무조건써줘야함) -->
+
 				<div class="mainProfile" style="cursor: pointer;">
 					<img src="${sessionScope.loginphoto}" class="profile">
 					<b style="max-width:500px;">${sessionScope.loginname}님</b>&emsp;<span class="upIcon"><i class='fas fa-angle-down'></i></span>
@@ -223,7 +248,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     </div>
     <!--  div.header-wrapper 종료 -->
     
-    
     <!-- 로그인 상태일때 내림 목록 -->
      <div class="quick" style="z-index:1000;">
 		<div>
@@ -232,27 +256,26 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 		</div> 
 		<div>
 			<div class="myMenu">
-				<a href="/jogong/mypage/cart" >마이페이지</a><br> 
+				<a href="/jogong/orderDetail/page">마이페이지</a><br> 
 				<a href="#">쿠폰함</a><br>
 				<a href="${root}/cscenter/faq">고객센터</a><br> 
-				<a href="${root}/logout">로그아웃</a> 
+				<a href="${root}/logout" onclick="return confirm('로그아웃 하시겠습니까?');">로그아웃</a>
 			</div>
 		</div> 
 	</div>  
   </body>
   
 <script>
-/* //카카오 로그아웃  
->>>>>>> 756729fab20010df321f93767cc815ddfbb1a76d
-	  window.Kakao.init('d4fc125a7dd0ad8b599aeac52a278521');  
-		function kakaoLogout() {
-            if (!Kakao.Auth.getAccessToken()) {
-                alert('Not logged in.');
-                return;
-            }
-            Kakao.Auth.logout(function() {
-                alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken());
-            });
+/*  //카카오 로그아웃  
+	function kakaoLogout() {
+    	if (!Kakao.Auth.getAccessToken()) {
+        	alert('Not logged in.');
+            return;
+        }
+        Kakao.Auth.logout(function() {
+        	alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken());
+        });
+
 	} */
 		
 		$(".mainProfile").click(function () {
@@ -279,7 +302,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 				}
 			);
 		
-
 </script>	
   
 </html>

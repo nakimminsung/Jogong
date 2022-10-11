@@ -62,6 +62,12 @@ public class ProductController {
 		return productService.getFriendWishlist(userNum);
 	}
 	
+	@GetMapping("/select/WriteableList")
+	@ResponseBody
+	public List<ProductDto> selectWriteableList(int userNum) {
+	    return productService.selectWriteableList(userNum);
+	}
+	
 	// 상세페이지
 	@GetMapping("/product/detail")
 	public ModelAndView productDetail(int num) {
@@ -69,6 +75,9 @@ public class ProductController {
 		ProductDto dto = productService.getProductDetail(num);
 		int reviewAvg = reviewService.getRating(num);
 		int reviewCount = reviewService.getRatingNum(num);
+		
+		// 조회수 증가
+		productService.updateReadCount(num);
 		
 		mview.addObject("dto",dto);
 		
@@ -118,6 +127,13 @@ public class ProductController {
 		map.put("productList", productList);
 		return map;
 		
+	}
+
+	// 마이페이지 리뷰작성폼시 상품데이터 get
+	@GetMapping("/product/select")
+	@ResponseBody
+	public ProductDto selectProduct(int num) {
+	    return productService.getProductDetail(num);
 	}
 
 }

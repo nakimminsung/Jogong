@@ -48,4 +48,53 @@ public class ReviewService implements ReviewServiceInter{
 		
 		return reviewDaoInter.getPagingList(map);
 	}
+
+	// 상세페이지
+	@Override
+	public List<ReviewDto> getProductReviewList(int productNum) {
+		
+		return reviewDaoInter.getProductReviewList(productNum);
+	}
+
+	@Override
+	public int getReviewCount(int productNum) {
+		
+		return reviewDaoInter.getReviewCount(productNum);
+	}
+	   
+	// 마이페이지 작성한 리뷰목록
+    @Override
+    public List<ReviewDto> selectReviewByUser(int userNum) {
+        return reviewDaoInter.selectReviewByUser(userNum);
+    }
+
+    // 마이페이지 리뷰수
+    @Override
+    public int selectReviewCount(int userNum) {
+        return reviewDaoInter.selectReviewCount(userNum);
+    }
+    
+    // 리뷰 생성
+    @Override
+    public void insertReview(ReviewDto reviewDto) {
+        reviewDaoInter.insertReview(reviewDto);
+    }
+    
+    // 리뷰 삭제
+    @Override
+    public void deleteReview(int num) {
+        reviewDaoInter.deleteReview(num);
+    }
+    
+    // 리뷰 단건 조회
+    @Override
+    public ReviewDto selectReviewByNum(int num) {
+        return reviewDaoInter.selectReviewByNum(num);
+    }
+    
+    // 리뷰 업데이트
+    @Override
+    public void updateReview(ReviewDto reviewDto) {
+        reviewDaoInter.updateReview(reviewDto);
+    }
 }

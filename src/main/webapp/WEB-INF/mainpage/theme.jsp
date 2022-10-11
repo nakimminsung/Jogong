@@ -100,13 +100,9 @@
 </style>
 </head>
 <script type="text/javascript">
-	
 	$(function(){
-		$("document").ready(function(){
-			getThemeList(2);
-		//	getTagList(2);
-		});	
-		
+		getThemeList(2);
+
 		$("div.tp").click(function(){
 			var themeNum = $(this).attr("themeNum");
 			getThemeList(themeNum);
@@ -115,7 +111,7 @@
 		
 	    $(".loadProduct").click(function(e){ 
 	        e.preventDefault();
-	        $("div.cardTheme:hidden").slice(0, 4).show();
+	        $("div.cardTheme:hidden").slice(0, 3).show();
 	    });    
 	});
 	 
@@ -141,7 +137,7 @@
 					
 					$("div.productTheme").html(s);
 					
-					$("div.cardTheme").slice(0, 5).hide(); 
+					$("div.cardTheme").slice(0, 6).hide(); 
 				}
 			});
 		}

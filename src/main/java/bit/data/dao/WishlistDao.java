@@ -1,6 +1,7 @@
 package bit.data.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,25 @@ public class WishlistDao implements WishlistDaoInter {
 	}
 
 	@Override
+    public List<WishlistDto> selectUserWishlist(int userNum) {
+        return session.selectList(ns+"selectUserWishlist", userNum);
+    }
+
+    @Override
 	public void insertWishlist(WishlistDto wishlistDto) {
 		session.selectOne(ns+"insertWishlist", wishlistDto);
-	};
+	}
+
+    @Override
+    public void updateWishlist(Map<String,Object> map) {
+        session.selectOne(ns+"updateWishlist", map);
+    }
+
+    @Override
+    public void deleteWishlist(int num) {
+        session.selectOne(ns+"deleteWishlist", num);
+    }
+    
+    
 
 }

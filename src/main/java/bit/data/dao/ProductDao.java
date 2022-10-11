@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import bit.data.dto.CategoryDto;
 import bit.data.dto.ProductDto;
-import bit.data.dto.ReviewDto;
 
 @Repository
 public class ProductDao implements ProductDaoInter {
@@ -45,7 +44,15 @@ public class ProductDao implements ProductDaoInter {
 		
 		return session.selectOne(ns+"selectProductDetail",num);
 	}
-
+	@Override
+	public void updateReadCount(int num) {
+		
+		session.update(ns+"updateReadCount", num);
+	}
+    @Override
+    public List<ProductDto> selectWriteableList(int userNum) {
+        return session.selectList(ns+"selectWriteableList", userNum);
+    }
 //	@Override
 //	public List<ProductDto> getTag(int themeNum) {
 //

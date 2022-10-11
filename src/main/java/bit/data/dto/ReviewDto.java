@@ -2,6 +2,8 @@ package bit.data.dto;
 
 import java.sql.Timestamp;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 @Data
@@ -11,6 +13,8 @@ public class ReviewDto {
 	private String subject;
 	private String content;
 	private int rating;
+
+	@JsonFormat(pattern="yyyy-MM-dd", timezone = "Asia/Seoul")
 	private Timestamp createdAt;
 	private boolean publicOption;
 	private String reviewImageUrl;
@@ -20,4 +24,15 @@ public class ReviewDto {
 	
 	// product
 	private String name;
+	private String thumbnailImageUrl;
+	private String brand;
+	
+	// user
+	private String nickname;
+	private String profileImage;
+	
+	// tag
+	private String tagName;
+	private String tagTColor;
+	private String tagBColor;
 }

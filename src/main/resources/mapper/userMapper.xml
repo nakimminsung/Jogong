@@ -15,7 +15,7 @@
 	</insert>
 	<!-- 개인회원가입 중복체크 -->
 	<select id="getUserIdSearch" parameterType="String" resultType="int">
-		select sum(cnt) from (select count(*) cnt from user where email=#{email} union all select count(*) cnt from seller where email=#{email}) as t;
+		select sum(cnt) from (select count(*) cnt from user where email=#{email} union all select count(*) cnt from seller where email=#{email}) as t
 	</select>
 	<!-- 로그인 -->
 	<select id="loginIdPassCheck" parameterType="Map" resultType="int">
@@ -28,7 +28,7 @@
 	
 	<!--리뷰페이지 유저정보 -->
 	<select id="getReviewUserInfo" parameterType="int"  resultType="userDto">
-		select * from user where num in (select userNum from review where num=userNum)
+		select * from user u where num in (select userNum from review r where r.userNum=u.num)
 	</select>
 
 </mapper>

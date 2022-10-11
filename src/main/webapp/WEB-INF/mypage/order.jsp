@@ -28,6 +28,9 @@
     
 </head>
 <style>
+a.menu-gift {
+    color:#000 !important;
+}
 div.gift-wrapper{
 	padding-top:100px;
 	width:100%;
@@ -42,7 +45,6 @@ div.Gift{
 	flex-wrap:wrap;
 }
 div.card{
-   margin-left:30px
 }
 p.card-title{
    color:blue;
@@ -65,129 +67,55 @@ p.card-title{
   border:0;
   outline:0;
 }
-
-.pop-layer .pop-container {
-  padding: 20px 25px;
-} 
-
-/* .pop-layer p.ctxt {
-  color: #666;
-  line-height: 25px;
-} */
-
-/* .pop-layer .btn-r {
-  width: 100%;
-  margin: 10px 0 20px;
-  padding-top: 10px;
-  border-top: 1px solid #DDD;
-  text-align: right;
-} */
-
-.pop-layer {
-  display: none;
-  position: absolute;
-  top: 35%;
-  left: 45%;
-  width: 410px;
-  height: auto;
-  background-color: #fff;
-  /* border: 5px solid #3571B5; */
-  z-index: 10;
-} 
-
-.dim-layer {
-  display: none;
-  position: fixed;
-  _position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 100;
-}
-
-.dim-layer .dimBg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #000;
-  opacity: .5;
-  filter: alpha(opacity=50);
-}
-
-.dim-layer .pop-layer {
-  display: block;
-} 
-
-/* a.btn-layerClose {
-  display: inline-block;
-  height: 25px;
-  padding: 0 14px 0;
-  border: 1px solid #304a8a;
-  background-color: #3f5a9d;
-  font-size: 13px;
-  color: #fff;
-  line-height: 25px;
-} */
-
-a.btn-layerClose:hover {
-  border: 1px solid #091940;
-  background-color: #1f326a;
-  color: #fff;
+  .container mt-3{
+  	width:33%;
+  	height:400px;
   }
   
-  .pop-container{
-    -webkit-text-size-adjust: none;
+  
+  ul.tab_receive{
     font-size: 14px;
     line-height: 1.5;
     color: #000;
-    font-family: 
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    margin: 0;
-    z-index: 30020;
-    background-color: #fffae2;
+    list-style: none;
     overflow: hidden;
-    position: relative;
-    left: auto;
-    right: auto;
-    top: auto;
-    bottom: auto;
-    width: 500px;
-    padding: 86px 0 88px;
-    border-radius: 8px;
-    padding-top: 42px;
+    margin: 30px 0 40px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ededed;
   }
-  .pop-conts{
-    -webkit-text-size-adjust: none;
+  
+  li.presentation{
     font-size: 14px;
     line-height: 1.5;
     color: #000;
-    font-family: -apple-system,Apple SD Gothic Neo,\b9d1\c740  \ace0\b515,Malgun Gothic,sans-serif,ArialUnicodeMs;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     margin: 0;
     padding: 0;
+    list-style: none;
+    float: left;
   }
- . layer_body{
-     -webkit-text-size-adjust: none;
-    font-size: 14px;
+  
+  a.link_tab{
     line-height: 1.5;
+    list-style: none;
+    overflow-anchor: none;
+    text-decoration: none;
+    display: block;
+    padding: 0 2px 2px;
     color: #000;
-    font-family: -apple-system,Apple SD Gothic Neo,\b9d1\c740  \ace0\b515,Malgun Gothic,sans-serif,ArialUnicodeMs;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
-    position: static;
-    left: auto;
-    right: auto;
-    top: auto;
-    bottom: auto;
-    max-height: 630px;
-    box-sizing: border-box;
- }
+    opacity: 1; 
+    font-size: 20px;
+  }
+  
+  a.link_tab:hover{
+   	color:#000; 
+  	font-weight: 600;
+  }
+ 
+  a.link_tab:active{
+    color:#000; 
+  	font-weight: 600;
+  }
+  
   .wrap_msgprofile{
   	-webkit-text-size-adjust: none;
     font-size: 14px;
@@ -368,7 +296,7 @@ a.btn-layerClose:hover {
     letter-spacing: -.033em;
     word-break: break-all;
   }
-  .link_prd{
+/*   .link_prd{
   	-webkit-text-size-adjust: none;
     font-size: 14px;
     line-height: 1.5;
@@ -380,7 +308,7 @@ a.btn-layerClose:hover {
     display: block;
     position: relative;
     padding: 16px 20px;
-  }
+  } */
   .info_prd{
     -webkit-text-size-adjust: none;
     font-size: 14px;
@@ -507,26 +435,7 @@ a.btn-layerClose:hover {
     font-size: 0;
     background-color: #fafafa;
   }
-  
-  	img.card-img-top{
-		height: 15rem;
-	}
-  
-/*   .ico_delete {
-    -webkit-text-size-adjust: none;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    cursor: pointer;
-    font-family: -apple-system,Apple SD Gothic Neo,\b9d1\c740 \ace0\b515,Malgun Gothic,sans-serif,ArialUnicodeMs;
-    overflow: hidden;
-    font-size: 1px;
-    line-height: 0;
-    background-size: 250px 1200px;
-    display: inline-block;
-    margin-right: 7px;
-    vertical-align: top;
-    background-position: -230px -955px;
-	}
- */  
+
  .txt_g{
      -webkit-text-size-adjust: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -576,10 +485,13 @@ a.btn-layerClose:hover {
   	width: 60px;
   	vertical-align: middle;
   }
+  .gift_window{
+  	-webkit-text-size-adjust: none;
 
   .container mt-3{
   	width:33%;
   	height:400px;
+  	justify-content: space-around;
   }
   
   
@@ -587,57 +499,93 @@ a.btn-layerClose:hover {
     font-size: 14px;
     line-height: 1.5;
     color: #000;
-    list-style: none;
-    overflow: hidden;
-    margin: 30px 0 40px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ededed;
+    font-family: -apple-system,Apple SD Gothic Neo,\b9d1\c740  \ace0\b515,Malgun Gothic,sans-serif,ArialUnicodeMs;
+    z-index: 50001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    position: fixed;
+    inset: 0px;
+    background: rgba(0, 0, 0, 0.4);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
   
-  li.presentation{
+  .gift_card{
+    -webkit-text-size-adjust: none;
     font-size: 14px;
     line-height: 1.5;
     color: #000;
+    font-family: -apple-system,Apple SD Gothic Neo,\b9d1\c740  \ace0\b515,Malgun Gothic,sans-serif,ArialUnicodeMs;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+  .msgcardd_layer{
+    -webkit-text-size-adjust: none;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #000;
+    font-family: -apple-system,Apple SD Gothic Neo,\b9d1\c740  \ace0\b515,Malgun Gothic,sans-serif,ArialUnicodeMs;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    margin: 0;
+    z-index: 30020;
+    background-color: #fffae2;
+    overflow: hidden;
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    width: 500px;
+    padding: 86px 0 88px;
+    border-radius: 8px;
+    padding-top: 42px;
+  }
+  .inner_layer{
+  	-webkit-text-size-adjust: none;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #000;
+    font-family: -apple-system,Apple SD Gothic Neo,\b9d1\c740  \ace0\b515,Malgun Gothic,sans-serif,ArialUnicodeMs;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     margin: 0;
     padding: 0;
-    list-style: none;
-    float: left;
   }
-  
-  a.link_tab{
+  .layer_body{
+    -webkit-text-size-adjust: none;
+    font-size: 14px;
     line-height: 1.5;
-    list-style: none;
-    overflow-anchor: none;
-    text-decoration: none;
-    display: block;
-    padding: 0 2px 2px;
     color: #000;
-    opacity: 1; 
-    font-size: 20px;
+    font-family: -apple-system,Apple SD Gothic Neo,\b9d1\c740  \ace0\b515,Malgun Gothic,sans-serif,ArialUnicodeMs;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: static;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    max-height: 630px;
+    box-sizing: border-box;
   }
   
-  a.link_tab:hover{
-   	color:#000; 
-  	font-weight: 600;
-  }
- 
-  a.link_tab:active{
-    color:#000; 
-  	font-weight: 600;
-  }
 
 </style>
 <script type="text/javascript">
+	/*
+	var btn_cardNum = $('#msgbtn[name=i]');
+	var msg_cardNum = $('.modal[name=i]'); 
+	*/
+	
 	$(function() {
 
 		$("document").ready(function(){
 			order_send(); 
 			$("#receivePresentbox").css("border-bottom","3px solid black");
 		});	
-		
-		//오더리시브호출
-// 		order_recevie();
-// 		order_send(); 
 
 		$('.link_tab').click(function() {
 			$('.link_tab').css("border-bottom","");
@@ -654,85 +602,77 @@ a.btn-layerClose:hover {
 			order_recevie();
 		});
 		
+	 /* 	$(document).on("click","#msgbtn",function() {
+		    <!-- 여러개의 버튼이 모두 클릭되어서 모두 호출된다 -->
+		    $(".modal").modal({remote : 'layer.html'});
+		    $(".modal").modal('show');
+		    
+		    <!-- (this)로 찍으면 배경만 나옴 -->
+		    //$(this).modal('show');
+		}); */
 		
-	    function layer_popup(el){
-
-	        var $el = $(el);    //레이어의 id를 $el 변수에 저장
-	        var isDim = $el.prev().hasClass('dimBg'); //dimmed 레이어를 감지하기 위한 boolean 변수
-
-	        isDim ? $('.dim-layer').fadeIn() : $el.fadeIn();
-
-	        var $elWidth = ~~($el.outerWidth()),
-	            $elHeight = ~~($el.outerHeight()),
-	            docWidth = $(document).width(),
-	            docHeight = $(document).height();
-
-	        // 화면의 중앙에 레이어를 띄운다.
-	        if ($elHeight < docHeight || $elWidth < docWidth) {
-	            $el.css({
-	                marginTop: -$elHeight /2,
-	                marginLeft: -$elWidth/2
-	            })
-	        } else {
-	            $el.css({top: 0, left: 0});
-	        }
-
-	        $el.find('a.btn_close').click(function(){
-	            isDim ? $('.dim-layer').hide() : $el.hide(); // 닫기 버튼을 클릭하면 레이어가 닫힌다.
-	            $(".address").hide();
-	            return false;
-	        });
-
-	        $('.layer .dimBg').click(function(){
-	            $('.dim-layer').fadeOut();
-	            return false;
-	        });
-	    }
-	    
-	 /*    $(".btn_crad").click(function(){
-	    	console.log(111)
-	 		  $(".address").show();
-	 	}); */
-	 	$(".btn_crad").click(function(){
-	 		  $(".address").toggle();
-	 	});
+	 	/* 	
+	 	$(document).on("click",btn_cardNum,function() {
+		    <!-- 여러개의 버튼이 모두 클릭되어서 모두 호출된다 -->
+		    $(msg_cardNum).modal({remote : 'layer.html'});
+		    $(msg_cardNum).modal('show');
+		});
+		 */
+		 
+		 $(document).on("click",".btn_crad",function() {
+			<!-- 여러개의 버튼이 모두 클릭되어서 모두 호출된다-->
+			 $(".address").toggle();
+		});
 		
-	 	
-	 	
-	 	function order_recevie() {
-		 	// 로그인 세션아이디num으로 변경
-	 		var num = 2;
-			var s="";
+		$(document).on("click", ".ico_close",function(){
+			 <!-- 여러개의 버튼이 모두 클릭되어서 모두 호출된다-->
+			$(".address").hide();
+			$(".modal").modal('hide');
+	    });
+		
+	});	
+	
+	function showcard(i){
+		//alert(i);
+		 $("#myModal"+i).modal({remote : 'layer.html'});
+		    $("#myModal"+i).modal('show');
+	}
+	
+	function order_recevie() {
+	 	// 로그인 세션아이디num으로 변경
+// 		var num = 2;
+ 		var num = ${sessionScope.loginUserNum};
+		var s="";
 
-			$.ajax({
-				type: "get",
-				url: "../gift/receivelist",
-				dataType: "json",
-				data: {"num":num},
-				success:function(res){
-					
-		 			$.each(res, function(i,elt) {
-		 				
-		 				s+= "<div class='container mt-3' style='width:33%; height:500px;'>"
-	 					s+=	"<div class='card'>"
-	 					s+=	"<img class='card-img-top' src="+elt.thumbnailImageUrl+" alt='Card image' style='width:100%'>"
-	 					s+=	"<div class='card-body'>"
-	 					s+=	"<p class='card-title'>"+elt.brand+"</p>"
-	 					s+=	"<h5 class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 1000px;'>"+elt.productName+"</h5>"
-	 					s+= "<h6 class='card-text' style=''><b>To.'"+elt.nickname+"'</b></h6>"
-	 					s+=	"<p style='color:gray; text-align: left; margin-top:10px'>"+elt.orderDate+"</p></div></div></div>"
-					});
-		 			
-					$("div.Gift").html(s);
-				}
-			});
-		}
-	});
+		$.ajax({
+			type: "get",
+			url: "../gift/receivelist",
+			dataType: "json",
+			data: {"num":num},
+			success:function(res){
+				
+	 			$.each(res, function(i,elt) {
+	 				s+= "<div class='container mt-3' style='width:33%; height:500px;'>"
+ 					s+=	"<div class='card'>"
+ 					s+=	"<img class='card-img-top' src="+elt.thumbnailImageUrl+" alt='Card image' style='width:100%; cursor:pointer;' onclick=\"location.href='../${root}product/detail?num="+elt.productNum+"'\">"
+ 					s+=	"<div class='card-body'>"
+ 					s+=	"<p class='card-title'>"+elt.brand+"</p>"
+ 					s+=	"<h5 class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 1000px;cursor:pointer;' onclick=\"location.href='../${root}product/detail?num="+elt.productNum+"'\">"+elt.productName+"</h5>"
+ 					s+= "<h6 class='card-text' style=''><b>To.'"+elt.nickname+"'</b></h6>"
+ 					s+=	"<p style='color:gray; text-align: left; margin-top:10px'>"+elt.orderDate+"</p></div></div></div>"
+				});
+	 			
+				$("div.Gift").html(s);
+			}
+		});
+	}; 
+	
 	 	
 	 	
 	 	
 	  	function order_send() {
-	 		var num = 5;
+//	 		var num = 5;
+	 		var num = ${sessionScope.loginUserNum};
 			var s="";
 				
 			$.ajax({
@@ -745,62 +685,92 @@ a.btn-layerClose:hover {
 		 			$.each(res, function(i,elt) {
 		 				
 		 				s+= "<div class='container mt-3' style='width:33%; height:500px;'>"
-	 					s+=	"<div class='card' style='width:300px; height:200px;'>"
-	 					s+=	"<img class='card-img-top' src="+elt.thumbnailImageUrl+" alt='Card image' style='width:100%'>"
+	 					s+=	"<div class='card'>"
+	 					s+=	"<img class='card-img-top' src="+elt.thumbnailImageUrl+" alt='Card image' style='width:100%; cursor:pointer;' onclick=\"location.href='../${root}product/detail?num="+elt.productNum+"'\">"
 	 					s+=	"<div class='card-body'>"
 	 					s+=	"<p class='card-title'>"+elt.brand+"</p>"
-	 					s+=	"<h5 class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 1000px;'>"+elt.productName+"</h5>"
-	 					s+= "<h6 class='card-text'><b>from.'"+elt.nickname+"'</b></h6>"
-	 					s+=	"<a href='#layer2' class='btn-example'>" 
-	 					s+=	"<button class='button' style='margin-left:10px'>메시지 카드 보기</button></a>"
+	 					s+=	"<h5 class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 1000px;cursor:pointer;' onclick=\"location.href='../${root}product/detail?num="+elt.productNum+"'\">"+elt.productName+"</h5>"
+	 					s+= "<h6 class='card-text'><b>from."+elt.nickname+"</b></h6>"
+	 					s+=	"<button class='button' id='msgbtn"+i+"' style='margin-left:10px' onclick='showcard("+i+")'>메시지 카드 보기</button>"
+	 					//s+=	"<button class='button' id='msgbtn' style='margin-left:10px' name='"+i+"'>메시지 카드 보기</button>"
 	 					s+=	"<p style='color:gray; text-align: left; margin-top:10px'>"+elt.orderDate+"</p></div></div></div>"
 	 					
-	 					<!-- 팝업 영역 -->
-	 					s+= "<div class='dim-layer'> <div class='dimBg'></div> <div id='layer2' class='pop-layer'> <div class='pop-container'>"
-	 					s+= "<div class='pop-conts'> <div class='layer_body'> <div class='wrap_msgprofile'> <div class='box_profile'> <div class='thumb_profile'>"
-			            s+= "<img width='36' height='36' class='img_g' src='"+elt.profileImage+"'>"
-			            s+= "<img width='42' height='42' class='frame_squircle' src='/jogong/resources/image/frame_msgsquircle.png'>"
-			            s+= "</div> </div>" 
-			            s+= "<strong class='tit_g'> <span id='nickname' class='txt_name'>"+elt.nickname+"</span>님이 보낸 메시지 </strong> </div>"
-			            s+= "<div class='wrap_msgcard'> <div class='card_g custom_mask_frame'> <div class='thumb_media custom_background_image'>"
-			            s+=	"<a href='#none' class='link_media'> <img alt='배너' class='img_g' src='"+elt.banner+"'></a></div>"			
-			            s+=	"<p class='txt_letter'>"+elt.message+"</p> <a href='#none' class='link_prd'> <span class='info_prd'> <span class='thumb_prd'>"	
-			            s+=	"<img class='img_g' src='"+elt.thumbnailImageUrl+"' alt='여기에 상품이미지'> </span>"		
-			            s+=	"<span id='productWrapper' class='txt_prd'> <span class='screen_out'>"+elt.brand+"</span> <em id='brandName' class='txt_brand'>"+elt.brand+"</em>"
-		 				s+=	"<span class='screen_out'>"+elt.productName+"</span> <strong id='productName' class='txt_name'>"+elt.productName+"</strong> </span> </span> </a>"
-		 			 	s+=	"<div class='tbl_btn'> <div class='item_btn'> <button type='button' class='btn_crad'> <span class='ico_gift2 ico_delete'></span>"
-		 				s+=	"<span class='txt_g'>주소 입력</span> </button> </div> </div> </div> </div>"
-		 												
-		 				<!-- 배송지 입력 폼 -->					               	
-		 				s+= "<form action=''>"
-		 				s+=	"<table style='width: 70%; display: none; margin: 10px auto;' class='table table-bordered address'>"
-		 				
-		 				s+=	"<tr> <th style='text-align: center'> 연락처 </th>" 
-		 				s+=	"<td> <input type='text' style='width: 100%;' required id='to_hp' value='"+elt.hp+"'> </td> </td>"
-		 					
-		 				s+=	"<tr> <th style='text-align: center'> 주소 </th> <td>" 
-		 				s+=	"<div style='width: 100%; border: none;' class='input-group'>" 
-		 				s+=	"<input type='text' id='sample4_postcode' placeholder='우편번호' style='width: 60%; border:1px solid black; margin-bottom: 5px;' required value='"+elt.postalcode+"'>"		
-		 				s+=	"<input type='button' onclick='sample4_execDaumPostcode()' class='btn btn-dark btn-sm' value='우편번호' style='margin-bottom: 5px; float: right;'><br></div>"
-		 				s+=	"<input type='text' id='sample4_roadAddress' placeholder='도로명주소' size='60' value='"+elt.deliveryAddress+"' style='width: 100%; margin-bottom: 5px;' required name='address1'><br>"
-		 				s+=	"<input type='hidden' id='sample4_jibunAddress' placeholder='지번주소' size='60'>"
-		 				s+=	"<span id='guide' style='color:#999; display:none'></span>"
-		 				s+=	"<input type='text' id='sample4_detailAddress' placeholder='상세주소'  size='60' value='' style='width: 100%;'required name='address2'><br>"
-		 				s+=	"<input type='hidden' id='sample4_extraAddress' placeholder='참고항목'  size='60'> <input type='hidden' id='sample4_engAddress' placeholder='영문주소'  size='60' ></td></tr>"
-		 				s+=	"<tr style='border-bottom: none;'> <td colspan='2' style='text-align: center; border: none;'>"
-		 				s+=	"<button type='submit' class='btn btn-success'>저장</button>"						
-		 				s+=	"</td></tr></table></form></div>"
+	 					/* 하나 누를때마다 하나의 정보를 들고오는 ajax 처리 */
+	 					
+	 					<!-- 팝업영역 -->
+	 					s+=	"<div class='modal' id='myModal"+i+"'>"
+	 					//s+=	"<div class='modal' id='myModal' name='"+i+"'>"
+	 					s+=	"<div class='modal-dialog'>"
+	 					s+=	"<div class='modal-content'>"
+	 					s+=	"<div class='gift_window'>"
+	 					s+=	"<div class='gift_card'>"
+	 					s+=	"<div class='msgcardd_layer no_title'>"
+	 					s+=	"<div class='inner_layer'>"
+	 					s+=	"<div class='layer_body'>"
 							
-		 				s+= "<a href='#none' class='btn_close'><span class='ico_gift2 ico_close'>닫기</span></a>"
-		 				s+= "</div></div></div></div>"
+	 					s+=	"<div class='wrap_msgprofile'>"
+	 					s+=	"<div class='box_profile'>"
+	 					s+=	"<div class='thumb_profile'>"
+	 					s+=	"<img width='36' height='36' class='img_g'src='"+elt.profileImage+"'>"
+	 					s+=	"<img width='42' height='42' class='frame_squircle' src='/jogong/resources/image/frame_msgsquircle.png'>"
+	 					s+=	"</div></div>"
+	 					s+=	"<strong class='tit_g'> <span id='nickname' class='txt_name'>"+elt.nickname+"</span> 님이 보낸 메시지</strong></div>"
+		 												
+	 					s+=	"<div class='wrap_msgcard'>"
+	 					s+=	"<div class='card_g custom_mask_frame'>"
+	 					s+=	"<div class='thumb_media custom_background_image'>"
+	 					s+=	"<a href='#none' class='link_media'><img alt='메시지카드' class='img_g' src='"+elt.banner+"'></a>"
+	 					s+=	"</div>"
+	 					s+=	"<p class='txt_letter'>"+elt.message+"</p>"
+	 					//s+=	"<a href='#none' class='link_prd'>"
+	 					s+=	"<span class='info_prd'>"
+	 					s+=	"<span class='thumb_prd'><img class='img_g' src='"+elt.thumbnailImageUrl+"' alt='여기에 상품이미지'></span>" 
+	 					s+=	"<span id='productWrapper' class='txt_prd'>" 
+	 					s+=	"<span class='screen_out'>"+elt.brand+"</span> "
+	 					s+=	"<em id='brandName' class='txt_brand'>"+elt.brand+"</em> <span class='screen_out'>"+elt.productName+"</span>"
+	 					s+=	"<strong id='productName' class='txt_name'>"+elt.productName+"</strong>"
+						s+=	"</span></span>"
+						//s+=	"</a>"
+							
+						s+=	"<div class='tbl_btn'>"
+						s+=	"<div class='item_btn'>"
+						s+=	"<button type='button' class='btn_crad'>"
+						s+=	"<span class='ico_gift2 ico_delete'></span>" 
+						s+=	"<span class='txt_g'>주소 입력 및 수정</span>"
+						s+=	"</button></div></div></div></div></div>"
+		 											
+						s+=	"<a href='#none' class='btn_close'>"
+						s+=	"<span class='ico_gift2 ico_close'>닫기</span>"
+						s+=	"</a></div>"
+		 										
+						s+=	"<form action=''>"
+						s+=	"<table style='width: 70%; display: none; margin: 10px auto;' class='table table-bordered address'>"
+						//s+=	"<tr><th style='text-align: center'> 이름 </th>"
+						//s+=	"<td><input type='text' style='width: 100%;' required name='companyName' id='to_name' value='11받는사람이름'></td></tr>"
+							
+						s+=	"<tr><th style='text-align: center'> 연락처 </th>"
+						s+=	"<td><input type='text' style='width: 100%;' required id='to_hp' value='"+elt.hp+"'></td></tr>"					
+		 												
+						s+=	"<tr><th style='text-align: center'> 주소 </th><td>"								
+						s+=	"<div style='width: 100%; border: none;' class='input-group'>" 						
+						s+=	"<input type='text' id='sample4_postcode' placeholder='우편번호' style='width: 60%; border:1px solid black; margin-bottom: 5px;' required value='"+elt.postalcode+"'>"
+						s+=	"<input type='button' onclick='sample4_execDaumPostcode()' class='btn btn-dark btn-sm' value='우편번호' style='margin-bottom: 5px; float: right;'><br>"
+						s+=	"</div>"
+						s+=	"<input type='text' id='sample4_roadAddress' placeholder='도로명주소' size='60' value='"+elt.deliveryAddress+"' style='width: 100%; margin-bottom: 5px;' required name='address1'><br>"						
+						s+=	"<input type='hidden' id='sample4_jibunAddress' placeholder='지번주소'  size='60'>"							
+						s+=	"<span id='guide' style='color:#999; display:none'></span>"								
+						s+=	"<input type='text' id='sample4_detailAddress' placeholder='상세주소'  size='60' value='11공란' style='width: 100%;'required name='address2'><br>"							
+						s+=	"<input type='hidden' id='sample4_extraAddress' placeholder='참고항목'  size='60'>	<input type='hidden' id='sample4_engAddress' placeholder='영문주소'  size='60' >"							
+						s+=	"</td></tr>"						
+						s+=	"<tr style='border-bottom: none;'>"								
+						s+=	"<td colspan='2' style='text-align: center; border: none;'>"								
+						s+=	"<button type='submit' class='btn btn-success'>저장</button>"							
+						s+=	"</td></tr></table></form></div></div></div></div></div></div>"					
 					});
-		 			
 					$("div.Gift").html(s);
 				}
 			});
 		}
-
-
 </script>
 <body>
 <div class="gift-wrapper">

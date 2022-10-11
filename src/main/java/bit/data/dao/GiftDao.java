@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import bit.data.dto.OrderDto;
-import bit.data.dto.ProductDto;
-import bit.data.dto.UserDto;
 
 @Repository
 public class GiftDao implements GiftDaoInter{
@@ -26,6 +24,11 @@ public class GiftDao implements GiftDaoInter{
 	public List<OrderDto> getSendSearch(int userNum) {
 		// TODO Auto-generated method stub
 		return session.selectList(ns+"getSendSearch",userNum);
+	}
+	@Override
+	public void updateAddressOrder() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

@@ -16,4 +16,7 @@ public interface ProductServiceInter {
 	public String getCategoryByNum(int categoryNum);
 	public int getTotalProductByCateNum(int categoryNum);
 	public List<ProductDto> getProductByNum(int categoryNum,String sort);
+	public void updateReadCount(int num);
+	public List<ProductDto> selectWriteableList(int userNum);
+
 }

@@ -31,6 +31,10 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	
 <style type="text/css">
+	a.header-review>span{
+		color:#000 !important;
+		border-bottom: 5px solid #cff0cc;
+	}
 	@font-face {
     	font-family: 'SeoulNamsanM';
     	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');
@@ -79,11 +83,8 @@
 	}
 	
 	.flip { 
-	/*   border: 1px solid #f6f7f7;  */
-	 /* flex-grow: 1; */
   	  width: 200px;
       height: 310px;
-      /* perspective: 1100px; */ 
       margin:20px;
       border-radius: 20px;
 	}
@@ -121,8 +122,6 @@
 	}
 	
 	.reviewBox {
-    	/* border-radius: 70%;
-    	overflow: hidden; */
     	position: absolute;
     	right: 20px;
 	}
@@ -138,23 +137,18 @@
 	}
 	
 	.backBottom>a:hover {
-    	color: gray;
+    	color: #add0bb;
 	}
 	
 	.frontInfo{ 
 		padding-left: 10px;
 	}
 	
-	/* .reviewDate{ 
-		position: absolute;
-		right: 5px;
-	} */
 </style>
 <script type="text/javascript">
 
 	$(function(){
 		var userId = $('.reviewUser').val();
-		/* console.log(userId); */
 		$("document").ready(function(){
 		 	getUserList(); 
 		});	
@@ -166,18 +160,40 @@
 			url:"../user/review",
 			dataType:"json", 
 			success:function(res){
-				/*  console.log(res); */
 				$.each(res,function(i,e){
 					var s = "";
 				 	s+="<div class='reviewBox'>"; 
 					s+="<img src='"+e.profileImage+"' width=20>"+e.nickname;
 					s+="</div>"; 
 					$(".reviewUser[userNum="+e.num+"]").html(s);
-					//console.log(s);
 				});
 			}
 		});
 	}   
+	 
+	 function getProductList(price){                                                             
+			var s = "";
+			$.ajax({
+				type:"get",
+				url:"product/list",
+				data:{"price":price},
+				dataType:"json", 
+				success:function(res){
+					console.log(res);
+					$.each(res,function(i,e){
+							s+="<div class='card cardPrice' onclick=\"location.href='product/detail?num="+e.num+"'\">";
+							s+="<img class='card-img-top' src='"+ e.thumbnailImageUrl+"' alt='Card image cap'>";
+							s+="<div class='card-body'>";
+								s+="<h5 class='card-title'>"+e.brand+"</h5>";
+								s+="<p class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 350px;'>"+e.name+"</p>";
+								s+="<p class='card-text'><b>&#8361;"+e.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+"</b></p>";
+							s+="</div>";
+						s+="</div>";
+					});
+					$("div.productPrice").html(s);
+				}
+			});
+		}
 
 </script>
 </head>
@@ -196,15 +212,19 @@
 			 <c:forEach var="dto" items="${list }">
  				<div class="flip">
 	        		<div class="card-review" >
-	        		
 	        			<div class="front" style="overflow: hidden;">
-	        				<img src="${dto.reviewImageUrl }" width="250" height="250">
+	        				    <c:if test="${dto.reviewImageUrl==null}"> 
+            						<img src="${dto.thumbnailImageUrl }" width="250" height="250" style="margin:0px;">
+       			 				</c:if>
+       			 				
+       			 				<c:if test="${dto.reviewImageUrl !=null }">
+       			 					<img src="${dto.reviewImageUrl }" width="250" height="250" style="margin:0px;" onerror="${dto.reviewImageUrl }">
+       			 				</c:if>
 	        				<div class="frontInfo">
 		        				<h6 style="display:inline;">${dto.subject }</h6 >
 		        				<p  style="display:inline; position: absolute; right: 15px;"><i class="fas fa-star" style="color: rgb(247, 200, 21);"></i><b>${dto.rating }</b></p>
 		        				<p class="reviewUser" userNum="${dto.userNum }"></p>
 	        				</div>
-	        				<!-- <img src= -->
 	        			</div>
 	        			
 	        			<div class="back">
@@ -219,18 +239,10 @@
 	        					</div>
 	        				</div>
 	        			</div>
-	        			
 	        		</div>
 	      		</div>				
 			</c:forEach> 
 		</div>
     </div>
-    
-	<div class="outside">
-    	<div class="inside">
-    		inside
-    	</div>
-	</div>
-	
 </body>
 </html> 

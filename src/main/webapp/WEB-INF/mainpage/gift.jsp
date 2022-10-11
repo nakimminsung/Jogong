@@ -92,10 +92,10 @@
         z-index: 999;
     }
     .modal-fix {
-	  position: fixed;
-	  width :100%;
-	  height: 100%;
-	  overflow: scroll;
+	    position: fixed;
+	    width :100%;
+	    height: 100%;
+	    overflow: scroll;
 	}
     div.gift-title{
     	display: flex;
@@ -135,13 +135,15 @@
     	margin-bottom: -10px;
     }
     div.gift-modal-search input{
+    	position:relative;
+    	top:10px;
     	width:100%;
     	height: 40px;
     }
     div.gift-modal-search img{
     	width:30px;
     	position: relative;
-    	top: -35px;
+    	top: -25px;
     	left: 325px;
     	cursor: pointer;
     }
@@ -151,7 +153,15 @@
     }
     div.friend-result{
     	overflow: auto;
-    	height: 230px; 	
+    	height: 290px; 	
+    }
+    div.friend-result input{
+    	position: relative;
+    	top: 5px;
+    }
+    div.friend-result b{
+    	position: relative;
+   
     }
     div.friend-select-list {
     	height: 80px;
@@ -168,8 +178,31 @@
 </style>
 <script>
 	$(function(){
+		
+        const modal = document.getElementById("gift-modal")
+        const btnModal = document.getElementById("gift-friend")
+		
+		const closeBtn = modal.querySelector(".gift-close-area")
+		
+		
 		$(".gift-friend-img").click(function(){
-			list();
+			
+			let userNum = $("input[name=userNum]").attr("value");
+			
+			if(${empty sessionScope.loginid}) {
+				if(!confirm("로그인이 필요한 메뉴입니다.\n로그인하시겠습니까?")){
+		
+				} else {
+					location.href="${root}/loginForm";
+				}
+				return
+			} else {
+				//  로그인 상태일 때 친구목록 불러오기
+				btnModal.addEventListener("click", e => {
+		    		modal.style.display = "flex"
+				})
+				list(userNum);
+			}
 		});
 		
 		var fl = 0;
@@ -261,12 +294,40 @@
 				});
 			}
 		});
-	});
+		closeBtn.addEventListener("click", e => {
+		    modal.style.display = "none"
+	        $("body").attr("class","");
+		})
 		
-	function list() {
-		var userNum = 2;
-			
-		var s="";
+		modal.addEventListener("click", e => {
+		    const evTarget = e.target
+			    if(evTarget.classList.contains("gift-modal-overlay")) {
+			        modal.style.display = "none"
+	        		$("body").attr("class","");
+			    }
+		})
+		
+		window.addEventListener("keyup", e => {
+    		if(modal.style.display === "flex" && e.key === "Escape") {
+        		modal.style.display = "none"
+        		$("body").attr("class","");
+   			}
+		})
+		
+		$("#gift-friend").click(function(){
+			$("body").attr("class","modal-fix");
+		});
+        
+		$(document).on("click",".btn-cancel",function(){
+		    modal.style.display = "none"
+		    $("body").attr("class","");
+		});
+	});
+	
+	// 친구목록 조회 함수
+	function list(userNum) {
+		
+		let s="";
 			
 		$.ajax({
 			type: "get",
@@ -307,6 +368,7 @@
 </script>
 </head>
 <body>
+	<input type="hidden" name="userNum" value="${sessionScope.loginid}">
 	<div class="gift-background">
 		<div class="gift-wrapper">
 			<div class="gift-top">
@@ -339,14 +401,14 @@
 	            </div>
 	            <div class="friend-select-list">
 	            	<img src="${root }/image/default.png" class="gift-friend-img">
-	            	선물할 친구를 선택하세요.
+	            	<b style="font-weight: normal; position: relative; left: 5px;">선물할 친구를 선택하세요.</b>
 	            </div>
 	            <div class="gift-modal-search">
 	            	<input type="search" placeholder="이름, 닉네임 검색">
 	            	<img src="${root}/image/search.svg">
 	            </div>
         	</div>
-            <div class="gift-modal-top">
+            <div class="gift-modal-middle">
             	<div style="margin: 10px 0;">
             		친구목록
             		<span style="font-size: 15px; margin-bottom: 5px;" class="friend-count"></span>
@@ -362,44 +424,5 @@
             </form>
         </div>
     </div>
-    <script>
-        const modal = document.getElementById("gift-modal")
-        const btnModal = document.getElementById("gift-friend")
-		
-        btnModal.addEventListener("click", e => {
-		    modal.style.display = "flex"
-		})
-		
-		const closeBtn = modal.querySelector(".gift-close-area")
-		
-		closeBtn.addEventListener("click", e => {
-		    modal.style.display = "none"
-	        $("body").attr("class","");
-		})
-		
-		modal.addEventListener("click", e => {
-		    const evTarget = e.target
-			    if(evTarget.classList.contains("gift-modal-overlay")) {
-			        modal.style.display = "none"
-	        		$("body").attr("class","");
-			    }
-		})
-		
-		window.addEventListener("keyup", e => {
-    		if(modal.style.display === "flex" && e.key === "Escape") {
-        		modal.style.display = "none"
-        		$("body").attr("class","");
-   			}
-		})
-		
-		$("#gift-friend").click(function(){
-			$("body").attr("class","modal-fix");
-		});
-        
-		$(document).on("click",".btn-cancel",function(){
-		    modal.style.display = "none"
-		    $("body").attr("class","");
-		});
-    </script>
 </body>
 </html>

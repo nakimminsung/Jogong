@@ -21,10 +21,82 @@
 	</select>
 	
 	<select id="getPagingList" parameterType="Map" resultType="reviewDto">   
-		select p.name, r.num, r.subject, r.content, r.rating, r.createdAt, r.reviewImageUrl, r.userNum, r.productNum from product p inner join review r on productNum = p.num
+		select p.name, p.thumbnailImageUrl, r.num, r.subject, r.content, r.rating, r.createdAt, r.reviewImageUrl, r.userNum, r.productNum from product p inner join review r on productNum = p.num
 		<if test="searchcolumn!=null and searchword!=null">
 			where ${searchcolumn} like concat('%',#{searchword},'%') 		
 		</if>
 		limit #{startnum}, #{perpage}
 	</select>
+	
+	<!-- 상세페이지 -->
+	<select id="getReviewByProduct" parameterType="int" resultType="reviewDto">
+		select t.content tagName, t.backgroundColor tagBColor, t.textColor tagTColor, r.subject, r.content, r.rating, r.createdAt, r.publicOption, r.reviewImageUrl, r.productNum, r.userNum, p.name, u.nickname, u.profileImage 
+		from review r inner join product p 
+		on r.productNum = p.num 
+		inner join jogong.user u 
+		on u.num = r.userNum 
+		inner join tag t 
+		on t.num = r.tagNum
+		where r.productNum = #{productNum}
+	</select>
+	
+	<!-- 상세페이지 리뷰 수 -->
+	<select id="getReviewCount" parameterType="int" resultType="int">
+		select count(*) from review r inner join product p 
+		on r.productNum = p.num 
+		where r.productNum = #{productNum}
+	</select>
+	
+	<!-- 마이페이지 작성한 리뷰목록 -->
+	<select id="selectReviewByUser" parameterType="int" resultType="reviewDto">
+		select 
+		p.name, p.thumbnailImageUrl, p.brand, 
+		r.num, r.productNum, r.subject, r.content, r.rating, r.createdAt, r.publicOption, r.tagNum, r.reviewImageUrl, 
+		t.content tagName, t.backgroundColor tagBColor, t.textColor tagTColor
+		from review r 
+		inner join product p 
+		on r.productNum = p.num
+		inner join tag t
+		on r.tagNum = t.num
+		where r.userNum=#{userNum} order by num desc
+	</select>
+	
+	<!-- 마이페이지 리뷰 조회 -->
+	<select id="selectReviewByNum" parameterType="int" resultType="reviewDto">
+		select 
+		r.num,r.subject,r.content,r.rating,r.createdAt,r.publicOption,r.reviewImageUrl,r.userNum,r.productNum,r.tagNum,
+		t.content tagName,t.backgroundColor tagBColor,t.textColor tagTColor
+		from review r inner join tag t 
+		on r.tagNum = t.num 
+		where r.num=#{num}
+	</select>
+	
+	<!-- 마이페이지 작성한 리뷰 갯수 -->
+	<select id="selectReviewCount" parameterType="int" resultType="int">
+		select count(*)
+		from review r inner join product p 
+		on r.productNum = p.num 
+		where userNum=#{userNum}
+	</select>
+	
+	<!-- 리뷰 생성 -->
+	<insert id="insertReview" parameterType="reviewDto">
+		insert into review values (null,#{subject},#{content},#{rating},now(),#{publicOption},#{reviewImageUrl},#{userNum},#{productNum},#{tagNum})
+	</insert>
+	
+	<!-- 리뷰 삭제 -->
+	<delete id="deleteReview" parameterType="int">
+		delete from review where num=#{num}
+	</delete>
+	
+	<!-- 리뷰 업데이트 -->
+	<update id="updateReview" parameterType="reviewDto">
+		update review set subject=#{subject},content=#{content},rating=#{rating},publicOption=#{publicOption},tagNum=#{tagNum}
+		<if test="reviewImageUrl!=null">
+			 ,reviewImageUrl=#{reviewImageUrl}
+		</if>
+		 where num=#{num}
+	</update>
 </mapper>
+
+

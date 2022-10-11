@@ -25,13 +25,13 @@
 		</if>
 		<if test="price==4">
 		 	 where price &gt; 200000
-		</if>
-		order by readCount limit 4			
+		</if> 
+		order by readcount desc limit 4			
 	</select>
 	
 	<!-- 테마별 -->
 	<select id="selectProductByTheme" parameterType="int" resultType="productDto">
-		select * from product where num in (select productNum from themeProduct where themeNum=#{themeNum});
+		select * from product where num in (select productNum from themeProduct where themeNum=#{themeNum})
 	</select>
 	
 	<!-- 태그 -->
@@ -43,6 +43,7 @@
 	<select id="selectProductDetail" parameterType="int" resultType="productDto">
 		select * from product where num=#{num}
 	</select>
+<<<<<<< HEAD
 	
 	<!-- 카테고리전체 -->
    <select id="getCategory" resultType="categoryDto">
@@ -64,11 +65,14 @@
       select * from product where categoryNum=#{categoryNum} order by ${sort}
    </select>
 	
+	<!-- 조회수 -->
+	<update id="updateReadCount" parameterType="int">
+		update product set readcount=readcount+1 where num=#{num}
+	</update>
+	<!-- 마이페이지 리뷰 작성가능한 상품목록 -->
+	<select id="selectWriteableList" parameterType="int" resultType="productDto">
+		select * from product where num in (select o.productNum from orderDetail o left join review r on o.productNum = r.productNum where r.productNum is null and o.userNum=#{userNum})
+	</select>
+
 </mapper>
-
-
-
-
-
-
 
