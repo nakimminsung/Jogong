@@ -54,7 +54,7 @@ public class BrandService implements BrandServiceInter {
 	@Override
 	public List<SellerDto> selectBrandName(String name) {
 		// TODO Auto-generated method stub
-		return brandDao.selectBrandName(name);
+		return brandDaoInter.selectBrandName(name);
 	}
 
 }
