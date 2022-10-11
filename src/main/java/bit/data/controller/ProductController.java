@@ -69,7 +69,7 @@ public class ProductController {
 		int reviewCount = reviewService.getRatingNum(num);
 		
 		// 조회수 증가
-	//	productService.updateReadCount(num);
+		productService.updateReadCount(num);
 		
 		mview.addObject("dto",dto);
 		
