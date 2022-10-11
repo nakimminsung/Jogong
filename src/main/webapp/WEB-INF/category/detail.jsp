@@ -25,7 +25,7 @@
 		 font-family: 'SeoulNamsanM';
 		 word-spacing: -1px;
 	}
-	h2{
+	.categoryName{
 		margin: auto;
 	    display: flex;
 		width: 1200px;   
@@ -33,9 +33,8 @@
 		padding-bottom: 1%; 
 	
 	}
-	
-	
-	.categoryTotal{
+		 
+	 .categoryTotal{
 		text-align: center;
 		margin: auto;
 	    display: flex;
@@ -46,7 +45,7 @@
 	    flex-wrap: wrap;
 	    align-content: stretch;
 	    align-items: baseline;
-	}
+	} 
 	
 	.cateImage{
 		width: 90px;
@@ -73,7 +72,7 @@
 		margin: auto;
 		justify-content: space-around;		
 		margin-top: 10px;
-	}
+	} 
 	
 	.productItem{
 		width: 280px;
@@ -100,7 +99,7 @@
 </head>
 <body>
 	<div style="width: 100%;" class="contentsBody">
-		<h2 style="font-weight: bold;">${categoryName }</h2>	
+		<h2 style="font-weight: bold;" class="categoryName">${categoryName }</h2>	
 			<div class="categoryTotal">	
 				<c:forEach var="category" items="${category}" >
 					<a href="/jogong/category/categoryDetail?num=${category.num}">
