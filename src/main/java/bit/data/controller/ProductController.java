@@ -135,5 +135,22 @@ public class ProductController {
 	public ProductDto selectProduct(int num) {
 	    return productService.getProductDetail(num);
 	}
+	
+	
+	
+
+	
+	//Search
+	@GetMapping("/search")
+	public String searchList(String searchword) {
+		
+		//검색결과 - 갯수 가져오기
+		productService.getSearchCount(searchword);
+
+      return "/bit/search/searchList";
+	}
+
+	
+	
 
 }

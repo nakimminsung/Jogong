@@ -83,8 +83,16 @@ public class ProductDao implements ProductDaoInter {
 		// TODO Auto-generated method stub
 		return session.selectList(ns+"getProductByNum",map);
 	}
-
 	
+	
+	
+	
+	//search
+	@Override
+	public int getSearchCount(String searchword) {
+		
+		return session.selectOne(ns+"getSearchCount",searchword);
+	}
 	
 	
 	

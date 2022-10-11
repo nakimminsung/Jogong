@@ -88,5 +88,13 @@ public class ProductService implements ProductServiceInter {
         return productDaoInter.selectWriteableList(userNum);
     }
 
+    
+    
+    //search
+    @Override
+    public int getSearchCount(String searchword) {
+    
+    	return productDaoInter.getSearchCount(searchword);
+    }
 	
 }

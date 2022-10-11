@@ -20,5 +20,6 @@ public interface ProductDaoInter {
 	public void updateReadCount(int num);
 	public List<ProductDto> selectWriteableList(int userNum);
 
-
+	//search
+	public int getSearchCount(String searchword);
 }

@@ -1,6 +1,7 @@
 package bit.data.service;
 
 import java.util.List;
+import java.util.Map;
 
 import bit.data.dto.CategoryDto;
 import bit.data.dto.ProductDto;
@@ -19,4 +20,7 @@ public interface ProductServiceInter {
 	public void updateReadCount(int num);
 	public List<ProductDto> selectWriteableList(int userNum);
 
+	
+	//search
+	public int getSearchCount(String searchword);
 }

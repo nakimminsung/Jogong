@@ -212,10 +212,18 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 			</div>
 			<div class="search-box">
-				<form class="search" onclick="location.href='${root}/search/searchMain'" style="cursor: pointer;">
+				
+				<form class="search" action="${root}/search" method="get" id="searchProduct">
+					<img src="${root}/image/search.svg">
+					<input type="text" placeholder="선물, 브랜드 검색" name="searchword" style="border:0px; width: 400px; background-color: #f4f4f4;">
+				</form>
+				<%--
+				<form class="search" onclick="location.href='${root}/search'" style="cursor: pointer;">
 					<img src="${root}/image/search.svg">
 					<input disabled="disabled" type="text" placeholder="선물, 브랜드 검색" autocomplete="off" aria-required="true" aria-invalid="false" style="cursor: pointer; border:0px;">
 				</form>
+				--%>
+				
 			</div>
 		</div> <!-- div.left 종료 -->
 		
@@ -301,6 +309,19 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 					loginButton: {color: "green", type: 3, height: 50}
 				}
 			);
+	
+	
+	//상품명 입력 후 엔터누르면 search 함수 호출
+	$("#searchProduct").keyup(function (e) {
+		if(e.keyCode==13){
+			search($(this).val().trim());	//앞뒤 공백 제거 후 this(=#sangpum)의 value 값 보내기
+		}
+	});
+	
+	//상품 검색 메서드
+	function search(subject) {
+		
+	}
 		
 </script>	
   
