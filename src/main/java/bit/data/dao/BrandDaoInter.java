@@ -8,4 +8,6 @@ public interface BrandDaoInter {
 	public List<SellerDto> getAllBrand();
 	
 	public List<SellerDto> selectBrandTheme(String sort);
+	
+	public List<SellerDto> selectBrandName(String name);
 }
