@@ -19,5 +19,7 @@ public class SellerDto {
 	private String accountNumber;
 	private Timestamp createdAt;
 	private String salt;
+	private String description;
+	private String brandphoto;
 	
 }

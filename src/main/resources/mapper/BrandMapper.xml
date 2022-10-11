@@ -3,8 +3,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="bit.data.dao.BrandDao">
-	<select id="getAllBrand" resultType="String">
-		SELECT companyName FROM seller;
+	<select id="getAllBrand" resultType="SellerDto">
+		SELECT companyName,description,brandphoto FROM seller order by sort desc;
+	</select>
+
+	<select id="selectBrandTheme" parameterType="String" resultType="SellerDto">
+		SELECT companyName,description,brandphoto FROM jogong.seller where sort=#{sort};
 	</select>
 	
 	<select id="getLogoImg" parameterType="String" resultType="String">
