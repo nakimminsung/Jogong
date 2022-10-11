@@ -25,4 +25,6 @@ public interface ReviewDaoInter {
 	public void deleteReview(int num);
 	// 리뷰 단건 조회
 	public ReviewDto selectReviewByNum(int num);
+	// 리뷰 업데이트
+	public void updateReview(ReviewDto reviewDto);
 }

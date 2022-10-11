@@ -696,7 +696,7 @@
 	
 	// 작성 가능한 후기
 	function reviewList(){
-		let userNum = ${sessionScope.loginid};
+		let userNum = ${sessionScope.loginUserNum};
 		
 		let s="";
 			
@@ -737,7 +737,7 @@
 	
 	// 작성한 후기
 	function writtenReviewList(){
-		let userNum = ${sessionScope.loginid};
+		let userNum = ${sessionScope.loginUserNum};
 		
 		let s="";
 			
@@ -812,7 +812,7 @@
 	}
 	// 작성한 후기 갯수
 	function reviewCount(){
-		let userNum = ${sessionScope.loginid};
+		let userNum = ${sessionScope.loginUserNum};
 			
 		$.ajax({
 			type: "get",
@@ -884,7 +884,7 @@
 		<div class="review-form">
 			<form action="insert" method="post" enctype="multipart/form-data">
 				
-				<input type="hidden" name="userNum" value="${sessionScope.loginid}">
+				<input type="hidden" name="userNum" value="${sessionScope.loginUserNum}">
 				<input type="hidden" name="productNum" value="">
 				<input type="hidden" name="tagNum" value="16">
 				<input type="hidden" name="rating" value="3">
@@ -969,9 +969,10 @@
 		</div>
 		<!-- 리뷰 수정 폼 -->
 		<div class="review-update-form">
-			<form action="insert" method="post" enctype="multipart/form-data">
+			<form action="update" method="post" enctype="multipart/form-data">
 			
-				<input type="hidden" name="userNum" value="${sessionScope.loginid}">
+				<input type="hidden" name="num" value="">
+				<input type="hidden" name="userNum" value="${sessionScope.loginUserNum}">
 				<input type="hidden" name="tagNum" value="">
 				<input type="hidden" name="rating" value="">
 				<input type="file" name="upload" style="display: none">

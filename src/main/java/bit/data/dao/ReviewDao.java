@@ -84,4 +84,9 @@ public class ReviewDao implements ReviewDaoInter {
         return session.selectOne(ns+"selectReviewByNum", num);
     }
     
+    // 리뷰 업데이트
+    @Override
+    public void updateReview(ReviewDto reviewDto) {
+        session.selectOne(ns+"updateReview", reviewDto);
+    }
 }

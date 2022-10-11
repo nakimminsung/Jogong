@@ -91,4 +91,10 @@ public class ReviewService implements ReviewServiceInter{
     public ReviewDto selectReviewByNum(int num) {
         return reviewDaoInter.selectReviewByNum(num);
     }
+    
+    // 리뷰 업데이트
+    @Override
+    public void updateReview(ReviewDto reviewDto) {
+        reviewDaoInter.updateReview(reviewDto);
+    }
 }

@@ -163,4 +163,40 @@ public class ReviewController {
 	public ReviewDto selectReviewByNum(int num) {
 	    return reviewService.selectReviewByNum(num);
 	}
+	
+	// 리뷰 업데이트
+	@PostMapping("/update")
+	public String updateReview(ReviewDto reviewDto, List<MultipartFile> upload, HttpServletRequest request) {
+	    
+	       // 톰캣에 올라간 upload 폴더 경로 구하기
+        String path = request.getSession().getServletContext().getRealPath("/resources/upload");
+        
+        if(upload.get(0).getOriginalFilename().equals("")) {
+            reviewDto.setReviewImageUrl(null); // 기존 사진을 저장하지 않음
+        }else {
+            String photo = "";
+            int idx=1;
+            for(MultipartFile multi:upload) {
+                
+                //파일명을 현재 날짜로 변경 후 ,로 연결
+                String newName = idx++ + "_" + ChangeName.getChangeFileName(multi.getOriginalFilename());
+                photo += newName+",";
+                
+                // 업로드
+                try {
+                    multi.transferTo(new File(path+"/"+newName));
+                } catch (IllegalStateException | IOException e) {
+                    e.printStackTrace();
+                }
+                
+            }
+            // 마지막 컴마 제거
+            photo = photo.substring(0,photo.length()-1);
+            // dto에 저장
+            reviewDto.setReviewImageUrl(photo);
+        }
+        reviewService.updateReview(reviewDto);
+        
+        return "/mypage/mypage/review";
+	}
 }

@@ -86,6 +86,15 @@
 	<delete id="deleteReview" parameterType="int">
 		delete from review where num=#{num}
 	</delete>
+	
+	<!-- 리뷰 업데이트 -->
+	<update id="updateReview" parameterType="reviewDto">
+		update review set subject=#{subject},content=#{content},rating=#{rating},publicOption=#{publicOption},tagNum=#{tagNum}
+		<if test="reviewImageUrl!=null">
+			 ,reviewImageUrl=#{reviewImageUrl}
+		</if>
+		 where num=#{num}
+	</update>
 </mapper>
 
 

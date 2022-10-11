@@ -157,11 +157,11 @@
     }
     div.friend-result input{
     	position: relative;
-    	top: 10px;
+    	top: 5px;
     }
     div.friend-result b{
     	position: relative;
-    	top: 5px;
+   
     }
     div.friend-select-list {
     	height: 80px;
@@ -401,7 +401,7 @@
 	            </div>
 	            <div class="friend-select-list">
 	            	<img src="${root }/image/default.png" class="gift-friend-img">
-	            	<b style="font-weight: normal; position: relative; top: 5px; left: 5px;">선물할 친구를 선택하세요.</b>
+	            	<b style="font-weight: normal; position: relative; left: 5px;">선물할 친구를 선택하세요.</b>
 	            </div>
 	            <div class="gift-modal-search">
 	            	<input type="search" placeholder="이름, 닉네임 검색">
