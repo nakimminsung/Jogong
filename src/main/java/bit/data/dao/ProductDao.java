@@ -1,11 +1,13 @@
 package bit.data.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import bit.data.dto.CategoryDto;
 import bit.data.dto.ProductDto;
 
 @Repository
@@ -42,17 +44,48 @@ public class ProductDao implements ProductDaoInter {
 		
 		return session.selectOne(ns+"selectProductDetail",num);
 	}
-
+	@Override
+	public void updateReadCount(int num) {
+		
+		session.update(ns+"updateReadCount", num);
+	}
     @Override
     public List<ProductDto> selectWriteableList(int userNum) {
         return session.selectList(ns+"selectWriteableList", userNum);
     }
-
 //	@Override
 //	public List<ProductDto> getTag(int themeNum) {
 //
 //		return session.selectList(ns+"selectTagByTheme", themeNum);
 //	}
+	
+	
+	@Override
+	public List<CategoryDto> getCategory() {
+		// TODO Auto-generated method stub
+		return session.selectList(ns+"getCategory");
+	}
+
+	@Override
+	public String getCategoryByNum(int categoryNum) {
+		// TODO Auto-generated method stub
+		return session.selectOne(ns+"getCategoryByNum",categoryNum);
+	}
+
+	@Override
+	public int getTotalProductByCateNum(int categoryNum) {
+		// TODO Auto-generated method stub
+		return session.selectOne(ns+"getTotalProductByCateNum",categoryNum);
+	}
+
+	@Override
+	public List<ProductDto> getProductByNum(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return session.selectList(ns+"getProductByNum",map);
+	}
+
+	
+	
 	
 	
 }

@@ -83,11 +83,8 @@
 	}
 	
 	.flip { 
-	/*   border: 1px solid #f6f7f7;  */
-	 /* flex-grow: 1; */
   	  width: 200px;
       height: 310px;
-      /* perspective: 1100px; */ 
       margin:20px;
       border-radius: 20px;
 	}
@@ -125,8 +122,6 @@
 	}
 	
 	.reviewBox {
-    	/* border-radius: 70%;
-    	overflow: hidden; */
     	position: absolute;
     	right: 20px;
 	}
@@ -142,23 +137,18 @@
 	}
 	
 	.backBottom>a:hover {
-    	color: gray;
+    	color: #add0bb;
 	}
 	
 	.frontInfo{ 
 		padding-left: 10px;
 	}
 	
-	/* .reviewDate{ 
-		position: absolute;
-		right: 5px;
-	} */
 </style>
 <script type="text/javascript">
 
 	$(function(){
 		var userId = $('.reviewUser').val();
-		/* console.log(userId); */
 		$("document").ready(function(){
 		 	getUserList(); 
 		});	
@@ -170,14 +160,12 @@
 			url:"../user/review",
 			dataType:"json", 
 			success:function(res){
-				/*  console.log(res); */
 				$.each(res,function(i,e){
 					var s = "";
 				 	s+="<div class='reviewBox'>"; 
 					s+="<img src='"+e.profileImage+"' width=20>"+e.nickname;
 					s+="</div>"; 
 					$(".reviewUser[userNum="+e.num+"]").html(s);
-					//console.log(s);
 				});
 			}
 		});
@@ -224,24 +212,19 @@
 			 <c:forEach var="dto" items="${list }">
  				<div class="flip">
 	        		<div class="card-review" >
-	        		
 	        			<div class="front" style="overflow: hidden;">
-	        			
 	        				    <c:if test="${dto.reviewImageUrl==null}"> 
-            						<img src="${dto.thumbnailImageUrl }" width="250" height="250">
+            						<img src="${dto.thumbnailImageUrl }" width="250" height="250" style="margin:0px;">
        			 				</c:if>
        			 				
        			 				<c:if test="${dto.reviewImageUrl !=null }">
-       			 					<img src="${dto.reviewImageUrl }" width="250" height="250">
+       			 					<img src="${dto.reviewImageUrl }" width="250" height="250" style="margin:0px;" onerror="${dto.reviewImageUrl }">
        			 				</c:if>
-       			 					
-	        				<%-- <img src="${dto.reviewImageUrl }" width="250" height="250"> --%>
 	        				<div class="frontInfo">
 		        				<h6 style="display:inline;">${dto.subject }</h6 >
 		        				<p  style="display:inline; position: absolute; right: 15px;"><i class="fas fa-star" style="color: rgb(247, 200, 21);"></i><b>${dto.rating }</b></p>
 		        				<p class="reviewUser" userNum="${dto.userNum }"></p>
 	        				</div>
-	        				<!-- <img src= -->
 	        			</div>
 	        			
 	        			<div class="back">
@@ -256,7 +239,6 @@
 	        					</div>
 	        				</div>
 	        			</div>
-	        			
 	        		</div>
 	      		</div>				
 			</c:forEach> 

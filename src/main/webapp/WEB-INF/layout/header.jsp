@@ -205,9 +205,11 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 				<a href="${root}">조공</a>
 			</div>
 			<div class="menu">
+
 				<a class="header-menu header-brand" href="${root}/brand/list"><span>브랜드</span></a>
-				<a class="header-menu header-cate" href="${root}"><span>카테고리</span></a>
+				<a class="header-menu header-cate" href="${root}/category"><span>카테고리</span></a>
 				<a class="header-menu header-review" href="${root}/review/list"><span>후기</span></a>
+
 			</div>
 			<div class="search-box">
 				<form class="search" onclick="location.href='${root}/search/searchMain'" style="cursor: pointer;">
@@ -264,7 +266,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
   </body>
   
 <script>
-
 /*  //카카오 로그아웃  
 	function kakaoLogout() {
     	if (!Kakao.Auth.getAccessToken()) {
