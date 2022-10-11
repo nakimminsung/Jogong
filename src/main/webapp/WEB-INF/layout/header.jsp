@@ -202,7 +202,9 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<div class="header-wrapper">
 		<div class="left">
 			<div class="home">
-				<a href="${root}">조공</a>
+				<a href="${root}">
+					<img src="/jogong/resources/image/main.png" style="width: 100%">
+				</a>
 			</div>
 			<div class="menu">
 				<a class="header-menu header-brand" href="${root}/brand/list"><span>브랜드</span></a>
