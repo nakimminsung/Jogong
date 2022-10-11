@@ -35,21 +35,141 @@
 		color:#000 !important;
 		border-bottom: 5px solid #cff0cc;
 	}
+	@font-face {
+	    font-family: 'SeoulNamsanM';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	
+	body * {
+		 font-family: 'SeoulNamsanM';
+		 word-spacing: -1px;
+	}
+	span.event-title {
+		font-size: 27px;
+		font-weight: 1000;
+	}
+	span.event-subtitle {
+		font-size: 20px;
+		color: #808080;
+		position: relative;
+		top: -30px;
+	}
+	div.event-top>hr{
+		width: 110px; 
+		height: 10px; 
+		position: relative; 
+		top:-28px; 
+		color: #cff0cc; 
+		opacity: 1; 
+		z-index: -1;
+	}
+	
+	/* 이벤트 목록 */
+	div.event-result {
+		display: flex; 
+		width: 100%; 
+		padding-top: 20px; 
+		flex-wrap: wrap; 
+		justify-content: flex-start; 
+		align-items: flex-start; 
+		margin-top: 10px;
+	}
+	div.event-object {
+		width:25%; 
+		display: flex; 
+		flex-direction: column; 
+		align-items: center; 
+		margin-bottom: 50px;
+	}
+	div.event-object>a>div {
+		display: flex; 
+		flex-direction: column;
+	}
+	div.event-object>a>img{
+		width: 250px; 
+		height: 300px; 
+		background-color: #d0d0d0;
+	}
+	.event-obeject-brand{
+		font-size: 13px; 
+		color: #808080;
+	}
+	.event-obeject-title{
+		font-size: 15px; 
+		font-weight: 1000;
+	}
+	.card-body{
+		max-width: 250px;
+		min-height: 100px;
+	}
 </style>
 <script>
+	$(function(){
+		// 이벤트리스트 함수 호출
+		eventList()
+	});
+	
+	// 이벤트 리스트 함수
+	function eventList(){
+		var s="";
+		
+		$.ajax({
+			type: "get",
+			url: "../event/list",
+			dataType: "json",
+			success:function(res){
+				
+				$.each(res, function(i,elt) {
+					
+					s += "<div class='event-object'>";
+					s += "<a href='#' class='card'>";
+					s += "<img class='card-img-top' src='"+elt.thumbnailImageUrl+"'>";
+					s += "<div class='card-body'>";
+					s += "<span class='event-obeject-brand'>"+elt.brand+"</span>";
+					s += "<span class='event-obeject-title card-title'>"+elt.subject+"</span>";
+					s += "</div>";
+					s += "</a>";
+					s += "</div>";
+					
+				});
+				$("div.event-result").html(s);
+			}
+		});
+		
+	/* 	$.ajax({
+			type: "get",
+			url: "../user/friendCount",
+			dataType: "json",
+			data: {"userNum":userNum},
+			success:function(res){
+				
+				$("span.friend-count").text(res);
+			}
+		}); */
+	}
 </script>
 </head>
 <body>
-	<div class="event-wrapper" style="display: flex; justify-content: center; flex-direction: column; align-items: center; padding-top: 30px;">
-		<h1>😭😭😭이벤트 페이지😭😭😭</h1>
-		<h1>😭😭😭이벤트 페이지😭😭😭</h1>
-		<h1>😭😭😭이벤트 페이지😭😭😭</h1>
-		<h1>😭😭😭이벤트 페이지😭😭😭</h1>
-		<h1>😭😭😭이벤트 페이지😭😭😭</h1>
-		<h1>😭😭😭이벤트 페이지😭😭😭</h1>
-		<h1>😭😭😭이벤트 페이지😭😭😭</h1>
-		<h1>😭😭😭이벤트 페이지😭😭😭</h1>
-	
+	<div class="event-wrapper" style="display: flex; flex-direction: column; align-items: center; max-width: 1180px; margin: 0 auto; min-height: 1000px;">
+		<div class="event-top" style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%;">
+			<span class="event-title">이벤트</span>
+			<hr>
+			<span class="event-subtitle">조공에서 준비한 다양한 이벤트🤗</span>
+		</div>
+		<div class="event-middle" style=" width:100%; display:flex; justify-content: space-between; padding: 0 25px;">
+			<div class="event-count"></div>
+			<div class="event-option">
+				<select class="form-select">
+					<option>최신순</option>
+					<option>인기순</option>
+					<option>가나다순</option>
+				</select>
+			</div>
+		</div>
+		<div class="event-result">
+		</div>
 	</div>
 </body>
 </html> 
