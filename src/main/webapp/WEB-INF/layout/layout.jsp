@@ -53,6 +53,7 @@ uri="http://tiles.apache.org/tags-tiles" %>
 
     #content {
       width: 100%;
+      min-height: 600px;
       
     }
 
