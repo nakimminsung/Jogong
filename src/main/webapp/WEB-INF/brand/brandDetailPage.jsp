@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -138,7 +140,7 @@
 	    margin-top: 12px;
 	    font-size: 16px;
 	}
-	.content{
+	.brandContent{
 	    -webkit-text-size-adjust: 100%;
 	    word-break: normal;
 	    tab-size: 4;
@@ -275,67 +277,108 @@
 </head>
 <body>
 <div class="brand_layout">
-
 	<!-- 상단에 브랜드 노출 -->
 	<div class="brandTop">
-		<div class="brandTop_inner input-group">
+		<div class="brandTop_inner input-group" style="flex-wrap: unset;">
 			<div class="brandTop_logo">
-				<img alt="로고썸네일" src="/jogong/resources/image/21.jpeg">
+				<img alt="로고썸네일" src="${dto.logoImage}">
 			</div>
 			<div class="brandTop_content">
-				<p class="brandTop_name">브랜드 이름</p>
-				<p class="brandTop_desc">설명</p>
+				<p class="brandTop_name">${brand}</p>
+				<p class="brandTop_desc">${dto.description}</p>
 			</div>
 		</div>
 	</div>
 	<!-- 상단에 브랜드 노출 끝 -->
-	
-	<!--  -->
-	<!--  -->
-	
 	<!-- 컨텐트 뷰 -->
-	<div class="content">
-		<!-- 좌측 필터 -->
-		<!-- <div class="leftFilter"></div> -->
-		<!-- 좌측 필터 -->
-	
+	<div class="brandContent">
 		<!-- 옵션 -->
 		<div class="brandList">
-			<span>총 +a 개</span>
-			<div>가격순,등</div>
+			<h3><span>${count}개</span></h3>
+			<div>
+				<select class="categorySort" name="sort">
+					<option value="createdAt desc" selected>최신순</option>
+					<option value="price desc">가격높은순</option>
+					<option value="price asc">가격낮은순</option>
+					<option value="readCount desc">인기순</option>
+				</select>
+			</div>
 		</div> 
 		<!-- 옵션 끝 -->
-	<!--  -->
-	<!--  -->
 		<!-- 상품목록  -->
-	<div class="itemList">	
-		<div class="listRow">
-			<ul>
-				<li class="sgItem">
-				<div class='card cardTheme'>
-					<img class='card-img-top' src='/jogong/resources/image/21.jpeg' alt='Card image cap'>
-					<div class='card-body'>
-						<h5 class='card-title'>브랜드명</h5>
-						<p class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 350px;'>상품명</p>
-						<p class='card-text'><b>가격</b></p>
+		<div class="itemList">	
+			<div class="listRow">
+				<ul class="productList">
+				<c:forEach var="productList" items="${productList}">
+					<li class="sgItem">
+					<div class='card cardTheme'>
+					<a href="/jogong/product/detail?num=${productList.num}">
+						<img class='card-img-top' src="${productList.thumbnailImageUrl }" alt='Card image cap'>
+						<div class='card-body'>
+							<h5 class='card-title'>${productList.brand }</h5>
+							<p class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 350px;'>${productList.name }</p>
+							<p class='card-text'><b><fmt:formatNumber value="${productList.price}" type="number"/>원</b></p>
+						</div>
+					</a>
 					</div>
-				</div>
-				</li>
-				<li class="sgItem">
-				<div class='card cardTheme'>
-					<img class='card-img-top' src='/jogong/resources/image/21.jpeg' alt='Card image cap'>
-					<div class='card-body'>
-						<h5 class='card-title'>브랜드명을 입력하세요</h5>
-						<p class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 350px;'>상품명</p>
-						<p class='card-text'><b>가격을 입력하세요</b></p>
-					</div>
-				</div>
-				</li>
-			</ul>	
+					</li>
+				</c:forEach>	
+				</ul>
+			</div>
 		</div>
-	</div><!-- 상품목록 끝  -->
-		
+	<!-- 상품목록 끝  -->
 	</div><!-- 컨텐트 뷰 끝 -->
 </div>
 </body>
+<script type="text/javascript">
+$(function () {
+	$(".categorySort").change(function() {
+		var sort=$(this).val();
+		var s= "";
+		 $.ajax({
+				type:"get",
+				url:"brandSort",
+				dataType:"json",
+				data:{"brand":'${brand}', "sort":sort},
+				success:function(res){
+					
+					$(".productList").empty();	
+					console.log(res);
+					$.each(res.productList, function(i,elt) {
+						var price= elt.price.toLocaleString();
+						
+					/* s+=	"<ul class='productList'>"
+					s+=	"<c:forEach var='productList' items='"+${productList}+"'>"
+					s+=	"<li class='sgItem'>"
+					s+=	"<div class='card cardTheme'>"
+					s+= "<a href='/jogong/product/detail?num=${productList.num}'>" 
+					s+=	"<img class='card-img-top' src='"+${productList.thumbnailImageUrl}+"' alt='Card image cap'>"
+					s+=	"<div class='card-body'>"
+					s+=	"<h5 class='card-title'>"+${productList.brand}+"</h5>"
+					s+=	"<p class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 350px;'>"+${productList.name}+"</p>"
+					s+=	"<p class='card-text'><b><fmt:formatNumber value='"+${productList.price}+"' type='number'/>원</b></p>"
+					s+=	"</div>"
+					s+= "</a>"
+					s+=	"</div>"
+					s+=	"</li>"
+					s+=	"</c:forEach>"	
+					s+=	"</ul>" */
+						 s += "<div class='productItem'>";
+						s += "<a href='/jogong/product/detail?num="+elt.num+"'>";
+						s += "<img src='"+elt.thumbnailImageUrl+"'class='productImage'><br>";
+						s += "<p style='display: inline-block;'>";
+						s += "<span class='brandName'>"+elt.brand+"</span><br>";
+						s += "<span class='productName'>"+elt.name+"</span><br>";
+						s += "<span class='productPrice'>"+price+"원</span>";
+						s += "</p>";
+						s += "</a>";
+						s += "</div>"; 
+					});
+					$(".productList").append(s);
+				}
+			});
+		});
+	});
+
+</script>
 </html>
