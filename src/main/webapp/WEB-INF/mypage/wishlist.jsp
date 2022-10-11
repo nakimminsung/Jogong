@@ -83,7 +83,7 @@
 		display: flex; 
 		flex-direction: column;
 	}
-	b.wish-product-name {
+	a.wish-product-name {
 		font-size: 17px; 
 		margin-bottom: 5px;
 	}
@@ -243,7 +243,7 @@
 	 				s += "</div>";
 	 				s += "<div class='wish-object-left-right'>";
 	 				s += "<div class='wish-object-left-right-top'>";
-	 				s += "<b class='wish-product-name'>"+elt.name+"</b>";
+	 				s += "<a href='../product/detail?num="+elt.productNum+"' class='wish-product-name'>"+elt.name+"</a>";
 	 				s += "<b>"+elt.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+"원</b>";
 	 				s += "</div>";
 	 				s += "<div class='wish-object-left-right-bottom'>";
