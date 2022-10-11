@@ -11,6 +11,10 @@
 		SELECT companyName,description,brandphoto FROM jogong.seller where sort=#{sort};
 	</select>
 	
+	<select id="selectBrandName" parameterType="String" resultType="SellerDto">
+		SELECT companyName,description,brandphoto FROM jogong.seller where companyName like concat('%',#{name},'%')
+	</select>
+	
 </mapper>
 
 

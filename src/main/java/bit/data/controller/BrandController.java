@@ -40,4 +40,19 @@ public class BrandController {
 		
 		return brandService.selectBrandTheme(sort);
 	}
+
+	@GetMapping("/categoryAllSelect")
+	@ResponseBody
+	public List<SellerDto> categoryAllSelect() {
+		
+		return brandService.getAllBrand();
+	}
+
+	@GetMapping("/selectBrandName")
+	@ResponseBody
+	public List<SellerDto> selectBrandName(String name) {
+		System.out.println(name+","+brandService.selectBrandName(name).size());
+		return brandService.selectBrandName(name);
+	}
+	
 }
