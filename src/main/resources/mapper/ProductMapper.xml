@@ -43,8 +43,7 @@
 	<select id="selectProductDetail" parameterType="int" resultType="productDto">
 		select * from product where num=#{num}
 	</select>
-<<<<<<< HEAD
-	
+		
 	<!-- 카테고리전체 -->
    <select id="getCategory" resultType="categoryDto">
       select * from category order by num asc

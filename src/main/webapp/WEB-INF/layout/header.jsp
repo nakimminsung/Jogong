@@ -207,7 +207,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 			<div class="menu">
 
 				<a class="header-menu header-brand" href="${root}/brand/list"><span>브랜드</span></a>
-				<a class="header-menu header-cate" href="${root}"><span>카테고리</span></a>
+				<a class="header-menu header-cate" href="${root}/category"><span>카테고리</span></a>
 				<a class="header-menu header-review" href="${root}/review/list"><span>후기</span></a>
 
 			</div>
