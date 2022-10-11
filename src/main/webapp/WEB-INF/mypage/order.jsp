@@ -640,8 +640,8 @@ p.card-title{
 	
 	function order_recevie() {
 	 	// 로그인 세션아이디num으로 변경
- 		var num = 2;
-// 		var num = ${sessionScope.loginname};
+// 		var num = 2;
+ 		var num = ${sessionScope.loginUserNum};
 		var s="";
 
 		$.ajax({
@@ -671,8 +671,8 @@ p.card-title{
 	 	
 	 	
 	  	function order_send() {
-	 		var num = 5;
-//	 		var num = ${sessionScope.loginname};
+//	 		var num = 5;
+	 		var num = ${sessionScope.loginUserNum};
 			var s="";
 				
 			$.ajax({
