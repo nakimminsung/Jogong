@@ -6,7 +6,7 @@ import java.util.Map;
 import bit.data.dto.UserDto;
 
 public interface UserDaoInter {
-	public List<UserDto> getUserFriendData(int userNum);
+	public List<UserDto> getUserFriendData(Map<String,Object> map);
 	public int getUserFriendCount(int userNum);
 	public void insertUser(UserDto dto);
 	public int getUserIdSearch(String email);

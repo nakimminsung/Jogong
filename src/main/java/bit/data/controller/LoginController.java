@@ -118,7 +118,7 @@ public class LoginController {
 		
 		
 		//session.invalidate();
-		//로그인폼에서 ID저장이
+		//로그인폼에서 ID저장이 세션으로 저장되고있어서 전체 지우는건 안하기로
 
 		return "redirect:/";
 	}

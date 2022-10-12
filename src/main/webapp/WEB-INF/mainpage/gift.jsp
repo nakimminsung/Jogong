@@ -179,17 +179,19 @@
 <script>
 	$(function(){
 		
+		let data = {userNum:$("input[name=userNum]").attr("value"),search:""};
+		list(data);
+		
+		// 모달 실행 이벤트
         const modal = document.getElementById("gift-modal")
         const btnModal = document.getElementById("gift-friend")
 		
 		const closeBtn = modal.querySelector(".gift-close-area")
 		
-		
+		// 친구버튼 클릭시
 		$(".gift-friend-img").click(function(){
 			
-			let userNum = $("input[name=userNum]").attr("value");
-			
-			if(${empty sessionScope.loginid}) {
+			if(${empty sessionScope.loginUserNum}) {
 				if(!confirm("로그인이 필요한 메뉴입니다.\n로그인하시겠습니까?")){
 		
 				} else {
@@ -200,13 +202,12 @@
 				//  로그인 상태일 때 친구목록 불러오기
 				btnModal.addEventListener("click", e => {
 		    		modal.style.display = "flex"
-				})
-				list(userNum);
+				});
 			}
 		});
 		
+		// 모달 창에서 친구 선택시 모달 상단 친구 출력
 		var fl = 0;
-		
 		$(document).on("click",".chkBox",function(){
 			
 			var ba = new Array();
@@ -243,6 +244,7 @@
 			}
 		});
 		
+		// 친구 선택 후 친구의 위시리스트 출력
 		$(document).on("click","button.getWishlist",function(){
 			if(fl == 0){
 				location.href="${root}";
@@ -294,46 +296,54 @@
 				});
 			}
 		});
+		
+		// 모달 x버튼 클릭시 닫기
 		closeBtn.addEventListener("click", e => {
 		    modal.style.display = "none"
 	        $("body").attr("class","");
+		    $("input[name=friend-search]").val();
 		})
 		
+		// 모달 외부 클릭시 닫기
 		modal.addEventListener("click", e => {
 		    const evTarget = e.target
 			    if(evTarget.classList.contains("gift-modal-overlay")) {
 			        modal.style.display = "none"
 	        		$("body").attr("class","");
+				    $("input[name=friend-search]").val();
 			    }
 		})
 		
-		window.addEventListener("keyup", e => {
-    		if(modal.style.display === "flex" && e.key === "Escape") {
-        		modal.style.display = "none"
-        		$("body").attr("class","");
-   			}
-		})
-		
+		// 모달 실행시 오버레이 실행
 		$("#gift-friend").click(function(){
 			$("body").attr("class","modal-fix");
 		});
         
+		// 모달 취소버튼 클릭시 닫기
 		$(document).on("click",".btn-cancel",function(){
 		    modal.style.display = "none"
 		    $("body").attr("class","");
+			$("input#friend-search").val("");
+		});
+		
+		// 친구 검색
+		$("#friend-search").on('keyup keypress',function(){
+			let data = {userNum:$("input[name=userNum]").attr("value"),search:$(this).val().trim()};
+			list(data);
 		});
 	});
 	
 	// 친구목록 조회 함수
-	function list(userNum) {
+	function list(data) {
 		
 		let s="";
 			
 		$.ajax({
-			type: "get",
+			type: "post",
 			url: "user/friendData",
 			dataType: "json",
-			data: {"userNum":userNum},
+			contentType: "application/json; charset=utf-8",
+			data: JSON.stringify({"data":data}),
 			success:function(res){
 				
 				s += "<ul style='padding-left:0;'>";
@@ -354,11 +364,13 @@
 				$("div.friend-result").html(s);
 			}
 		});
+		
+		// 친구인원수
 		$.ajax({
 			type: "get",
 			url: "user/friendCount",
 			dataType: "json",
-			data: {"userNum":userNum},
+			data: {"userNum":$("input[name=userNum]").attr("value")},
 			success:function(res){
 				
 				$("span.friend-count").text(res);
@@ -368,7 +380,9 @@
 </script>
 </head>
 <body>
-	<input type="hidden" name="userNum" value="${sessionScope.loginid}">
+	<c:if test="${!empty sessionScope.loginUserNum}">
+    	<input type="hidden" name="userNum" value="${sessionScope.loginUserNum}" />
+    </c:if>
 	<div class="gift-background">
 		<div class="gift-wrapper">
 			<div class="gift-top">
@@ -385,7 +399,7 @@
 			<div class="gift-bottom"></div>
 		</div>
 	</div>
-	<!-- modal -->
+	<!--  친구 선택 modal -->
     <div id="gift-modal" class="gift-modal-overlay">
         <div class="gift-modal-window">
         	<form>
@@ -404,8 +418,8 @@
 	            	<b style="font-weight: normal; position: relative; left: 5px;">선물할 친구를 선택하세요.</b>
 	            </div>
 	            <div class="gift-modal-search">
-	            	<input type="search" placeholder="이름, 닉네임 검색">
-	            	<img src="${root}/image/search.svg">
+	            	<input type="search" placeholder="이름, 닉네임 검색" id="friend-search" name="friend-search">
+	            	<img src="${root}/image/search.svg" style="cursor: pointer" id="search-start">
 	            </div>
         	</div>
             <div class="gift-modal-middle">

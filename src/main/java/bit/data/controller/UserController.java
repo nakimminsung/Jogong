@@ -1,6 +1,8 @@
 package bit.data.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -8,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mysql.cj.Session;
@@ -22,10 +26,14 @@ public class UserController {
 	@Autowired
 	UserServiceInter userServiceInter;
 	
-	@GetMapping("/user/friendData")
+	@PostMapping("/user/friendData")
 	@ResponseBody
-	public List<UserDto> getUserFriendData(int userNum) {
-		return userServiceInter.getUserFriendData(userNum);
+	public List<UserDto> getUserFriendData(
+	        @RequestBody HashMap<String,Object> param) {
+	    
+	    Map<String,Object> map = (HashMap<String, Object>) param.get("data");
+	    
+		return userServiceInter.getUserFriendData(map);
 	}
 	
 	@GetMapping("/user/friendCount")
@@ -51,6 +59,7 @@ public class UserController {
     	
         return "/mypage/mypage/user";
     }
+    
     @GetMapping("/mypage/qna")
     public String qnaPage() {
         return "/mypage/mypage/qna";

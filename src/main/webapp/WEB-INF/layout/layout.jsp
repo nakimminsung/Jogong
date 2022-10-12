@@ -53,6 +53,7 @@ uri="http://tiles.apache.org/tags-tiles" %>
 
     #content {
       width: 100%;
+      min-height: 600px;
       
     }
 
@@ -68,7 +69,7 @@ uri="http://tiles.apache.org/tags-tiles" %>
     footer {
       background-color: #fafafc;
       width: 100%;
-      height: 155px;
+      height: 100px;
       position: relative;
     }
   </style>

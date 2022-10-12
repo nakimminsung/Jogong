@@ -1,341 +1,226 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style type="text/css">
+	a.header-brand>span{
+		color:#000 !important;
+		border-bottom: 5px solid #cff0cc;
+	}
 	.brandTop{
-		-webkit-text-size-adjust: 100%;
-	    word-break: normal;
-	    tab-size: 4;
-	    text-rendering: optimizeLegibility;
-	    -webkit-tap-highlight-color: rgba(0,0,0,0);
-	    line-height: 1.5;
-	    color: rgba(0,0,0,.87);
-	    background-repeat: no-repeat;
-	    box-sizing: inherit;
-	    border: 0;
-	    font-size: 100%;
-	    font-weight: 400;
-	    vertical-align: baseline;
-	    margin: 0;
-	    -webkit-font-smoothing: antialiased;
-	    top: 0;
-	    width: 100%;
+	    margin: 10px 160px;
+	    width: 80%;
 	    border-bottom: 10px solid #ebebeb;
 	    position: relative;
 	    padding: 0 16px;
 	}
 	
 	brandTop_inner{
-	    -webkit-text-size-adjust: 100%;
-	    word-break: normal;
-	    tab-size: 4;
-	    text-rendering: optimizeLegibility;
-	    -webkit-tap-highlight-color: rgba(0,0,0,0);
-	    line-height: 1.5;
-	    color: rgba(0,0,0,.87);
-	    box-sizing: inherit;
-	    font-size: 100%;
-	    font-weight: 400;
-	    vertical-align: baseline;
-	    -webkit-font-smoothing: antialiased;
-	    position: relative;
-	    background: #fff;
 	    display: flex;
-	    align-items: center;
-	    max-width: 1180px;
-	    margin: 0 auto;
-	    padding: 28px 0 40px;
-	    border: 0;
+	    flex-wrap: nowrap
 	}
 	.brandTop_logo{
-	    word-break: normal;
-	    tab-size: 4;
-	    text-rendering: optimizeLegibility;
-	    line-height: 1.5;
-	    color: rgba(0,0,0,.87);
-	    background-repeat: no-repeat;
-	    box-sizing: inherit;
-	    border: 0;
-	    font-size: 100%;
-	    font-weight: 400;
-	    vertical-align: baseline;
+		display:flex;
+		align-items: center;
 	    margin: 0;
 	    padding: 0;
-	    -webkit-font-smoothing: antialiased;
 	    margin-right: 24px;
 	}
 	.brandTop_logo img{
-	    border: 0;
-	    font-size: 100%;
-	    font-weight: 400;
-	    vertical-align: baseline;
-	    margin: 0;
-	    padding: 0;
-	    -webkit-font-smoothing: antialiased;
-	    background-size: cover;
-	    background-position: 50%;
 	    width: 120px;
 	    border-radius: 24px;
 	}
-	.brandTop_content{
-		-webkit-text-size-adjust: 100%;
-	    word-break: normal;
-	    tab-size: 4;
-	    text-rendering: optimizeLegibility;
-	    -webkit-tap-highlight-color: rgba(0,0,0,0);
-	    line-height: 1.5;
-	    color: rgba(0,0,0,.87);
-	    background-repeat: no-repeat;
-	    box-sizing: inherit;
-	    border: 0;
-	    font-size: 100%;
-	    font-weight: 400;
-	    vertical-align: baseline;
-	    margin: 0;
-	    -webkit-font-smoothing: antialiased;
-	    padding: 0;
-	}
 	.brandTop_name{
-	    -webkit-text-size-adjust: 100%;
-	    word-break: normal;
-	    tab-size: 4;
-	    text-rendering: optimizeLegibility;
-	    -webkit-tap-highlight-color: rgba(0,0,0,0);
-	    line-height: 1.5;
-	    color: rgba(0,0,0,.87);
-	    background-repeat: no-repeat;
-	    border: 0;
-	    vertical-align: baseline;
-	    margin: 0;
-	    padding: 0;
-	    -webkit-font-smoothing: antialiased;
 	    box-sizing: border-box;
 	    margin-bottom: 16px;
 	    font-weight: 600;
 	    font-size: 28px;
 	}
 	.brandTop_desc{
-		-webkit-text-size-adjust: 100%;
-	    word-break: normal;
-	    tab-size: 4;
-	    text-rendering: optimizeLegibility;
-	    -webkit-tap-highlight-color: rgba(0,0,0,0);
-	    line-height: 1.5;
-	    color: rgba(0,0,0,.87);
-	    background-repeat: no-repeat;
-	    border: 0;
-	    vertical-align: baseline;
-	    margin: 0;
-	    padding: 0;
-	    -webkit-font-smoothing: antialiased;
-	    box-sizing: border-box;
 	    margin-bottom: 16px;
 	    font-weight: 500;
 	    margin-top: 12px;
 	    font-size: 16px;
 	}
-	.content{
-	    -webkit-text-size-adjust: 100%;
-	    word-break: normal;
-	    tab-size: 4;
-	    text-rendering: optimizeLegibility;
-	    -webkit-tap-highlight-color: rgba(0,0,0,0);
-	    line-height: 1.5;
-	    color: rgba(0,0,0,.87);
-	    font-family: "Poppins","Noto Sans KR",sans-serif;
-	    box-sizing: inherit;
-	    border: 0;
-	    font-size: 100%;
-	    font-weight: 400;
-	    vertical-align: baseline;
-	    margin: 0;
-	    -webkit-font-smoothing: antialiased;
+	.brandContent{
 	    position: relative;
 	    background: #fff;
 	    z-index: 10;
 	    padding: 0 16px;
-	    border-top: 1px solid #ebebeb;
 	}
 	
 	.brandList{
-	    -webkit-text-size-adjust: 100%;
-	    word-break: normal;
-	    tab-size: 4;
-	    text-rendering: optimizeLegibility;
-	    -webkit-tap-highlight-color: rgba(0,0,0,0);
-	    line-height: 1.5;
-	    color: rgba(0,0,0,.87);
-	    font-family: "Poppins","Noto Sans KR",sans-serif;
-	    background-repeat: no-repeat;
-	    box-sizing: inherit;
-	    border: 0;
-	    font-size: 100%;
-	    font-weight: 400;
-	    vertical-align: baseline;
-	    padding: 0;
-	    -webkit-font-smoothing: antialiased;
 	    display: flex;
 	    align-items: center;
 	    justify-content: space-between;
 	    max-width: 1180px;
 	    margin: 32px auto;
 	}
-	.itemList{
-	    -webkit-text-size-adjust: 100%;
-	    word-break: normal;
-	    tab-size: 4;
-	    text-rendering: optimizeLegibility;
-	    -webkit-tap-highlight-color: rgba(0,0,0,0);
-	    line-height: 1.5;
-	    color: rgba(0,0,0,.87);
-	    font-family: "Poppins","Noto Sans KR",sans-serif;
-	    box-sizing: inherit;
-	    border: 0;
-	    font-size: 100%;
-	    font-weight: 400;
-	    vertical-align: baseline;
-	    margin: 0;
-	    -webkit-font-smoothing: antialiased;
-	    background: #fff;
-	    grid-template-columns: repeat(4,1fr);
-	    grid-gap: 0;
-	    padding: 0;
-	    border-bottom: none;
-	    margin-top: 0;
+	.productImage{
+		width:100%;
+		border-radius: 10px;
+	
 	}
-	.listRow{
-	    -webkit-text-size-adjust: 100%;
-	    word-break: normal;
-	    tab-size: 4;
-	    text-rendering: optimizeLegibility;
-	    -webkit-tap-highlight-color: rgba(0,0,0,0);
-	    line-height: 1.5;
-	    color: rgba(0,0,0,.87);
-	    font-family: "Poppins","Noto Sans KR",sans-serif;
-	    background-repeat: no-repeat;
-	    box-sizing: inherit;
-	    border: 0;
-	    font-size: 100%;
-	    font-weight: 400;
-	    vertical-align: baseline;
-	    margin: 0;
-	    padding: 0;
-	    -webkit-font-smoothing: antialiased;
+	
 	}
-	ul{
-	    -webkit-text-size-adjust: 100%;
-	    word-break: normal;
-	    tab-size: 4;
-	    text-rendering: optimizeLegibility;
-	    -webkit-tap-highlight-color: rgba(0,0,0,0);
-	    line-height: 1.5;
-	    color: rgba(0,0,0,.87);
-	    font-family: "Poppins","Noto Sans KR",sans-serif;
-	    background-repeat: no-repeat;
-	    box-sizing: inherit;
-	    border: 0;
-	    font-size: 100%;
-	    font-weight: 400;
-	    vertical-align: baseline;
-	    -webkit-font-smoothing: antialiased;
-	    list-style: none;
-	    padding: 0!important;
-	    display: grid;
-	    grid-template-columns: repeat(4,1fr);
-	    grid-gap: 28px;
-	    max-width: 1180px;
-	    margin: 0 auto;
+	.categoryName{
+		margin: auto;
+	    display: flex;
+		width: 1200px;   
+		padding-top: 2%;
+		padding-bottom: 1%; 
+	
 	}
-	.sgItem{
-	    -webkit-text-size-adjust: 100%;
-	    word-break: normal;
-	    tab-size: 4;
-	    text-rendering: optimizeLegibility;
-	    -webkit-tap-highlight-color: rgba(0,0,0,0);
-	    line-height: 1.5;
-	    color: rgba(0,0,0,.87);
-	    list-style: none;
-	    font-family: "Poppins","Noto Sans KR",sans-serif;
-	    background-repeat: no-repeat;
-	    box-sizing: inherit;
-	    border: 0;
-	    font-size: 100%;
-	    font-weight: 400;
-	    vertical-align: baseline;
-	    margin: 0;
-	    -webkit-font-smoothing: antialiased;
-	    padding: 0;
-	    box-shadow: none;
+		 
+	 .categoryTotal{
+		text-align: center;
+		margin: auto;
+	    display: flex;
+	    justify-content: space-around;
+		width: 1200px;
+		margin: auto;	    
+	    flex-direction: row;
+	    flex-wrap: wrap;
+	    align-content: stretch;
+	    align-items: baseline;
+	} 
+	
+	.cateImage{
+		width: 90px;
+		border-radius: 30px;
+		
+	}
+	
+	.productImage{
+		width:100%;
+		border-radius: 10px;
+	
+	}
+	
+	.categorySort{
+		width: 100px;
+	    border: 0px;
+	    font-size: 15px;
+	}
+	
+	.productList {
+		width: 1200px;
+		display: flex;
+		flex-wrap: wrap;
+		margin: auto;
+		justify-content: space-around;		
+		margin-top: 10px;
+	} 
+	
+	.productItem{
+		width: 280px;
+		padding-bottom: 5%;
+	}
+	
+	.brandName{
+		font-weight: bold;
+		font-size: 18px;
+	}
+	
+	.productName{
+		font-size: 18px;
+	
+	}
+	
+	.productPrice{
+		font-weight: bold;
+		font-size: 20px;
+		
+	}
+	.card-img-top{
+		border: 0.1px solid #d3d3d3;
 	}
 </style>
 </head>
 <body>
 <div class="brand_layout">
-
-	<!-- ªÛ¥‹ø° ∫Í∑£µÂ ≥Î√‚ -->
+	<!-- ÏÉÅÎã®Ïóê Î∏åÎûúÎìú ÎÖ∏Ï∂ú -->
 	<div class="brandTop">
-		<div class="brandTop_inner input-group">
+		<div class="brandTop_inner input-group" style="flex-wrap: nowrap">
 			<div class="brandTop_logo">
-				<img alt="∑Œ∞ÌΩÊ≥◊¿œ" src="/jogong/resources/image/21.jpeg">
+				<img alt="Î°úÍ≥†Ïç∏ÎÑ§Ïùº" src="${dto.logoImage}">
 			</div>
 			<div class="brandTop_content">
-				<p class="brandTop_name">∫Í∑£µÂ ¿Ã∏ß</p>
-				<p class="brandTop_desc">º≥∏Ì</p>
+				<p class="brandTop_name">${brand}</p>
+				<p class="brandTop_desc">${dto.description}</p>
 			</div>
 		</div>
 	</div>
-	<!-- ªÛ¥‹ø° ∫Í∑£µÂ ≥Î√‚ ≥° -->
-	
-	<!--  -->
-	<!--  -->
-	
-	<!-- ƒ¡≈Ÿ∆Æ ∫‰ -->
-	<div class="content">
-		<!-- ¡¬√¯ « ≈Õ -->
-		<!-- <div class="leftFilter"></div> -->
-		<!-- ¡¬√¯ « ≈Õ -->
-	
-		<!-- ø…º« -->
+	<!-- ÏÉÅÎã®Ïóê Î∏åÎûúÎìú ÎÖ∏Ï∂ú ÎÅù -->
+	<!-- Ïª®ÌÖêÌä∏ Î∑∞ -->
+	<div class="brandContent">
+		<!-- ÏòµÏÖò -->
 		<div class="brandList">
-			<span>√— +a ∞≥</span>
-			<div>∞°∞›º¯,µÓ</div>
+			<span><h3>Ï¥ù ÏÉÅÌíà Í∞ØÏàò : ${count}Í∞ú</h3></span>
+			<div>
+				<select class="categorySort" name="sort">
+					<option value="createdAt desc" selected>ÏµúÏã†Ïàú</option>
+					<option value="price desc">Í∞ÄÍ≤©ÎÜíÏùÄÏàú</option>
+					<option value="price asc">Í∞ÄÍ≤©ÎÇÆÏùÄÏàú</option>
+					<option value="readCount desc">Ïù∏Í∏∞Ïàú</option>
+				</select>
+			</div>
 		</div> 
-		<!-- ø…º« ≥° -->
-	<!--  -->
-	<!--  -->
-		<!-- ªÛ«∞∏Ò∑œ  -->
-	<div class="itemList">	
-		<div class="listRow">
-			<ul>
-				<li class="sgItem">
-				<div class='card cardTheme'>
-					<img class='card-img-top' src='/jogong/resources/image/21.jpeg' alt='Card image cap'>
-					<div class='card-body'>
-						<h5 class='card-title'>∫Í∑£µÂ∏Ì</h5>
-						<p class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 350px;'>ªÛ«∞∏Ì</p>
-						<p class='card-text'><b>∞°∞›</b></p>
-					</div>
-				</div>
-				</li>
-				<li class="sgItem">
-				<div class='card cardTheme'>
-					<img class='card-img-top' src='/jogong/resources/image/21.jpeg' alt='Card image cap'>
-					<div class='card-body'>
-						<h5 class='card-title'>∫Í∑£µÂ∏Ì¿ª ¿‘∑¬«œººø‰</h5>
-						<p class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 350px;'>ªÛ«∞∏Ì</p>
-						<p class='card-text'><b>∞°∞›¿ª ¿‘∑¬«œººø‰</b></p>
-					</div>
-				</div>
-				</li>
-			</ul>	
+		<!-- ÏòµÏÖò ÎÅù -->
+		<!-- ÏÉÅÌíàÎ™©Î°ù  -->
+		<div class="productList">
+		<c:forEach var="productList" items="${productList}">
+			<div class="productItem">
+			<a href="/jogong/product/detail?num=${productList.num}">
+				<img class='card-img-top' src="${productList.thumbnailImageUrl }" alt='Card image cap'>
+				<span style="display: inline-block;">
+					<span class='brandName'>${productList.brand }</span><br>
+					<span class='productName'>${productList.name }</span><br>
+					<span class='productPrice'><b><fmt:formatNumber value="${productList.price}" type="number"/>Ïõê</b></span>
+				</span>
+			</a>
+			</div>
+		</c:forEach>	
 		</div>
-	</div><!-- ªÛ«∞∏Ò∑œ ≥°  -->
-		
-	</div><!-- ƒ¡≈Ÿ∆Æ ∫‰ ≥° -->
+	<!-- ÏÉÅÌíàÎ™©Î°ù ÎÅù  -->
+	</div><!-- Ïª®ÌÖêÌä∏ Î∑∞ ÎÅù -->
 </div>
 </body>
+<script type="text/javascript">
+$(function () {
+	$(".categorySort").change(function() {
+		var sort=$(this).val();
+		var s= "";
+		 $.ajax({
+				type:"get",
+				url:"brandSort",
+				dataType:"json",
+				data:{"brand":'${brand}', "sort":sort},
+				success:function(res){
+					
+					$(".productList").empty();	
+					$.each(res.productList, function(i,elt) {
+						var price= elt.price.toLocaleString();
+						s += "<div class='productItem'>";
+						s += "<a href='/jogong/product/detail?num="+elt.num+"'>";
+						s += "<img class='card-img-top' src='"+elt.thumbnailImageUrl+"'class='productImage'><br>";
+						s += "<span style='display: inline-block;'>";
+						s += "<span class='brandName'>"+elt.brand+"</span><br>";
+						s += "<span class='productName'>"+elt.name+"</span><br>";
+						s += "<span class='productPrice'>"+price+"Ïõê</span>";
+						s += "</span>";
+						s += "</a>";
+						s += "</div>";
+					});
+					$(".productList").append(s);
+				}
+			});
+		});
+	});
+
+</script>
 </html>

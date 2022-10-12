@@ -88,5 +88,30 @@ public class ProductService implements ProductServiceInter {
         return productDaoInter.selectWriteableList(userNum);
     }
 
+    
+    
+    //search
+    @Override
+    public int getSearchCount(String searchword) {
+    
+    	return productDaoInter.getSearchCount(searchword);
+    }
+    
+//    @Override
+//    public List<ProductDto> getSearchProduct(String searchword) {
+//    	
+//    
+//    	return productDaoInter.getSearchProduct(searchword);
+//    }
+    
+    @Override
+    public List<ProductDto> getSearchProductBySort(String searchword, String sort) {
+    	
+    	Map<String, Object> map=new HashMap<String, Object>();
+		map.put("searchword", searchword);
+		map.put("sort", sort);
+    
+    	return productDaoInter.getSearchProductBySort(map);
+    }
 	
 }

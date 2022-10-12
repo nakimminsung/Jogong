@@ -99,7 +99,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 		margin-left:10px;
 	}
 	div.home{
-		min-width:60px;
+		min-width:150px;
 		width:100%;
 		max-width:120px;
 	}
@@ -107,7 +107,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 		font-size:30px;
 	}
 	div.menu{
-		min-width:180px;
+		min-width:280px;
 	}
 	div.search-box{
 		width:100%;
@@ -202,20 +202,32 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<div class="header-wrapper">
 		<div class="left">
 			<div class="home">
-				<a href="${root}">조공</a>
+				<a href="${root}">
+					<img src="${root}/image/jogong1.png" style="width:120px;">
+				</a>
 			</div>
 			<div class="menu">
 
 				<a class="header-menu header-brand" href="${root}/brand/list"><span>브랜드</span></a>
 				<a class="header-menu header-cate" href="${root}/category"><span>카테고리</span></a>
 				<a class="header-menu header-review" href="${root}/review/list"><span>후기</span></a>
+				<a class="header-menu header-event" href="${root}/event/event"><span>이벤트</span></a>
 
 			</div>
 			<div class="search-box">
-				<form class="search" onclick="location.href='${root}/search/searchMain'" style="cursor: pointer;">
+				
+				<form class="search" action="${root}/search" method="get" id="searchProduct">
+					<img src="${root}/image/search.svg">
+					<input type="text" placeholder="선물, 브랜드 검색" name="searchword" autocomplete="off"
+					 style="border:none; outline:none; width: 400px; background-color: #f4f4f4;">
+				</form>
+				<%--
+				<form class="search" onclick="location.href='${root}/search'" style="cursor: pointer;">
 					<img src="${root}/image/search.svg">
 					<input disabled="disabled" type="text" placeholder="선물, 브랜드 검색" autocomplete="off" aria-required="true" aria-invalid="false" style="cursor: pointer; border:0px;">
 				</form>
+				--%>
+				
 			</div>
 		</div> <!-- div.left 종료 -->
 		
@@ -301,6 +313,19 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 					loginButton: {color: "green", type: 3, height: 50}
 				}
 			);
+	
+	
+	//상품명 입력 후 엔터누르면 search 함수 호출
+	$("#searchProduct").keyup(function (e) {
+		if(e.keyCode==13){
+			search($(this).val().trim());	//앞뒤 공백 제거 후 this(=#sangpum)의 value 값 보내기
+		}
+	});
+	
+	//상품 검색 메서드
+	function search(subject) {
+		
+	}
 		
 </script>	
   
