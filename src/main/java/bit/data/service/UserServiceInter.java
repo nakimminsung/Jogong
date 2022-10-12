@@ -14,5 +14,5 @@ public interface UserServiceInter {
 
 	// 리뷰페이지
 	public List<UserDto> getReviewUserInfo();
-	//public void insertKakao(UserDto dto);
+	public void updateUser(UserDto dto);
 }

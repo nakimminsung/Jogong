@@ -52,14 +52,6 @@ public class UserService implements UserServiceInter {
 		// TODO Auto-generated method stub
 		return userDaoInter.getDataById(email);
 	}
-	
-	
-	/*@Override
-	public void insertKakao(UserDto dto) {
-		// TODO Auto-generated method stub
-		userDaoInter.insertKakao(dto);;
-		
-	}*/
 
 	// 리뷰페이지
 	@Override
@@ -67,5 +59,12 @@ public class UserService implements UserServiceInter {
 		// TODO Auto-generated method stub
 		return userDaoInter.getReviewUserInfo();
 	}
+
+	@Override
+	public void updateUser(UserDto dto) {
+		// TODO Auto-generated method stub
+		userDaoInter.updateUser(dto);
+	}
+	
 
 }
