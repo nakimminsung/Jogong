@@ -7,41 +7,99 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	
-	<!-- font -->
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Edu+VIC+WA+NT+Beginner:wght@600&family=Gamja+Flower&family=Single+Day&family=Jua&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
-    
-    <!-- bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-	
-	<!-- bootstrap 5 icon -->
-	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-    
-    <!-- jquery -->
-    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Anton&family=Edu+VIC+WA+NT+Beginner:wght@600&family=Gamja+Flower&family=Single+Day&family=Jua&family=Nanum+Pen+Script&display=swap" rel="stylesheet"><!-- font -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"><!-- bootstrap 5 -->
+	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script><!-- bootstrap 5 icon -->
+	<script src="https://code.jquery.com/jquery-3.5.0.js"></script><!-- jquery -->
     
 </head>
 <style>
-	a.menu-qna {
-    	color:#000 !important;
+
+	@font-face {
+	    font-family: 'SeoulNamsanM';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
 	}
+	
+	a.menu-qna {
+	    color:#000 !important;
+	}
+	body * {
+		font-size: 15px;
+	}
+	div.qna-wrapper {
+		width: 100%;
+		margin-bottom: 100px;
+	}
+	div.qna-top {
+		padding: 25px 0;
+		position:sticky;
+		top:100px;
+		background-color: white;
+		height: 90px;
+	}
+	div.qna-top>hr{
+		width: 110px; 
+		height: 10px; 
+		position: relative; 
+		top:-28px; 
+		color: #cff0cc; 
+		opacity: 1; 
+		z-index: -1;
+	}
+	b.qna-top-b2 {
+		font-size: 25px;
+		font-weight: 1000;
+	}
+	
+	
 </style>
 <body>
-	<div>
-		<h1>qna</h1>
-		<h1>qna</h1>
-		<h1>qna</h1>
-		<h1>qna</h1>
-		<h1>qna</h1>
-		<h1>qna</h1>
-		<h1>qna</h1>
-		<h1>qna</h1>
-		<h1>qna</h1>
-		<h1>qna</h1>
-		<h1>qna</h1>
-		<h1>qna</h1>
-		<h1>qna</h1>
-		<h1>qna</h1>
+	<div class="qna-wrapper">
+	
+		<!-- 상단 -->
+		<div class="qna-top">
+			<b class="qna-top-b2">문의 내역</b>
+			<hr>
+		</div>
+		
+		<div class="qna-result" style="width: 100%; height: 500px;">
+			<table class="table table-borderd">
+				<tr style="text-align: center; background-color: #f5f5f5;">
+					<th style="width: 150px;">문의 유형</th>
+					<th style="width: 350px; text-align: left;">문의 제목</th>
+					<th style="width: 150px;">처리 상태</th>
+					<th style="width: 150px;">등록일</th>
+				</tr>
+				
+				<c:forEach var="s" items="${qnaList}">
+				
+					<tr style="text-align: center;">
+						<td>${s.name}</td>
+						<td style="text-align: left;">${s.title}</td>
+						<td style="color: red;">답변대기중</td>
+						<td><fmt:formatDate value="${s.createdAt}" pattern="yyyy-MM-dd"/></td>
+					</tr>
+					<tr>
+						<td rowspan="2" style="vertical-align: middle; text-align: center;">Q</td>
+						<td colspan="3">
+							<c:if test="${s.orderNum!=null}"><b>주문번호:</b> ${s.orderNum}<br></c:if>
+							<c:if test="${s.orderNum==null}"><b>주문번호:</b> 없음<br></c:if>
+							<b>이메일:</b> ${s.email}
+						</td>
+					</tr>
+					<tr style="border-bottom: 2px solid gray;">
+						<td colspan="3">
+						<p style="font-weight: bold;">${s.title}</p>
+						<pre style="font-family: SeoulNamsanM">${s.content}</pre>
+						</td>
+					</tr>
+				
+				</c:forEach>
+			
+			</table>
+		</div>
 	</div>	
 </body>
 </html>

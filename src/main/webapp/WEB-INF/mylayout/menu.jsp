@@ -84,7 +84,7 @@
 				<h3 style="font-weight: 1000;">내 정보</h3>
 				<a class="menu-select menu-friend" href="${root}/friend/page">친구목록</a>
 				<a class="menu-select menu-profile" href="${root}/mypage/user">프로필 정보</a>
-				<a class="menu-select menu-qna" href="${root}/mypage/qna">Q&A</a>
+				<a class="menu-select menu-qna" href="${root}/mypage/qna">문의 내역</a>
 			</div>
 		</div>
 	</div>	

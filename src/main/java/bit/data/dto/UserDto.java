@@ -21,5 +21,6 @@ public class UserDto {
 	private String loginType;
 	private Timestamp createdAt;
 	private boolean isAdmin;
+
 	
 }

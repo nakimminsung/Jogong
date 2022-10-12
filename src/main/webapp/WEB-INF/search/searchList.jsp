@@ -11,7 +11,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"><!-- bootstrap 5 -->
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script><!-- bootstrap 5 icon -->
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script><!-- jquery -->
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
 <style>
 	*{
 		
