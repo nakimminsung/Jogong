@@ -258,11 +258,9 @@
 			return;
 		} else {
 			//  로그인 상태일 때 모달띄우기 & 친구목록 불러오기
-			btnModal.addEventListener("click", e => {
-		    	modal.style.display = "flex";
-			});
 			var data = {userNum:$("input[name=userNum]").attr("value"),search:""};
 			list(data);
+		    modal.style.display = "flex";
 		}
 	});
 		
@@ -355,6 +353,11 @@
 		}
 	});
 		
+	// 모달 실행시 오버레이 실행
+	$("#gift-friend").click(function(){
+		$("body").attr("class","modal-fix");
+	});
+	
 	// 모달 x버튼 클릭시 닫기
 	closeBtn.addEventListener("click", e => {
 		modal.style.display = "none"
@@ -372,11 +375,6 @@
 		}
 	})
 		
-	// 모달 실행시 오버레이 실행
-	$("#gift-friend").click(function(){
-		$("body").attr("class","modal-fix");
-	});
-        
 	// 모달 취소버튼 클릭시 닫기
 	$(document).on("click",".btn-cancel",function(){
 		modal.style.display = "none"

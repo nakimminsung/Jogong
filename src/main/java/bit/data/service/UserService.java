@@ -67,4 +67,8 @@ public class UserService implements UserServiceInter {
 		return userDaoInter.getReviewUserInfo();
 	}
 
+    @Override
+    public List<UserDto> selectNonFriendlyUsersList(int num) {
+        return userDaoInter.selectNonFriendlyUsersList(num);
+    }
 }

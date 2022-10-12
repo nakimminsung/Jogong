@@ -61,4 +61,9 @@ public class UserDao implements UserDaoInter {
 		// TODO Auto-generated method stub
 		return session.selectList(ns+"getReviewUserInfo");	
 	}
+
+    @Override
+    public List<UserDto> selectNonFriendlyUsersList(int num) {
+        return session.selectList(ns+"selectNonFriendlyUsersList", num);
+    }
 }
