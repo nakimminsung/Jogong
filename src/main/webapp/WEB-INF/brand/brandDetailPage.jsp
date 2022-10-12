@@ -160,7 +160,7 @@
 	<div class="brandContent">
 		<!-- 옵션 -->
 		<div class="brandList">
-			<h3><span>${count}개</span></h3>
+			<span><h3>총 상품 갯수 : ${count}개</h3></span>
 			<div>
 				<select class="categorySort" name="sort">
 					<option value="createdAt desc" selected>최신순</option>
