@@ -243,7 +243,7 @@ em.fc-01 {
 }
 
 div.simple_payment {
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, AppleSDGothicNeo-Regular, NanumBarunGothic, NanumGothic, 나눔고딕, Segoe UI, Helveica, Arial, Malgun Gothic, Dotum, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, AppleSDGothicNeo-Regular, NanumBarunGothic, NanumGothic, �굹�닎怨좊뵓, Segoe UI, Helveica, Arial, Malgun Gothic, Dotum, sans-serif;
     color: #222;
     box-sizing: border-box;
     margin: 0;
@@ -999,7 +999,7 @@ table.t-foot>tfoot>tr>td {
 }
 
 
-/* 민성 css */
+/* 誘쇱꽦 css */
 
     .deco-list li img{
 		width: 100%;
@@ -1016,7 +1016,7 @@ table.t-foot>tfoot>tr>td {
         color: #666;
         word-wrap: break-word;
         word-break: break-all;
-        font-family: '돋움','Helvetica','Tahoma',dotum,sans-serif,'Malgun Gothic';
+        font-family: '�룍��','Helvetica','Tahoma',dotum,sans-serif,'Malgun Gothic';
         margin: 0;
         padding: 0;
         border: 0;
@@ -1894,4 +1894,175 @@ table.t-foot>tfoot>tr>td {
      	/* .cardImg.clicked {
         border: 2px solid black;
      	} */
+     	
+     	a {
+    text-decoration: none;
+}
+
+
+
+
+
+
+.modal {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.4);
+    top: 0;
+    left: 0;
+    height: 100vh;
+    /* 꼭 */
+    width: 500px;
+    display: none;
+}
+
+.modal.active {
+    /* display:none을 보이게 함 */
+    display: block;
+}
+
+.modal-content {
+    background-color: #fff;
+    width: 400px;
+    height: 500px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    /* animation 0.5초동안 발생 */
+    animation: slidefade 0.35s linear;
+}
+
+.btn-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.btn-guide {
+    background-color: #616BEE;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 7px;
+    display: block;
+}
+
+/* 에니메이션을 만들어놓음 */
+@keyframes slidefade {
+    0% {
+        opacity: 0;
+        /* 위에서 아래로, 100px : 아래에서 위로 */
+        margin-top: -100px;
+        /* 왼쪽에서 오른쪽으로 */
+        /* margin-left:-100px; */
+    }
+
+    100% {
+        opacity: 1;
+        margin-top: 0;
+    }
+}
+
+#homebutton {
+    background-color: #ec2028;
+    color: #fff;
+    border: none;
+    position: relative;
+    font-size: 1.6em;
+    padding: 0 2em;
+    cursor: pointer;
+    transition: 800ms ease all;
+    outline: none;
+}
+
+#mypagebutton {
+    background-color: black;
+    color: #fff;
+    border: none;
+    position: relative;
+    font-size: 1.6em;
+    padding: 0 2em;
+    cursor: pointer;
+    transition: 800ms ease all;
+    outline: none;
+}
+
+#homebutton:hover {
+    background: #fff;
+    color: #ec2028;
+}
+
+#mypagebutton:hover {
+    background: #fff;
+    color: black;
+}
+
+#homebutton:before,
+#homebutton:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
+    background: #ec2028;
+    transition: 400ms ease all;
+}
+
+#homebutton:after {
+    right: inherit;
+    top: inherit;
+    left: 0;
+    bottom: 0;
+}
+
+#homebutton:hover:before,
+#homebutton:hover:after {
+    width: 100%;
+    transition: 800ms ease all;
+}
+
+
+#mypagebutton:before,
+#mypagebutton:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
+    background: black;
+    transition: 400ms ease all;
+}
+
+#mypagebutton:after {
+    right: inherit;
+    top: inherit;
+    left: 0;
+    bottom: 0;
+}
+
+#mypagebutton:hover:before,
+#mypagebutton:hover:after {
+    width: 100%;
+    transition: 800ms ease all;
+}
+
+.complete {
+    padding: 50px 0;
+}
+
+hr {
+    margin-bottom: 80px;
+}
+
+.complete>p {
+    font-size: 25px;
+}
+     	
+     	
      	

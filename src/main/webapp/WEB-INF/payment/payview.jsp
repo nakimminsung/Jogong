@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,7 +70,7 @@
 	});
 </script>
 <body>
-
+<c:set var="root" value="<%=request.getContextPath() %>"/>
 <div class="paymain">
         <div class="new-order">
             <div class="subcontents">
@@ -388,7 +389,7 @@
                                 <div data-v-35b707e2="" class="pay_box">
                                     <div data-v-35b707e2="" class="pay_title">
                                         <p data-v-35b707e2="" class="main_title">토스</p>
-                                    </div><img data-v-35b707e2="" src="image/tosspay.jpg" alt="토스" class="pay_img">
+                                    </div><img data-v-35b707e2="" src="image/tosspay.png" alt="토스" class="pay_img" style="width:100px; height:30px" >
                                 </div>
                             </div>
                         </div>
@@ -398,23 +399,23 @@
                                 <li data-v-2e66a968="" class="benefit_item"><img data-v-2e66a968=""
                                         src="image/계좌이체.png"
                                         alt="계좌 이체" class="benefit_img">
-                                    <p data-v-2e66a968="" class="benefit_desc"><span data-v-2e66a968="" class="blind">계좌
-                                            이체</span>결제 시 최대 5만 포인트 적립 </p><a data-v-2e66a968="" href="" target="_blank"
+                                    <p data-v-2e66a968="" class="benefit_desc"><span data-v-2e66a968="" class="blind">
+                                            이체</span>&nbsp;&nbsp;결제 시 최대 5만 포인트 적립 </p><a data-v-2e66a968="" href="" target="_blank"
                                         class="btn_more">더보기</a>
                                 </li>
                                 <li data-v-2e66a968="" class="benefit_item"><img data-v-2e66a968=""
-                                        src="image/tosspay.jpg"
+                                        src="image/tosspay.png""
                                         alt="토스" class="benefit_img" >
                                     <p data-v-2e66a968="" class="benefit_desc"><span data-v-2e66a968=""
-                                            class="blind">토스</span>첫 결제시 3천원 캐시백 </p><a data-v-2e66a968=""
-                                        href="tosspay.jpg" target="_blank" class="btn_more">더보기</a>
+                                            class="blind">토스</span>&nbsp;&nbsp;첫 결제시 3천원 캐시백 </p><a data-v-2e66a968=""
+                                        href=" target="_blank" class="btn_more">더보기</a>
                                 </li>
                                 <li data-v-2e66a968="" class="benefit_item"><img data-v-2e66a968=""
-                                        src="image/paycopay.jpg"
+                                        src="image/payco.png"
                                         alt="페이코" class="benefit_img">
                                     <p data-v-2e66a968="" class="benefit_desc"><span data-v-2e66a968=""
-                                            class="blind">페이코</span>페이코 포인트로 결제 시 5% 적립 </p><a data-v-2e66a968=""
-                                        href="paycopay.jpg" target="_blank" class="btn_more">더보기</a>
+                                            class="blind">페이코</span>&nbsp;&nbsp;페이코 포인트로 결제 시 5% 적립 </p><a data-v-2e66a968=""
+                                        href="" target="_blank" class="btn_more">더보기</a>
                                 </li>
                             </ul>
                         </div>
@@ -480,9 +481,44 @@
             <div class="btn-type02" id="paying">결제</div>
         </div>
     </div>
+    
+     <div id="modal-notice" class="modal" >
+
+     	<div class="modal-content" style="width: 600px; height: 600px;">
+	         <a class="btn-close" href="#none" onclick="closeModal()">X</a>
+	         
+	         <div style="text-align: center;">
+	        	 <img src="image/paycomplete.png" alt="" width="100px" height="100px">
+	         </div>
+	         
+	         <div class="complete" style="margin-bottom:40px">
+	             <p><b style="font-size:30px">구매가 정상적으로 완료되었습니다!</b></p>
+	         </div>
+	         <hr>
+	         <div style="display: flex; width: 100%; justify-content:space-around; margin-top:80px">
+		         <button onClick="location.href='${root}'" id="homebutton" style="width:240px; height:50px; font-size: 16px; border-radius: 8px;">홈으로 이동</button>
+		         <button onClick="location.href='${root}/orderDetail/page'" id="mypagebutton" style="width:240px; height:50px; font-size: 16px; border-radius: 8px;">선물함으로 이동</button>
+	         </div>
+	         
+    	 </div>
+	 </div>
+    
 <hr>
 	
 <script type="text/javascript">
+
+// modal-notice라는 이름 변수 선언
+const modals = document.getElementById('modal-notice');
+
+function openModal() {
+    // modal에 active class추가
+    modals.classList.add('active')
+}
+
+function closeModal() {
+    // modal에 active class제거
+    modals.classList.remove('active')
+}
 
 const rand = Math.random();
 //버튼 클릭하면 실행
@@ -521,15 +557,15 @@ function payment(data) {
                        "buyer_tel" : rsp.buyer_tel
             		   }
                    });
-               
-               location.replace("${root}/jogong");
+				
+               // modal 이벤트 주기
+               openModal();
                
          } else {
              alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
              var msg = "결제에 실패했습니다"
              msg = "에러내용:" + rsp.error_msg;
              
-             alert(msg);
          }
      });
 }
@@ -570,14 +606,14 @@ function danal(data) {
          		   }
                 });
             
-            location.replace("${root}/jogong");
+            // modal 이벤트 주기
+            openModal();
             
       } else {
           alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
           var msg = "결제에 실패했습니다"
           msg = "에러내용:" + rsp.error_msg;
           
-          alert(msg);
       }
   });
 }
@@ -618,14 +654,14 @@ function kg(data) {
          		   }
                 });
             
-            location.replace("${root}/jogong");
+            // modal 이벤트 주기
+            openModal();
             
       } else {
           alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
           var msg = "결제에 실패했습니다"
           msg = "에러내용:" + rsp.error_msg;
           
-          alert(msg);
       }
   });
 }
@@ -666,14 +702,14 @@ function toss(data) {
          		   }
                 });
             
-            location.replace("${root}/jogong");
+            // modal 이벤트 주기
+            openModal();
             
       } else {
           alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
           var msg = "결제에 실패했습니다"
           msg = "에러내용:" + rsp.error_msg;
           
-          alert(msg);
       }
   });
 }
@@ -794,6 +830,9 @@ payed.onclick = function () {
    		danal(); 	
     }
 } 
+
+
+
 </script>
 </body>
 <script type="text/javascript">
