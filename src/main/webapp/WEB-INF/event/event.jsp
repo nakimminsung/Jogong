@@ -67,7 +67,7 @@
 	}
 	
 	/* 이벤트 목록 */
-	div.event-result {
+	div.event-list-result {
 		display: flex; 
 		width: 100%; 
 		padding-top: 20px; 
@@ -134,7 +134,7 @@
 					s += "</div>";
 					
 				});
-				$("div.event-result").html(s);
+				$("div.event-list-result").html(s);
 			}
 		});
 		
@@ -168,7 +168,9 @@
 				</select>
 			</div>
 		</div>
-		<div class="event-result">
+		<div class="event-list-result">
+		</div>
+		<div class="event-detail-result">
 		</div>
 	</div>
 </body>
