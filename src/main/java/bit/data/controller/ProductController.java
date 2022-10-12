@@ -136,11 +136,7 @@ public class ProductController {
 	    return productService.getProductDetail(num);
 	}
 	
-<<<<<<< HEAD
-	
-	
 
-	
 	//Search
 	@GetMapping("/search")
 	public String searchList(Model model,HttpServletRequest request) {
@@ -181,9 +177,5 @@ public class ProductController {
 		
 	}
 	
-	
-=======
-
->>>>>>> f5a98b0b3d1cac9e605819cdef7e53f8b1ed3dcd
 
 }
