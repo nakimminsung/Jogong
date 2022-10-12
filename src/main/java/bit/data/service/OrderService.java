@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import bit.data.dao.OrderDaoInter;
+import bit.data.dto.OrderDetailDto;
 import bit.data.dto.OrderDto;
+import bit.data.dto.ProductDto;
+import bit.data.dto.UserDto;
 
 @Service
 public class OrderService implements OrderServiceInter {
@@ -21,25 +24,10 @@ public class OrderService implements OrderServiceInter {
 	}
 
 	@Override
-	public String getItemNameSearch(int num) {
+	public ProductDto getItemSearch(int num) {
 		// TODO Auto-generated method stub
-		return orderdao.getItemNameSearch(num);
+		return orderdao.getItemSearch(num);
 	}
-
-
-	@Override
-	public Integer getItemPriceSearch(int num) {
-		// TODO Auto-generated method stub
-		return orderdao.getItemPriceSearch(num);
-	}
-
-
-	@Override
-	public String getItemThumbnailSearch(int num) {
-		// TODO Auto-generated method stub
-		return orderdao.getItemThumbnailSearch(num);
-	}
-
 
 	@Override
 	public String getfriendNickNameSearch(int num) {
@@ -48,45 +36,21 @@ public class OrderService implements OrderServiceInter {
 	}
 
 	@Override
-	public String getNickNameSearch(int num) {
+	public UserDto getUserSearch(int num) {
 		// TODO Auto-generated method stub
-		return orderdao.getNickNameSearch(num);
+		return orderdao.getUserSearch(num);
 	}
 
 	@Override
-	public Integer getCount(int num) {
+	public OrderDetailDto getOrderDetail(int num) {
 		// TODO Auto-generated method stub
-		return orderdao.getCount(num);
+		return orderdao.getOrderDetail(num);
 	}
 
 	@Override
 	public void insertOrder(OrderDto dto) {
 		// TODO Auto-generated method stub
 		orderdao.insertOrder(dto);
-	}
-
-	@Override
-	public Integer getUserNum(int num) {
-		// TODO Auto-generated method stub
-		return orderdao.getUserNum(num);
-	}
-
-	@Override
-	public Integer getOrderDetailNum(int num) {
-		// TODO Auto-generated method stub
-		return orderdao.getOrderDetailNum(num);
-	}
-
-	@Override
-	public Integer getFriendNum(int num) {
-		// TODO Auto-generated method stub
-		return orderdao.getFriendNum(num);
-	}
-
-	@Override
-	public Integer getProductNum(int num) {
-		// TODO Auto-generated method stub
-		return orderdao.getProductNum(num);
 	}
 
 }

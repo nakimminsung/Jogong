@@ -313,7 +313,7 @@
                 <div class="row-type04" id="point_box">
                     <h4>보유 포인트</h4>
                     <p class="form-type01 btn-area" id="point_box_area">
-                        <span><em class="fc-01" id="gs_point">${point}</em> 원</span>
+                        <span><em class="fc-01" id="gs_point"><b>${point}</b></em> 원</span>
                         <a href="javascript:giftishowPointUse()" id="giftishowPointChk" class="btn-type-c">전액사용</a>
                         <input type="text" id="giftishowUsePoint" value="0">
                     </p>
