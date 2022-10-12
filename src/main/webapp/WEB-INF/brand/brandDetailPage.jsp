@@ -160,7 +160,7 @@
 	<div class="brandContent">
 		<!-- 옵션 -->
 		<div class="brandList">
-			<h3><span>${count}개</span></h3>
+			<span><h3>총 상품 갯수 : ${count}개</h3></span>
 			<div>
 				<select class="categorySort" name="sort">
 					<option value="createdAt desc" selected>최신순</option>
@@ -207,7 +207,7 @@ $(function () {
 						var price= elt.price.toLocaleString();
 						s += "<div class='productItem'>";
 						s += "<a href='/jogong/product/detail?num="+elt.num+"'>";
-						s += "<img src='"+elt.thumbnailImageUrl+"'class='productImage'><br>";
+						s += "<img class='card-img-top' src='"+elt.thumbnailImageUrl+"'class='productImage'><br>";
 						s += "<span style='display: inline-block;'>";
 						s += "<span class='brandName'>"+elt.brand+"</span><br>";
 						s += "<span class='productName'>"+elt.name+"</span><br>";
