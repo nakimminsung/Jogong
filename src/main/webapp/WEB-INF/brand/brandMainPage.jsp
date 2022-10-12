@@ -273,9 +273,10 @@ $(function(){
 					  <a href="detail?brand=${brand.companyName }">
 					    <img class="card-img-top" src="${brand.brandphoto}" alt="Card image" style="width:100%; height:250px;">
 					    <div class="card-body">
-	  				      <h5 class="card-text">${brand.companyName}</h5></a>
+	  				      <h5 class="card-text">${brand.companyName}</h5>
 					      <p class="card-title" style="display: -webkit-inline-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;">${brand.description}</p>
 					    </div>
+					    </a>
 					  </div>
 					</div>
 				</c:forEach>

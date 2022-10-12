@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -382,7 +383,7 @@
                                 <div data-v-35b707e2="" class="pay_box">
                                     <div data-v-35b707e2="" class="pay_title">
                                         <p data-v-35b707e2="" class="main_title">카카오페이</p>
-                                    </div><img data-v-35b707e2="" src="image/kakaopay.jpg" alt="카카오페이" class="pay_img">
+                                    </div><img data-v-35b707e2="" src="image/kakaopay.png" alt="카카오페이" class="pay_img">
                                 </div>
                             </div>
                             <div data-v-35b707e2="" class="pay_item" id="tosspay" value="tosspay" >
@@ -449,7 +450,7 @@
                     <tbody>
                         <tr>
                             <th>상품 금액</th>
-                            <td><strong id="total_sale_price">${price}</strong> 원</td>
+                            <td><strong id="total_sale_price"><fmt:formatNumber value="${price}" type="number"/></strong> 원</td>
                         </tr>
                         <tr>
                             <th>할인 금액</th>
@@ -472,7 +473,7 @@
                         <tr>
                             <th>결제 금액</th>
                             <td id="final_price">
-                            	<strong id="final_price">${totalprice} 원</strong>
+                            	<strong id="final_price"><fmt:formatNumber value="${totalprice}" type="number"/> 원</strong>
                             </td>
                         </tr>
                     </tfoot>
