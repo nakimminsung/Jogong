@@ -93,7 +93,7 @@
       
     
 
-      //문의 접수 버튼 클릭 이벤트 (세션의 userNum 확인용도)
+    //문의 접수 버튼 클릭 이벤트 (세션의 userNum 확인용도)
 	$(".sub").click(function () {
 		
 		var test=$("#loginUserNum").val();
@@ -101,6 +101,7 @@
 		alert(test);
 		
 	});
+      
       
 	//onsubmit : submit 하기 직전에 호출되는 메서드
 	function check(){
@@ -187,8 +188,8 @@
 
             <tr>
                <th colspan="2" style="text-align: center;">
-                  <!-- <button type="submit" class="btn btn-warning sub">문의 접수</button> -->
-                  <button type="button" class="btnsub">문의 접수</button>
+                  <button type="submit" class="btn btn-warning sub">문의 접수</button>
+                  <!-- <button type="button" class="btnsub">문의 접수</button> -->
                </th>
             </tr>
             
