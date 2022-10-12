@@ -1,6 +1,10 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<!-- JSTL list 사이즈 구하는 것 관련 -->
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,6 +34,7 @@
 	}
 	div.qna-wrapper {
 		width: 100%;
+		height: 100%;
 		margin-bottom: 100px;
 	}
 	div.qna-top {
@@ -66,56 +71,90 @@
 		
 		<!-- 내용 -->
 		<div class="qna-result" style="width: 100%; height: 800px;">
-			<table class="table table-borderd">
-				<tr style="text-align: center; background-color: #f5f5f5;">
-					<th style="width: 150px;">문의 유형</th>
-					<th style="width: 350px; text-align: left;">문의 제목</th>
-					<th style="width: 150px;">처리 상태</th>
-					<th style="width: 150px;">등록일</th>
-				</tr>
-				
-				<c:forEach var="s" items="${qnaList}">
-				
-					<tr style="text-align: center; border-top: 2px solid gray;">
-						<td>${s.name}</td>
-						<td style="text-align: left;">${s.title}</td>
-						<td>
-							<c:if test="${s.qnaStatus=='답변대기중'}">
-								<span style="color: red;">${s.qnaStatus}</span>
-							</c:if>
-							
-							<c:if test="${s.qnaStatus!='답변대기중'}">
-								<span style="color: #1C8FED;">${s.qnaStatus}</span>
-							</c:if>
-						</td>
-						<td><fmt:formatDate value="${s.createdAt}" pattern="yyyy-MM-dd"/></td>
+		
+		
+		
+			<!-- 일반 유저 user -->
+			<c:if test="${sessionScope.loginid!=null}">
+			
+				<table class="table table-borderd">
+					<tr style="text-align: center; background-color: #f5f5f5;">
+						<th style="width: 150px;">문의 유형</th>
+						<th style="width: 350px; text-align: left;">문의 제목</th>
+						<th style="width: 150px;">처리 상태</th>
+						<th style="width: 150px;">등록일</th>
 					</tr>
-					<tr>
-						<td rowspan="2" style="vertical-align: middle; text-align: center;">Q</td>
-						<td colspan="3">
-							<b>주문번호:</b> ${s.orderNum}<br>
-							<b>이메일:</b> ${s.email}
-						</td>
-					</tr>
-					<tr>
-						<td colspan="3">
-						<p style="font-weight: bold;">${s.title}</p>
-						<pre style="font-family: SeoulNamsanM">${s.content}</pre>
-						</td>
-					</tr>
-
-					<c:if test="${s.qnaStatus!='답변대기중'}">
-					<tr>
-						<td rowspan="2" style="vertical-align: middle; text-align: center; background-color: #cff0cc;">A</td>
-						<td colspan="3">
-							이메일로 답변 완료된 문의입니다.
-						</td>
-					</tr>
+					
+					<!-- ${qnaList} 를 list 변수에 담기 : list의 길이가 0일때와 아닐때를 구분하기 위함 -->
+					<script>
+						var list = new Array();
+						
+						list.push("${qnaList}");
+					</script>
+					
+					<!-- list 가 0이 아닐때 (jstl list 길이 구하는 방법) -->
+					<!-- 상단에 fn 관련 스크립트 삽입해야함 -->
+					<c:if test="${fn:length(list)!=0}">
+					
+					<c:forEach var="s" items="${qnaList}">
+					
+						<tr style="text-align: center; border-top: 2px solid gray; font-weight: bold;">
+							<td>${s.name}</td>
+							<td style="text-align: left;">${s.title}</td>
+							<td>
+								<c:if test="${s.qnaStatus=='답변대기중'}">
+									<span style="color: red;">${s.qnaStatus}</span>
+								</c:if>
+								
+								<c:if test="${s.qnaStatus=='답변완료'}">
+									<span style="color: #1C8FED;">${s.qnaStatus}</span>
+								</c:if>
+							</td>
+							<td><fmt:formatDate value="${s.createdAt}" pattern="yyyy-MM-dd"/></td>
+						</tr>
+						
+						<tr valign="middle">
+							<td style="text-align: center;">Q</td>
+							<td colspan="3">
+								<pre style="font-family: SeoulNamsanM; font-size: 14px;">${s.content}</pre>
+							</td>
+						</tr>
+	
+						
+						<c:if test="${s.qnaStatus=='답변완료'}">
+							<tr>
+								<td style="vertical-align: middle; text-align: center; background-color: #cff0cc;">A</td>
+								<td colspan="3">
+									이메일로 답변 완료된 문의입니다.
+								</td>
+							</tr>
+						</c:if>
+					
+					</c:forEach>
+					
+					</c:if>
+					
+					
+					<!-- list가 0일때 (= 문의 내역이 없을때) -->
+					<c:if test="${fn:length(list)==0}">
+						<tr>
+							<td colspan="4" style="text-align: center;">
+								<h5>문의 내역이 없습니다</h5>
+							</td>
+						</tr>
 					</c:if>
 				
-				</c:forEach>
+				</table>
 			
-			</table>
+			</c:if> <!-- 일반 user 종료 -->
+			
+			
+			
+			<!-- 판매자 계정 seller -->
+			<c:if test="${sessionScope.loginid_seller!=null}">
+				<br><br>
+				<h5>판매자 계정은 영업 담당자를 통해 문의해주시기 바랍니다.</h5>
+			</c:if>
 		</div>
 	</div>	
 </body>

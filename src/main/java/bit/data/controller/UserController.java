@@ -57,12 +57,21 @@ public class UserController {
     @GetMapping("/mypage/qna")
     public String qnaPage(Model model, HttpSession session) {
     	
-    	int userNum=(int) session.getAttribute("loginUserNum");
-		
-		//userNum 을 보내서 qnaList 가져오기
+    	int userNum;
+    	
+    	//user 로그인 (소셜로그인 포함)
+    	if(session.getAttribute("loginUserNum")!=null) {
+    		
+    		userNum=(int) session.getAttribute("loginUserNum");
+    		
+		//seller 로그인
+    	} else {
+    		
+    		userNum=0;
+    	}
+    	
+    	//userNum 을 보내서 qnaList 가져오기
 		List<QnaDto> qnaList=userServiceInter.getQnaList(userNum);
-		
-//		System.out.println(qnaList);
 		
 		//model에 결과 담기
 		model.addAttribute("qnaList",qnaList);
