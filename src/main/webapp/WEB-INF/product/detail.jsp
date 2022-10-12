@@ -137,7 +137,8 @@
      line-height: 45px;
      color: #222;
      background-color: white;
-     margin-top: 100px;
+     margin-top: 30px;
+ 
    }
 
    .detailInsert {
@@ -199,11 +200,11 @@
    }
    #orderDetailModal .gift-modal-window {
      background: #fff;
-     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-     backdrop-filter: blur(13.5px);
-     -webkit-backdrop-filter: blur(13.5px);
+     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+     backdrop-filter: blur( 13.5px );
+     -webkit-backdrop-filter: blur( 13.5px );
      border-radius: 10px;
-     border: 1px solid rgba(255, 255, 255, 0.18);
+     border: 1px solid rgba( 255, 255, 255, 0.18 );
      width: 400px;
      height: 600px;
      position: relative;
@@ -215,6 +216,7 @@
      color: gray;
      font-weight: 400px;
      font-size: 20px;
+     z-index: 999;
    }
    .modal-fix {
      position: fixed;
@@ -260,13 +262,15 @@
      margin-bottom: -10px;
    }
    div.gift-modal-search input {
-     width: 100%;
-     height: 40px;
+	  position:relative;
+	  top:10px;
+	  width: 100%;
+	  height: 40px;
    }
    div.gift-modal-search img {
      width: 30px;
      position: relative;
-     top: -35px;
+   	 top: -26px;
      left: 325px;
      cursor: pointer;
    }
@@ -276,8 +280,15 @@
    }
    div.friend-result {
      overflow: auto;
-     height: 230px;
+     height: 290px;
    }
+   div.friend-result input{
+     position: relative;
+     top: 5px;
+   }
+   div.friend-result b{
+    	position: relative;
+    }
    div.friend-select-list {
      height: 80px;
      display: flex;
@@ -291,6 +302,13 @@
      overflow: auto;
      height: 230px;
    }
+
+	button.getWishlist{
+		background-color: #cff0cc;
+	}
+
+
+
 
    .detailDescButton > ul > li {
      cursor: pointer;
@@ -472,6 +490,7 @@ form h1 {
   background-color: #fff;
   border: 1px solid transparent;
   border-radius: 6px;
+  display:none;
   transition: border-color 200ms ease-in, padding 200ms ease-in,
     max-height 200ms ease-in, box-shadow 200ms ease-in;
 }
@@ -481,6 +500,7 @@ form h1 {
   max-height: 280px;
   border-color: rgba(224, 226, 231, 0.5);
   box-shadow: 0 4px 9px 0 rgba(63, 65, 80, 0.1);
+  display: block;
 }
 
 .dropdown-option {
@@ -511,21 +531,100 @@ form h1 {
   background-color: #e0e2e7;
   cursor: not-allowed;
 }
+
+#cart-wish-modal.cart-modal-overlay {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: rgba(50, 50, 50, 0.25);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(1.5px);
+        -webkit-backdrop-filter: blur(1.5px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        display: none;
+        z-index: 999;
+    }
+    #cart-wish-modal .cart-modal-window {
+        background: #fff;
+        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+        backdrop-filter: blur( 13.5px );
+        -webkit-backdrop-filter: blur( 13.5px );
+        border-radius: 10px;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+        width: 400px;
+        height: 300px;
+   		position: absolute;
+        top: 200px;
+        padding: 20px;
+    }
+    .modal-fix {
+	  position: fixed;
+	  width :100%;
+	  height: 100%;
+	  overflow: scroll;
+	}
+	div.cart-modal-window {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	div.cart-modal-top{
+		margin-bottom: 35px;
+	}
+	div.cart-modal-middle{
+		margin-bottom: 35px;
+		width:100%;
+	}
+	div.cart-modal-bottom {
+		display: flex;
+		flex-direction: row;
+	}
+	div.cart-wish-option{
+		display: flex;
+		flex-direction: column;
+	}
+	div.cart-wish-option input{
+		margin-top: 5px;
+	}
+	div.cart-wish-option>div {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+	}
+	div.cart-wish-option>div>div{
+		display: flex;
+		flex-direction: column;
+		margin-right: 10px;
+	}
+	
 </style>
 <script type="text/javascript">
   $(function(){
-	
+	// 옵션 
 	var productNum = $('input[name=productNum]').val();
-	console.log("num"+productNum);
+	getAllOption(productNum);
+	
+	// 리뷰ajax
 	borderBottom();
 	getReviewCount();
-	getAllOption(productNum);
-	  	
-	  
+ 
+	//친구목록 조회 함수 호출 
+	let data = {userNum:$("input[name=userNum]").attr("value"),search:""};
+	list(data);
+
+	// 가격표시
   	var price = $(".proPrice").val().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   	$('._price').text(price+"원");
   	$('.totalcost').text(price+"원");
 
+  	// 배송비 표시
   	var deliveryOption = $(".delivery").val();
   	if(deliveryOption){
   		$('._delivery').text(" 배송비 미포함");
@@ -539,9 +638,6 @@ form h1 {
   	var minus = document.querySelector(".detailMinus");
   	var result = document.querySelector("#detailResult");
   	var count =1;
-
-  	const modal = document.getElementById("orderDetailModal")
-      const btnModal = document.getElementById("btn_orderDetail")
 
   	plus.addEventListener("click", ()=>{
   		count++;
@@ -588,22 +684,42 @@ form h1 {
 		$(this).find('.fa-star:nth-child(-n'+targetScore+')').css({color:'#F7C815'});
 	});
 		
-  	// 선물상자 담기
+  	// 선물상자 담기 
   	$("#btn_detailCart").click(function(){
-  		var data = $("#insertDetail").serialize();
-  		var s ="";
-  		$.ajax({
-  			type:"post",
-  			url:"../cart/insert",
-  			dataType:"text",
-  			data:data,
-  			success:function(res){
-
-  			},
-  		});
+  		var productNum = $('input[name=productNum]').val();
+  		
+  		if(${empty sessionScope.loginUserNum}) {
+			if(!confirm("로그인이 필요한 메뉴입니다.\n로그인하시겠습니까?")){
+	
+			} else {
+				location.href="../loginForm";
+			}
+			return
+		} else {
+			var data = $("#insertDetail").serialize();
+	  		var s ="";
+	  		$.ajax({
+	  			type:"post",
+	  			url:"../cart/insert",
+	  			dataType:"text",
+	  			data:data,
+	  			success:function(res){
+					alert("선물상자에 상품을 담았어요");
+			   
+	  			},
+	  		});
+		}
   	});
+  	
+ 	// 위시리스트
+ 	// 취소버튼 누를 때 모달 꺼짐
+	$(document).on("click",".btn-cancel",function(){
+		var wishModal = document.getElementById("cart-wish-modal");
+	    wishModal.style.display = "none"
+        $("body").attr("class","");
+	});
 
-  	$(".detailWishlist").click(function(){
+	$("#btn_wishListInsert").click(function(){
   		var data = $("#insertDetail").serialize();
   		 var s ="";
   		$.ajax({
@@ -612,11 +728,31 @@ form h1 {
   			dataType:"text",
   			data:data,
   			success:function(res){
+  				var wishModal = document.getElementById("cart-wish-modal");
   				alert("위시리스트에 상품이 담겼어요");
+  			 	wishModal.style.display = "none"
+  			    $("body").attr("class",""); 
   			},
   		});
-  	});
-
+  	}); 
+	
+   //하트(위시리스트)
+	var modal3 = document.getElementById("cart-wish-modal");
+    var btnModal3 = document.getElementById("btn_detailWish");
+  	$("#btn_detailWish").click(function(){
+		if(${empty sessionScope.loginUserNum}) {
+			if(!confirm("로그인이 필요한 메뉴입니다.\n로그인하시겠습니까?")){
+	
+			} else {
+				location.href="../loginForm";
+			}
+			return;
+		}else {
+	    	modal3.style.display = "flex"
+		}
+	}); 
+  	
+  	// 선물하기 insert(모달)
   	$("#btn_orderDetailInsert").click(function(){
   		var data = $("#insertDetail").serialize();
   		/* alert(data); */
@@ -626,72 +762,79 @@ form h1 {
   			dataType:"json",
   			data:data,
   			success:function(res){
-  				modal.style.display = "none"
+  				
   				window.location.href="../payview?num="+res.num;
   			},
   		});
   	});
-
+  	
+  	// 선물하기 
+	var modal2 = document.getElementById("orderDetailModal");
+    var btnModal2 = document.getElementById("btn_orderDetail");
+    
   	$("#btn_orderDetail").click(function(){
-  		var userNum = $('input[name=userNum]').attr("value");
-  		var s="";
-  		$.ajax({
-  			type: "get",
-  			url: "../user/friendData",
-  			dataType: "json",
-  			data: {"userNum":userNum},
-  			success:function(res){
-  				s += "<ul style='padding-left:0;'>";
-  				$.each(res, function(i,elt) {
-  					s += "<li style='list-style:none; float:left;'>";
-  					s += "<div style='margin-right:50px;'>";
-  					s += "<input type='checkbox' style='margin-right:10px;' name='friendNum' value='"+elt.num+"'>";
-  					s += "<label>";
-  					s += "<img src='"+elt.profileImage+"' width='100' class='gift-friend-img' style='margin-right:5px;'>";
-  					s += "<b num='"+elt.num+"'>"+elt.nickname+"</b>";
-  					s += "</label>";
-  					s += "</div>";
-  					s += "</li>";
-  				});
-  				s += "</ul>";
-  				$(".detail-modal-body").html(s);
-  			}
-  		});
+  		
+  		if(${empty sessionScope.loginUserNum}) {
+			if(!confirm("로그인이 필요한 메뉴입니다.\n로그인하시겠습니까?")){
+			} else {
+				location.href="../loginForm";
+			}
+		} else {
+	    	modal2.style.display = "flex";
+		}
   	});
+  	
+  	var closeBtn = modal2.querySelector(".gift-close-area");
+ 	// 모달 x버튼 클릭시 닫기
+	closeBtn.addEventListener("click", e => {
+	    modal2.style.display = "none"
+        $("body").attr("class","");
+	    $("input[name=friend-search]").val();
+	});
+	
+	// 모달 외부 클릭시 닫기
+	modal2.addEventListener("click", e => {
+	    const evTarget = e.target
+		    if(evTarget.classList.contains("gift-modal-overlay")) {
+		        modal2.style.display = "none"
+        		$("body").attr("class","");
+			    $("input[name=friend-search]").val();
+		    }
+	});
 
-      btnModal.addEventListener("click", e => {
-  	    modal.style.display = "flex"
-  	})
-
-  	const closeBtn = modal.querySelector(".gift-close-area")
-
-  	closeBtn.addEventListener("click", e => {
-  	    modal.style.display = "none"
-          $("body").attr("class","");
-  	})
-
-  	modal.addEventListener("click", e => {
-  	    const evTarget = e.target
-  		    if(evTarget.classList.contains("gift-modal-overlay")) {
-  		        modal.style.display = "none"
-          		$("body").attr("class","");
-  		    }
-  	})
-
+	// 모달 실행시 오버레이 실행
+	$("#gift-friend").click(function(){
+		$("body").attr("class","modal-fix");
+	});
+        
+	// 모달 취소버튼 클릭시 닫기
+	$(document).on("click",".btn-cancel",function(){
+	    modal2.style.display = "none"
+	    $("body").attr("class","");
+		$("input#friend-search").val("");
+	});
+	
+	// 친구 검색
+	$("#friend-search").on('keyup keypress',function(){
+		let data = {userNum:$("input[name=userNum]").attr("value"),search:$(this).val().trim()};
+		list(data);
+	});
+		
   	window.addEventListener("keyup", e => {
-  		if(modal.style.display === "flex" && e.key === "Escape") {
-      		modal.style.display = "none"
+  		if(modal2.style.display === "flex" && e.key === "Escape") {
+      		modal2.style.display = "none"
       		$("body").attr("class","");
-  			}
+  		}
   	})
 
   	$("#btn_orderDetail").click(function(){
   		$("body").attr("class","modal-fix");
   	});
 
-      $(".btn-calcel").click(function(){
-      	modal.style.display = "none"
-      })
+     $(document).on("click",".btn-cancel",function(){
+	    modal2.style.display = "none"
+	    $("body").attr("class","");
+	});
 
       // 상세설명, 리뷰
       $("document").ready(function(){
@@ -714,7 +857,6 @@ form h1 {
   			dataType:"json",
   			success:function(res){
   				getReviewCount2();
-  				//console.log(res);
   				s+="<h3 class='reviewContent' style='font-weight:600;'></h3>";
   				s+="<div class='reviewContentBtn'>";
   					s+="<span class='latestProduct'>최신순</span><span class='popProduct'>별점순</span>";
@@ -757,15 +899,125 @@ form h1 {
  	 //옵션
 	var dropdownForm = document.querySelector(".drowpdown");
 	var dropdownBtn = document.querySelector(".dropdown-toggle");
+	
 	var menuList = document.querySelector(".dropdown-menu");
 	var itemList = document.querySelector(".dropdown-item");
-
-	dropdownBtn.addEventListener("click", function () {
+	
+	dropdownBtn?.addEventListener("click", function () {
 		  menuList.classList.toggle("show");
 	});
 	
+	menuList?.addEventListener("click",function(){
+		menuList.classList.toggle("hidden");
+	});
+	
+	// 모달 창에서 친구 선택시 모달 상단 친구 출력
+	var fl = 0;
+	$(document).on("click",".chkBox",function(){
+		
+		var ba = new Array();
+		var fs = "";	
+		
+		fl = $(".chkBox:checked").length;
+	
+	    $(".chkBox:checked").each(function() {
+	    	var map = new Map();
+	    	map.set("b",$(this).siblings().find("b").text()); 
+	    	map.set("img",$(this).siblings().find("img").attr("src")); 
+	    	map.set("num",$(this).siblings().find("b").attr("num")); 		    	 		    	 	    	 		    	 
+	    	ba.push(map);
+	    });			
+		
+		if(fl != 0){
+			fs += "<ul class='wish' style='padding-left:0;'>";
+			
+			$.each(ba, function(i,elt) {
+				fs += "<li style='list-style:none; float:left;' class='wish' num='"+elt.get("num")+"' name='"+elt.get("b")+"'>";
+				fs += "<img src='"+elt.get("img")+"' width='50' style='margin-top:10px;' class='gift-friend-img wish'>";
+				fs += "<div style='text-align:center;'>"+elt.get("b")+"</div>";
+				fs += "</li>";
+			});
+			fs += "</ul>";				
+			$("div.friend-select-list").html(fs);
+        	
+		}else{
+			$(".friend-length").text("");
+			
+			fs += "<img src='${root }/image/default.png' class='gift-friend-img'>";
+        	fs += "선물할 친구를 선택하세요.";
+        	$("div.friend-select-list").html(fs);
+		}
+	});
+	
+	// 나에게 선물하기 
+	$("#btn_selfGift").click(function(){
+		console.log("에러안남");
+  		if(${empty sessionScope.loginUserNum}) {
+			if(!confirm("로그인이 필요한 메뉴입니다.\n로그인하시겠습니까?")){
+			} else {
+				location.href="../loginForm";
+			}
+		} else {
+			var data = $("#insertDetail").serialize();
+	  		var s ="";
+	  		$.ajax({
+	  			type:"post",
+	  			url:"../orderDetail/insertSelfGift",
+	  			dataType:"json",
+	  			data:data,
+	  			success:function(res){
+	  				window.location.href="../payview?num="+res.num;
+	  			},
+	  		});
+		}
+  	});
   }); // $(())
 
+	//친구목록 조회 함수
+	function list(data) {
+		let s="";
+		console.log(data);
+			
+		$.ajax({
+			type: "post",
+			url: "../user/friendData",
+			dataType: "json",
+			contentType: "application/json; charset=utf-8",
+			data: JSON.stringify({"data":data}),
+			success:function(res){
+				
+				s += "<ul style='padding-left:0;'>";
+				
+				$.each(res, function(i,elt) {
+					
+					s += "<li style='list-style:none; float:left;'>";
+					s += "<div style='margin-right:50px;'>";
+					s += "<input type='radio' style='margin-right:10px;' class='chkBox' name='friendNum' value='"+elt.num+"'>";
+					s += "<label>";
+					s += "<img src='"+elt.profileImage+"' width='100' class='gift-friend-img' style='margin-right:5px;'>";
+					s += "<b num='"+elt.num+"'>"+elt.nickname+"</b>";
+					s += "</label>";
+					s += "</div>";
+					s += "</li>";
+				});
+				s += "</ul>";
+				$("div.friend-result").html(s);
+			}
+		});
+		
+		// 친구인원수
+		$.ajax({
+			type: "get",
+			url: "../user/friendCount",
+			dataType: "json",
+			data: {"userNum":$("input[name=userNum]").attr("value")},
+			success:function(res){
+				
+				$("span.friend-count").text(res);
+			}
+		});
+	}
+  
   	function borderBottom(){
   		$('a.link_tab').css("border-bottom","");
   		$("#detailProDesc").css("border-bottom","3px solid black");
@@ -832,11 +1084,11 @@ form h1 {
 					
 					optionBtn.forEach(function (item) {
 						item.addEventListener("click", function (e) {
-					    var selectValue = e.currentTarget.textContent.trim();
-					    console.log("val"+selectValue);
-					    dropdownBtn.textContent = selectValue;
-					    dropdownBtn.classList.add("selected");
-					    $('input[name=productOption]').attr('value', selectValue);
+						    var selectValue = e.currentTarget.textContent.trim();
+						    console.log("val"+selectValue);
+						    dropdownBtn.textContent = selectValue;
+						    dropdownBtn.classList.add("selected");
+						    $('input[name=productOption]').attr('value', selectValue);
 				  		});
 					});
 					
@@ -861,6 +1113,7 @@ form h1 {
     <c:if test="${!empty sessionScope.loginUserNum}">
     	<input type="hidden" name="userNum" value="${sessionScope.loginUserNum}" />
     </c:if>
+    
     <input type="hidden" name="productNum" value="${dto.num }" />
     <input type="hidden" name="productOption" value=""/>
 
@@ -892,9 +1145,10 @@ form h1 {
           ${dto.country }
         </p>
       </div>
-
+	
       <div class="detailItem detailRight">
         <h5 style="font-weight: bold">${dto.name }</h5>
+        <div id="_detailRight">
         <!-- 옵션넣기 -->
         <c:if test="${dto.sizeOption == 1}">
         	<br>
@@ -929,43 +1183,30 @@ form h1 {
           class="detailCart"
           id="btn_detailCart"
           data-toggle="modal"
-          data-target="#detailCartModal"
         >
           <i class="fa-solid fa-gift"></i>&nbsp;&nbsp;선물상자 담기
         </button>
 
         <div class="detailInsert">
           <!-- 위시리스트 -->
-          <button
-            type="button"
-            class="btn_g"
-            id="btn_detailWish"
-            data-toggle="modal"
-            data-target="#wishlistModal"
-          >
+          <button type="button" class="btn_g cart-wish-button" id="btn_detailWish" data-toggle="modal">
             <span class="likes">
-              <i
-                class="far fa-heart"
-                style="font-size: 20px; margin-left: 5px; margin-top: 3px"
-              ></i
-              >&nbsp;
+              <i class="far fa-heart" style="font-size: 20px; margin-left: 5px; margin-top: 3px"></i>&nbsp;
             </span>
           </button>
 
-          <button
-            type="submit"
-            class="detailSelfGift"
-            formaction="../orderDetail/insertSelfGift"
-          >
+         <!--  <button type="submit" class="detailSelfGift" formaction="../orderDetail/insertSelfGift">
+            <b>나에게 선물하기</b>
+          </button> -->
+           <button type="button" class="detailSelfGift" id="btn_selfGift">
             <b>나에게 선물하기</b>
           </button>
-          <!-- <button type="submit" class="detailGift" formaction="../orderDetail/insert"> -->
           <button type="button" class="detailGift" id="btn_orderDetail">
             <b>선물하기</b>
           </button>
         </div>
-        
       </div>
+     </div>
 
       <!-- 버튼 -->
       <div class="detailItem detailDescription">
@@ -986,155 +1227,75 @@ form h1 {
       <div id="orderDetailModal" class="gift-modal-overlay">
         <div class="gift-modal-window">
           <div class="gift-modal-top">
-            <div class="gift-title">
-              <div>
-                <h5>
-                  친구 선택
-                  <span
-                    style="
-                      font-size: 20px;
-                      margin-bottom: 5px;
-                      color: #ff6b00;
-                    "
-                    class="friend-length"
-                  ></span>
-                </h5>
-              </div>
-              <div class="gift-close-area">X</div>
-            </div>
-            <div class="friend-select-list">
-              <img src="${root }/image/default.png" class="gift-friend-img" />
-              선물할 친구를 선택하세요.
-            </div>
-            <div class="gift-modal-search">
-              <input type="search" placeholder="이름, 닉네임 검색" />
-              <img src="${root}/image/search.svg" />
-            </div>
-          </div>
-          <div class="gift-modal-top">
-            <div>나</div>
-            <div class="gift-modal-friend-list">
-              <div class="gift-modal-select">
-                <input type="checkbox" />
-                <img
-                  src="${root }/image/default.png"
-                  class="gift-friend-img"
-                />
-                명국
-              </div>
-            </div>
-            <div style="margin: 10px 0">
-              친구목록
-              <span
-                style="font-size: 15px; margin-bottom: 5px"
-                class="friend-count"
-              ></span>
-            </div>
-            <div class="detail-modal-body"><!-- modal 내용 들어감 --></div>
+	            <div class="gift-title">
+	            	<div>
+		                <h5>
+		                	친구 선택
+		                	<span style="font-size: 20px; margin-bottom: 5px; color:#ff6b00;" class="friend-length"></span>
+		                </h5>
+	            	</div>
+	            	<div class="gift-close-area">X</div>
+	            </div>
+	            <div class="friend-select-list">
+	            	<img src="${root }/image/default.png" class="gift-friend-img">
+	            	<b style="font-weight: normal; position: relative; left: 5px;">선물할 친구를 선택하세요.</b>
+	            </div>
+	            <div class="gift-modal-search">
+	            	<input type="search" placeholder="이름, 닉네임 검색" id="friend-search" name="friend-search">
+	            	<img src="${root}/image/search.svg" style="cursor: pointer;" id="search-start">
+	            </div>
+        	</div>
+          <div class="gift-modal-middle">
+            	<div style="margin: 10px 0;">
+            		친구목록
+            		<span style="font-size: 15px; margin-bottom: 5px;" class="friend-count"></span>
+            	</div>
+            	<div class="friend-result">
+            	</div>
           </div>
           <div class="gift-modal-button">
-            <button type="button" class="btn btn-secondary btn-calcel">
-              취소
-            </button>
-            <div></div>
-            <button
-              type="button"
-              class="btn btn-warning getWishlist"
-              id="btn_orderDetailInsert"
-            >
-              확인
-            </button>
+				<button type="button" class="btn btn-secondary btn-cancel">취소</button>
+				<div></div>
+				<button type="button" class="btn getWishlist" id="btn_orderDetailInsert">확인</button>
           </div>
         </div>
       </div>
 
-      <!-- 선물상자 담기 Modal -->
-      <div
-        class="modal fade"
-        id="detailCartModal"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-body">
-              <img
-                src="${dto.thumbnailImageUrl }"
-                width="100"
-                style="float: left"
-              />
-              <h4><b>선물상자에 상품을 담았어요</b></h4>
-              <a href="${root}/mypage/cart">선물상자 보러가기</a>
+      <!-- wish modal -->
+    <div id="cart-wish-modal" class="cart-modal-overlay">
+        <div class="cart-modal-window">
+        	<div class="cart-modal-top">
+	       		<b style="font-size: 20px;">위시의 공개범위를 선택해주세요</b>
+        	</div>
+        	<div class="cart-modal-middle">
+		       		<div class="cart-wish-option">
+		       			<div style="border-bottom: #f0f0f0 solid 1px; padding-bottom: 15px; margin-bottom: 15px;">
+		       				<div>
+				       			<input type="radio" name="publicOption" value=1 style="display: inline;" checked="checked">
+		       				</div>
+			       			<div>
+				       			<b style="display: block; font-size: 17px; margin-bottom: 5px;">친구공개! 내 취향은 이거야</b>
+				       			<b style="font-size: 13px; color:gray;">내 선물을 고민하는 친구를 위해 힌트 주기</b>
+			       			</div>
+		       			</div>
+		       			<div>
+		       				<div>
+				       			<input type="radio" name="publicOption" value=0>
+		       				</div>
+			       			<div>
+				       			<b style="display: block; font-size: 17px;">비밀! 나만 볼 수 있어요</b>
+				       			<b style="font-size: 13px; color:gray;">나만 알고 싶은 상품, 몰래 찜해두기</b>
+			       			</div>
+		       			</div>
+		       		</div>
+        	</div>
+            <div class="cart-modal-bottom">
+				<button type="button" class="btn btn-secondary btn-cancel" style="width:180px;">취소</button>
+				<div style="width:10px;"></div>
+				<button type="button" id="btn_wishListInsert" class="btn cart-wish-insert" style="width:180px; background-color: #cff0cc;">담기</button>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="detailCart" data-dismiss="modal">
-                Close
-              </button>
-            </div>
-          </div>
         </div>
-      </div>
-
-      <!-- wishlist Modal -->
-      <div
-        class="modal fade"
-        id="wishlistModal"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
-                위시의 공개범위를 선택해주세요
-              </h5>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <label
-                ><input
-                  type="radio"
-                  style="width: 18px; height: 18px; border: 1px"
-                  name="publicOption"
-                  value="0"
-                  checked="checked"
-                />
-                <h5 style="display: inline-block">친구공개</h5>
-              </label>
-              <br />
-              <label
-                ><input
-                  type="radio"
-                  style="width: 18px; height: 18px; border: 1px"
-                  name="publicOption"
-                  value="1"
-                />
-                <h5 style="display: inline-block">비공개</h5>
-              </label>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="detailWishlist"
-                data-dismiss="modal"
-              >
-                담기
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+    </div>
     </div>
   </form>
 </body>
