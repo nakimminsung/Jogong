@@ -139,12 +139,17 @@ $(function(){
 			});
 		});
 	
-	
+	// 카테고리 눌렀을때 밑줄 이벤트 주기
 	 $('a.sorting').click(function() {
 		$('.sorting').find("span").css("border-bottom","");
+		$('.sortingAll').find("span").css("border-bottom","");
 		$(this).find("span").css("border-bottom","4px solid #cff0cc");
 	}); 
 	 
+	$(".sortingAll").click(function(){
+		$('.sorting').find("span").css("border-bottom","");
+		$(this).find("span").css("border-bottom","4px solid #cff0cc");
+	});
 	 
 	// 전체 조회 버튼 
 	$(".sortingAll").click(function(e) {
