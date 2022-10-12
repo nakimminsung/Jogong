@@ -84,9 +84,6 @@ public class ProductDao implements ProductDaoInter {
 		return session.selectList(ns+"getProductByNum",map);
 	}
 	
-	
-	
-	
 	//search
 	@Override
 	public int getSearchCount(String searchword) {
@@ -105,7 +102,4 @@ public class ProductDao implements ProductDaoInter {
 		
 		return session.selectList(ns+"getSearchProductBySort",map);
 	}
-	
-	
-	
 }
