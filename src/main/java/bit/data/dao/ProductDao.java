@@ -83,9 +83,4 @@ public class ProductDao implements ProductDaoInter {
 		// TODO Auto-generated method stub
 		return session.selectList(ns+"getProductByNum",map);
 	}
-
-	
-	
-	
-	
 }
