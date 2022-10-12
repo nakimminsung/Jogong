@@ -81,6 +81,9 @@
 		color:#d0d0d0; 
 		font-size: 15px; 
 	}
+	div.friend-object:hover {
+		background-color: #eff9ee;	
+	}
 </style>
 <script>
 	$(function(){
@@ -120,21 +123,11 @@
 			data: JSON.stringify({"data":data}),
 			success:function(res){
 				
-				s += "<ul style='padding-left:0;'>";
-				
 				$.each(res, function(i,elt) {
 					
-					s += "<li style='list-style:none; float:left;'>";
-					s += "<div style='margin-right:50px;'>";
-					s += "<input type='radio' style='margin-right:10px;' class='chkBox' name='radio'>";
-					s += "<label>";
-					s += "<img src='"+elt.profileImage+"' width='100' class='gift-friend-img' style='margin-right:5px;'>";
-					s += "<b num='"+elt.num+"'>"+elt.nickname+"</b>";
-					s += "</label>";
-					s += "</div>";
-					s += "</li>";
+				
+					
 				});
-				s += "</ul>";
 				$("div.friend-result").html(s);
 			}
 		});
@@ -173,12 +166,38 @@
 		<div class="friend-menu">
 			<div class="friend-after">
 				<span style="color:#000; border-bottom: 3px solid #000;">내 친구</span>
-				<span class="friend-after-count"></span>
 			</div>
 			<span>|</span>
 			<div class="friend-before">
 				<span>친구 요청 목록</span>
 				<span class="friend-before-count"></span>
+			</div>
+		</div>
+		<span class="friend-after-count">친구 150</span>
+		<div class="friend-result">
+			<div class="friend-object" style="display: flex; flex-direction: row; justify-content: flex-start; padding:10px 40px; widows: 100%;">
+				<div class="friend-object-left" style="display: flex; justify-content: center; align-items: center; margin-right: 20px;">
+					<img src="" style="background-color: #909090; width:60px; height:60px; border-radius: 20px;">
+				</div>
+				<div class="friend-object-right" style="display: flex; align-items: center; width: 100%; justify-content: space-between;">
+					<div style="display: flex; flex-direction: column; justify-content: center;">
+						<span style="font-size: 17px; font-weight: 1000;">이름</span>
+						<span style="font-size: 13px; font-weight: 1000; color: #a0a0a0;">아 집가고 싶다</span>
+					</div>
+					<div style="width: 90px; display: flex; justify-content: space-between;">
+						<a href="#"><i class='fas fa-envelope' style='font-size:24px'></i></a>
+						<a href="#"><i class='fab fa-instagram' style='font-size:24px'></i></a>
+						<a href="#"><i class='fab fa-facebook' style='font-size:24px'></i></a>
+						<div class="dropdown">
+							<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"></button>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="#">Link 1</a></li>
+								<li><a class="dropdown-item" href="#">Link 2</a></li>
+								<li><a class="dropdown-item" href="#">Link 3</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>	

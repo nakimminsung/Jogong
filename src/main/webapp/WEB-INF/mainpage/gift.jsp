@@ -176,208 +176,6 @@
     	background-color: #cff0cc;
     }
 </style>
-<script>
-	$(function(){
-		
-		let data = {userNum:$("input[name=userNum]").attr("value"),search:""};
-		list(data);
-		
-		// 모달 실행 이벤트
-        const modal = document.getElementById("gift-modal")
-        const btnModal = document.getElementById("gift-friend")
-		
-		const closeBtn = modal.querySelector(".gift-close-area")
-		
-		// 친구버튼 클릭시
-		$(".gift-friend-img").click(function(){
-			
-			if(${empty sessionScope.loginUserNum}) {
-				if(!confirm("로그인이 필요한 메뉴입니다.\n로그인하시겠습니까?")){
-		
-				} else {
-					location.href="${root}/loginForm";
-				}
-				return
-			} else {
-				//  로그인 상태일 때 친구목록 불러오기
-				btnModal.addEventListener("click", e => {
-		    		modal.style.display = "flex"
-				});
-			}
-		});
-		
-		// 모달 창에서 친구 선택시 모달 상단 친구 출력
-		var fl = 0;
-		$(document).on("click",".chkBox",function(){
-			
-			var ba = new Array();
-			var fs = "";	
-			
-			fl = $(".chkBox:checked").length;
-		
-		    $(".chkBox:checked").each(function() {
-		    	var map = new Map();
-		    	map.set("b",$(this).siblings().find("b").text()); 
-		    	map.set("img",$(this).siblings().find("img").attr("src")); 
-		    	map.set("num",$(this).siblings().find("b").attr("num")); 		    	 		    	 	    	 		    	 
-		    	ba.push(map);
-		    });			
-			
-			if(fl != 0){
-				fs += "<ul class='wish' style='padding-left:0;'>";
-				
-				$.each(ba, function(i,elt) {
-					fs += "<li style='list-style:none; float:left;' class='wish' num='"+elt.get("num")+"' name='"+elt.get("b")+"'>";
-					fs += "<img src='"+elt.get("img")+"' width='50' style='margin-top:10px;' class='gift-friend-img wish'>";
-					fs += "<div style='text-align:center;'>"+elt.get("b")+"</div>";
-					fs += "</li>";
-				});
-				fs += "</ul>";				
-				$("div.friend-select-list").html(fs);
-            	
-			}else{
-				$(".friend-length").text("");
-				
-				fs += "<img src='${root }/image/default.png' class='gift-friend-img'>";
-            	fs += "선물할 친구를 선택하세요.";
-            	$("div.friend-select-list").html(fs);
-			}
-		});
-		
-		// 친구 선택 후 친구의 위시리스트 출력
-		$(document).on("click","button.getWishlist",function(){
-			if(fl == 0){
-				location.href="${root}";
-			} else if (fl == 1) {
-				
-				var wishNum = $("li.wish").attr("num");
-				var wishName = $("li.wish").attr("name");
-				var wishImg = $("img.wish").attr("src");
-				var wl = "";
-				
-				$.ajax({
-					type: "get",
-					url: "wishlist/friend",
-					dataType: "json",
-					data: {"userNum":wishNum},
-					success:function(res){
-						
-						modal.style.display = "none"
-						
-						$("body").attr("class","");
-						$("h2.friendNum").text(wishName+"님을 위한");
-						$("h2.friendText").text("선물하기");
-						$("#gift-friend").attr("src",wishImg);
-						
-						if(res.length != 0){
-							wl += "<h4 style='margin-bottom:20px; margin-top:50px;'>"+wishName+"님의 위시리스트</h4>";
-						} else {
-							wl += "<h4 style='margin-bottom:20px; margin-top:50px;'>선물가능한 상품이 없어요.</h4>";
-						}
-						
-						wl += "<ul style='padding-left:0;'>";
-						
-						$.each(res, function(i,elt) {
-							
-							wl += "<li style='list-style:none; float:left; margin-right:20px;'>";
-							wl += "<div>";
-							wl += "<label>";
-							wl += "<img src='"+elt.thumbnailImageUrl+"' style='width:150px; height:150px; display:block;'>";
-							wl += "<b style='display:block;'>"+elt.brand+"</b>";
-							wl += "<b style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 150px;'>"+elt.name+"</b>";
-							wl += "<b style='display:block;'>"+elt.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+"</b>";
-							wl += "</label>";
-							wl += "</div>";
-							wl += "</li>";
-						});
-						wl += "</ul>";
-						$("div.gift-bottom").html(wl);
-					}
-				});
-			}
-		});
-		
-		// 모달 x버튼 클릭시 닫기
-		closeBtn.addEventListener("click", e => {
-		    modal.style.display = "none"
-	        $("body").attr("class","");
-		    $("input[name=friend-search]").val();
-		})
-		
-		// 모달 외부 클릭시 닫기
-		modal.addEventListener("click", e => {
-		    const evTarget = e.target
-			    if(evTarget.classList.contains("gift-modal-overlay")) {
-			        modal.style.display = "none"
-	        		$("body").attr("class","");
-				    $("input[name=friend-search]").val();
-			    }
-		})
-		
-		// 모달 실행시 오버레이 실행
-		$("#gift-friend").click(function(){
-			$("body").attr("class","modal-fix");
-		});
-        
-		// 모달 취소버튼 클릭시 닫기
-		$(document).on("click",".btn-cancel",function(){
-		    modal.style.display = "none"
-		    $("body").attr("class","");
-			$("input#friend-search").val("");
-		});
-		
-		// 친구 검색
-		$("#friend-search").on('keyup keypress',function(){
-			let data = {userNum:$("input[name=userNum]").attr("value"),search:$(this).val().trim()};
-			list(data);
-		});
-	});
-	
-	// 친구목록 조회 함수
-	function list(data) {
-		
-		let s="";
-			
-		$.ajax({
-			type: "post",
-			url: "user/friendData",
-			dataType: "json",
-			contentType: "application/json; charset=utf-8",
-			data: JSON.stringify({"data":data}),
-			success:function(res){
-				
-				s += "<ul style='padding-left:0;'>";
-				
-				$.each(res, function(i,elt) {
-					
-					s += "<li style='list-style:none; float:left;'>";
-					s += "<div style='margin-right:50px;'>";
-					s += "<input type='radio' style='margin-right:10px;' class='chkBox' name='radio'>";
-					s += "<label>";
-					s += "<img src='"+elt.profileImage+"' width='100' class='gift-friend-img' style='margin-right:5px;'>";
-					s += "<b num='"+elt.num+"'>"+elt.nickname+"</b>";
-					s += "</label>";
-					s += "</div>";
-					s += "</li>";
-				});
-				s += "</ul>";
-				$("div.friend-result").html(s);
-			}
-		});
-		
-		// 친구인원수
-		$.ajax({
-			type: "get",
-			url: "user/friendCount",
-			dataType: "json",
-			data: {"userNum":$("input[name=userNum]").attr("value")},
-			success:function(res){
-				
-				$("span.friend-count").text(res);
-			}
-		});
-	}
-</script>
 </head>
 <body>
 	<c:if test="${!empty sessionScope.loginUserNum}">
@@ -439,4 +237,205 @@
         </div>
     </div>
 </body>
+<script>
+	// 모달 실행 이벤트
+    const modal = document.getElementById("gift-modal");
+    const btnModal = document.getElementById("gift-friend");
+	const closeBtn = modal.querySelector(".gift-close-area");
+	
+	// 선택한 친구 인원
+	var fl = 0;
+		
+	// 친구아이콘 클릭시
+	$(".gift-friend-img").click(function(){
+			
+		if(${empty sessionScope.loginUserNum}) {
+			if(!confirm("로그인이 필요한 메뉴입니다.\n로그인하시겠습니까?")) {
+				
+			} else {
+				location.href="${root}/loginForm";
+			}
+			return;
+		} else {
+			//  로그인 상태일 때 모달띄우기 & 친구목록 불러오기
+			btnModal.addEventListener("click", e => {
+		    	modal.style.display = "flex";
+			});
+			var data = {userNum:$("input[name=userNum]").attr("value"),search:""};
+			list(data);
+		}
+	});
+		
+	// 모달 창에서 친구 선택시 모달 상단 친구 출력
+	$(document).on("click",".chkBox",function(){
+		var ba = new Array();
+		var fs = "";	
+			
+		fl = $(".chkBox:checked").length;
+		
+		$(".chkBox:checked").each(function() {
+			var map = new Map();
+		    map.set("b",$(this).siblings().find("b").text()); 
+		    map.set("img",$(this).siblings().find("img").attr("src")); 
+		    map.set("num",$(this).siblings().find("b").attr("num")); 		    	 		    	 	    	 		    	 
+		    ba.push(map);
+		});			
+			
+		if(fl != 0){
+			fs += "<ul class='wish' style='padding-left:0;'>";
+				
+			$.each(ba, function(i,elt) {
+				fs += "<li style='list-style:none; float:left;' class='wish' num='"+elt.get("num")+"' name='"+elt.get("b")+"'>";
+				fs += "<img src='"+elt.get("img")+"' width='50' style='margin-top:10px;' class='gift-friend-img wish'>";
+				fs += "<div style='text-align:center;'>"+elt.get("b")+"</div>";
+				fs += "</li>";
+			});
+			fs += "</ul>";				
+			$("div.friend-select-list").html(fs);
+            	
+		} else {
+			$(".friend-length").text("");
+				
+			fs += "<img src='${root }/image/default.png' class='gift-friend-img'>";
+            fs += "선물할 친구를 선택하세요.";
+            $("div.friend-select-list").html(fs);
+		}
+	});
+		
+	// 친구 선택 후 친구의 위시리스트 출력
+	$(document).on("click","button.getWishlist",function(){
+		if(fl == 0){
+			location.href="${root}";
+		} else if (fl == 1) {
+				
+			var wishNum = $("li.wish").attr("num");
+			var wishName = $("li.wish").attr("name");
+			var wishImg = $("img.wish").attr("src");
+			var wl = "";
+				
+			$.ajax({
+				type: "get",
+				url: "wishlist/friend",
+				dataType: "json",
+				data: {"userNum":wishNum},
+				success:function(res){
+						
+					modal.style.display = "none"
+						
+					$("body").attr("class","");
+					$("h2.friendNum").text(wishName+"님을 위한");
+					$("h2.friendText").text("선물하기");
+					$("#gift-friend").attr("src",wishImg);
+						
+					if(res.length != 0){
+						wl += "<h4 style='margin-bottom:20px; margin-top:50px;'>"+wishName+"님의 위시리스트</h4>";
+					} else {
+						wl += "<h4 style='margin-bottom:20px; margin-top:50px;'>선물가능한 상품이 없어요.</h4>";
+					}
+						
+					wl += "<ul style='padding-left:0;'>";
+						
+					$.each(res, function(i,elt) {
+							
+						wl += "<li style='list-style:none; float:left; margin-right:20px;'>";
+						wl += "<div>";
+						wl += "<label>";
+						wl += "<img src='"+elt.thumbnailImageUrl+"' style='width:150px; height:150px; display:block;'>";
+						wl += "<b style='display:block;'>"+elt.brand+"</b>";
+						wl += "<b style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 150px;'>"+elt.name+"</b>";
+						wl += "<b style='display:block;'>"+elt.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+"</b>";
+						wl += "</label>";
+						wl += "</div>";
+						wl += "</li>";
+					});
+					wl += "</ul>";
+					$("div.gift-bottom").html(wl);
+				}
+			});
+		}
+	});
+		
+	// 모달 x버튼 클릭시 닫기
+	closeBtn.addEventListener("click", e => {
+		modal.style.display = "none"
+	    $("body").attr("class","");
+	    $("input[name=friend-search]").val();
+	})
+		
+	// 모달 외부 클릭시 닫기
+	modal.addEventListener("click", e => {
+		const evTarget = e.target
+		if(evTarget.classList.contains("gift-modal-overlay")) {
+			modal.style.display = "none"
+	        $("body").attr("class","");
+			$("input[name=friend-search]").val();
+		}
+	})
+		
+	// 모달 실행시 오버레이 실행
+	$("#gift-friend").click(function(){
+		$("body").attr("class","modal-fix");
+	});
+        
+	// 모달 취소버튼 클릭시 닫기
+	$(document).on("click",".btn-cancel",function(){
+		modal.style.display = "none"
+		$("body").attr("class","");
+		$("input#friend-search").val("");
+	});
+		
+	// 친구 검색
+	$("#friend-search").on('keyup keypress',function(){
+		let data = {
+			userNum:$("input[name=userNum]").attr("value"),
+			search:$(this).val().trim()
+		};
+		list(data);
+	});
+	
+	// 친구목록 조회
+	function list(data) {
+		
+		let s="";
+			
+		$.ajax({
+			type: "post",
+			url: "user/friendData",
+			dataType: "json",
+			contentType: "application/json; charset=utf-8",
+			data: JSON.stringify({"data":data}),
+			success:function(res){
+				
+				s += "<ul style='padding-left:0;'>";
+				
+				$.each(res, function(i,elt) {
+					
+					s += "<li style='list-style:none; float:left;'>";
+					s += "<div style='margin-right:50px;'>";
+					s += "<input type='radio' style='margin-right:10px;' class='chkBox' name='radio'>";
+					s += "<label>";
+					s += "<img src='"+elt.profileImage+"' width='100' class='gift-friend-img' style='margin-right:5px;'>";
+					s += "<b num='"+elt.num+"'>"+elt.nickname+"</b>";
+					s += "</label>";
+					s += "</div>";
+					s += "</li>";
+				});
+				s += "</ul>";
+				$("div.friend-result").html(s);
+			}
+		});
+		
+		// 친구인원수
+		$.ajax({
+			type: "get",
+			url: "user/friendCount",
+			dataType: "json",
+			data: {"userNum":$("input[name=userNum]").attr("value")},
+			success:function(res){
+				
+				$("span.friend-count").text(res);
+			}
+		});
+	}
+</script>
 </html>
