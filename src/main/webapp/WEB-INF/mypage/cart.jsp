@@ -796,7 +796,7 @@
 						s += "<img src='"+elt.thumbnailImageUrl+"' class='cart-image'>";
 						s += "<div>";
 						s += "<b class='cart-brand' style='color:gray; font-size:13px; margin-bottom:5px;'>"+elt.brand+"</b>";
-						s += "<b class='cart-name' style='font-size:15px;'>"+elt.name+"</b>";
+						s += "<a href='../product/detail?num="+elt.productNum+"' class='cart-name' style='font-size:15px;'>"+elt.name+"</a>";
 						s += "<b class='cart-option'></b>";
 						s += "</div>";
 						s += "</div>";

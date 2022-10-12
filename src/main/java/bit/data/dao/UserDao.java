@@ -18,8 +18,8 @@ public class UserDao implements UserDaoInter {
 	String ns = "bit.data.dao.UserDao.";
 	
 	@Override
-	public List<UserDto> getUserFriendData(int userNum) {
-		return session.selectList(ns+"getUserFriendData", userNum);
+	public List<UserDto> getUserFriendData(Map<String,Object> map) {
+		return session.selectList(ns+"getUserFriendData", map);
 	}
 
 	@Override

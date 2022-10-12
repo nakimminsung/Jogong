@@ -584,12 +584,12 @@ p.card-title{
 
 		$("document").ready(function(){
 			order_send(); 
-			$("#receivePresentbox").css("border-bottom","3px solid black");
+			$("#receivePresentbox").css("border-bottom","3px solid #cff0cc");
 		});	
 
 		$('.link_tab').click(function() {
 			$('.link_tab').css("border-bottom","");
-			$(this).css("border-bottom","3px solid black");
+			$(this).css("border-bottom","3px solid #cff0cc");
 		});
 		
 		$('#receivePresentbox').click(function(){

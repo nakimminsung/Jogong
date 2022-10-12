@@ -1,11 +1,12 @@
 package bit.data.service;
 
 import java.util.List;
+import java.util.Map;
 
 import bit.data.dto.UserDto;
 
 public interface UserServiceInter {
-	public List<UserDto> getUserFriendData(int userNum);
+	public List<UserDto> getUserFriendData(Map<String,Object> map);
 	public int getUserFriendCount(int userNum);
 	public void insertUser(UserDto dto);
 	public int getUserIdSearch(String email);
