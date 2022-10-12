@@ -191,7 +191,7 @@
 		// 친구버튼 클릭시
 		$(".gift-friend-img").click(function(){
 			
-			if(${empty sessionScope.loginid}) {
+			if(${empty sessionScope.loginUserNum}) {
 				if(!confirm("로그인이 필요한 메뉴입니다.\n로그인하시겠습니까?")){
 		
 				} else {
@@ -337,7 +337,6 @@
 	function list(data) {
 		
 		let s="";
-		console.log(data);
 			
 		$.ajax({
 			type: "post",
