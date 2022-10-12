@@ -21,7 +21,7 @@
    
    .htitle{
 	  /* background-color: #c4bee2; */	/* 연보라 */
-	  background-color: #e0dbef;		/* 연연보라 */
+	  background-color: #cff0cc;		/* 연연보라 */
 	  /* background-color: #cff0cc; */
   	  height: 200px;
   	  padding-left: 25%;
@@ -188,7 +188,7 @@
 
             <tr>
                <th colspan="2" style="text-align: center;">
-                  <button type="submit" class="btn btn-warning sub">문의 접수</button>
+                  <button type="submit" class="btn btn-dark sub">문의 접수</button>
                   <!-- <button type="button" class="btnsub">문의 접수</button> -->
                </th>
             </tr>

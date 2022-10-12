@@ -64,7 +64,8 @@
 			<hr>
 		</div>
 		
-		<div class="qna-result" style="width: 100%; height: 500px;">
+		<!-- 내용 -->
+		<div class="qna-result" style="width: 100%; height: 800px;">
 			<table class="table table-borderd">
 				<tr style="text-align: center; background-color: #f5f5f5;">
 					<th style="width: 150px;">문의 유형</th>
@@ -75,26 +76,42 @@
 				
 				<c:forEach var="s" items="${qnaList}">
 				
-					<tr style="text-align: center;">
+					<tr style="text-align: center; border-top: 2px solid gray;">
 						<td>${s.name}</td>
 						<td style="text-align: left;">${s.title}</td>
-						<td style="color: red;">답변대기중</td>
+						<td>
+							<c:if test="${s.qnaStatus=='답변대기중'}">
+								<span style="color: red;">${s.qnaStatus}</span>
+							</c:if>
+							
+							<c:if test="${s.qnaStatus!='답변대기중'}">
+								<span style="color: #1C8FED;">${s.qnaStatus}</span>
+							</c:if>
+						</td>
 						<td><fmt:formatDate value="${s.createdAt}" pattern="yyyy-MM-dd"/></td>
 					</tr>
 					<tr>
 						<td rowspan="2" style="vertical-align: middle; text-align: center;">Q</td>
 						<td colspan="3">
-							<c:if test="${s.orderNum!=null}"><b>주문번호:</b> ${s.orderNum}<br></c:if>
-							<c:if test="${s.orderNum==null}"><b>주문번호:</b> 없음<br></c:if>
+							<b>주문번호:</b> ${s.orderNum}<br>
 							<b>이메일:</b> ${s.email}
 						</td>
 					</tr>
-					<tr style="border-bottom: 2px solid gray;">
+					<tr>
 						<td colspan="3">
 						<p style="font-weight: bold;">${s.title}</p>
 						<pre style="font-family: SeoulNamsanM">${s.content}</pre>
 						</td>
 					</tr>
+
+					<c:if test="${s.qnaStatus!='답변대기중'}">
+					<tr>
+						<td rowspan="2" style="vertical-align: middle; text-align: center; background-color: #cff0cc;">A</td>
+						<td colspan="3">
+							이메일로 답변 완료된 문의입니다.
+						</td>
+					</tr>
+					</c:if>
 				
 				</c:forEach>
 			

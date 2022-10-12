@@ -115,6 +115,9 @@ public class CscenterController {
 	        
 	      dto.setImageUrl(originFileName);
 	      
+	      String qnaStatus="답변대기중";
+	      dto.setQnaStatus(qnaStatus);
+	      
 	      
 	        
 	      // db에 insert : service의 insertQna에 dto값 전달
