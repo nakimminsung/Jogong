@@ -25,6 +25,10 @@
 
 </head>
 <style>
+a.header-brand>span{
+	color:#000 !important;
+	border-bottom: 5px solid #cff0cc;
+}
 div#wrapper{
   margin: 0 auto;
   height: auto;
@@ -219,15 +223,9 @@ $(function(){
 	
 	
 </script>
-<div>
+<%-- < div>
 <button type="button" class="btn btn-info" onclick="location.href='${root}/jogong/brand/detail'">세부 페이지 이동</button>
-</div>
-
-<%-- <div>
- <c:forEach var="brand" items="${list}">
-	<p>${brand}</p>
-</c:forEach> 
-</div>--%>
+</div> --%>
 
 
 <div style="min-height:1500px">
@@ -274,7 +272,7 @@ $(function(){
 					  <div class="card">
 					    <img class="card-img-top" src="${brand.brandphoto}" alt="Card image" style="width:100%; height:250px;">
 					    <div class="card-body">
-	  				      <h5 class="card-text">${brand.companyName}</h5>
+	  				      <a href="detail?brand=${brand.companyName }"><h5 class="card-text">${brand.companyName}</h5></a>
 					      <p class="card-title" style="display: -webkit-inline-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;">${brand.description}</p>
 					    </div>
 					  </div>
