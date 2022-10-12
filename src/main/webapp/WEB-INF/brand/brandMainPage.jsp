@@ -259,8 +259,8 @@ $(function(){
 			<div class="row wider justify-content-center">
 <!--     			<div class="col col-2" style="width:400px; text-align:center; margin-bottom:50px"><p>어떤 브랜드의 제품을 찾고 계신가요?</p></div> -->
 				<div class="search-box">
-						<img src="../resources/image/search.svg" style="width:30px;height:30px">
-						<input class="inputBrand" type="text" placeholder="&nbsp;&nbsp;어떤 브랜드의 제품을 찾고 계신가요?" autocomplete="off" aria-required="true" aria-invalid="false" style="cursor: pointer; width:100%; height:40px;border:1px solid black; margin-bottom:50px; border-radius:5px">
+						<img src="../resources/image/search.svg" style="width:25px;height:25px; margin-top:7px">
+						<input class="inputBrand" type="text" placeholder="&nbsp;&nbsp;어떤 브랜드의 제품을 찾고 계신가요?" autocomplete="off" aria-required="true" aria-invalid="false" style="cursor: pointer; width:100%; height:40px;border:0.2px solid black; margin-bottom:50px; border-radius:5px">
 				</div>
 			</div>
 					

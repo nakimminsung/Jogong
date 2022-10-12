@@ -26,4 +26,10 @@ public class GiftService implements GiftServiceInter{
 		return giftDao.getSendSearch(userNum);
 	}
 
+	@Override
+	public void updateAddressOrder(OrderDto orderDto) {
+		// TODO Auto-generated method stub
+		giftDao.updateAddressOrder(orderDto);
+	}
+
 }

@@ -382,14 +382,14 @@
                                 <div data-v-35b707e2="" class="pay_box">
                                     <div data-v-35b707e2="" class="pay_title">
                                         <p data-v-35b707e2="" class="main_title">카카오페이</p>
-                                    </div><img data-v-35b707e2="" src="image/kakaopay.jpg" alt="카카오페이" class="pay_img">
+                                    </div><img data-v-35b707e2="" src="image/kakaopay.png" alt="카카오페이" class="pay_img" style="height:20px">
                                 </div>
                             </div>
                             <div data-v-35b707e2="" class="pay_item" id="tosspay" value="tosspay" >
                                 <div data-v-35b707e2="" class="pay_box">
                                     <div data-v-35b707e2="" class="pay_title">
                                         <p data-v-35b707e2="" class="main_title">토스</p>
-                                    </div><img data-v-35b707e2="" src="image/tosspay.png" alt="토스" class="pay_img" style="width:100px; height:30px" >
+                                    </div><img data-v-35b707e2="" src="image/tosspay.png" alt="토스" class="pay_img" style="height:20px" >
                                 </div>
                             </div>
                         </div>

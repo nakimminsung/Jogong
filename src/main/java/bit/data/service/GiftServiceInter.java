@@ -8,4 +8,5 @@ public interface GiftServiceInter {
 
 	public List<OrderDto> getSendSearch(int userNum);
 
+	public void updateAddressOrder(OrderDto orderDto);
 }
