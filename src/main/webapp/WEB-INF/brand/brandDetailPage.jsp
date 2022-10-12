@@ -207,7 +207,7 @@ $(function () {
 						var price= elt.price.toLocaleString();
 						s += "<div class='productItem'>";
 						s += "<a href='/jogong/product/detail?num="+elt.num+"'>";
-						s += "<img src='"+elt.thumbnailImageUrl+"'class='productImage'><br>";
+						s += "<img class='card-img-top' src='"+elt.thumbnailImageUrl+"'class='productImage'><br>";
 						s += "<span style='display: inline-block;'>";
 						s += "<span class='brandName'>"+elt.brand+"</span><br>";
 						s += "<span class='productName'>"+elt.name+"</span><br>";
