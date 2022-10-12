@@ -619,23 +619,34 @@ p.card-title{
 		});
 		 */
 		 
-		 $(document).on("click",".btn_crad",function() {
+		/*  $(document).on("click",".btn_crad",function() {
 			<!-- 여러개의 버튼이 모두 클릭되어서 모두 호출된다-->
 			 $(".address").toggle();
-		});
+		}); */
 		
-		$(document).on("click", ".ico_close",function(){
+		/* $(document).on("click", ".ico_close",function(){
 			 <!-- 여러개의 버튼이 모두 클릭되어서 모두 호출된다-->
 			$(".address").hide();
 			$(".modal").modal('hide');
-	    });
+	    }); */
 		
 	});	
 	
 	function showcard(i){
 		//alert(i);
 		 $("#myModal"+i).modal({remote : 'layer.html'});
-		    $("#myModal"+i).modal('show');
+		 $("#myModal"+i).modal('show');
+	}
+	
+	function showaddr(i){
+		//alert(i);
+		 $(".address"+i).toggle();
+	}
+	
+	function closecard(i){
+		//alert(i);
+		$(".address"+i).hide();
+		 $("#myModal"+i).modal('hide');
 	}
 	
 	function order_recevie() {
@@ -734,18 +745,18 @@ p.card-title{
 							
 						s+=	"<div class='tbl_btn'>"
 						s+=	"<div class='item_btn'>"
-						s+=	"<button type='button' class='btn_crad'>"
+						s+=	"<button type='button' class='btn_crad' onclick='showaddr("+i+")'>"
 						s+=	"<span class='ico_gift2 ico_delete'></span>" 
 						s+=	"<span class='txt_g'>주소 입력 및 수정</span>"
 						s+=	"</button></div></div></div></div></div>"
 		 											
 						s+=	"<a href='#none' class='btn_close'>"
-						s+=	"<span class='ico_gift2 ico_close'>닫기</span>"
+						s+=	"<span class='ico_gift2 ico_close' onclick='closecard("+i+")' >닫기</span>"
 						s+=	"</a></div>"
-		 										
+		 				
 						s+=	"<form action='../gift/addrUpdate'>";
 						s+= "<input type='hidden' name='num' value="+elt.num+">";
-						s+=	"<table style='width: 70%; display: none; margin: 10px auto;' class='table table-bordered address'>"
+						s+=	"<table style='width: 70%; display: none; margin: 10px auto;' class='table table-bordered address"+i+"'>"
 						//s+=	"<tr><th style='text-align: center'> 이름 </th>"
 						//s+=	"<td><input type='text' style='width: 100%;' required name='companyName' id='to_name' value='11받는사람이름'></td></tr>"
 							
@@ -754,19 +765,20 @@ p.card-title{
 		 												
 						s+=	"<tr><th style='text-align: center'> 주소 </th><td>"								
 						s+=	"<div style='width: 100%; border: none;' class='input-group'>" 						
-						s+=	"<input type='text' id='sample4_postcode' placeholder='우편번호' style='width: 60%; border:1px solid black; margin-bottom: 5px;' required value='"+elt.postalcode+"' name = 'postalcode'>"
-						s+=	"<input type='button' onclick='sample4_execDaumPostcode()' class='btn btn-dark btn-sm' value='우편번호' style='margin-bottom: 5px; float: right;'><br>"
+						s+=	"<input type='text' id='sample4_postcode"+i+"' placeholder='우편번호' style='width: 60%; border:1px solid black; margin-bottom: 5px;' required value='"+elt.postalcode+"' name = 'postalcode'>"
+						s+=	"<input type='button' onclick='sample4_execDaumPostcode("+i+")' class='btn btn-dark btn-sm' value='우편번호' style='margin-bottom: 5px; float: right;'><br>"
 						s+=	"</div>"
-						s+=	"<input type='text' id='sample4_roadAddress' placeholder='도로명주소' size='60' value='"+elt.deliveryAddress+"' style='width: 100%; margin-bottom: 5px;' required name='address1'><br>"						
+						s+=	"<input type='text' id='sample4_roadAddress"+i+"' placeholder='도로명주소' size='60' value='"+elt.deliveryAddress+"' style='width: 100%; margin-bottom: 5px;' required name='address1'><br>"						
 						s+=	"<input type='hidden' id='sample4_jibunAddress' placeholder='지번주소'  size='60'>"							
 						s+=	"<span id='guide' style='color:#999; display:none'></span>"								
-						s+=	"<input type='text' id='sample4_detailAddress' placeholder='상세주소'  size='60' value='' style='width: 100%;'required name='address2'><br>"							
+						s+=	"<input type='text' id='sample4_detailAddress"+i+"' placeholder='상세주소'  size='60' value='' style='width: 100%;'required name='address2'><br>"							
 						s+=	"<input type='hidden' id='sample4_extraAddress' placeholder='참고항목'  size='60'>	<input type='hidden' id='sample4_engAddress' placeholder='영문주소'  size='60' >"							
 						s+=	"</td></tr>"						
 						s+=	"<tr style='border-bottom: none;'>"								
 						s+=	"<td colspan='2' style='text-align: center; border: none;'>"								
 						s+=	"<button type='submit' class='btn btn-success'>저장</button>"							
-						s+=	"</td></tr></table></form></div></div></div></div></div></div>"					
+						s+=	"</td></tr></table></form>"
+						s+= "</div></div></div></div></div></div>"					
 					});
 					$("div.Gift").html(s);
 				}
@@ -787,7 +799,7 @@ p.card-title{
 <script type="text/javascript">
 //다음 주소검색 API
 //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
-function sample4_execDaumPostcode() {
+function sample4_execDaumPostcode(i) {
 new daum.Postcode({
     oncomplete: function(data) {
         // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -812,17 +824,17 @@ new daum.Postcode({
         }
 
         // 우편번호와 주소 정보를 해당 필드에 넣는다.
-        document.getElementById('sample4_postcode').value = data.zonecode;
-        document.getElementById("sample4_roadAddress").value = roadAddr;
-        document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+        document.getElementById("sample4_postcode"+i).value = data.zonecode;
+        document.getElementById("sample4_roadAddress"+i).value = roadAddr;
+        document.getElementById("sample4_jibunAddress"+i).value = data.jibunAddress;
  
-        document.getElementById("sample4_engAddress").value = data.addressEnglish;
+        document.getElementById("sample4_engAddress"+i).value = data.addressEnglish;
                
         // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
         if(roadAddr !== ''){
-            document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+            document.getElementById("sample4_extraAddress"+i).value = extraRoadAddr;
         } else {
-            document.getElementById("sample4_extraAddress").value = '';
+            document.getElementById("sample4_extraAddress"+i).value = '';
         }
 
         var guideTextBox = document.getElementById("guide");
