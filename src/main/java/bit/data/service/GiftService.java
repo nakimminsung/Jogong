@@ -27,9 +27,8 @@ public class GiftService implements GiftServiceInter{
 	}
 
 	@Override
-	public void updateAddressOrder(OrderDto orderDto) {
+	public void updateAddressOrder(OrderDto dto) {
 		// TODO Auto-generated method stub
-		giftDao.updateAddressOrder(orderDto);
+		giftDao.updateAddressOrder(dto);
 	}
-
 }

@@ -57,7 +57,7 @@
 		top: -30px;
 	}
 	div.event-top>hr{
-		width: 110px; 
+		width: 80px; 
 		height: 10px; 
 		position: relative; 
 		top:-28px; 

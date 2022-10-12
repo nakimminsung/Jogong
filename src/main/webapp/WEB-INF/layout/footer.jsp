@@ -48,11 +48,23 @@
 			<div class="footer-left" style="width: 5%; text-align: right; padding-right: 10px;">
 				<b style="font-size: 20px;">조공</b>
 			</div>
-			<div class="footer-right" style="width: 95%;">
+			<div class="footer-right" style="width: 95%; display: flex; flex-direction: row; justify-content: space-between;">
 				<div>
-					<span>(주)조공 : 김병찬</span>&nbsp;&nbsp;
-					<span>주소 : 서울특별시 강남구 역삼동 테헤란로5길 7 위워크</span>
-					<span class="footer-link" style="position: relative; float: right;">
+					<div>
+						<span>(주)조공 : 김병찬</span>&nbsp;&nbsp;
+						<span>주소 : 서울특별시 강남구 역삼동 테헤란로5길 7 위워크</span>
+					</div>
+					<div>
+						<span>사업자등록번호 : 120-81-47525</span>&nbsp;&nbsp;
+						<span>통신판매업신고번호 : 제2022 - 서울 - 0011호</span>&nbsp;&nbsp;
+						<span>호스팅 사업자 : (주)조공</span>
+					</div>
+					<span style="display: block;">구매안전서비스 : 가입사실확인이메일 : cs.gift@kakaocorp.com</span>
+					<span style="display: block;">고객센터 : 1544-2431 (통화료 발생 / 평일 09:00~19:00)  톡상담하기 (평일 09:00~19:00)</span>
+					<span style="display: block;">©jogong Corp. All rights reserved</span>
+				</div>
+				<div style="position: relative; float: right; width:400px; display: flex; flex-direction: column;align-items: flex-end;">
+					<span class="footer-link">
 						<a>고객센터</a>
 						&nbsp;|&nbsp;
 						<a>이용약관</a>
@@ -63,15 +75,8 @@
 						&nbsp;|&nbsp;
 						<a>admin</a>
 					</span>
+					<img src="https://gift-s.kakaocdn.net/dn/gift/images/m640/img_pcfamily.png">
 				</div>
-				<div>
-					<span>사업자등록번호 : 120-81-47525</span>&nbsp;&nbsp;
-					<span>통신판매업신고번호 : 제2022 - 서울 - 0011호</span>&nbsp;&nbsp;
-					<span>호스팅 사업자 : (주)조공</span>
-				</div>
-				<div><span>구매안전서비스 : 가입사실확인이메일 : cs.gift@kakaocorp.com고객센터 : 1544-2431 (통화료 발생 / 평일 09:00~19:00)  톡상담하기 (평일 09:00~19:00)</span></div>
-				<div><span>©jogong Corp. All rights reserved</span></div>
-				<img src="https://gift-s.kakaocdn.net/dn/gift/images/m640/img_pcfamily.png">
 			</div>
 	    </div>
 	</div>

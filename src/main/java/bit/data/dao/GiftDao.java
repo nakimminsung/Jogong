@@ -27,9 +27,9 @@ public class GiftDao implements GiftDaoInter{
 	}
 
 	@Override
-	public void updateAddressOrder(OrderDto orderDto) {
+	public void updateAddressOrder(OrderDto dto) {
 		// TODO Auto-generated method stub
-		session.update(ns+"updateAddressOrder",orderDto);
+		session.update(ns+"updateAddressOrder",dto);
 	}
 	
 }

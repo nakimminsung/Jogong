@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -405,7 +406,7 @@
                                 </li>
                                 <li data-v-2e66a968="" class="benefit_item"><img data-v-2e66a968=""
                                         src="image/tosspay.png""
-                                        alt="토스" class="benefit_img" >
+                                        alt="토스" class="benefit_img" style="height:20px;">
                                     <p data-v-2e66a968="" class="benefit_desc"><span data-v-2e66a968=""
                                             class="blind">토스</span>&nbsp;&nbsp;첫 결제시 3천원 캐시백 </p><a data-v-2e66a968=""
                                         href=" target="_blank" class="btn_more">더보기</a>
@@ -449,7 +450,7 @@
                     <tbody>
                         <tr>
                             <th>상품 금액</th>
-                            <td><strong id="total_sale_price">${price}</strong> 원</td>
+                            <td><strong id="total_sale_price"><fmt:formatNumber value="${price}" type="number"/></strong> 원</td>
                         </tr>
                         <tr>
                             <th>할인 금액</th>
@@ -472,7 +473,7 @@
                         <tr>
                             <th>결제 금액</th>
                             <td id="final_price">
-                            	<strong id="final_price">${totalprice} 원</strong>
+                            	<strong id="final_price"><fmt:formatNumber value="${totalprice}" type="number"/> 원</strong>
                             </td>
                         </tr>
                     </tfoot>
@@ -808,6 +809,16 @@ init();
 
  var payed = document.getElementById("paying");
 payed.onclick = function () {
+	
+	var checked = $("#buy_agree").is(":checked");
+	
+	if(checked){
+		
+	}else{
+		alert("필수 약관을 동의해주시기 바랍니다.");
+		return;
+	}
+	
     const selected = document.querySelector('.pay_box.clicked').parentNode;
     const val = selected.getAttribute('value');
 	
