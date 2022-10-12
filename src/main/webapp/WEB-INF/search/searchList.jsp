@@ -75,7 +75,10 @@
 	<!-- 검색결과 -->
 	<div class="resultBody">
 		<c:if test="${searchCount==0}">
-			<b><h5>검색된 상품이 없습니다</h5></b>
+			<div style="text-align: center;">
+				<br>
+				<b><h4>검색된 상품이 없습니다</h4></b>
+			</div>
 		</c:if>
 		
 		<div class="productList" style="margin-left: 10px;">

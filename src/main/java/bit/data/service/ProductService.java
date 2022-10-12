@@ -97,12 +97,12 @@ public class ProductService implements ProductServiceInter {
     	return productDaoInter.getSearchCount(searchword);
     }
     
-    @Override
-    public List<ProductDto> getSearchProduct(String searchword) {
-    	
-    
-    	return productDaoInter.getSearchProduct(searchword);
-    }
+//    @Override
+//    public List<ProductDto> getSearchProduct(String searchword) {
+//    	
+//    
+//    	return productDaoInter.getSearchProduct(searchword);
+//    }
     
     @Override
     public List<ProductDto> getSearchProductBySort(String searchword, String sort) {

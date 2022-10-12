@@ -23,6 +23,6 @@ public interface ProductDaoInter {
 	//search
 
 	public int getSearchCount(String searchword);
-	public List<ProductDto> getSearchProduct(String searchword);
+//	public List<ProductDto> getSearchProduct(String searchword);
 	public List<ProductDto> getSearchProductBySort(Map<String, Object> map);
 }
