@@ -65,6 +65,7 @@
 	div.snsLoginBox{
 		width: 100%;
 		margin-top: 15px;
+		display: flex;
 		justify-content: space-around;
 	}
 	
@@ -112,7 +113,7 @@ $(document).ready(function(){
 		<div class="all">
 		
 			<!-- 일반회원 로그인 박스 -->
-			<div class="userLoginBox">
+			<div class="userLoginBox" style="min-width: 512px;">
 				
 				<!-- 판매자 로그인 전환 버튼 -->
 				<div class="top">
@@ -128,13 +129,13 @@ $(document).ready(function(){
 				<hr style="margin-top: 30px; margin-bottom: 30px; ">
 				
 				<!-- 소셜회원 로그인 박스 -->
-				<div class="snsLoginBox input-group">
+				<div class="snsLoginBox" style="display: flex; justify-content: space-between; flex-wrap: nowrap;">
 					
 					<!-- 카카오 로그인 버튼 -->
-					<button class="btnKakaoLogin" style="background-color: #fde102; height: 50px;"><i class='fas fa-comment'></i>  카카오 아이디로 로그인</button>&nbsp;&nbsp;
+					<button class="btnKakaoLogin" style="background-color: #fde102; height: 50px; min-width: 230px;"><i class='fas fa-comment'></i>  카카오 아이디로 로그인</button>&nbsp;&nbsp;
 					
 					<!-- 네이버 로그인 버튼이 생기는 영역 -->
-					<div id="naverIdLogin"></div>
+					<div id="naverIdLogin" style="min-width: 230px;"></div>
 					<!-- <button class="btnNaverLogin" style="background-color: #03c75a; height: 50px; color: white;">N 네이버 아이디로 로그인</button> -->
 
 				

@@ -26,7 +26,7 @@
 		update jogong.order
 		set hp = #{hp},
 		    postalcode = #{postalcode},
-		    deliveryAdrress = #{deliveryAdrress}
+		    deliveryAdrress = #{deliveryAddress}
 		where num=#{num}
 	</update>
 	

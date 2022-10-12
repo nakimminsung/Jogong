@@ -72,6 +72,32 @@
 	<select id="selectWriteableList" parameterType="int" resultType="productDto">
 		select * from product where num in (select o.productNum from orderDetail o left join review r on o.productNum = r.productNum where r.productNum is null and o.userNum=#{userNum})
 	</select>
+	
+	
+	
+	
+	
+	
+	<!-- 검색에 해당하는 상품 갯수 -->
+	<select id="getSearchCount" parameterType="String" resultType="int">
+		select count(*) from product where name like concat('%',#{searchword},'%')
+		 or brand like concat('%',#{searchword},'%')
+	</select>
+	
+	<!-- 검색에 해당하는 상품 리스트 -->
+	<!-- 
+	<select id="getSearchProduct" parameterType="String" resultType="productDto">
+		select * from product where name like concat('%',#{searchword},'%')
+		 or brand like concat('%',#{searchword},'%') order by createdAt desc
+	</select>
+	 -->
+	 
+	<!-- 검색에 해당하는 상품 리스트 정렬 -->
+	<select id="getSearchProductBySort" parameterType="map" resultType="productDto">
+		select * from product where name like concat('%',#{searchword},'%')
+		 or brand like concat('%',#{searchword},'%') order by ${sort}
+	</select>
+
 
 </mapper>
 
