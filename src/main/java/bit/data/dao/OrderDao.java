@@ -5,7 +5,11 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import bit.data.dto.OrderDetailDto;
 import bit.data.dto.OrderDto;
+import bit.data.dto.ProductDto;
+import bit.data.dto.UserDto;
 
 @Repository
 public class OrderDao implements OrderDaoInter {
@@ -20,24 +24,10 @@ public class OrderDao implements OrderDaoInter {
 		return session.selectList(ns+"getAllSearch");
 	}
 
-	
 	@Override
-	public String getItemNameSearch(int num) {
+	public ProductDto getItemSearch(int num) {
 		// TODO Auto-generated method stub
-		return session.selectOne(ns+"getItemNameSearch",num);
-
-	}
-
-	@Override
-	public Integer getItemPriceSearch(int num) {
-		// TODO Auto-generated method stub
-		return session.selectOne(ns+"getItemPriceSearch",num);
-	}
-
-	@Override
-	public String getItemThumbnailSearch(int num) {
-		// TODO Auto-generated method stub
-		return session.selectOne(ns+"getItemThumbnailSearch",num);
+		return session.selectOne(ns+"getItemSearch",num);
 	}
 
 	@Override
@@ -47,49 +37,21 @@ public class OrderDao implements OrderDaoInter {
 	}
 
 	@Override
-	public String getNickNameSearch(int num) {
+	public UserDto getUserSearch(int num) {
 		// TODO Auto-generated method stub
-		return session.selectOne(ns+"getNickNameSearch",num);
+		return session.selectOne(ns+"getUserSearch", num);
 	}
 
 	@Override
-	public Integer getCount(int num) {
+	public OrderDetailDto getOrderDetail(int num) {
 		// TODO Auto-generated method stub
-		return session.selectOne(ns+"getCount",num);
+		return session.selectOne(ns+"getOrderDetail",num);
 	}
 
 	@Override
 	public void insertOrder(OrderDto dto) {
-		
+		// TODO Auto-generated method stub
 		session.insert(ns+"insertOrder",dto);
-	}
-
-
-	@Override
-	public Integer getUserNum(int num) {
-		// TODO Auto-generated method stub
-		return session.selectOne(ns+"getUserNum",num);
-	}
-
-
-	@Override
-	public Integer getOrderDetailNum(int num) {
-		// TODO Auto-generated method stub
-		return session.selectOne(ns+"getOrderDetailNum",num);
-	}
-
-
-	@Override
-	public Integer getFriendNum(int num) {
-		// TODO Auto-generated method stub
-		return session.selectOne(ns+"getFriendNum",num);
-	}
-
-
-	@Override
-	public Integer getProductNum(int num) {
-		// TODO Auto-generated method stub
-		return session.selectOne(ns+"getProductNum",num);
 	}
 
 }
