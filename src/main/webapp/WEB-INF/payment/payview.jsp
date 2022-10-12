@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -312,7 +314,7 @@
                 <div class="row-type04" id="point_box">
                     <h4>보유 포인트</h4>
                     <p class="form-type01 btn-area" id="point_box_area">
-                        <span><em class="fc-01" id="gs_point">${point}</em> 원</span>
+                        <span><em class="fc-01" id="gs_point">111111</em> 원</span>
                         <a href="javascript:giftishowPointUse()" id="giftishowPointChk" class="btn-type-c">전액사용</a>
                         <input type="text" id="giftishowUsePoint" value="0">
                     </p>
@@ -395,12 +397,8 @@
                         <div data-v-2e66a968="" data-v-8215c5a4="" class="pay_benefit">
                             <h5 data-v-2e66a968="" class="benefit_title">결제 혜택</h5>
                             <ul data-v-2e66a968="" class="benefit_list">
-                                <li data-v-2e66a968="" class="benefit_item"><img data-v-2e66a968=""
-                                        src="image/계좌이체.png"
-                                        alt="계좌 이체" class="benefit_img">
-                                    <p data-v-2e66a968="" class="benefit_desc"><span data-v-2e66a968="" class="blind">계좌
-                                            이체</span>결제 시 최대 5만 포인트 적립 </p><a data-v-2e66a968="" href="" target="_blank"
-                                        class="btn_more">더보기</a>
+                                <li data-v-2e66a968="" class="benefit_item"><img data-v-2e66a968="" src="image/계좌이체.png" alt="계좌 이체" class="benefit_img" >
+                                    <p data-v-2e66a968="" class="benefit_desc"><span data-v-2e66a968="" class="blind">계좌이체</span>결제 시 최대 5만 포인트 적립 </p><a data-v-2e66a968="" href="" target="_blank" class="btn_more">더보기</a>
                                 </li>
                                 <li data-v-2e66a968="" class="benefit_item"><img data-v-2e66a968=""
                                         src="image/tosspay.jpg"
@@ -448,7 +446,7 @@
                     <tbody>
                         <tr>
                             <th>상품 금액</th>
-                            <td><strong id="total_sale_price">${price}</strong> 원</td>
+                            <td><strong id="total_sale_price"><fmt:formatNumber value="${price}" type="number"/></strong> 원</td>
                         </tr>
                         <tr>
                             <th>할인 금액</th>
@@ -471,7 +469,7 @@
                         <tr>
                             <th>결제 금액</th>
                             <td id="final_price">
-                            	<strong id="final_price">${totalprice} 원</strong>
+                            	<strong id="final_price"><fmt:formatNumber value="${totalprice}" type="number"/> 원</strong>
                             </td>
                         </tr>
                     </tfoot>

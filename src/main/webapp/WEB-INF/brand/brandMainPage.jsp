@@ -265,11 +265,13 @@ $(function(){
 				 <c:forEach var="brand" items="${list}">
 					<div class="container mt-3" style="width:50%; height:500px; cursor:pointer;">
 					  <div class="card">
+					  <a href="detail?brand=${brand.companyName }">
 					    <img class="card-img-top" src="${brand.brandphoto}" alt="Card image" style="width:100%; height:250px;">
 					    <div class="card-body">
-	  				      <a href="detail?brand=${brand.companyName }"><h5 class="card-text">${brand.companyName}</h5></a>
+	  				      <h5 class="card-text">${brand.companyName}</h5>
 					      <p class="card-title" style="display: -webkit-inline-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;">${brand.description}</p>
 					    </div>
+					    </a>
 					  </div>
 					</div>
 				</c:forEach>
