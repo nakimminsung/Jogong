@@ -565,8 +565,7 @@ form h1 {
   	var result = document.querySelector("#detailResult");
   	var count =1;
 
-  	const modal = document.getElementById("orderDetailModal")
-      const btnModal = document.getElementById("btn_orderDetail")
+  	
 
   	plus.addEventListener("click", ()=>{
   		count++;
@@ -615,17 +614,31 @@ form h1 {
 		
   	// 선물상자 담기
   	$("#btn_detailCart").click(function(){
-  		var data = $("#insertDetail").serialize();
-  		var s ="";
-  		$.ajax({
-  			type:"post",
-  			url:"../cart/insert",
-  			dataType:"text",
-  			data:data,
-  			success:function(res){
-
-  			},
-  		});
+  		var productNum = $('input[name=productNum]').val();
+  		
+  		if(${empty sessionScope.loginUserNum}) {
+			if(!confirm("로그인이 필요한 메뉴입니다.\n로그인하시겠습니까?")){
+	
+			} else {
+				location.href="../loginForm";
+			}
+			return
+		} else {
+			var data = $("#insertDetail").serialize();
+	  		var s ="";
+	  		$.ajax({
+	  			type:"post",
+	  			url:"../cart/insert",
+	  			dataType:"text",
+	  			data:data,
+	  			success:function(res){
+					alert("선물상자에 상품을 담았어요");
+			    	//modal.style.display = "flex";
+			    	
+			    	//$("#detailCartModal").attr("class","modal fade show");
+	  			},
+	  		});
+		}
   	});
 
   	$(".detailWishlist").click(function(){
@@ -651,25 +664,42 @@ form h1 {
   			dataType:"json",
   			data:data,
   			success:function(res){
-  				modal.style.display = "none"
+  				
   				window.location.href="../payview?num="+res.num;
   			},
   		});
   	});
-
+  	
+	$("#btn_detailWish").click(function(){
+		if(${empty sessionScope.loginUserNum}) {
+			if(!confirm("로그인이 필요한 메뉴입니다.\n로그인하시겠습니까?")){
+	
+			} else {
+				location.href="../loginForm";
+			}
+			return
+		}
+	});
+	
+	
+	var modal2 = document.getElementById("orderDetailModal");
+    var btnModal2 = document.getElementById("btn_orderDetail");
+    
   	$("#btn_orderDetail").click(function(){
   		
   		if(${empty sessionScope.loginUserNum}) {
 			if(!confirm("로그인이 필요한 메뉴입니다.\n로그인하시겠습니까?")){
 	
 			} else {
-				location.href="${root}/loginForm";
+				location.href="../loginForm";
 			}
 			return
 		} else {
+			
+			/* var btnModal = document.getElementById("btn_orderDetail"); */
 			//  로그인 상태일 때 친구목록 불러오기
-			btnModal.addEventListener("click", e => {
-	    		modal.style.display = "flex"
+			btnModal2.addEventListener("click", e => {
+	    		modal2.style.display = "flex"
 			});
 		}
   	});
@@ -677,19 +707,19 @@ form h1 {
    /*    btnModal.addEventListener("click", e => {
   	    modal.style.display = "flex"
   	}) */
-  	const closeBtn = modal.querySelector(".gift-close-area");
+  	const closeBtn = modal2.querySelector(".gift-close-area");
  	// 모달 x버튼 클릭시 닫기
 	closeBtn.addEventListener("click", e => {
-	    modal.style.display = "none"
+	    modal2.style.display = "none"
         $("body").attr("class","");
 	    $("input[name=friend-search]").val();
 	});
 	
 	// 모달 외부 클릭시 닫기
-	modal.addEventListener("click", e => {
+	modal2.addEventListener("click", e => {
 	    const evTarget = e.target
 		    if(evTarget.classList.contains("gift-modal-overlay")) {
-		        modal.style.display = "none"
+		        modal2.style.display = "none"
         		$("body").attr("class","");
 			    $("input[name=friend-search]").val();
 		    }
@@ -702,7 +732,7 @@ form h1 {
         
 	// 모달 취소버튼 클릭시 닫기
 	$(document).on("click",".btn-cancel",function(){
-	    modal.style.display = "none"
+	    modal2.style.display = "none"
 	    $("body").attr("class","");
 		$("input#friend-search").val("");
 	});
@@ -962,7 +992,7 @@ form h1 {
 						    dropdownBtn.textContent = selectValue;
 						    dropdownBtn.classList.add("selected");
 						    $('input[name=productOption]').attr('value', selectValue);
-						    $(".dropdown-menu show").attr("class","dropdown-menu");
+						    /* $(".dropdown-menu show").removeClass("show"); */
 				  		});
 					});
 					
@@ -1049,13 +1079,12 @@ form h1 {
         <br />
         <h6 style="display: inline">총금액</h6>
         <h4 class="totalcost" style="display: inline">${dto.price }원</h4>
-
+<!-- data-target="#detailCartModal" -->
         <button
           type="button"
           class="detailCart"
           id="btn_detailCart"
           data-toggle="modal"
-          data-target="#detailCartModal"
         >
           <i class="fa-solid fa-gift"></i>&nbsp;&nbsp;선물상자 담기
         </button>
@@ -1147,7 +1176,7 @@ form h1 {
       </div>
 
       <!-- 선물상자 담기 Modal -->
-      <div
+   <%--    <div
         class="modal fade"
         id="detailCartModal"
         tabindex="-1"
@@ -1173,7 +1202,7 @@ form h1 {
             </div>
           </div>
         </div>
-      </div>
+      </div> --%>
 
       <!-- wishlist Modal -->
       <div
@@ -1205,7 +1234,7 @@ form h1 {
                   type="radio"
                   style="width: 18px; height: 18px; border: 1px"
                   name="publicOption"
-                  value="0"
+                  value="1"
                   checked="checked"
                 />
                 <h5 style="display: inline-block">친구공개</h5>
@@ -1216,7 +1245,7 @@ form h1 {
                   type="radio"
                   style="width: 18px; height: 18px; border: 1px"
                   name="publicOption"
-                  value="1"
+                  value="0"
                 />
                 <h5 style="display: inline-block">비공개</h5>
               </label>
