@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
@@ -67,6 +66,41 @@
 	
 	}
 	
+	}
+	.categoryName{
+		margin: auto;
+	    display: flex;
+		width: 1200px;   
+		padding-top: 2%;
+		padding-bottom: 1%; 
+	
+	}
+		 
+	 .categoryTotal{
+		text-align: center;
+		margin: auto;
+	    display: flex;
+	    justify-content: space-around;
+		width: 1200px;
+		margin: auto;	    
+	    flex-direction: row;
+	    flex-wrap: wrap;
+	    align-content: stretch;
+	    align-items: baseline;
+	} 
+	
+	.cateImage{
+		width: 90px;
+		border-radius: 30px;
+		
+	}
+	
+	.productImage{
+		width:100%;
+		border-radius: 10px;
+	
+	}
+	
 	.categorySort{
 		width: 100px;
 	    border: 0px;
@@ -102,16 +136,18 @@
 		font-size: 20px;
 		
 	}
+	.card-img-top{
+		border: 0.1px solid #d3d3d3;
 	}
 </style>
 </head>
 <body>
 <div class="brand_layout">
-	<!-- »ó´Ü¿¡ ºê·£µå ³ëÃâ -->
+	<!-- ìƒë‹¨ì— ë¸Œëœë“œ ë…¸ì¶œ -->
 	<div class="brandTop">
 		<div class="brandTop_inner input-group" style="flex-wrap: nowrap">
 			<div class="brandTop_logo">
-				<img alt="·Î°í½æ³×ÀÏ" src="${dto.logoImage}">
+				<img alt="ë¡œê³ ì¸ë„¤ì¼" src="${dto.logoImage}">
 			</div>
 			<div class="brandTop_content">
 				<p class="brandTop_name">${brand}</p>
@@ -119,23 +155,23 @@
 			</div>
 		</div>
 	</div>
-	<!-- »ó´Ü¿¡ ºê·£µå ³ëÃâ ³¡ -->
-	<!-- ÄÁÅÙÆ® ºä -->
+	<!-- ìƒë‹¨ì— ë¸Œëœë“œ ë…¸ì¶œ ë -->
+	<!-- ì»¨í…íŠ¸ ë·° -->
 	<div class="brandContent">
-		<!-- ¿É¼Ç -->
+		<!-- ì˜µì…˜ -->
 		<div class="brandList">
-			<h3><span>${count}°³</span></h3>
+			<h3><span>${count}ê°œ</span></h3>
 			<div>
 				<select class="categorySort" name="sort">
-					<option value="createdAt desc" selected>ÃÖ½Å¼ø</option>
-					<option value="price desc">°¡°İ³ôÀº¼ø</option>
-					<option value="price asc">°¡°İ³·Àº¼ø</option>
-					<option value="readCount desc">ÀÎ±â¼ø</option>
+					<option value="createdAt desc" selected>ìµœì‹ ìˆœ</option>
+					<option value="price desc">ê°€ê²©ë†’ì€ìˆœ</option>
+					<option value="price asc">ê°€ê²©ë‚®ì€ìˆœ</option>
+					<option value="readCount desc">ì¸ê¸°ìˆœ</option>
 				</select>
 			</div>
 		</div> 
-		<!-- ¿É¼Ç ³¡ -->
-		<!-- »óÇ°¸ñ·Ï  -->
+		<!-- ì˜µì…˜ ë -->
+		<!-- ìƒí’ˆëª©ë¡  -->
 		<div class="productList">
 		<c:forEach var="productList" items="${productList}">
 			<div class="productItem">
@@ -144,14 +180,14 @@
 				<span style="display: inline-block;">
 					<span class='brandName'>${productList.brand }</span><br>
 					<span class='productName'>${productList.name }</span><br>
-					<span class='productPrice'><b><fmt:formatNumber value="${productList.price}" type="number"/>¿ø</b></span>
+					<span class='productPrice'><b><fmt:formatNumber value="${productList.price}" type="number"/>ì›</b></span>
 				</span>
 			</a>
 			</div>
 		</c:forEach>	
 		</div>
-	<!-- »óÇ°¸ñ·Ï ³¡  -->
-	</div><!-- ÄÁÅÙÆ® ºä ³¡ -->
+	<!-- ìƒí’ˆëª©ë¡ ë  -->
+	</div><!-- ì»¨í…íŠ¸ ë·° ë -->
 </div>
 </body>
 <script type="text/javascript">
@@ -175,7 +211,7 @@ $(function () {
 						s += "<span style='display: inline-block;'>";
 						s += "<span class='brandName'>"+elt.brand+"</span><br>";
 						s += "<span class='productName'>"+elt.name+"</span><br>";
-						s += "<span class='productPrice'>"+price+"¿ø</span>";
+						s += "<span class='productPrice'>"+price+"ì›</span>";
 						s += "</span>";
 						s += "</a>";
 						s += "</div>";
