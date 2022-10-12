@@ -137,7 +137,8 @@
      line-height: 45px;
      color: #222;
      background-color: white;
-     margin-top: 100px;
+     margin-top: 30px;
+ 
    }
 
    .detailInsert {
@@ -530,27 +531,100 @@ form h1 {
   background-color: #e0e2e7;
   cursor: not-allowed;
 }
+
+#cart-wish-modal.cart-modal-overlay {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: rgba(50, 50, 50, 0.25);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(1.5px);
+        -webkit-backdrop-filter: blur(1.5px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        display: none;
+        z-index: 999;
+    }
+    #cart-wish-modal .cart-modal-window {
+        background: #fff;
+        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+        backdrop-filter: blur( 13.5px );
+        -webkit-backdrop-filter: blur( 13.5px );
+        border-radius: 10px;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+        width: 400px;
+        height: 300px;
+   		position: absolute;
+        top: 200px;
+        padding: 20px;
+    }
+    .modal-fix {
+	  position: fixed;
+	  width :100%;
+	  height: 100%;
+	  overflow: scroll;
+	}
+	div.cart-modal-window {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	div.cart-modal-top{
+		margin-bottom: 35px;
+	}
+	div.cart-modal-middle{
+		margin-bottom: 35px;
+		width:100%;
+	}
+	div.cart-modal-bottom {
+		display: flex;
+		flex-direction: row;
+	}
+	div.cart-wish-option{
+		display: flex;
+		flex-direction: column;
+	}
+	div.cart-wish-option input{
+		margin-top: 5px;
+	}
+	div.cart-wish-option>div {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+	}
+	div.cart-wish-option>div>div{
+		display: flex;
+		flex-direction: column;
+		margin-right: 10px;
+	}
+	
 </style>
 <script type="text/javascript">
   $(function(){
+	// 옵션 
 	var productNum = $('input[name=productNum]').val();
 	getAllOption(productNum);
 	
+	// 리뷰ajax
 	borderBottom();
 	getReviewCount();
-	
-	var dropdownBtn = document.querySelector(".dropdown-toggle");
-	/* dropdownBtn.addEventListener("click", function () {
-		getAllOption(productNum);
-	}); */
-
+ 
+	//친구목록 조회 함수 호출 
 	let data = {userNum:$("input[name=userNum]").attr("value"),search:""};
 	list(data);
 
+	// 가격표시
   	var price = $(".proPrice").val().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   	$('._price').text(price+"원");
   	$('.totalcost').text(price+"원");
 
+  	// 배송비 표시
   	var deliveryOption = $(".delivery").val();
   	if(deliveryOption){
   		$('._delivery').text(" 배송비 미포함");
@@ -564,8 +638,6 @@ form h1 {
   	var minus = document.querySelector(".detailMinus");
   	var result = document.querySelector("#detailResult");
   	var count =1;
-
-  	
 
   	plus.addEventListener("click", ()=>{
   		count++;
@@ -612,7 +684,7 @@ form h1 {
 		$(this).find('.fa-star:nth-child(-n'+targetScore+')').css({color:'#F7C815'});
 	});
 		
-  	// 선물상자 담기
+  	// 선물상자 담기 
   	$("#btn_detailCart").click(function(){
   		var productNum = $('input[name=productNum]').val();
   		
@@ -633,15 +705,21 @@ form h1 {
 	  			data:data,
 	  			success:function(res){
 					alert("선물상자에 상품을 담았어요");
-			    	//modal.style.display = "flex";
-			    	
-			    	//$("#detailCartModal").attr("class","modal fade show");
+			   
 	  			},
 	  		});
 		}
   	});
+  	
+ 	// 위시리스트
+ 	// 취소버튼 누를 때 모달 꺼짐
+	$(document).on("click",".btn-cancel",function(){
+		var wishModal = document.getElementById("cart-wish-modal");
+	    wishModal.style.display = "none"
+        $("body").attr("class","");
+	});
 
-  	$(".detailWishlist").click(function(){
+	$("#btn_wishListInsert").click(function(){
   		var data = $("#insertDetail").serialize();
   		 var s ="";
   		$.ajax({
@@ -650,11 +728,31 @@ form h1 {
   			dataType:"text",
   			data:data,
   			success:function(res){
+  				var wishModal = document.getElementById("cart-wish-modal");
   				alert("위시리스트에 상품이 담겼어요");
+  			 	wishModal.style.display = "none"
+  			    $("body").attr("class",""); 
   			},
   		});
-  	});
-
+  	}); 
+	
+   //하트(위시리스트)
+	var modal3 = document.getElementById("cart-wish-modal");
+    var btnModal3 = document.getElementById("btn_detailWish");
+  	$("#btn_detailWish").click(function(){
+		if(${empty sessionScope.loginUserNum}) {
+			if(!confirm("로그인이 필요한 메뉴입니다.\n로그인하시겠습니까?")){
+	
+			} else {
+				location.href="../loginForm";
+			}
+			return;
+		}else {
+	    	modal3.style.display = "flex"
+		}
+	}); 
+  	
+  	// 선물하기 insert(모달)
   	$("#btn_orderDetailInsert").click(function(){
   		var data = $("#insertDetail").serialize();
   		/* alert(data); */
@@ -670,18 +768,7 @@ form h1 {
   		});
   	});
   	
-	$("#btn_detailWish").click(function(){
-		if(${empty sessionScope.loginUserNum}) {
-			if(!confirm("로그인이 필요한 메뉴입니다.\n로그인하시겠습니까?")){
-	
-			} else {
-				location.href="../loginForm";
-			}
-			return
-		}
-	});
-	
-	
+  	// 선물하기 
 	var modal2 = document.getElementById("orderDetailModal");
     var btnModal2 = document.getElementById("btn_orderDetail");
     
@@ -689,25 +776,15 @@ form h1 {
   		
   		if(${empty sessionScope.loginUserNum}) {
 			if(!confirm("로그인이 필요한 메뉴입니다.\n로그인하시겠습니까?")){
-	
 			} else {
 				location.href="../loginForm";
 			}
-			return
 		} else {
-			
-			/* var btnModal = document.getElementById("btn_orderDetail"); */
-			//  로그인 상태일 때 친구목록 불러오기
-			btnModal2.addEventListener("click", e => {
-	    		modal2.style.display = "flex"
-			});
+	    	modal2.style.display = "flex";
 		}
   	});
   	
-   /*    btnModal.addEventListener("click", e => {
-  	    modal.style.display = "flex"
-  	}) */
-  	const closeBtn = modal2.querySelector(".gift-close-area");
+  	var closeBtn = modal2.querySelector(".gift-close-area");
  	// 모달 x버튼 클릭시 닫기
 	closeBtn.addEventListener("click", e => {
 	    modal2.style.display = "none"
@@ -744,8 +821,8 @@ form h1 {
 	});
 		
   	window.addEventListener("keyup", e => {
-  		if(modal.style.display === "flex" && e.key === "Escape") {
-      		modal.style.display = "none"
+  		if(modal2.style.display === "flex" && e.key === "Escape") {
+      		modal2.style.display = "none"
       		$("body").attr("class","");
   		}
   	})
@@ -755,7 +832,7 @@ form h1 {
   	});
 
      $(document).on("click",".btn-cancel",function(){
-	    modal.style.display = "none"
+	    modal2.style.display = "none"
 	    $("body").attr("class","");
 	});
 
@@ -780,7 +857,6 @@ form h1 {
   			dataType:"json",
   			success:function(res){
   				getReviewCount2();
-  				//console.log(res);
   				s+="<h3 class='reviewContent' style='font-weight:600;'></h3>";
   				s+="<div class='reviewContentBtn'>";
   					s+="<span class='latestProduct'>최신순</span><span class='popProduct'>별점순</span>";
@@ -826,12 +902,12 @@ form h1 {
 	
 	var menuList = document.querySelector(".dropdown-menu");
 	var itemList = document.querySelector(".dropdown-item");
-
-	dropdownBtn.addEventListener("click", function () {
+	
+	dropdownBtn?.addEventListener("click", function () {
 		  menuList.classList.toggle("show");
 	});
 	
-	menuList.addEventListener("click",function(){
+	menuList?.addEventListener("click",function(){
 		menuList.classList.toggle("hidden");
 	});
 	
@@ -872,11 +948,33 @@ form h1 {
         	$("div.friend-select-list").html(fs);
 		}
 	});
+	
+	// 나에게 선물하기 
+	$("#btn_selfGift").click(function(){
+		console.log("에러안남");
+  		if(${empty sessionScope.loginUserNum}) {
+			if(!confirm("로그인이 필요한 메뉴입니다.\n로그인하시겠습니까?")){
+			} else {
+				location.href="../loginForm";
+			}
+		} else {
+			var data = $("#insertDetail").serialize();
+	  		var s ="";
+	  		$.ajax({
+	  			type:"post",
+	  			url:"../orderDetail/insertSelfGift",
+	  			dataType:"json",
+	  			data:data,
+	  			success:function(res){
+	  				window.location.href="../payview?num="+res.num;
+	  			},
+	  		});
+		}
+  	});
   }); // $(())
 
-//친구목록 조회 함수
+	//친구목록 조회 함수
 	function list(data) {
-		
 		let s="";
 		console.log(data);
 			
@@ -962,7 +1060,6 @@ form h1 {
 	
  	// 상품 옵션 
  	 function getAllOption(productNum){
- 	  		
 			var s = "";
 			$.ajax({
 				type:"get",
@@ -992,7 +1089,6 @@ form h1 {
 						    dropdownBtn.textContent = selectValue;
 						    dropdownBtn.classList.add("selected");
 						    $('input[name=productOption]').attr('value', selectValue);
-						    /* $(".dropdown-menu show").removeClass("show"); */
 				  		});
 					});
 					
@@ -1017,6 +1113,7 @@ form h1 {
     <c:if test="${!empty sessionScope.loginUserNum}">
     	<input type="hidden" name="userNum" value="${sessionScope.loginUserNum}" />
     </c:if>
+    
     <input type="hidden" name="productNum" value="${dto.num }" />
     <input type="hidden" name="productOption" value=""/>
 
@@ -1048,9 +1145,10 @@ form h1 {
           ${dto.country }
         </p>
       </div>
-
+	
       <div class="detailItem detailRight">
         <h5 style="font-weight: bold">${dto.name }</h5>
+        <div id="_detailRight">
         <!-- 옵션넣기 -->
         <c:if test="${dto.sizeOption == 1}">
         	<br>
@@ -1079,7 +1177,7 @@ form h1 {
         <br />
         <h6 style="display: inline">총금액</h6>
         <h4 class="totalcost" style="display: inline">${dto.price }원</h4>
-<!-- data-target="#detailCartModal" -->
+
         <button
           type="button"
           class="detailCart"
@@ -1091,36 +1189,24 @@ form h1 {
 
         <div class="detailInsert">
           <!-- 위시리스트 -->
-          <button
-            type="button"
-            class="btn_g"
-            id="btn_detailWish"
-            data-toggle="modal"
-            data-target="#wishlistModal"
-          >
+          <button type="button" class="btn_g cart-wish-button" id="btn_detailWish" data-toggle="modal">
             <span class="likes">
-              <i
-                class="far fa-heart"
-                style="font-size: 20px; margin-left: 5px; margin-top: 3px"
-              ></i
-              >&nbsp;
+              <i class="far fa-heart" style="font-size: 20px; margin-left: 5px; margin-top: 3px"></i>&nbsp;
             </span>
           </button>
 
-          <button
-            type="submit"
-            class="detailSelfGift"
-            formaction="../orderDetail/insertSelfGift"
-          >
+         <!--  <button type="submit" class="detailSelfGift" formaction="../orderDetail/insertSelfGift">
+            <b>나에게 선물하기</b>
+          </button> -->
+           <button type="button" class="detailSelfGift" id="btn_selfGift">
             <b>나에게 선물하기</b>
           </button>
-          <!-- <button type="submit" class="detailGift" formaction="../orderDetail/insert"> -->
           <button type="button" class="detailGift" id="btn_orderDetail">
             <b>선물하기</b>
           </button>
         </div>
-        
       </div>
+     </div>
 
       <!-- 버튼 -->
       <div class="detailItem detailDescription">
@@ -1175,93 +1261,41 @@ form h1 {
         </div>
       </div>
 
-      <!-- 선물상자 담기 Modal -->
-   <%--    <div
-        class="modal fade"
-        id="detailCartModal"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-body">
-              <img
-                src="${dto.thumbnailImageUrl }"
-                width="100"
-                style="float: left"
-              />
-              <h4><b>선물상자에 상품을 담았어요</b></h4>
-              <a href="${root}/mypage/cart">선물상자 보러가기</a>
+      <!-- wish modal -->
+    <div id="cart-wish-modal" class="cart-modal-overlay">
+        <div class="cart-modal-window">
+        	<div class="cart-modal-top">
+	       		<b style="font-size: 20px;">위시의 공개범위를 선택해주세요</b>
+        	</div>
+        	<div class="cart-modal-middle">
+		       		<div class="cart-wish-option">
+		       			<div style="border-bottom: #f0f0f0 solid 1px; padding-bottom: 15px; margin-bottom: 15px;">
+		       				<div>
+				       			<input type="radio" name="publicOption" value=1 style="display: inline;" checked="checked">
+		       				</div>
+			       			<div>
+				       			<b style="display: block; font-size: 17px; margin-bottom: 5px;">친구공개! 내 취향은 이거야</b>
+				       			<b style="font-size: 13px; color:gray;">내 선물을 고민하는 친구를 위해 힌트 주기</b>
+			       			</div>
+		       			</div>
+		       			<div>
+		       				<div>
+				       			<input type="radio" name="publicOption" value=0>
+		       				</div>
+			       			<div>
+				       			<b style="display: block; font-size: 17px;">비밀! 나만 볼 수 있어요</b>
+				       			<b style="font-size: 13px; color:gray;">나만 알고 싶은 상품, 몰래 찜해두기</b>
+			       			</div>
+		       			</div>
+		       		</div>
+        	</div>
+            <div class="cart-modal-bottom">
+				<button type="button" class="btn btn-secondary btn-cancel" style="width:180px;">취소</button>
+				<div style="width:10px;"></div>
+				<button type="button" id="btn_wishListInsert" class="btn cart-wish-insert" style="width:180px; background-color: #cff0cc;">담기</button>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="detailCart" data-dismiss="modal">
-                Close
-              </button>
-            </div>
-          </div>
         </div>
-      </div> --%>
-
-      <!-- wishlist Modal -->
-      <div
-        class="modal fade"
-        id="wishlistModal"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
-                위시의 공개범위를 선택해주세요
-              </h5>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <label
-                ><input
-                  type="radio"
-                  style="width: 18px; height: 18px; border: 1px"
-                  name="publicOption"
-                  value="1"
-                  checked="checked"
-                />
-                <h5 style="display: inline-block">친구공개</h5>
-              </label>
-              <br />
-              <label
-                ><input
-                  type="radio"
-                  style="width: 18px; height: 18px; border: 1px"
-                  name="publicOption"
-                  value="0"
-                />
-                <h5 style="display: inline-block">비공개</h5>
-              </label>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="detailWishlist"
-                data-dismiss="modal"
-              >
-                담기
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+    </div>
     </div>
   </form>
 </body>
