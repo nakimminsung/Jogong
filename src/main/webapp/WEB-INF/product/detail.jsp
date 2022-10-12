@@ -200,11 +200,11 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
    }
    #orderDetailModal .gift-modal-window {
      background: #fff;
-     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-     backdrop-filter: blur(13.5px);
-     -webkit-backdrop-filter: blur(13.5px);
+     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+     backdrop-filter: blur( 13.5px );
+     -webkit-backdrop-filter: blur( 13.5px );
      border-radius: 10px;
-     border: 1px solid rgba(255, 255, 255, 0.18);
+     border: 1px solid rgba( 255, 255, 255, 0.18 );
      width: 400px;
      height: 600px;
      position: relative;
@@ -216,6 +216,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
      color: gray;
      font-weight: 400px;
      font-size: 20px;
+     z-index: 999;
    }
    .modal-fix {
      position: fixed;
@@ -261,13 +262,15 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
      margin-bottom: -10px;
    }
    div.gift-modal-search input {
-     width: 100%;
-     height: 40px;
+	  position:relative;
+	  top:10px;
+	  width: 100%;
+	  height: 40px;
    }
    div.gift-modal-search img {
      width: 30px;
      position: relative;
-     top: -35px;
+   	 top: -26px;
      left: 325px;
      cursor: pointer;
    }
@@ -277,8 +280,15 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
    }
    div.friend-result {
      overflow: auto;
-     height: 230px;
+     height: 290px;
    }
+   div.friend-result input{
+     position: relative;
+     top: 5px;
+   }
+   div.friend-result b{
+    	position: relative;
+    }
    div.friend-select-list {
      height: 80px;
      display: flex;
@@ -292,6 +302,13 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
      overflow: auto;
      height: 230px;
    }
+
+	button.getWishlist{
+		background-color: #cff0cc;
+	}
+
+
+
 
    .detailDescButton > ul > li {
      cursor: pointer;
@@ -473,6 +490,7 @@ form h1 {
   background-color: #fff;
   border: 1px solid transparent;
   border-radius: 6px;
+  display:none;
   transition: border-color 200ms ease-in, padding 200ms ease-in,
     max-height 200ms ease-in, box-shadow 200ms ease-in;
 }
@@ -482,6 +500,7 @@ form h1 {
   max-height: 280px;
   border-color: rgba(224, 226, 231, 0.5);
   box-shadow: 0 4px 9px 0 rgba(63, 65, 80, 0.1);
+  display: block;
 }
 
 .dropdown-option {
@@ -515,14 +534,20 @@ form h1 {
 </style>
 <script type="text/javascript">
   $(function(){
-	
 	var productNum = $('input[name=productNum]').val();
-	console.log("num"+productNum);
+	getAllOption(productNum);
+	
 	borderBottom();
 	getReviewCount();
-	getAllOption(productNum);
-	  	
-	  
+	
+	var dropdownBtn = document.querySelector(".dropdown-toggle");
+	/* dropdownBtn.addEventListener("click", function () {
+		getAllOption(productNum);
+	}); */
+
+	let data = {userNum:$("input[name=userNum]").attr("value"),search:""};
+	list(data);
+
   	var price = $(".proPrice").val().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   	$('._price').text(price+"원");
   	$('.totalcost').text(price+"원");
@@ -634,65 +659,76 @@ form h1 {
   	});
 
   	$("#btn_orderDetail").click(function(){
-  		var userNum = $('input[name=userNum]').attr("value");
-  		var s="";
-  		$.ajax({
-  			type: "get",
-  			url: "../user/friendData",
-  			dataType: "json",
-  			data: {"userNum":userNum},
-  			success:function(res){
-  				s += "<ul style='padding-left:0;'>";
-  				$.each(res, function(i,elt) {
-  					s += "<li style='list-style:none; float:left;'>";
-  					s += "<div style='margin-right:50px;'>";
-  					s += "<input type='checkbox' style='margin-right:10px;' name='friendNum' value='"+elt.num+"'>";
-  					s += "<label>";
-  					s += "<img src='"+elt.profileImage+"' width='100' class='gift-friend-img' style='margin-right:5px;'>";
-  					s += "<b num='"+elt.num+"'>"+elt.nickname+"</b>";
-  					s += "</label>";
-  					s += "</div>";
-  					s += "</li>";
-  				});
-  				s += "</ul>";
-  				$(".detail-modal-body").html(s);
-  			}
-  		});
+  		
+  		if(${empty sessionScope.loginUserNum}) {
+			if(!confirm("로그인이 필요한 메뉴입니다.\n로그인하시겠습니까?")){
+	
+			} else {
+				location.href="${root}/loginForm";
+			}
+			return
+		} else {
+			//  로그인 상태일 때 친구목록 불러오기
+			btnModal.addEventListener("click", e => {
+	    		modal.style.display = "flex"
+			});
+		}
   	});
-
-      btnModal.addEventListener("click", e => {
+  	
+   /*    btnModal.addEventListener("click", e => {
   	    modal.style.display = "flex"
-  	})
+  	}) */
+  	const closeBtn = modal.querySelector(".gift-close-area");
+ 	// 모달 x버튼 클릭시 닫기
+	closeBtn.addEventListener("click", e => {
+	    modal.style.display = "none"
+        $("body").attr("class","");
+	    $("input[name=friend-search]").val();
+	});
+	
+	// 모달 외부 클릭시 닫기
+	modal.addEventListener("click", e => {
+	    const evTarget = e.target
+		    if(evTarget.classList.contains("gift-modal-overlay")) {
+		        modal.style.display = "none"
+        		$("body").attr("class","");
+			    $("input[name=friend-search]").val();
+		    }
+	});
 
-  	const closeBtn = modal.querySelector(".gift-close-area")
-
-  	closeBtn.addEventListener("click", e => {
-  	    modal.style.display = "none"
-          $("body").attr("class","");
-  	})
-
-  	modal.addEventListener("click", e => {
-  	    const evTarget = e.target
-  		    if(evTarget.classList.contains("gift-modal-overlay")) {
-  		        modal.style.display = "none"
-          		$("body").attr("class","");
-  		    }
-  	})
-
+	// 모달 실행시 오버레이 실행
+	$("#gift-friend").click(function(){
+		$("body").attr("class","modal-fix");
+	});
+        
+	// 모달 취소버튼 클릭시 닫기
+	$(document).on("click",".btn-cancel",function(){
+	    modal.style.display = "none"
+	    $("body").attr("class","");
+		$("input#friend-search").val("");
+	});
+	
+	// 친구 검색
+	$("#friend-search").on('keyup keypress',function(){
+		let data = {userNum:$("input[name=userNum]").attr("value"),search:$(this).val().trim()};
+		list(data);
+	});
+		
   	window.addEventListener("keyup", e => {
   		if(modal.style.display === "flex" && e.key === "Escape") {
       		modal.style.display = "none"
       		$("body").attr("class","");
-  			}
+  		}
   	})
 
   	$("#btn_orderDetail").click(function(){
   		$("body").attr("class","modal-fix");
   	});
 
-      $(".btn-calcel").click(function(){
-      	modal.style.display = "none"
-      })
+     $(document).on("click",".btn-cancel",function(){
+	    modal.style.display = "none"
+	    $("body").attr("class","");
+	});
 
       // 상세설명, 리뷰
       $("document").ready(function(){
@@ -758,6 +794,7 @@ form h1 {
  	 //옵션
 	var dropdownForm = document.querySelector(".drowpdown");
 	var dropdownBtn = document.querySelector(".dropdown-toggle");
+	
 	var menuList = document.querySelector(".dropdown-menu");
 	var itemList = document.querySelector(".dropdown-item");
 
@@ -765,8 +802,95 @@ form h1 {
 		  menuList.classList.toggle("show");
 	});
 	
+	menuList.addEventListener("click",function(){
+		menuList.classList.toggle("hidden");
+	});
+	
+	// 모달 창에서 친구 선택시 모달 상단 친구 출력
+	var fl = 0;
+	$(document).on("click",".chkBox",function(){
+		
+		var ba = new Array();
+		var fs = "";	
+		
+		fl = $(".chkBox:checked").length;
+	
+	    $(".chkBox:checked").each(function() {
+	    	var map = new Map();
+	    	map.set("b",$(this).siblings().find("b").text()); 
+	    	map.set("img",$(this).siblings().find("img").attr("src")); 
+	    	map.set("num",$(this).siblings().find("b").attr("num")); 		    	 		    	 	    	 		    	 
+	    	ba.push(map);
+	    });			
+		
+		if(fl != 0){
+			fs += "<ul class='wish' style='padding-left:0;'>";
+			
+			$.each(ba, function(i,elt) {
+				fs += "<li style='list-style:none; float:left;' class='wish' num='"+elt.get("num")+"' name='"+elt.get("b")+"'>";
+				fs += "<img src='"+elt.get("img")+"' width='50' style='margin-top:10px;' class='gift-friend-img wish'>";
+				fs += "<div style='text-align:center;'>"+elt.get("b")+"</div>";
+				fs += "</li>";
+			});
+			fs += "</ul>";				
+			$("div.friend-select-list").html(fs);
+        	
+		}else{
+			$(".friend-length").text("");
+			
+			fs += "<img src='${root }/image/default.png' class='gift-friend-img'>";
+        	fs += "선물할 친구를 선택하세요.";
+        	$("div.friend-select-list").html(fs);
+		}
+	});
   }); // $(())
 
+//친구목록 조회 함수
+	function list(data) {
+		
+		let s="";
+		console.log(data);
+			
+		$.ajax({
+			type: "post",
+			url: "../user/friendData",
+			dataType: "json",
+			contentType: "application/json; charset=utf-8",
+			data: JSON.stringify({"data":data}),
+			success:function(res){
+				
+				s += "<ul style='padding-left:0;'>";
+				
+				$.each(res, function(i,elt) {
+					
+					s += "<li style='list-style:none; float:left;'>";
+					s += "<div style='margin-right:50px;'>";
+					s += "<input type='radio' style='margin-right:10px;' class='chkBox' name='friendNum' value='"+elt.num+"'>";
+					s += "<label>";
+					s += "<img src='"+elt.profileImage+"' width='100' class='gift-friend-img' style='margin-right:5px;'>";
+					s += "<b num='"+elt.num+"'>"+elt.nickname+"</b>";
+					s += "</label>";
+					s += "</div>";
+					s += "</li>";
+				});
+				s += "</ul>";
+				$("div.friend-result").html(s);
+			}
+		});
+		
+		// 친구인원수
+		$.ajax({
+			type: "get",
+			url: "../user/friendCount",
+			dataType: "json",
+			data: {"userNum":$("input[name=userNum]").attr("value")},
+			success:function(res){
+				
+				$("span.friend-count").text(res);
+			}
+		});
+	}
+  
   	function borderBottom(){
   		$('a.link_tab').css("border-bottom","");
   		$("#detailProDesc").css("border-bottom","3px solid black");
@@ -809,6 +933,7 @@ form h1 {
 	
  	// 상품 옵션 
  	 function getAllOption(productNum){
+ 	  		
 			var s = "";
 			$.ajax({
 				type:"get",
@@ -833,11 +958,12 @@ form h1 {
 					
 					optionBtn.forEach(function (item) {
 						item.addEventListener("click", function (e) {
-					    var selectValue = e.currentTarget.textContent.trim();
-					    console.log("val"+selectValue);
-					    dropdownBtn.textContent = selectValue;
-					    dropdownBtn.classList.add("selected");
-					    $('input[name=productOption]').attr('value', selectValue);
+						    var selectValue = e.currentTarget.textContent.trim();
+						    console.log("val"+selectValue);
+						    dropdownBtn.textContent = selectValue;
+						    dropdownBtn.classList.add("selected");
+						    $('input[name=productOption]').attr('value', selectValue);
+						    $(".dropdown-menu show").attr("class","dropdown-menu");
 				  		});
 					});
 					
@@ -987,64 +1113,36 @@ form h1 {
       <div id="orderDetailModal" class="gift-modal-overlay">
         <div class="gift-modal-window">
           <div class="gift-modal-top">
-            <div class="gift-title">
-              <div>
-                <h5>
-                  친구 선택
-                  <span
-                    style="
-                      font-size: 20px;
-                      margin-bottom: 5px;
-                      color: #ff6b00;
-                    "
-                    class="friend-length"
-                  ></span>
-                </h5>
-              </div>
-              <div class="gift-close-area">X</div>
-            </div>
-            <div class="friend-select-list">
-              <img src="${root }/image/default.png" class="gift-friend-img" />
-              선물할 친구를 선택하세요.
-            </div>
-            <div class="gift-modal-search">
-              <input type="search" placeholder="이름, 닉네임 검색" />
-              <img src="${root}/image/search.svg" />
-            </div>
-          </div>
-          <div class="gift-modal-top">
-            <div>나</div>
-            <div class="gift-modal-friend-list">
-              <div class="gift-modal-select">
-                <input type="checkbox" />
-                <img
-                  src="${root }/image/default.png"
-                  class="gift-friend-img"
-                />
-                명국
-              </div>
-            </div>
-            <div style="margin: 10px 0">
-              친구목록
-              <span
-                style="font-size: 15px; margin-bottom: 5px"
-                class="friend-count"
-              ></span>
-            </div>
-            <div class="detail-modal-body"><!-- modal 내용 들어감 --></div>
+	            <div class="gift-title">
+	            	<div>
+		                <h5>
+		                	친구 선택
+		                	<span style="font-size: 20px; margin-bottom: 5px; color:#ff6b00;" class="friend-length"></span>
+		                </h5>
+	            	</div>
+	            	<div class="gift-close-area">X</div>
+	            </div>
+	            <div class="friend-select-list">
+	            	<img src="${root }/image/default.png" class="gift-friend-img">
+	            	<b style="font-weight: normal; position: relative; left: 5px;">선물할 친구를 선택하세요.</b>
+	            </div>
+	            <div class="gift-modal-search">
+	            	<input type="search" placeholder="이름, 닉네임 검색" id="friend-search" name="friend-search">
+	            	<img src="${root}/image/search.svg" style="cursor: pointer;" id="search-start">
+	            </div>
+        	</div>
+          <div class="gift-modal-middle">
+            	<div style="margin: 10px 0;">
+            		친구목록
+            		<span style="font-size: 15px; margin-bottom: 5px;" class="friend-count"></span>
+            	</div>
+            	<div class="friend-result">
+            	</div>
           </div>
           <div class="gift-modal-button">
-            <button type="button" class="btn btn-secondary btn-calcel">
-              취소
-            </button>
-            <div></div>
-            <button
-              type="button"
-              class="btn btn-warning getWishlist"
-              id="btn_orderDetailInsert"
-            >
-              확인
-            </button>
+				<button type="button" class="btn btn-secondary btn-cancel">취소</button>
+				<div></div>
+				<button type="button" class="btn getWishlist" id="btn_orderDetailInsert">확인</button>
           </div>
         </div>
       </div>
