@@ -135,5 +135,7 @@ public class ProductController {
 	public ProductDto selectProduct(int num) {
 	    return productService.getProductDetail(num);
 	}
+	
+
 
 }
