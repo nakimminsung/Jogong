@@ -37,7 +37,7 @@
    </select>
    <!-- 1:!1문의 QNA Insert -->
    <insert id="insertQna" parameterType="qnaDto">
-      insert into qna values (null,#{title},#{content},#{imageUrl},now(),#{email},#{userNum},#{orderNum},#{qnaCategoryNum})
+      insert into qna values (null,#{title},#{content},#{imageUrl},now(),#{email},#{userNum},#{orderNum},#{qnaCategoryNum},#{qnaStatus})
    </insert>
    
 </mapper>

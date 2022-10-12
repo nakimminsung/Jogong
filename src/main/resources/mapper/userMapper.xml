@@ -32,5 +32,18 @@
 	<select id="getReviewUserInfo" parameterType="int"  resultType="userDto">
 		select * from user u where num in (select userNum from review r where r.userNum=u.num)
 	</select>
+	
+	<!-- 마이페이지 내 문의내역 -->
+	<select id="getQnaList" parameterType="int" resultType="qnaDto">
+		<!-- 	
+		select * from qna where userNum=#{userNum}
+		 -->
+		 <!-- select qa.title, qa.content, qa.imageUrl, qa.createdAt, qa.email, qa.userNum, qa.orderNum, qc.name categoryName -->
+		select *
+		  from qna as qa
+		   join qnaCategory as qc
+		    on qa.qnaCategoryNum = qc.num
+		     where userNum=#{userNum}
+	</select>
 
 </mapper>

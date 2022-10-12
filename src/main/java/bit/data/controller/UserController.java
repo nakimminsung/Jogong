@@ -4,14 +4,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.annotation.SessionScope;
 
+import bit.data.dto.ProductDto;
+import bit.data.dto.QnaDto;
 import bit.data.dto.UserDto;
+import bit.data.service.UserService;
 import bit.data.service.UserServiceInter;
 
 @Controller
@@ -48,16 +55,38 @@ public class UserController {
     }
     
     @GetMapping("/mypage/qna")
-    public String qnaPage() {
+    public String qnaPage(Model model, HttpSession session) {
+    	
+    	int userNum;
+    	
+    	//user 로그인 (소셜로그인 포함)
+    	if(session.getAttribute("loginUserNum")!=null) {
+    		
+    		userNum=(int) session.getAttribute("loginUserNum");
+    		
+		//seller 로그인
+    	} else {
+    		
+    		userNum=0;
+    	}
+    	
+    	//userNum 을 보내서 qnaList 가져오기
+		List<QnaDto> qnaList=userServiceInter.getQnaList(userNum);
+		
+		//model에 결과 담기
+		model.addAttribute("qnaList",qnaList);
+    	
         return "/mypage/mypage/qna";
     }
-
-	@GetMapping("/user/review")
+    
+    
+    @GetMapping("/user/review")
 	@ResponseBody
 	public List<UserDto> getReviewUserInfo(){
 		
 		return userServiceInter.getReviewUserInfo();
 	}
+	
 
 }
 
