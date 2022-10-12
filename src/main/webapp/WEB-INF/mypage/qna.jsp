@@ -72,30 +72,23 @@
 		<!-- 내용 -->
 		<div class="qna-result" style="width: 100%; height: 800px;">
 		
-		
-		
 			<!-- 일반 유저 user -->
 			<c:if test="${sessionScope.loginid!=null}">
 			
-				<table class="table table-borderd">
-					<tr style="text-align: center; background-color: #f5f5f5;">
-						<th style="width: 150px;">문의 유형</th>
-						<th style="width: 350px; text-align: left;">문의 제목</th>
-						<th style="width: 150px;">처리 상태</th>
-						<th style="width: 150px;">등록일</th>
-					</tr>
-					
-					<!-- ${qnaList} 를 list 변수에 담기 : list의 길이가 0일때와 아닐때를 구분하기 위함 -->
-					<script>
-						var list = new Array();
-						
-						list.push("${qnaList}");
-					</script>
-					
-					<!-- list 가 0이 아닐때 (jstl list 길이 구하는 방법) -->
-					<!-- 상단에 fn 관련 스크립트 삽입해야함 -->
-					<c:if test="${fn:length(list)!=0}">
-					
+			<table class="table table-borderd">
+				<tr style="text-align: center; background-color: #f5f5f5;">
+					<th style="width: 150px;">문의 유형</th>
+					<th style="width: 350px; text-align: left;">문의 제목</th>
+					<th style="width: 150px;">처리 상태</th>
+					<th style="width: 150px;">등록일</th>
+				</tr>
+				
+				
+			
+				
+				<!-- list 가 0이 아닐때 -->
+				<c:if test="${fn:length(qnaList)!=0}">
+				
 					<c:forEach var="s" items="${qnaList}">
 					
 						<tr style="text-align: center; border-top: 2px solid gray; font-weight: bold;">
@@ -106,7 +99,7 @@
 									<span style="color: red;">${s.qnaStatus}</span>
 								</c:if>
 								
-								<c:if test="${s.qnaStatus=='답변완료'}">
+								<c:if test="${s.qnaStatus!='답변대기중'}">
 									<span style="color: #1C8FED;">${s.qnaStatus}</span>
 								</c:if>
 							</td>
@@ -120,31 +113,31 @@
 							</td>
 						</tr>
 	
-						
-						<c:if test="${s.qnaStatus=='답변완료'}">
-							<tr>
-								<td style="vertical-align: middle; text-align: center; background-color: #cff0cc;">A</td>
-								<td colspan="3">
-									이메일로 답변 완료된 문의입니다.
-								</td>
-							</tr>
+	
+						<c:if test="${s.qnaStatus!='답변대기중'}">
+						<tr>
+							<td style="vertical-align: middle; text-align: center; background-color: #cff0cc;">A</td>
+							<td colspan="3">
+								이메일로 답변 완료된 문의입니다.
+							</td>
+						</tr>
 						</c:if>
 					
 					</c:forEach>
-					
-					</c:if>
-					
-					
-					<!-- list가 0일때 (= 문의 내역이 없을때) -->
-					<c:if test="${fn:length(list)==0}">
-						<tr>
-							<td colspan="4" style="text-align: center;">
-								<h5>문의 내역이 없습니다</h5>
-							</td>
-						</tr>
-					</c:if>
 				
-				</table>
+				</c:if>
+				
+				
+				<!-- 문의 내역이 없을때 -->
+				<c:if test="${fn:length(qnaList)==0}">
+				<tr>
+					<td colspan="4" style="text-align: center;">
+						<h5>문의 내역이 없습니다</h5>
+					</td>
+				</tr>
+				</c:if>
+			
+			</table>
 			
 			</c:if> <!-- 일반 user 종료 -->
 			
