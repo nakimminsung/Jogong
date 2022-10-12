@@ -11,10 +11,14 @@
 		color:#000 !important;
 		border-bottom: 5px solid #cff0cc;
 	}
+	
+	.brand_layout{
+		margin-top: 30px;
+	}
 	.brandTop{
-	    margin: 10px 160px;
-	    width: 80%;
-	    border-bottom: 10px solid #ebebeb;
+	    margin: 50px 260px;
+	    width: 70%;
+	    border-bottom: 1px solid #ebebeb;
 	    position: relative;
 	    padding: 0 16px;
 	}
@@ -160,7 +164,7 @@
 	<div class="brandContent">
 		<!-- 옵션 -->
 		<div class="brandList">
-			<span><h3>총 상품 갯수 : ${count}개</h3></span>
+			<span><h4>총 상품 갯수 : ${count}개</h4></span>
 			<div>
 				<select class="categorySort" name="sort">
 					<option value="createdAt desc" selected>최신순</option>

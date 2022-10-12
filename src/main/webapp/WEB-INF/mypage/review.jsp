@@ -74,6 +74,12 @@
 		justify-content: center; 
 		align-items: center;
 	}
+	div.review-menu>span{
+		display: flex; 
+		align-items: center; 
+		color:#d0d0d0; 
+		font-size: 15px; 
+	}
 	div.review-top-fix{
 		position:sticky; 
 		height: 85px; 
@@ -81,12 +87,6 @@
 		background-color: white; 
 		padding: 25px 0;
 		z-index: 2;
-	}
-	div.review-menu>span{
-		display: flex; 
-		align-items: center; 
-		color:#d0d0d0; 
-		font-size: 15px; 
 	}
 	div.review-object {
 		margin-bottom: 20px; 
@@ -869,16 +869,16 @@
 				<hr>
 			</div>
 		</div>
-			<div class="review-menu">
-				<div class="review-before">
-					<span style="color:#000; border-bottom: 3px solid #000;">작성 가능한 후기</span>
-				</div>
-				<span>|</span>
-				<div class="review-after">
-					<span>작성한 후기</span>
-					<span class="review-menu-count"></span>
-				</div>
+		<div class="review-menu">
+			<div class="review-before">
+				<span style="color:#000; border-bottom: 3px solid #000;">작성 가능한 후기</span>
 			</div>
+			<span>|</span>
+			<div class="review-after">
+				<span>작성한 후기</span>
+				<span class="review-menu-count"></span>
+			</div>
+		</div>
 		<div class="review-result"></div>
 		<!-- 리뷰 작성 폼 -->
 		<div class="review-form">

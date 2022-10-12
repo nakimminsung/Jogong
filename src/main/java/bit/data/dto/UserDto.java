@@ -22,5 +22,6 @@ public class UserDto {
 	private Timestamp createdAt;
 	private boolean isAdmin;
 
-	
+	private String status;
+
 }

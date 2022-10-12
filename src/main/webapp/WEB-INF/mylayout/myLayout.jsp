@@ -71,7 +71,7 @@
 	footer{
 	  background-color: #fafafc;
 	  width: 100%;
-	  height: 155px;
+	  height: 100px;
 	  position: relative;
 	}
 
