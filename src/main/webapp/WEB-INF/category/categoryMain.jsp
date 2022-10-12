@@ -13,7 +13,11 @@
         rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <style type="text/css">
-
+	a.header-cate>span{
+		color:#000 !important;
+		border-bottom: 5px solid #cff0cc;
+	}
+	
 	@font-face {
     font-family: 'SeoulNamsanM';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');

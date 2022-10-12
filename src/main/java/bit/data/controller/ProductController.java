@@ -136,6 +136,7 @@ public class ProductController {
 	    return productService.getProductDetail(num);
 	}
 	
+<<<<<<< HEAD
 	
 	
 
@@ -181,5 +182,8 @@ public class ProductController {
 	}
 	
 	
+=======
+
+>>>>>>> f5a98b0b3d1cac9e605819cdef7e53f8b1ed3dcd
 
 }
