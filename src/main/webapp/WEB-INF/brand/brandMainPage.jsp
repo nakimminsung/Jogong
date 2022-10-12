@@ -273,11 +273,7 @@ $(function(){
 					  <a href="detail?brand=${brand.companyName }">
 					    <img class="card-img-top" src="${brand.brandphoto}" alt="Card image" style="width:100%; height:250px;">
 					    <div class="card-body">
-<<<<<<< HEAD
 	  				      <h5 class="card-text">${brand.companyName}</h5>
-=======
-	  				      <h5 class="card-text">${brand.companyName}</h5></a>
->>>>>>> c70b02782ba31dfb9b08ba3db6acabb1f8e5afd0
 					      <p class="card-title" style="display: -webkit-inline-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;">${brand.description}</p>
 					    </div>
 					    </a>
