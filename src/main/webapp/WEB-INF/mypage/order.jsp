@@ -658,7 +658,7 @@ p.card-title{
  					s+=	"<div class='card-body'>"
  					s+=	"<p class='card-title'>"+elt.brand+"</p>"
  					s+=	"<h5 class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 1000px;cursor:pointer;' onclick=\"location.href='../${root}product/detail?num="+elt.productNum+"'\">"+elt.productName+"</h5>"
- 					s+= "<h6 class='card-text' style=''><b>To.'"+elt.nickname+"'</b></h6>"
+ 					s+= "<h6 class='card-text' style=''><b>To."+elt.nickname+"</b></h6>"
  					s+=	"<p style='color:gray; text-align: left; margin-top:10px'>"+elt.orderDate+"</p></div></div></div>"
 				});
 	 			
@@ -743,23 +743,24 @@ p.card-title{
 						s+=	"<span class='ico_gift2 ico_close'>닫기</span>"
 						s+=	"</a></div>"
 		 										
-						s+=	"<form action=''>"
+						s+=	"<form action='../gift/addrUpdate'>";
+						s+= "<input type='hidden' name='num' value="+elt.num+">";
 						s+=	"<table style='width: 70%; display: none; margin: 10px auto;' class='table table-bordered address'>"
 						//s+=	"<tr><th style='text-align: center'> 이름 </th>"
 						//s+=	"<td><input type='text' style='width: 100%;' required name='companyName' id='to_name' value='11받는사람이름'></td></tr>"
 							
 						s+=	"<tr><th style='text-align: center'> 연락처 </th>"
-						s+=	"<td><input type='text' style='width: 100%;' required id='to_hp' value='"+elt.hp+"'></td></tr>"					
+						s+=	"<td><input type='text' style='width: 100%;' required id='to_hp' value='"+elt.hp+"' name='hp'></td></tr>"					
 		 												
 						s+=	"<tr><th style='text-align: center'> 주소 </th><td>"								
 						s+=	"<div style='width: 100%; border: none;' class='input-group'>" 						
-						s+=	"<input type='text' id='sample4_postcode' placeholder='우편번호' style='width: 60%; border:1px solid black; margin-bottom: 5px;' required value='"+elt.postalcode+"'>"
+						s+=	"<input type='text' id='sample4_postcode' placeholder='우편번호' style='width: 60%; border:1px solid black; margin-bottom: 5px;' required value='"+elt.postalcode+"' name = 'postalcode'>"
 						s+=	"<input type='button' onclick='sample4_execDaumPostcode()' class='btn btn-dark btn-sm' value='우편번호' style='margin-bottom: 5px; float: right;'><br>"
 						s+=	"</div>"
 						s+=	"<input type='text' id='sample4_roadAddress' placeholder='도로명주소' size='60' value='"+elt.deliveryAddress+"' style='width: 100%; margin-bottom: 5px;' required name='address1'><br>"						
 						s+=	"<input type='hidden' id='sample4_jibunAddress' placeholder='지번주소'  size='60'>"							
 						s+=	"<span id='guide' style='color:#999; display:none'></span>"								
-						s+=	"<input type='text' id='sample4_detailAddress' placeholder='상세주소'  size='60' value='11공란' style='width: 100%;'required name='address2'><br>"							
+						s+=	"<input type='text' id='sample4_detailAddress' placeholder='상세주소'  size='60' value='' style='width: 100%;'required name='address2'><br>"							
 						s+=	"<input type='hidden' id='sample4_extraAddress' placeholder='참고항목'  size='60'>	<input type='hidden' id='sample4_engAddress' placeholder='영문주소'  size='60' >"							
 						s+=	"</td></tr>"						
 						s+=	"<tr style='border-bottom: none;'>"								

@@ -2,6 +2,8 @@ package bit.data.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,4 +42,15 @@ public class GiftController {
 		return giftservice.getSendSearch(num);
 	}
 	
+	@GetMapping("/addrUpdate")
+	public String updateform(HttpServletRequest request, OrderDto dto,
+			String address1,String address2) {
+		
+		String deliveryAddress = address1+" "+address2;
+		dto.setDeliveryAddress(deliveryAddress);
+		
+		giftservice.updateAddressOrder(dto);
+		return "redirect:../orderDetail/page#none";
+		
+	}
 }
