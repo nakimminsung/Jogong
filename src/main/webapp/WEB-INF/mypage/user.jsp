@@ -57,11 +57,15 @@
 			<b class="update-top-b2">프로필 수정</b>
 			<hr>
 		</div>
-		<div class="pwCheckSuccess">
-			비밀번호:<input type="password" class="password">
-			<button class="pwCheck">확인</button>
-		</div>	
-		<div class="update-content" >
+				<div class="pwCheckSuccess" style="width: 400px; margin-top: 10%; margin-left: 18%;">
+					<h4 style="float: left;">비밀번호 확인</h4>
+				
+					<input type="text" class="form-control id" required disabled value="${sessionScope.loginid}">
+					<input type="password" class="form-control password" required placeholder="비밀번호"><br>
+					<button type="button" class="btn btn-outline-secondary pwCheck" style="margin-left: 170px;">확인</button>
+				</div>	
+	
+		<div class="update-content" style="display: none;">
 				<form action="update" method="post" enctype="multipart/form-data">
 				
 				<table class="table test" style="width: 100%">
@@ -75,14 +79,14 @@
 					</tr>
 					<tr>
 						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>프로필이미지</th>
-							<td>
-								<div style="width: 300px;">
+						<td>
+							<div style="width: 300px;">
 								<input type="file" name="upload" class="form-control" >
-								</div>
-							</td>
+							</div>
+						</td>
 					</tr>
 					<tr>
-						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>아이디</th>
+						<th style="background-color: #f5f5f5;" ><span style="color: red;">*</span>아이디</th>
 							<td>
 								<div class="input-group" style="width: 400px;">${list.email }</div>
 							</td>
@@ -91,7 +95,7 @@
 						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>비밀번호</th>
 						<td>
 							<div style="width: 300px;">
-								<input type="password" name="password" class="form-control password1" value="${list.password }" required="required">
+								<input type="password" name="password" class="form-control password1" required="required">
 								<div id="userpw"></div>
 							</div>
 						</td>	
@@ -100,7 +104,7 @@
 						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>비밀번호 확인</th>
 						<td>
 							<div style="width: 300px;">
-								<input type="password" class="form-control password2" value="${list.password }" required="required">
+								<input type="password" class="form-control password2" required="required">
 								<div id="userpw2"></div>
 							</div>	
 						</td>	
@@ -154,6 +158,14 @@
 						</td>	
 					</tr>
 					<tr>
+						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>상태메세지</th>
+						<td>
+							<div class="input-group" style="width: 300px;">
+								<input type="text" name="status" value="${list.status }" class="form-control" style="width: 40%; margin-bottom: 5px;" required="required" pattern=".{1,20}">
+							</div>
+						</td>	
+					</tr>
+					<tr>
 						<td colspan="2" align="center" style="border-bottom: none;"><br>
 							<button type="submit" class="btnNext btn btn-outline-secondary">확인</button>
 						</td>
@@ -164,12 +176,85 @@
 		</div>
 	</div>
 	</c:if>
+	<c:if test="${sessionScope.loginType!='일반'}">
+	<div class="updateForm">
+		<div class="update-top">
+			<b class="update-top-b2">프로필 수정</b>
+			<hr>
+		</div>
+		<div class="update-content">
+				<form action="updateSocialUser" method="post" enctype="multipart/form-data">
+				
+				<table class="table test" style="width: 100%">
+					<tr style="border-top: 2px solid gray;">
+						<td colspan="2">
+							<div style="padding-top: 15px; padding-bottom: 15px;">
+								<span style="color: red;">*</span> 표시 항목은 필수 입력 사항입니다.<br>
+								정확한 정보를 입력해주시기 바랍니다.부정확한 정보 입력 시 회원탈퇴 및 이용정지 될 수 있습니다.
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>프로필이미지</th>
+						<td>
+							<div style="width: 300px;">
+								<input type="file" name="upload" class="form-control" >
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th style="background-color: #f5f5f5;" ><span style="color: red;">*</span>아이디</th>
+							<td>
+								<div class="input-group" style="width: 400px;">${list.email }</div>
+							</td>
+					</tr>	
+					<tr>
+						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>이름</th>
+						<td>
+							<div style="width: 300px;">
+								<input type="text" name="nickname" class="form-control" required="required" value="${list.nickname }">
+							</div>
+						</td>		
+					</tr>
+					<tr>
+						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>생년월일</th>
+						<td>
+							<div style="width: 300px;">
+								${list.date}
+							</div>							
+						</td>
+					</tr>
+					<tr>
+						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>성별</th>
+						<td>
+							${list.gender==2?"여":"남" }
+
+						</td>		
+					</tr>
+					<tr>
+						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>상태메세지</th>
+						<td>
+							<div class="input-group" style="width: 300px;">
+								<input type="text" name="status" value="${list.status }" class="form-control" style="width: 40%; margin-bottom: 5px;" required="required" pattern=".{1,20}">
+							</div>
+						</td>	
+					</tr>
+					<tr>
+						<td colspan="2" align="center" style="border-bottom: none;"><br>
+							<button type="submit" class="btnNext btn btn-outline-secondary">확인</button>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+	</c:if>
 </body>
 <script type="text/javascript">
 $(".pwCheck").click(function(){
-	var email='${sessionScope.loginid}';
+	var email=$(".id").val();
 	var pass=$(".password").val();
-
+	
 	 $.ajax({
 		type:"post",
 		url:"passwordCheck",
@@ -179,7 +264,7 @@ $(".pwCheck").click(function(){
 			if(res.result=="fail"){
 				alert("아이디나 비밀번호가 틀렸습니다");
 			}else{
-				$(".pwCheckSuccess").empty();
+				$(".pwCheckSuccess").hide();
 				$(".update-content").show();
 			}
 					
@@ -245,42 +330,42 @@ function sample4_execDaumPostcode() {
     }).open();
 }
 
-//휴대폰 하이픈 정규식
-const autoHyphen2 = (target) => {
-target.value = target.value
-.replace(/[^0-9]/g, '')
-.replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
-}
-
-$(".password1").keydown(function () {
-	var pw=$(this).val();
-// 정규 표현식
-	var regExp = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
-
-// 정규 표현식을 통과하지 못하면
-if(pw.match(regExp) == null){
-	// 처리할 문장
-	$("#userpw").html("형식에 맞게 입력하세요");
-	$(".password2").val("");
-}else{
-	$("#userpw").html("");
-	$(".password2").val("");
-}
+	//휴대폰 하이픈 정규식
+	const autoHyphen2 = (target) => {
+	target.value = target.value
+	.replace(/[^0-9]/g, '')
+	.replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
+	}
+	
+	$(".password1").keydown(function () {
+		var pw=$(this).val();
+	// 정규 표현식
+		var regExp = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
+	
+	// 정규 표현식을 통과하지 못하면
+	if(pw.match(regExp) == null){
+		// 처리할 문장
+		$("#userpw").html("형식에 맞게 입력하세요");
+		$(".password2").val("");
+	}else{
+		$("#userpw").html("");
+		$(".password2").val("");
+	}
 });	
-
-$(".password2").keyup(function () {
-var check=$(this).val();
-var pw=$(".password1").val();
 	
-if(pw==check){
-	$("#userpw2").html("");
+	$(".password2").keyup(function () {
+	var check=$(this).val();
+	var pw=$(".password1").val();
+		
+	if(pw==check){
+		$("#userpw2").html("");
+		
+	}else{
 	
-}else{
-
-	// 처리할 문장
-	$("#userpw2").html("비밀번호가 일치하지 않습니다.");
-	$("#userpw2").css("color","#FFAF00");
-}
+		// 처리할 문장
+		$("#userpw2").html("비밀번호가 일치하지 않습니다.");
+		$("#userpw2").css("color","#FFAF00");
+	}
 });	
 </script>
 </html>

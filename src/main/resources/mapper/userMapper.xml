@@ -35,7 +35,7 @@
 	
 	<!--유저 업데이트 -->
 	<update id="updateUser" parameterType="userDto">
-		update user set profileImage=#{profileImage},password=#{password},nickname=#{nickname},phone=#{phone},address=#{address},salt=#{salt} where email=#{email}
+		update user set profileImage=#{profileImage},password=#{password},nickname=#{nickname},phone=#{phone},address=#{address},salt=#{salt},status=#{status} where email=#{email}
 	</update>
 
 </mapper>

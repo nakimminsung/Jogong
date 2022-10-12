@@ -54,9 +54,10 @@ public class UserController {
     	UserDto list= userServiceInter.getDataById(email);
     	model.addAttribute("list", list);
     	model.addAttribute("birthday", list.getDate().toString());
-    	model.addAttribute("addressNumber", list.getAddress().substring(0, 5));
-    	model.addAttribute("address", list.getAddress().substring(5));
-    	
+    	if(list.getAddress()!=null) {
+    		model.addAttribute("addressNumber", list.getAddress().substring(0, 5));
+    		model.addAttribute("address", list.getAddress().substring(5));
+    	}	
         return "/mypage/mypage/user";
     }
     
