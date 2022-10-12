@@ -496,7 +496,7 @@
 	         </div>
 	         <hr>
 	         <div style="display: flex; width: 100%; justify-content:space-around; margin-top:80px">
-		         <button onClick="location.href='${root}/jogong'" id="homebutton" style="width:240px; height:50px; font-size: 16px; border-radius: 8px;">홈으로 이동</button>
+		         <button onClick="location.href='${root}'" id="homebutton" style="width:240px; height:50px; font-size: 16px; border-radius: 8px;">홈으로 이동</button>
 		         <button onClick="location.href='${root}/orderDetail/page'" id="mypagebutton" style="width:240px; height:50px; font-size: 16px; border-radius: 8px;">선물함으로 이동</button>
 	         </div>
 	         
