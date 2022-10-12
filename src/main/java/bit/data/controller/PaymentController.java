@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import bit.data.dto.OrderDetailDto;
 import bit.data.dto.OrderDto;
+import bit.data.dto.ProductDto;
+import bit.data.dto.UserDto;
 import bit.data.service.OrderServiceInter;
 
 @Controller
@@ -86,18 +89,23 @@ public class PaymentController {
 	@GetMapping("/payview")
 	public ModelAndView payread(int num) {
 		
-		String buyer_name = orderservice.getNickNameSearch(num);
-		String to_member_id = orderservice.getfriendNickNameSearch(num);
-		String sangpum = orderservice.getItemNameSearch(num);
-		Integer price = orderservice.getItemPriceSearch(num);
-		String thumbnailImage = orderservice.getItemThumbnailSearch(num);
-		Integer count = orderservice.getCount(num);
-		Integer userNum = orderservice.getUserNum(num);
-		Integer orderDetailNum = orderservice.getOrderDetailNum(num);
-		Integer friendNum = orderservice.getFriendNum(num);
-		Integer productNum = orderservice.getProductNum(num);
-		Integer totalprice = price * count;
+		ProductDto productDto = orderservice.getItemSearch(num);
+		UserDto userDto = orderservice.getUserSearch(num);
+		OrderDetailDto orderDetailDto = orderservice.getOrderDetail(num);
 		
+		String buyer_name = userDto.getNickname();
+		String to_member_id = orderservice.getfriendNickNameSearch(num);
+		String sangpum = productDto.getName();
+		Integer price = productDto.getPrice();
+		String thumbnailImage = productDto.getThumbnailImageUrl();
+		Integer point = userDto.getPoint();
+		Integer count = orderDetailDto.getQty();
+		Integer userNum = orderDetailDto.getUserNum();
+		Integer orderDetailNum = orderDetailDto.getNum();
+		Integer friendNum = orderDetailDto.getFriendNum();
+		Integer productNum = orderDetailDto.getProductNum();
+		
+		Integer totalprice = price * count;
 		
 		
 		ModelAndView mview = new ModelAndView();
@@ -110,6 +118,7 @@ public class PaymentController {
 		mview.addObject("count",count);
 		mview.addObject("totalprice",totalprice);
 		mview.addObject("userNum",userNum);
+		mview.addObject("point",point);
 		mview.addObject("orderDetailNum",orderDetailNum);
 		mview.addObject("friendNum",friendNum);
 		mview.addObject("productNum",productNum);

@@ -137,5 +137,45 @@ public class ProductController {
 	}
 	
 
+	//Search
+	@GetMapping("/search")
+	public String searchList(Model model,HttpServletRequest request) {
+		
+		//입력받은 검색단어 가져오기
+		String searchword=request.getParameter("searchword");
+		
+		//최초 sort 값 고정 (최신순)
+		String sort = "createdAt desc";
+		
+		//검색결과 - 1. 갯수 가져오기
+		int searchCount=productService.getSearchCount(searchword);
+		
+		//검색결과 - 2. 상품정보 가져오기
+		List<ProductDto> searchProduct=productService.getSearchProductBySort(searchword,sort);
+		
+		//결과 값을 model에 담아 view로 전달하기
+		model.addAttribute("searchword",searchword);
+		model.addAttribute("searchCount",searchCount);
+		model.addAttribute("searchProduct",searchProduct);
+
+      return "/bit/search/searchList";
+	}
+
+	@GetMapping("/search/searchSort")
+	@ResponseBody
+	public Map<String, Object> getSearchSort(String searchword, String sort){
+		
+		Map<String, Object> map= new HashMap<String, Object>();
+		
+		//searchword 와 sort 값을 전달하여 List에 dto 담기
+		List<ProductDto> productList = productService.getSearchProductBySort(searchword, sort);
+		
+		//List를 map에 담아 view로 전달하기
+		map.put("productList", productList);
+		
+		return map;
+		
+	}
+	
 
 }
