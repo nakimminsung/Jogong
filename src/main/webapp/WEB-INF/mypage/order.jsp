@@ -532,8 +532,6 @@ p.card-title{
     max-height: 630px;
     box-sizing: border-box;
   }
-  
-
 </style>
 <script type="text/javascript">
 	/*

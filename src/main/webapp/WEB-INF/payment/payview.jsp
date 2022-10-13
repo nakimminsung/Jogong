@@ -303,17 +303,16 @@
                 </div>
                 <div class="gift-info-desc">
                     <span>${productName}</span>
-                    <p><strong id="sangpum">${sangpum}</strong></p>
-                    	<c:if test="${clothSize==null and shoesSize==null}" >
-							<p class="ssize" style="display: none;"></p>               		
-                    	</c:if>
-                    	<c:if test="${clothSize!=null}">
-							<p class="ssize">${clothSize}</p>               		
-                    	</c:if>
                     <p class="count" id="count">총 선물 수 <strong><span class="phoneCnt">${count}</span> 개</strong></p>
-                </div>
-                <div class="tag">
-
+	                    	<c:if test="${clothSize==null and shoesSize==null}" >
+								<p class="ssize" style="display: none;"></p>               		
+	                    	</c:if>
+	                    	<c:if test="${clothSize!=null}">
+								<p class="ssize">사이즈 : ${clothSize}</p>               		
+	                    	</c:if>
+	                    	<c:if test="${shoesSize!=null}">
+								<p class="ssize">사이즈 : ${shoesSize}</p>               		
+	                    	</c:if>
                 </div>
             </div>
             <div class="row-type03">
