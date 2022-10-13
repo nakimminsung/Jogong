@@ -143,6 +143,8 @@
 	}
 	.card-img-top{
 		border: 0.1px solid #d3d3d3;
+		border-radius: 5px;
+		margin-bottom: 5px;
 	}
 </style>
 </head>
