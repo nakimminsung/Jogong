@@ -82,7 +82,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 		display: flex;
 		justify-content: flex-end;
 		align-items: center;
-		min-width:300px;
+		min-width:250px;
 	}
 	form.search{
 	    display: flex;
@@ -134,9 +134,9 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 		font-weight:400;	
 	}
 	.profile{
-		border-radius:100px;
-		width:30px;
-		height:30px;
+		border-radius:17px;
+		width:45px;
+		height:45px;
 		margin:5px 5px;
 	}
 	
@@ -151,7 +151,8 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 	    border-radius: 20px;
 	    width: 180px;
 	    position: absolute;
-	    left: 74.5%;
+	    top:90px;
+	    right:13%;
 	    background-color: white;
 	    border: none;
 	    box-shadow: 1px 1px 3px gray;
@@ -162,7 +163,28 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 	    text-align: left;
 	    font-size: 13px;
 	    font-weight: 500;
+	    padding-left: 20px;
 	    padding: 12px;
+	}
+	
+	/* 드롭다운 메뉴 화면 해상도에 따른 설정 */
+	@media ( max-width: 1920px ) {
+		.quick {
+			position: absolute;
+			right: 19%;
+		}
+	}
+	@media ( max-width: 1900px ) {
+		.quick {
+			position: absolute;
+			right:9%;
+		}
+	}
+	@media ( max-width: 767px ) {
+  		.quick {
+  			position: absolute;
+			right:5%;
+		}
 	}
 	
 /* 	.logout{
@@ -250,31 +272,31 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 				<div class="mainProfile" style="cursor: pointer;">
 					<img src="${sessionScope.loginphoto}" class="profile">
-					<b style="max-width:500px;">${sessionScope.loginname}님</b>&emsp;<span class="upIcon"><i class='fas fa-angle-down'></i></span>
+					<b style="max-width:500px; font-size: 18px; font-weight: 1000;">${sessionScope.loginname}님</b>&emsp;<span class="upIcon"><i class='fas fa-angle-down'></i></span>
 				</div>
 
 			</c:if>
 			
 		</div>	<!-- div.right 종료 -->
 
+	    <!-- 로그인 상태일때 내림 목록 -->
+	     <div class="quick" style="z-index:1000;">
+			<div>
+				<img src="${sessionScope.loginphoto}" style="width: 50px;border-radius:20px;height:50px; margin-left: 12px;">
+				<span style="align-items: center;padding: 0 12px;"><b style="max-width:500px;">${sessionScope.loginname}님</b></span>
+			</div> 
+			<div>
+				<div class="myMenu">
+					<a href="/jogong/orderDetail/page">마이페이지</a><br> 
+					<a href="#">쿠폰함</a><br>
+					<a href="${root}/cscenter/faq">고객센터</a><br> 
+					<a href="${root}/logout" onclick="return confirm('로그아웃 하시겠습니까?');">로그아웃</a>
+				</div>
+			</div> 
+		</div>  
     </div>
     <!--  div.header-wrapper 종료 -->
     
-    <!-- 로그인 상태일때 내림 목록 -->
-     <div class="quick" style="z-index:1000;">
-		<div>
-			<img src="${sessionScope.loginphoto}" style="width: 50px;border-radius:100px;height:50px;">
-			<span style="align-items: center;padding: 0 12px;"><b style="max-width:500px;">${sessionScope.loginname}님</b></span>
-		</div> 
-		<div>
-			<div class="myMenu">
-				<a href="/jogong/orderDetail/page">마이페이지</a><br> 
-				<a href="#">쿠폰함</a><br>
-				<a href="${root}/cscenter/faq">고객센터</a><br> 
-				<a href="${root}/logout" onclick="return confirm('로그아웃 하시겠습니까?');">로그아웃</a>
-			</div>
-		</div> 
-	</div>  
   </body>
   
 <script>
@@ -301,7 +323,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 				  $(".upIcon").html("<i class='fas fa-angle-down'></i>");
 			  }
 		})
- 
 		
 		// 네이버 로그인 관련 // header.jsp 의 스크립트에 삽입했음
 		let naverLogin = new naver.LoginWithNaverId(
@@ -314,18 +335,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 				}
 			);
 	
-	
-	//상품명 입력 후 엔터누르면 search 함수 호출
-	$("#searchProduct").keyup(function (e) {
-		if(e.keyCode==13){
-			search($(this).val().trim());	//앞뒤 공백 제거 후 this(=#sangpum)의 value 값 보내기
-		}
-	});
-	
-	//상품 검색 메서드
-	function search(subject) {
-		
-	}
 		
 </script>	
   

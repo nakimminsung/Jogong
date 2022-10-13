@@ -16,7 +16,7 @@
 		margin-top: 30px;
 	}
 	.brandTop{
-	    margin: 50px 260px;
+	   margin: 30px 250px;
 	    width: 70%;
 	    border-bottom: 1px solid #ebebeb;
 	    position: relative;
@@ -113,16 +113,17 @@
 	
 	.productList {
 		width: 1200px;
-		display: flex;
-		flex-wrap: wrap;
-		margin: auto;
-		justify-content: space-around;		
-		margin-top: 10px;
+	    display: flex;
+	    margin: auto;
+	    margin-top: 10px;
+	    flex-wrap: wrap;
+	    justify-content: flex-start;
 	} 
 	
 	.productItem{
 		width: 280px;
 		padding-bottom: 5%;
+		margin-right: 20px;
 	}
 	
 	.brandName{
@@ -142,6 +143,8 @@
 	}
 	.card-img-top{
 		border: 0.1px solid #d3d3d3;
+		border-radius: 5px;
+		margin-bottom: 5px;
 	}
 </style>
 </head>

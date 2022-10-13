@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import bit.data.dao.UserDaoInter;
+import bit.data.dto.QnaDto;
 import bit.data.dto.UserDto;
 
 @Service
@@ -51,14 +52,6 @@ public class UserService implements UserServiceInter {
 		// TODO Auto-generated method stub
 		return userDaoInter.getDataById(email);
 	}
-	
-	
-	/*@Override
-	public void insertKakao(UserDto dto) {
-		// TODO Auto-generated method stub
-		userDaoInter.insertKakao(dto);;
-		
-	}*/
 
 	// 리뷰페이지
 	@Override
@@ -66,5 +59,24 @@ public class UserService implements UserServiceInter {
 		// TODO Auto-generated method stub
 		return userDaoInter.getReviewUserInfo();
 	}
+	
+	// 마이페이지 문의내역
+	@Override
+	public List<QnaDto> getQnaList(int userNum) {
+		// TODO Auto-generated method stub
+		
+		return userDaoInter.getQnaList(userNum);
+	}
 
+	@Override
+	public void updateUser(UserDto dto) {
+		// TODO Auto-generated method stub
+		userDaoInter.updateUser(dto);
+	}
+	
+
+    @Override
+    public List<UserDto> selectNonFriendlyUsersList(int num) {
+        return userDaoInter.selectNonFriendlyUsersList(num);
+    }
 }
