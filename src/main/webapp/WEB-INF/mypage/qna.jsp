@@ -95,10 +95,12 @@
 							<td>${s.name}</td>
 							<td style="text-align: left;">${s.title}</td>
 							<td>
+								<!-- 답변대기중일때 -->
 								<c:if test="${s.qnaStatus=='답변대기중'}">
 									<span style="color: red;">${s.qnaStatus}</span>
 								</c:if>
 								
+								<!-- 답변완료일때 -->
 								<c:if test="${s.qnaStatus!='답변대기중'}">
 									<span style="color: #1C8FED;">${s.qnaStatus}</span>
 								</c:if>

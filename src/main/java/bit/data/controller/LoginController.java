@@ -291,7 +291,7 @@ public class LoginController {
 		
 		// 업로드 경로 + 경로 확인
 	      String path = request.getSession().getServletContext().getRealPath("/resources/upload");
-	      //System.out.println("upload path : " + path);
+	      System.out.println("upload path : " + path);
 	      
 	      // 원본 파일 명 + 확인
 	      String originFileName = upload.getOriginalFilename();
