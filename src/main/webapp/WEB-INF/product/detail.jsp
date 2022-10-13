@@ -846,7 +846,7 @@ form h1 {
       $("#detailReview").click(function(){
       	var s = "";
       	var productNum = $('input[name=productNum]').val();
-      	console.log(productNum);
+    
       	$.ajax({
   			type:"get",
   			url:"../review/productReview",
@@ -948,7 +948,7 @@ form h1 {
 	
 	// 나에게 선물하기 
 	$("#btn_selfGift").click(function(){
-		
+		var drop = $(".dropdown").attr("class");
   		if(${empty sessionScope.loginUserNum}) {
 			if(!confirm("로그인이 필요한 메뉴입니다.\n로그인하시겠습니까?")){
 			} else {
@@ -1083,10 +1083,11 @@ form h1 {
 						item.addEventListener("click", function (e) {
 						    var selectValue = e.currentTarget.value;
 						    var selectText = e.currentTarget.textContent.trim();						   
-						  //  console.log("val"+selectValue);
+							
 						    dropdownBtn.textContent = selectText;
 						    dropdownBtn.classList.add("selected");
 						    $('input[name=optionNum]').attr('value', selectValue);
+						    
 				  		});
 					});
 					
