@@ -50,11 +50,6 @@ public class UserDao implements UserDaoInter {
 		// TODO Auto-generated method stub
 		return session.selectOne(ns+"getDataById", email);
 	}
-
-	/*
-	 * @Override public void insertKakao(UserDto dto) { // TODO Auto-generated
-	 * method stub session.insert(ns+"insertUser", dto); }
-	 */
 	
 	// 리뷰
 	@Override
@@ -62,6 +57,14 @@ public class UserDao implements UserDaoInter {
 		// TODO Auto-generated method stub
 		return session.selectList(ns+"getReviewUserInfo");	
 	}
+
+	//회원정보 수정
+	@Override
+	public void updateUser(UserDto dto) {
+		// TODO Auto-generated method stub
+		session.update(ns+"updateUser", dto);
+	}
+	
 	
 	// 마이페이지 문의내역
 	@Override
