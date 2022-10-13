@@ -24,5 +24,8 @@ public interface UserServiceInter {
 	
 	// 마이페이지 문의내역
 	public List<QnaDto> getQnaList(int userNum);
+	
+	//아이디 찾기
+	public String searchId(String nickname,String phone);
 
 }
