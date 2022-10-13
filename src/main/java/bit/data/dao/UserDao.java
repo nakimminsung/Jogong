@@ -78,4 +78,12 @@ public class UserDao implements UserDaoInter {
 		
 		return session.selectList(ns+"getQnaList",userNum);
 	}
+
+	//아이디 찾기
+	@Override
+	public String searchId(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return session.selectOne(ns+"searchId", map);
+	}	
+	
 }
