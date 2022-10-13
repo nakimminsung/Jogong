@@ -617,7 +617,12 @@ form h1 {
 	getReviewCount();
  
 	//친구목록 조회 함수 호출 
-	let data = {userNum:$("input[name=userNum]").attr("value"),search:""};
+	let data = {
+		userNum:$("input[name=userNum]").attr("value"),
+		friendNum:$("input[name=userNum]").attr("value"),
+		search:$(this).val().trim(),
+		check:1
+	};
 	list(data);
 
 	// 가격표시
@@ -1018,13 +1023,14 @@ form h1 {
 		
 		// 친구인원수
 		$.ajax({
-			type: "get",
+			type: "post",
 			url: "../user/friendCount",
 			dataType: "json",
-			data: {"userNum":$("input[name=userNum]").attr("value")},
+			contentType: "application/json; charset=utf-8",
+			data: JSON.stringify({"data":data}),
 			success:function(res){
-				
-				$("span.friend-count").text(res);
+				console.log(res);
+				$(".friend-count").text("친구 "+res);
 			}
 		});
 	}
@@ -1260,7 +1266,6 @@ form h1 {
         	</div>
           <div class="gift-modal-middle">
             	<div style="margin: 10px 0;">
-            		친구목록
             		<span style="font-size: 15px; margin-bottom: 5px;" class="friend-count"></span>
             	</div>
             	<div class="friend-result">
