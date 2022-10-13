@@ -20,13 +20,10 @@
    }
    
    .htitle{
-	  /* background-color: #c4bee2; */	/* 연보라 */
-	  background-color: #cff0cc;		/* 연연보라 */
-	  /* background-color: #cff0cc; */
+	  background-color: #cff0cc;
   	  height: 200px;
   	  padding-left: 25%;
   	  padding-top: 80px;
-  	  /* font-family: Jua; */
   	  font-weight: bold;
    }
    
@@ -35,7 +32,6 @@
       margin-left: 25%;
 	  background-color: white;
       width: 1000px;
-      /* font-family: Jua; */
    }
    
    table.form tr {
@@ -46,7 +42,6 @@
    .btnsub {
       width: 200px;
       height: 50px;
-      /* background-color: #cff0cc; */
       background-color: #c4bee2;
       font-size: 20px;
       font-weight: bold;
@@ -91,8 +86,8 @@
          $(".filename").text(fn);
    
       }); // change 이벤트 종료      
-
-
+      
+     
    }); // function 종료
 </script>
 <body>
@@ -167,9 +162,6 @@
             <tr>
                <th colspan="2" style="text-align: center;">
                   <button type="submit" class="btn btn-dark sub">문의 접수</button>
-                  
-                  <br><br>
-                  <button type="button" class="btntest">테스트</button>
                </th>
             </tr>
             
@@ -179,17 +171,7 @@
    </div>
 </div>
 </body>
-<script type="text/javascript">
-
-	$(".btntest").click(function () {
-		
-		var s=$("#upload").val();
-		
-		alert(s);
-		
-	});
-
-
+<script>
 
 </script>
 

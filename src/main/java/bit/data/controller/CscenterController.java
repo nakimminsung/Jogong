@@ -34,7 +34,7 @@ public class CscenterController {
 	public String faq(Model model,HttpServletRequest request) {
 			String num= request.getParameter("num");
 			if(num==null) {
-				num = "1";				
+				num = "1";
 			}
 			
 			if (num.equals("1")) {
@@ -88,44 +88,44 @@ public class CscenterController {
 	   {
 	      // 업로드 경로 + 경로 확인
 	      String path = request.getSession().getServletContext().getRealPath("/resources/upload");
-	      System.out.println("upload path : " + path);
+//	      System.out.println("upload path : " + path);
 	      
 	      // 원본 파일 명 + 확인
 	      String originFileName = upload.getOriginalFilename();
-	      System.out.println("originFileName : " + originFileName);
-	      
-	      
+//	      System.out.println("originFileName : " + originFileName);
 
-	        try {
-	           upload.transferTo(new File(path + "/" +originFileName));
-	        } catch (IllegalStateException e) {
-	            // TODO Auto-generated catch block
-	            e.printStackTrace();
-	        } catch (IOException e) {
-	            // TODO Auto-generated catch block
-	            e.printStackTrace();
-	        }
-
-	        
-	        // dto 에 업로드파일의 파일명 담기
-	      if (upload.getOriginalFilename().equals("")) // 업로드를 안했을때 (" " 빈 문자열)
-	      {
-	         dto.setImageUrl(null);   // imageUrl에 null값 부여
+	      
+	      try {
+	    	  //upload 파일첨부 했을때
+	    	  if(!upload.isEmpty()) {
+	    	  
+	    		  upload.transferTo(new File(path + "/" +originFileName));
+	    		  
+	    		  dto.setImageUrl(originFileName);
+	    		  
+    		  //upload 파일첨부 안했을때
+	    	  }else {
+	    		  
+	    		  dto.setImageUrl(null);
+	    	  }
+	    	  
+	    	  
+	      } catch (IllegalStateException e) {
+	    	  // TODO Auto-generated catch block
+	          e.printStackTrace();
+	      } catch (IOException e) {
+	    	  // TODO Auto-generated catch block
+	    	  e.printStackTrace();
 	      }
-	        
-	      dto.setImageUrl(originFileName);
+
 	      
 	      String qnaStatus="답변대기중";
 	      dto.setQnaStatus(qnaStatus);
-	      
-	      
 	        
 	      // db에 insert : service의 insertQna에 dto값 전달
 	      csService.insertQna(dto);
 	      
-	      
-	      
-	      return "redirect:faq";	//forward (jsp로 가서 location.href)
+	      return "redirect:/mypage/qna";
 	      
 	   }
 	   
