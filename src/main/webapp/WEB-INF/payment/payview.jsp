@@ -303,11 +303,16 @@
                 </div>
                 <div class="gift-info-desc">
                     <span>${productName}</span>
-                    <p><strong id="sangpum">${sangpum}</strong></p>
                     <p class="count" id="count">총 선물 수 <strong><span class="phoneCnt">${count}</span> 개</strong></p>
-                </div>
-                <div class="tag">
-
+	                    	<c:if test="${clothSize==null and shoesSize==null}" >
+								<p class="ssize" style="display: none;"></p>               		
+	                    	</c:if>
+	                    	<c:if test="${clothSize!=null}">
+								<p class="ssize">사이즈 : ${clothSize}</p>               		
+	                    	</c:if>
+	                    	<c:if test="${shoesSize!=null}">
+								<p class="ssize">사이즈 : ${shoesSize}</p>               		
+	                    	</c:if>
                 </div>
             </div>
             <div class="row-type03">
@@ -383,14 +388,14 @@
                                 <div data-v-35b707e2="" class="pay_box">
                                     <div data-v-35b707e2="" class="pay_title">
                                         <p data-v-35b707e2="" class="main_title">카카오페이</p>
-                                    </div><img data-v-35b707e2="" src="image/kakaopay.png" alt="카카오페이" class="pay_img">
+                                    </div><img data-v-35b707e2="" src="image/kakaopay.png" alt="카카오페이" class="pay_img" style="height:20px">
                                 </div>
                             </div>
                             <div data-v-35b707e2="" class="pay_item" id="tosspay" value="tosspay" >
                                 <div data-v-35b707e2="" class="pay_box">
                                     <div data-v-35b707e2="" class="pay_title">
                                         <p data-v-35b707e2="" class="main_title">토스</p>
-                                    </div><img data-v-35b707e2="" src="image/tosspay.png" alt="토스" class="pay_img" style="width:100px; height:30px" >
+                                    </div><img data-v-35b707e2="" src="image/tosspay.png" alt="토스" class="pay_img" style="height:20px" >
                                 </div>
                             </div>
                         </div>
@@ -406,7 +411,7 @@
                                 </li>
                                 <li data-v-2e66a968="" class="benefit_item"><img data-v-2e66a968=""
                                         src="image/tosspay.png""
-                                        alt="토스" class="benefit_img" >
+                                        alt="토스" class="benefit_img" style="height:20px;">
                                     <p data-v-2e66a968="" class="benefit_desc"><span data-v-2e66a968=""
                                             class="blind">토스</span>&nbsp;&nbsp;첫 결제시 3천원 캐시백 </p><a data-v-2e66a968=""
                                         href=" target="_blank" class="btn_more">더보기</a>
@@ -809,6 +814,16 @@ init();
 
  var payed = document.getElementById("paying");
 payed.onclick = function () {
+	
+	var checked = $("#buy_agree").is(":checked");
+	
+	if(checked){
+		
+	}else{
+		alert("필수 약관을 동의해주시기 바랍니다.");
+		return;
+	}
+	
     const selected = document.querySelector('.pay_box.clicked').parentNode;
     const val = selected.getAttribute('value');
 	

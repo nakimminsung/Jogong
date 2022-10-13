@@ -13,7 +13,7 @@
 	</select>
 	<!-- 개인회원가입-->
 	<insert id="insertUser" parameterType="userDto">
-		insert into user values (null,#{email},#{password},#{nickname},#{profileImage},#{phone},#{address},#{gender},#{point},#{year},#{date},#{loginType},now(),#{isAdmin},#{salt})		
+		insert into user values (null,#{email},#{password},#{nickname},#{profileImage},#{phone},#{address},#{gender},#{point},#{year},#{date},#{loginType},now(),#{isAdmin},#{salt},#{status})		
 	</insert>
 	<!-- 개인회원가입 중복체크 -->
 	<select id="getUserIdSearch" parameterType="String" resultType="int">
@@ -33,12 +33,18 @@
 		select * from user u where num in (select userNum from review r where r.userNum=u.num)
 	</select>
 	
+	<!-- 친구 아닌 모든 유저 조회 -->
+	<select id="selectNonFriendlyUsersList" parameterType="int"  resultType="userDto">
+		select * from user where num not in(select friendNum from userFriend) and num not in(#{userNum});
+	</select>
+
+	<!--유저 업데이트 -->
+	<update id="updateUser" parameterType="userDto">
+		update user set profileImage=#{profileImage},password=#{password},nickname=#{nickname},phone=#{phone},address=#{address},salt=#{salt},status=#{status} where email=#{email}
+	</update>
+
 	<!-- 마이페이지 내 문의내역 -->
 	<select id="getQnaList" parameterType="int" resultType="qnaDto">
-		<!-- 	
-		select * from qna where userNum=#{userNum}
-		 -->
-		 <!-- select qa.title, qa.content, qa.imageUrl, qa.createdAt, qa.email, qa.userNum, qa.orderNum, qc.name categoryName -->
 		select *
 		  from qna as qa
 		   join qnaCategory as qc

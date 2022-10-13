@@ -83,7 +83,7 @@ public class ReviewController {
         String path = request.getSession().getServletContext().getRealPath("/resources/upload");
         
         if(upload.get(0).getOriginalFilename().equals("")) {
-            reviewDto.setReviewImageUrl("no");
+            //reviewDto.setReviewImageUrl("");
         }else {
             String photo = "";
             int idx=1;

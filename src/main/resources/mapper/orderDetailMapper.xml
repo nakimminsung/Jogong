@@ -4,13 +4,13 @@
 <mapper namespace="bit.data.dao.OrderDetailDao">
 	
 	<insert id="insertOrderDetail" parameterType="orderDetailDto">
-		insert into orderDetail values (null,#{qty},#{messageCard},#{engrave},#{friendNum},#{userNum},#{productNum},#{productOption})
+		insert into orderDetail values (null,#{qty},#{messageCard},#{engrave},#{friendNum},#{userNum},#{productNum},#{productOption},#{optionNum})
 	</insert>
 	
 	<!-- 나에게 선물하기 --> 
 	<insert id="insertSelfGift" parameterType="orderDetailDto">
-		insert into orderDetail (num, qty, messageCard, engrave, friendNum, userNum, productNum, productOption) 
-		values (null,#{qty},#{messageCard},#{engrave},#{userNum},#{userNum},#{productNum},#{productOption})
+		insert into orderDetail (num, qty, messageCard, engrave, friendNum, userNum, productNum, productOption, optionNum) 
+		values (null,#{qty},#{messageCard},#{engrave},#{userNum},#{userNum},#{productNum},#{productOption},#{optionNum})
 	</insert>
 	
 	<select id="getMaxNum" resultType="int">
@@ -18,10 +18,10 @@
 	</select>
 	
 	<insert id="insertSelfCart" parameterType="HashMap">
-		insert into orderDetail (num, qty, messageCard, engrave, friendNum, userNum, productNum)
+		insert into orderDetail (num, qty, messageCard, engrave, friendNum, userNum, productNum, optionNum)
 		values
         <foreach collection="cartList" item="item" separator=",">
-			(null,#{item.qty},#{item.messageCard},#{item.engrave},#{item.friendNum},#{item.userNum},#{item.productNum})
+			(null,#{item.qty},#{item.messageCard},#{item.engrave},#{item.friendNum},#{item.userNum},#{item.productNum},#{optionNum})
         </foreach>
  	</insert>
  	

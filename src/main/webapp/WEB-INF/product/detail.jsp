@@ -1067,11 +1067,11 @@ form h1 {
 					$.each(res,function(i,e){
 						if(e.clothSize !=null){
 							s+="<li class='dropdown-item'>";
-							s+="<button type='button' value='"+e.clothSize+"' class='dropdown-option'>"+e.clothSize+"</button>";
+							s+="<button type='button' value='"+e.num+"' class='dropdown-option'>"+e.clothSize+"</button>";
 							s+="</li>";
 						}else if(e.shoesSize !=null){
 							s+="<li class='dropdown-item'>";
-							s+="<button type='button' value='"+e.shoesSize+"' class='dropdown-option'>"+e.shoesSize+"</button>";
+							s+="<button type='button' value='"+e.num+"' class='dropdown-option'>"+e.shoesSize+"</button>";
 							s+="</li>";
 						}
 					}); 
@@ -1081,10 +1081,12 @@ form h1 {
 					
 					optionBtn.forEach(function (item) {
 						item.addEventListener("click", function (e) {
-						    var selectValue = e.currentTarget.textContent.trim();
-						    dropdownBtn.textContent = selectValue;
+						    var selectValue = e.currentTarget.value;
+						    var selectText = e.currentTarget.textContent.trim();						   
+						  //  console.log("val"+selectValue);
+						    dropdownBtn.textContent = selectText;
 						    dropdownBtn.classList.add("selected");
-						    $('input[name=productOption]').attr('value', selectValue);
+						    $('input[name=optionNum]').attr('value', selectValue);
 				  		});
 					});
 					
@@ -1112,6 +1114,7 @@ form h1 {
     
     <input type="hidden" name="productNum" value="${dto.num }" />
     <input type="hidden" name="productOption" value=""/>
+    <input type="hidden" name="optionNum" value="1"/>
 
     <div class="detailContainer">
       <div class="detailItem">

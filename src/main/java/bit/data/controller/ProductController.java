@@ -104,7 +104,9 @@ public class ProductController {
 		int categoryNum=Integer.parseInt(request.getParameter("num"));
 		String categoryName=productService.getCategoryByNum(categoryNum);		
 		int count=productService.getTotalProductByCateNum(categoryNum);
-		String sort = "createdAt";
+		
+		//최초 sort 값 고정 (최신순)
+		String sort = "createdAt desc";
 		
 		List<ProductDto> productList = productService.getProductByNum(categoryNum, sort);
 		
