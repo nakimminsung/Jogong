@@ -73,12 +73,13 @@
 						<td colspan="2">
 							<div style="padding-top: 15px; padding-bottom: 15px;">
 								<span style="color: red;">*</span> 표시 항목은 필수 입력 사항입니다.<br>
-								정확한 정보를 입력해주시기 바랍니다.부정확한 정보 입력 시 회원탈퇴 및 이용정지 될 수 있습니다.
+								정확한 정보를 입력해주시기 바랍니다.부정확한 정보 입력 시 회원탈퇴 및 이용정지 될 수 있습니다.<br>
+								(프로필 이미지의 경우 변경 안할 시 기존 프로필 이미지가 유지됩니다)
 							</div>
 						</td>
 					</tr>
 					<tr>
-						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>프로필이미지</th>
+						<th style="background-color: #f5f5f5;">프로필이미지</th>
 						<td>
 							<div style="width: 300px;">
 								<input type="file" name="upload" class="form-control" >
@@ -86,7 +87,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th style="background-color: #f5f5f5;" ><span style="color: red;">*</span>아이디</th>
+						<th style="background-color: #f5f5f5;" >아이디</th>
 							<td>
 								<div class="input-group" style="width: 400px;">${list.email }</div>
 							</td>
@@ -110,7 +111,7 @@
 						</td>	
 					</tr>
 					<tr>
-						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>이름</th>
+						<th style="background-color: #f5f5f5;">이름</th>
 						<td>
 							<div style="width: 300px;">
 								<input type="text" name="nickname" class="form-control" required="required" value="${list.nickname }">
@@ -118,7 +119,7 @@
 						</td>		
 					</tr>
 					<tr>
-						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>생년월일</th>
+						<th style="background-color: #f5f5f5;">생년월일</th>
 						<td>
 							<div style="width: 300px;">
 								${list.year }${birthday }
@@ -126,14 +127,14 @@
 						</td>
 					</tr>
 					<tr>
-						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>성별</th>
+						<th style="background-color: #f5f5f5;">성별</th>
 						<td>
 							${list.gender==2?"여":"남" }
 
 						</td>		
 					</tr>
 					<tr>
-						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>휴대폰번호</th>
+						<th style="background-color: #f5f5f5;">휴대폰번호</th>
 						<td>
 							<div style="width: 300px;">
 								<input type="text" oninput="autoHyphen2(this)" name="phone" value="${list.phone }" required="required" class="form-control" pattern=".{13,13}" >
@@ -141,7 +142,7 @@
 						</td>	
 					</tr>
 					<tr>
-						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>주소</th>
+						<th style="background-color: #f5f5f5;">주소</th>
 						<td>
 							<div class="input-group" style="width: 300px;">
 								<input type="text" id="sample4_postcode" name="addressNum" value="${addressNumber }" class="form-control" style="width: 40%; margin-bottom: 5px;" required="required">
@@ -158,7 +159,7 @@
 						</td>	
 					</tr>
 					<tr>
-						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>상태메세지</th>
+						<th style="background-color: #f5f5f5;">상태메세지</th>
 						<td>
 							<div class="input-group" style="width: 300px;">
 								<input type="text" name="status" value="${list.status }" class="form-control" style="width: 40%; margin-bottom: 5px;" required="required" pattern=".{1,20}">
@@ -190,12 +191,13 @@
 						<td colspan="2">
 							<div style="padding-top: 15px; padding-bottom: 15px;">
 								<span style="color: red;">*</span> 표시 항목은 필수 입력 사항입니다.<br>
-								정확한 정보를 입력해주시기 바랍니다.부정확한 정보 입력 시 회원탈퇴 및 이용정지 될 수 있습니다.
+								정확한 정보를 입력해주시기 바랍니다.부정확한 정보 입력 시 회원탈퇴 및 이용정지 될 수 있습니다.<br>
+								(프로필 이미지의 경우 변경 안할 시 기존 프로필 이미지가 유지됩니다)
 							</div>
 						</td>
 					</tr>
 					<tr>
-						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>프로필이미지</th>
+						<th style="background-color: #f5f5f5;">프로필이미지</th>
 						<td>
 							<div style="width: 300px;">
 								<input type="file" name="upload" class="form-control" >
@@ -203,13 +205,13 @@
 						</td>
 					</tr>
 					<tr>
-						<th style="background-color: #f5f5f5;" ><span style="color: red;">*</span>아이디</th>
+						<th style="background-color: #f5f5f5;" >아이디</th>
 							<td>
 								<div class="input-group" style="width: 400px;">${list.email }</div>
 							</td>
 					</tr>	
 					<tr>
-						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>이름</th>
+						<th style="background-color: #f5f5f5;">이름</th>
 						<td>
 							<div style="width: 300px;">
 								<input type="text" name="nickname" class="form-control" required="required" value="${list.nickname }">
@@ -217,22 +219,22 @@
 						</td>		
 					</tr>
 					<tr>
-						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>생년월일</th>
+						<th style="background-color: #f5f5f5;">생년월일</th>
 						<td>
 							<div style="width: 300px;">
-								${list.date}
+								${birthday}
 							</div>							
 						</td>
 					</tr>
 					<tr>
-						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>성별</th>
+						<th style="background-color: #f5f5f5;">성별</th>
 						<td>
 							${list.gender==2?"여":"남" }
 
 						</td>		
 					</tr>
 					<tr>
-						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>상태메세지</th>
+						<th style="background-color: #f5f5f5;">상태메세지</th>
 						<td>
 							<div class="input-group" style="width: 300px;">
 								<input type="text" name="status" value="${list.status }" class="form-control" style="width: 40%; margin-bottom: 5px;" required="required" pattern=".{1,20}">

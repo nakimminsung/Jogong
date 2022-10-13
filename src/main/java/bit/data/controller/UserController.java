@@ -61,6 +61,7 @@ public class UserController {
     		model.addAttribute("addressNumber", list.getAddress().substring(0, 5));
     		model.addAttribute("address", list.getAddress().substring(5));
     	}
+    	
         return "/mypage/mypage/user";
     }
     
