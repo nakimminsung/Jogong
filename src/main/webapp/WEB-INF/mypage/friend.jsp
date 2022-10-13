@@ -140,9 +140,11 @@
 	span.friend-after-count {
 		margin: 30px 0;
 	}
-	.friend-result {
+	div.friend-modal-result{
 		margin-top: 10px;
-	}
+    	overflow: auto;
+    	height: 290px; 	
+    }
 	.fa-user-plus {
 		font-size:24px; 
 		position: relative; 
@@ -279,9 +281,7 @@
 </style>
 <body>
 	<c:set var="root" value="<%=request.getContextPath() %>"/>
-	<c:if test="${!empty sessionScope.loginUserNum}">
-    	<input type="hidden" name="userNum" value="${sessionScope.loginUserNum}" />
-    </c:if>
+    <input type="hidden" name="userNum" value="${sessionScope.loginUserNum}" />
 	<div class="friend-wrapper">
 		<div class="friend-top">
 			<div>
@@ -328,10 +328,6 @@
 	            </div>
         	</div>
             <div class="gift-modal-middle">
-            	<div style="margin: 10px 0;">
-            		친구목록
-            		<span style="font-size: 15px; margin-bottom: 5px;" class="friend-count"></span>
-            	</div>
             	<div class="friend-modal-result">
             	</div>
             </div>
@@ -530,6 +526,7 @@
 			}
 		}); */
 	}
+	
 	// 친구목록 조회
 	function list(data) {
 		
@@ -559,18 +556,6 @@
 				});
 				s += "</ul>";
 				$("div.friend-modal-result").html(s);
-			}
-		});
-		
-		// 친구인원수
-		$.ajax({
-			type: "get",
-			url: "../user/friendCount",
-			dataType: "json",
-			data: {"userNum":$("input[name=userNum]").attr("value")},
-			success:function(res){
-				
-				$("span.friend-count").text(res);
 			}
 		});
 	}
