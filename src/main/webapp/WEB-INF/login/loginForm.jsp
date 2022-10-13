@@ -170,8 +170,7 @@ $(document).ready(function(){
 					<label style="float: left;"><input type="checkbox" class="form-check-input checkSeller" id="rememberSellerId" ${rememberSellerId=='yes' ? 'checked' : ''}> 아이디 저장</label>
 					
 					<div style="float: right;">
-						<a href="#" style="border-bottom: 1px solid black; cursor: pointer;">아이디 찾기</a>&nbsp;/
-						<a href="#" style="border-bottom: 1px solid black; cursor: pointer;">비밀번호 찾기</a>
+						<a href="#" onclick="sellerAlert()" style="border-bottom: 1px solid black; cursor: pointer;">아이디 / 비밀번호 찾기</a>
 					</div>
 				</div>
 				
@@ -191,6 +190,12 @@ $(document).ready(function(){
 <!-- 네이버 로그인 관련 -->
 <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 <script>
+	
+	//판매회원 아이디 비번찾기 alert
+	function sellerAlert() {
+		
+		alert("영업 담당자에게 문의해주시기 바랍니다.");
+	}
 	
 
 	// 네아로 로그인 정보를 초기화하기 위하여 init을 호출
