@@ -113,4 +113,10 @@ public class UserService implements UserServiceInter {
     public void updateFriend(HashMap<String, Object> map) {
         userDaoInter.updateFriend(map);
     }
+    
+    // 단일 유저 조회
+    @Override
+    public UserDto selectUser(int userNum) {
+        return userDaoInter.selectUser(userNum);
+    }
 }

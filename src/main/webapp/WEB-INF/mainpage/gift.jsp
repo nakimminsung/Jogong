@@ -157,7 +157,7 @@
     }
     div.friend-result input{
     	position: relative;
-    	top: 5px;
+
     }
     div.friend-result b{
     	position: relative;
@@ -186,8 +186,9 @@
 			<div class="gift-top">
 				<div class="gift-left">
 					<div>
-						<h2 class="friendNum"></h2>
-						<h2 class="friendText">누구를 위한 선물인가요?</h2>
+						<span class="friendName" style="display: inline; font-size: 30px; font-weight: 1000;"></span>
+						<span class="friendNum" style="font-size: 30px;"></span>
+						<span class="friendText" style="display: block; font-size: 30px;"">누구를 위한 선물인가요?</span>
 					</div>
 				</div>
 				<div class="gift-right">
@@ -326,12 +327,16 @@
 					modal.style.display = "none"
 						
 					$("body").attr("class","");
-					$("h2.friendNum").text(wishName+"님을 위한");
-					$("h2.friendText").text("선물하기");
+					$(".friendName").text(wishName).css({"border-bottom":"8px solid #cff0cc","font-weight":"1000"});
+					$(".friendNum").text("님을 위한");
+					$(".friendText").text("선물하기");
 					$("#gift-friend").attr("src",wishImg);
 						
 					if(res.length != 0){
-						wl += "<h4 style='margin-bottom:20px; margin-top:50px;'>"+wishName+"님의 위시리스트</h4>";
+						wl += "<div style='display:flex; justify-content:space-between;'>"
+						wl += "<h4 style='margin-bottom:20px; margin-top:50px; font-weight:1000;'>"+wishName+"님의 위시리스트</h4>";
+						wl += "<span onclick=\"location.href='wishlist/userPage?userNum="+wishNum+"'\" class='wish-btn' style='margin-top:50px; font-size:15px; font-weight:1000; color: #a0a0a0; cursor:pointer;'>더보기 ❯</span>";
+						wl += "</div>"
 					} else {
 						wl += "<h4 style='margin-bottom:20px; margin-top:50px;'>선물가능한 상품이 없어요.</h4>";
 					}

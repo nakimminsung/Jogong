@@ -164,6 +164,13 @@ public class UserController {
         
         return "/mypage/mypage/friend";
     }
+    
+    // 단일 유저 조회
+    @GetMapping("/user/data")
+    @ResponseBody
+    public UserDto selectUser(int userNum) {
+        return userServiceInter.selectUser(userNum);
+    }
 }
 
 

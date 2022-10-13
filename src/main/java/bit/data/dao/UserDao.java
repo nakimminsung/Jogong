@@ -109,4 +109,10 @@ public class UserDao implements UserDaoInter {
     public void updateFriend(HashMap<String, Object> map) {
         session.selectOne(ns+"updateFriend", map);
     }
+    
+    // 단일 유저 조회
+    @Override
+    public UserDto selectUser(int userNum) {
+        return session.selectOne(ns+"selectUser", userNum);
+    }
 }

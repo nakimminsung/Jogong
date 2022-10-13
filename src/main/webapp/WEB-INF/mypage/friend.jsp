@@ -592,9 +592,9 @@
 					s += "<span class='friend-stauts'>"+((elt.status!=null)?elt.status:"")+"</span>";
 					s += "</div>";
 					s += "<div class='friend-icon'>";
-					s += "<a href='mailto:"+elt.email+"'><i class='fas fa-envelope' style='font-size:24px'></i></a>";
+					s += "<i onclick=\"location.href='../wishlist/userPage?userNum="+elt.num+"'\" class='fas fa-heart' style='font-size:24px; cursor:pointer;'></i>";
 					s += "<a href='#'><i class='fab fa-instagram' style='font-size:24px'></i></a>";
-					s += "<a href='#'><i class='fab fa-facebook' style='font-size:24px'></i></a>";
+					s += "<a href='mailto:"+elt.email+"'><i class='fas fa-envelope' style='font-size:24px'></i></a>";
 					s += "<i class='fas fa-user-minus delete-friend-btn' friendNum='"+elt.num+"' style='font-size:24px; cursor:pointer;'></i>";
 					s += "</div>";
 					s += "</div>";

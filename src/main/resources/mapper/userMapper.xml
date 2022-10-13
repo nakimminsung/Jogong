@@ -90,4 +90,9 @@
 	<update id="updateFriend" parameterType="HashMap">
 		update userFriend set userFriend.check=1 where userNum=#{userNum} and friendNum=#{friendNum}
 	</update>
+	
+	<!-- 단일 유저 조회 -->
+	<select id="selectUser" parameterType="int" resultType="userDto">
+		select * from user where num=#{userNum}
+	</select>
 </mapper>

@@ -38,4 +38,7 @@ public interface UserServiceInter {
     
     // 친구 요청 수락
     public void updateFriend(HashMap<String,Object> map);
+    
+    // 단일 유저 조회
+    public UserDto selectUser(int userNum);
 }
