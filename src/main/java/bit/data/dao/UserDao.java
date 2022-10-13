@@ -58,6 +58,11 @@ public class UserDao implements UserDaoInter {
 		return session.selectList(ns+"getReviewUserInfo");	
 	}
 
+    @Override
+    public List<UserDto> selectNonFriendlyUsersList(int num) {
+        return session.selectList(ns+"selectNonFriendlyUsersList", num);
+    }
+
 	//회원정보 수정
 	@Override
 	public void updateUser(UserDto dto) {
@@ -73,5 +78,4 @@ public class UserDao implements UserDaoInter {
 		
 		return session.selectList(ns+"getQnaList",userNum);
 	}
-	
 }
