@@ -694,7 +694,6 @@ form h1 {
 			} else {
 				location.href="../loginForm";
 			}
-			return
 		} else {
 			var data = $("#insertDetail").serialize();
 	  		var s ="";
@@ -705,7 +704,6 @@ form h1 {
 	  			data:data,
 	  			success:function(res){
 					alert("선물상자에 상품을 담았어요");
-			   
 	  			},
 	  		});
 		}
@@ -746,7 +744,6 @@ form h1 {
 			} else {
 				location.href="../loginForm";
 			}
-			return;
 		}else {
 	    	modal3.style.display = "flex"
 		}
@@ -951,7 +948,7 @@ form h1 {
 	
 	// 나에게 선물하기 
 	$("#btn_selfGift").click(function(){
-		console.log("에러안남");
+		
   		if(${empty sessionScope.loginUserNum}) {
 			if(!confirm("로그인이 필요한 메뉴입니다.\n로그인하시겠습니까?")){
 			} else {
@@ -1194,10 +1191,6 @@ form h1 {
               <i class="far fa-heart" style="font-size: 20px; margin-left: 5px; margin-top: 3px"></i>&nbsp;
             </span>
           </button>
-
-         <!--  <button type="submit" class="detailSelfGift" formaction="../orderDetail/insertSelfGift">
-            <b>나에게 선물하기</b>
-          </button> -->
            <button type="button" class="detailSelfGift" id="btn_selfGift">
             <b>나에게 선물하기</b>
           </button>
