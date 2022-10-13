@@ -105,6 +105,8 @@ public class PaymentController {
 		Integer orderDetailNum = orderDetailDto.getNum();
 		Integer friendNum = orderDetailDto.getFriendNum();
 		Integer productNum = orderDetailDto.getProductNum();
+		String shoesSize = productDto.getShoesSize();
+		String clothSize = productDto.getClothSize();
 		
 		Integer totalprice = price * count;
 		
@@ -123,6 +125,8 @@ public class PaymentController {
 		mview.addObject("orderDetailNum",orderDetailNum);
 		mview.addObject("friendNum",friendNum);
 		mview.addObject("productNum",productNum);
+		mview.addObject("shoesSize",shoesSize);
+		mview.addObject("clothSize",clothSize);
 		
 		mview.setViewName("/bit/payment/payview");
 		
