@@ -26,18 +26,32 @@ public class UserController {
 	
 	@PostMapping("/user/friendData")
 	@ResponseBody
-	public List<UserDto> getUserFriendData(
+	public List<UserDto> selectFriendData(
 	        @RequestBody HashMap<String,Object> param) {
 	    
 	    Map<String,Object> map = (HashMap<String, Object>) param.get("data");
 	    
-		return userServiceInter.getUserFriendData(map);
+		return userServiceInter.selectFriendData(map);
 	}
 	
-	@GetMapping("/user/friendCount")
+	@PostMapping("/user/friendRequest")
 	@ResponseBody
-	public int getUserFriendCount(int userNum) {
-		return userServiceInter.getUserFriendCount(userNum);
+	public List<UserDto> selectFreindRequest(
+	        @RequestBody HashMap<String,Object> param) {
+	    
+	    Map<String,Object> map = (HashMap<String, Object>) param.get("data");
+	    
+	    return userServiceInter.selectFreindRequest(map);
+	}
+	
+	@PostMapping("/user/friendCount")
+	@ResponseBody
+	public int getUserFriendCount(
+	        @RequestBody HashMap<String,Object> param) {
+	    
+	    HashMap<String,Object> map = (HashMap<String, Object>) param.get("data");
+	    
+		return userServiceInter.getUserFriendCount(map);
 	}
 	
 	@GetMapping("/mypage/cart")
@@ -132,6 +146,21 @@ public class UserController {
         System.out.println(map.get("friendNum"));
         
         userServiceInter.deleteFriend(map);
+        
+        return "/mypage/mypage/friend";
+    }
+    
+    // 친구삭제
+    @PostMapping("/user/updateFriend")
+    public String updateFriend(
+            @RequestBody HashMap<String,Object> param) {
+        
+        HashMap<String,Object> map = (HashMap<String,Object>) param.get("data");
+        
+        System.out.println(map.get("userNum"));
+        System.out.println(map.get("friendNum"));
+        
+        userServiceInter.updateFriend(map);
         
         return "/mypage/mypage/friend";
     }

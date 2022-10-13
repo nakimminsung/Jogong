@@ -222,8 +222,7 @@
         	</div>
             <div class="gift-modal-middle">
             	<div style="margin: 10px 0;">
-            		친구목록
-            		<span style="font-size: 15px; margin-bottom: 5px;" class="friend-count"></span>
+            		<span id="friend-count" style="font-size: 15px; margin-bottom: 5px;"></span>
             	</div>
             	<div class="friend-result">
             	</div>
@@ -258,9 +257,14 @@
 			return;
 		} else {
 			//  로그인 상태일 때 모달띄우기 & 친구목록 불러오기
-			var data = {userNum:$("input[name=userNum]").attr("value"),search:""};
-			list(data);
 		    modal.style.display = "flex";
+			let data = {
+					userNum:$("input[name=userNum]").attr("value"),
+					friendNum:$("input[name=userNum]").attr("value"),
+					search:"",
+					check:1
+					};
+			list(data);
 		}
 	});
 		
@@ -302,8 +306,9 @@
 		
 	// 친구 선택 후 친구의 위시리스트 출력
 	$(document).on("click","button.getWishlist",function(){
+		fl = $(".chkBox:checked").length;
 		if(fl == 0){
-			location.href="${root}";
+			alert("친구를 선택해주세요")
 		} else if (fl == 1) {
 				
 			var wishNum = $("li.wish").attr("num");
@@ -385,15 +390,16 @@
 	// 친구 검색
 	$("#friend-search").on('keyup keypress',function(){
 		let data = {
-			userNum:$("input[name=userNum]").attr("value"),
-			search:$(this).val().trim()
-		};
+				userNum:$("input[name=userNum]").attr("value"),
+				friendNum:$("input[name=userNum]").attr("value"),
+				search:$(this).val().trim(),
+				check:1
+				};
 		list(data);
 	});
 	
 	// 친구목록 조회
 	function list(data) {
-		
 		let s="";
 			
 		$.ajax({
@@ -425,13 +431,14 @@
 		
 		// 친구인원수
 		$.ajax({
-			type: "get",
+			type: "post",
 			url: "user/friendCount",
 			dataType: "json",
-			data: {"userNum":$("input[name=userNum]").attr("value")},
+			contentType: "application/json; charset=utf-8",
+			data: JSON.stringify({"data":data}),
 			success:function(res){
-				
-				$("span.friend-count").text(res);
+				console.log(res);
+				$("#friend-count").text("친구 "+res);
 			}
 		});
 	}

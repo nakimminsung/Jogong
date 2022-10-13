@@ -348,6 +348,81 @@
 	
 	// 선택한 친구 인원
 	var fl = 0;
+	
+	// 친구목록 함수 실행
+	let data = {
+			userNum:$("input[name=userNum]").attr("value"),
+			friendNum:$("input[name=userNum]").attr("value"),
+			search:"",
+			check:1
+			};
+	friendList(data);
+	
+		
+	// 친구목록
+	$(document).on("click",".friend-after",function(){
+	$(this).find("span").css({"color":"#000","border-bottom":"3px solid #000"});
+		$(this).siblings().find("span").css({"color":"#808080","border-bottom":"0px solid #000"});
+		let data = {
+				userNum:$("input[name=userNum]").attr("value"),
+				friendNum:$("input[name=userNum]").attr("value"),
+				search:"",
+				check:1
+				};
+		friendList(data);
+	});
+		
+	// 친구요청목록
+	$(document).on("click",".friend-before",function(){
+		$(this).find("span").css({"color":"#000","border-bottom":"3px solid #000"});
+		$(this).siblings().find("span").css({"color":"#808080","border-bottom":"0px solid #000"});
+		let data = {friendNum:$("input[name=userNum]").attr("value"),search:"",check:0};
+		friendRequest(data);
+	});
+		
+	// 친구 검색
+	$("#friend-search").on('keyup keypress',function(){
+		let data = {userNum:$("input[name=userNum]").attr("value"),search:$(this).val().trim()};
+		list(data);
+	});
+	
+	// 모달 실행시 오버레이 실행
+	$(".fa-user-plus").click(function(){
+		$("body").attr("class","modal-fix");
+	});
+	
+	// 모달 x버튼 클릭시 닫기
+	closeBtn.addEventListener("click", e => {
+		modal.style.display = "none"
+	    $("body").attr("class","");
+	    $("input[name=friend-search]").val();
+	})
+		
+	// 모달 외부 클릭시 닫기
+	modal.addEventListener("click", e => {
+		const evTarget = e.target
+		if(evTarget.classList.contains("gift-modal-overlay")) {
+			modal.style.display = "none"
+	        $("body").attr("class","");
+			$("input[name=friend-search]").val();
+		}
+	})
+		
+	// 모달 취소버튼 클릭시 닫기
+	$(document).on("click",".btn-cancel",function(){
+		modal.style.display = "none"
+		$("body").attr("class","");
+		$("input#friend-search").val("");
+	});
+		
+	// 친구 검색
+	$("#friend-search").on('keyup keypress',function(){
+		let data = {
+			userNum:$("input[name=userNum]").attr("value"),
+			search:$(this).val().trim()
+		};
+		list(data);
+	});
 		
 	// 친구아이콘 클릭시
 	$("#friend-search-button").click(function(){
@@ -429,9 +504,16 @@
 					
 				modal.style.display = "none"
 			    $("body").attr("class","");
-				friendList()
+				let data = {
+						userNum:$("input[name=userNum]").attr("value"),
+						friendNum:$("input[name=userNum]").attr("value"),
+						search:"",
+						check:1
+						};
+				friendList(data);
 			}
 		});
+		alert("친구요청 되었습니다")
 	});
 	
 	// 친구 삭제
@@ -451,76 +533,43 @@
 				contentType: "application/json; charset=utf-8",
 				success:function(res){
 						
-					friendList()
+					let data = {
+							userNum:$("input[name=userNum]").attr("value"),
+							friendNum:$("input[name=userNum]").attr("value"),
+							search:"",
+							check:1
+							};
+					friendList(data);
 				}
 			});
 	 	}
 	});
-
-	// 친구목록 함수 실행
-	let data = {userNum:$("input[name=userNum]").attr("value"),search:""};
-	friendList(data);
-		
-	// 친구목록
-	$(document).on("click",".friend-after",function(){
-	$(this).find("span").css({"color":"#000","border-bottom":"3px solid #000"});
-		$(this).siblings().find("span").css({"color":"#808080","border-bottom":"0px solid #000"});
-		//friendList()
-	});
-		
-	// 친구요청목록
-	$(document).on("click",".friend-before",function(){
-		$(this).find("span").css({"color":"#000","border-bottom":"3px solid #000"});
-		$(this).siblings().find("span").css({"color":"#808080","border-bottom":"0px solid #000"});
-		//writtenReviewList()
-	});
-		
-	// 친구 검색
-	$("#friend-search").on('keyup keypress',function(){
-		let data = {userNum:$("input[name=userNum]").attr("value"),search:$(this).val().trim()};
-		list(data);
-	});
 	
-	// 모달 실행시 오버레이 실행
-	$(".fa-user-plus").click(function(){
-		$("body").attr("class","modal-fix");
-	});
-	
-	// 모달 x버튼 클릭시 닫기
-	closeBtn.addEventListener("click", e => {
-		modal.style.display = "none"
-	    $("body").attr("class","");
-	    $("input[name=friend-search]").val();
-	})
+	// 친구 요청 수락
+	$(document).on("click",".update-friend-btn",function(){
 		
-	// 모달 외부 클릭시 닫기
-	modal.addEventListener("click", e => {
-		const evTarget = e.target
-		if(evTarget.classList.contains("gift-modal-overlay")) {
-			modal.style.display = "none"
-	        $("body").attr("class","");
-			$("input[name=friend-search]").val();
+	 	let data = {
+			friendNum : $('input[name=userNum]').val(),
+			userNum : $(this).attr("friendNum"),
 		}
-	})
 		
-	// 모달 취소버튼 클릭시 닫기
-	$(document).on("click",".btn-cancel",function(){
-		modal.style.display = "none"
-		$("body").attr("class","");
-		$("input#friend-search").val("");
-	});
-		
-	// 친구 검색
-	$("#friend-search").on('keyup keypress',function(){
-		let data = {
-			userNum:$("input[name=userNum]").attr("value"),
-			search:$(this).val().trim()
-		};
-		list(data);
+	 	if(confirm("친구요청을 수락하시겠습니까?")) {
+	 		
+			$.ajax({
+				type: "post",
+				url: "../user/updateFriend",
+				data: JSON.stringify({"data":data}),
+				contentType: "application/json; charset=utf-8",
+				success:function(res){
+						
+					$(".friend-after").trigger("click");
+				}
+			});
+	 	}
 	});
 	
-	// 화면 친구목록
-	function friendList() {
+	// 친구목록
+	function friendList(data) {
 		let s="";
 		
 		$.ajax({
@@ -543,7 +592,7 @@
 					s += "<span class='friend-stauts'>"+((elt.status!=null)?elt.status:"")+"</span>";
 					s += "</div>";
 					s += "<div class='friend-icon'>";
-					s += "<a href='#'><i class='fas fa-envelope' style='font-size:24px'></i></a>";
+					s += "<a href='mailto:"+elt.email+"'><i class='fas fa-envelope' style='font-size:24px'></i></a>";
 					s += "<a href='#'><i class='fab fa-instagram' style='font-size:24px'></i></a>";
 					s += "<a href='#'><i class='fab fa-facebook' style='font-size:24px'></i></a>";
 					s += "<i class='fas fa-user-minus delete-friend-btn' friendNum='"+elt.num+"' style='font-size:24px; cursor:pointer;'></i>";
@@ -558,30 +607,68 @@
 		
 		// 친구인원수
 		$.ajax({
-			type: "get",
+			type: "post",
 			url: "../user/friendCount",
 			dataType: "json",
-			data: {"userNum":$("input[name=userNum]").attr("value")},
+			contentType: "application/json; charset=utf-8",
+			data: JSON.stringify({"data":data}),
 			success:function(res){
 				
 				$("span.friend-after-count").text("친구 "+res);
 			}
 		});
 		
-		// 요청 친구인원수
-		/* $.ajax({
-			type: "get",
-			url: "user/friendCount",
-			dataType: "json",
-			data: {"userNum":$("input[name=userNum]").attr("value")},
-			success:function(res){
-				
-				$("span.friend-before-count").text(res);
-			}
-		}); */
 	}
 	
-	// 친구목록 조회
+	// 친구 요청목록
+	function friendRequest(data) {
+		let s="";
+		
+		$.ajax({
+			type: "post",
+			url: "../user/friendRequest",
+			dataType: "json",
+			contentType: "application/json; charset=utf-8",
+			data: JSON.stringify({"data":data}),
+			success:function(res){
+				
+				$.each(res, function(i,elt) {
+					
+					s += "<div class='friend-object'>";
+					s += "<div class='friend-object-left'>";
+					s += "<img src='"+elt.profileImage+"'>";
+					s += "</div>";
+					s += "<div class='friend-object-right'>";
+					s += "<div class='friend-info'>";
+					s += "<span class='friend-name'>"+elt.nickname+"</span>";
+					s += "<span class='friend-stauts'>"+((elt.status!=null)?elt.status:"")+"</span>";
+					s += "</div>";
+					s += "<div class='friend-icon' style='display:flex; justify-content:flex-end;'>";
+					s += "<i class='fas fas fa-user-check update-friend-btn' friendNum='"+elt.num+"' style='font-size:24px; cursor:pointer;'></i>";
+					s += "</div>";
+					s += "</div>";
+					s += "</div>";
+					
+				});
+				$("div.friend-result").html(s);
+			}
+		});
+
+		// 친구요청 인원수
+		$.ajax({
+			type: "post",
+			url: "../user/friendCount",
+			dataType: "json",
+			contentType: "application/json; charset=utf-8",
+			data: JSON.stringify({"data":data}),
+			success:function(res){
+				
+				$("span.friend-after-count").text("요청인원 "+res);
+			}
+		});
+	}
+	
+	// 친구아닌 유저목록 조회
 	function list(data) {
 		
 		let s="";

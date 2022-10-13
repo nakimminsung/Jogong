@@ -19,14 +19,20 @@ public class UserService implements UserServiceInter {
 	UserDaoInter userDaoInter;
 	
 	@Override
-	public List<UserDto> getUserFriendData(Map<String,Object> map) {
-		return userDaoInter.getUserFriendData(map);
+	public List<UserDto> selectFriendData(Map<String,Object> map) {
+		return userDaoInter.selectFriendData(map);
+	}
+	
+	@Override
+	public List<UserDto> selectFreindRequest(Map<String,Object> map) {
+	    return userDaoInter.selectFreindRequest(map);
 	}
 
 	@Override
-	public int getUserFriendCount(int userNum) {
-		return userDaoInter.getUserFriendCount(userNum);
+	public int getUserFriendCount(HashMap<String,Object> map) {
+		return userDaoInter.getUserFriendCount(map);
 	}
+	
 	@Override
 	public void insertUser(UserDto dto) {
 		// TODO Auto-generated method stub
@@ -95,9 +101,16 @@ public class UserService implements UserServiceInter {
     public void insertFriend(HashMap<String, Object> map) {
         userDaoInter.insertFriend(map);
     }
-
+    
+    // 친구삭제
     @Override
     public void deleteFriend(HashMap<String, Object> map) {
         userDaoInter.deleteFriend(map);
+    }
+    
+    // 친구요청 수락
+    @Override
+    public void updateFriend(HashMap<String, Object> map) {
+        userDaoInter.updateFriend(map);
     }
 }

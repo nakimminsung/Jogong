@@ -20,13 +20,18 @@ public class UserDao implements UserDaoInter {
 	String ns = "bit.data.dao.UserDao.";
 	
 	@Override
-	public List<UserDto> getUserFriendData(Map<String,Object> map) {
-		return session.selectList(ns+"getUserFriendData", map);
+	public List<UserDto> selectFriendData(Map<String,Object> map) {
+		return session.selectList(ns+"selectFriendData", map);
+	}
+	
+	@Override
+	public List<UserDto> selectFreindRequest(Map<String,Object> map) {
+	    return session.selectList(ns+"selectFreindRequest", map);
 	}
 
 	@Override
-	public int getUserFriendCount(int userNum) {
-		return session.selectOne(ns+"getUserFriendCount", userNum);
+	public int getUserFriendCount(HashMap<String,Object> map) {
+		return session.selectOne(ns+"getUserFriendCount", map);
 	}
 	
 	@Override
@@ -92,9 +97,16 @@ public class UserDao implements UserDaoInter {
     public void insertFriend(HashMap<String, Object> map) {
         session.selectList(ns+"isertFriend", map);
     }
-
+    
+    // 친구삭제
     @Override
     public void deleteFriend(HashMap<String, Object> map) {
         session.selectOne(ns+"deleteFriend", map);
+    }
+    
+    // 친구요청 수락
+    @Override
+    public void updateFriend(HashMap<String, Object> map) {
+        session.selectOne(ns+"updateFriend", map);
     }
 }
