@@ -54,7 +54,8 @@
 </head>
 <body>
 <div style="width: 100%;" class="contentsBody">
-	<h2 style="font-weight: bold; width: 900px;">카테고리|조공기프트</h2><br>
+	<h2 style="font-weight: bold; display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%;">카테고리</h2><br>
+	<hr style="width: 120px; height: 10px; position: relative; top:-55px; color: #cff0cc; opacity: 1; z-index: -1;">
 	<div class="categoryTotal">
 		<c:forEach var="cate" items="${category}" >
 			<a href="/jogong/category/categoryDetail?num=${cate.num}">
