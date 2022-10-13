@@ -39,12 +39,17 @@ public class OrderDetailController {
     
     // 나에게 선물하기
     @PostMapping("/insertSelfGift")
-    public String insertSelfGift(OrderDetailDto dto)
+    @ResponseBody
+    public Map<String, Integer> insertSelfGift(OrderDetailDto dto)
     {
         orderDetailService.insertSelfGift(dto);
         int num = orderDetailService.getMaxNum();
-        
-        return "redirect:../payview?num="+num;  
+        Map<String, Integer> map = new HashMap<String, Integer>();
+        map.put("num",num);
+        //System.out.println("ss");
+        Map<String, Integer> result = map;
+        //System.out.println(result);
+        return result;  
     }
     
     // 나에게 선물하기 (cart)
