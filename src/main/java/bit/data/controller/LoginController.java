@@ -370,5 +370,23 @@ public class LoginController {
 		
 		return "redirect:/";
 	}
+	//아이디 찾기 페이지 이동
+	@GetMapping("/loginForm/searchId")
+	public String searchId() {
+		
+		return "/bit/login/searchId";
+	}
+	
+	
+	//아이디 찾기 ajax
+	@PostMapping("/loginForm/checkId")
+	@ResponseBody
+	public Map<String, String> checkId(String nickname,String phone,Model model) {
+		Map<String, String> map=new HashMap<String, String>();
+		String email=userService.searchId(nickname, phone);
+		map.put("emailCheck", email==null?"fail":"success");
+		map.put("email", email);
+		return map;
+	}
 	
 }

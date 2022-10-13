@@ -30,17 +30,16 @@
 		 word-spacing: -1px;
 	}
 	.categoryName{
-		margin: auto;
-	    display: flex;
-		width: 1200px;   
-		padding-top: 2%;
-		padding-bottom: 1%; 
-	
+    margin: auto;
+    display: flex;
+    padding-top: 2%;
+    padding-bottom: 2.5%;
+    align-content: stretch;
+    justify-content: center;
 	}
 		 
 	 .categoryTotal{
 		text-align: center;
-		margin: auto;
 	    display: flex;
 	    justify-content: space-around;
 		width: 1200px;
@@ -104,38 +103,88 @@
 		font-size: 20px;
 		
 	}
+	
+	.categoryList{
+	    display: flex;
+	    align-items: center;
+	    justify-content: space-between;
+	    max-width: 1180px;
+	    margin: 32px auto;
+	}
+	
+	.categorySort{
+	    font-weight: 400;
+	    line-height: 16px;
+		width: 100px;
+	    border: 0px;
+	    font-size: 15px;
+	    margin-right: 15px;
+	}
+	
+	.categorySort:focus{
+    box-sizing: border-box;
+    border-radius: 5px;
+    outline: 3px solid #F8E4FF;
+	}
+	
+	
+	
+	a.categoryheader>span{
+		font-size: 18px;
+	    font-weight: 1000;
+	    position: relative;
+	    color: #888;
+	}
+	a.categoryheader>span:hover {
+		color: #000
+	}
+	span::after {
+		content: '';
+	    display: block;
+	    width: 0;
+	    height: 5px;
+	    position: absolute;
+	    left: 0;
+	    bottom: -5px;
+	    background-color: #cff0cc;
+	    opacity: 0.9;
+	}
+	a.categoryheader:hover span::after {
+	    width: 100%;
+	    transition: width .3s;
+	}
 
 </style>
 </head>
 <body>
-	<div style="width: 100%;" class="contentsBody">
+	<div style="width: 100%; margin-top: 15px;" class="contentsBody">
 		<h2 style="font-weight: bold;" class="categoryName">${categoryName }</h2>	
 			<div class="categoryTotal">	
 				<c:forEach var="category" items="${category}" >
-					<a href="/jogong/category/categoryDetail?num=${category.num}">
+					<a class="categoryheader" href="/jogong/category/categoryDetail?num=${category.num}">
 						<img src="${category.categoryImage }" class="cateImage" ><br>
 						<c:set var="s1" value="${category.num }"></c:set>
 						<c:if test="${categoryNum==s1}">
-							<span style="font-size: 15px; display:inline-block; margin: 10px 0px;border-bottom: 2px solid black;width:100px;">${category.name }</span>
+							<span>${category.name }</span>
 						</c:if>
 						<c:if test="${categoryNum!=s1}">
-							<span style="font-size: 15px; display:inline-block; margin: 10px 0px;">${category.name }</span>
+							<span>${category.name }</span>
 						</c:if>					
 					</a>
 				</c:forEach>
-				<div style="border-bottom: 1px solid #dcdcdc; width: 100%;"></div>
+				<div style="margin-top:20px;  border-bottom: 1px solid #ebebeb; width: 100%;"></div>
 			</div>
-			<div class="List">
-				<h5 style="width: 1200px; margin: auto; margin-top: 30px; padding-left: 10px;">총 ${totalCount }개</h5>
-				<div style="width: 1200px; margin:auto; display: flex; flex-direction: row-reverse;">
-					<select class="categorySort" name="sort">
-						<option value="createdAt desc" selected>최신순</option>
-						<option value="price desc">가격높은순</option>
-						<option value="price asc">가격낮은순</option>
-						<option value="readCount desc">인기순</option>
-					</select>
+			<div class="categoryList">
+				<span><h5>총 상품 갯수 : ${totalCount}개</h5></span>
+					<div>
+						<select class="categorySort" name="sort">
+							<option value="createdAt desc" selected>최신순</option>
+							<option value="price desc">가격높은순</option>
+							<option value="price asc">가격낮은순</option>
+							<option value="readCount desc">인기순</option>
+						</select>
+					</div>
 			</div>
-				
 				<div class="productList" >
 					<c:forEach var="productList" items="${productList}">
 						<div class="productItem">

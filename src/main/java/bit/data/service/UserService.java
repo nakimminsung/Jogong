@@ -38,6 +38,7 @@ public class UserService implements UserServiceInter {
 		// TODO Auto-generated method stub
 		return userDaoInter.getUserIdSearch(email);
 	}
+	//session 저장
 	@Override
 	public int getIdPassCheck(String email, String password) {
 		// TODO Auto-generated method stub
@@ -67,7 +68,7 @@ public class UserService implements UserServiceInter {
 		
 		return userDaoInter.getQnaList(userNum);
 	}
-
+	//회원정보 수정
 	@Override
 	public void updateUser(UserDto dto) {
 		// TODO Auto-generated method stub
@@ -78,4 +79,15 @@ public class UserService implements UserServiceInter {
     public List<UserDto> selectNonFriendlyUsersList(Map<String,Object> map) {
         return userDaoInter.selectNonFriendlyUsersList(map);
     }
+
+    //아이디찾기
+	@Override
+	public String searchId(String nickname, String phone) {
+		// TODO Auto-generated method stub
+		Map<String, String> map=new HashMap<String, String>();
+		map.put("nickname",nickname);
+		map.put("phone",phone);
+		return userDaoInter.searchId(map);
+	}  
+    
 }

@@ -103,6 +103,7 @@
      position: sticky;
      top: 100px;
      height: 100%;
+     margin-left: 30px;
    }
 
    .detailContent {
@@ -114,10 +115,6 @@
      display: inline;
    }
 
-   .detailRight {
-     margin-left: 30px;
-     margin-top: 30px;
-   }
 
    .detailCount {
      margin-left: 160px;
@@ -603,7 +600,11 @@ form h1 {
 		flex-direction: column;
 		margin-right: 10px;
 	}
-	
+	.detailNum{
+		display: flex;
+	    justify-content: space-between;
+	    margin-top: 15px;
+	}
 </style>
 <script type="text/javascript">
   $(function(){
@@ -905,11 +906,13 @@ form h1 {
 	var itemList = document.querySelector(".dropdown-item");
 	
 	dropdownBtn?.addEventListener("click", function () {
-		  menuList.classList.toggle("show");
+		  menuList.style.display='block';
+		  //menuList.classList.toggle("show");
 	});
 	
 	menuList?.addEventListener("click",function(){
-		menuList.classList.toggle("hidden");
+		//menuList.classList.toggle("hide");
+		menuList.style.display='none';
 	});
 	
 	// 모달 창에서 친구 선택시 모달 상단 친구 출력
@@ -1095,6 +1098,7 @@ form h1 {
 							
 						    dropdownBtn.textContent = selectText;
 						    dropdownBtn.classList.add("selected");
+						    
 						    $('input[name=optionNum]').attr('value', selectValue);
 						    
 				  		});
@@ -1167,7 +1171,7 @@ form h1 {
 		        <button type="button" class="dropdown-toggle">
 		          옵션선택
 		        </button>
-		      	<ul class="dropdown-menu" id="productOption">
+		      	<ul class="dropdown-menu" id="productOption" style="max-height: 250px;" >
 	        	</ul>
 	     	</div>  
         </c:if>
@@ -1175,19 +1179,17 @@ form h1 {
         <div class="detailNum">
           <span>수량</span>
           <span class="detailCount">
-            <a href="#" class="detailMinus"
-              ><i class="fa-solid fa-minus"></i>&nbsp;&nbsp;</a
-            >
+            <a href="#" class="detailMinus"><i class="fa-solid fa-minus"></i>&nbsp;&nbsp;</a>
             <span id="detailResult">1</span>
-            <a href="#" class="detailPlus"
-              >&nbsp;&nbsp;<i class="fa-solid fa-plus"></i
-            ></a>
+            <a href="#" class="detailPlus">&nbsp;&nbsp;<i class="fa-solid fa-plus"></i></a>
           </span>
         </div>
-        <br />
+        <br>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
         <h6 style="display: inline">총금액</h6>
         <h4 class="totalcost" style="display: inline">${dto.price }원</h4>
-
+		</div>
+		
         <button
           type="button"
           class="detailCart"
@@ -1199,15 +1201,19 @@ form h1 {
 
         <div class="detailInsert">
           <!-- 위시리스트 -->
-          <button type="button" class="btn_g cart-wish-button" id="btn_detailWish" data-toggle="modal">
+          <button type="button" class="btn_g cart-wish-button" id="btn_detailWish" data-toggle="modal" style="vertical-align: middle;">
             <span class="likes">
               <i class="far fa-heart" style="font-size: 20px; margin-left: 5px; margin-top: 3px"></i>&nbsp;
             </span>
           </button>
-           <button type="button" class="detailSelfGift" id="btn_selfGift">
+
+         <!--  <button type="submit" class="detailSelfGift" formaction="../orderDetail/insertSelfGift">
+            <b>나에게 선물하기</b>
+          </button> -->
+           <button type="button" class="detailSelfGift" id="btn_selfGift" style="vertical-align: middle;">
             <b>나에게 선물하기</b>
           </button>
-          <button type="button" class="detailGift" id="btn_orderDetail">
+          <button type="button" class="detailGift" id="btn_orderDetail" style="vertical-align: middle;">
             <b>선물하기</b>
           </button>
         </div>

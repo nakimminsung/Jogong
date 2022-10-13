@@ -16,8 +16,11 @@ public interface UserDaoInter {
 	// 리뷰페이지
 	public List<UserDto> getReviewUserInfo();
 	public List<UserDto> selectNonFriendlyUsersList(Map<String,Object> map);
+
 	//회원정보수정
 	public void updateUser(UserDto dto);
 	// 마이페이지 문의내역
 	public List<QnaDto> getQnaList(int userNum);
+	//아이디 찾기
+	public String searchId(Map<String, String> map);
 }
