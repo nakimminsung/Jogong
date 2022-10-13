@@ -9,7 +9,15 @@
 
 	<!-- order에 필요한 상품 정보 조회 -->
 	<select id="getItemSearch" parameterType="int" resultType="productDto">
-		select name,price,thumbnailImageUrl from product where num in (select productNum from orderDetail where num = #{num}) 
+		select
+		p.name, p.price, p.thumbnailImageUrl,
+		o.shoesSize, o.clothSize
+		from orderDetail d 
+		inner join jogong.option o
+		on d.optionNum = o.num
+		inner join product p
+		on d.productNum = p.num
+		where d.num = #{num}; 
 	</select>
 
 	<!-- order에 필요한 친구 nickname 조회 -->
