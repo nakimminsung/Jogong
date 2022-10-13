@@ -1116,6 +1116,10 @@ form h1 {
     
     <input type="hidden" name="productNum" value="${dto.num }" />
     <input type="hidden" name="productOption" value=""/>
+<<<<<<< HEAD
+=======
+    <input type="hidden" name="optionNum" value="1"/>
+>>>>>>> develop
 
     <div class="detailContainer">
       <div class="detailItem">
