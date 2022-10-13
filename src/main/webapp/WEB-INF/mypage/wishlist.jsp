@@ -136,7 +136,7 @@
 			
 			let wishOption = $(this).attr("wishOption");
 			
-			let userNum = ${sessionScope.loginid};
+			let userNum = ${sessionScope.loginUserNum};
 			let productNum = $(this).attr("productNum");
 			let publicOption = 1;
 			
@@ -222,7 +222,7 @@
 	});
 	// wishlist 호출 함수
 	function wishlist() {
-		let userNum = ${sessionScope.loginid};
+		let userNum = ${sessionScope.loginUserNum};
 			
 		let s="";
 			
