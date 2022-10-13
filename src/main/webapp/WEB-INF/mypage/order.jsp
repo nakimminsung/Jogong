@@ -32,7 +32,7 @@ a.menu-gift {
     color:#000 !important;
 }
 div.gift-wrapper{
-	padding-top:100px;
+	padding-top:50px;
 	width:100%;
 	display:flex;
 	flex-direction:column;
@@ -117,36 +117,18 @@ p.card-title{
   }
   
   .wrap_msgprofile{
-  	-webkit-text-size-adjust: none;
-    font-size: 14px;
-    line-height: 1.5;
-    color: #000;
-    font-family: -apple-system,Apple SD Gothic Neo,\b9d1\c740  \ace0\b515,Malgun Gothic,sans-serif,ArialUnicodeMs;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  
     margin: 0;
     padding: 0;
     position: relative;
   }
   
   .box_profile{
-  	-webkit-text-size-adjust: none;
-    font-size: 14px;
-    line-height: 1.5;
-    color: #000;
-    font-family: -apple-system,Apple SD Gothic Neo,\b9d1\c740  \ace0\b515,Malgun Gothic,sans-serif,ArialUnicodeMs;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    margin: 0;
     padding: 0;
     text-align: center;
-    padding-top: 0;
+    padding-top: 10px;
   }
   .thumb_profile{
-    -webkit-text-size-adjust: none;
-    font-size: 14px;
-    line-height: 1.5;
-    color: #000;
-    font-family: -apple-system,Apple SD Gothic Neo,\b9d1\c740  \ace0\b515,Malgun Gothic,sans-serif,ArialUnicodeMs;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     text-align: center;
     margin: 0;
     display: inline-block;
@@ -157,12 +139,6 @@ p.card-title{
     vertical-align: top;
   }
   .thumb_profile .img_g{
-    -webkit-text-size-adjust: none;
-    font-size: 14px;
-    line-height: 1.5;
-    color: #000;
-    font-family: -apple-system,Apple SD Gothic Neo,\b9d1\c740  \ace0\b515,Malgun Gothic,sans-serif,ArialUnicodeMs;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     text-align: center;
     aspect-ratio: auto 36 / 36;
     height: 36px;
@@ -170,14 +146,13 @@ p.card-title{
     vertical-align: top;
     display: block;
     width: 100%;
+    border-radius: 80px;
   }
   .thumb_profile .frame_squircle{
   	-webkit-text-size-adjust: none;
     font-size: 14px;
     line-height: 1.5;
     color: #000;
-    font-family: -apple-system,Apple SD Gothic Neo,\b9d1\c740  \ace0\b515,Malgun Gothic,sans-serif,ArialUnicodeMs;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     text-align: center;
     aspect-ratio: auto 42 / 42;
     border: 0 none;
@@ -190,8 +165,6 @@ p.card-title{
   }
   .tit_g{
     -webkit-text-size-adjust: none;
-    font-family: -apple-system,Apple SD Gothic Neo,\b9d1\c740  \ace0\b515,Malgun Gothic,sans-serif,ArialUnicodeMs;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     display: block;
     padding: 12px 0 24px;
     font-size: 20px;
@@ -701,8 +674,8 @@ p.card-title{
 	 					s+=	"<div class='card-body'>"
 	 					s+=	"<p class='card-title'>"+elt.brand+"</p>"
 	 					s+=	"<h5 class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 1000px;cursor:pointer;' onclick=\"location.href='../${root}product/detail?num="+elt.productNum+"'\">"+elt.productName+"</h5>"
-	 					s+= "<h6 class='card-text'><b>from."+elt.nickname+"</b></h6>"
-	 					s+=	"<button class='button' id='msgbtn"+i+"' style='margin-left:10px' onclick='showcard("+i+")'>메시지 카드 보기</button>"
+	 					s+= "<div style = 'display:flex; justify-content: space-between' ><h6 class='card-text'><b>from."+elt.nickname+"</b></h6>"
+	 					s+=	"<button class='button' id='msgbtn"+i+"' style='margin-left:10px' onclick='showcard("+i+")'>메시지 카드 보기</button></div>"
 	 					//s+=	"<button class='button' id='msgbtn' style='margin-left:10px' name='"+i+"'>메시지 카드 보기</button>"
 	 					s+=	"<p style='color:gray; text-align: left; margin-top:10px'>"+elt.orderDate+"</p></div></div></div>"
 	 					
@@ -712,7 +685,7 @@ p.card-title{
 	 					s+=	"<div class='modal' id='myModal"+i+"'>"
 	 					//s+=	"<div class='modal' id='myModal' name='"+i+"'>"
 	 					s+=	"<div class='modal-dialog'>"
-	 					s+=	"<div class='modal-content'>"
+	 					s+=	"<div class='modal-content' style='background-color:#FFFAE1'>"
 	 					s+=	"<div class='gift_window'>"
 	 					s+=	"<div class='gift_card'>"
 	 					s+=	"<div class='msgcardd_layer no_title'>"
@@ -723,7 +696,7 @@ p.card-title{
 	 					s+=	"<div class='box_profile'>"
 	 					s+=	"<div class='thumb_profile'>"
 	 					s+=	"<img width='36' height='36' class='img_g'src='"+elt.profileImage+"'>"
-	 					s+=	"<img width='42' height='42' class='frame_squircle' src='/jogong/resources/image/frame_msgsquircle.png'>"
+	 					/* s+=	"<img width='42' height='42' class='frame_squircle' src='/jogong/resources/image/frame_msgsquircle.png'>" */
 	 					s+=	"</div></div>"
 	 					s+=	"<strong class='tit_g'> <span id='nickname' class='txt_name'>"+elt.nickname+"</span> 님이 보낸 메시지</strong></div>"
 		 												
