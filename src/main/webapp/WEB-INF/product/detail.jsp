@@ -1082,7 +1082,6 @@ form h1 {
 					optionBtn.forEach(function (item) {
 						item.addEventListener("click", function (e) {
 						    var selectValue = e.currentTarget.textContent.trim();
-						    console.log("val"+selectValue);
 						    dropdownBtn.textContent = selectValue;
 						    dropdownBtn.classList.add("selected");
 						    $('input[name=productOption]').attr('value', selectValue);
