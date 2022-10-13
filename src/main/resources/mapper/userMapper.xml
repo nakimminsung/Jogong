@@ -51,9 +51,17 @@
 		    on qa.qnaCategoryNum = qc.num
 		     where userNum=#{userNum}
 	</select>
+	
 	<!-- 아이디 찾기 -->
 	<select id="searchId" parameterType="Map"  resultType="String">
 		select email from user where nickname=#{nickname} and phone=#{phone}
 	</select>
-
+	
+	<!-- 친구 추가 -->
+	<insert id="isertFriend" parameterType="HashMap">
+		insert into userFriend values 
+		<foreach collection="list" item="item" separator=",">
+			(null,#{item.userNum},#{item.friendNum},0)
+        </foreach>
+	</insert>
 </mapper>

@@ -1,5 +1,6 @@
 package bit.data.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,5 +28,7 @@ public interface UserServiceInter {
 	
 	//아이디 찾기
 	public String searchId(String nickname,String phone);
-
+	
+	// 친구 추가
+    public void insertFriend(HashMap<String,Object> map);
 }

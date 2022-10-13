@@ -1,5 +1,6 @@
 package bit.data.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -84,6 +85,11 @@ public class UserDao implements UserDaoInter {
 	public String searchId(Map<String, String> map) {
 		// TODO Auto-generated method stub
 		return session.selectOne(ns+"searchId", map);
-	}	
-	
+	}
+
+	// 친구추가
+    @Override
+    public void insertFriend(HashMap<String, Object> map) {
+        session.selectList(ns+"isertFriend", map);
+    }	
 }

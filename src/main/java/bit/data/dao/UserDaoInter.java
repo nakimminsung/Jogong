@@ -1,5 +1,6 @@
 package bit.data.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,4 +24,6 @@ public interface UserDaoInter {
 	public List<QnaDto> getQnaList(int userNum);
 	//아이디 찾기
 	public String searchId(Map<String, String> map);
+	// 친구 추가
+	public void insertFriend(HashMap<String,Object> map);
 }

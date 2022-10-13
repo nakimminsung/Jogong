@@ -143,7 +143,7 @@
 	div.friend-modal-result{
 		margin-top: 10px;
     	overflow: auto;
-    	height: 290px; 	
+    	height: 330px; 	
     }
 	.fa-user-plus {
 		font-size:24px; 
@@ -186,8 +186,8 @@
         border: 1px solid rgba( 255, 255, 255, 0.18 );
         width: 400px;
         height: 600px;
-        position: relative;
-        top: -150px;
+        position: absolute;
+        top: 80px;
         padding: 20px;
     }
     #gift-modal .gift-close-area {
@@ -370,7 +370,7 @@
 	// 모달 창에서 친구 선택시 모달 상단 친구 출력
 	$(document).on("click",".chkBox",function(){
 		var ba = new Array();
-		var fs = "";	
+		var fs = "";
 			
 		fl = $(".chkBox:checked").length;
 		
@@ -401,6 +401,37 @@
 	        fs += "선물할 친구를 선택하세요.";
 	        $("div.friend-select-list").html(fs);
 		}
+	});
+	
+	// 친구 추가
+	$(".getWishlist").click(function(){
+		
+		let list = [];
+		let friendNum = $('input:radio[name=radio]:checked').attr("friendNum");
+		
+		$('input:checkbox[name=friend]:checked').each(function() {
+			
+			let data = {
+				userNum : $("input[name=userNum]").val(),
+				friendNum : $(this).attr("num"),
+				check : 0
+			}
+			console.log(data);
+			list.push(data);
+		});
+		
+		$.ajax({
+			type: "post",
+			url: "../user/insertFriend",
+			data: JSON.stringify({"list":list}),
+			contentType: "application/json; charset=utf-8",
+			success:function(res){
+					
+				modal.style.display = "none"
+			    $("body").attr("class","");
+				friendList()
+			}
+		});
 	});
 
 	// 친구목록 함수 실행
@@ -546,7 +577,7 @@
 					
 					s += "<li style='list-style:none; float:left;'>";
 					s += "<div style='margin-right:50px;'>";
-					s += "<input type='radio' style='margin-right:10px;' class='chkBox' name='radio'>";
+					s += "<input type='checkbox' style='margin-right:10px;' class='chkBox' name='friend' num='"+elt.num+"'>";
 					s += "<label>";
 					s += "<img src='"+elt.profileImage+"' width='100' class='gift-friend-img' style='margin-right:5px;'>";
 					s += "<b num='"+elt.num+"'>"+elt.nickname+"</b>";

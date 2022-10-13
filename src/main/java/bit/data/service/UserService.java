@@ -88,6 +88,11 @@ public class UserService implements UserServiceInter {
 		map.put("nickname",nickname);
 		map.put("phone",phone);
 		return userDaoInter.searchId(map);
-	}  
-    
+	}
+	
+	// 친구추가
+    @Override
+    public void insertFriend(HashMap<String, Object> map) {
+        userDaoInter.insertFriend(map);
+    }  
 }

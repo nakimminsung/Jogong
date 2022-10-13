@@ -52,7 +52,7 @@ public class OrderDetailController {
         return result;  
     }
     
-    // 나에게 선물하기 (cart)
+    // 선물하기 (cart)
     @PostMapping("/insertSelfCart")
     @ResponseBody
     public Map<String, Integer> insertSelfCart(
