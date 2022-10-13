@@ -51,5 +51,9 @@
 		    on qa.qnaCategoryNum = qc.num
 		     where userNum=#{userNum}
 	</select>
+	<!-- 아이디 찾기 -->
+	<select id="searchId" parameterType="Map"  resultType="String">
+		select email from user where nickname=#{nickname} and phone=#{phone}
+	</select>
 
 </mapper>
