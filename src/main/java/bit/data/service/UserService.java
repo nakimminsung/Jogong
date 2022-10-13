@@ -74,9 +74,8 @@ public class UserService implements UserServiceInter {
 		userDaoInter.updateUser(dto);
 	}
 	
-
     @Override
-    public List<UserDto> selectNonFriendlyUsersList(int num) {
-        return userDaoInter.selectNonFriendlyUsersList(num);
+    public List<UserDto> selectNonFriendlyUsersList(Map<String,Object> map) {
+        return userDaoInter.selectNonFriendlyUsersList(map);
     }
 }

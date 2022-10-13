@@ -721,7 +721,7 @@ form h1 {
 
 	$("#btn_wishListInsert").click(function(){
   		var data = $("#insertDetail").serialize();
-  		 var s ="";
+  		var s ="";
   		$.ajax({
   			type:"post",
   			url:"../wishlist/insert",
@@ -773,12 +773,16 @@ form h1 {
     var btnModal2 = document.getElementById("btn_orderDetail");
     
   	$("#btn_orderDetail").click(function(){
+  		var sizeOption = $("input[name=sizeOption]").val();
+		var optionNum = $("input[name=optionNum]").val();
   		
   		if(${empty sessionScope.loginUserNum}) {
 			if(!confirm("로그인이 필요한 메뉴입니다.\n로그인하시겠습니까?")){
 			} else {
 				location.href="../loginForm";
 			}
+  		} else if(sizeOption==1 && optionNum==1) {
+			alert("사이즈를 선택하세요");
 		} else {
 	    	modal2.style.display = "flex";
 		}
@@ -951,12 +955,16 @@ form h1 {
 	
 	// 나에게 선물하기 
 	$("#btn_selfGift").click(function(){
-		console.log("에러안남");
+		var sizeOption = $("input[name=sizeOption]").val();
+		var optionNum = $("input[name=optionNum]").val();
+
   		if(${empty sessionScope.loginUserNum}) {
 			if(!confirm("로그인이 필요한 메뉴입니다.\n로그인하시겠습니까?")){
 			} else {
 				location.href="../loginForm";
 			}
+		} else if(sizeOption==1 && optionNum==1) {
+			alert("사이즈를 선택하세요");
 		} else {
 			var data = $("#insertDetail").serialize();
 	  		var s ="";
@@ -1077,7 +1085,7 @@ form h1 {
 							s+="<button type='button' value='"+e.num+"' class='dropdown-option'>"+e.shoesSize+"</button>";
 							s+="</li>";
 						}
-					}); 
+					});
 					$("#productOption").html(s);
 					var optionBtn = document.querySelectorAll(".dropdown-option");
 					var dropdownBtn = document.querySelector(".dropdown-toggle");
@@ -1117,7 +1125,8 @@ form h1 {
     
     <input type="hidden" name="productNum" value="${dto.num }" />
     <input type="hidden" name="productOption" value=""/>
-    <input type="hidden" name="optionNum" value=""/>
+    <input type="hidden" name="optionNum" value="1"/>
+    <input type="hidden" name="sizeOption" value="${dto.sizeOption}"/>
 
     <div class="detailContainer">
       <div class="detailItem">
