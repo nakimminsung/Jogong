@@ -3,6 +3,7 @@ package bit.data.dao;
 import java.util.List;
 import java.util.Map;
 
+import bit.data.dto.QnaDto;
 import bit.data.dto.UserDto;
 
 public interface UserDaoInter {
@@ -19,4 +20,8 @@ public interface UserDaoInter {
 	/*
 	 * //카카오 public void insertKakao(UserDto dto);
 	 */
+	//회원정보수정
+	public void updateUser(UserDto dto);
+	// 마이페이지 문의내역
+	public List<QnaDto> getQnaList(int userNum);
 }

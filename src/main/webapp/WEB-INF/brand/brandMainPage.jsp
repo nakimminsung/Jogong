@@ -39,7 +39,8 @@ div.content{
 	max-width: 1180px;
 	top:100px;
 	display: flex;
-	justify-content: space-between;
+	flex-direction: row;	
+	justify-content: flex-start;
 	margin: 0 auto;
 }
 div#menu{
@@ -49,7 +50,8 @@ div#menu{
 div#brandContent{
 	width:70%;
 	float: right;
-	justify-content: center;
+	justify-content: flex-start;
+	
 }
 
 div.search-box{
@@ -94,14 +96,16 @@ div.my-menu>div>a{
  .container mt-3{
   	width:33%;
   	height:400px;
-  	justify-content: space-around;
+  	
+  	
   }
   
   .card-wrapper{
   	width:100%;
-	display:flex;
-	flex-direction:row;
-	flex-wrap:wrap;
+	display: flex;
+	flex-flow: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
   }
   
   
@@ -130,6 +134,7 @@ $(function(){
 						console.log(elt.brandphoto)
 						s+="<div class='container mt-3' style='width:50%; height:500px; cursor:pointer;'>";
 						s+="<div class='card'>";
+						s+="<a href='detail?brand="+elt.companyName+"'>"
 						s+="<img class='card-img-top' src="+elt.brandphoto+" alt='Card image' style='width:100%; height:250px;'>";
 						s+="<div class='card-body'>";
 						s+="<h5 class='card-text'>"+elt.companyName+"</h5>";
@@ -173,6 +178,7 @@ $(function(){
 						console.log(elt.brandphoto)
 						s+="<div class='container mt-3' style='width:50%; height:500px; cursor:pointer;'>";
 						s+="<div class='card'>";
+						s+="<a href='detail?brand="+elt.companyName+"'>"
 						s+="<img class='card-img-top' src="+elt.brandphoto+" alt='Card image' style='width:100%; height:250px;'>";
 						s+="<div class='card-body'>";
 						s+="<h5 class='card-text'>"+elt.companyName+"</h5>";
@@ -205,6 +211,7 @@ $(function(){
 						console.log(elt.companyName);
 						s+="<div class='container mt-3' style='width:50%; height:500px; cursor:pointer;'>";
 						s+="<div class='card'>";
+						s+="<a href='detail?brand="+elt.companyName+"'>"
 						s+="<img class='card-img-top' src="+elt.brandphoto+" alt='Card image' style='width:100%; height:250px;'>";
 						s+="<div class='card-body'>";
 						s+="<h5 class='card-text'>"+elt.companyName+"</h5>";
@@ -259,8 +266,8 @@ $(function(){
 			<div class="row wider justify-content-center">
 <!--     			<div class="col col-2" style="width:400px; text-align:center; margin-bottom:50px"><p>어떤 브랜드의 제품을 찾고 계신가요?</p></div> -->
 				<div class="search-box">
-						<img src="../resources/image/search.svg" style="width:30px;height:30px">
-						<input class="inputBrand" type="text" placeholder="&nbsp;&nbsp;어떤 브랜드의 제품을 찾고 계신가요?" autocomplete="off" aria-required="true" aria-invalid="false" style="cursor: pointer; width:100%; height:40px;border:1px solid black; margin-bottom:50px; border-radius:5px">
+						<img src="../resources/image/search.svg" style="width:25px;height:25px; margin-top:7px">
+						<input class="inputBrand" type="text" placeholder="&nbsp;&nbsp;어떤 브랜드의 제품을 찾고 계신가요?" autocomplete="off" aria-required="true" aria-invalid="false" style="cursor: pointer; width:100%; height:40px;border:0.2px solid black; margin-bottom:50px; border-radius:5px">
 				</div>
 			</div>
 					

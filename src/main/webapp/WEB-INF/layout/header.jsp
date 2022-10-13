@@ -335,18 +335,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 				}
 			);
 	
-	
-	//상품명 입력 후 엔터누르면 search 함수 호출
-	$("#searchProduct").keyup(function (e) {
-		if(e.keyCode==13){
-			search($(this).val().trim());	//앞뒤 공백 제거 후 this(=#sangpum)의 value 값 보내기
-		}
-	});
-	
-	//상품 검색 메서드
-	function search(subject) {
-		
-	}
 		
 </script>	
   
