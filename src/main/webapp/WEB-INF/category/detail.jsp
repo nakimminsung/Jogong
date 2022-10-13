@@ -58,8 +58,10 @@
 	}
 	
 	.productImage{
-		width:100%;
+		width:280px;
+		height:280px;
 		border: 0.1px solid #d3d3d3;
+		margin-right: 19px;
 		border-radius: 5px;
 		margin-bottom: 5px;
 	
@@ -76,13 +78,15 @@
 		display: flex;
 		flex-wrap: wrap;
 		margin: auto;
-		justify-content: space-around;		
+		justify-content: flex-start;		
 		margin-top: 10px;
+		
 	} 
 	
 	.productItem{
 		width: 280px;
 		padding-bottom: 5%;
+		margin-right: 19px;
 	}
 	
 	.brandName{
@@ -130,7 +134,7 @@
 						<option value="price asc">가격낮은순</option>
 						<option value="readCount desc">인기순</option>
 					</select>
-				</div>
+			</div>
 				
 				<div class="productList" >
 					<c:forEach var="productList" items="${productList}">
