@@ -499,7 +499,7 @@
 	         </div>
 	         
 	         <div class="complete" style="margin-bottom:40px">
-	             <p><b style="font-size:30px">구매가 정상적으로 완료되었습니다!</b></p>
+	             <p><b style="font-size:30px">구매가 정상적으로 완료되었습니다!!!!!!!</b></p>
 	         </div>
 	         <hr>
 	         <div style="display: flex; width: 100%; justify-content:space-around; margin-top:80px">
