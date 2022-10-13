@@ -129,8 +129,9 @@ $(document).ready(function(){
 					
 					<div style="float: right;">
 						<a href="javascript:void(0);" onclick="window.open('http://localhost:9000/jogong/loginForm/searchId', 'pop01', 'top=10, left=10, width=400, height=300, status=no, menubar=no, toolbar=no, resizable=no');"
-							style="border-bottom: 1px solid black; cursor: pointer;">아이디 찾기</a>&nbsp;/
-						<a href="#" style="border-bottom: 1px solid black; cursor: pointer;">비밀번호 찾기</a>
+						style="border-bottom: 1px solid black; cursor: pointer;">아이디 찾기</a>&nbsp;/
+						<a href="javascript:void(0);" onclick="window.open('http://localhost:9000/jogong/loginForm/searchPass', 'pop01', 'top=10, left=10, width=400, height=300, status=no, menubar=no, toolbar=no, resizable=no');" 
+						style="border-bottom: 1px solid black; cursor: pointer;">비밀번호 찾기</a>
 					</div>
 				</div>	
 				<button type="button" class="loginok btn btn-danger" id="loginok" >로그인</button>

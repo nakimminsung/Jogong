@@ -23,4 +23,6 @@ public interface UserDaoInter {
 	public List<QnaDto> getQnaList(int userNum);
 	//아이디 찾기
 	public String searchId(Map<String, String> map);
+	//비밀번호 찾기 전 정보확인 및 정보 가져오기
+	public UserDto searchPass(Map<String, String> map);
 }

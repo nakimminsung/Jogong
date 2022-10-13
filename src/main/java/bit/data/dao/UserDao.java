@@ -84,6 +84,14 @@ public class UserDao implements UserDaoInter {
 	public String searchId(Map<String, String> map) {
 		// TODO Auto-generated method stub
 		return session.selectOne(ns+"searchId", map);
+	}
+
+	//비밀번호 찾기 전 정보확인 및 정보 가져오기
+	@Override
+	public UserDto searchPass(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return session.selectOne(ns+"searchPass",map);
 	}	
+	
 	
 }

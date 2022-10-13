@@ -55,5 +55,10 @@
 	<select id="searchId" parameterType="Map"  resultType="String">
 		select email from user where nickname=#{nickname} and phone=#{phone}
 	</select>
+	
+	<!-- 비밀번호 재설정 전 정보 확인 -->
+	<select id="searchPass" parameterType="Map"  resultType="userDto">
+		select * from user where nickname=#{nickname} and email=#{email}
+	</select>
 
 </mapper>

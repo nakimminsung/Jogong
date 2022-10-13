@@ -88,6 +88,17 @@ public class UserService implements UserServiceInter {
 		map.put("nickname",nickname);
 		map.put("phone",phone);
 		return userDaoInter.searchId(map);
+	}
+	
+	//비밀번호 찾기 전 정보확인 및 정보 가져오기
+	@Override
+	public UserDto searchPass(String nickname, String email) {
+		// TODO Auto-generated method stub
+		Map<String, String> map=new HashMap<String, String>();
+		map.put("nickname",nickname);
+		map.put("email",email);
+		return userDaoInter.searchPass(map);
 	}  
+	
     
 }
