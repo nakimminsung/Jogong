@@ -743,7 +743,7 @@ p.card-title{
 						s+=	"</div>"
 						s+=	"<input type='text' id='sample4_roadAddress"+i+"' placeholder='도로명주소' size='60' value='"+elt.deliveryAddress+"' style='width: 100%; margin-bottom: 5px;' required name='address1'><br>"						
 						s+=	"<input type='hidden' id='sample4_jibunAddress' placeholder='지번주소'  size='60'>"							
-						s+=	"<span id='guide' style='color:#999; display:none'></span>"								
+						s+=	"<span id='guide"+i+"' style='color:#999; display:none'></span>"								
 						s+=	"<input type='text' id='sample4_detailAddress"+i+"' placeholder='상세주소'  size='60' value='' style='width: 100%;'required name='address2'><br>"							
 						s+=	"<input type='hidden' id='sample4_extraAddress' placeholder='참고항목'  size='60'>	<input type='hidden' id='sample4_engAddress' placeholder='영문주소'  size='60' >"							
 						s+=	"</td></tr>"						
@@ -799,18 +799,18 @@ new daum.Postcode({
         // 우편번호와 주소 정보를 해당 필드에 넣는다.
         document.getElementById("sample4_postcode"+i).value = data.zonecode;
         document.getElementById("sample4_roadAddress"+i).value = roadAddr;
-        document.getElementById("sample4_jibunAddress"+i).value = data.jibunAddress;
+        document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
  
-        document.getElementById("sample4_engAddress"+i).value = data.addressEnglish;
+        document.getElementById("sample4_engAddress").value = data.addressEnglish;
                
         // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
         if(roadAddr !== ''){
-            document.getElementById("sample4_extraAddress"+i).value = extraRoadAddr;
+            document.getElementById("sample4_extraAddress").value = extraRoadAddr;
         } else {
-            document.getElementById("sample4_extraAddress"+i).value = '';
+            document.getElementById("sample4_extraAddress").value = '';
         }
 
-        var guideTextBox = document.getElementById("guide");
+        var guideTextBox = document.getElementById("guide"+i);
         // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
         if(data.autoRoadAddress) {
             var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
