@@ -91,5 +91,10 @@ public class UserDao implements UserDaoInter {
     @Override
     public void insertFriend(HashMap<String, Object> map) {
         session.selectList(ns+"isertFriend", map);
-    }	
+    }
+
+    @Override
+    public void deleteFriend(HashMap<String, Object> map) {
+        session.selectOne(ns+"deleteFriend", map);
+    }
 }

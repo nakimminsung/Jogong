@@ -26,4 +26,6 @@ public interface UserDaoInter {
 	public String searchId(Map<String, String> map);
 	// 친구 추가
 	public void insertFriend(HashMap<String,Object> map);
+	// 친구 삭제
+	public void deleteFriend(HashMap<String,Object> map);
 }

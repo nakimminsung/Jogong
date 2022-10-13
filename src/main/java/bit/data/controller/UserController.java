@@ -94,6 +94,7 @@ public class UserController {
 		return userServiceInter.getReviewUserInfo();
 	}
 	
+    // 친구가 아닌 유저 목록
 	@PostMapping("/user/nonFriend")
 	@ResponseBody
 	public List<UserDto> selectNonFriendlyUsersList(
@@ -116,6 +117,21 @@ public class UserController {
         map.put("list" , list);
         
         userServiceInter.insertFriend(map);
+        
+        return "/mypage/mypage/friend";
+    }
+    
+    // 친구삭제
+    @PostMapping("/user/deleteFriend")
+    public String deleteFriend(
+            @RequestBody HashMap<String,Object> param) {
+        
+        HashMap<String,Object> map = (HashMap<String,Object>) param.get("data");
+        
+        System.out.println(map.get("userNum"));
+        System.out.println(map.get("friendNum"));
+        
+        userServiceInter.deleteFriend(map);
         
         return "/mypage/mypage/friend";
     }

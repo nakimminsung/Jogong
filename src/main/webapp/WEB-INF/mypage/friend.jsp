@@ -433,6 +433,29 @@
 			}
 		});
 	});
+	
+	// 친구 삭제
+	$(document).on("click",".delete-friend-btn",function(){
+		
+	 	let data = {
+			userNum : $('input[name=userNum]').val(),
+			friendNum : $(this).attr("friendNum"),
+		}
+		
+	 	if(confirm("선택하신 친구를 삭제하시겠습니까?")) {
+	 		
+			$.ajax({
+				type: "post",
+				url: "../user/deleteFriend",
+				data: JSON.stringify({"data":data}),
+				contentType: "application/json; charset=utf-8",
+				success:function(res){
+						
+					friendList()
+				}
+			});
+	 	}
+	});
 
 	// 친구목록 함수 실행
 	let data = {userNum:$("input[name=userNum]").attr("value"),search:""};
@@ -523,7 +546,7 @@
 					s += "<a href='#'><i class='fas fa-envelope' style='font-size:24px'></i></a>";
 					s += "<a href='#'><i class='fab fa-instagram' style='font-size:24px'></i></a>";
 					s += "<a href='#'><i class='fab fa-facebook' style='font-size:24px'></i></a>";
-					s += "<a href='#'><i class='fas fa-user-minus' style='font-size:24px'></i></a>";
+					s += "<i class='fas fa-user-minus delete-friend-btn' friendNum='"+elt.num+"' style='font-size:24px; cursor:pointer;'></i>";
 					s += "</div>";
 					s += "</div>";
 					s += "</div>";

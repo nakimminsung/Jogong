@@ -64,4 +64,8 @@
 			(null,#{item.userNum},#{item.friendNum},0)
         </foreach>
 	</insert>
+	
+	<delete id="deleteFriend" parameterType="HashMap">
+		delete from userFriend where userNum=#{userNum} and friendNum=#{friendNum}
+	</delete>
 </mapper>

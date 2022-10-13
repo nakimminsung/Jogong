@@ -94,5 +94,10 @@ public class UserService implements UserServiceInter {
     @Override
     public void insertFriend(HashMap<String, Object> map) {
         userDaoInter.insertFriend(map);
-    }  
+    }
+
+    @Override
+    public void deleteFriend(HashMap<String, Object> map) {
+        userDaoInter.deleteFriend(map);
+    }
 }
