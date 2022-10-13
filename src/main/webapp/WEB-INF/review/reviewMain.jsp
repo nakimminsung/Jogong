@@ -61,7 +61,7 @@
 	.flex-inner-container {
 	  display: flex;
 	  flex-direction: row;
-
+    	margin-top: 15px;
 	  flex-wrap: wrap;
 	  
 	}
@@ -201,10 +201,11 @@
 	<input type="hidden" class="reviewUser" value=${dto.userNum }>
 	<input type="hidden" class="reviewImage" value="${dto.reviewImageUrl}">
 	<input type="hidden" class="reviewSubject" value="${dto.subject }">
-	
-	<div  align="center">
-		<h4>실시간후기</h4>
-		<h6 style="color: gray;">고객분들의 실시간 후기를 소개합니다.</h6>
+<div class="reviewInner" style="margin-top: 30px">
+	<div align="center">
+		<h2 style="font-weight: bold; display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%;">실시간후기</h2>
+		<hr style="width: 140px; height: 10px; position: relative; top: -22px; color: #cff0cc; opacity: 1; z-index: -1;">
+		<span style="color: gray; margin-top: -5px; font-size: 20px">고객분들의 실시간 후기를 소개합니다.</span>
 	</div>
 	${dto.subject }
 	<div class="flex-outer-container">
@@ -222,7 +223,7 @@
        			 				</c:if>
 	        				<div class="frontInfo">
 		        				<h6 style="display:inline;">${dto.subject }</h6 >
-		        				<p  style="display:inline; position: absolute; right: 15px;"><i class="fas fa-star" style="color: rgb(247, 200, 21);"></i><b>${dto.rating }</b></p>
+		        				<p  style="display:inline; position: absolute;"><i class="fas fa-star" style="color: rgb(247, 200, 21);"></i><b>${dto.rating }</b></p>
 		        				<p class="reviewUser" userNum="${dto.userNum }"></p>
 	        				</div>
 	        			</div>
@@ -230,7 +231,7 @@
 	        			<div class="back">
 	        				<h5 style="text-align: center; font-weight: 900;">${dto.subject }</h5 >
 	        				<div class="backTop">
-	        					<p style="color: gray;">${dto.content }</p>
+	        					<p style="color: gray; text-align: center;">${dto.content }</p>
 	        				</div>
 	        				<div class="backBottom" style="position: left;">
 	        					<a href="${root }/jogong/product/detail?num=${dto.productNum}" style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 190px;'>${dto.name }</a>
@@ -244,5 +245,6 @@
 			</c:forEach> 
 		</div>
     </div>
+</div>    
 </body>
 </html> 
