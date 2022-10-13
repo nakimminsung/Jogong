@@ -39,7 +39,8 @@ div.content{
 	max-width: 1180px;
 	top:100px;
 	display: flex;
-	justify-content: space-between;
+	flex-direction: row;	
+	justify-content: flex-start;
 	margin: 0 auto;
 }
 div#menu{
@@ -49,7 +50,8 @@ div#menu{
 div#brandContent{
 	width:70%;
 	float: right;
-	justify-content: center;
+	justify-content: flex-start;
+	
 }
 
 div.search-box{
@@ -94,14 +96,16 @@ div.my-menu>div>a{
  .container mt-3{
   	width:33%;
   	height:400px;
-  	justify-content: space-around;
+  	
+  	
   }
   
   .card-wrapper{
   	width:100%;
-	display:flex;
-	flex-direction:row;
-	flex-wrap:wrap;
+	display: flex;
+	flex-flow: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
   }
   
   
@@ -130,6 +134,7 @@ $(function(){
 						console.log(elt.brandphoto)
 						s+="<div class='container mt-3' style='width:50%; height:500px; cursor:pointer;'>";
 						s+="<div class='card'>";
+						s+="<a href='detail?brand="+elt.companyName+"'>"
 						s+="<img class='card-img-top' src="+elt.brandphoto+" alt='Card image' style='width:100%; height:250px;'>";
 						s+="<div class='card-body'>";
 						s+="<h5 class='card-text'>"+elt.companyName+"</h5>";
@@ -173,6 +178,7 @@ $(function(){
 						console.log(elt.brandphoto)
 						s+="<div class='container mt-3' style='width:50%; height:500px; cursor:pointer;'>";
 						s+="<div class='card'>";
+						s+="<a href='detail?brand="+elt.companyName+"'>"
 						s+="<img class='card-img-top' src="+elt.brandphoto+" alt='Card image' style='width:100%; height:250px;'>";
 						s+="<div class='card-body'>";
 						s+="<h5 class='card-text'>"+elt.companyName+"</h5>";
@@ -205,6 +211,7 @@ $(function(){
 						console.log(elt.companyName);
 						s+="<div class='container mt-3' style='width:50%; height:500px; cursor:pointer;'>";
 						s+="<div class='card'>";
+						s+="<a href='detail?brand="+elt.companyName+"'>"
 						s+="<img class='card-img-top' src="+elt.brandphoto+" alt='Card image' style='width:100%; height:250px;'>";
 						s+="<div class='card-body'>";
 						s+="<h5 class='card-text'>"+elt.companyName+"</h5>";
