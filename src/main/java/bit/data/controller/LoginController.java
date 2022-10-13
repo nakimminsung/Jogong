@@ -1,5 +1,7 @@
 package bit.data.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import bit.data.dto.SellerDto;
 import bit.data.service.SellerServiceInter;
@@ -102,10 +105,7 @@ public class LoginController {
 	public String logout(HttpSession session, HttpServletRequest request, HttpServletResponse response)
 	{
 		//로그아웃 시 제거되어야 할 세션
-		session.removeAttribute("loginok");	//이걸로 비교할거라서 얘만 지우면되지만, id까지 지우기로함
-
-		session.removeAttribute("loginid");
-		session.removeAttribute("loginid_seller");
+		session.removeAttribute("loginok");	
 		session.removeAttribute("loginUserNum");
 		session.removeAttribute("loginname");
 		session.removeAttribute("loginphoto");
@@ -264,6 +264,115 @@ public class LoginController {
 		System.out.println(map);
 		
 		return map;
+	}
+	//회원정보 수정 전 비밀번호 확인
+	@PostMapping("/mypage/passwordCheck")
+	@ResponseBody
+	public Map<String, String> userloginprocess(String email,String password,HttpSession session)
+	{
+		Map<String, String> map=new HashMap<String, String>();
+		UserDto dto = userService.getDataById(email);
+		String salt=dto.getSalt();
+		int result=0;
+		if(salt==null) {
+			 result=userService.getIdPassCheck(email, password);
+		}else {
+			String user_pw = SHA256Util.getEncrypt(password, salt);
+			 result=userService.getIdPassCheck(email, user_pw);
+			 
+		}
+				
+		map.put("result", result==1?"success":"fail");
+		return map;
+		
+	}
+	//일반 유저 개인정보 수정
+	@PostMapping("/mypage/update")
+	public String updateUser(UserDto dto,HttpSession session,HttpServletRequest request, MultipartFile upload) {	
+		
+		// 업로드 경로 + 경로 확인
+	      String path = request.getSession().getServletContext().getRealPath("/resources/upload");
+	      System.out.println("upload path : " + path);
+	      
+	      // 원본 파일 명 + 확인
+	      String originFileName = upload.getOriginalFilename();
+	      //System.out.println("originFileName : " + originFileName);
+	      
+	        try {
+	        	upload.transferTo(new File(path + "/" +originFileName));
+	        } catch (IllegalStateException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        } catch (IOException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        }
+
+		String salt=SHA256Util.generateSalt();
+		String password=dto.getPassword();
+		password=SHA256Util.getEncrypt(password, salt);
+		String addressNum=request.getParameter("addressNum");
+		String addressMain=request.getParameter("addressMain");
+		String address=request.getParameter("address");
+		address=addressNum+addressMain+address;
+		
+		dto.setEmail((String) session.getAttribute("loginid"));
+		dto.setSalt(salt);	
+		dto.setPassword(password);
+		dto.setAddress(address);	
+		if(originFileName=="") {
+			dto.setProfileImage((String) session.getAttribute("loginphoto"));
+		}else {
+			dto.setProfileImage("/jogong/resources/upload/"+originFileName);
+		}
+		
+		
+		userService.updateUser(dto);
+		session.setAttribute("loginname", dto.getNickname());
+		session.setAttribute("loginphoto",dto.getProfileImage());
+		
+		
+		return "redirect:/";
+	}
+	
+	//소셜유저 개인정보 수정
+	@PostMapping("/mypage/updateSocialUser")
+	public String updateSocialUser(UserDto dto,HttpSession session,HttpServletRequest request, MultipartFile upload) {	
+	
+		// 업로드 경로 + 경로 확인
+	      String path = request.getSession().getServletContext().getRealPath("/resources/upload");
+	      //System.out.println("upload path : " + path);
+	      
+	      // 원본 파일 명 + 확인
+	      String originFileName = upload.getOriginalFilename();
+	      //System.out.println("originFileName : " + originFileName);
+	      
+	        try {
+	        	upload.transferTo(new File(path + "/" +originFileName));
+	        } catch (IllegalStateException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        } catch (IOException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	          
+	        }
+	    System.out.println(originFileName);    
+		System.out.println((String) session.getAttribute("loginphoto"));
+	        
+		dto.setEmail((String) session.getAttribute("loginid"));
+		if(originFileName=="") {
+			dto.setProfileImage((String) session.getAttribute("loginphoto"));
+		}else {
+			dto.setProfileImage("/jogong/resources/upload/"+originFileName);
+		}
+		userService.updateUser(dto);
+		session.setAttribute("loginname", dto.getNickname());
+		session.setAttribute("loginphoto",dto.getProfileImage());
+		
+		System.out.println(dto);
+		
+		return "redirect:/";
 	}
 	
 }

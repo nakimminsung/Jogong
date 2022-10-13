@@ -12,4 +12,6 @@ public class OrderDetailDto {
 	private int userNum;
 	private int productNum;
 	private String productOption;
+	private int optionNum;
+	
 }

@@ -124,7 +124,14 @@ $(document).ready(function(){
 				<!-- user 로그인 정보 -->
 				<input type="email" class="form-control userTextBox" required placeholder="아이디(이메일 형식)" id="userEmail" value="${rememberId=='yes' ? savedId : ''}">
 				<input type="password" class="form-control userTextBox" required placeholder="비밀번호" id="userPassword">
-				<label style="float: left;"><input type="checkbox" class="form-check-input checkUser" id="rememberId" ${rememberId=='yes' ? 'checked' : ''}> 아이디 저장</label>		
+				<div style="display: flex; justify-content: space-between;">
+					<label style="float: left;"><input type="checkbox" class="form-check-input checkUser" id="rememberId" ${rememberId=='yes' ? 'checked' : ''}> 아이디 저장</label>
+					
+					<div style="float: right;">
+						<a href="#" style="border-bottom: 1px solid black; cursor: pointer;">아이디 찾기</a>&nbsp;/
+						<a href="#" style="border-bottom: 1px solid black; cursor: pointer;">비밀번호 찾기</a>
+					</div>
+				</div>	
 				<button type="button" class="loginok btn btn-danger" id="loginok" >로그인</button>
 				<hr style="margin-top: 30px; margin-bottom: 30px; ">
 				
@@ -158,7 +165,16 @@ $(document).ready(function(){
 				
 				<input type="email" class="form-control sellerTextBox" required placeholder="아이디(이메일 형식)" id="sellerEmail" value="${rememberSellerId=='yes' ? savedSellerId : ''}">
 				<input type="password" class="form-control sellerTextBox" required placeholder="비밀번호" id="sellerPassword">
-				<label style="float: left;"><input type="checkbox" class="form-check-input checkSeller" id="rememberSellerId" ${rememberSellerId=='yes' ? 'checked' : ''}> 아이디 저장</label>
+				
+				<div style="display: flex; justify-content: space-between;">
+					<label style="float: left;"><input type="checkbox" class="form-check-input checkSeller" id="rememberSellerId" ${rememberSellerId=='yes' ? 'checked' : ''}> 아이디 저장</label>
+					
+					<div style="float: right;">
+						<a href="#" style="border-bottom: 1px solid black; cursor: pointer;">아이디 찾기</a>&nbsp;/
+						<a href="#" style="border-bottom: 1px solid black; cursor: pointer;">비밀번호 찾기</a>
+					</div>
+				</div>
+				
 				
 				<button type="button" class="btnLoginSeller btn btn-danger">로그인</button>
 				

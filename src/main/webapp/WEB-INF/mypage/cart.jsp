@@ -440,7 +440,7 @@
 		cartlist();
 		
     	var publicOption = "";
-    	var userNum = ${sessionScope.loginid};
+    	var userNum = ${sessionScope.loginUserNum};
     	var productNum = "";
     	var updateCartNum="";
 		
@@ -766,7 +766,7 @@
 	}); // $(fucntion)
 		// cart list 호출 함수
 		function cartlist() {
-			let userNum = ${sessionScope.loginid};
+			let userNum = ${sessionScope.loginUserNum};
 			let friendNum = userNum;
 				
 			var s="";
@@ -839,7 +839,7 @@
 		}
 		// 친구 리스트
 		function friendList() {
-			var userNum = ${sessionScope.loginid};
+			var userNum = ${sessionScope.loginUserNum};
 				
 			var s="";
 				

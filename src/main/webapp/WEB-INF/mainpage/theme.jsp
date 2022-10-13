@@ -123,7 +123,7 @@
 				data:{"themeNum":themeNum},
 				dataType:"json", 
 				success:function(res){
-					console.log(res);
+
 					$.each(res,function(i,e){
 						s+="<div class='card cardTheme' onclick=\"location.href='product/detail?num="+e.num+"'\">";
 							s+="<img class='card-img-top' src='"+ e.thumbnailImageUrl+"' alt='Card image cap'>";
