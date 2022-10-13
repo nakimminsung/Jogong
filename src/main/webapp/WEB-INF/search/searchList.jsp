@@ -19,10 +19,9 @@
 	
 	.all{
 		margin-top: 30px;
-		padding-left: 15%;
-		padding-right: 15%;
+		margin: auto;
 		
-		width: 100%;
+		width: 1200px;
 		height: 100%;
 	}
 	
