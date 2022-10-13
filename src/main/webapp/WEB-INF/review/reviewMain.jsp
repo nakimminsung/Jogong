@@ -218,7 +218,7 @@
        			 				</c:if>
        			 				
        			 				<c:if test="${dto.reviewImageUrl !=null }">
-       			 					<img src="${dto.reviewImageUrl }" width="250" height="250" style="margin:0px;" onerror="${dto.reviewImageUrl }">
+       			 					<img src="${dto.reviewImageUrl }" width="250" height="250" style="margin:0px;" onerror="this.src='${dto.thumbnailImageUrl }';">
        			 				</c:if>
 	        				<div class="frontInfo">
 		        				<h6 style="display:inline;">${dto.subject }</h6 >

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import bit.data.dao.UserDaoInter;
+import bit.data.dto.QnaDto;
 import bit.data.dto.UserDto;
 
 @Service
@@ -57,6 +58,14 @@ public class UserService implements UserServiceInter {
 	public List<UserDto> getReviewUserInfo() {
 		// TODO Auto-generated method stub
 		return userDaoInter.getReviewUserInfo();
+	}
+	
+	// 마이페이지 문의내역
+	@Override
+	public List<QnaDto> getQnaList(int userNum) {
+		// TODO Auto-generated method stub
+		
+		return userDaoInter.getQnaList(userNum);
 	}
 
 	@Override

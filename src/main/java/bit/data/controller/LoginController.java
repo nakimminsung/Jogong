@@ -151,6 +151,7 @@ public class LoginController {
 			
 			session.setAttribute("loginUserNum", userDto.getNum());
 			session.setAttribute("loginType", userDto.getLoginType());
+			session.setAttribute("loginBirth", userDto.getDate());
 			
 		}
 		map.put("result", result==1?"success":"fail");
@@ -185,6 +186,7 @@ public class LoginController {
 		
 		session.setAttribute("loginUserNum", userDto.getNum());
 		session.setAttribute("loginType", userDto.getLoginType());
+		session.setAttribute("loginBirth", userDto.getDate());
 		
 				
 		}else{
@@ -199,6 +201,7 @@ public class LoginController {
 			
 			session.setAttribute("loginUserNum", userDto.getNum());
 			session.setAttribute("loginType", userDto.getLoginType());
+			session.setAttribute("loginBirth", userDto.getDate());
 		}
 		map.put("result",email!=null?"success":"fail");
 		
@@ -237,6 +240,7 @@ public class LoginController {
 			//qna insert 테스트
 			session.setAttribute("loginUserNum", userDto.getNum());
 			session.setAttribute("loginType", userDto.getLoginType());
+			session.setAttribute("loginBirth", userDto.getDate());
 		
 		}else{ // email 정보가 없다면 로그인으로
 			
@@ -253,6 +257,7 @@ public class LoginController {
 			//qna insert 테스트 (네이버 계정 userNum 가져오는것 확인 완료)
 			session.setAttribute("loginUserNum", userDto.getNum());
 			session.setAttribute("loginType", userDto.getLoginType());
+			session.setAttribute("loginBirth", userDto.getDate());
 			
 		}
 		map.put("result",email!=null?"success":"fail");

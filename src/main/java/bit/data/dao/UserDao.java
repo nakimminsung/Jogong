@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import bit.data.dto.QnaDto;
 import bit.data.dto.UserDto;
 
 @Repository
@@ -57,11 +58,20 @@ public class UserDao implements UserDaoInter {
 		return session.selectList(ns+"getReviewUserInfo");	
 	}
 
+	//회원정보 수정
 	@Override
 	public void updateUser(UserDto dto) {
 		// TODO Auto-generated method stub
 		session.update(ns+"updateUser", dto);
 	}
 	
+	
+	// 마이페이지 문의내역
+	@Override
+	public List<QnaDto> getQnaList(int userNum) {
+		// TODO Auto-generated method stub
+		
+		return session.selectList(ns+"getQnaList",userNum);
+	}
 	
 }

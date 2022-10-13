@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>	
 <!DOCTYPE html>
 <html>
@@ -383,14 +383,14 @@
                                 <div data-v-35b707e2="" class="pay_box">
                                     <div data-v-35b707e2="" class="pay_title">
                                         <p data-v-35b707e2="" class="main_title">카카오페이</p>
-                                    </div><img data-v-35b707e2="" src="image/kakaopay.png" alt="카카오페이" class="pay_img">
+                                    </div><img data-v-35b707e2="" src="image/kakaopay.png" alt="카카오페이" class="pay_img" style="height:20px">
                                 </div>
                             </div>
                             <div data-v-35b707e2="" class="pay_item" id="tosspay" value="tosspay" >
                                 <div data-v-35b707e2="" class="pay_box">
                                     <div data-v-35b707e2="" class="pay_title">
                                         <p data-v-35b707e2="" class="main_title">토스</p>
-                                    </div><img data-v-35b707e2="" src="image/tosspay.png" alt="토스" class="pay_img" style="width:100px; height:30px" >
+                                    </div><img data-v-35b707e2="" src="image/tosspay.png" alt="토스" class="pay_img" style="height:20px" >
                                 </div>
                             </div>
                         </div>
@@ -406,7 +406,7 @@
                                 </li>
                                 <li data-v-2e66a968="" class="benefit_item"><img data-v-2e66a968=""
                                         src="image/tosspay.png""
-                                        alt="토스" class="benefit_img" >
+                                        alt="토스" class="benefit_img" style="height:20px;">
                                     <p data-v-2e66a968="" class="benefit_desc"><span data-v-2e66a968=""
                                             class="blind">토스</span>&nbsp;&nbsp;첫 결제시 3천원 캐시백 </p><a data-v-2e66a968=""
                                         href=" target="_blank" class="btn_more">더보기</a>
@@ -809,6 +809,16 @@ init();
 
  var payed = document.getElementById("paying");
 payed.onclick = function () {
+	
+	var checked = $("#buy_agree").is(":checked");
+	
+	if(checked){
+		
+	}else{
+		alert("필수 약관을 동의해주시기 바랍니다.");
+		return;
+	}
+	
     const selected = document.querySelector('.pay_box.clicked').parentNode;
     const val = selected.getAttribute('value');
 	

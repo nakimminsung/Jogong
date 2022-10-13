@@ -25,10 +25,11 @@ public class GiftDao implements GiftDaoInter{
 		// TODO Auto-generated method stub
 		return session.selectList(ns+"getSendSearch",userNum);
 	}
+
 	@Override
-	public void updateAddressOrder() {
+	public void updateAddressOrder(OrderDto dto) {
 		// TODO Auto-generated method stub
-		
+		session.update(ns+"updateAddressOrder",dto);
 	}
 	
 }

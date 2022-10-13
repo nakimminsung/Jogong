@@ -16,4 +16,8 @@ public class QnaDto {
    private String userNum;
    private String orderNum;
    private int qnaCategoryNum;
+   private String qnaStatus;
+   
+   //qnaCategory
+   private String name;
 }

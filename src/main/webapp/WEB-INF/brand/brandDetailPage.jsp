@@ -11,10 +11,14 @@
 		color:#000 !important;
 		border-bottom: 5px solid #cff0cc;
 	}
+	
+	.brand_layout{
+		margin-top: 30px;
+	}
 	.brandTop{
-	    margin: 10px 160px;
-	    width: 80%;
-	    border-bottom: 10px solid #ebebeb;
+	   margin: 30px 250px;
+	    width: 70%;
+	    border-bottom: 1px solid #ebebeb;
 	    position: relative;
 	    padding: 0 16px;
 	}
@@ -109,16 +113,17 @@
 	
 	.productList {
 		width: 1200px;
-		display: flex;
-		flex-wrap: wrap;
-		margin: auto;
-		justify-content: space-around;		
-		margin-top: 10px;
+	    display: flex;
+	    margin: auto;
+	    margin-top: 10px;
+	    flex-wrap: wrap;
+	    justify-content: flex-start;
 	} 
 	
 	.productItem{
 		width: 280px;
 		padding-bottom: 5%;
+		margin-right: 20px;
 	}
 	
 	.brandName{
@@ -138,6 +143,8 @@
 	}
 	.card-img-top{
 		border: 0.1px solid #d3d3d3;
+		border-radius: 5px;
+		margin-bottom: 5px;
 	}
 </style>
 </head>
@@ -160,7 +167,7 @@
 	<div class="brandContent">
 		<!-- 옵션 -->
 		<div class="brandList">
-			<span><h3>총 상품 갯수 : ${count}개</h3></span>
+			<span><h4>총 상품 갯수 : ${count}개</h4></span>
 			<div>
 				<select class="categorySort" name="sort">
 					<option value="createdAt desc" selected>최신순</option>
