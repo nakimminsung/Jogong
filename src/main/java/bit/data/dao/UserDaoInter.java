@@ -15,7 +15,7 @@ public interface UserDaoInter {
 	public UserDto getDataById(String email);
 	// 리뷰페이지
 	public List<UserDto> getReviewUserInfo();
-	public List<UserDto> selectNonFriendlyUsersList(int num);
+	public List<UserDto> selectNonFriendlyUsersList(Map<String,Object> map);
 	
 	/*
 	 * //카카오 public void insertKakao(UserDto dto);
