@@ -185,7 +185,7 @@
         width: 400px;
         height: 600px;
         position: relative;
-        top: 0px;
+        top: -150px;
         padding: 20px;
     }
     #gift-modal .gift-close-area {
@@ -255,10 +255,7 @@
  		height: 300px;
  		margin-top: 20px;
     }
-    div.friend-result{
-    	overflow: auto;
-    	height: 290px; 	
-    }
+    
     div.friend-result input{
     	position: relative;
     	top: 5px;
@@ -435,7 +432,7 @@
 	});
 	
 	// 모달 실행시 오버레이 실행
-	$("#gift-friend").click(function(){
+	$(".fa-user-plus").click(function(){
 		$("body").attr("class","modal-fix");
 	});
 	
@@ -540,7 +537,7 @@
 			
 		$.ajax({
 			type: "post",
-			url: "../user/friendData",
+			url: "../user/nonFriend",
 			dataType: "json",
 			contentType: "application/json; charset=utf-8",
 			data: JSON.stringify({"data":data}),
