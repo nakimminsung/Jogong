@@ -261,7 +261,6 @@ public class LoginController {
 			
 		}
 		map.put("result",email!=null?"success":"fail");
-		System.out.println(map);
 		
 		return map;
 	}
@@ -357,8 +356,6 @@ public class LoginController {
 	            e.printStackTrace();
 	          
 	        }
-	    System.out.println(originFileName);    
-		System.out.println((String) session.getAttribute("loginphoto"));
 	        
 		dto.setEmail((String) session.getAttribute("loginid"));
 		if(originFileName=="") {
@@ -370,7 +367,6 @@ public class LoginController {
 		session.setAttribute("loginname", dto.getNickname());
 		session.setAttribute("loginphoto",dto.getProfileImage());
 		
-		System.out.println(dto);
 		
 		return "redirect:/";
 	}

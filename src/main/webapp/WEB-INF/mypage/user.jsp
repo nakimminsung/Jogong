@@ -162,7 +162,7 @@
 						<th style="background-color: #f5f5f5;">상태메세지</th>
 						<td>
 							<div class="input-group" style="width: 300px;">
-								<input type="text" name="status" value="${list.status }" class="form-control" style="width: 40%; margin-bottom: 5px;" required="required" pattern=".{1,20}">
+								<input type="text" name="status" value="${list.status }" class="form-control" style="width: 40%; margin-bottom: 5px;" pattern=".{1,20}">
 							</div>
 						</td>	
 					</tr>
@@ -237,7 +237,7 @@
 						<th style="background-color: #f5f5f5;">상태메세지</th>
 						<td>
 							<div class="input-group" style="width: 300px;">
-								<input type="text" name="status" value="${list.status }" class="form-control" style="width: 40%; margin-bottom: 5px;" required="required" pattern=".{1,20}">
+								<input type="text" name="status" value="${list.status }" class="form-control" style="width: 40%; margin-bottom: 5px;" pattern=".{1,20}">
 							</div>
 						</td>	
 					</tr>
