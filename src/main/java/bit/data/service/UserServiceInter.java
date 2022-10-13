@@ -16,8 +16,11 @@ public interface UserServiceInter {
 
 	// 리뷰페이지
 	public List<UserDto> getReviewUserInfo();
-	//public void insertKakao(UserDto dto);
+
+	//회원정보수정
+	public void updateUser(UserDto dto);
 	
 	// 마이페이지 문의내역
 	public List<QnaDto> getQnaList(int userNum);
+
 }

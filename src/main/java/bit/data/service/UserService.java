@@ -68,4 +68,11 @@ public class UserService implements UserServiceInter {
 		return userDaoInter.getQnaList(userNum);
 	}
 
+	@Override
+	public void updateUser(UserDto dto) {
+		// TODO Auto-generated method stub
+		userDaoInter.updateUser(dto);
+	}
+	
+
 }
