@@ -98,7 +98,12 @@ public class UserController {
 		return userServiceInter.getReviewUserInfo();
 	}
 	
-
+	@GetMapping("/user/nonFriend")
+	@ResponseBody
+	public List<UserDto> selectNonFriendlyUsersList(int num){
+	    
+	    return userServiceInter.selectNonFriendlyUsersList(num);
+	}
 }
 
 

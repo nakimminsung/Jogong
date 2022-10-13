@@ -32,6 +32,11 @@
 	<select id="getReviewUserInfo" parameterType="int"  resultType="userDto">
 		select * from user u where num in (select userNum from review r where r.userNum=u.num)
 	</select>
+	
+	<!-- 친구 아닌 모든 유저 조회 -->
+	<select id="selectNonFriendlyUsersList" parameterType="int"  resultType="userDto">
+		select * from user where num not in(select friendNum from userFriend) and num not in(#{userNum});
+	</select>
 
 	<!--유저 업데이트 -->
 	<update id="updateUser" parameterType="userDto">

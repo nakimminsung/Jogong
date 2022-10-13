@@ -16,6 +16,8 @@ public interface UserServiceInter {
 
 	// 리뷰페이지
 	public List<UserDto> getReviewUserInfo();
+	public List<UserDto> selectNonFriendlyUsersList(int num);
+	//public void insertKakao(UserDto dto);
 
 	//회원정보수정
 	public void updateUser(UserDto dto);
