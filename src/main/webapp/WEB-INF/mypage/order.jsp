@@ -258,16 +258,8 @@ p.card-title{
     top: 0;
   }
   .txt_letter{
-  	-webkit-text-size-adjust: none;
-    font-family: -apple-system,Apple SD Gothic Neo,\b9d1\c740  \ace0\b515,Malgun Gothic,sans-serif,ArialUnicodeMs;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    margin: 0;
-    padding: 20px 20px 16px;
-    font-size: 15px;
-    line-height: 22px;
-    color: #111;
-    letter-spacing: -.033em;
-    word-break: break-all;
+  	padding: 20px 20px 16px;
+    text-align: center;
   }
 /*   .link_prd{
   	-webkit-text-size-adjust: none;
@@ -283,14 +275,10 @@ p.card-title{
     padding: 16px 20px;
   } */
   .info_prd{
-    -webkit-text-size-adjust: none;
-    font-size: 14px;
-    line-height: 1.5;
-    font-family: -apple-system,Apple SD Gothic Neo,\b9d1\c740  \ace0\b515,Malgun Gothic,sans-serif,ArialUnicodeMs;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    color: #000;
-    display: block;
-    overflow: hidden;
+    display: flex;
+    /* overflow: hidden; */
+    justify-content: center;
+    margin-bottom: 10px;
   }
   .thumb_prd{
     -webkit-text-size-adjust: none;
@@ -544,8 +532,6 @@ p.card-title{
     max-height: 630px;
     box-sizing: border-box;
   }
-  
-
 </style>
 <script type="text/javascript">
 	/*

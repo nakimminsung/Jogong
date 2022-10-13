@@ -59,8 +59,8 @@ public class UserDao implements UserDaoInter {
 	}
 
     @Override
-    public List<UserDto> selectNonFriendlyUsersList(int num) {
-        return session.selectList(ns+"selectNonFriendlyUsersList", num);
+    public List<UserDto> selectNonFriendlyUsersList(Map<String,Object> map) {
+        return session.selectList(ns+"selectNonFriendlyUsersList", map);
     }
 
 	//회원정보 수정

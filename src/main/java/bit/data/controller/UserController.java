@@ -98,11 +98,14 @@ public class UserController {
 		return userServiceInter.getReviewUserInfo();
 	}
 	
-	@GetMapping("/user/nonFriend")
+	@PostMapping("/user/nonFriend")
 	@ResponseBody
-	public List<UserDto> selectNonFriendlyUsersList(int num){
-	    
-	    return userServiceInter.selectNonFriendlyUsersList(num);
+	public List<UserDto> selectNonFriendlyUsersList(
+	        @RequestBody HashMap<String,Object> param) {
+	        
+	    Map<String,Object> map = (HashMap<String, Object>) param.get("data");
+	        
+	    return userServiceInter.selectNonFriendlyUsersList(map);
 	}
 }
 

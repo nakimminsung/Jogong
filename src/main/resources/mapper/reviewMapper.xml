@@ -58,7 +58,7 @@
 		on r.productNum = p.num
 		inner join tag t
 		on r.tagNum = t.num
-		where r.userNum=#{userNum} order by num desc
+		where r.userNum=#{userNum} order by createdAt desc
 	</select>
 	
 	<!-- 마이페이지 리뷰 조회 -->
@@ -68,7 +68,7 @@
 		t.content tagName,t.backgroundColor tagBColor,t.textColor tagTColor
 		from review r inner join tag t 
 		on r.tagNum = t.num 
-		where r.num=#{num}
+		where r.num=#{num} order by createdAt desc
 	</select>
 	
 	<!-- 마이페이지 작성한 리뷰 갯수 -->
