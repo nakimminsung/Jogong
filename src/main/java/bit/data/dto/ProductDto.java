@@ -22,5 +22,9 @@ public class ProductDto {
 	private int readCount;
 	private Timestamp createdAt;
 	private int sellerNum;
-	private int sizeOption;
+	private String sizeOption;
+	
+	//option
+	private String shoesSize;
+	private String clothSize;
 }
