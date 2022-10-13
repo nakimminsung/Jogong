@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.taglibs.standard.lang.jstl.Literal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,11 +54,12 @@ public class UserController {
     	String email = (String) session.getAttribute("loginid");
     	UserDto list= userServiceInter.getDataById(email);
     	model.addAttribute("list", list);
-    	model.addAttribute("birthday", list.getDate().toString());
+    	model.addAttribute("birthday", list.getDate().length()==3?"0"+list.getDate():list.getDate());
+
     	if(list.getAddress()!=null) {
     		model.addAttribute("addressNumber", list.getAddress().substring(0, 5));
     		model.addAttribute("address", list.getAddress().substring(5));
-    	}	
+    	}
         return "/mypage/mypage/user";
     }
     

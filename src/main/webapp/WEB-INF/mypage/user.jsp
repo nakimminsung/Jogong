@@ -121,7 +121,7 @@
 						<th style="background-color: #f5f5f5;"><span style="color: red;">*</span>생년월일</th>
 						<td>
 							<div style="width: 300px;">
-								${list.year }${list.date}
+								${list.year }${birthday }
 							</div>							
 						</td>
 					</tr>
