@@ -106,9 +106,19 @@
 	}
 	
 	.categorySort{
+	    font-weight: 400;
+	    line-height: 16px;
 		width: 100px;
 	    border: 0px;
 	    font-size: 15px;
+	    margin-right: 15px;
+	}
+	
+	
+	.categorySort:focus{
+    box-sizing: border-box;
+    border-radius: 5px;
+    outline: 3px solid #F8E4FF;
 	}
 	
 	.productList {
@@ -167,7 +177,7 @@
 	<div class="brandContent">
 		<!-- 옵션 -->
 		<div class="brandList">
-			<span><h4>총 상품 갯수 : ${count}개</h4></span>
+			<span><h5>총 상품 갯수 : ${count}개</h5></span>
 			<div>
 				<select class="categorySort" name="sort">
 					<option value="createdAt desc" selected>최신순</option>
