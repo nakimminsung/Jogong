@@ -16,8 +16,8 @@ public class WishlistService implements WishlistServiceInter {
 	WishlistDaoInter wishlistDaoInter;
 
 	@Override
-	public List<WishlistDto> getWishlist(int userNum) {
-		return wishlistDaoInter.getWishlist(userNum);
+	public List<WishlistDto> selectPublicWishlist(int userNum) {
+		return wishlistDaoInter.selectPublicWishlist(userNum);
 	}
 
 	@Override
@@ -39,5 +39,9 @@ public class WishlistService implements WishlistServiceInter {
     public void deleteWishlist(int num) {
         wishlistDaoInter.deleteWishlist(num);
     }
-	
+
+    @Override
+    public int selectPublicWishCount(int userNum) {
+        return wishlistDaoInter.selectPublicWishCount(userNum);
+    }
 }

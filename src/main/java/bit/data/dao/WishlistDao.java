@@ -18,8 +18,8 @@ public class WishlistDao implements WishlistDaoInter {
 	String ns = "bit.data.dao.WishlistDao.";
 	
 	@Override
-	public List<WishlistDto> getWishlist(int userNum){
-		return session.selectList(ns+"selectAllWishlist", userNum);
+	public List<WishlistDto> selectPublicWishlist(int userNum){
+		return session.selectList(ns+"selectPublicWishlist", userNum);
 	}
 
 	@Override
@@ -41,7 +41,9 @@ public class WishlistDao implements WishlistDaoInter {
     public void deleteWishlist(int num) {
         session.selectOne(ns+"deleteWishlist", num);
     }
-    
-    
 
+    @Override
+    public int selectPublicWishCount(int userNum) {
+        return session.selectOne(ns+"selectPublicWishCount", userNum);
+    }
 }

@@ -1,5 +1,6 @@
 package bit.data.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,13 +20,18 @@ public class UserDao implements UserDaoInter {
 	String ns = "bit.data.dao.UserDao.";
 	
 	@Override
-	public List<UserDto> getUserFriendData(Map<String,Object> map) {
-		return session.selectList(ns+"getUserFriendData", map);
+	public List<UserDto> selectFriendData(Map<String,Object> map) {
+		return session.selectList(ns+"selectFriendData", map);
+	}
+	
+	@Override
+	public List<UserDto> selectFreindRequest(Map<String,Object> map) {
+	    return session.selectList(ns+"selectFreindRequest", map);
 	}
 
 	@Override
-	public int getUserFriendCount(int userNum) {
-		return session.selectOne(ns+"getUserFriendCount", userNum);
+	public int getUserFriendCount(HashMap<String,Object> map) {
+		return session.selectOne(ns+"getUserFriendCount", map);
 	}
 	
 	@Override
@@ -86,6 +92,7 @@ public class UserDao implements UserDaoInter {
 		return session.selectOne(ns+"searchId", map);
 	}
 
+
 	//비밀번호 찾기 전 정보확인 및 정보 가져오기
 	@Override
 	public UserDto searchPass(Map<String, String> map) {
@@ -94,4 +101,28 @@ public class UserDao implements UserDaoInter {
 	}	
 	
 	
+	// 친구추가
+    @Override
+    public void insertFriend(HashMap<String, Object> map) {
+        session.selectList(ns+"isertFriend", map);
+    }
+    
+    // 친구삭제
+    @Override
+    public void deleteFriend(HashMap<String, Object> map) {
+        session.selectOne(ns+"deleteFriend", map);
+    }
+    
+    // 친구요청 수락
+    @Override
+    public void updateFriend(HashMap<String, Object> map) {
+        session.selectOne(ns+"updateFriend", map);
+    }
+    
+    // 단일 유저 조회
+    @Override
+    public UserDto selectUser(int userNum) {
+        return session.selectOne(ns+"selectUser", userNum);
+    }
+
 }

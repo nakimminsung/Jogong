@@ -37,18 +37,24 @@ public class ReviewService implements ReviewServiceInter{
 	     return reviewDaoInter.getTotalCount(map);
 	}
 
-	@Override
-	public List<ReviewDto> getPagingList(String searchcolumn, String searchword, int startnum, int perpage) {
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("searchcolumn", searchcolumn);
-		map.put("searchword", searchword);
-		map.put("startnum", startnum);
-		map.put("perpage", perpage);
-		
-		return reviewDaoInter.getPagingList(map);
-	}
+//	@Override
+//	public List<ReviewDto> getPagingList(String searchcolumn, String searchword, int startnum, int perpage) {
+//		
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("searchcolumn", searchcolumn);
+//		map.put("searchword", searchword);
+//		map.put("startnum", startnum);
+//		map.put("perpage", perpage);
+//		
+//		return reviewDaoInter.getPagingList(map);
+//	}
 
+	@Override
+	public List<ReviewDto> getReviewList() {
+		// TODO Auto-generated method stub
+		return reviewDaoInter.getReviewList();
+	}
+	
 	// 상세페이지
 	@Override
 	public List<ReviewDto> getProductReviewList(int productNum) {
@@ -97,4 +103,6 @@ public class ReviewService implements ReviewServiceInter{
     public void updateReview(ReviewDto reviewDto) {
         reviewDaoInter.updateReview(reviewDto);
     }
+
+	
 }
