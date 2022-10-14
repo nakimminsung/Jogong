@@ -13,28 +13,19 @@
         rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <style type="text/css">
-	@font-face {
-    font-family: 'SeoulNamsanM';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-	}
-	
-	body * {
-		 font-family: 'SeoulNamsanM';
-		 word-spacing: -1px;
+	*{
+		 font-family: 'Jua';
 	}
 </style>
 </head>
 <body>
-	<form class = "content" action="pw_auth.me" method="post">
-		<div class="textbox">
-	  		이름:<input id="text" name=nickname required="required" type="text" />
- 		</div>
-	<div class="textbox">
-  		아이디:<input id="email" name=email placeholder="이메일 형식"/>
-	</div><br><br>
-   	<input type="submit" id="check" value="비밀번호찾기">
-</form>
+
+	<script type="text/javascript">
+		var message = "${msg}";
+		var url = "${url}";
+		alert(message);
+		document.location.href = url;
+	</script>
+	
 </body>
 </html>

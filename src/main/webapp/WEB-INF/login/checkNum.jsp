@@ -13,8 +13,16 @@
         rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <style type="text/css">
-	*{
-		 font-family: 'Jua';
+	@font-face {
+    font-family: 'SeoulNamsanM';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+	}
+	
+	body * {
+		 font-family: 'SeoulNamsanM';
+		 word-spacing: -1px;
 	}
 </style>
 </head>
@@ -25,7 +33,8 @@
 <button class="numCheck">확인</button>
 </div>
 <div class="updatePass" style="display: none;">
-비밀번호: <input type="password" class="pass">
+비밀번호: <input type="password" class="pass" name="password" placeholder="영문,숫자,특수문자(최소 8자리)" required="required"><br>
+비밀번호 확인: <input type="password" class="pass" placeholder="영문,숫자,특수문자(최소 8자리)" required="required"><br>
 <button>확인</button>
 </div>
 </body>
@@ -33,8 +42,8 @@
 	$(function () {
 		$(".numCheck").click(function () {
 			var num=$(".num").val();
-			var randomNum=$(".randomNum").val();
-			alert(num);
+			var randomNum=$(".randomNum").val().trim();
+			//alert(num);
 			
 			if(num==randomNum){
 				$(".randomNumCheck").hide();

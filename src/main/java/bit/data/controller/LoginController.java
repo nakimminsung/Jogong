@@ -408,7 +408,6 @@ public class LoginController {
 	public ModelAndView pw_auth(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String email = (String)request.getParameter("email");
 		String nickname = (String)request.getParameter("nickname");
-		System.out.println(email+"/"+nickname);
 
 		UserDto vo = userService.searchPass(nickname, email);
 			
@@ -422,7 +421,7 @@ public class LoginController {
 			String setfrom = "sungmin9844@naver.com"; 
 			String tomail = email; //받는사람
 			String title = "[조공] 비밀번호변경 인증 이메일 입니다"; 
-			String content = System.getProperty("line.separator") + "안녕하세요 회원님" + System.getProperty("line.separator")
+			String content = System.getProperty("line.separator") + "안녕하세요" + System.getProperty("line.separator")
 					+ "조공 비밀번호찾기(변경) 인증번호는 " + num + " 입니다." + System.getProperty("line.separator"); // 
 
 			try {
@@ -442,16 +441,20 @@ public class LoginController {
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("/login/checkNum");
 			mv.addObject("num", num);
-			System.out.println(num);
+			
 			return mv;
 		}else {
 			ModelAndView mv = new ModelAndView();
-			mv.setViewName("/login/searchPass");
+			mv.setViewName("/alert/alert");
+			mv.addObject("msg", "아이디 또는 이름이 잘못되었습니다.");
+			mv.addObject("url", "/jogong/loginForm/searchPass");
 			return mv;
 		}
 		}else {
 			ModelAndView mv = new ModelAndView();
-			mv.setViewName("/login/searchPass");
+			mv.setViewName("/alert/alert");
+			mv.addObject("msg", "아이디 또는 이름이 잘못되었습니다.");
+			mv.addObject("url", "/jogong/loginForm/searchPass");
 			return mv;
 		}
 	}
