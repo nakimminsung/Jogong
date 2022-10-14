@@ -9,7 +9,8 @@ public interface ReviewServiceInter {
 	public int getRatingNum(int num);
 	//리뷰페이지
 	public int getTotalCount(String searchcolumn, String searchword);
-	public List<ReviewDto> getPagingList(String searchcolumn, String searchword, int startnum, int perpage);
+	//public List<ReviewDto> getPagingList(String searchcolumn, String searchword, int startnum, int perpage);
+	public List<ReviewDto> getReviewList();
 	//상세페이지
 	public List<ReviewDto> getProductReviewList(int productNum);
 	//상세페이지 리뷰수

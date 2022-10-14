@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import bit.data.dto.WishlistDto;
 import bit.data.service.WishlistServiceInter;
@@ -26,6 +27,18 @@ public class WishlistController {
 	public String mypage() {
 		return "/mypage/mypage/wishlist";
 	}
+	
+    @GetMapping("/userPage")
+    public ModelAndView wishpage(int userNum) {
+        ModelAndView mview = new ModelAndView();
+        int count = wishlistServiceInter.selectPublicWishCount(userNum);
+        mview.addObject("userNum",userNum);
+        mview.addObject("count",count);
+        
+        mview.setViewName("/bit/wishlist/wishlist");
+        
+        return mview;
+    }
 	
 	@PostMapping("/cart_insert")
 	public String insertWishlist(
@@ -48,7 +61,6 @@ public class WishlistController {
 	{
 		wishlistServiceInter.insertWishlist(dto);
 		int num = dto.getProductNum();
-		System.out.println(num);
 		return "redirect:/product/detail?num="+num;
 	}
 	
@@ -56,6 +68,12 @@ public class WishlistController {
 	@ResponseBody
 	public List<WishlistDto> userWishlist(int userNum) {
 	    return wishlistServiceInter.selectUserWishlist(userNum);
+	}
+	
+	@GetMapping("/publicList")
+	@ResponseBody
+	public List<WishlistDto> selectPublicWishlist(int userNum) {
+	    return wishlistServiceInter.selectPublicWishlist(userNum);
 	}
 	
 	@GetMapping("/delete")

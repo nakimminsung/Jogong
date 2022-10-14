@@ -592,7 +592,7 @@
 			// lightbox2 설정
 			lightbox.option({
 			    resizeDuration: 100,       // 리사이징 애니매이션 시간(밀리초, milliseconds). default:700
-			    wrapAround: true,         // 페이징 순환 여부. default:false
+			    wrapAround: true,          // 페이징 순환 여부. default:false
 			    disableScrolling: false,   // 스크롤 활성 여부 default:false
 			    fitImagesInViewport:false, // viewport에 호응하여 사이즈 조절. default:true
 			    maxWidth:500               // 최대 너비(픽셀, pixels). default:NULL
@@ -675,23 +675,6 @@
 				});
 			}
 		});
-		
-	/* 	// 리뷰 수정 모달
-	    const reviewModal = document.getElementById("review-modal")
-	    
-		$(document).on("click",".review-update-button",function(){
-			
-			reviewNum = $(this).attr("reviewNum");
-			$("input[name=num]").attr("num",reviewNum);
-			
-			reviewModal.style.display = "flex"
-			$("body").attr("class","modal-fix");
-		});
-		
-		$(document).on("click",".btn-cancel",function(){
-		    reviewModal.style.display = "none"
-	        $("body").attr("class","");
-		}); */
 	});
 	
 	// 작성 가능한 후기

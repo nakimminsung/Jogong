@@ -617,7 +617,12 @@ form h1 {
 	getReviewCount();
  
 	//친구목록 조회 함수 호출 
-	let data = {userNum:$("input[name=userNum]").attr("value"),search:""};
+	let data = {
+		userNum:$("input[name=userNum]").attr("value"),
+		friendNum:$("input[name=userNum]").attr("value"),
+		search:$(this).val().trim(),
+		check:1
+	};
 	list(data);
 
 	// 가격표시
@@ -695,7 +700,6 @@ form h1 {
 			} else {
 				location.href="../loginForm";
 			}
-			return
 		} else {
 			var data = $("#insertDetail").serialize();
 	  		var s ="";
@@ -706,7 +710,6 @@ form h1 {
 	  			data:data,
 	  			success:function(res){
 					alert("선물상자에 상품을 담았어요");
-			   
 	  			},
 	  		});
 		}
@@ -747,7 +750,6 @@ form h1 {
 			} else {
 				location.href="../loginForm";
 			}
-			return;
 		}else {
 	    	modal3.style.display = "flex"
 		}
@@ -854,7 +856,7 @@ form h1 {
       $("#detailReview").click(function(){
       	var s = "";
       	var productNum = $('input[name=productNum]').val();
-      	console.log(productNum);
+    
       	$.ajax({
   			type:"get",
   			url:"../review/productReview",
@@ -958,6 +960,7 @@ form h1 {
 	
 	// 나에게 선물하기 
 	$("#btn_selfGift").click(function(){
+		var drop = $(".dropdown").attr("class");
 		var sizeOption = $("input[name=sizeOption]").val();
 		var optionNum = $("input[name=optionNum]").val();
 
@@ -1018,13 +1021,14 @@ form h1 {
 		
 		// 친구인원수
 		$.ajax({
-			type: "get",
+			type: "post",
 			url: "../user/friendCount",
 			dataType: "json",
-			data: {"userNum":$("input[name=userNum]").attr("value")},
+			contentType: "application/json; charset=utf-8",
+			data: JSON.stringify({"data":data}),
 			success:function(res){
-				
-				$("span.friend-count").text(res);
+				console.log(res);
+				$(".friend-count").text("친구 "+res);
 			}
 		});
 	}
@@ -1097,11 +1101,12 @@ form h1 {
 						item.addEventListener("click", function (e) {
 						    var selectValue = e.currentTarget.value;
 						    var selectText = e.currentTarget.textContent.trim();						   
-						  //  console.log("val"+selectValue);
+							
 						    dropdownBtn.textContent = selectText;
 						    dropdownBtn.classList.add("selected");
 						    
 						    $('input[name=optionNum]').attr('value', selectValue);
+						    
 				  		});
 					});
 					
@@ -1260,7 +1265,6 @@ form h1 {
         	</div>
           <div class="gift-modal-middle">
             	<div style="margin: 10px 0;">
-            		친구목록
             		<span style="font-size: 15px; margin-bottom: 5px;" class="friend-count"></span>
             	</div>
             	<div class="friend-result">

@@ -1,5 +1,6 @@
 package bit.data.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -7,8 +8,9 @@ import bit.data.dto.QnaDto;
 import bit.data.dto.UserDto;
 
 public interface UserServiceInter {
-	public List<UserDto> getUserFriendData(Map<String,Object> map);
-	public int getUserFriendCount(int userNum);
+	public List<UserDto> selectFriendData(Map<String,Object> map);
+	public List<UserDto> selectFreindRequest(Map<String,Object> map);
+	public int getUserFriendCount(HashMap<String,Object> map);
 	public void insertUser(UserDto dto);
 	public int getUserIdSearch(String email);
 	public int getIdPassCheck(String email, String password);
@@ -27,5 +29,16 @@ public interface UserServiceInter {
 	
 	//아이디 찾기
 	public String searchId(String nickname,String phone);
-
+	
+	// 친구 추가
+    public void insertFriend(HashMap<String,Object> map);
+    
+    // 친구 삭제
+    public void deleteFriend(HashMap<String,Object> map);
+    
+    // 친구 요청 수락
+    public void updateFriend(HashMap<String,Object> map);
+    
+    // 단일 유저 조회
+    public UserDto selectUser(int userNum);
 }

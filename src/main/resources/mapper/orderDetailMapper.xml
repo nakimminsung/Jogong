@@ -21,7 +21,7 @@
 		insert into orderDetail (num, qty, messageCard, engrave, friendNum, userNum, productNum, optionNum)
 		values
         <foreach collection="cartList" item="item" separator=",">
-			(null,#{item.qty},#{item.messageCard},#{item.engrave},#{item.friendNum},#{item.userNum},#{item.productNum},#{optionNum})
+			(null,#{item.qty},#{item.messageCard},#{item.engrave},#{item.friendNum},#{item.userNum},#{item.productNum},1)
         </foreach>
  	</insert>
  	

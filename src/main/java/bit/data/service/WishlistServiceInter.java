@@ -6,9 +6,10 @@ import java.util.Map;
 import bit.data.dto.WishlistDto;
 
 public interface WishlistServiceInter {
-	public List<WishlistDto> getWishlist(int userNum);
+	public List<WishlistDto> selectPublicWishlist(int userNum);
 	public List<WishlistDto> selectUserWishlist(int userNum);
 	public void insertWishlist (WishlistDto wishlistDto);
     public void updateWishlist (Map<String,Object> map);
     public void deleteWishlist (int num);
+    public int selectPublicWishCount (int userNum);
 }
