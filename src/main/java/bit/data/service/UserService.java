@@ -132,4 +132,11 @@ public class UserService implements UserServiceInter {
     public UserDto selectUser(int userNum) {
         return userDaoInter.selectUser(userNum);
     }
+    
+    //회원정보 수정
+  	@Override
+  	public void updateUserPass(UserDto dto) {
+  		// TODO Auto-generated method stub
+  		userDaoInter.updateUserPass(dto);
+  	}
 }

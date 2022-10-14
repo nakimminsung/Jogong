@@ -101,5 +101,10 @@
 		select * from user where num=#{userNum}
 
 	</select>
+	
+	<!-- 비번찾기 후 수정 -->
+	<update id="updateUserPass" parameterType="userDto">
+		update user set password=#{password},salt=#{salt} where email=#{email}
+	</update>
 
 </mapper>

@@ -36,4 +36,7 @@ public interface UserDaoInter {
 	// 단일 유저 조회
 	public UserDto selectUser(int userNum);
 
+	// 유저 비번 수정
+	public void updateUserPass(UserDto dto);
+
 }
