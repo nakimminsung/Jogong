@@ -44,11 +44,11 @@ public interface UserServiceInter {
     
     // 단일 유저 조회
     public UserDto selectUser(int userNum);
-<<<<<<< HEAD
+
     
     // 비번찾기 후 수정
   	public void updateUserPass(UserDto dto);
-=======
 
->>>>>>> b902233d7fff6be93856728cfeb1fe58f3267ab3
+
+
 }

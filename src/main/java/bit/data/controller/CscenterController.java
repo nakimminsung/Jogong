@@ -84,7 +84,7 @@ public class CscenterController {
 	   
 	   
 	   @PostMapping("/qnainsert")
-	   public String insert(QnaDto dto, HttpServletRequest request, MultipartFile upload)
+	   public String insert(QnaDto dto, HttpServletRequest request, MultipartFile upload, Model model)
 	   {
 	      // 업로드 경로 + 경로 확인
 	      String path = request.getSession().getServletContext().getRealPath("/resources/upload");
@@ -125,6 +125,10 @@ public class CscenterController {
 	      // db에 insert : service의 insertQna에 dto값 전달
 	      csService.insertQna(dto);
 	      
+	      model.addAttribute("msg", "아이디 또는 비밀번호가 잘못되었습니다.");
+	      model.addAttribute("url", "login.do");
+	      
+	      // 마이페이지 내 문의내역으로 이동
 	      return "redirect:/mypage/qna";
 	      
 	   }

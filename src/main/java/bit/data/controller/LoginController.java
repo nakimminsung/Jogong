@@ -398,7 +398,7 @@ public class LoginController {
 	
 
 	//비번찾기 후 비번수정
-	@GetMapping("/loginForm/updatePass")
+	@GetMapping("/searchPass")
 	public void updateUserPass(HttpSession session, UserDto dto, HttpServletRequest request) {
 		
 		//세션에 저장되어있는 email 가져오기
@@ -418,6 +418,8 @@ public class LoginController {
 		dto.setEmail(email);
 		dto.setSalt(salt);
 		dto.setPassword(password);
+		
+		System.out.println(dto);
 		
 		//dto 정보를 보내기(비번수정)
 		userService.updateUserPass(dto);
