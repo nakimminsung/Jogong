@@ -115,4 +115,11 @@ public class UserDao implements UserDaoInter {
     public UserDto selectUser(int userNum) {
         return session.selectOne(ns+"selectUser", userNum);
     }
+    
+    //회원정보 수정
+  	@Override
+  	public void updateUserPass(UserDto dto) {
+  		// TODO Auto-generated method stub
+  		session.update(ns+"updateUserPass", dto);
+  	}
 }

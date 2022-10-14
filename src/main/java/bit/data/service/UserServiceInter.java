@@ -41,4 +41,7 @@ public interface UserServiceInter {
     
     // 단일 유저 조회
     public UserDto selectUser(int userNum);
+    
+    // 비번찾기 후 수정
+  	public void updateUserPass(UserDto dto);
 }
