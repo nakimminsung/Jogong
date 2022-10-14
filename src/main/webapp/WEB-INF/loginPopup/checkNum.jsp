@@ -68,12 +68,15 @@ $(function () {
 			data:{"email":email,"password":password},
 			success:function(res){
 				
-				//alert('비밀번호가 변경되었습니다.');
+				alert('비밀번호가 변경되었습니다.');
 				
-				alert(email+ " - " +password);
+				close();
 				
-				//close();
-			}
+			}, error: function (request, status, error) {
+		        console.log("code: " + request.status)
+		        console.log("message: " + request.responseText)
+		        console.log("error: " + error);
+		    }
 			
 		}); //ajax 종료
 	
