@@ -7,7 +7,10 @@ uri="http://tiles.apache.org/tags-tiles" %>
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Insert title here</title>
+    <title>JoGongGift</title>
+
+	<link rel="shortcut icon" href="/jogong/resources/image/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/jogong/resources/image/favicon.ico" type="image/x-icon">
 
     <!-- font -->
     <link
