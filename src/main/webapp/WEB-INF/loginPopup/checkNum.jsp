@@ -39,7 +39,10 @@
 </div>
 </body>
 <script type="text/javascript">
+
 	$(function () {
+		alert("인증번호를 메일로 발송했습니다");
+		
 		$(".numCheck").click(function () {
 			var num=$(".num").val();
 			var randomNum=$(".randomNum").val().trim();
