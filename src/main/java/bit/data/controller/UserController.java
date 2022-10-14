@@ -6,7 +6,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.taglibs.standard.lang.jstl.Literal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,12 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.annotation.SessionScope;
 
-import bit.data.dto.ProductDto;
 import bit.data.dto.QnaDto;
 import bit.data.dto.UserDto;
-import bit.data.service.UserService;
 import bit.data.service.UserServiceInter;
 
 @Controller
@@ -30,18 +26,32 @@ public class UserController {
 	
 	@PostMapping("/user/friendData")
 	@ResponseBody
-	public List<UserDto> getUserFriendData(
+	public List<UserDto> selectFriendData(
 	        @RequestBody HashMap<String,Object> param) {
 	    
 	    Map<String,Object> map = (HashMap<String, Object>) param.get("data");
 	    
-		return userServiceInter.getUserFriendData(map);
+		return userServiceInter.selectFriendData(map);
 	}
 	
-	@GetMapping("/user/friendCount")
+	@PostMapping("/user/friendRequest")
 	@ResponseBody
-	public int getUserFriendCount(int userNum) {
-		return userServiceInter.getUserFriendCount(userNum);
+	public List<UserDto> selectFreindRequest(
+	        @RequestBody HashMap<String,Object> param) {
+	    
+	    Map<String,Object> map = (HashMap<String, Object>) param.get("data");
+	    
+	    return userServiceInter.selectFreindRequest(map);
+	}
+	
+	@PostMapping("/user/friendCount")
+	@ResponseBody
+	public int getUserFriendCount(
+	        @RequestBody HashMap<String,Object> param) {
+	    
+	    HashMap<String,Object> map = (HashMap<String, Object>) param.get("data");
+	    
+		return userServiceInter.getUserFriendCount(map);
 	}
 	
 	@GetMapping("/mypage/cart")
@@ -98,6 +108,7 @@ public class UserController {
 		return userServiceInter.getReviewUserInfo();
 	}
 	
+    // 친구가 아닌 유저 목록
 	@PostMapping("/user/nonFriend")
 	@ResponseBody
 	public List<UserDto> selectNonFriendlyUsersList(
@@ -107,6 +118,59 @@ public class UserController {
 	        
 	    return userServiceInter.selectNonFriendlyUsersList(map);
 	}
+	
+    // 친구추가
+    @PostMapping("/user/insertFriend")
+    public String insertFriend(
+            @RequestBody HashMap<String,Object> params) {
+        
+        HashMap<String,Object> map = new HashMap<String,Object>();
+        
+        List<Map<String,Object>> list = (List<Map<String,Object>>) params.get("list");
+        
+        map.put("list" , list);
+        
+        userServiceInter.insertFriend(map);
+        
+        return "/mypage/mypage/friend";
+    }
+    
+    // 친구삭제
+    @PostMapping("/user/deleteFriend")
+    public String deleteFriend(
+            @RequestBody HashMap<String,Object> param) {
+        
+        HashMap<String,Object> map = (HashMap<String,Object>) param.get("data");
+        
+        System.out.println(map.get("userNum"));
+        System.out.println(map.get("friendNum"));
+        
+        userServiceInter.deleteFriend(map);
+        
+        return "/mypage/mypage/friend";
+    }
+    
+    // 친구삭제
+    @PostMapping("/user/updateFriend")
+    public String updateFriend(
+            @RequestBody HashMap<String,Object> param) {
+        
+        HashMap<String,Object> map = (HashMap<String,Object>) param.get("data");
+        
+        System.out.println(map.get("userNum"));
+        System.out.println(map.get("friendNum"));
+        
+        userServiceInter.updateFriend(map);
+        
+        return "/mypage/mypage/friend";
+    }
+    
+    // 단일 유저 조회
+    @GetMapping("/user/data")
+    @ResponseBody
+    public UserDto selectUser(int userNum) {
+        return userServiceInter.selectUser(userNum);
+    }
 }
 
 
