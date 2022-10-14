@@ -25,6 +25,20 @@
 		 font-family: 'SeoulNamsanM';
 		 word-spacing: -1px;
 	}
+	
+	.randomNumCheck{
+		width: 100%;
+		height: 330px;
+		text-align: center;
+		padding-top: 50px;
+	}
+	
+	.updatePass{
+		width: 100%;
+		height: 330px;
+		text-align: center;
+		padding-top: 50px;
+	}
 </style>
 
 <script type="text/javascript">
@@ -82,11 +96,45 @@ $(function () {
 	}); //전송(클릭) 이벤트 종료
 	
 	
+	$(".pass1").keyup(function () {
+		var pw=$(this).val();
+	// 정규 표현식
+		var regExp = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
+
+	// 정규 표현식을 통과하지 못하면
+		if(pw.match(regExp) == null){
+		// 처리할 문장
+			$("#psCheck").html("형식에 맞게 입력하세요");
+			$(".pass2").val("");
+		}else{
+			$("#psCheck").html("");
+			$(".pass2").val("");
+		}
+	});	
+
+	$(".pass2").keyup(function () {
+		var check=$(this).val();
+		var pw=$(".pass1").val();
+		
+		if(pw==check){
+			$("#psCheck1").html("");
+		
+		}else{
+
+			// 처리할 문장
+			$("#psCheck1").html("비밀번호가 일치하지 않습니다.");
+			$("#psCheck1").css("color","#FFAF00");
+		}
+	});	
+	
+	
 })
 </script>
 </head>
 <body>
 	<div class="randomNumCheck">
+		<h3>인증번호 확인</h3>
+		<hr style="width: 130px; height: 10px; position: relative; top:-25px; left:156px; color: #cff0cc; opacity: 1; z-index: -1;">
 		<input type="hidden" class ="num" value="${num }">
 			인증번호: <input type="text" class="randomNum">
 		<button class="numCheck">확인</button>
@@ -94,10 +142,14 @@ $(function () {
 		
 	
 	<div class="updatePass" style="display: none;">
-		비밀번호: <input type="password" class="pass1" name="password" placeholder="영문,숫자,특수문자(최소 8자리)" required="required"><br>
+		<h3>비밀번호 재설정</h3>
+		<hr style="width: 150px; height: 10px; position: relative; top:-25px; left:148px; color: #cff0cc; opacity: 1; z-index: -1;">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;비밀번호: <input type="password" class="pass1" name="password" placeholder="영문,숫자,특수문자(최소 8자리)" required="required"><br>
+		<div id="psCheck" style="font-size: 13px;margin-left: 50px;"></div>
 		비밀번호 확인: <input type="password" class="pass2" placeholder="영문,숫자,특수문자(최소 8자리)" required="required"><br>
-		
-		<button class="btn btn-secondary" id="btnSend">확인</button>
+		<div id="psCheck1" style="font-size: 13px;margin-left: 88px;"></div>
+		<br>
+		<button class="btn btn-outline-secondary" id="btnSend">확인</button>
 	</div>
 	
 	<%-- 
@@ -113,9 +165,6 @@ $(function () {
 		</form>
 	</div>
 	 --%>
-	
-	
-	
 </body>
 
 </html>
