@@ -30,6 +30,9 @@ public interface UserServiceInter {
 	//아이디 찾기
 	public String searchId(String nickname,String phone);
 	
+	//비밀번호 찾기 전 정보확인 및 정보 가져오기
+	public UserDto searchPass(String nickname,String email);
+
 	// 친구 추가
     public void insertFriend(HashMap<String,Object> map);
     
@@ -41,4 +44,5 @@ public interface UserServiceInter {
     
     // 단일 유저 조회
     public UserDto selectUser(int userNum);
+
 }
