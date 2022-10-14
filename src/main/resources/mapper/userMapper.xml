@@ -73,6 +73,11 @@
 		select email from user where nickname=#{nickname} and phone=#{phone}
 	</select>
 	
+	<!-- 비밀번호 재설정 전 정보 확인 -->
+	<select id="searchPass" parameterType="Map"  resultType="userDto">
+		select * from user where nickname=#{nickname} and email=#{email}
+	</select>
+	
 	<!-- 친구 추가 -->
 	<insert id="isertFriend" parameterType="HashMap">
 		insert into userFriend values 
@@ -94,6 +99,7 @@
 	<!-- 단일 유저 조회 -->
 	<select id="selectUser" parameterType="int" resultType="userDto">
 		select * from user where num=#{userNum}
+
 	</select>
 
 </mapper>

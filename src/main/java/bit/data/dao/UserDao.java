@@ -92,6 +92,15 @@ public class UserDao implements UserDaoInter {
 		return session.selectOne(ns+"searchId", map);
 	}
 
+
+	//비밀번호 찾기 전 정보확인 및 정보 가져오기
+	@Override
+	public UserDto searchPass(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return session.selectOne(ns+"searchPass",map);
+	}	
+	
+	
 	// 친구추가
     @Override
     public void insertFriend(HashMap<String, Object> map) {
@@ -115,4 +124,5 @@ public class UserDao implements UserDaoInter {
     public UserDto selectUser(int userNum) {
         return session.selectOne(ns+"selectUser", userNum);
     }
+
 }
