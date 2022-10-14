@@ -1139,7 +1139,7 @@ form h1 {
 
     <div class="detailContainer">
       <div class="detailItem">
-        <img src="${dto.thumbnailImageUrl }" width="400" />
+        <img src="${dto.thumbnailImageUrl }" width="400" height="400" style="border: 1px solid #ebebeb"/>
       </div>
 
       <div class="detailItem detailContent">
