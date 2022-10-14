@@ -21,6 +21,12 @@ public class BrandDao implements BrandDaoInter{
 	public List<SellerDto> getAllBrand() {
 		return session.selectList(ns+"getAllBrand");
 	}
+
+	@Override
+	public List<SellerDto> infiniteScrollDown(int bno) {
+		return session.selectList(ns+"infiniteScrollDown",bno);
+	}
+	
 	@Override
 	public int getTotalBrandCount(String brand) {
 		// TODO Auto-generated method stub
@@ -54,4 +60,5 @@ public class BrandDao implements BrandDaoInter{
 		// TODO Auto-generated method stub
 		return session.selectList(ns+"getBrandAll",brand);
 	}
+
 }

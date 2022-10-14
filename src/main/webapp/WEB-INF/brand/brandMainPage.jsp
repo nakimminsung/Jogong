@@ -133,7 +133,40 @@ $(function(){
 					$.each(res, function(i,elt) {
 						console.log(elt.brandphoto)
 						s+="<div class='container mt-3' style='width:50%; height:500px; cursor:pointer;'>";
-						s+="<div class='card'>";
+						s+="<div class='card' data-bno="+elt.scrollnum+">";
+						s+="<a href='detail?brand="+elt.companyName+"'>"
+						s+="<img class='card-img-top' src="+elt.brandphoto+" alt='Card image' style='width:100%; height:250px;'>";
+						s+="<div class='card-body'>";
+						s+="<h5 class='card-text'>"+elt.companyName+"</h5>";
+						s+="<p class='card-title' style='display: -webkit-inline-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;'>"+elt.description+"</p>";
+						s+="</div></div></div>";
+						  
+						
+					});
+					$(".card-wrapper").html(s);
+				}
+			});
+		});
+	
+	 
+	// 전체 조회 버튼 
+	$(".sortingAll").click(function(e) {
+		e.stopPropagation();
+		var sort=$(this).attr("value");
+		console.log(sort);
+		var s= "";
+		 $.ajax({
+				type:"get",
+				url:"categoryAllSelect",
+				dataType:"json",
+				data:{"sort":sort},
+				success:function(res){
+					$(".card-wrapper").empty();	
+					
+					$.each(res, function(i,elt) {
+						console.log(elt.brandphoto)
+						s+="<div class='container mt-3' style='width:50%; height:500px; cursor:pointer;'>";
+						s+="<div class='card' data-bno="+elt.scrollnum+">";
 						s+="<a href='detail?brand="+elt.companyName+"'>"
 						s+="<img class='card-img-top' src="+elt.brandphoto+" alt='Card image' style='width:100%; height:250px;'>";
 						s+="<div class='card-body'>";
@@ -159,39 +192,6 @@ $(function(){
 		$('.sorting').find("span").css("border-bottom","");
 		$(this).find("span").css("border-bottom","4px solid #cff0cc");
 	});
-	 
-	// 전체 조회 버튼 
-	$(".sortingAll").click(function(e) {
-		e.stopPropagation();
-		var sort=$(this).attr("value");
-		console.log(sort);
-		var s= "";
-		 $.ajax({
-				type:"get",
-				url:"categoryAllSelect",
-				dataType:"json",
-				data:{"sort":sort},
-				success:function(res){
-					$(".card-wrapper").empty();	
-					
-					$.each(res, function(i,elt) {
-						console.log(elt.brandphoto)
-						s+="<div class='container mt-3' style='width:50%; height:500px; cursor:pointer;'>";
-						s+="<div class='card'>";
-						s+="<a href='detail?brand="+elt.companyName+"'>"
-						s+="<img class='card-img-top' src="+elt.brandphoto+" alt='Card image' style='width:100%; height:250px;'>";
-						s+="<div class='card-body'>";
-						s+="<h5 class='card-text'>"+elt.companyName+"</h5>";
-						s+="<p class='card-title' style='display: -webkit-inline-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;'>"+elt.description+"</p>";
-						s+="</div></div></div>";
-						  
-						
-					});
-					$(".card-wrapper").html(s);
-				}
-			});
-		});
-	
 	
 	// 브랜드 검색
 	$(".inputBrand").keyup(function(e) {
@@ -210,7 +210,7 @@ $(function(){
 					$.each(res, function(i,elt) {
 						console.log(elt.companyName);
 						s+="<div class='container mt-3' style='width:50%; height:500px; cursor:pointer;'>";
-						s+="<div class='card'>";
+						s+="<div class='card' data-bno="+elt.scrollnum+">";
 						s+="<a href='detail?brand="+elt.companyName+"'>"
 						s+="<img class='card-img-top' src="+elt.brandphoto+" alt='Card image' style='width:100%; height:250px;'>";
 						s+="<div class='card-body'>";
@@ -229,10 +229,15 @@ $(function(){
 });
 	
 	
+// 무한 스크롤
+
+// 이전 스크롤 좌표
+var lastScrollTop = 0;
+
+// 스크롤 이벤트 최초 발생
+	
+	
 </script>
-<%-- < div>
-<button type="button" class="btn btn-info" onclick="location.href='${root}/jogong/brand/detail'">세부 페이지 이동</button>
-</div> --%>
 
 
 <div style="min-height:1500px">
@@ -276,7 +281,7 @@ $(function(){
 			<div class="card-wrapper">
 				 <c:forEach var="brand" items="${list}">
 					<div class="container mt-3" style="width:50%; height:500px; cursor:pointer;">
-					  <div class="card">
+					  <div class="card" data-bno="${brand.scrollnum}">
 					  <a href="detail?brand=${brand.companyName }">
 					    <img class="card-img-top" src="${brand.brandphoto}" alt="Card image" style="width:100%; height:250px;">
 					    <div class="card-body">
