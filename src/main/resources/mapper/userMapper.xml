@@ -83,7 +83,7 @@
 	
 	<!-- 친구 삭제 -->
 	<delete id="deleteFriend" parameterType="HashMap">
-		delete from userFriend where userNum=#{userNum} and friendNum=#{friendNum}
+		delete from userFriend where userNum=#{userNum} and friendNum=#{friendNum} or userNum=#{friendNum} and friendNum=#{userNum}
 	</delete>
 	
 	<!-- 친구요청 수락 -->
