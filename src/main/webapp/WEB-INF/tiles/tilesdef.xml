@@ -5,13 +5,13 @@
 <tiles-definitions>
 	
 	<!-- loginSearch layout -->
-	<definition name="loginSearch" template="/WEB-INF/login/loginLayout.jsp">
-		<put-attribute name="content" value="/WEB-INF/login/content.jsp"/>
+	<definition name="loginSearch" template="/WEB-INF/loginPopup/loginLayout.jsp">
+		<put-attribute name="content" value="/WEB-INF/loginPopup/content.jsp"/>
 	</definition>
 	
 	<!-- loginSearch macro -->
-	<definition name="/bit/login/searchId" extends="loginSearch">
-		<put-attribute name="content" value="/WEB-INF/login/searchId.jsp"/>
+	<definition name="/bit/loginPopup/*" extends="loginSearch">
+		<put-attribute name="content" value="/WEB-INF/loginPopup/{1}.jsp"/>
 		
 	</definition>
 	
