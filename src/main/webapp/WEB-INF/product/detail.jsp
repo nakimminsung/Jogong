@@ -1005,10 +1005,10 @@ form h1 {
 				$.each(res, function(i,elt) {
 					
 					s += "<li style='list-style:none; float:left;'>";
-					s += "<div style='margin-right:50px;'>";
+					s += "<div style='min-width:170px; margin-bottom:10px;'>";
 					s += "<input type='radio' style='margin-right:10px;' class='chkBox' name='friendNum' value='"+elt.num+"'>";
 					s += "<label>";
-					s += "<img src='"+elt.profileImage+"' width='100' class='gift-friend-img' style='margin-right:5px;'>";
+					s += "<img src='"+elt.profileImage+"' width='100' class='gift-friend-img' style='margin-right:5px;' onerror='this.src=\"../image/user_default.png\";'>";
 					s += "<b num='"+elt.num+"'>"+elt.nickname+"</b>";
 					s += "</label>";
 					s += "</div>";
