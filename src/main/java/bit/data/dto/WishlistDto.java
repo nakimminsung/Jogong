@@ -13,4 +13,7 @@ public class WishlistDto {
     private String name;
     private int price;
     private String thumbnailImageUrl;
+    
+    // user
+    private String nickname;
 }

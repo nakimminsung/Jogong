@@ -51,7 +51,7 @@ div#brandContent{
 	width:70%;
 	float: right;
 	justify-content: flex-start;
-	
+	margin-top: 30px;
 }
 
 div.search-box{
@@ -265,7 +265,9 @@ var lastScrollTop = 0;
 		<div id="brandContent">
 
 			<div class="row wider justify-content-center">
-			  <div class="col col-2"><h1>브랜드</h1></div>
+			  <div class="col col-2"><h2 style="font-weight: bold; display: flex; flex-direction: column;justify-content: center;align-items: center;width: 100%;">브랜드</h2>
+			  <hr style="width: 100px; left:10px; height: 10px;position: relative;top: -25px;color: #cff0cc;opacity: 1;z-index: -1;"></div>
+			  
 			</div>
 			
 			<div class="row wider justify-content-center">

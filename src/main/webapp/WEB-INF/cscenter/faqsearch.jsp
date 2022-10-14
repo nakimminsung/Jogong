@@ -33,7 +33,7 @@
 	.faqSearch{ 
 		width: 100%;
 		height:200px;
-		background-color: #ffd700;
+		background-color: #cff0cc;
 		padding-left: 35%;
 		padding-top: 3%;
 		margin-top: 10px;
@@ -99,7 +99,7 @@
  		<h5 style="color: gray;">카카오톡 선물하기 서비스를 이용하시는데 도움이 필요하신가요?</h5>
  		<div class="help" style="margin-left: 5%;"> 
  			<input type="text" name="searchword" class="helpSearch" style="width: 450px;border-radius: 5px; border: none;"  placeholder="도움말을 검색해보세요" value="${param.searchword }">
- 			<button type="submit" style="border: none; background-color: #ffd700"><i class='fas fa-search sh' style='font-size:24px'></i></button>
+ 			<button type="submit" style="border: none; background-color: #cff0cc"><i class='fas fa-search sh' style='font-size:24px'></i></button>
  		</div>
  	</div>
 </form>

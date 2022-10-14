@@ -105,13 +105,40 @@
 		min-height: 100px;
 	}
 </style>
+</head>
+<body>
+	<div class="event-wrapper" style="display: flex; flex-direction: column; align-items: center; max-width: 1180px; margin: 0 auto; min-height: 1000px; margin-top: 30px;">
+		
+		<div align="center">
+			<h2 style="font-weight: bold; display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%;">이벤트</h2>
+			<hr style="width: 100px; height: 10px; position: relative; top: -22px; color: #cff0cc; opacity: 1; z-index: -1;">
+			<span style="color: gray; margin-top: -5px; font-size: 20px">조공에서 준비한 다양한 이벤트🤗</span>
+		</div>
+		
+		<!-- <div class="event-top" style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%;">
+			<span class="event-title">이벤트</span>
+			<hr>
+			<span class="event-subtitle">조공에서 준비한 다양한 이벤트🤗</span>
+		</div> -->
+		<div class="event-middle" style=" width:100%; display:flex; justify-content: space-between; padding: 0 25px;">
+			<div class="event-count"></div>
+			<div class="event-option">
+				<select class="form-select">
+					<option>최신순</option>
+					<option>인기순</option>
+					<option>가나다순</option>
+				</select>
+			</div>
+		</div>
+		<div class="event-list-result">
+		</div>
+		<div class="event-detail-result">
+		</div>
+	</div>
+</body>
 <script>
-	$(function(){
-		// 이벤트리스트 함수 호출
-		eventList()
-	});
+	eventList()
 	
-	// 이벤트 리스트 함수
 	function eventList(){
 		var s="";
 		
@@ -137,41 +164,6 @@
 				$("div.event-list-result").html(s);
 			}
 		});
-		
-	/* 	$.ajax({
-			type: "get",
-			url: "../user/friendCount",
-			dataType: "json",
-			data: {"userNum":userNum},
-			success:function(res){
-				
-				$("span.friend-count").text(res);
-			}
-		}); */
 	}
 </script>
-</head>
-<body>
-	<div class="event-wrapper" style="display: flex; flex-direction: column; align-items: center; max-width: 1180px; margin: 0 auto; min-height: 1000px;">
-		<div class="event-top" style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%;">
-			<span class="event-title">이벤트</span>
-			<hr>
-			<span class="event-subtitle">조공에서 준비한 다양한 이벤트🤗</span>
-		</div>
-		<div class="event-middle" style=" width:100%; display:flex; justify-content: space-between; padding: 0 25px;">
-			<div class="event-count"></div>
-			<div class="event-option">
-				<select class="form-select">
-					<option>최신순</option>
-					<option>인기순</option>
-					<option>가나다순</option>
-				</select>
-			</div>
-		</div>
-		<div class="event-list-result">
-		</div>
-		<div class="event-detail-result">
-		</div>
-	</div>
-</body>
 </html> 

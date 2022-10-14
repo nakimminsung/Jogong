@@ -4,6 +4,18 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 	
+	<!-- loginSearch layout -->
+	<definition name="loginSearch" template="/WEB-INF/loginPopup/loginLayout.jsp">
+		<put-attribute name="content" value="/WEB-INF/loginPopup/content.jsp"/>
+	</definition>
+	
+	<!-- loginSearch macro -->
+	<definition name="/bit/loginPopup/*" extends="loginSearch">
+		<put-attribute name="content" value="/WEB-INF/loginPopup/{1}.jsp"/>
+		
+	</definition>
+	
+	
 	<!-- my -->
  	<definition name="myLayout" template="/WEB-INF/mylayout/myLayout.jsp">
 		<put-attribute name="header" value="/WEB-INF/layout/header.jsp"/>
@@ -55,15 +67,7 @@
 	</definition>
 	
 	
-	<!-- join layout -->
-	<definition name="joinLayout_test" template="/WEB-INF/join/joinLayout.jsp">
-		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"/>
-	</definition>
+
 	
-	<!-- join layout macro -->
-	<definition name="/bit/join/*" extends="joinLayout_test">
-		<put-attribute name="footer" value="/WEB-INF/join/{1}.jsp"/>
-		
-	</definition>
 	
 </tiles-definitions>
