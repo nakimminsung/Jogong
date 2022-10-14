@@ -20,13 +20,10 @@
    }
    
    .htitle{
-	  /* background-color: #c4bee2; */	/* 연보라 */
-	  background-color: #cff0cc;		/* 연연보라 */
-	  /* background-color: #cff0cc; */
+	  background-color: #cff0cc;
   	  height: 200px;
   	  padding-left: 25%;
   	  padding-top: 80px;
-  	  /* font-family: Jua; */
   	  font-weight: bold;
    }
    
@@ -35,7 +32,6 @@
       margin-left: 25%;
 	  background-color: white;
       width: 1000px;
-      /* font-family: Jua; */
    }
    
    table.form tr {
@@ -46,7 +42,6 @@
    .btnsub {
       width: 200px;
       height: 50px;
-      /* background-color: #cff0cc; */
       background-color: #c4bee2;
       font-size: 20px;
       font-weight: bold;
@@ -65,56 +60,34 @@
 <script type="text/javascript">
    $(function () {
       
-
       //파일첨부 버튼 클릭 trigger
       $(".btnupload").click(function () {
          
          $("#upload").trigger("click");
+         
       });
 
-      //파일을 첨부했을때
+      //파일을 첨부했을때 확장자 검증
       $("#upload").change(function () {
          
-         //정규표현식
+         //정규표현식 (확장자 검증)
          var reg = /(.*?)\/(jpg|jpeg|png|bmp|gif)$/;   //확장자 지정하기
          var f=$(this)[0].files[0];   //현재 선택한 파일
          var fn=$(this)[0].files[0].name; //현재 선택한 파일명
          
-         
          if(!f.type.match(reg)){
             
-              alert("확장자가 이미지파일이 아닙니다");
+              alert("첨부한 파일이 이미지파일이 아닙니다.");
+              
               return;
             }
          
+         // div.filename 에 첨부파일 이름 보여주기
          $(".filename").text(fn);
    
       }); // change 이벤트 종료      
       
-    
-
-    //문의 접수 버튼 클릭 이벤트 (세션의 userNum 확인용도)
-	$(".sub").click(function () {
-		
-		var test=$("#loginUserNum").val();
-		
-		alert(test);
-		
-	});
-      
-      
-	//onsubmit : submit 하기 직전에 호출되는 메서드
-	function check(){
-		
-	//활용 예정
-	
-	} // check() 메서드 종료
-      
-      
-      
-	  
-
-      
+     
    }); // function 종료
 </script>
 <body>
@@ -189,7 +162,6 @@
             <tr>
                <th colspan="2" style="text-align: center;">
                   <button type="submit" class="btn btn-dark sub">문의 접수</button>
-                  <!-- <button type="button" class="btnsub">문의 접수</button> -->
                </th>
             </tr>
             
@@ -199,11 +171,7 @@
    </div>
 </div>
 </body>
-<script type="text/javascript">
-
-
-
-
+<script>
 
 </script>
 

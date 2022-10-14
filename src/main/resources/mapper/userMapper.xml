@@ -95,4 +95,5 @@
 	<select id="selectUser" parameterType="int" resultType="userDto">
 		select * from user where num=#{userNum}
 	</select>
+
 </mapper>

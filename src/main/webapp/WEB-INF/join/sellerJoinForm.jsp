@@ -80,7 +80,7 @@
 	$(function () {
 		
 		//password1 에 입력했을때
-		$(".password1").keydown(function () {
+		$(".password1").keyup(function () {
 			
 			// .password2 값 비우기
 			$(".password2").val("");
@@ -176,12 +176,15 @@
 			}); //ajax 종료
 		}); //중복 체크 이벤트 종료
 		
-		
-		
-		
-		
-		
 	});// $function 종료
+	
+	
+	//휴대폰 하이픈 정규식
+	const autoHyphen2 = (target) => {
+	 target.value = target.value
+	   .replace(/[^0-9]/g, '')
+	  .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
+	}
 
 </script>
 <body>
@@ -255,7 +258,7 @@
 					<th><b style="color: red;">*</b> 담당자 연락처</th>
 					<td>
 						<input type="text" style="width: 50%;" placeholder="010-1234-5678" required name="phone"
-						minlength = "12" maxlength="13">
+						minlength = "12" maxlength="13" oninput="autoHyphen2(this)">
 						
 					</td>
 				</tr>
