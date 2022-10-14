@@ -260,7 +260,8 @@ $(function(){
 		<div id="brandContent">
 
 			<div class="row wider justify-content-center">
-			  <div class="col col-2"><h2 style="font-weight: bold; display: flex; flex-direction: column;justify-content: center;align-items: center;width: 100%;">브랜드</h2><hr style="width: 120px;height: 10px;position: relative;top: -25px;color: #cff0cc;opacity: 1;z-index: -1;"></div>
+			  <div class="col col-2"><h2 style="font-weight: bold; display: flex; flex-direction: column;justify-content: center;align-items: center;width: 100%;">브랜드</h2>
+			  <hr style="width: 100px; left:10px; height: 10px;position: relative;top: -25px;color: #cff0cc;opacity: 1;z-index: -1;"></div>
 			  
 			</div>
 			

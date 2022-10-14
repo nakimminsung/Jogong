@@ -152,12 +152,19 @@
 </script>
 </head>
 <body>
-	<div class="event-wrapper" style="display: flex; flex-direction: column; align-items: center; max-width: 1180px; margin: 0 auto; min-height: 1000px;">
-		<div class="event-top" style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%;">
+	<div class="event-wrapper" style="display: flex; flex-direction: column; align-items: center; max-width: 1180px; margin: 0 auto; min-height: 1000px; margin-top: 30px;">
+		
+		<div align="center">
+			<h2 style="font-weight: bold; display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%;">이벤트</h2>
+			<hr style="width: 100px; height: 10px; position: relative; top: -22px; color: #cff0cc; opacity: 1; z-index: -1;">
+			<span style="color: gray; margin-top: -5px; font-size: 20px">조공에서 준비한 다양한 이벤트🤗</span>
+		</div>
+		
+		<!-- <div class="event-top" style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%;">
 			<span class="event-title">이벤트</span>
 			<hr>
 			<span class="event-subtitle">조공에서 준비한 다양한 이벤트🤗</span>
-		</div>
+		</div> -->
 		<div class="event-middle" style=" width:100%; display:flex; justify-content: space-between; padding: 0 25px;">
 			<div class="event-count"></div>
 			<div class="event-option">

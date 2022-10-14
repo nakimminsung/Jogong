@@ -129,16 +129,16 @@
 	
 	
 	
-	a.categoryheader>span{
+	 a.categoryheader>label{
 		font-size: 18px;
 	    font-weight: 1000;
 	    position: relative;
 	    color: #888;
-	}
-	a.categoryheader>span:hover {
+	} 
+	a.categoryheader>label:hover {
 		color: #000
 	}
-	span::after {
+	label::after {
 		content: '';
 	    display: block;
 	    width: 0;
@@ -149,7 +149,7 @@
 	    background-color: #cff0cc;
 	    opacity: 0.9;
 	}
-	a.categoryheader:hover span::after {
+	a.categoryheader:hover label::after {
 	    width: 100%;
 	    transition: width .3s;
 	}
@@ -162,6 +162,7 @@
 			<div class="categoryTotal">	
 				<c:forEach var="category" items="${category}" >
 					<a class="categoryheader" href="/jogong/category/categoryDetail?num=${category.num}">
+						<label class="catelabel">
 						<img src="${category.categoryImage }" class="cateImage" ><br>
 						<c:set var="s1" value="${category.num }"></c:set>
 						<c:if test="${categoryNum==s1}">
@@ -169,7 +170,8 @@
 						</c:if>
 						<c:if test="${categoryNum!=s1}">
 							<span>${category.name }</span>
-						</c:if>					
+						</c:if>	
+						</label>				
 					</a>
 				</c:forEach>
 				<div style="margin-top:20px;  border-bottom: 1px solid #ebebeb; width: 100%;"></div>
