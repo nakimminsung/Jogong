@@ -25,6 +25,8 @@ public interface UserDaoInter {
 	public List<QnaDto> getQnaList(int userNum);
 	//아이디 찾기
 	public String searchId(Map<String, String> map);
+	//비밀번호 찾기 전 정보확인 및 정보 가져오기
+	public UserDto searchPass(Map<String, String> map);
 	// 친구 추가
 	public void insertFriend(HashMap<String,Object> map);
 	// 친구 삭제
@@ -33,6 +35,8 @@ public interface UserDaoInter {
 	public void updateFriend(HashMap<String,Object> map);
 	// 단일 유저 조회
 	public UserDto selectUser(int userNum);
+
 	// 유저 비번 수정
 	public void updateUserPass(UserDto dto);
+
 }
