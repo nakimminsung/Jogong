@@ -201,7 +201,7 @@
 		 			s += "</div>";
 		 			s += "</div>";
 		 			s += "</div>";
-		 			s += "</div>";
+		 			s += "</div>"; 
 						
 				});
 				$("div.wish-result").html(s);
