@@ -52,6 +52,7 @@ $(function () {
 
 	
 	
+	
 	//확인(전송) 버튼
 	$("#btnSend").click(function () {
 	
@@ -62,19 +63,22 @@ $(function () {
 		
 		$.ajax({
 			type:"get",
-			dataType:"html",
-			url:"searchPass",
+			dataType:"text",
+			url:"../searchPass2",
 			data:{"email":email,"password":password},
 			success:function(res){
 				
-				alert('비밀번호가 변경되었습니다.');
+				//alert('비밀번호가 변경되었습니다.');
 				
-				close();
+				alert(email+ " - " +password);
+				
+				//close();
 			}
 			
 		}); //ajax 종료
 	
 	}); //전송(클릭) 이벤트 종료
+	
 	
 })
 </script>
@@ -86,12 +90,30 @@ $(function () {
 		<button class="numCheck">확인</button>
 	</div>
 		
+	
 	<div class="updatePass" style="display: none;">
 		비밀번호: <input type="password" class="pass1" name="password" placeholder="영문,숫자,특수문자(최소 8자리)" required="required"><br>
 		비밀번호 확인: <input type="password" class="pass2" placeholder="영문,숫자,특수문자(최소 8자리)" required="required"><br>
 		
 		<button class="btn btn-secondary" id="btnSend">확인</button>
 	</div>
+	
+	<%-- 
+	<div class="updatePass" style="display: none;">
+	
+		<form action="../searchPass2"  method="get" enctype="multipart/form-data">
+			<input type="hidden" name="email" value="${sessionScope.email}">
+			
+			비밀번호: <input type="password" class="pass1" name="password" placeholder="영문,숫자,특수문자(최소 8자리)" required="required"><br>
+			비밀번호 확인: <input type="password" class="pass2" placeholder="영문,숫자,특수문자(최소 8자리)" required="required"><br>
+			
+			<button type="submit" class="btn btn-secondary" id="btnSend">확인</button>
+		</form>
+	</div>
+	 --%>
+	
+	
+	
 </body>
 
 </html>

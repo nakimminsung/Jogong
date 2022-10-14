@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import bit.data.dto.FaqCategoryDto;
 import bit.data.dto.FaqDto;
@@ -84,7 +85,7 @@ public class CscenterController {
 	   
 	   
 	   @PostMapping("/qnainsert")
-	   public String insert(QnaDto dto, HttpServletRequest request, MultipartFile upload, Model model)
+	   public ModelAndView insert(QnaDto dto, HttpServletRequest request, MultipartFile upload, Model model)
 	   {
 	      // 업로드 경로 + 경로 확인
 	      String path = request.getSession().getServletContext().getRealPath("/resources/upload");
@@ -123,13 +124,11 @@ public class CscenterController {
 	      dto.setQnaStatus(qnaStatus);
 	        
 	      // db에 insert : service의 insertQna에 dto값 전달
-	      csService.insertQna(dto);
-	      
-	      model.addAttribute("msg", "아이디 또는 비밀번호가 잘못되었습니다.");
-	      model.addAttribute("url", "login.do");
-	      
-	      // 마이페이지 내 문의내역으로 이동
-	      return "redirect:/mypage/qna";
+	      ModelAndView mv = new ModelAndView();
+          mv.setViewName("/alert/alert");
+          mv.addObject("msg", "등록이 완료되었습니다.");
+          mv.addObject("url", "/jogong/mypage/qna");
+          return mv;
 	      
 	   }
 	   
