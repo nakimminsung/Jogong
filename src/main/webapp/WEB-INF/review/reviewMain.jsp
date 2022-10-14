@@ -229,9 +229,9 @@
 	        			</div>
 	        			
 	        			<div class="back">
-	        				<h5 style="text-align: center; font-weight: 900;">${dto.subject }</h5 >
+	        				<h5 style="text-align:center; font-weight: 900;">${dto.subject }</h5 >
 	        				<div class="backTop">
-	        					<p style="color: gray; text-align: center;">${dto.content }</p>
+	        					<p style="color: gray; text-align: left;">${dto.content }</p>
 	        				</div>
 	        				<div class="backBottom" style="position: left;">
 	        					<a href="${root }/jogong/product/detail?num=${dto.productNum}" style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 190px;'>${dto.name }</a>
