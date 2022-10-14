@@ -31,10 +31,6 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	
 <style>
-	a.header-event>span{
-		color:#000 !important;
-		border-bottom: 5px solid #cff0cc;
-	}
 	@font-face {
 	    font-family: 'SeoulNamsanM';
 	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');
