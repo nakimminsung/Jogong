@@ -380,7 +380,7 @@ public class LoginController {
 	@GetMapping("/loginForm/searchId")
 	public String searchId() {
 		
-		return "/bit/login/searchId";
+		return "/bit/loginPopup/searchId";
 	}
 	
 	
@@ -399,7 +399,7 @@ public class LoginController {
 	@GetMapping("/loginForm/searchPass")
 	public String searchPass() {
 		
-		return "/bit/login/searchPass";
+		return "/bit/loginPopup/searchPass";
 		
 	}
 	
@@ -439,7 +439,7 @@ public class LoginController {
 			}
 
 			ModelAndView mv = new ModelAndView();
-			mv.setViewName("/login/checkNum");
+			mv.setViewName("/loginPopup/checkNum");
 			mv.addObject("num", num);
 			
 			return mv;
