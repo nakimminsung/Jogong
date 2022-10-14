@@ -28,14 +28,12 @@
 	}
 	
 	.all{
-		width: 60%;
-		height: 300px;
+		width: 100%;
+		height: 330px;
 		
-		margin-left:20%;
-		margin-right:20%;
+		text-align: center;
 		
-		background-color: #f5f5f5;
-		
+		padding-top: 70px;
 	}
 </style>
 </head>
@@ -43,8 +41,9 @@
 
 	<div class="all">
 	
+		<h3>아이디 찾기</h3><br>
 		<div class="textbox">
-	  		이름:<input class="userName" type="text" required="required" placeholder="이름을 입력하세요" /><br>
+	  		&nbsp;&nbsp;&nbsp;이름:<input class="userName" type="text" required="required" placeholder="이름을 입력하세요" /><br>
 	  		연락처:<input class="userPhone" oninput="autoHyphen2(this)" required="required" placeholder="010-0000-0000"/>
 		</div><br><br>
 	   	<button type="button" class="btn btn-outline-secondary">아이디 찾기</button>
@@ -84,6 +83,11 @@
 	   .replace(/[^0-9]/g, '')
 	  .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
 	}
+	
+
+	
+	
+	
 </script>
 
 </html>

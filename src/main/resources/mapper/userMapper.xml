@@ -51,9 +51,15 @@
 		    on qa.qnaCategoryNum = qc.num
 		     where userNum=#{userNum}
 	</select>
+	
 	<!-- 아이디 찾기 -->
 	<select id="searchId" parameterType="Map"  resultType="String">
 		select email from user where nickname=#{nickname} and phone=#{phone}
 	</select>
-
+	
+	<!-- 비밀번호 찾기 후 변경 -->
+	<update id="updatePass" parameterType="userDto">
+		update user set profileImage=#{profileImage},password=#{password},nickname=#{nickname},phone=#{phone},address=#{address},salt=#{salt},status=#{status} where email=#{email}
+	</update>
+	
 </mapper>

@@ -128,8 +128,13 @@ $(document).ready(function(){
 					<label style="float: left;"><input type="checkbox" class="form-check-input checkUser" id="rememberId" ${rememberId=='yes' ? 'checked' : ''}> 아이디 저장</label>
 					
 					<div style="float: right;">
-						<a href="javascript:void(0);" onclick="window.open('http://localhost:9000/jogong/loginForm/searchId', 'pop01', 'width=500px, height=300px, status=no, menubar=no, toolbar=no, resizable=no');"
-							style="border-bottom: 1px solid black; cursor: pointer;">아이디 찾기</a>&nbsp;/
+						<!-- 
+						<a href="javascript:void(0);" onclick="window.open('http://localhost:9000/jogong/loginForm/searchId', '아이디 찾기', 'width=300, height=300');" 
+						style="border-bottom: 1px solid black; cursor: pointer;">아이디 찾기</a>&nbsp;/
+							 -->
+							
+						<a href="javascript:openWindowPop('http://localhost:9000/jogong/loginForm/searchId', 'popup');" style="border-bottom: 1px solid black; cursor: pointer;">아이디 찾기</a>&nbsp;/
+						
 						<a href="#" style="border-bottom: 1px solid black; cursor: pointer;">비밀번호 찾기</a>
 					</div>
 				</div>	
@@ -152,6 +157,8 @@ $(document).ready(function(){
 
 			</div>	<!-- 일반 회원 div 종료 -->
 
+			
+			
 			
 			
 				
@@ -343,6 +350,16 @@ $(document).ready(function(){
 			
 		});	//ajax 종료
 	});	//로그인 버튼 이벤트 종료
+	
+	
+	
+	//윈도우팝업 테스트
+	function openWindowPop(url, name){
+        var options = 'top=100, left=650, width=500, height=300, status=no, menubar=no, toolbar=no, resizable=no';
+
+        window.open(url, name, options);
+    }
+	
 	
 	
 </script>
