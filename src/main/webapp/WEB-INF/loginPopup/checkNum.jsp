@@ -67,9 +67,9 @@ $(function () {
 			data:{"email":email,"password":password},
 			success:function(res){
 				
-				alert('비밀번호가 변경되었습니다.');
+				alert("dd");
 				
-				close();
+			
 			}
 			
 		}); //ajax 종료

@@ -397,37 +397,6 @@ public class LoginController {
 	}
 	
 
-	//비번찾기 후 비번수정
-	@GetMapping("/searchPass")
-	public void updateUserPass(HttpSession session, UserDto dto, HttpServletRequest request) {
-		
-		//세션에 저장되어있는 email 가져오기
-		String email=(String) session.getAttribute("email");
-		
-		//입력받은 비밀번호 가져오기
-		String password=request.getParameter("password");
-		
-		//salt 설정해주기
-		String salt=SHA256Util.generateSalt();
-		
-		//비밀번호 암호화 (salt 적용)
-		password=SHA256Util.getEncrypt(password, salt);
-		
-		
-		//dto에 담기
-		dto.setEmail(email);
-		dto.setSalt(salt);
-		dto.setPassword(password);
-		
-		System.out.println(dto);
-		
-		//dto 정보를 보내기(비번수정)
-		userService.updateUserPass(dto);
-				
-		//완료 후 세션제거
-		session.removeAttribute("email");
-		
-	}
 	
 
 	//비밀번호 사이트 이동
@@ -496,5 +465,42 @@ public class LoginController {
 		
 		}
 	}
+	
+	//비번찾기 후 비번수정
+		@GetMapping("/searchPass")
+		public void updateUserPass(HttpSession session, UserDto dto, HttpServletRequest request) {
+			
+			/*
+			 * //세션에 저장되어있는 email 가져오기 String email=(String) session.getAttribute("email");
+			 */
+			
+			//입력받은 비밀번호 가져오기
+			String email=request.getParameter("email");
+			//입력받은 비밀번호 가져오기
+			String password=request.getParameter("password");
+			
+			System.out.println(password);
+			
+			//salt 설정해주기
+			String salt=SHA256Util.generateSalt();
+			
+			//비밀번호 암호화 (salt 적용)
+			password=SHA256Util.getEncrypt(password, salt);
+			
+			
+			//dto에 담기
+			dto.setEmail(email);
+			dto.setSalt(salt);
+			dto.setPassword(password);
+			
+			System.out.println(dto);
+			
+			//dto 정보를 보내기(비번수정)
+			userService.updateUserPass(dto);
+					
+			//완료 후 세션제거
+			session.removeAttribute("email");
+			
+		}
 
 }
