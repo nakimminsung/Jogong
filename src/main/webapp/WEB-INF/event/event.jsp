@@ -105,51 +105,6 @@
 		min-height: 100px;
 	}
 </style>
-<script>
-	$(function(){
-		// 이벤트리스트 함수 호출
-		eventList()
-	});
-	
-	// 이벤트 리스트 함수
-	function eventList(){
-		var s="";
-		
-		$.ajax({
-			type: "get",
-			url: "../event/list",
-			dataType: "json",
-			success:function(res){
-				
-				$.each(res, function(i,elt) {
-					
-					s += "<div class='event-object'>";
-					s += "<a href='#' class='card'>";
-					s += "<img class='card-img-top' src='"+elt.thumbnailImageUrl+"'>";
-					s += "<div class='card-body'>";
-					s += "<span class='event-obeject-brand'>"+elt.brand+"</span>";
-					s += "<span class='event-obeject-title card-title'>"+elt.subject+"</span>";
-					s += "</div>";
-					s += "</a>";
-					s += "</div>";
-					
-				});
-				$("div.event-list-result").html(s);
-			}
-		});
-		
-	/* 	$.ajax({
-			type: "get",
-			url: "../user/friendCount",
-			dataType: "json",
-			data: {"userNum":userNum},
-			success:function(res){
-				
-				$("span.friend-count").text(res);
-			}
-		}); */
-	}
-</script>
 </head>
 <body>
 	<div class="event-wrapper" style="display: flex; flex-direction: column; align-items: center; max-width: 1180px; margin: 0 auto; min-height: 1000px; margin-top: 30px;">
@@ -181,4 +136,34 @@
 		</div>
 	</div>
 </body>
+<script>
+	eventList()
+	
+	function eventList(){
+		var s="";
+		
+		$.ajax({
+			type: "get",
+			url: "../event/list",
+			dataType: "json",
+			success:function(res){
+				
+				$.each(res, function(i,elt) {
+					
+					s += "<div class='event-object'>";
+					s += "<a href='#' class='card'>";
+					s += "<img class='card-img-top' src='"+elt.thumbnailImageUrl+"'>";
+					s += "<div class='card-body'>";
+					s += "<span class='event-obeject-brand'>"+elt.brand+"</span>";
+					s += "<span class='event-obeject-title card-title'>"+elt.subject+"</span>";
+					s += "</div>";
+					s += "</a>";
+					s += "</div>";
+					
+				});
+				$("div.event-list-result").html(s);
+			}
+		});
+	}
+</script>
 </html> 
