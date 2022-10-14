@@ -695,7 +695,6 @@ form h1 {
 			} else {
 				location.href="../loginForm";
 			}
-			return
 		} else {
 			var data = $("#insertDetail").serialize();
 	  		var s ="";
@@ -706,7 +705,6 @@ form h1 {
 	  			data:data,
 	  			success:function(res){
 					alert("선물상자에 상품을 담았어요");
-			   
 	  			},
 	  		});
 		}
@@ -747,7 +745,6 @@ form h1 {
 			} else {
 				location.href="../loginForm";
 			}
-			return;
 		}else {
 	    	modal3.style.display = "flex"
 		}
@@ -854,7 +851,7 @@ form h1 {
       $("#detailReview").click(function(){
       	var s = "";
       	var productNum = $('input[name=productNum]').val();
-      	console.log(productNum);
+    
       	$.ajax({
   			type:"get",
   			url:"../review/productReview",
@@ -958,6 +955,7 @@ form h1 {
 	
 	// 나에게 선물하기 
 	$("#btn_selfGift").click(function(){
+		var drop = $(".dropdown").attr("class");
 		var sizeOption = $("input[name=sizeOption]").val();
 		var optionNum = $("input[name=optionNum]").val();
 
@@ -1097,11 +1095,12 @@ form h1 {
 						item.addEventListener("click", function (e) {
 						    var selectValue = e.currentTarget.value;
 						    var selectText = e.currentTarget.textContent.trim();						   
-						  //  console.log("val"+selectValue);
+							
 						    dropdownBtn.textContent = selectText;
 						    dropdownBtn.classList.add("selected");
 						    
 						    $('input[name=optionNum]').attr('value', selectValue);
+						    
 				  		});
 					});
 					
