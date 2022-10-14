@@ -423,7 +423,7 @@
 					s += "<div style='margin-right:50px;'>";
 					s += "<input type='radio' style='margin-right:10px;' class='chkBox' name='radio'>";
 					s += "<label>";
-					s += "<img src='"+elt.profileImage+"' width='100' class='gift-friend-img' style='margin-right:5px;'>";
+					s += "<img src='"+elt.profileImage+"' width='100' class='gift-friend-img' style='margin-right:5px;' onerror='this.src=\"${root}/image/user_default.png\";'>";
 					s += "<b num='"+elt.num+"'>"+elt.nickname+"</b>";
 					s += "</label>";
 					s += "</div>";

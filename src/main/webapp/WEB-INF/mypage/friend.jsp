@@ -584,7 +584,7 @@
 					
 					s += "<div class='friend-object'>";
 					s += "<div class='friend-object-left'>";
-					s += "<img src='"+elt.profileImage+"'>";
+					s += "<img src='"+elt.profileImage+"' onerror='this.src=\"${root}/image/user_default.png\";'>";
 					s += "</div>";
 					s += "<div class='friend-object-right'>";
 					s += "<div class='friend-info'>";
@@ -636,7 +636,7 @@
 					
 					s += "<div class='friend-object'>";
 					s += "<div class='friend-object-left'>";
-					s += "<img src='"+elt.profileImage+"'>";
+					s += "<img src='"+elt.profileImage+"' onerror='this.src=\"${root}/image/user_default.png\";'>";
 					s += "</div>";
 					s += "<div class='friend-object-right'>";
 					s += "<div class='friend-info'>";
@@ -685,11 +685,11 @@
 				
 				$.each(res, function(i,elt) {
 					
-					s += "<li style='list-style:none; float:left;'>";
-					s += "<div style='margin-right:50px;'>";
+					s += "<li style='list-style:none; float:left; margin-bottom:10px;'>";
+					s += "<div style='min-width:170px;'>";
 					s += "<input type='checkbox' style='margin-right:10px;' class='chkBox' name='friend' num='"+elt.num+"'>";
 					s += "<label>";
-					s += "<img src='"+elt.profileImage+"' width='100' class='gift-friend-img' style='margin-right:5px;'>";
+					s += "<img src='"+elt.profileImage+"' width='100' class='gift-friend-img' style='margin-right:5px;' onerror='this.src=\"${root}/image/user_default.png\";'>";
 					s += "<b num='"+elt.num+"'>"+elt.nickname+"</b>";
 					s += "</label>";
 					s += "</div>";
