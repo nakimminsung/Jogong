@@ -97,21 +97,27 @@
 	div.tagList{
 		background-color: #94E3f7;
 	}
+	.hide {
+		display: none !important;
+	}
 </style>
 </head>
 <script type="text/javascript">
 	$(function(){
-		getThemeList(2);
+		getThemeList(1);
 
 		$("div.tp").click(function(){
 			var themeNum = $(this).attr("themeNum");
 			getThemeList(themeNum);
 			//getTagList(themeNum);
+			$(".loadProduct").css("display","block");
 		});
 		
 	    $(".loadProduct").click(function(e){ 
 	        e.preventDefault();
-	        $("div.cardTheme:hidden").slice(0, 3).show();
+	        //$("div.cardTheme:hidden").slice(2, -1).show();
+	        $("div.hide").attr("class","card cardTheme");
+	        $(".loadProduct").css("display","none");
 	    });    
 	});
 	 
@@ -125,19 +131,30 @@
 				success:function(res){
 
 					$.each(res,function(i,e){
-						s+="<div class='card cardTheme' onclick=\"location.href='product/detail?num="+e.num+"'\">";
-							s+="<img class='card-img-top' src='"+ e.thumbnailImageUrl+"' alt='Card image cap'>";
-							s+="<div class='card-body'>";
-								s+="<h5 class='card-title'>"+e.brand+"</h5>";
-								s+="<p class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 350px;'>"+e.name+"</p>";
-								s+="<p class='card-text'><b>&#8361;"+e.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+"</b></p>";
+						if(2<i) {
+							s+="<div class='card cardTheme hide' onclick=\"location.href='product/detail?num="+e.num+"'\">";
+								s+="<img class='card-img-top' src='"+ e.thumbnailImageUrl+"' alt='Card image cap'>";
+								s+="<div class='card-body'>";
+									s+="<h5 class='card-title'>"+e.brand+"</h5>";
+									s+="<p class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 350px;'>"+e.name+"</p>";
+									s+="<p class='card-text'><b>&#8361;"+e.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+"</b></p>";
+								s+="</div>";
 							s+="</div>";
-						s+="</div>";
+						} else {
+							s+="<div class='card cardTheme' onclick=\"location.href='product/detail?num="+e.num+"'\">";
+								s+="<img class='card-img-top' src='"+ e.thumbnailImageUrl+"' alt='Card image cap'>";
+								s+="<div class='card-body'>";
+									s+="<h5 class='card-title'>"+e.brand+"</h5>";
+									s+="<p class='card-text' style='text-overflow:ellipsis;overflow: hidden;white-space: nowrap;display: block;max-width: 350px;'>"+e.name+"</p>";
+									s+="<p class='card-text'><b>&#8361;"+e.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+"</b></p>";
+								s+="</div>";
+							s+="</div>";
+						}
 					}); 
 					
 					$("div.productTheme").html(s);
 					
-					$("div.cardTheme").slice(0, 6).hide(); 
+					//$("div.cardTheme").slice(2,-1).hide(); 
 				}
 			});
 		}
