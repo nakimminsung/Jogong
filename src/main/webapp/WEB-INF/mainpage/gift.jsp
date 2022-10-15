@@ -259,6 +259,12 @@
 		} else {
 			//  로그인 상태일 때 모달띄우기 & 친구목록 불러오기
 		    modal.style.display = "flex";
+			
+			let fs="";
+		    fs += "<img src='${root }/image/default.png' class='gift-friend-img'>";
+            fs += "선물할 친구를 선택하세요.";
+            $("div.friend-select-list").html(fs);
+            
 			let data = {
 					userNum:$("input[name=userNum]").attr("value"),
 					friendNum:$("input[name=userNum]").attr("value"),
@@ -278,9 +284,9 @@
 		
 		$(".chkBox:checked").each(function() {
 			var map = new Map();
-		    map.set("b",$(this).siblings().find("b").text()); 
-		    map.set("img",$(this).siblings().find("img").attr("src")); 
-		    map.set("num",$(this).siblings().find("b").attr("num")); 		    	 		    	 	    	 		    	 
+		    map.set("b",$(this).attr("nickName")); 
+		    map.set("img",$(this).attr("src")); 
+		    map.set("num",$(this).attr("num")); 		    	 		    	 	    	 		    	 
 		    ba.push(map);
 		});			
 			
@@ -290,7 +296,8 @@
 			$.each(ba, function(i,elt) {
 				fs += "<li style='list-style:none; float:left;' class='wish' num='"+elt.get("num")+"' name='"+elt.get("b")+"'>";
 				fs += "<img src='"+elt.get("img")+"' width='50' style='margin-top:10px;' class='gift-friend-img wish'>";
-				fs += "<div style='text-align:center;'>"+elt.get("b")+"</div>";
+				fs += "<i class='fas fa-times-circle' style='position:relative; top:-6px; left:-19px; opacity:0.8; font-size:24px;'></i>";
+				fs += "<div style='text-align:center; position:relative; left:-7px;'>"+elt.get("b")+"</div>";
 				fs += "</li>";
 			});
 			fs += "</ul>";				
@@ -303,6 +310,14 @@
             fs += "선물할 친구를 선택하세요.";
             $("div.friend-select-list").html(fs);
 		}
+	});
+	
+	// 선택한 상단의 친구 삭제하기
+	$(document).on("click","li.wish",function(){
+		let fs="";
+	    fs += "<img src='${root }/image/default.png' class='gift-friend-img'>";
+        fs += "선물할 친구를 선택하세요.";
+        $("div.friend-select-list").html(fs);
 	});
 		
 	// 친구 선택 후 친구의 위시리스트 출력
@@ -420,9 +435,9 @@
 				$.each(res, function(i,elt) {
 					
 					s += "<li style='list-style:none; float:left;'>";
-					s += "<div style='margin-right:50px;'>";
-					s += "<input type='radio' style='margin-right:10px;' class='chkBox' name='radio'>";
 					s += "<label>";
+					s += "<div style='margin-right:50px;'>";
+					s += "<input type='radio' style='margin-right:10px;' class='chkBox' name='radio' num='"+elt.num+"' nickName='"+elt.nickname+"' src='"+elt.profileImage+"'>";
 					s += "<img src='"+elt.profileImage+"' width='100' class='gift-friend-img' style='margin-right:5px;' onerror='this.src=\"${root}/image/user_default.png\";'>";
 					s += "<b num='"+elt.num+"'>"+elt.nickname+"</b>";
 					s += "</label>";
