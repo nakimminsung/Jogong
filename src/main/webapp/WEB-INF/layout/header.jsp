@@ -165,7 +165,10 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 	    font-weight: 500;
 	    padding-left: 20px;
 	    padding: 12px;
+	    
+	   
 	}
+	
 	
 	/* 드롭다운 메뉴 화면 해상도에 따른 설정 */
 	@media ( max-width: 1920px ) {
@@ -175,6 +178,12 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 		}
 	}
 	@media ( max-width: 1900px ) {
+		.quick {
+			position: absolute;
+			right:15%;
+		}
+	}
+	@media ( max-width: 1680px ) {
 		.quick {
 			position: absolute;
 			right:9%;

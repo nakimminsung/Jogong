@@ -206,6 +206,7 @@ $(document).ready(function(){
 	// 초기화할 때 로그아웃
 	naverLogin.logout();
 	
+	
 	//네이버 로그인 정보 가져와서 담기
 	naverLogin.getLoginStatus(function (status) {
       if (status) {
@@ -216,6 +217,7 @@ $(document).ready(function(){
 		let oldbirthday=naverLogin.user.getBirthday();
 		let birthday=oldbirthday.replace(/-/g, "");
 		 
+		
 		//회원가입 or 로그인을 위한 Data 전달
 		$.ajax({  
 			type:"post",
@@ -233,8 +235,10 @@ $(document).ready(function(){
 			}//error
 	
 		});//ajax 종료
-
+ 
 		
+ 		console.log(email);
+ 
 		}	//if 종료
 	});	//naverLogin.getLoginStatus 종료
 	
@@ -349,7 +353,7 @@ $(document).ready(function(){
 	
 	//윈도우팝업 테스트
 	function openWindowPop(url, name){
-        var options = 'top=100, left=650, width=500, height=300, status=no, menubar=no, toolbar=no, resizable=no';
+        var options = 'top=100, left=600, width=500, height=300, status=no, menubar=no, toolbar=no, resizable=no';
 
         window.open(url, name, options);
     }
