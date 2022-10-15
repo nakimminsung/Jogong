@@ -487,7 +487,8 @@ public class LoginController {
 					}else {
 						ModelAndView mv = new ModelAndView();
 						mv.setViewName("/alert/alert");
-						mv.addObject("msg", "아이디 또는 이름이 잘못되었습니다. '\n'소셜로그인의 경우 해당 소셜에서 비밀번호 변경해야합니다.");
+						mv.addObject("msg1", "아이디 또는 이름이 잘못되었습니다.");
+						mv.addObject("msg2", "소셜로그인의 경우 해당 소셜에서 비밀번호 변경해야합니다.");
 						mv.addObject("url", "/jogong/loginForm/searchPass");
 						return mv;
 						

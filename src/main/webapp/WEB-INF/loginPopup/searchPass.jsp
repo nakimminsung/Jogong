@@ -24,17 +24,29 @@
 		 font-family: 'SeoulNamsanM';
 		 word-spacing: -1px;
 	}
+	.all{
+		width: 100%;
+		height: 330px;
+		
+		text-align: center;
+		
+		padding-top: 50px;
+	}
 </style>
 </head>
 <body>
+<div class="all">
+	<h3>비밀번호 찾기</h3>
+	<hr style="width: 130px; height: 10px; position: relative; top:-25px; left:156px; color: #cff0cc; opacity: 1; z-index: -1;">
 	<form class = "content" action="pw_auth.me" method="post">
 		<div class="textbox">
-	  		이름:<input id="text" name=nickname required="required" type="text" />
+	  		&nbsp;&nbsp;&nbsp;이름:<input id="text" name=nickname required="required" type="text" placeholder="이름" />
  		</div>
-	<div class="textbox">
-  		아이디:<input id="email" name=email placeholder="이메일 형식"/>
-	</div><br><br>
-   	<input type="submit" id="check" value="비밀번호찾기">
-</form>
+		<div class="textbox">
+  			아이디:<input id="email" name=email placeholder="이메일 형식" style="margin-top: 5px;"/>
+		</div><br>
+   			<input type="submit" class="btn btn-outline-secondary" id="check" value="비밀번호찾기">
+	</form>
+</div>
 </body>
 </html>
