@@ -123,10 +123,9 @@
 		<div class="event-middle" style=" width:100%; display:flex; justify-content: space-between; padding: 0 25px;">
 			<div class="event-count"></div>
 			<div class="event-option">
-				<select class="form-select">
-					<option>최신순</option>
-					<option>인기순</option>
-					<option>가나다순</option>
+				<select class="form-select event-select" name="sort">
+					<option value="createdAt desc" selected>최신순</option>
+					<option value="readCount desc">인기순</option>
 				</select>
 			</div>
 		</div>
@@ -137,19 +136,24 @@
 	</div>
 </body>
 <script>
-	eventList()
-	
-	function eventList(){
-		var s="";
+	$(function(){
+		eventList("createdAt desc")
 		
+		$(".event-select").change(function(){
+			var sort=$(this).val();
+			eventList(sort)
+		});
+	});
+	
+	function eventList(sort){
+		var s="";
 		$.ajax({
 			type: "get",
 			url: "../event/list",
+			data:{"sort":sort},
 			dataType: "json",
 			success:function(res){
-				
 				$.each(res, function(i,elt) {
-					
 					s += "<div class='event-object'>";
 					s += "<a href='#' class='card'>";
 					s += "<img class='card-img-top' src='"+elt.thumbnailImageUrl+"'>";
@@ -159,7 +163,6 @@
 					s += "</div>";
 					s += "</a>";
 					s += "</div>";
-					
 				});
 				$("div.event-list-result").html(s);
 			}

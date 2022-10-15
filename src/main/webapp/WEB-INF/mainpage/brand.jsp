@@ -78,17 +78,19 @@
     });
 	function eventList(){
 		
+		var sort="createdAt desc";
 		var s="";
 		
 		$.ajax({
 			type:"get",
 			url:"event/list",
+			data:{"sort":sort},
 			dataType:"json", 
 			success:function(res){
 				
 				$.each(res,function(i,elt){
 					
-					s += "<li>";
+					s += "<li style='cursor:pointer;'>";
 					s += "<div class='card' style='width:200px; height:330px;'>";
 					s += "<img class='card-img-top' src='"+elt.thumbnailImageUrl+"' style='width: 200px; height:250px;'/>";
 					s += "<div class='card-body' style='width:200px; height:80px;'>";

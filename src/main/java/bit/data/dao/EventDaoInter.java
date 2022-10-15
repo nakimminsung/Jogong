@@ -5,5 +5,5 @@ import java.util.List;
 import bit.data.dto.EventDto;
 
 public interface EventDaoInter {
-	public List<EventDto> selectEventList();
+	public List<EventDto> selectEventList(String sort);
 }
