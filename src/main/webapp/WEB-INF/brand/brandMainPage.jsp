@@ -51,7 +51,7 @@ div#brandContent{
 	width:70%;
 	float: right;
 	justify-content: flex-start;
-	
+	margin-top: 30px;
 }
 
 div.search-box{
@@ -230,13 +230,45 @@ $(function(){
 	
 	
 // 무한 스크롤
+var bno = 0;
+var ctx = $('.card-wrapper');
+$(window).scroll(function () {
+	if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+		 var s= "";
+		 // 마지막 브랜드 번호 +10
+	   	 bno += 10;
+		 $.ajax({
+				type:"get",
+				url:"infiniteScrollDown",
+				dataType:"json",
+				data:{"bno":bno},
+				success:function(res){
+//					$(".card-wrapper").empty();	
+					
+					$.each(res, function(i,elt) {
+						console.log(bno)
+						s+="<div class='container mt-3' style='width:50%; height:500px; cursor:pointer;'>";
+						s+="<div class='card' data-bno="+elt.scrollnum+">";
+						s+="<a href='detail?brand="+elt.companyName+"'>"
+						s+="<img class='card-img-top' src="+elt.brandphoto+" alt='Card image' style='width:100%; height:250px;'>";
+						s+="<div class='card-body'>";
+						s+="<h5 class='card-text'>"+elt.companyName+"</h5>";
+						s+="<p class='card-title' style='display: -webkit-inline-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;'>"+elt.description+"</p>";
+						s+="</div></div></div>";
+						  
+						
+					});
+					$(".card-wrapper").append(s);
+				}
+			});
+		
+	}
+});
 
-// 이전 스크롤 좌표
-var lastScrollTop = 0;
 
-// 스크롤 이벤트 최초 발생
-	
-	
+
+
+
 </script>
 
 
@@ -265,7 +297,9 @@ var lastScrollTop = 0;
 		<div id="brandContent">
 
 			<div class="row wider justify-content-center">
-			  <div class="col col-2"><h1>브랜드</h1></div>
+			  <div class="col col-2"><h2 style="font-weight: bold; display: flex; flex-direction: column;justify-content: center;align-items: center;width: 100%;">브랜드</h2>
+			  <hr style="width: 100px; left:10px; height: 10px;position: relative;top: -25px;color: #cff0cc;opacity: 1;z-index: -1;"></div>
+			  
 			</div>
 			
 			<div class="row wider justify-content-center">

@@ -33,12 +33,18 @@ public class ReviewDao implements ReviewDaoInter {
 		
 		return session.selectOne(ns+"getTotalCount",map);
 	}
-
+	
 	@Override
-	public List<ReviewDto> getPagingList(Map<String, Object> map) {
-		
-		return session.selectList(ns+"getPagingList",map);
+	public List<ReviewDto> getReviewList() {
+		// TODO Auto-generated method stub
+		return session.selectList(ns+"getReviewList");
 	}
+
+//	@Override
+//	public List<ReviewDto> getPagingList(Map<String, Object> map) {
+//		
+//		return session.selectList(ns+"getPagingList",map);
+//	}
 
 	// 상세페이지 
 	@Override

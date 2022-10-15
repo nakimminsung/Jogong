@@ -50,11 +50,23 @@
 	   align-items: center;
 	   margin-top: 1%;
 	}
+	.categoryHeader{
+	 margin-bottom: .5rem;
+    line-height: 1.2;
+    font-size: 2rem;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 15px;
+	}
 </style>
 </head>
 <body>
 <div style="width: 100%;" class="contentsBody">
-	<h2 style="font-weight: bold; display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%;">카테고리</h2><br>
+	<h2 class="categoryHeader" style="">카테고리</h2><br>
 	<hr style="width: 120px; height: 10px; position: relative; top:-55px; color: #cff0cc; opacity: 1; z-index: -1;">
 	<div class="categoryTotal">
 		<c:forEach var="cate" items="${category}" >

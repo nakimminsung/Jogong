@@ -184,10 +184,32 @@
 		<tr>
 			<td style="border: none;text-align: center;">
 				<br>
-				<button type="button" class="btnqna btn btn-outline-secondary" onclick="location.href='../cscenter/qnaform'">1:1문의하기</button>	
+				<button type="button" class="btnqna btn btn-outline-secondary">1:1문의하기</button>
+				
+				<!-- <button type="button" class="btnqna btn btn-outline-secondary" onclick="location.href='../cscenter/qnaform'">1:1문의하기</button> -->
 			</td>
 		</tr>	
 	</table>
 </div>	
 </body>
+<script>
+
+	//'1:1문의하기' 버튼 클릭 이벤트
+	$(".btnqna").click(function () {
+		
+		//로그인 상태가 아닐 경우
+		if(${sessionScope.loginok!="yes"}){
+			
+			alert("로그인 후 문의하실 수 있습니다.");
+			
+			return;
+		
+		//로그인 했을 경우
+		} else{
+			
+			location.href="/jogong/cscenter/qnaform";
+		}
+		
+	});
+</script>
 </html>

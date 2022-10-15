@@ -13,44 +13,43 @@
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script><!-- jquery -->
 
 <style>
-   *{
-      
-   }
-   
-   .all{
-      margin-top: 30px;
-      padding-left: 14%;
-      padding-right: 14%;
-      
-      width: 100%;
-      height: 100%;
-   }
-   
-   .productList{
-      display: flex;
-      flex-flow: row;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      
-   }
-   
-   .productImage{
-      width: 280px;
-      height: 280px;
-      margin-right: 15px;
-      border: 0.1px solid #d3d3d3;
-      border-radius: 5px;
-      margin-bottom: 5px;
-   }
-   
-   .productItem{
-      width: 280px;
-      margin-right: 15px;
-      margin-bottom: 20px;
-      
-   }
-   
-   
+
+	*{
+		
+	}
+	
+	.all{
+		margin-top: 30px;
+		margin: auto;
+		
+		width: 1200px;
+		height: 100%;
+	}
+	
+	.productList{
+		display: flex;
+		flex-flow: row;
+		flex-wrap: wrap;
+		justify-content: flex-start;
+		
+	}
+	
+	.productImage{
+		width: 280px;
+		height: 280px;
+		margin-right: 15px;
+		border: 0.1px solid #d3d3d3;
+		border-radius: 5px;
+		margin-bottom: 5px;
+	}
+	
+	.productItem{
+		width: 280px;
+		margin-right: 15px;
+		margin-bottom: 20px;
+		
+	}
+	
 
 </style>
 </head>

@@ -63,13 +63,14 @@
 <body>
 	<c:set var="root" value="<%=request.getContextPath() %>"/>
 	<div class="my-menu-wrapper">
+	<input type="hidden" name="birth" value="${sessionScope.loginBirth}">
 		<div class="my-profile">
 			<div class="my-pofile-left" style="display: flex; align-items: center;">
 				<img alt="profileImage" src="${sessionScope.loginphoto}" id="my-profile-img">
 			</div>
 			<div class="my-profile-right" style="padding-left: 10px; display:flex; flex-direction:column; justify-content: center; align-items: flex-start;">
 				<b style="font-size: 25px; display: block; font-weight: 1000;">${sessionScope.loginname}</b>
-				<b style="font-size: 15px;">내 생일은 6월 3일</b>
+				<b class="birth" style="font-size: 15px;">내 생일은 ${sessionScope.loginBirth}</b>
 			</div>
 		</div>
 		<div class="my-menu">
@@ -89,4 +90,24 @@
 		</div>
 	</div>	
 </body>
+<script>
+	var birth = $("input[name=birth]").val();
+	arr=[]	
+	arr = birth.split("");
+	var birth2 = arr.length==3?"0"+birth:birth;
+	arr = birth2.split("");
+	var s ="";
+	for(var i = 0; i < arr.length; i++){
+		if(arr[i]==0){
+		
+		} else if(i==1) {
+			s += arr[i];			
+			s += "월 ";
+		} else {
+			s += arr[i];			
+		}		
+	}
+	s += "일";
+	$(".birth").text("내 생일은 "+s);
+</script>
 </html>

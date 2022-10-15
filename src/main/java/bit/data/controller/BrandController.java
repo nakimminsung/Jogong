@@ -40,13 +40,9 @@ public class BrandController {
 
 	@GetMapping("/infiniteScrollDown")
 	@ResponseBody
-	public String infiniteScrollDown(Model model,int bno) {
+	public List<SellerDto> infiniteScrollDown(int bno) {
 		
-		List<SellerDto> brandlist = brandServiceInter.infiniteScrollDown(bno);
-		
-		model.addAttribute("list",brandlist);
-		
-		return "/bit/brand/brandMainPage";
+		return brandServiceInter.infiniteScrollDown(bno);
 	}
 	
 	//釉뚮옖�뱶由ъ뒪�듃

@@ -4,12 +4,16 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import bit.data.dto.SellerDto;
 import bit.data.service.SellerServiceInter;
@@ -35,7 +40,8 @@ public class LoginController {
 	@Autowired
 	SellerServiceInter sellerService;
 	
-	
+	@Autowired
+	private JavaMailSender mailSender;
 	
 	//최초 로그인 페이지
 	@GetMapping("/loginForm")
@@ -371,4 +377,131 @@ public class LoginController {
 		return "redirect:/";
 	}
 	
+	//아이디 찾기 페이지 이동
+	@GetMapping("/loginForm/searchId")
+	public String searchId() {
+		
+		return "/bit/loginPopup/searchId";
+	}
+	
+	
+	//아이디 찾기 ajax
+	@PostMapping("/loginForm/checkId")
+	@ResponseBody
+	public Map<String, String> checkId(String nickname,String phone,Model model) {
+		Map<String, String> map=new HashMap<String, String>();
+		String email=userService.searchId(nickname, phone);
+		map.put("emailCheck", email==null?"fail":"success");
+		map.put("email", email);
+		return map;
+	}
+	
+
+
+	//비번찾기 후 비번수정
+	@GetMapping("/searchPass2")
+	public String updateUserPass(String email, String password, HttpServletRequest request, HttpSession session) {
+
+		
+		//입력받은 비밀번호 가져오기
+		password=request.getParameter("password");
+		
+		//salt 설정해주기
+		String salt=SHA256Util.generateSalt();
+		
+		//비밀번호 암호화 (salt 적용)
+		password=SHA256Util.getEncrypt(password, salt);
+
+		
+		UserDto dto=new UserDto();
+		
+		//dto에 담기
+		dto.setEmail(email);
+		dto.setSalt(salt);
+		dto.setPassword(password);
+		
+		System.out.println(dto);
+		
+		//dto 정보를 보내기(비번수정)
+		userService.updateUserPass(dto);
+				
+		//완료 후 세션제거
+		session.removeAttribute("email");
+		
+		
+		//여기서는 의미없음 (정상적인 경로로만 써주면 됨)
+		return "/bit/main/main";
+		
+	}
+
+	
+
+	//비밀번호 사이트 이동
+	@GetMapping("/loginForm/searchPass")
+	public String searchPass() {
+		
+		return "/bit/loginPopup/searchPass";
+		
+	}
+	
+	
+	@PostMapping("/loginForm/pw_auth.me")
+	public ModelAndView pw_auth(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String email = (String)request.getParameter("email");
+		String nickname = (String)request.getParameter("nickname");
+		
+		UserDto vo = userService.searchPass(nickname, email);
+			
+			if( vo != null && vo.getLoginType().equals("일반")) {
+				Random r = new Random();
+				int num = r.nextInt(999999); // 랜덤난수설정
+		
+					if (vo.getNickname().equals(nickname)) {
+						session.setAttribute("email", vo.getEmail());
+
+						String setfrom = "sungmin9844@naver.com"; 
+						String tomail = email; //받는사람
+						String title = "[조공] 비밀번호변경 인증 이메일 입니다"; 
+						String content = System.getProperty("line.separator") + "안녕하세요" + System.getProperty("line.separator")
+						+ "조공 비밀번호찾기(변경) 인증번호는 " + num + " 입니다." + System.getProperty("line.separator"); // 
+
+						try {
+							MimeMessage message = mailSender.createMimeMessage();
+							MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "utf-8");
+
+							messageHelper.setFrom(setfrom); 
+							messageHelper.setTo(tomail); 
+							messageHelper.setSubject(title);
+							messageHelper.setText(content); 
+
+							mailSender.send(message);
+						} catch (Exception e) {
+							System.out.println(e.getMessage());
+						}
+
+						ModelAndView mv = new ModelAndView();
+						mv.setViewName("/loginPopup/checkNum");
+						mv.addObject("num", num);
+			
+						return mv;
+					}else {
+						ModelAndView mv = new ModelAndView();
+						mv.setViewName("/alert/alert");
+						mv.addObject("msg", "아이디 또는 이름이 잘못되었습니다. '\n'소셜로그인의 경우 해당 소셜에서 비밀번호 변경해야합니다.");
+						mv.addObject("url", "/jogong/loginForm/searchPass");
+						return mv;
+						
+					}
+			}else {
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("/alert/alert");
+			mv.addObject("msg1", "아이디 또는 이름이 잘못되었습니다.");
+			mv.addObject("msg2", "소셜로그인의 경우 해당 소셜에서 비밀번호 변경해야합니다.");
+			mv.addObject("url", "/jogong/loginForm/searchPass");
+			return mv;
+		
+		}
+	}
+	
+
 }

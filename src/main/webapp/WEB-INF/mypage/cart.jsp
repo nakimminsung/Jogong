@@ -347,7 +347,7 @@
         width: 400px;
         height: 600px;
         position: fixed;
-        top: 2%;
+        top: 80px;
         padding: 20px;
     }
     #gift-modal .gift-close-area {
@@ -417,7 +417,7 @@
     }
     div.friend-result{
     	overflow: auto;
-    	height: 230px; 	
+    	height: 290px; 	
     }
     div.friend-select-list {
     	height: 80px;
@@ -431,14 +431,143 @@
     button#cart-order-gift {
     	background-color: #cff0cc;
     }
-
+	button.getWishlist {
+    	background-color: #cff0cc;
+    }
 </style>
+<c:set var="root" value="<%=request.getContextPath() %>"/>
+</head>
+<body>
+	<div class="cart-wrapper">
+		<input type="hidden" name="userNum" value="${sessionScope.loginUserNum}" />
+		<div class="cart-top" style="z-index: 2;">
+			<div class="cart-title">
+				<span>장바구니</span>
+				<hr>
+			</div>
+			<div class="cart-total">
+				<div class="cart-total-left">
+					<input type="checkbox" id="cart-all-check">
+				</div>
+				<div class="cart-total-right" style="padding-right: 10px;">
+					<b style="color:#a0a0a0; cursor: pointer;" id="cart-all-delete">삭제하기</b>
+				</div>
+			</div>
+		</div>
+		<div class="cart-result" style="position: relative; top: -10px;">
+		</div>
+		<div class="cart-test" style="z-index: 100; width: 75%; display: flex; justify-content: flex-end; margin-top: 100px;">
+			<div class="cart-total-right" >
+				<div class="cart-total-right-price" style="margin-right: 10px;">
+					<b style="font-size:17px; font-weight: normal; margin-right: 30px;">총 결제 금액</b>
+					<b class="cart-total-price" style="font-size: 20px;">0</b>
+					<b style="font-size:17px; font-weight: normal;">원</b>
+				</div>
+				<div class="cart-total-right-button" style="margin-left: 20px;">
+					<button type="button" id="cart-order-self" class="btn btn-dark" style="margin-right: 10px; font-weight: 1000;">나에게 선물하기</button>
+					<button type="button" id="cart-order-gift" class="btn" style="font-weight: 1000;">친구에게 선물하기</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- option modal -->
+    <div id="cart-option-modal" class="cart-modal-overlay">
+        <div class="cart-modal-window">
+        	<div class="cart-modal-top">
+	       		<b style="font-size: 20px;">수량 변경</b>
+        	</div>
+        	<div class="cart-modal-middle" style="border: 1px solid #f0f0f0; display: flex; align-items: unset; width: 100%;">
+	       		<button class="btn btn-outline-light text-dark minus">-</button>
+	       		<input type="tel" id="cart-qty" name="qty" value=1 style="width: 80%; border:white; text-align: center;">
+	       		<button class="btn btn-outline-light text-dark plus">+</button>
+        	</div>
+            <div class="cart-modal-bottom">
+				<button type="button" class="btn btn-secondary btn-cancel" style="width:180px;">취소</button>
+				<div style="width:10px;"></div>
+				<button type="button" class="btn cart-qty-update" style="width:180px; background-color: #cff0cc;" cartNum="">확인</button>
+            </div>
+        </div>
+    </div>
+	<!-- wish modal -->
+    <div id="cart-wish-modal" class="cart-modal-overlay">
+        <div class="cart-modal-window">
+        	<div class="cart-modal-top">
+	       		<b style="font-size: 20px;">위시의 공개범위를 선택해주세요</b>
+        	</div>
+        	<div class="cart-modal-middle">
+        		<form>
+		       		<div class="cart-wish-option">
+		       			<div style="border-bottom: #f0f0f0 solid 1px; padding-bottom: 15px; margin-bottom: 15px;">
+		       				<div>
+				       			<input type="radio" name="publicOption" value=1 style="display: inline;" checked="checked">
+		       				</div>
+			       			<div>
+				       			<b style="display: block; font-size: 17px; margin-bottom: 5px;">친구공개! 내 취향은 이거야</b>
+				       			<b style="font-size: 13px; color:gray;">내 선물을 고민하는 친구를 위해 힌트 주기</b>
+			       			</div>
+		       			</div>
+		       			<div>
+		       				<div>
+				       			<input type="radio" name="publicOption" value=0>
+		       				</div>
+			       			<div>
+				       			<b style="display: block; font-size: 17px;">비밀! 나만 볼 수 있어요</b>
+				       			<b style="font-size: 13px; color:gray;">나만 알고 싶은 상품, 몰래 찜해두기</b>
+			       			</div>
+		       			</div>
+		       		</div>
+        		</form>
+        	</div>
+            <div class="cart-modal-bottom">
+				<button type="button" class="btn btn-secondary btn-cancel" style="width:180px;">취소</button>
+				<div style="width:10px;"></div>
+				<button type="button" class="btn cart-wish-insert" style="width:180px; background-color: #cff0cc;">담기</button>
+            </div>
+        </div>
+    </div>
+ 	<!--  친구 선택 modal -->
+    <div id="gift-modal" class="gift-modal-overlay">
+        <div class="gift-modal-window">
+        	<form>
+        	<div class="gift-modal-top">
+	            <div class="gift-title">
+	            	<div>
+		                <h5>
+		                	친구 선택
+		                	<span style="font-size: 20px; margin-bottom: 5px; color:#ff6b00;" class="friend-length"></span>
+		                </h5>
+	            	</div>
+	            	<div class="gift-close-area">X</div>
+	            </div>
+	            <div class="friend-select-list">
+	            	<img src="${root }/image/default.png" class="gift-friend-img">
+	            	<b style="font-weight: normal; position: relative; left: 5px;">선물할 친구를 선택하세요.</b>
+	            </div>
+	            <div class="gift-modal-search">
+	            	<input type="search" placeholder="이름, 닉네임 검색" id="friend-search" name="friend-search">
+	            	<img src="${root}/image/search.svg" style="cursor: pointer" id="search-start">
+	            </div>
+        	</div>
+            <div class="gift-modal-middle">
+            	<div style="margin: 10px 0;">
+            		<span id="friend-count" style="font-size: 15px; margin-bottom: 5px;"></span>
+            	</div>
+            	<div class="friend-result">
+            	</div>
+            </div>
+            <div class="gift-modal-button">
+				<button type="button" class="btn btn-secondary btn-cancel">취소</button>
+				<div></div>
+				<button type="button" class="btn getWishlist">확인</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</body>
 <script>
-	$(function(){
-		
-		// cart페이지 접속시 카트 select 로드
-		cartlist();
-		
+		// cart페이지 접속시 카트 리스트 로드
+		cartlist()
+				
     	var publicOption = "";
     	var userNum = ${sessionScope.loginUserNum};
     	var productNum = "";
@@ -616,8 +745,8 @@
 			let checkSize = $('input:checkbox[name=cart-check]:checked').length;
 			
 			if(checkSize != 0){
-				let cartInsertList = [];
 				
+				let cartInsertList = [];
 				$('input:checkbox[name=cart-check]:checked').each(function() {
 					
 					let data = {
@@ -628,9 +757,24 @@
 						messageCard:"",
 						engrave:""
 					}
-					
 					cartInsertList.push(data);
 				});
+				
+				let cartDeleteList = [];
+				$('input:checkbox[name=cart-check]:checked').each(function() {			
+					cartDeleteList.push($(this).attr("cartNum"));
+				});
+				
+				$.ajax({
+					type: "post",
+					url: "../cart/checkDelete",
+					dataType: "text",
+					data: JSON.stringify({"cartDeleteList":cartDeleteList}),
+					contentType: "application/json; charset=utf-8",
+					success:function(res){
+							
+					}
+				});	
 				
 			 	$.ajax({
 					type: "post",
@@ -643,17 +787,17 @@
 						window.location.href="../payview?num="+res.num;
 					}
 				});
+					
 			} else {
 				alert("선택하신 상품이 없습니다.");
 			}
 		});
 		
 		// 친구에게 선물하기
-		$("#cart-gift-friend").click(function(){
+		$(".getWishlist").click(function(){
 			
-			let cartInsertList = [];
+			let cartInsertList = [];		
 			let friendNum = $('input:radio[name=radio]:checked').attr("friendNum");
-			
 			$('input:checkbox[name=cart-check]:checked').each(function() {
 				
 				let data = {
@@ -664,11 +808,27 @@
 					messageCard:"",
 					engrave:""
 				}
-				
 				cartInsertList.push(data);
 			});
 			
-				$.ajax({
+			let cartDeleteList = [];
+			$('input:checkbox[name=cart-check]:checked').each(function() {			
+				cartDeleteList.push($(this).attr("cartNum"));
+			});
+			
+			$.ajax({
+				type: "post",
+				url: "../cart/checkDelete",
+				dataType: "text",
+				data: JSON.stringify({"cartDeleteList":cartDeleteList}),
+				contentType: "application/json; charset=utf-8",
+				success:function(res){
+					
+				}
+						
+			});
+			
+			$.ajax({
 				type: "post",
 				url: "../orderDetail/insertSelfCart",
 				dataType: "json",
@@ -758,12 +918,29 @@
 			if(checkSize != 0){
 			    modal.style.display = "flex"
 				$("body").attr("class","modal-fix");
-				friendList();
+			    let data = {
+						userNum:$("input[name=userNum]").attr("value"),
+						friendNum:$("input[name=userNum]").attr("value"),
+						search:"",
+						check:1
+						};
+				friendList(data);
 			} else {
 				alert("선택하신 상품이 없습니다.");
 			}
 		});
-	}); // $(fucntion)
+		
+		// 친구 검색
+		$("#friend-search").on('keyup keypress',function(){
+			let data = {
+					userNum:$("input[name=userNum]").attr("value"),
+					friendNum:$("input[name=userNum]").attr("value"),
+					search:$(this).val().trim(),
+					check:1
+					};
+			friendList(data);
+		});
+
 		// cart list 호출 함수
 		function cartlist() {
 			let userNum = ${sessionScope.loginUserNum};
@@ -837,26 +1014,25 @@
 				}
 			});
 		}
-		// 친구 리스트
-		function friendList() {
-			var userNum = ${sessionScope.loginUserNum};
-				
-			var s="";
+		// 친구목록 조회
+		function friendList(data) {
+			let s="";
 				
 			$.ajax({
-				type: "get",
+				type: "post",
 				url: "../user/friendData",
 				dataType: "json",
-				data: {"userNum":userNum},
+				contentType: "application/json; charset=utf-8",
+				data: JSON.stringify({"data":data}),
 				success:function(res){
 					
 					s += "<ul style='padding-left:0;'>";
 					
 					$.each(res, function(i,elt) {
 						
-						s += "<li style='list-style:none; float:left;'>";
+						s += "<li style='list-style:none; float:left; margin-bottom:10px;'>";
 						s += "<div style='margin-right:50px;'>";
-						s += "<input type='radio' style='margin-right:10px;' class='chkBox' name='radio' friendNum='"+elt.num+"'>";
+						s += "<input type='radio' style='margin-right:10px;' class='chkBox' name='radio'>";
 						s += "<label>";
 						s += "<img src='"+elt.profileImage+"' width='100' class='gift-friend-img' style='margin-right:5px;'>";
 						s += "<b num='"+elt.num+"'>"+elt.nickname+"</b>";
@@ -869,145 +1045,18 @@
 				}
 			});
 			
+			// 친구인원수
 			$.ajax({
-				type: "get",
+				type: "post",
 				url: "../user/friendCount",
 				dataType: "json",
-				data: {"userNum":userNum},
+				contentType: "application/json; charset=utf-8",
+				data: JSON.stringify({"data":data}),
 				success:function(res){
-					
-					$("span.friend-count").text(res);
+					console.log(res);
+					$("#friend-count").text("친구 "+res);
 				}
 			});
 		}
 </script>
-<c:set var="root" value="<%=request.getContextPath() %>"/>
-</head>
-<body>
-	<div class="cart-wrapper">
-		<div class="cart-top" style="z-index: 2;">
-			<div class="cart-title">
-				<span>장바구니</span>
-				<hr>
-			</div>
-			<div class="cart-total">
-				<div class="cart-total-left">
-					<input type="checkbox" id="cart-all-check">
-				</div>
-				<div class="cart-total-right" style="padding-right: 10px;">
-					<b style="color:#a0a0a0; cursor: pointer;" id="cart-all-delete">삭제하기</b>
-				</div>
-			</div>
-		</div>
-		<div class="cart-result" style="position: relative; top: -10px;">
-		</div>
-		<div class="cart-test" style="z-index: 100; width: 75%; display: flex; justify-content: flex-end; margin-top: 100px;">
-			<div class="cart-total-right" >
-				<div class="cart-total-right-price" style="margin-right: 10px;">
-					<b style="font-size:17px; font-weight: normal; margin-right: 30px;">총 결제 금액</b>
-					<b class="cart-total-price" style="font-size: 20px;">0</b>
-					<b style="font-size:17px; font-weight: normal;">원</b>
-				</div>
-				<div class="cart-total-right-button" style="margin-left: 20px;">
-					<button type="button" id="cart-order-self" class="btn btn-dark" style="margin-right: 10px; font-weight: 1000;">나에게 선물하기</button>
-					<button type="button" id="cart-order-gift" class="btn" style="font-weight: 1000;">친구에게 선물하기</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- option modal -->
-    <div id="cart-option-modal" class="cart-modal-overlay">
-        <div class="cart-modal-window">
-        	<div class="cart-modal-top">
-	       		<b style="font-size: 20px;">수량 변경</b>
-        	</div>
-        	<div class="cart-modal-middle" style="border: 1px solid #f0f0f0; display: flex; align-items: unset; width: 100%;">
-	       		<button class="btn btn-outline-light text-dark minus">-</button>
-	       		<input type="tel" id="cart-qty" name="qty" value=1 style="width: 80%; border:white; text-align: center;">
-	       		<button class="btn btn-outline-light text-dark plus">+</button>
-        	</div>
-            <div class="cart-modal-bottom">
-				<button type="button" class="btn btn-secondary btn-cancel" style="width:180px;">취소</button>
-				<div style="width:10px;"></div>
-				<button type="button" class="btn cart-qty-update" style="width:180px; background-color: #cff0cc;" cartNum="">확인</button>
-            </div>
-        </div>
-    </div>
-	<!-- wish modal -->
-    <div id="cart-wish-modal" class="cart-modal-overlay">
-        <div class="cart-modal-window">
-        	<div class="cart-modal-top">
-	       		<b style="font-size: 20px;">위시의 공개범위를 선택해주세요</b>
-        	</div>
-        	<div class="cart-modal-middle">
-        		<form>
-		       		<div class="cart-wish-option">
-		       			<div style="border-bottom: #f0f0f0 solid 1px; padding-bottom: 15px; margin-bottom: 15px;">
-		       				<div>
-				       			<input type="radio" name="publicOption" value=1 style="display: inline;" checked="checked">
-		       				</div>
-			       			<div>
-				       			<b style="display: block; font-size: 17px; margin-bottom: 5px;">친구공개! 내 취향은 이거야</b>
-				       			<b style="font-size: 13px; color:gray;">내 선물을 고민하는 친구를 위해 힌트 주기</b>
-			       			</div>
-		       			</div>
-		       			<div>
-		       				<div>
-				       			<input type="radio" name="publicOption" value=0>
-		       				</div>
-			       			<div>
-				       			<b style="display: block; font-size: 17px;">비밀! 나만 볼 수 있어요</b>
-				       			<b style="font-size: 13px; color:gray;">나만 알고 싶은 상품, 몰래 찜해두기</b>
-			       			</div>
-		       			</div>
-		       		</div>
-        		</form>
-        	</div>
-            <div class="cart-modal-bottom">
-				<button type="button" class="btn btn-secondary btn-cancel" style="width:180px;">취소</button>
-				<div style="width:10px;"></div>
-				<button type="button" class="btn cart-wish-insert" style="width:180px; background-color: #cff0cc;">담기</button>
-            </div>
-        </div>
-    </div>
-    <!-- 친구선택 modal -->
-    <div id="gift-modal" class="gift-modal-overlay">
-        <div class="gift-modal-window">
-        	<form>
-        	<div class="gift-modal-top">
-	            <div class="gift-title">
-	            	<div>
-		                <h5>
-		                	친구 선택
-		                	<span style="font-size: 20px; margin-bottom: 5px; color:#ff6b00;" class="friend-length"></span>
-		                </h5>
-	            	</div>
-	            	<div class="gift-close-area">X</div>
-	            </div>
-	            <div class="friend-select-list">
-	            	<img src="${root }/image/default.png" class="gift-friend-img">
-	            	선물할 친구를 선택하세요.
-	            </div>
-	            <div class="gift-modal-search">
-	            	<input type="search" placeholder="이름, 닉네임 검색">
-	            	<img src="${root}/image/search.svg">
-	            </div>
-        	</div>
-            <div class="gift-modal-top">
-            	<div style="margin: 10px 0;">
-            		친구목록
-            		<span style="font-size: 15px; margin-bottom: 5px;" class="friend-count"></span>
-            	</div>
-            	<div class="friend-result">
-            	</div>
-            </div>
-            <div class="gift-modal-button">
-				<button type="button" class="btn btn-secondary btn-cancel">취소</button>
-				<div></div>
-				<button type="button" class="btn" id="cart-gift-friend" style="background-color: #cff0cc;">확인</button>
-            </div>
-            </form>
-        </div>
-    </div>
-</body>
 </html>

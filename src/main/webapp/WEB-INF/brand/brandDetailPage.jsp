@@ -106,9 +106,19 @@
 	}
 	
 	.categorySort{
+	    font-weight: 400;
+	    line-height: 16px;
 		width: 100px;
 	    border: 0px;
 	    font-size: 15px;
+	    margin-right: 15px;
+	}
+	
+	
+	.categorySort:focus{
+    box-sizing: border-box;
+    border-radius: 5px;
+    outline: 3px solid #F8E4FF;
 	}
 	
 	.productList {
@@ -142,6 +152,8 @@
 		
 	}
 	.card-img-top{
+		width: 280px;
+		height: 280px;
 		border: 0.1px solid #d3d3d3;
 		border-radius: 5px;
 		margin-bottom: 5px;
@@ -167,7 +179,7 @@
 	<div class="brandContent">
 		<!-- 옵션 -->
 		<div class="brandList">
-			<span><h4>총 상품 갯수 : ${count}개</h4></span>
+			<span><h5>총 상품 갯수 : ${count}개</h5></span>
 			<div>
 				<select class="categorySort" name="sort">
 					<option value="createdAt desc" selected>최신순</option>
@@ -187,7 +199,7 @@
 				<span style="display: inline-block;">
 					<span class='brandName'>${productList.brand }</span><br>
 					<span class='productName'>${productList.name }</span><br>
-					<span class='productPrice'><b><fmt:formatNumber value="${productList.price}" type="number"/>원</b></span>
+					<span class='productPrice'><fmt:formatNumber value="${productList.price}" type="number"/>원</span>
 				</span>
 			</a>
 			</div>
