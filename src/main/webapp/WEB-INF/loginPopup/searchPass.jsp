@@ -43,7 +43,7 @@
 	  		&nbsp;&nbsp;&nbsp;이름:<input id="text" name=nickname required="required" type="text" placeholder="이름" />
  		</div>
 		<div class="textbox">
-  			아이디:<input id="email" name=email placeholder="이메일 형식"/>
+  			아이디:<input id="email" name=email placeholder="이메일 형식" style="margin-top: 5px;"/>
 		</div><br>
    			<input type="submit" class="btn btn-outline-secondary" id="check" value="비밀번호찾기">
 	</form>
