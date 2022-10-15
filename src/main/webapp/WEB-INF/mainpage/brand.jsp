@@ -189,6 +189,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         slidesToShow: 4,
         slidesToScroll: 1,
       });
+      
       $(".slick-prev").html("<");
       $(".slick-next").html(">");
     </script>
