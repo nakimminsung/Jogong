@@ -9,6 +9,7 @@ import bit.data.dto.SellerDto;
 
 public interface BrandDaoInter {
 	public List<SellerDto> getAllBrand();
+	public List<SellerDto> infiniteScrollDown(int bno);
 	public int getTotalBrandCount(String brand);
 	public List<ProductDto> getBrandByName(Map<String, Object> map);
 	public List<SellerDto> selectBrandTheme(String sort);

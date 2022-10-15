@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -37,12 +38,14 @@ public class BrandController {
 		return "/bit/brand/brandMainPage";
 	}
 
-//	@GetMapping("/detail")
-//	public String brandDetailPage() {
-//		return "/bit/brand/brandDetailPage";
-//	}
+	@GetMapping("/infiniteScrollDown")
+	@ResponseBody
+	public List<SellerDto> infiniteScrollDown(int bno) {
+		
+		return brandServiceInter.infiniteScrollDown(bno);
+	}
 	
-	//브랜드리스트
+	//釉뚮옖�뱶由ъ뒪�듃
 	@GetMapping("/detail")
 	public String brandMain(Model model, HttpServletRequest request , String brand) {
 		SellerDto dto = brandServiceInter.getLogoDesc(brand);
@@ -60,7 +63,7 @@ public class BrandController {
 		return "/bit/brand/brandDetailPage";
 	}
 	
-	//가격순 등 
+	//媛�寃⑹닚 �벑 
 	@GetMapping("/brandSort")
 	@ResponseBody
 	public Map<String, Object> getSort(String brand, String sort){

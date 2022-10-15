@@ -17,7 +17,6 @@
 		<tiles.version>3.0.5</tiles.version>
 		
 	</properties>
-	
 	<repositories>
 		<repository>
 		    <id>jitpack.io</id>
@@ -157,12 +156,6 @@
 		    <version>1.6.2</version>
 		</dependency>
 
-		<!-- AWS -->
-     	<dependency>
-        	<groupId>com.amazonaws</groupId>
-        	<artifactId>aws-java-sdk-s3</artifactId>
-        	<version>1.11.901</version>
-      	</dependency>
 	
 		<!-- Logging -->
 		<dependency>
@@ -240,6 +233,9 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>        
+		
+
+
 	</dependencies>
     <build>
         <plugins>

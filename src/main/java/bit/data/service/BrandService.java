@@ -22,6 +22,10 @@ public class BrandService implements BrandServiceInter {
 		return brandDaoInter.getAllBrand();
 	}
 	@Override
+	public List<SellerDto> infiniteScrollDown(int bno) {
+		return brandDaoInter.infiniteScrollDown(bno);
+	}
+	@Override
 	public List<ProductDto> getBrandByName(String brand, String sort) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<String, Object>();
