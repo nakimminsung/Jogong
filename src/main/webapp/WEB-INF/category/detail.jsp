@@ -134,6 +134,8 @@
 	    font-weight: 1000;
 	    position: relative;
 	    color: #888;
+	    
+	    cursor: pointer;
 	} 
 	a.categoryheader>label:hover {
 		color: #000
