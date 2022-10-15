@@ -65,82 +65,14 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         width: 100%;
         height: 90%;
       }
-      button.slick-arrow {
-        width: 50px;
-        height: 50px;
-        border-radius: 100%;
-        position: relative;
-        top: 100px;
-      }
-      button.slick-prev {
-      	position: relative;
-      	top: 145px;
-  		left: 0px;
-  		z-index: 10;
-  		border-radius: 0;
-  		width: 300px;
-  		height: 100px;
-  		font-size: 50px;
-  		background: #fff;
-  		border: 0px;
-  		color: #f0f0f0;
-  		font-weight: 1000;
-      }
-      button.slick-next {
-        position: relative;
-      	top: 145px;
-      	right: 0px;
-  		z-index: 10;
-  		border-radius: 0;
-  		width: 300px;
-  		height: 100px;
-  		font-size: 50px;
-  		background: #fff;
-  		border: 0px;
-  		color: #f0f0f0;
-  		font-weight: 1000;
-      }
-      
-      $wh : #ffffff;
-	  $bk : #000000;
-	  $pt : #ffc0cb;
-	
-	  button.slick-arrow {
-	  		font-size:50px;
-	        z-index: 10;
-	        width: 100px;
-	        height: 100px;
-	        background: rgba($bk, 0.2);
-	
-	        transition: background 0.5s;
-	        &:hover {
-	            background: rgba($pt, 0.9);
-	
-	            &::before {
-	                color: rgba($bk, 0.5);
-	            }
-	        }
-	        &::before {
-	            font-family: 'Line Awesome Free';
-	            font-weight: 900;
-	            font-size: 49px;
-	            transition: all 0.5s;
-	        }
-	    }
-	    
-	    .slick-prev {
-			
-	        &::before {
-	            content: "<"";
-	        }
-	    }
-	
-	    .slick-next {
-	
-	        &::before {
-	            content: ">";
-	        }
-	    }
+   	div.event-object>a>img{
+		width: 250px; 
+		height: 300px; 
+		background-color: #d0d0d0;
+	}
+	div.card-body {
+		height: 80px; 
+	}
     </style>
   </head>
   <body>
@@ -163,8 +95,13 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 				$.each(res, function(i,elt) {
 					
 					s += "<div class='event-object'>";
-					s += "<img src='"+elt.thumbnailImageUrl+"'>";
-					s += "<b>"+elt.subject+"</b>";
+					s += "<a href='#' class='card'>";
+					s += "<img class='card-img-top' src='"+elt.thumbnailImageUrl+"'>";
+					s += "<div class='card-body'>";
+					s += "<span class='event-obeject-brand'>"+elt.brand+"</span>";
+					s += "<span class='event-obeject-title card-title'>"+elt.subject+"</span>";
+					s += "</div>";
+					s += "</a>";
 					s += "</div>";
 					
 				});
@@ -172,11 +109,13 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 			}
 		});
 	}
-	$(".event-wrapper").slick({
-    	lazyLoad: "ondemand",
-        slidesToShow: 4,
-        slidesToScroll: 1,
-    });
+	$(document).ready(function(){
+		$('.event-wrapper"').slick({
+    		lazyLoad: "ondemand",
+        	slidesToShow: 4,
+        	slidesToScroll: 1
+	    });
+	});
     $(".slick-prev").html("<");
     $(".slick-next").html(">");
 </script>
