@@ -4,7 +4,15 @@
 
 <mapper namespace="bit.data.dao.BrandDao">
 	<select id="getAllBrand" resultType="SellerDto">
-		SELECT companyName,description,brandphoto FROM seller order by sort desc;
+	<![CDATA[
+		SELECT scrollnum,companyName,description,brandphoto FROM seller limit 0,10;
+	]]>
+	</select>
+
+	<select id="infiniteScrollDown" resultType="SellerDto">
+	<![CDATA[
+		SELECT companyName,description,brandphoto FROM seller where scrollnum <= #{bno}+10 and scrollnum > #{bno};	
+	]]>
 	</select>
 
 	<select id="selectBrandTheme" parameterType="String" resultType="SellerDto">

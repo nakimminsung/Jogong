@@ -189,6 +189,12 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 			right:9%;
 		}
 	}
+	@media ( max-width: 1680px ) {
+		.quick {
+			position: absolute;
+			right:9%;
+		}
+	}
 	@media ( max-width: 767px ) {
   		.quick {
   			position: absolute;
@@ -297,7 +303,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 			<div>
 				<div class="myMenu">
 					<a href="/jogong/orderDetail/page">마이페이지</a><br> 
-					<a href="#">쿠폰함</a><br>
+					<!-- <a href="#">쿠폰함</a><br> -->
 					<a href="${root}/cscenter/faq">고객센터</a><br> 
 					<a href="${root}/logout" onclick="return confirm('로그아웃 하시겠습니까?');">로그아웃</a>
 				</div>
