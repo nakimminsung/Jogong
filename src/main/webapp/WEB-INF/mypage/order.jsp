@@ -32,12 +32,33 @@ a.menu-gift {
     color:#000 !important;
 }
 div.gift-wrapper{
-	padding-top:50px;
+	
 	width:100%;
 	display:flex;
 	flex-direction:column;
 	
 }
+  	div.wish-top {
+		padding: 25px 0;
+		position:sticky;
+		top:100px;
+		background-color: white;
+		z-index:2;
+		height: 90px;
+	}
+	div.wish-top>hr{
+		width: 70px; 
+		height: 10px; 
+		position: relative; 
+		top:-28px; 
+		color: #cff0cc; 
+		opacity: 1; 
+		z-index: -1;
+	}
+	b.wish-top-b2 {
+		font-size: 25px;
+		font-weight: 1000;
+	}
 div.Gift{
 	width:100%;
 	display:flex;
@@ -746,6 +767,10 @@ p.card-title{
 </script>
 <body>
 <div class="gift-wrapper">
+	<div class="wish-top">
+		<b class="wish-top-b2">선물함</b>
+		<hr>
+	</div>
 	<div class="gift-menu">
 		<ul role="tablist" class="tab_receive">
 			<li class="presentation"><a class="link_tab" id="receivePresentbox">받은선물함</a></li>
