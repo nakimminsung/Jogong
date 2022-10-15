@@ -124,5 +124,12 @@ public class UserDao implements UserDaoInter {
     public UserDto selectUser(int userNum) {
         return session.selectOne(ns+"selectUser", userNum);
     }
+    
+    //비밀번호 찾기 후 수정
+  	@Override
+  	public void updateUserPass(UserDto dto) {
+  		// TODO Auto-generated method stub
+  		session.update(ns+"updateUserPass", dto);
+  	}
 
 }

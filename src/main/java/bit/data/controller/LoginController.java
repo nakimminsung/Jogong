@@ -376,6 +376,7 @@ public class LoginController {
 		
 		return "redirect:/";
 	}
+	
 	//아이디 찾기 페이지 이동
 	@GetMapping("/loginForm/searchId")
 	public String searchId() {
@@ -395,6 +396,46 @@ public class LoginController {
 		return map;
 	}
 	
+
+
+	//비번찾기 후 비번수정
+	@GetMapping("/searchPass2")
+	public String updateUserPass(String email, String password, HttpServletRequest request, HttpSession session) {
+
+		
+		//입력받은 비밀번호 가져오기
+		password=request.getParameter("password");
+		
+		//salt 설정해주기
+		String salt=SHA256Util.generateSalt();
+		
+		//비밀번호 암호화 (salt 적용)
+		password=SHA256Util.getEncrypt(password, salt);
+
+		
+		UserDto dto=new UserDto();
+		
+		//dto에 담기
+		dto.setEmail(email);
+		dto.setSalt(salt);
+		dto.setPassword(password);
+		
+		System.out.println(dto);
+		
+		//dto 정보를 보내기(비번수정)
+		userService.updateUserPass(dto);
+				
+		//완료 후 세션제거
+		session.removeAttribute("email");
+		
+		
+		//여기서는 의미없음 (정상적인 경로로만 써주면 됨)
+		return "/bit/main/main";
+		
+	}
+
+	
+
 	//비밀번호 사이트 이동
 	@GetMapping("/loginForm/searchPass")
 	public String searchPass() {
@@ -408,54 +449,60 @@ public class LoginController {
 	public ModelAndView pw_auth(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String email = (String)request.getParameter("email");
 		String nickname = (String)request.getParameter("nickname");
-
+		
 		UserDto vo = userService.searchPass(nickname, email);
 			
-		if(vo != null) {
-		Random r = new Random();
-		int num = r.nextInt(999999); // 랜덤난수설정
+			if( vo != null && vo.getLoginType().equals("일반")) {
+				Random r = new Random();
+				int num = r.nextInt(999999); // 랜덤난수설정
 		
-		if (vo.getNickname().equals(nickname)) {
-			session.setAttribute("email", vo.getEmail());
+					if (vo.getNickname().equals(nickname)) {
+						session.setAttribute("email", vo.getEmail());
 
-			String setfrom = "sungmin9844@naver.com"; 
-			String tomail = email; //받는사람
-			String title = "[조공] 비밀번호변경 인증 이메일 입니다"; 
-			String content = System.getProperty("line.separator") + "안녕하세요" + System.getProperty("line.separator")
-					+ "조공 비밀번호찾기(변경) 인증번호는 " + num + " 입니다." + System.getProperty("line.separator"); // 
+						String setfrom = "sungmin9844@naver.com"; 
+						String tomail = email; //받는사람
+						String title = "[조공] 비밀번호변경 인증 이메일 입니다"; 
+						String content = System.getProperty("line.separator") + "안녕하세요" + System.getProperty("line.separator")
+						+ "조공 비밀번호찾기(변경) 인증번호는 " + num + " 입니다." + System.getProperty("line.separator"); // 
 
-			try {
-				MimeMessage message = mailSender.createMimeMessage();
-				MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "utf-8");
+						try {
+							MimeMessage message = mailSender.createMimeMessage();
+							MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "utf-8");
 
-				messageHelper.setFrom(setfrom); 
-				messageHelper.setTo(tomail); 
-				messageHelper.setSubject(title);
-				messageHelper.setText(content); 
+							messageHelper.setFrom(setfrom); 
+							messageHelper.setTo(tomail); 
+							messageHelper.setSubject(title);
+							messageHelper.setText(content); 
 
-				mailSender.send(message);
-			} catch (Exception e) {
-				System.out.println(e.getMessage());
-			}
+							mailSender.send(message);
+						} catch (Exception e) {
+							System.out.println(e.getMessage());
+						}
 
-			ModelAndView mv = new ModelAndView();
-			mv.setViewName("/loginPopup/checkNum");
-			mv.addObject("num", num);
+						ModelAndView mv = new ModelAndView();
+						mv.setViewName("/loginPopup/checkNum");
+						mv.addObject("num", num);
 			
-			return mv;
-		}else {
+						return mv;
+					}else {
+						ModelAndView mv = new ModelAndView();
+						mv.setViewName("/alert/alert");
+						mv.addObject("msg1", "아이디 또는 이름이 잘못되었습니다.");
+						mv.addObject("msg2", "소셜로그인의 경우 해당 소셜에서 비밀번호 변경해야합니다.");
+						mv.addObject("url", "/jogong/loginForm/searchPass");
+						return mv;
+						
+					}
+			}else {
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("/alert/alert");
-			mv.addObject("msg", "아이디 또는 이름이 잘못되었습니다.");
+			mv.addObject("msg1", "아이디 또는 이름이 잘못되었습니다.");
+			mv.addObject("msg2", "소셜로그인의 경우 해당 소셜에서 비밀번호 변경해야합니다.");
 			mv.addObject("url", "/jogong/loginForm/searchPass");
 			return mv;
-		}
-		}else {
-			ModelAndView mv = new ModelAndView();
-			mv.setViewName("/alert/alert");
-			mv.addObject("msg", "아이디 또는 이름이 잘못되었습니다.");
-			mv.addObject("url", "/jogong/loginForm/searchPass");
-			return mv;
+		
 		}
 	}
+	
+
 }

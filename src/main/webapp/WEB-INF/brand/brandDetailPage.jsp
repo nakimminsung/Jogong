@@ -152,6 +152,8 @@
 		
 	}
 	.card-img-top{
+		width: 280px;
+		height: 280px;
 		border: 0.1px solid #d3d3d3;
 		border-radius: 5px;
 		margin-bottom: 5px;
@@ -197,7 +199,7 @@
 				<span style="display: inline-block;">
 					<span class='brandName'>${productList.brand }</span><br>
 					<span class='productName'>${productList.name }</span><br>
-					<span class='productPrice'><b><fmt:formatNumber value="${productList.price}" type="number"/>원</b></span>
+					<span class='productPrice'><fmt:formatNumber value="${productList.price}" type="number"/>원</span>
 				</span>
 			</a>
 			</div>

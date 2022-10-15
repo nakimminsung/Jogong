@@ -44,7 +44,7 @@
 		<h3>아이디 찾기</h3><br>
 		<div class="textbox">
 	  		&nbsp;&nbsp;&nbsp;이름:<input class="userName" type="text" required="required" placeholder="이름을 입력하세요" /><br>
-	  		연락처:<input class="userPhone" oninput="autoHyphen2(this)" required="required" placeholder="010-0000-0000"/>
+	  		연락처:<input class="userPhone" oninput="autoHyphen2(this)" required="required" placeholder="010-0000-0000" maxlength="13" minlength="12" />
 		</div><br><br>
 	   	<button type="button" class="btn btn-outline-secondary">아이디 찾기</button>
 	   	

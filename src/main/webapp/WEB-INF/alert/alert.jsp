@@ -21,9 +21,10 @@
 <body>
 
 	<script type="text/javascript">
-		var message = "${msg}";
+		var message1 = "${msg1}";
+		var message2="${msg2}";
 		var url = "${url}";
-		alert(message);
+		alert(message1+"\n"+message2);
 		document.location.href = url;
 	</script>
 	
