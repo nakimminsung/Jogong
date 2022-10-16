@@ -165,19 +165,22 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 	    font-weight: 500;
 	    padding-left: 20px;
 	    padding: 12px;
+	    
+	   
 	}
+	
 	
 	/* 드롭다운 메뉴 화면 해상도에 따른 설정 */
 	@media ( max-width: 1920px ) {
 		.quick {
 			position: absolute;
-			right: 19%;
+			right: 15%;
 		}
 	}
-	@media ( max-width: 1900px ) {
+	@media ( max-width: 1680px ) {
 		.quick {
 			position: absolute;
-			right:9%;
+			right: 9%;
 		}
 	}
 	@media ( max-width: 767px ) {
@@ -288,7 +291,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 			<div>
 				<div class="myMenu">
 					<a href="/jogong/orderDetail/page">마이페이지</a><br> 
-					<a href="#">쿠폰함</a><br>
+					<!-- <a href="#">쿠폰함</a><br> -->
 					<a href="${root}/cscenter/faq">고객센터</a><br> 
 					<a href="${root}/logout" onclick="return confirm('로그아웃 하시겠습니까?');">로그아웃</a>
 				</div>

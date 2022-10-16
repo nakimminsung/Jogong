@@ -56,6 +56,9 @@
 	  height: 100px;
 	  position : relative;
 	}
+	#brand {
+		margin-top:50px;
+	}
 </style>
 </head>
 <body>

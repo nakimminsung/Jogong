@@ -21,5 +21,6 @@ public class SellerDto {
 	private String salt;
 	private String description; // 1
 	private String brandphoto;
+	private int scrollnum;
 	
 }

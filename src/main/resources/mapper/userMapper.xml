@@ -51,7 +51,11 @@
 	
 	<!-- 친구 아닌 모든 유저 조회 -->
 	<select id="selectNonFriendlyUsersList" parameterType="HashMap"  resultType="userDto">
-		select * from user where nickname like CONCAT('%',#{search},'%') and num not in(select friendNum from userFriend) and num not in(#{userNum})
+		select * from user where nickname like CONCAT('%',#{search},'%') 
+		and num not in (#{userNum}) and num not in (
+		select userNum from userFriend where friendNum=#{friendNum} and userFriend.check=1 
+		union all 
+		select friendNum from userFriend where userNum=#{userNum} and userFriend.check=1);
 	</select>
 
 	<!--유저 업데이트 -->

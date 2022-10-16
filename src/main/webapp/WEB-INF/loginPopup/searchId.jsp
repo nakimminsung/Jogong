@@ -29,7 +29,7 @@
 	
 	.all{
 		width: 100%;
-		height: 330px;
+		height: 300px;
 		
 		text-align: center;
 		
@@ -40,11 +40,14 @@
 <body>
 
 	<div class="all">
-	
-		<h3>아이디 찾기</h3><br>
+		
+		<h3>아이디 찾기</h3>
+		
 		<div class="textbox">
-	  		&nbsp;&nbsp;&nbsp;이름:<input class="userName" type="text" required="required" placeholder="이름을 입력하세요" /><br>
-	  		연락처:<input class="userPhone" oninput="autoHyphen2(this)" required="required" placeholder="010-0000-0000" maxlength="13" minlength="12" />
+	  		&nbsp;&nbsp;&nbsp;
+	  		이름 : <input class="userName" type="text" required="required" placeholder="이름을 입력하세요"/><br>
+	  		연락처 : <input class="userPhone" oninput="autoHyphen2(this)" required="required"
+	  		 placeholder="010-0000-0000" maxlength="13" minlength="12" style="margin-top: 5px;"/>
 		</div><br><br>
 	   	<button type="button" class="btn btn-outline-secondary">아이디 찾기</button>
 	   	
