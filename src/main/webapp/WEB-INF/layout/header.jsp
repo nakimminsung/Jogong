@@ -165,7 +165,10 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 	    font-weight: 500;
 	    padding-left: 20px;
 	    padding: 12px;
+	    
+	   
 	}
+	
 	
 	/* 드롭다운 메뉴 화면 해상도에 따른 설정 */
 	@media ( max-width: 1920px ) {
