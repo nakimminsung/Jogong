@@ -23,7 +23,7 @@ public class EventController {
 	
 	@GetMapping("/event/list")
 	@ResponseBody
-	public List<EventDto> selectEventList(){
-	    return eventServiceInter.selectEventList();
+	public List<EventDto> selectEventList(String sort){
+	    return eventServiceInter.selectEventList(sort);
 	}
 }

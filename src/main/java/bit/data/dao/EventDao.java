@@ -16,8 +16,8 @@ public class EventDao implements EventDaoInter {
     String ns="bit.data.dao.EventDao.";
 
     @Override
-    public List<EventDto> selectEventList() {
-        return session.selectList(ns+"selectEventList");
+    public List<EventDto> selectEventList(String sort) {
+        return session.selectList(ns+"selectEventList",sort);
     }
 
 }

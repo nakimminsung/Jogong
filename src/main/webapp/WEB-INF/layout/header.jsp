@@ -174,25 +174,13 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 	@media ( max-width: 1920px ) {
 		.quick {
 			position: absolute;
-			right: 19%;
-		}
-	}
-	@media ( max-width: 1900px ) {
-		.quick {
-			position: absolute;
-			right:15%;
+			right: 15%;
 		}
 	}
 	@media ( max-width: 1680px ) {
 		.quick {
 			position: absolute;
-			right:9%;
-		}
-	}
-	@media ( max-width: 1680px ) {
-		.quick {
-			position: absolute;
-			right:9%;
+			right: 9%;
 		}
 	}
 	@media ( max-width: 767px ) {

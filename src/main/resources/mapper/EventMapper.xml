@@ -3,8 +3,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="bit.data.dao.EventDao">
-	<select id="selectEventList" resultType="EventDto">
-		SELECT * FROM jogong.event order by createdAt desc
+	<select id="selectEventList" parameterType="String" resultType="EventDto">
+		SELECT * FROM jogong.event order by ${sort}
 	</select>
 </mapper>
 

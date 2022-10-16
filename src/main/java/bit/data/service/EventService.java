@@ -15,8 +15,8 @@ public class EventService implements EventServiceInter {
     EventDaoInter eventDaoInter;
 
     @Override
-    public List<EventDto> selectEventList() {
-        return eventDaoInter.selectEventList();
+    public List<EventDto> selectEventList(String sort) {
+        return eventDaoInter.selectEventList(sort);
     }
 
 }
