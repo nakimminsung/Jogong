@@ -252,7 +252,7 @@
 		if(${empty sessionScope.loginUserNum}) {
 			if(!confirm("로그인이 필요한 메뉴입니다.\n로그인하시겠습니까?")) {
 				location.href="${root}";
-				
+
 			} else {
 				location.href="${root}/loginForm";
 			}
@@ -307,7 +307,7 @@
 		} else {
 			$(".friend-length").text("");
 				
-			fs += "<img src='${root }/image/default.png' class='gift-friend-img'>";
+			fs += "<img src='${root }/image/default.png' class='gift-friend-img' onerror='this.src=\"${root}/image/user_default.png\";'>";
             fs += "선물할 친구를 선택하세요.";
             $("div.friend-select-list").html(fs);
 		}

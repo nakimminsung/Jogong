@@ -798,6 +798,7 @@
 			
 			let cartInsertList = [];		
 			let friendNum = $('input:radio[name=radio]:checked').attr("friendNum");
+			console.log(friendNum);
 			$('input:checkbox[name=cart-check]:checked').each(function() {
 				
 				let data = {
@@ -1032,7 +1033,7 @@
 						
 						s += "<li style='list-style:none; float:left; margin-bottom:10px;'>";
 						s += "<div style='margin-right:50px;'>";
-						s += "<input type='radio' style='margin-right:10px;' class='chkBox' name='radio'>";
+						s += "<input type='radio' style='margin-right:10px;' class='chkBox' name='radio' friendNum='"+elt.num+"'>";
 						s += "<label>";
 						s += "<img src='"+elt.profileImage+"' width='100' class='gift-friend-img' style='margin-right:5px;'>";
 						s += "<b num='"+elt.num+"'>"+elt.nickname+"</b>";
