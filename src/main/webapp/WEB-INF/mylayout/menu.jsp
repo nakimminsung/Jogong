@@ -36,6 +36,7 @@
 	}
 	img#my-profile-img {
 		width:90px;
+		height: 90px;
 		border-radius: 35px;
 	}
 	div.my-menu {
