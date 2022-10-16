@@ -124,9 +124,13 @@ public class CscenterController {
 	      dto.setQnaStatus(qnaStatus);
 	        
 	      // db에 insert : service의 insertQna에 dto값 전달
+	      csService.insertQna(dto);
+	      
+	      
 	      ModelAndView mv = new ModelAndView();
           mv.setViewName("/alert/alert");
-          mv.addObject("msg", "등록이 완료되었습니다.");
+          mv.addObject("msg1", "등록이 완료되었습니다.");
+          mv.addObject("msg2", "내 문의내역으로 이동됩니다.");
           mv.addObject("url", "/jogong/mypage/qna");
           return mv;
 	      
