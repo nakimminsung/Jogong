@@ -109,7 +109,7 @@
                <th style="width: 150px;">문의유형 <i class='fas fa-star-of-life star'></i></th>
                <td>
                   <!-- selQnaCategory -->
-                  <select class="form-control" style="width: 300px;" required name="qnaCategoryNum">
+                  <select class="form-control category" style="width: 300px;" required name="qnaCategoryNum">
                      <option value="" disabled selected style="display: none;">선택해주세요</option>
                      <c:forEach var="dto" items="${list}">
                         <option value="${dto.num}">${dto.name}</option>
@@ -172,6 +172,7 @@
 </div>
 </body>
 <script>
+
 
 </script>
 
