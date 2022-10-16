@@ -134,7 +134,7 @@ $(function () {
 <body>
 	<div class="randomNumCheck">
 		<h3>인증번호 확인</h3>
-		<hr style="width: 130px; height: 10px; position: relative; top:-25px; left:156px; color: #cff0cc; opacity: 1; z-index: -1;">
+		
 		<input type="hidden" class ="num" value="${num }">
 			인증번호: <input type="text" class="randomNum" placeholder="인증번호">
 		<button class="numCheck">확인</button>
@@ -142,6 +142,8 @@ $(function () {
 		
 	
 	<div class="updatePass" style="display: none;">
+		<h3>비밀번호 재설정</h3>
+		
 		비밀번호: <input type="password" class="pass1" name="password" placeholder="영문,숫자,특수문자(최소 8자리)" required="required"><br>
 		비밀번호 확인: <input type="password" class="pass2" placeholder="영문,숫자,특수문자(최소 8자리)" required="required"><br>
 		
