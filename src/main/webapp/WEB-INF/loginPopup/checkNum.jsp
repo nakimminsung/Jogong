@@ -165,8 +165,6 @@ $(function () {
 	 --%>
 	
 	
-	
-=======
 		<h3>비밀번호 재설정</h3>
 		<hr style="width: 150px; height: 10px; position: relative; top:-25px; left:148px; color: #cff0cc; opacity: 1; z-index: -1;">
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;비밀번호: <input type="password" class="pass1" name="password" placeholder="영문,숫자,특수문자(최소 8자리)" required="required"><br>
@@ -177,7 +175,7 @@ $(function () {
 		<button class="btn btn-outline-secondary" id="btnSend">확인</button>
 	</div>
 	
->>>>>>> 3a0729723d78729adcd2438bd1d89edebbf76a41
+
 </body>
 
 </html>
