@@ -127,8 +127,7 @@
 </br>
 
 ## 아키텍처✨
-
-<img src=""/>
+<img src="https://user-images.githubusercontent.com/89297158/171176309-a0918a08-0596-43da-810e-e1b9737e98d0.png"/>
 
 ## ERD
 
@@ -138,30 +137,79 @@
 ## 사이트 데모🎥
 
 <details>
-<summary>데모영상</summary>
-  
-|메인페이지|계획세우기|실시간 기능| 
-|:---:|:---:|:---:| 
-|<img src="" width="250"/>|<img src="" width="250"/>|<img src="" width="250"/>|
-|검색(무한스크롤)|상세페이지|댓글|
-|<img src="" width="250"/>|<img src="" width="250"/>|<img src="" width="250"/>|
-|회원가입|로그인|마이페이지|
-|<img src="" width="250"/>|<img src="" width="250"/>|<img src="" width="250"/>|
+<summary>메인</summary>
+
+|                                                           메인페이지                                                            |                                                           계획세우기                                                            |
+| :-----------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://user-images.githubusercontent.com/84282676/207547583-83eaa3f7-8357-4c9c-a0ec-dd940327d4ee.gif" width="100%"/> | <img src="https://user-images.githubusercontent.com/84282676/207547583-83eaa3f7-8357-4c9c-a0ec-dd940327d4ee.gif" width="100%"/> |
+|                                                        검색(무한스크롤)                                                         |                                                           상세페이지                                                            |
+| <img src="https://user-images.githubusercontent.com/84282676/207547583-83eaa3f7-8357-4c9c-a0ec-dd940327d4ee.gif" width="100%"/> | <img src="https://user-images.githubusercontent.com/84282676/207547583-83eaa3f7-8357-4c9c-a0ec-dd940327d4ee.gif" width="100%"/> |
+|                                                            회원가입                                                             |                                                             로그인                                                              |
+| <img src="https://user-images.githubusercontent.com/84282676/207547583-83eaa3f7-8357-4c9c-a0ec-dd940327d4ee.gif" width="100%"/> | <img src="https://user-images.githubusercontent.com/84282676/207547583-83eaa3f7-8357-4c9c-a0ec-dd940327d4ee.gif" width="100%"/> |
+
+</details>
+
+<br />
+<details>
+<summary>결제페이지</summary>
+
+|                                                           결제 메세지 및 방법                                                             |                                                           결제완료 및 선물함 확인                                                            |
+| :-----------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://user-images.githubusercontent.com/84282676/208373558-2946d344-7fbd-44da-b235-782c06bff2b8.gif" width="100%"/> | <img src="https://user-images.githubusercontent.com/84282676/208374978-d29808bd-cf62-4bc6-9faf-3346a8a2c329.gif" width="100%"/> |
+
+</details>
+
+<br />
+<details>
+<summary>마이페이지</summary>
+
+|                                                           마이페이지                                                            |  
+| :-----------------------------------------------------------------------------------------------------------------------------: | 
+| <img src="https://user-images.githubusercontent.com/84282676/208371583-055ca39b-f4c3-4432-972f-ec60407903df.gif" width="100%"/> |
+
+</details>
+
+<br />
+<details>
+<summary>통합검색</summary>
+
+|                                                           통합검색                                                            |  
+| :-----------------------------------------------------------------------------------------------------------------------------: | 
+| <img src="https://user-images.githubusercontent.com/84282676/208123031-5073d646-070a-431c-999e-2eb83f9a4ae3.gif" width="100%"/> |
+
+</details>
+
+<br />
+<details>
+<summary>카테고리</summary>
+
+|                                                          카테고리 메인페이지                                                            |                                                           카테고리 지도                                                            |
+| :-----------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://user-images.githubusercontent.com/84282676/208364692-366d9302-e829-4e18-a092-289bbb19961a.gif" width="100%"/> | <img src="https://user-images.githubusercontent.com/84282676/208369025-af99b493-221f-4866-b129-ac7bb6c05c4c.gif" width="100%"/> |
+
+
+
 </details>
 
 <br />
 
-## 📢 User Test
+<details>
+<summary>관리자페이지</summary>
 
-<details markdown="2">
-<summary>개선사항 사례</summary>
+|                                                           메인페이지                                                            |                                                           계획세우기                                                            |
+| :-----------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://user-images.githubusercontent.com/84282676/207547583-83eaa3f7-8357-4c9c-a0ec-dd940327d4ee.gif" width="100%"/ height="50%"> | <img src="https://user-images.githubusercontent.com/84282676/207547583-83eaa3f7-8357-4c9c-a0ec-dd940327d4ee.gif" width="100%"/> |
+|                                                        검색(무한스크롤)                                                         |                                                           상세페이지                                                            |
+| <img src="https://user-images.githubusercontent.com/84282676/207547583-83eaa3f7-8357-4c9c-a0ec-dd940327d4ee.gif" width="100%"/> | <img src="https://user-images.githubusercontent.com/84282676/207547583-83eaa3f7-8357-4c9c-a0ec-dd940327d4ee.gif" width="100%"/> |
+|                                                            회원가입                                                             |                                                             로그인                                                              |
+| <img src="https://user-images.githubusercontent.com/84282676/207547583-83eaa3f7-8357-4c9c-a0ec-dd940327d4ee.gif" width="100%"/> | <img src="https://user-images.githubusercontent.com/84282676/207547583-83eaa3f7-8357-4c9c-a0ec-dd940327d4ee.gif" width="100%"/> |
 
-#### ✏️ "실시간으로 공유되는 부분을 모르겠어요,,,"
-
-> 여행계획 세우는 페이지 내, 각 장소에 따른 메모 작성시
->
-> 해당 textarea를 활성화
-#### ✏️ "검색기능에 필터링 추가해주세요! "
-> 최신순을 default로 설정하고, 조회수 순, 찜 순 3가지로 필터링기능 추가
 </details>
-<br>
+
+<br />
+
+## 시연 영상🎥
+
+링크(https://www.youtube.com/watch?v=sggx2IHUGws)
+
+## [🏷 프로젝트 노션 🏷](https://shadow-blanket-65e.notion.site/MoiM-a37bb15bcad1427f9d47d23048b76edd)
