@@ -205,4 +205,4 @@
 
 링크(https://www.youtube.com/watch?v=sggx2IHUGws)
 
-## [🏷 프로젝트 노션 🏷](https://shadow-blanket-65e.notion.site/MoiM-a37bb15bcad1427f9d47d23048b76edd)
+## [🏷 프로젝트 노션 🏷](https://shadow-blanket-65e.notion.site/582bd29dd7814c529da9197e9cb0e43c)
