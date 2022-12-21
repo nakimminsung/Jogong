@@ -38,7 +38,6 @@
 <div class="all">
 
 	<h3>비밀번호 찾기</h3>
-
 	<form class = "content" action="pw_auth.me" method="post">
 		<div class="textbox">
 	  		&nbsp;&nbsp;&nbsp;이름:<input id="text" name=nickname required="required" type="text" placeholder="이름" />
