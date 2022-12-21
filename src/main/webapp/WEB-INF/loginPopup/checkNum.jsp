@@ -142,24 +142,13 @@ $(function () {
 	
 	<div class="updatePass" style="display: none;">
 		<h3>비밀번호 재설정</h3>
-		
-		비밀번호: <input type="password" class="pass1" name="password" placeholder="영문,숫자,특수문자(최소 8자리)" required="required"><br>
-		비밀번호 확인: <input type="password" class="pass2" placeholder="영문,숫자,특수문자(최소 8자리)" required="required"><br>
-		
-		<button class="btn btn-secondary" id="btnSend">확인</button>
-	</div>
-	
-
-	
-	
-		<h3>비밀번호 재설정</h3>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;비밀번호: <input type="password" class="pass1" name="password" placeholder="영문,숫자,특수문자(최소 8자리)" required="required"><br>
 		<div id="psCheck" style="font-size: 13px;margin-left: 50px;"></div>
 		비밀번호 확인: <input type="password" class="pass2" placeholder="영문,숫자,특수문자(최소 8자리)" style="margin-top: 5px;" required="required"><br>
 		<div id="psCheck1" style="font-size: 13px;margin-left: 88px;"></div>
 		<br>
 		<button class="btn btn-outline-secondary" id="btnSend">확인</button>
-	
+	</div>
 	
 
 </body>
