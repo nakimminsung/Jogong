@@ -186,7 +186,7 @@
 
 |                                                        카테고리별 페이지                                                         |
 | :------------------------------------------------------------------------------------------------------------------------------: |
-| <img src="https://user-images.githubusercontent.com/111044928/208455363-e9ae8324-b2fc-45bd-ad53-0347189d4976.gif" width="100%"/> |
+| <img src="https://user-images.githubusercontent.com/111044928/208872794-87cdff79-09b3-46e5-906a-5aa0cfb84f2e.gif" width="100%"/> |
 
 </details>
 
