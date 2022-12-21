@@ -192,6 +192,18 @@
 
 <br />
 
+<br />
+<details>
+<summary>통합 검색</summary>
+
+|                                                        통합 검색                                                         |
+| :------------------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://github.com/JogongGift/jogong_data/blob/main/readmeImage/%EC%A1%B0%EA%B3%B5_%ED%86%B5%ED%95%A9%EA%B2%80%EC%83%89.gif?raw=true" width="100%"/> |
+
+</details>
+
+<br />
+
 <details>
 <summary>고객센터</summary>
 
