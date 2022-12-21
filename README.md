@@ -44,6 +44,10 @@
   </br>
   사람들이 공유한 장소들을 둘러볼 수 있습니다.
   카테고리별, 기획전, 오늘의 추천공간, 리뷰 등으로 구성되어 있습니다.:)
+- **`회원가입 & 로그인`**
+  </br>
+  조공 서비스를 이용하기위해 회원가입 및 로그인을 진행할 수 있습니다.
+  판매 회원과 일반 회원으로 구분되며, 일반 회원은 카카오 / 네이버 소셜 로그인 기능이 제공됩니다.
 - **`선물함`**
   </br>
   선물함에서 친구에게 보낸 선물과 친구에게 받은 선물들을 확인해볼 수 있습니다.
@@ -64,7 +68,7 @@
 
 - **`이벤트`**
   </br>호스트가 공간에 대한 정보를 등록하고, 관련 정보를 수정·삭제할 수 있는 공간입니다.
-- **`검색`**
+- **`통합 검색`**
   </br>원하는 공간 키워드를 검색하여, 해당 공간들을 찾아볼 수 있습니다.
   최신순&인기순&가격순으로 나눠서 볼 수 있어요!
 - **`고객센터`**
@@ -72,7 +76,8 @@
   고객센터에서는 FAQ와 공지사항을 확인하실 수 있습니다.
   </br>
 - **`1:1 문의하기`**
-  </br>사이트 이용에 대한 공지사항과 각종 이벤트를 확인할 수 있습니다.
+  </br>사이트 이용과 관련하여 궁금한 사항을 1:1 로 문의할 수 있으며,
+  마이페이지에서 문의 내역을 확인할 수 있습니다.
 - **`마이페이지`**
   </br>프로필&비밀번호 변경, 회원탈퇴 등 회원정보 수정 및 삭제 기능이 가능하며,
   사이드메뉴에는 나의리뷰, 찜 목록, 나의예약, 최근 본 장소 등 회원만의 맞춤메뉴를 확인할 수 있습니다.
@@ -142,11 +147,11 @@
 |                                                                                    일반회원 가입                                                                                    |                                                                                       일반회원 로그인                                                                                        |
 | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | <img src="https://github.com/JogongGift/jogong_data/blob/main/readmeImage/%EC%A1%B0%EA%B3%B5_%EC%9D%BC%EB%B0%98%ED%9A%8C%EC%9B%90%20%EA%B0%80%EC%9E%85.gif?raw=true" width="100%"/> | <img src="https://github.com/JogongGift/jogong_data/blob/main/readmeImage/%EC%A1%B0%EA%B3%B5_%EC%9D%BC%EB%B0%98%ED%9A%8C%EC%9B%90%20%EB%A1%9C%EA%B7%B8%EC%9D%B8.gif?raw=true" width="100%"/> |
-|                                                                                    판매회원 가입                                                                                    |                                                                                       판매회원 로그인                                                                                        |
+|                                                                                  **판매회원 가입**                                                                                  |                                                                                     **판매회원 로그인**                                                                                      |
 | <img src="https://github.com/JogongGift/jogong_data/blob/main/readmeImage/%EC%A1%B0%EA%B3%B5_%ED%8C%90%EB%A7%A4%ED%9A%8C%EC%9B%90%20%EA%B0%80%EC%9E%85.gif?raw=true" width="100%"/> | <img src="https://github.com/JogongGift/jogong_data/blob/main/readmeImage/%EC%A1%B0%EA%B3%B5_%ED%8C%90%EB%A7%A4%ED%9A%8C%EC%9B%90%20%EB%A1%9C%EA%B7%B8%EC%9D%B8.gif?raw=true" width="100%"/> |
-|                                                                                    카카오 로그인                                                                                    |                                                                                        네이버 로그인                                                                                         |
+|                                                                                  **카카오 로그인**                                                                                  |                                                                                      **네이버 로그인**                                                                                       |
 |  <img src="https://github.com/JogongGift/jogong_data/blob/main/readmeImage/%EC%A1%B0%EA%B3%B5_%EC%B9%B4%EC%B9%B4%EC%98%A4%EB%A1%9C%EA%B7%B8%EC%9D%B8.gif?raw=true" width="100%"/>   |       <img src="https://github.com/JogongGift/jogong_data/blob/main/readmeImage/%EC%A1%B0%EA%B3%B5_%EB%84%A4%EC%9D%B4%EB%B2%84%EB%A1%9C%EA%B7%B8%EC%9D%B8.gif?raw=true" width="100%"/>       |
-|                                                                                     아이디 찾기                                                                                     |                                                                                        비밀번호 찾기                                                                                         |
+|                                                                                   **아이디 찾기**                                                                                   |                                                                                      **비밀번호 찾기**                                                                                       |
 |                          <img src="https://user-images.githubusercontent.com/111044928/208837653-ae761840-eac7-4087-81d8-0104b4c17648.gif" width="100%"/>                           |                               <img src="https://user-images.githubusercontent.com/111044928/208838127-9535dd0b-860e-4f23-b9b1-76a5cad3e3c8.gif" width="100%"/>                               |
 
 </details>
