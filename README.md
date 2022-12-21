@@ -137,6 +137,22 @@
 
 <br />
 <details>
+<summary>회원가입 & 로그인</summary>
+
+|                                                       일반회원 가입                                                       |                                                     일반회원 로그인                                                     |
+| :-----------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://github.com/JogongGift/jogong_data/blob/main/readmeImage/%EC%A1%B0%EA%B3%B5_%EC%9D%BC%EB%B0%98%ED%9A%8C%EC%9B%90%20%EA%B0%80%EC%9E%85.gif?raw=true" width="100%"/> | <img src="https://github.com/JogongGift/jogong_data/blob/main/readmeImage/%EC%A1%B0%EA%B3%B5_%EC%9D%BC%EB%B0%98%ED%9A%8C%EC%9B%90%20%EB%A1%9C%EA%B7%B8%EC%9D%B8.gif?raw=true" width="100%"/> |
+|                                                       판매회원 가입                                                       |                                                     판매회원 로그인                                                     |
+| <img src="https://github.com/JogongGift/jogong_data/blob/main/readmeImage/%EC%A1%B0%EA%B3%B5_%ED%8C%90%EB%A7%A4%ED%9A%8C%EC%9B%90%20%EA%B0%80%EC%9E%85.gif?raw=true" width="100%"/> | <img src="https://github.com/JogongGift/jogong_data/blob/main/readmeImage/%EC%A1%B0%EA%B3%B5_%ED%8C%90%EB%A7%A4%ED%9A%8C%EC%9B%90%20%EB%A1%9C%EA%B7%B8%EC%9D%B8.gif?raw=true" width="100%"/> |
+|                                                       카카오 로그인                                                       |                                                     네이버 로그인                                                     |
+| <img src="https://github.com/JogongGift/jogong_data/blob/main/readmeImage/%EC%A1%B0%EA%B3%B5_%EC%B9%B4%EC%B9%B4%EC%98%A4%EB%A1%9C%EA%B7%B8%EC%9D%B8.gif?raw=true" width="100%"/> | <img src="https://github.com/JogongGift/jogong_data/blob/main/readmeImage/%EC%A1%B0%EA%B3%B5_%EB%84%A4%EC%9D%B4%EB%B2%84%EB%A1%9C%EA%B7%B8%EC%9D%B8.gif?raw=true" width="100%"/> |
+|                                                       아이디 찾기                                                       |                                                     비밀번호 찾기                                                     |
+| <img src="https://user-images.githubusercontent.com/111044928/208837653-ae761840-eac7-4087-81d8-0104b4c17648.gif" width="100%"/> | <img src="https://user-images.githubusercontent.com/111044928/208838127-9535dd0b-860e-4f23-b9b1-76a5cad3e3c8.gif" width="100%"/> |
+
+</details>
+
+<br />
+<details>
 <summary>결제페이지</summary>
 
 |                                                       결제 메세지 및 방법                                                       |                                                     결제완료 및 선물함 확인                                                     |
@@ -175,20 +191,7 @@
 
 </details>
 
-<br />
 
-<details>
-<summary>관리자페이지</summary>
-
-|                                                                 메인페이지                                                                  |                                                           계획세우기                                                            |
-| :-----------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------: |
-| <img src="https://user-images.githubusercontent.com/84282676/207547583-83eaa3f7-8357-4c9c-a0ec-dd940327d4ee.gif" width="100%" height="50%"> | <img src="https://user-images.githubusercontent.com/84282676/207547583-83eaa3f7-8357-4c9c-a0ec-dd940327d4ee.gif" width="100%"/> |
-|                                                              검색(무한스크롤)                                                               |                                                           상세페이지                                                            |
-|       <img src="https://user-images.githubusercontent.com/84282676/207547583-83eaa3f7-8357-4c9c-a0ec-dd940327d4ee.gif" width="100%"/>       | <img src="https://user-images.githubusercontent.com/84282676/207547583-83eaa3f7-8357-4c9c-a0ec-dd940327d4ee.gif" width="100%"/> |
-|                                                                  회원가입                                                                   |                                                             로그인                                                              |
-|       <img src="https://user-images.githubusercontent.com/84282676/207547583-83eaa3f7-8357-4c9c-a0ec-dd940327d4ee.gif" width="100%"/>       | <img src="https://user-images.githubusercontent.com/84282676/207547583-83eaa3f7-8357-4c9c-a0ec-dd940327d4ee.gif" width="100%"/> |
-
-</details>
 
 <br />
 
