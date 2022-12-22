@@ -42,8 +42,9 @@
 
 - **`메인`**
   </br>
-  사람들이 공유한 장소들을 둘러볼 수 있습니다.
-  카테고리별, 기획전, 오늘의 추천공간, 리뷰 등으로 구성되어 있습니다.:)
+  - **메인 하단**
+    - 테마별 상품목록 : 테마별로 상품을 조회할 수 있습니다.
+    - 가격별 상품목록 : 가격별 인기상품을 확인할 수 있습니다. (4개 조회)
 - **`회원가입 & 로그인`**
   </br>
   조공 서비스를 이용하기 위해 회원가입 및 로그인을 진행할 수 있습니다.
@@ -88,6 +89,8 @@
 - **`마이페이지`**
   </br>프로필&비밀번호 변경, 회원탈퇴 등 회원정보 수정 및 삭제 기능이 가능하며,
   사이드메뉴에는 나의리뷰, 찜 목록, 나의예약 등 회원만의 맞춤메뉴를 확인할 수 있습니다.
+- **실시간 후기 페이지**
+  </br>
 
 ## [🏷 API Table 🏷](https://fuchsia-guardian-8bc.notion.site/ed2c26a96a034d5bb70fba989f6b6a3f?v=10575f3fec604347a877af7dfd36cb27)
 
@@ -133,14 +136,19 @@
 
 <details>
 <summary>메인</summary>
+   <details>
+    <summary>메인상단</summary>
+  </details>
+  <details>
+  <summary>메인하단</summary>
 
-|                                                           메인페이지                                                            |                                                           계획세우기                                                            |
-| :-----------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------: |
-| <img src="https://user-images.githubusercontent.com/84282676/207547583-83eaa3f7-8357-4c9c-a0ec-dd940327d4ee.gif" width="100%"/> | <img src="https://user-images.githubusercontent.com/84282676/207547583-83eaa3f7-8357-4c9c-a0ec-dd940327d4ee.gif" width="100%"/> |
-|                                                        검색(무한스크롤)                                                         |                                                           상세페이지                                                            |
-| <img src="https://user-images.githubusercontent.com/84282676/207547583-83eaa3f7-8357-4c9c-a0ec-dd940327d4ee.gif" width="100%"/> | <img src="https://user-images.githubusercontent.com/84282676/207547583-83eaa3f7-8357-4c9c-a0ec-dd940327d4ee.gif" width="100%"/> |
-|                                                            회원가입                                                             |                                                             로그인                                                              |
-| <img src="https://user-images.githubusercontent.com/84282676/207547583-83eaa3f7-8357-4c9c-a0ec-dd940327d4ee.gif" width="100%"/> | <img src="https://user-images.githubusercontent.com/84282676/207547583-83eaa3f7-8357-4c9c-a0ec-dd940327d4ee.gif" width="100%"/> |
+|                                                          테마별 상품목록                                                          |                                                          가격별 상품목록                                                          |
+| :-------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://user-images.githubusercontent.com/105392679/209030968-aa487fdb-9d32-42df-b8b9-dccddf30d9a8.gif" width="350px"/> | <img src="https://user-images.githubusercontent.com/105392679/209030706-d6819498-0450-4b7f-ac7a-21da0eb4e129.gif" width="350px"/> |
+
+</details>
+    
+  </details>
 
 </details>
 
@@ -148,15 +156,15 @@
 <details>
 <summary>회원가입 & 로그인</summary>
 
-|                                                                                    일반회원 가입                                                                                    |                                                                                       일반회원 로그인                                                                                        |
-| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| <img src="https://github.com/JogongGift/jogong_data/blob/main/readmeImage/%EC%A1%B0%EA%B3%B5_%EC%9D%BC%EB%B0%98%ED%9A%8C%EC%9B%90%20%EA%B0%80%EC%9E%85.gif?raw=true" width="100%"/> | <img src="https://github.com/JogongGift/jogong_data/blob/main/readmeImage/%EC%A1%B0%EA%B3%B5_%EC%9D%BC%EB%B0%98%ED%9A%8C%EC%9B%90%20%EB%A1%9C%EA%B7%B8%EC%9D%B8.gif?raw=true" width="100%"/> |
-|                                                                                  **판매회원 가입**                                                                                  |                                                                                     **판매회원 로그인**                                                                                      |
-| <img src="https://github.com/JogongGift/jogong_data/blob/main/readmeImage/%EC%A1%B0%EA%B3%B5_%ED%8C%90%EB%A7%A4%ED%9A%8C%EC%9B%90%20%EA%B0%80%EC%9E%85.gif?raw=true" width="100%"/> | <img src="https://github.com/JogongGift/jogong_data/blob/main/readmeImage/%EC%A1%B0%EA%B3%B5_%ED%8C%90%EB%A7%A4%ED%9A%8C%EC%9B%90%20%EB%A1%9C%EA%B7%B8%EC%9D%B8.gif?raw=true" width="100%"/> |
-|                                                                                  **카카오 로그인**                                                                                  |                                                                                      **네이버 로그인**                                                                                       |
-|  <img src="https://github.com/JogongGift/jogong_data/blob/main/readmeImage/%EC%A1%B0%EA%B3%B5_%EC%B9%B4%EC%B9%B4%EC%98%A4%EB%A1%9C%EA%B7%B8%EC%9D%B8.gif?raw=true" width="100%"/>   |       <img src="https://github.com/JogongGift/jogong_data/blob/main/readmeImage/%EC%A1%B0%EA%B3%B5_%EB%84%A4%EC%9D%B4%EB%B2%84%EB%A1%9C%EA%B7%B8%EC%9D%B8.gif?raw=true" width="100%"/>       |
-|                                                                                   **아이디 찾기**                                                                                   |                                                                                      **비밀번호 찾기**                                                                                       |
-|                          <img src="https://user-images.githubusercontent.com/111044928/208837653-ae761840-eac7-4087-81d8-0104b4c17648.gif" width="100%"/>                           |                               <img src="https://user-images.githubusercontent.com/111044928/208838127-9535dd0b-860e-4f23-b9b1-76a5cad3e3c8.gif" width="100%"/>                               |
+|                                                                                    일반회원 가입                                                                                     |                                                                                        일반회원 로그인                                                                                        |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://github.com/JogongGift/jogong_data/blob/main/readmeImage/%EC%A1%B0%EA%B3%B5_%EC%9D%BC%EB%B0%98%ED%9A%8C%EC%9B%90%20%EA%B0%80%EC%9E%85.gif?raw=true" width="350px"/> | <img src="https://github.com/JogongGift/jogong_data/blob/main/readmeImage/%EC%A1%B0%EA%B3%B5_%EC%9D%BC%EB%B0%98%ED%9A%8C%EC%9B%90%20%EB%A1%9C%EA%B7%B8%EC%9D%B8.gif?raw=true" width="350px"/> |
+|                                                                                  **판매회원 가입**                                                                                   |                                                                                      **판매회원 로그인**                                                                                      |
+| <img src="https://github.com/JogongGift/jogong_data/blob/main/readmeImage/%EC%A1%B0%EA%B3%B5_%ED%8C%90%EB%A7%A4%ED%9A%8C%EC%9B%90%20%EA%B0%80%EC%9E%85.gif?raw=true" width="100%"/>  | <img src="https://github.com/JogongGift/jogong_data/blob/main/readmeImage/%EC%A1%B0%EA%B3%B5_%ED%8C%90%EB%A7%A4%ED%9A%8C%EC%9B%90%20%EB%A1%9C%EA%B7%B8%EC%9D%B8.gif?raw=true" width="100%"/>  |
+|                                                                                  **카카오 로그인**                                                                                   |                                                                                       **네이버 로그인**                                                                                       |
+|   <img src="https://github.com/JogongGift/jogong_data/blob/main/readmeImage/%EC%A1%B0%EA%B3%B5_%EC%B9%B4%EC%B9%B4%EC%98%A4%EB%A1%9C%EA%B7%B8%EC%9D%B8.gif?raw=true" width="100%"/>   |       <img src="https://github.com/JogongGift/jogong_data/blob/main/readmeImage/%EC%A1%B0%EA%B3%B5_%EB%84%A4%EC%9D%B4%EB%B2%84%EB%A1%9C%EA%B7%B8%EC%9D%B8.gif?raw=true" width="100%"/>        |
+|                                                                                   **아이디 찾기**                                                                                    |                                                                                       **비밀번호 찾기**                                                                                       |
+|                           <img src="https://user-images.githubusercontent.com/111044928/208837653-ae761840-eac7-4087-81d8-0104b4c17648.gif" width="100%"/>                           |                               <img src="https://user-images.githubusercontent.com/111044928/208838127-9535dd0b-860e-4f23-b9b1-76a5cad3e3c8.gif" width="100%"/>                                |
 
 </details>
 
@@ -223,6 +231,28 @@
 | <img src="https://user-images.githubusercontent.com/84282676/208387290-cef01aee-954a-41c2-85ce-2996092c4d46.gif" width="100%" height="50%"> | <img src="https://user-images.githubusercontent.com/111044928/208454005-fc7e8281-218a-4f92-80b6-cf5424ade921.gif" width="100%"/> |
 |                                                            **프로필 수정(소셜)**                                                            |                                                           **문의내역**                                                           |
 |      <img src="https://user-images.githubusercontent.com/111044928/208452997-fbdd2334-67b0-4b1b-8643-e97c9a6355ab.gif" width="100%"/>       | <img src="https://user-images.githubusercontent.com/111044928/208454597-318d9144-3dc0-4ec6-9889-2cea640b43f5.gif" width="100%"/> |
+
+</details>
+
+<br />
+
+<details>
+<summary>상세페이지</summary>
+
+|                                                         상세페이지(옵션x)                                                         |                                                         상세페이지(옵션o)                                                         |
+| :-------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://user-images.githubusercontent.com/105392679/209032688-1b16706c-12d3-4544-afb0-58f64cb0e4b9.gif" width="350px"/> | <img src="https://user-images.githubusercontent.com/105392679/209033016-360ef37c-3cc5-4f4a-ab84-7668a0b38705.gif" width="350px"/> |
+
+</details>
+
+<br />
+
+<details>
+<summary>실시간후기페이지</summary>
+
+|                                                           실시간 후기                                                            |
+| :------------------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://user-images.githubusercontent.com/105392679/209028858-79516f7c-e420-4685-88f9-4c1320dcd954.gif" width="100%"/> |
 
 </details>
 
