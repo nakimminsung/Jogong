@@ -128,8 +128,8 @@ $(document).ready(function(){
 					<label style="float: left;"><input type="checkbox" class="form-check-input checkUser" id="rememberId" ${rememberId=='yes' ? 'checked' : ''}> 아이디 저장</label>
 					
 					<div style="float: right;">
-						<a href="javascript:openWindowPop('http://localhost:9000/jogong/loginForm/searchId', '아이디 찾기')" style="border-bottom: 1px solid black; cursor: pointer;">아이디 찾기</a>&nbsp;/
-						<a href="javascript:openWindowPop('http://localhost:9000/jogong/loginForm/searchPass', '비밀번호 찾기')" style="border-bottom: 1px solid black; cursor: pointer;">비밀번호 찾기</a>
+						<a href="javascript:openWindowPop('http://localhost:9002/jogong/loginForm/searchId', '아이디 찾기')" style="border-bottom: 1px solid black; cursor: pointer;">아이디 찾기</a>&nbsp;/
+						<a href="javascript:openWindowPop('http://localhost:9002/jogong/loginForm/searchPass', '비밀번호 찾기')" style="border-bottom: 1px solid black; cursor: pointer;">비밀번호 찾기</a>
 					</div>
 				</div>	
 				<button type="button" class="loginok btn btn-danger" id="loginok" >로그인</button>

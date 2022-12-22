@@ -93,7 +93,7 @@
 	font-family:Gulim; 
 	font-size:10px;
 	border-radius: 5px;
-	margin-left: 21%;
+	margin-left: 25%;
 	margin-bottom: 35px;
 	}
 	.rollingNc ul,.rollingNc li 
@@ -164,10 +164,10 @@
    			</ul>	
 		</div>	
 	</c:if>	
-		<h3 style="margin-left: 21%;">${category}</h3>
-		<hr style="width: 50%;margin-left: 21%;">
+		<h3 style="margin-left: 25%;">${category}</h3>
+		<hr style="width: 50%;margin-left: 25%;">
 	
-	<table class="table" style="margin-left: 23%; width: 800px;">
+	<table class="table" style="margin-left: 27%; width: 800px;">
 		<c:forEach var="dto" items="${list}">
 			<tr>
 				<td> 
